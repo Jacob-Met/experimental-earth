@@ -5,6 +5,7 @@
  */
 import { validateStudyMetadata } from './study-contract.js';
 import { validateObservationOrigin } from './observation-units.js';
+import { validateOutletEvidence } from './outlet-evidence-contract.js';
 export const WIDTH = 8;
 export const HEIGHT = 6;
 export const SURFACES = Object.freeze({
@@ -60,6 +61,7 @@ export function validateProject(project) {
   }
   if (project.selectedIndex !== undefined && (!Number.isInteger(project.selectedIndex) || project.selectedIndex < 0 || project.selectedIndex >= width * height)) throw new Error('Selected cell out of range');
   validateStudyMetadata(project);
+  validateOutletEvidence(project.outletEvidence);
   return project;
 }
 

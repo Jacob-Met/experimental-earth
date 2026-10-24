@@ -7,6 +7,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { receiveIntervention } from './intervention.receiving.mjs';
 import { receiveInfiltration } from './infiltration.receiving.mjs';
 import { receiveInfiltrationResolution } from './infiltration-resolution.receiving.mjs';
+import { receiveOutletEvidence } from './outlet-evidence.receiving.mjs';
 import { receiveEventChallenge } from './event-challenge.receiving.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const chromeBin = process.env.CHROME_BIN ?? (
@@ -88,6 +89,7 @@ try {
   await receiveIntervention({ evaluate, send, delay, report });
   await receiveInfiltrationResolution({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveEventChallenge(evaluate, report, {send, artifactDirectory:session.runDirectory});
+  await receiveOutletEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);
   return {checks:report,exceptions,dimensions:dims,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
   });
