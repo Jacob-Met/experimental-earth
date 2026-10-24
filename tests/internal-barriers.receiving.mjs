@@ -43,6 +43,11 @@ const result = await withBrowserSession({ root, chromeBin, runDirectory }, async
   assert.match(await evaluate("document.querySelector('#barrier-details').textContent"), /Hypothetical <wall> & supplied note/);
   assert.equal(await evaluate("document.querySelectorAll('#barrier-details wall').length"), 0);
   report.push('sourced proposal closure recalculates paired result, preserves baseline and renders actual map edge');
+  await evaluate("document.querySelector('#local-budget-scope').value='edited';document.querySelector('#local-budget-scope').dispatchEvent(new Event('change'));document.querySelector('#trace-local-budget').click()");
+  assert.match(await evaluate("document.querySelector('#local-budget-results').textContent"), /Inspect the same 2 cells in both scenariosA1, B1/);
+  assert.match(await evaluate("document.querySelector('#local-budget-results').textContent"), /both cells adjoining a changed wall/);
+  report.push('wall-only proposal reaches the maintained two-cell edited-footprint budget');
+
 
   await evaluate("document.querySelector('#proposal-grid [data-cell-index=\"1\"]').click()");
   await edge('west', 'Proposed west-side opening');
@@ -93,6 +98,7 @@ const result = await withBrowserSession({ root, chromeBin, runDirectory }, async
     writeFileSync(session.runDirectory + '/' + name, Buffer.from(shot.data, 'base64'));
     return clip;
   };
+  await delay(3900); // Let the intentional refusal toast retire before visual inspection.
   const desktopClip = await capture('barriers-desktop.png');
   await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   await delay(150);

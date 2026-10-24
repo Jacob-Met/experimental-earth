@@ -23,3 +23,5 @@ Cross-event hypothesis transfer checks hydraulic connectivity in addition to exi
 `tests/internal-barriers.test.mjs` includes an independent 2×2 calculation: five liters of source-cell rainfall split equally between two low neighbors without walls; closing one link sends all five liters to the remaining neighbor; closing both retains them. A second-step gap control shows rerouting through an available opening. Further controls verify reciprocal editing, nonnegative storage, local/global conservation, forward/reverse rainfall attribution, unchanged exterior behavior, malformed-input rejection, portable reproduction and cross-event admission.
 
 `tests/internal-barriers.receiving.mjs` exercises the actual browser controls and saved project. Authored analytical controls establish the implementation behavior, not physical calibration or provider/deployment qualification.
+
+A wall/opening change contributes both adjacent cells to the existing directly edited-footprint water budget. Equivalent default/declared openings and source-note-only edits do not enlarge that physical footprint. Regional arithmetic remains the maintained accepted-flux accounting.

@@ -1,3 +1,4 @@
+import { localBudgetRegion, compareLocalWaterBudget, inspectRegionalWaterBudget } from '../local-water-budget.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { makeExample, validateProject, runRain, compare } from '../core.js';
@@ -144,4 +145,18 @@ test('retained collection context changes with the actual wall declaration', () 
   const p = fixture(), next = withInternalBarrier(p, 'existing', 0, 'east', true, 'Changed place');
   assert.notEqual(outletContext(p, 'existing'), outletContext(next, 'existing'));
   assert.equal(outletContext(p, 'proposal'), outletContext(next, 'proposal'));
+});
+
+test('wall-only edited footprint includes both endpoint cells and the maintained regional budget', () => {
+  const p = withInternalBarrier(fixture(), 'proposal', 0, 'east', true, 'Wall-only change');
+  assert.deepEqual(localBudgetRegion(p, 'edited'), [0, 1]);
+  const budget = inspectRegionalWaterBudget(compareLocalWaterBudget(p), localBudgetRegion(p, 'edited'));
+  close(budget.changeBalanceErrorLiters, 0);
+  assert.ok(budget.changes.storedLiters < 0);
+  p.proposal[3].surface = 'garden';
+  assert.deepEqual(localBudgetRegion(p, 'edited'), [0, 1, 3]);
+  const open = withInternalBarrier(fixture(), 'proposal', 0, 'east', false, 'Declared open edge');
+  assert.deepEqual(localBudgetRegion(open, 'edited'), []);
+  const unchanged = withInternalBarrier(p, 'existing', 0, 'east', true, 'Different note, same wall');
+  assert.deepEqual(localBudgetRegion(unchanged, 'edited'), [3]);
 });

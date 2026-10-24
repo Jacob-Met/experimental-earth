@@ -65,3 +65,14 @@ export function internalBarrierCount(cells) {
   return cells.reduce((count, cell) => count + ['east', 'south'].filter(key =>
     cell.internalBarriers?.[key]?.closed === true).length, 0);
 }
+
+/** Both adjoining cells belong to the directly changed connectivity footprint. */
+export function changedBarrierCells(first, second, width, height) {
+  const changed = new Set();
+  for (let i = 0; i < first.length; i++) for (const key of ['east', 'south']) {
+    if ((first[i].internalBarriers?.[key]?.closed === true) === (second[i].internalBarriers?.[key]?.closed === true)) continue;
+    const edge = internalEdge(width, height, i, key);
+    if (edge) { changed.add(edge.a); changed.add(edge.b); }
+  }
+  return [...changed].sort((a, b) => a - b);
+}
