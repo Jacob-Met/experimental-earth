@@ -10,6 +10,16 @@ The product should help people understand and improve a courtyard, schoolyard, g
 
 ## Run the Rain Experiment Lab
 
+The workbench also includes **How does a surface warm up and cool down?**, a
+source-bound comparison of two declared uniform thermal layers at a chosen cell.
+Supply absorption, heat capacity, linear exchange and a consecutive exposure
+schedule; inspect the temperature history and signed energy accounting, then
+retain it through ordinary project export/reopen. The fictional example exposes
+a heating-versus-late-cooling tradeoff. See [the heat experiment](docs/SURFACE_HEAT.md)
+for the exact model, retained sources, omitted processes and browser controls.
+This is a declared-model experiment, with no inferred material properties or
+physical heat/comfort validation.
+
 Run `python3 -m http.server 8765` from the repository root and open `http://localhost:8765/` in a modern browser. It is dependency-free and local-only. Edit either 8×6 site grid with surface/height brushes, change rain assumptions, compare the matched scenarios, inspect water balance and time series, and save/reopen the full project via Export/Import JSON. Browser storage also retains the last workspace locally. Open the site through a local HTTP server, not directly as a `file:` URL, because JavaScript modules may be blocked by file-origin security policy.
 
 The base project's **Export JSON** and **Import JSON** share a 4 MiB UTF-8 transfer ceiling, which admits a fully sourced 24×24 survey grid that exceeds the former 1 MB importer limit. Export refuses an oversized workspace without modifying it; Import refuses oversized or invalid files, and a pending file read cannot overwrite newer project edits or a reset. A retained source description is an authored claim, not independent provenance verification.

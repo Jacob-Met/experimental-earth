@@ -1,0 +1,15 @@
+#surface-heat { min-width: 0; overflow-wrap: anywhere; }
+#surface-heat h2 { margin: 8px 0 12px; }
+#surface-heat .heat-layers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0; }
+#surface-heat fieldset { min-width: 0; margin: 0; border: 1px solid #cadbd1; border-radius: 12px; padding: 16px; }
+#surface-heat legend { padding: 0 6px; font-weight: 750; }
+#surface-heat textarea { display: block; width: 100%; min-width: 0; margin-top: 7px; padding: 10px; border: 1px solid #cfddd7; border-radius: 8px; color: #15323a; background: #fbfcfa; font: inherit; resize: vertical; }
+#surface-heat textarea:focus-visible { outline: 3px solid #f2a53f; outline-offset: 2px; }
+#surface-heat .heat-assumptions { padding: 12px 14px; border-left: 3px solid #729c8f; background: #f2f7f3; font-size: 12px; }
+#surface-heat #heat-chart { display: block; width: 100%; height: auto; }
+#surface-heat #heat-chart text { fill: #486760; font-size: 12px; }
+#surface-heat .heat-result-card { padding: 16px; border: 1px solid #d7e4da; border-radius: 12px; background: #f8fbf7; }
+#surface-heat .heat-result-card h4 { margin: 0 0 8px; }
+#surface-heat .heat-result-card strong { font-size: 24px; }
+#surface-heat #heat-evidence p { font-size: 12px; }
+@media (max-width: 600px) { #surface-heat .heat-layers { grid-template-columns: 1fr; } #surface-heat .obs-actions { align-items: stretch; } #surface-heat #heat-chart text { font-size: 24px; } }
