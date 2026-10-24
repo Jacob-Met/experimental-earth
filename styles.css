@@ -52,3 +52,14 @@
 .local-budget-neighbor p { font-size: .85rem; overflow-wrap: anywhere; }
 .local-budget-explanation { padding: .9rem; background: #eef4ef; border-left: 3px solid #248c7a; }
 @media (max-width: 480px) { .local-budget-table { font-size: .78rem; } .local-budget-table th, .local-budget-table td { padding-left: .2rem; padding-right: .2rem; } .local-budget-table thead th { white-space: nowrap; overflow-wrap: normal; } }
+
+#joint-evidence-panel{min-width:0}
+#joint-evidence-panel .mini-note,#joint-evidence-panel .muted{color:#3c5f56}
+#joint-evidence-panel summary{cursor:pointer;font-weight:650;color:#245c4f}
+#joint-form{margin:16px 0 22px}#joint-form fieldset{border:1px solid #cbded3;border-radius:8px;margin:0 0 16px;padding:12px;min-width:0}#joint-form legend{font-size:12px;font-weight:700;padding:0 6px}
+#joint-pairs{display:block;width:100%;font:14px/1.6 ui-monospace,monospace;color:#153b32;background:#f7fbf8;border:1px solid #afcbbb;border-radius:8px;padding:10px;margin-top:7px;resize:vertical}
+#joint-pairs:focus-visible,#joint-evidence-panel .joint-table-wrap:focus-visible{outline:3px solid #e8a040;outline-offset:3px}
+#joint-depth-choices{max-height:280px;overflow:auto}#joint-depth-choices p{font-size:12px}.joint-choice{display:flex;gap:10px;align-items:flex-start;padding:10px 0;font-size:12px;overflow-wrap:anywhere}.joint-choice input{width:18px;height:18px;min-height:18px;flex:0 0 18px;margin:2px 0 0;padding:0}
+#joint-status,#joint-support{font-size:13px;color:#234d40;overflow-wrap:anywhere}#joint-plane svg{display:block;width:100%;height:auto;max-height:420px}
+@media(max-width:650px){#joint-plane text{font-size:22px}#joint-axis-controls{grid-template-columns:minmax(0,1fr)}}
+.joint-table-wrap{max-width:100%;overflow-x:auto;margin:16px 0}.joint-table-wrap table{width:100%;min-width:650px;border-collapse:collapse;table-layout:fixed;font-size:12px}.joint-table-wrap th,.joint-table-wrap td{text-align:left;vertical-align:top;padding:10px 8px;border-bottom:1px solid #cedfd5;overflow-wrap:anywhere}.joint-table-wrap thead{background:#e7f2eb}.joint-residuals{margin:12px 0;font-size:12px;overflow-wrap:anywhere}.joint-residuals p{border-left:2px solid #bdd7ca;padding-left:12px}

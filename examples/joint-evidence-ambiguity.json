@@ -1,0 +1,96 @@
+{
+  "schema": "experimental-earth-site/1",
+  "title": "Authored joint soil/outlet ambiguity",
+  "width": 2,
+  "height": 2,
+  "weather": {
+    "rainMmHr": 61,
+    "stormMinutes": 60,
+    "durationMinutes": 60,
+    "stepMinutes": 30,
+    "cellSizeM": 1,
+    "mobilityPerHour": 0,
+    "boundaryExitPerHour": 0.38
+  },
+  "existing": [
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    }
+  ],
+  "proposal": [
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat arithmetic control"
+    }
+  ],
+  "observations": [
+    {
+      "cellIndex": 0,
+      "minute": 30,
+      "depthMm": 26,
+      "uncertaintyMm": 0,
+      "source": "Authored independent depth = 26 mm",
+      "scenario": "existing",
+      "use": "challenge"
+    }
+  ],
+  "selectedIndex": 0,
+  "source": "Illustrative geometry and rates; no site measurements",
+  "outletEvidence": {
+    "schema": "experimental-earth-outlet-evidence/1",
+    "target": "existing",
+    "eventRef": "Authored ambiguity; not measured",
+    "collectionSource": "Analytic sum of all boundary exits",
+    "coverage": "all-modeled-edges",
+    "ratesPerHour": [
+      0.1,
+      0.13333333333333333
+    ],
+    "durationMinutes": 60,
+    "contextJson": "{\"cells\":[{\"elevationM\":0,\"provenance\":\"Authored flat arithmetic control\",\"surface\":\"sealed\"},{\"elevationM\":0,\"provenance\":\"Authored flat arithmetic control\",\"surface\":\"sealed\"},{\"elevationM\":0,\"provenance\":\"Authored flat arithmetic control\",\"surface\":\"sealed\"},{\"elevationM\":0,\"provenance\":\"Authored flat arithmetic control\",\"surface\":\"sealed\"}],\"height\":2,\"source\":\"Illustrative geometry and rates; no site measurements\",\"target\":\"existing\",\"weather\":{\"cellSizeM\":1,\"durationMinutes\":60,\"mobilityPerHour\":0,\"rainMmHr\":61,\"stormMinutes\":60},\"width\":2}",
+    "readings": [
+      {
+        "startMinute": 0,
+        "endMinute": 30,
+        "volume": 16000,
+        "uncertainty": 0,
+        "unit": "mL",
+        "source": "Authored first-interval volume = 16 L",
+        "use": "calibration"
+      }
+    ]
+  }
+}
