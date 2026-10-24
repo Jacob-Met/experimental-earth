@@ -16,7 +16,8 @@ function fixture(){
  p.infiltrationStudy={target:'existing',surface:'turf',ratesMmHr:[10,20]};
  p.observations=[
   {cellIndex:0,minute:20,depthMm:10,uncertaintyMm:0,source:'fictional source A',scenario:'existing',use:'calibration'},
-  {cellIndex:0,minute:35,depthMm:15,uncertaintyMm:0,source:'fictional source B',scenario:'existing',use:'challenge'}
+  {cellIndex:0,minute:35,depthMm:15,uncertaintyMm:0,source:'fictional source B',scenario:'existing',use:'challenge'},
+  {cellIndex:1,minute:21,depthMm:2,uncertaintyMm:1,source:'<img src=x onerror="window.__malicious=1">'+'x'.repeat(130),scenario:'proposal',use:'calibration'}
  ];return p;
 }
 let checks=[];
@@ -35,6 +36,11 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  })()`);
  assert.match(await evaluate("document.querySelector('#clock-results').textContent"),/10 min: one-survivor/);
  assert.equal(await evaluate("document.querySelector('#download-clock').disabled"),false);
+ const liveEvidence=await evaluate("(()=>{const d=document.querySelector('#clock-results .clock-reading-evidence');return {count:d.querySelectorAll('li').length,text:d.textContent,hasImage:!!d.querySelector('img'),malicious:window.__malicious??null};})()");
+ assert.equal(liveEvidence.count,3);assert.match(liveEvidence.text,/original minute 35; depth 15 ± 0 mm/);
+ assert.match(liveEvidence.text,/not used in this study/);assert.match(liveEvidence.text,/Authored source: <img src=x/);
+ assert.equal(liveEvidence.hasImage,false);assert.equal(liveEvidence.malicious,null);
+ checks.push('live original reading evidence lists calibration, challenge and ignored source text without rendering HTML');
  checks.push('source-bound live comparison arms user-initiated export');
 
  const saved=await evaluate(`(async()=>{
@@ -66,6 +72,10 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  assert.match(await evaluate("document.querySelector('#clock-replay').textContent"),/Recomputed from the file/);
  assert.match(await evaluate("document.querySelector('#clock-replay').textContent"),/10 min: one-survivor/);
  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),changedWorkspace);
+ const replayEvidence=await evaluate("(()=>{const d=document.querySelector('#clock-replay .clock-reading-evidence');return {count:d.querySelectorAll('li').length,text:d.textContent,hasImage:!!d.querySelector('img')};})()");
+ assert.equal(replayEvidence.count,3);assert.match(replayEvidence.text,/original minute 35/);
+ assert.match(replayEvidence.text,/not used in this study/);assert.equal(replayEvidence.hasImage,false);
+ checks.push('reopened evidence retains all original source roles without changing workspace');
  checks.push('real file reopening recalculates saved diagnostic without adopting project');
 
  const tamper=await evaluate(`(async()=>{
@@ -96,6 +106,7 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  assert.equal(stale.replay,'');assert.equal(stale.downloadDisabled,true);
  checks.push('stale read cannot publish a replay after input changes');
 
+ await evaluate(`(async()=>{const input=document.querySelector('#clock-import'),file=new File([window.__clockDiagnostic],'clock.json');const list=new DataTransfer();list.items.add(file);input.files=list.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,170));document.querySelector('#clock-replay .clock-reading-evidence').open=true;})()`);
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  await delay(180);
  const dims=await evaluate('({inner:innerWidth,scroll:document.documentElement.scrollWidth,panels:document.querySelectorAll("#clock-study").length})');
@@ -103,7 +114,7 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  const clip=await evaluate("(()=>{const r=document.querySelector('#clock-study').getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:Math.min(r.height,1500),scale:1}})()");
  const screenshot=await send('Page.captureScreenshot',{format:'png',clip,captureBeyondViewport:true});
  writeFileSync(artifactDirectory+'/clock-diagnostic-390.png',Buffer.from(screenshot.data,'base64'));
- checks.push('390px clock controls, no viewport overflow');
+ checks.push('390px expanded long-source evidence wraps without viewport overflow');
  assert.deepEqual(exceptions,[]);
  return {checks,dimensions:dims,exceptions};
 });

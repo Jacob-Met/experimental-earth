@@ -4,6 +4,45 @@ import {
  checkClockReceiptBytes,CLOCK_RECEIPT_LIMITS
 } from './clock-receipt.js';
 
+/** Expose original authored readings, never shifted/corrected observations. */
+export function originalClockReadings(receipt){
+ const included=new Set(receipt.comparison.shiftedReadingIndices);
+ const {project}=receipt;
+ return project.observations.map((reading,index)=>({
+  number:index+1,
+  cell:String.fromCharCode(65+(reading.cellIndex%project.width))+String(Math.floor(reading.cellIndex/project.width)+1),
+  originalMinute:reading.minute,depthMm:reading.depthMm,uncertaintyMm:reading.uncertaintyMm,
+  source:reading.source,
+  scenario:reading.scenario??'unassigned',role:reading.use??'unassigned',
+  considered:included.has(index)
+ }));
+}
+
+function drawOriginalReadings(container,receipt){
+ const rows=originalClockReadings(receipt);
+ const details=document.createElement('details');
+ details.className='clock-reading-evidence';
+ const summary=document.createElement('summary');
+ summary.textContent=`Inspect original observation evidence (${rows.length} readings; ${rows.filter(r=>r.considered).length} assigned to this study)`;
+ details.append(summary);
+ const note=document.createElement('p');
+ note.textContent='Original recorded minutes, depths, uncertainties, evidence roles and authored sources are shown here without correction. Assigned readings are considered for every clock alternative; an out-of-window alternative is refused rather than dropping them. Sources are declarations, not independently authenticated measurements.';
+ details.append(note);
+ const list=document.createElement('ol');
+ list.style.overflowWrap='anywhere';
+ for(const row of rows){
+  const entry=document.createElement('li');
+  const detail=document.createElement('span');
+  detail.textContent=`Cell ${row.cell}; original minute ${row.originalMinute}; depth ${row.depthMm} ± ${row.uncertaintyMm} mm; ${row.considered?'assigned to this study':'not used in this study'} (scenario: ${row.scenario}, role: ${row.role}). `;
+  const source=document.createElement('span');
+  source.textContent='Authored source: '+row.source;
+  entry.append(detail,source);
+  list.append(entry);
+ }
+ details.append(list);
+ container.append(details);
+}
+
 function drawComparison(container,receipt,{reopened=false}={}){
  container.replaceChildren();
  const add=text=>{const p=document.createElement('p');p.textContent=text;container.append(p);};
@@ -21,6 +60,7 @@ function drawComparison(container,receipt,{reopened=false}={}){
   const c=row.comparison;
   add(`${row.offsetMinutes} min: ${c.status}. Calibration-compatible rates: ${c.compatibleRatesMmHr.join(', ')||'none'} mm/h. Rates remaining after ${c.counts.challenge} held-aside checks: ${c.survivingRatesMmHr.join(', ')||'none'} mm/h.`);
  }
+ drawOriginalReadings(container,receipt);
  add(comparison.semantics);
  add(CLOCK_RECEIPT_LIMITS);
 }
