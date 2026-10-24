@@ -266,3 +266,5 @@ The saved surface heat experiment can now add a sourced lower heat store for eac
 ### Surface evidence for hidden heat stores
 
 Compare sourced surface-temperature bands against explicit lower-capacity/conductance alternatives while keeping the original column, initial temperatures and exposure fixed. Structured cards preserve calibration and challenge roles; linked surface/lower curves and a remaining-peak spread show what those readings distinguish and what stays unresolved. One survivor refers only to the offered finite set, not unique physical parameters. Whole-project reopening recomputes the investigation. See [the workflow, five-explanation control and numerical limits](docs/HEAT_COLUMN_EVIDENCE.md).
+
+Readings can also declare an **interval mean**, with explicit start and end. The model integrates across every forcing change inside that window, and the plot shows its full support. [The interval-mean workflow](docs/HEAT_COLUMN_AVERAGES.md) includes a portable NOAA Tucson hourly example that preserves the acquired source values and rejects the unchanged illustrative alternatives without fitting.

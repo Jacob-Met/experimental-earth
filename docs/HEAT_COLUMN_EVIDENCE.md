@@ -19,7 +19,7 @@ The lower boundary remains insulated. These are internally uniform stores with s
 
 ## Reading roles and decisions
 
-Readings contain elapsed time, surface temperature, supplied band half-width, a `calibration` or `challenge` role, and source text. Lower-store temperatures and energy readings are not accepted as interchangeable quantities.
+Readings contain elapsed time, surface temperature, supplied band half-width, a `calibration` or `challenge` role, and source text. They may be instantaneous or explicitly declared interval means; the latter retain a start and end and are compared with the model average over that complete support. Existing readings without an operator remain instantaneous. See [interval means and acquired hourly evidence](HEAT_COLUMN_AVERAGES.md). Lower-store temperatures and energy readings are not accepted as interchangeable quantities.
 
 For each candidate, every reading is evaluated against that candidate's unchanged surface response. The residual is **reading minus predicted surface temperature**. A candidate passes a reading when the residual magnitude is at most the supplied half-width plus the separately reported engineering arithmetic guard.
 
@@ -79,8 +79,8 @@ A failed proposed replacement preserves accepted inputs. Draft edits invalidate 
 | Alternative label | Distinct, nonempty, at most 60 characters |
 | Lower capacity C₂ | 1,000–10,000,000 J/(m²·K) |
 | Internal conductance g | 0–1,000 W/(m²·K) |
-| Surface readings | 0–100, unique elapsed times |
-| Reading time | Within the complete saved exposure, including its endpoints |
+| Surface readings | 0–100, distinct operators and time supports |
+| Reading time | Within the complete saved exposure, including its endpoints; a mean requires a finite nonempty interval |
 | Reading temperature | −100–500 °C |
 | Supplied half-width | 0–100 °C |
 | Reading role | `calibration` or `challenge` |
