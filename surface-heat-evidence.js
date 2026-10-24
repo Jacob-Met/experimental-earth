@@ -23,6 +23,9 @@ function screen(rows) {
     withinCount: rows.filter(row => row.withinBand).length, rows };
 }
 
+// Shared role-preserving finite screening for both maintained heat models.
+export { screen as screenHeatReadings };
+
 /** Finite, declared hypotheses. Challenge readings never refit or rank them. */
 export function compareHeatEvidence(project) {
   validateProject(project);

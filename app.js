@@ -3,6 +3,7 @@ import {mountSunPathPanel} from './solar-path-panel.js';
 import {mountSurfaceHeat} from './surface-heat-panel.js';
 import {mountHeatEvidence} from './surface-heat-evidence-panel.js';
 import {mountHeatColumn} from './heat-column-panel.js';
+import {mountHeatColumnEvidence} from './heat-column-evidence-panel.js';
 import { mountStormIntensityPanel } from './storm-intensity-panel.js';
 import { mountWettingFrontPanel } from './wetting-front-panel.js';
 import { mountProposalComponents } from './proposal-components-panel.js';
@@ -49,7 +50,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -273,6 +274,7 @@ const proposalComponentsPanel = mountProposalComponents({ getProject: () => proj
 const stormIntensityPanel = mountStormIntensityPanel({ getProject: () => project });
 const surfaceHeatPanel = mountSurfaceHeat({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 const heatColumnPanel = mountHeatColumn({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
+const heatColumnEvidencePanel = mountHeatColumnEvidence({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 const sunPathPanel = mountSunPathPanel({getProject:()=>project, notice});
 const wettingFrontPanel = mountWettingFrontPanel({ getProject: () => project,
   replaceProject: next => { project = validateProject(next); rerun(); }, prepareReading: prepareObservedReading });

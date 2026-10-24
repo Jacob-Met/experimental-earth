@@ -1,0 +1,132 @@
+{
+  "schema": "experimental-earth.heat-column-evidence-verification/v1",
+  "qualifiedBase": "a93b4f25f20cbb9d1b7094a89e97a9e03984d7a4",
+  "qualification": "Exact base archive plus the retained candidate source files; executable hashes below. Documentation updated after execution.",
+  "runtime": {
+    "node": "22.23.4",
+    "python": "3.12.3",
+    "browser": "Chrome/156.0.8078.47"
+  },
+  "commands": [
+    "node --test tests/*.test.mjs",
+    "CHROME_BIN=/opt/google/chrome/chrome node tests/heat-column-evidence.browser.mjs",
+    "CHROME_BIN=/opt/google/chrome/chrome node tests/heat-column.browser.mjs"
+  ],
+  "native": {
+    "tests": 480,
+    "pass": 480,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "groups": 8,
+    "exceptions": [],
+    "sandbox": {
+      "adequate": true,
+      "layer1": true,
+      "pid": true,
+      "network": true,
+      "seccomp": true,
+      "tsync": true
+    }
+  },
+  "originalColumnBrowser": {
+    "groups": 8,
+    "exceptions": []
+  },
+  "independentReview": [
+    "Original-row role indices and challenge-no-refitting controls",
+    "Target-reassociation refusal and decimal exposure endpoint regression",
+    "Whole-course refusal includes unobserved intervals; raw source/current-state identity",
+    "Literal sources, snapshot/generation checks and linked UI"
+  ],
+  "runtimeSources": [
+    {
+      "path": "heat-column.js",
+      "bytes": 7727,
+      "sha256": "ba9caf69a408d9da368b7a15076cdb61a36581e8a1053c3ed781ac3b421e1460",
+      "gitBlob": "c490e27c881a5c9d9b485ce6db0cf2928888ef28"
+    },
+    {
+      "path": "surface-heat-evidence.js",
+      "bytes": 8803,
+      "sha256": "7567b1ccb24d4179c899e300140975a17c7190e5144f5cd75be246fc5650dc8e",
+      "gitBlob": "83b3fb4b70ac5ad91e74d75b1f15e8601751d061"
+    },
+    {
+      "path": "heat-column-evidence-contract.js",
+      "bytes": 2893,
+      "sha256": "c2ae319fcb3cbfd7f9a538389bbdcb025ef38af3c736a4bcad6379b0a53544a4",
+      "gitBlob": "0311c6e4ed5613499f22bc4864a7c0716fd4c305"
+    },
+    {
+      "path": "heat-column-evidence.js",
+      "bytes": 7743,
+      "sha256": "2b183bad3a86b8607a4b80b0008af9619c1a69037cb3951ed35b37bc19d75f52",
+      "gitBlob": "8467cf445c43f2e659b711e879f4247db4cc85b8"
+    },
+    {
+      "path": "app.js",
+      "bytes": 23779,
+      "sha256": "d438f127bcf7902011d118a106364f152836cc7614481b0198ec5b8b7d8104d9",
+      "gitBlob": "c98822d082076ac97dfe2e51e51f11c2e23f3515"
+    },
+    {
+      "path": "core.js",
+      "bytes": 20576,
+      "sha256": "6465237fb5c71dd5686be819c2f01175b6a1408ded77b569e028c3fad9abf153",
+      "gitBlob": "dfba77314eae03626b626002113485230a2bccb0"
+    },
+    {
+      "path": "heat-column-evidence-panel.js",
+      "bytes": 16876,
+      "sha256": "46d4f887cdda1679c8f34826b46fe9c60115f71bb2c9d0fce98036d9537a3384",
+      "gitBlob": "25c6705c4bfd8d494e3e31fd5fb518dc6b50a402"
+    },
+    {
+      "path": "heat-column-evidence.css",
+      "bytes": 1922,
+      "sha256": "14d7e4d5c6b56b26c02dcee553975c23222ffb985ca02c54ddc3c3aa24dd8897",
+      "gitBlob": "6578e3169fd1223f654fa9337561d340285826f0"
+    },
+    {
+      "path": "tests/heat-column-evidence.test.mjs",
+      "bytes": 8807,
+      "sha256": "f2040e6cc17d59250af54250ddc41d8935ee3e4245b039b7f3a715e131a003e6",
+      "gitBlob": "6075218864de6f186a3cc3553dfee1f7987022a8"
+    },
+    {
+      "path": "tests/heat-column-evidence.browser.mjs",
+      "bytes": 13208,
+      "sha256": "abc41cc621ee60b70c97d495c34bc4b7018ec959b07ebdd2ddbd6c76a2e117f3",
+      "gitBlob": "9e24c1595d674c4fe0e67ed592422930d79a7540"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/receipts/heat-column-evidence-20261024/column-evidence-desktop.png",
+      "bytes": 200614,
+      "sha256": "2db77fe0c8d3520b5e3167ea311bbae88eded741314012d8a0668efb3335e60b",
+      "gitBlob": "d548d880ea9602378b9d8d6f4572d8ead50bee99"
+    },
+    {
+      "path": "docs/receipts/heat-column-evidence-20261024/column-evidence-narrow.png",
+      "bytes": 67497,
+      "sha256": "1fb89a8027ca1d379c8fdb95f8af9d0e0eb68a853389762beb72f85a8087f108",
+      "gitBlob": "f61cc522cd95d4dbe862707bf6978a5858667c07"
+    },
+    {
+      "path": "docs/receipts/heat-column-evidence-20261024/column-evidence-peaks-narrow.png",
+      "bytes": 63117,
+      "sha256": "81dff2effbe4f76b4530050009177e959a5f154dbdd00a66acfcf2e01c2ef081",
+      "gitBlob": "d2bcc6ba4410e0ee863187abf4df3900d7c02aa9"
+    }
+  ],
+  "limitations": [
+    "Explicit finite lower-capacity/conductance alternatives, not continuous feasible parameter region",
+    "All original surface/exposure and lower initial temperature are fixed",
+    "Engineering roundoff guards and calculated extrema are not certified enclosures",
+    "Authored controls are not acquired or independently held-aside physical measurements"
+  ],
+  "mergedConsumer": "Separate fresh archive receiving is recorded in the native PR."
+}

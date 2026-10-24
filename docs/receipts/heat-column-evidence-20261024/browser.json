@@ -1,0 +1,122 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Actual original-column import and structured alternatives/calibration admit five explanations with materially different hidden peaks",
+    "120minute challenge leaves the80000capacity candidate without refitting; selected lower maximum remains independently correct",
+    "Challenge and calibration rejection remain separate; no surviving hidden-peak range is fabricated when all candidates fail",
+    "Distinct labels with identical physics remain ambiguous rather than manufacturing unique identification",
+    "Actual downloaded project fresh reopening recomputes role-preserving evidence despite forged derived output",
+    "Unsaved role edits invalidate the view without changing accepted readings; changed exposure refuses reassociation and retains original evidence",
+    "Literal source notes and per-reading calibration/challenge guards remain visible without executing markup or claiming certification",
+    "Actual desktop390px curves and hidden-peak spread fit viewport, with keyboard alternative/time inspection"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-24T21:49:53.940Z",
+    "completedAt": "2026-10-24T21:49:54.051Z",
+    "durationMs": 111.18482499999999,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "58E1A215ADD26B175FBAA48A1D1629B8",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "4650ED84D17857BECCD6941265D39393"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "exceptions": [],
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-24T21:49:53.706Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057",
+    "profileDirectory": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/profile",
+    "stdoutFile": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/stdout.bin",
+    "stderrFile": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/stderr.bin",
+    "receiptFile": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/profile",
+      "about:blank"
+    ],
+    "pid": 129389,
+    "cdpUrl": "http://127.0.0.1:40875",
+    "browserWebSocketUrl": "ws://127.0.0.1:40875/devtools/browser/c0723df9-7002-476a-8827-28ecae496c61",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-24T21:49:53.896Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/home/ubuntu/hamon-5e42-earth-hidden/.browser-run-column-evidence-536ce2c4-30fb-4c8c-9976-008f7aed9057/stderr.bin",
+      "bytes": 5370,
+      "sha256": "0aa6d7e317981b88fd805640376aaacfcd3db33dd17ac3ccef09ebf706a3d797"
+    },
+    "finishedAt": "2026-10-24T21:50:00.922Z"
+  }
+}

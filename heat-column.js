@@ -59,6 +59,38 @@ function inspectCourse(c, minute) {
     subsurfaceBalanceResidualJm2: transferDownJm2 - subsurfaceStoredJm2 };
 }
 
+function summarizeCourse(c) {
+  const boundaries = [0, ...c.intervals.map(row => row.to)];
+  const result = { final: inspectCourse(c, c.duration), stationaryMinutes: c.critical };
+  for (const [name, field] of [['surface', 'surfaceC'], ['subsurface', 'subsurfaceC']]) {
+    const rows = [...boundaries, ...c.critical[name]].map(minute => inspectCourse(c, minute));
+    const maximum = rows.reduce((a, b) => a[field] >= b[field] ? a : b);
+    const minimum = rows.reduce((a, b) => a[field] <= b[field] ? a : b);
+    result[name] = { maximumC: maximum[field], maximumMinute: maximum.minute,
+      minimumC: minimum[field], minimumMinute: minimum.minute };
+  }
+  return result;
+}
+
+/** Evaluate one complete, validated course once, retaining every stationary
+ * point as well as requested samples. This reuses the same propagator and
+ * extrema calculation as the original two-store consumer.
+ */
+export function evaluateHeatColumnTarget(study, target, requestedMinutes = []) {
+  validateHeatColumnStudy(study);
+  if (!study || !targets.includes(target)) throw Error('Select an existing or proposed two-store declaration');
+  const duration = study.heatStudy.schedule.reduce((sum, row) => sum + row.minutes, 0);
+  if (!Array.isArray(requestedMinutes) || requestedMinutes.length > 2000 ||
+      Array.from(requestedMinutes).some(t => typeof t !== 'number' || !Number.isFinite(t) || t < 0 || t > duration)) {
+    throw Error('Request at most 2000 finite times within the retained heat exposure');
+  }
+  const c = course(study, target);
+  const times = [...new Set([0, ...c.intervals.map(row => row.to), ...requestedMinutes,
+    ...c.critical.surface, ...c.critical.subsurface])].sort((a, b) => a - b);
+  return { durationMinutes: duration, summary: summarizeCourse(c),
+    trajectory: times.map(minute => inspectCourse(c, minute)) };
+}
+
 export function inspectHeatColumn(study, minute) {
   validateHeatColumnStudy(study);
   if (!study) throw Error('No retained two-layer study');
@@ -79,15 +111,8 @@ export function compareHeatColumn(project) {
   const boundaries = [0, ...courses.existing.intervals.map(row => row.to)];
   const times = new Set([...boundaries, ...Array.from({ length: Math.ceil(durationMinutes) }, (_, i) => i)]);
   for (const target of targets) {
-    const c = courses[target]; summary[target] = { final: inspectCourse(c, durationMinutes), stationaryMinutes: c.critical };
-    for (const [name, field] of [['surface', 'surfaceC'], ['subsurface', 'subsurfaceC']]) {
-      const rows = [...boundaries, ...c.critical[name]].map(minute => inspectCourse(c, minute));
-      const maximum = rows.reduce((a, b) => a[field] >= b[field] ? a : b);
-      const minimum = rows.reduce((a, b) => a[field] <= b[field] ? a : b);
-      summary[target][name] = { maximumC: maximum[field], maximumMinute: maximum.minute,
-        minimumC: minimum[field], minimumMinute: minimum.minute };
-      for (const minute of c.critical[name]) times.add(minute);
-    }
+    const c = courses[target]; summary[target] = summarizeCourse(c);
+    for (const minute of [...c.critical.surface, ...c.critical.subsurface]) times.add(minute);
   }
   let uniform = { status: 'available' };
   try { compareSurfaceHeat(project); } catch (error) { uniform = { status: 'unavailable', reason: error.message }; }

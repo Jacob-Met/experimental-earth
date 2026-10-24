@@ -251,3 +251,7 @@ After comparing, **Save investigation with location and site** retains the origi
 ### Heat retained below the surface
 
 The saved surface heat experiment can now add a sourced lower heat store for each existing/proposed place. Compare the two temperature traces, inspect delayed interior peaks after heating stops, and follow absorbed input, ambient exchange, internal transfer and stored energy separately. The original exposure and place remain bound to the declaration; whole-project reopening recomputes the result. This is a two-store model with an insulated bottom, not a resolved depth profile or inferred material calibration. See [the equations, workflow, controls and limits](docs/HEAT_COLUMN.md).
+
+### Surface evidence for hidden heat stores
+
+Compare sourced surface-temperature bands against explicit lower-capacity/conductance alternatives while keeping the original column, initial temperatures and exposure fixed. Structured cards preserve calibration and challenge roles; linked surface/lower curves and a remaining-peak spread show what those readings distinguish and what stays unresolved. One survivor refers only to the offered finite set, not unique physical parameters. Whole-project reopening recomputes the investigation. See [the workflow, five-explanation control and numerical limits](docs/HEAT_COLUMN_EVIDENCE.md).
