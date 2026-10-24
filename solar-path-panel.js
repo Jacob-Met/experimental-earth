@@ -1,3 +1,4 @@
+import {mountSunPathSamplingPanel} from './solar-path-sampling-panel.js';
 import {compareSunPath,sunPathCellCourse,sunPathContext,SUN_PATH_SEMANTICS} from './solar-path.js';
 import {serializeSunPathInvestigation,parseSunPathInvestigation,checkSunPathInvestigationBytes,SUN_PATH_INVESTIGATION_LIMITS} from './solar-path-receipt.js';
 
@@ -51,12 +52,13 @@ export function mountSunPathPanel({getProject,notice}) {
   const $=id=>panel.querySelector('#'+id);
   let signature='',size='',generation=0,report=null,reportSource=null;
   let openGeneration=0,retained=null;
+  let currentSampling,retainedSampling;
   const controls=['latitude','longitude','location-source','bearing','orientation-source','start','end','step'];
 
   function invalidate(message='Compare again after changing a declaration or source.') {
-    generation++;report=null;reportSource=null;$('sun-path-save').disabled=true;$('sun-path-results').replaceChildren();
+    currentSampling?.invalidate(message);generation++;report=null;reportSource=null;$('sun-path-save').disabled=true;$('sun-path-results').replaceChildren();
     $('sun-path-status').dataset.state='not-compared';$('sun-path-status').textContent=message;
-    $('sun-path-run').disabled=false;$('sun-path-run').textContent='Compare dated sun path';
+    $('sun-path-run').disabled=false;$('sun-path-run').textContent='Compare dated sun path';currentSampling?.refresh();
   }
   for(const id of controls)for(const event of ['input','change'])$('sun-path-'+id).addEventListener(event,()=>invalidate());
   const number=id=>{const value=$('sun-path-'+id).value.trim();if(value==='')throw Error('Enter the location, grid bearing and sample interval explicitly.');return Number(value);};
@@ -114,13 +116,15 @@ export function mountSunPathPanel({getProject,notice}) {
     add(out,'p',SUN_PATH_SEMANTICS);
     add(out,'p',`Calculated with ${report.model.name} ${report.model.version}, apparent altitude with its standard refraction approximation. Below 1° the existing obstruction model is not evaluated; no continuous night/visibility interval is inferred.`);
   }
-  function draw() {drawCourse($('sun-path-results'),report,Number($('sun-path-cell').value));}
-  function drawRetained() {drawCourse($('sun-path-retained-results'),retained?.report,Number($('sun-path-retained-cell').value));}
+  function draw() {drawCourse($('sun-path-results'),report,Number($('sun-path-cell').value));currentSampling?.refresh();}
+  function drawRetained() {drawCourse($('sun-path-retained-results'),retained?.report,Number($('sun-path-retained-cell').value));retainedSampling?.refresh();}
   function cellOptions(select,width,height,selected=0) {
     select.replaceChildren();
     for(let i=0;i<width*height;i++){const option=node('option',cellName(width,i));option.value=String(i);select.append(option);}
     select.value=String(Number.isInteger(selected)&&selected>=0&&selected<width*height?selected:0);
   }
+  currentSampling=mountSunPathSamplingPanel({host:$('sun-path-results').parentElement,prefix:'sun-path-sampling',getStudy:()=>report&&reportSource?{project:reportSource,report}:null,getCell:()=>$('sun-path-cell').value,drawCourse});
+  retainedSampling=mountSunPathSamplingPanel({host:$('sun-path-retained-inspection'),prefix:'sun-path-retained-sampling',getStudy:()=>retained?{project:retained.investigation.project,report:retained.report}:null,getCell:()=>$('sun-path-retained-cell').value,drawCourse});
   $('sun-path-save').addEventListener('click',()=>{
     try {
       if(!report||!reportSource||sunPathContext(reportSource)!==sunPathContext(getProject()))throw Error('Compare the current source before saving an investigation.');
@@ -134,7 +138,7 @@ export function mountSunPathPanel({getProject,notice}) {
   $('sun-path-retained-cell').addEventListener('change',drawRetained);
   $('sun-path-open').addEventListener('change',async()=>{
     const file=$('sun-path-open').files?.[0];if(!file)return;
-    const token=++openGeneration;
+    retainedSampling.invalidate('New retained file selected; compare its finer grid after admission.');const token=++openGeneration;
     $('sun-path-open-status').dataset.state='opening';$('sun-path-open-status').textContent='Reading the retained inputs and recomputing their comparison…';
     // Closing also cancels an in-flight first import, before any inspection exists.
     $('sun-path-forget').disabled=false;
@@ -144,7 +148,7 @@ export function mountSunPathPanel({getProject,notice}) {
       if(token!==openGeneration)return;
       const reopened=parseSunPathInvestigation(text);
       if(token!==openGeneration)return;
-      retained=reopened;
+      retained=reopened;retainedSampling.invalidate('Retained source reopened. Compare a finer interval.');
       const source=retained.investigation.project;
       cellOptions($('sun-path-retained-cell'),source.width,source.height,retained.investigation.selectedCellIndex);
       $('sun-path-retained-source').textContent=`Retained source: ${source.title}. Grid ${source.width} × ${source.height}. Site source: ${source.source}. ${SUN_PATH_INVESTIGATION_LIMITS}`;
@@ -159,7 +163,7 @@ export function mountSunPathPanel({getProject,notice}) {
     }
   });
   $('sun-path-forget').addEventListener('click',()=>{
-    openGeneration++;retained=null;$('sun-path-open').value='';$('sun-path-retained-results').replaceChildren();
+    retainedSampling.invalidate('Retained investigation closed.');openGeneration++;retained=null;$('sun-path-open').value='';$('sun-path-retained-results').replaceChildren();
     $('sun-path-retained-cell').replaceChildren();$('sun-path-retained-source').textContent='';$('sun-path-retained-inspection').hidden=true;
     $('sun-path-open-status').dataset.state='closed';$('sun-path-open-status').textContent='Retained investigation closed. Its file and the active project are unchanged.';
     $('sun-path-forget').disabled=true;
