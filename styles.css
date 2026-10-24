@@ -66,6 +66,19 @@
 
 #joint-event-panel{min-width:0}#joint-event-panel fieldset{min-width:0;border:1px solid #cbded3;border-radius:8px;margin:16px 0;padding:12px}#joint-event-panel textarea{font:inherit;width:100%;resize:vertical;border:1px solid #cfddd7;border-radius:8px;padding:10px}#joint-event-panel .mini-note,#joint-event-panel .muted{color:#3c5f56}#jce-results>p,#jce-status{font-size:13px;overflow-wrap:anywhere}.jce-files{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:20px}#jce-results .joint-table-wrap table{min-width:650px}@media(max-width:650px){.jce-files{grid-template-columns:minmax(0,1fr)}}
 
+/* Spatial evidence: shape/text retain meaning without color. */
+#observation-map { margin: 1.5rem 0; padding-top: 1rem; border-top: 1px solid #cbd9d0; }
+.evidence-map-grid { display:grid; gap:4px; margin:1rem 0; overflow-x:auto; max-width:100%; padding:3px; }
+.evidence-map-cell { padding:8px 2px; min-width:0; font-size:12px; border:1px solid #b9c5bd; border-radius:5px; }
+.evidence-map-cell.unobserved { background:#edf0ee; color:#4b574e; }
+.evidence-map-cell.within { background:#d9eee2; color:#205638; }
+.evidence-map-cell.outside { background:#f9ded0; color:#74371e; }
+.evidence-map-cell.mixed { background:#f9edc9; color:#66511e; }
+.evidence-map-cell[aria-pressed="true"] { outline:2px solid #172f26; outline-offset:1px; }
+.evidence-map-details { overflow-wrap:anywhere; }
+.evidence-map-reading { padding:10px 0; border-bottom:1px solid #dbe3dd; }
+.evidence-map-reading strong,.evidence-map-reading small { display:block; }
+.evidence-map-reading small { margin-top:4px; font-size:12px; }
 /* Internal connectivity is part of the actual paired site editor. */
 .cell .internal-barrier{position:absolute;z-index:3;display:block;background:#673f29;pointer-events:none;border-radius:1px}
 .cell .internal-barrier-east{right:0;top:0;bottom:0;width:4px}
