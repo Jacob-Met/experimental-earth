@@ -1,0 +1,352 @@
+TAP version 13
+# Subtest: sample accepts validated project schema and leaves user-project cells untouched
+ok 1 - sample accepts validated project schema and leaves user-project cells untouched
+  ---
+  duration_ms: 9.888351
+  type: 'test'
+  ...
+# Subtest: rainfall water balance closes despite outgoing flux and mixed infiltration
+ok 2 - rainfall water balance closes despite outgoing flux and mixed infiltration
+  ---
+  duration_ms: 5.630079
+  type: 'test'
+  ...
+# Subtest: no rain gives an exactly dry site
+ok 3 - no rain gives an exactly dry site
+  ---
+  duration_ms: 3.045096
+  type: 'test'
+  ...
+# Subtest: closed sealed site without infiltration retains exactly all rain volume
+ok 4 - closed sealed site without infiltration retains exactly all rain volume
+  ---
+  duration_ms: 4.512803
+  type: 'test'
+  ...
+# Subtest: garden intervention increases absorption under identical storm
+ok 5 - garden intervention increases absorption under identical storm
+  ---
+  duration_ms: 7.029421
+  type: 'test'
+  ...
+# Subtest: each input is deterministic and model does not mutate its arguments
+ok 6 - each input is deterministic and model does not mutate its arguments
+  ---
+  duration_ms: 15.602599
+  type: 'test'
+  ...
+# Subtest: rainfall exactly stops at stated fractional storm boundary
+ok 7 - rainfall exactly stops at stated fractional storm boundary
+  ---
+  duration_ms: 0.555149
+  type: 'test'
+  ...
+# Subtest: snapshots support attributed observations and bounded suggestion
+ok 8 - snapshots support attributed observations and bounded suggestion
+  ---
+  duration_ms: 6.318853
+  type: 'test'
+  ...
+# Subtest: invalid files and dishonest input quantities fail closed
+ok 9 - invalid files and dishonest input quantities fail closed
+  ---
+  duration_ms: 0.747653
+  type: 'test'
+  ...
+# Subtest: saved JSON roundtrips with observation/source and same predictions
+ok 10 - saved JSON roundtrips with observation/source and same predictions
+  ---
+  duration_ms: 15.775044
+  type: 'test'
+  ...
+# Subtest: per-cell infiltration overrides conserve water and preserve original cells
+ok 11 - per-cell infiltration overrides conserve water and preserve original cells
+  ---
+  duration_ms: 8.767196
+  type: 'test'
+  ...
+# Subtest: authored-rate sensitivity finds a reproducible impactful input separate from scenario difference
+ok 12 - authored-rate sensitivity finds a reproducible impactful input separate from scenario difference
+  ---
+  duration_ms: 80.962998
+  type: 'test'
+  ...
+# Subtest: dry storm exposes no consequential sensitivity; no invented measurement advice
+ok 13 - dry storm exposes no consequential sensitivity; no invented measurement advice
+  ---
+  duration_ms: 17.659142
+  type: 'test'
+  ...
+# Subtest: per-cell override rejects invalid index/rate and unknown scenario
+ok 14 - per-cell override rejects invalid index/rate and unknown scenario
+  ---
+  duration_ms: 0.311637
+  type: 'test'
+  ...
+# Subtest: imported larger grids use a visibly bounded heuristic shortlist
+ok 15 - imported larger grids use a visibly bounded heuristic shortlist
+  ---
+  duration_ms: 38.800491
+  type: 'test'
+  ...
+# Subtest: analytic linear alternatives separate most at the known final time
+ok 16 - analytic linear alternatives separate most at the known final time
+  ---
+  duration_ms: 3.032275
+  type: 'test'
+  ...
+# Subtest: recorded same-scenario coordinates are excluded without reading their values
+ok 17 - recorded same-scenario coordinates are excluded without reading their values
+  ---
+  duration_ms: 1.847703
+  type: 'test'
+  ...
+# Subtest: dry event yields no distinguishing measurement even with compatible rates
+ok 18 - dry event yields no distinguishing measurement even with compatible rates
+  ---
+  duration_ms: 0.712165
+  type: 'test'
+  ...
+# Subtest: single supported candidate or no calibration gives no experiment recommendation
+ok 19 - single supported candidate or no calibration gives no experiment recommendation
+  ---
+  duration_ms: 0.462187
+  type: 'test'
+  ...
+# Subtest: fully observed candidate grid produces no fabricated new question
+ok 20 - fully observed candidate grid produces no fabricated new question
+  ---
+  duration_ms: 0.346342
+  type: 'test'
+  ...
+# Subtest: another scenario record cannot hide an unmeasured point in this scenario
+ok 21 - another scenario record cannot hide an unmeasured point in this scenario
+  ---
+  duration_ms: 0.712305
+  type: 'test'
+  ...
+# Subtest: analytic isolated-cell experiment distinguishes constant-rate hypotheses
+ok 22 - analytic isolated-cell experiment distinguishes constant-rate hypotheses
+  ---
+  duration_ms: 2.731347
+  type: 'test'
+  ...
+# Subtest: held-aside contradictory reading challenges fit without changing calibration rank
+ok 23 - held-aside contradictory reading challenges fit without changing calibration rank
+  ---
+  duration_ms: 1.75426
+  type: 'test'
+  ...
+# Subtest: unsupported calibration rejects every candidate instead of endorsing nearest fit
+ok 24 - unsupported calibration rejects every candidate instead of endorsing nearest fit
+  ---
+  duration_ms: 0.34738
+  type: 'test'
+  ...
+# Subtest: dry-event readings cannot identify infiltration; tied alternatives remain
+ok 25 - dry-event readings cannot identify infiltration; tied alternatives remain
+  ---
+  duration_ms: 0.380811
+  type: 'test'
+  ...
+# Subtest: no calibration cannot rank by challenge readings or suggest a fitted rate
+ok 26 - no calibration cannot rank by challenge readings or suggest a fitted rate
+  ---
+  duration_ms: 0.765648
+  type: 'test'
+  ...
+# Subtest: calibration without holdout is explicitly unchallenged
+ok 27 - calibration without holdout is explicitly unchallenged
+  ---
+  duration_ms: 0.376272
+  type: 'test'
+  ...
+# Subtest: legacy, notebook-only and other-scenario readings do not enter either score
+ok 28 - legacy, notebook-only and other-scenario readings do not enter either score
+  ---
+  duration_ms: 0.326036
+  type: 'test'
+  ...
+# Subtest: off-step reading reports bracket and linearly interpolates rather than snapping
+ok 29 - off-step reading reports bracket and linearly interpolates rather than snapping
+  ---
+  duration_ms: 0.484618
+  type: 'test'
+  ...
+# Subtest: compared off-step measurement uses explicit time and signed residual
+ok 30 - compared off-step measurement uses explicit time and signed residual
+  ---
+  duration_ms: 0.57601
+  type: 'test'
+  ...
+# Subtest: equal calibration scores preserve all closest alternatives
+ok 31 - equal calibration scores preserve all closest alternatives
+  ---
+  duration_ms: 0.478418
+  type: 'test'
+  ...
+# Subtest: no target surface gives no candidate claim
+ok 32 - no target surface gives no candidate claim
+  ---
+  duration_ms: 0.260166
+  type: 'test'
+  ...
+# Subtest: measurement outside affected cells cannot identify rates without physical coupling
+ok 33 - measurement outside affected cells cannot identify rates without physical coupling
+  ---
+  duration_ms: 0.354677
+  type: 'test'
+  ...
+# Subtest: surface override affects matching cells and still conserves all water
+ok 34 - surface override affects matching cells and still conserves all water
+  ---
+  duration_ms: 0.424595
+  type: 'test'
+  ...
+# Subtest: invalid candidate sets and roles reject on import rather than silently score
+ok 35 - invalid candidate sets and roles reject on import rather than silently score
+  ---
+  duration_ms: 0.83481
+  type: 'test'
+  ...
+# Subtest: invalid surface overrides and competing override scopes fail explicitly
+ok 36 - invalid surface overrides and competing override scopes fail explicitly
+  ---
+  duration_ms: 0.234913
+  type: 'test'
+  ...
+# Subtest: comparison retains observed data and exact choices across portable JSON
+ok 37 - comparison retains observed data and exact choices across portable JSON
+  ---
+  duration_ms: 0.862848
+  type: 'test'
+  ...
+# Subtest: analytic paired intervention reverses, retaining per-rate effects and local harm
+ok 38 - analytic paired intervention reverses, retaining per-rate effects and local harm
+  ---
+  duration_ms: 2.776422
+  type: 'test'
+  ...
+# Subtest: identical plans have exactly zero effects even across hypotheses
+ok 39 - identical plans have exactly zero effects even across hypotheses
+  ---
+  duration_ms: 1.186382
+  type: 'test'
+  ...
+# Subtest: explicit evidence filters require readings and never fall back to closest
+ok 40 - explicit evidence filters require readings and never fall back to closest
+  ---
+  duration_ms: 2.228669
+  type: 'test'
+  ...
+# Subtest: proposal-target evidence selects without changing pairing semantics
+ok 41 - proposal-target evidence selects without changing pairing semantics
+  ---
+  duration_ms: 0.775562
+  type: 'test'
+  ...
+# Subtest: absence and dry storm do not invent a benefit
+ok 42 - absence and dry storm do not invent a benefit
+  ---
+  duration_ms: 0.467977
+  type: 'test'
+  ...
+# Subtest: bounded work and malformed selections refuse before simulation
+ok 43 - bounded work and malformed selections refuse before simulation
+  ---
+  duration_ms: 0.8945
+  type: 'test'
+  ...
+# Subtest: site storage improvement does not hide a locally deeper cell
+ok 44 - site storage improvement does not hide a locally deeper cell
+  ---
+  duration_ms: 0.491177
+  type: 'test'
+  ...
+# Subtest: unassigned or different-scenario readings cannot narrow hypotheses
+ok 45 - unassigned or different-scenario readings cannot narrow hypotheses
+  ---
+  duration_ms: 0.754484
+  type: 'test'
+  ...
+# Subtest: explicit inch, centimetre and millimetre quantities convert with original values retained
+ok 46 - explicit inch, centimetre and millimetre quantities convert with original values retained
+  ---
+  duration_ms: 2.620839
+  type: 'test'
+  ...
+# Subtest: optional scenario and roles remain explicit and unchanged
+ok 47 - optional scenario and roles remain explicit and unchanged
+  ---
+  duration_ms: 0.545487
+  type: 'test'
+  ...
+# Subtest: quoted commas, escaped quotes, CRLF, BOM and multiline sources keep record start lines
+ok 48 - quoted commas, escaped quotes, CRLF, BOM and multiline sources keep record start lines
+  ---
+  duration_ms: 1.450396
+  type: 'test'
+  ...
+# Subtest: preview and failed import do not mutate existing data; commit clones both sides
+ok 49 - preview and failed import do not mutate existing data; commit clones both sides
+  ---
+  duration_ms: 0.948566
+  type: 'test'
+  ...
+# Subtest: unknown, missing or duplicate headers and inconsistent column counts reject
+ok 50 - unknown, missing or duplicate headers and inconsistent column counts reject
+  ---
+  duration_ms: 0.446303
+  type: 'test'
+  ...
+# Subtest: malformed quoting fails with a row location
+ok 51 - malformed quoting fails with a row location
+  ---
+  duration_ms: 0.564052
+  type: 'test'
+  ...
+# Subtest: ambiguous units, nondecimal values and out-of-range converted readings reject
+ok 52 - ambiguous units, nondecimal values and out-of-range converted readings reject
+  ---
+  duration_ms: 1.589709
+  type: 'test'
+  ...
+# Subtest: empty tables, oversized inputs and exhausted history refuse before appending
+ok 53 - empty tables, oversized inputs and exhausted history refuse before appending
+  ---
+  duration_ms: 0.960386
+  type: 'test'
+  ...
+# Subtest: unsupported evidence role and role without a scenario are not silently admitted
+ok 54 - unsupported evidence role and role without a scenario are not silently admitted
+  ---
+  duration_ms: 0.566861
+  type: 'test'
+  ...
+# Subtest: retained conversion provenance survives JSON and rejects inconsistent quantities
+ok 55 - retained conversion provenance survives JSON and rejects inconsistent quantities
+  ---
+  duration_ms: 0.797573
+  type: 'test'
+  ...
+# Subtest: stale previews cannot remap cells or append to a changed notebook
+ok 56 - stale previews cannot remap cells or append to a changed notebook
+  ---
+  duration_ms: 1.236127
+  type: 'test'
+  ...
+# Subtest: same supplied file-row evidence is not accidentally counted twice
+ok 57 - same supplied file-row evidence is not accidentally counted twice
+  ---
+  duration_ms: 0.53389
+  type: 'test'
+  ...
+1..57
+# tests 57
+# suites 0
+# pass 57
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 262.374274
