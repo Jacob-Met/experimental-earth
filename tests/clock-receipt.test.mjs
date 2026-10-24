@@ -119,3 +119,10 @@ test('maximal source-rich survey roundtrips with all source descriptions within 
  assert.equal(reopened.project.proposal[575].terrainSource.source,'S'.repeat(240));
  assert.deepEqual(reopened.comparison,receipt.comparison);
 });
+
+test('diagnostic study identity cannot silently diverge from its included authored project',()=>{
+ const forged=create();
+ forged.study.ratesMmHr=[3,9];
+ assert.throws(()=>parseClockReceipt(JSON.stringify(forged)),/study must match/);
+ assert.throws(()=>buildClockReceipt(fixture(),[0,10],'source',{target:'existing',surface:'turf',ratesMmHr:[1,2]}),/study must match/);
+});

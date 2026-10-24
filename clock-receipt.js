@@ -31,6 +31,7 @@ function exactlySame(a,b){
 
 export function buildClockReceipt(project,offsetsMinutes,reason,study=project?.infiltrationStudy??DEFAULT_STUDY){
  validateProject(project);validateStudy(study);
+ if(!exactlySame(study,project.infiltrationStudy??DEFAULT_STUDY))throw Error('Clock diagnostic study must match the included project study selection');
  const declaration=rationale(reason);
  const comparison=compareClockOffsets(project,offsetsMinutes,study);
  if(comparison.status!=='compared')throw Error('Assign at least one calibration or held-aside reading before exporting a clock diagnostic');
