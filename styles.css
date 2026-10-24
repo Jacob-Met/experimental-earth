@@ -133,3 +133,5 @@
 
 /* Retained solar source words must not expand the shared workspace. */
 #solar-occlusion { min-width:0; overflow-wrap:anywhere; }
+
+#suggest:disabled{opacity:.55;cursor:not-allowed}

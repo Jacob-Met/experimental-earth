@@ -118,10 +118,15 @@ function observations() {
     return origin ? `${target}: ${origin.fileName}, line ${origin.line}; ${origin.elevationValue} ± ${origin.uncertaintyValue} ${origin.unit}; datum ${origin.datum}; ${origin.source}. Supplied uncertainty is retained, not propagated by the solver.` : `${target}: ${project[target][n].provenance}`;
   }).join(' | ');
   const suggested=chooseNextObservation(project,results);
-  const timeSupport = suggested.method === 'linear interpolation'
-    ? ` This is a linear estimate between modeled ${suggested.beforeMinute} and ${suggested.afterMinute} min snapshots, not a separate solver result at that minute.`
-    : ' The model has an exact saved snapshot at that minute.';
-  $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement.${timeSupport} Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
+  $('suggest').disabled = suggested === null;
+  if (suggested === null) {
+    $('next-reading').textContent='No difference-driven depth reading at storm end: the two modeled scenarios agree at every cell at that time. You can still record an independent observation to challenge the shared assumptions; this is not evidence the model matches the real site.';
+  } else {
+    const timeSupport = suggested.method === 'linear interpolation'
+      ? ` This is a linear estimate between modeled ${suggested.beforeMinute} and ${suggested.afterMinute} min snapshots, not a separate solver result at that minute.`
+      : ' The model has an exact saved snapshot at that minute.';
+    $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement.${timeSupport} Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
+  }
   const list=$('observation-list');list.replaceChildren();
   if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);return;}
   for(let i=project.observations.length-1;i>=0;i--){
@@ -154,7 +159,7 @@ $('brushes').addEventListener('click',event=>{const b=event.target.closest('[dat
 $('map-view').addEventListener('change',()=>{view=$('map-view').value;draw();});
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
-$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
+$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
 $('suggest-infiltration').addEventListener('click',()=>{
   const button=$('suggest-infiltration');
   button.disabled=true;
