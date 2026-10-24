@@ -96,3 +96,15 @@
 .observation-consistency p { font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
 .observation-consistency details { margin:12px 0; }
 .observation-consistency summary { cursor:pointer; font-size:13px; font-weight:600; }
+
+#placement-search { min-width:0; }
+.placement-grid { display:grid; gap:4px; margin:12px 0; padding:3px; overflow-x:auto; max-width:100%; }
+.placement-cell { min-width:0; min-height:30px; padding:6px 2px; border:1px solid #9dab9e; border-radius:4px; color:#152a22; font-size:11px; text-align:center; }
+.placement-cell[aria-pressed="true"] { outline:2px solid #172f26; outline-offset:1px; }
+.placement-cell:disabled { opacity:.5; }
+.placement-preview .placement-cell { font-size:10px; }
+.placement-table-wrap { overflow:auto; max-height:360px; margin:12px 0; }
+.placement-table { width:100%; border-collapse:collapse; min-width:340px; font-size:12px; }
+.placement-table th,.placement-table td { text-align:left; padding:8px; border-bottom:1px solid #cbd9d0; }
+.placement-detail { margin-top:16px; border-top:1px solid #cbd9d0; padding-top:12px; }
+#placement-search p,#placement-search li { overflow-wrap:anywhere; }

@@ -1,0 +1,37 @@
+{
+  "schema": "hamon.experimental-earth.placement-receiving.v1",
+  "base": "9f5ba933511c8c599a30fe45823e5fe5dff92422",
+  "issue": 64,
+  "native": {
+    "command": "node --test --test-isolation=none tests/*.test.mjs",
+    "passed": 238,
+    "failed": 0
+  },
+  "independent": {
+    "reviewer": "direct skill_translation worker",
+    "focusedPassed": 9,
+    "blockers": [],
+    "coreSha256": "fd9046997aa618b9c99945970befed5ac62df74946dfcd610aa9e6d55a1cca4c",
+    "panelSha256": "b84c22a0356f8f44886c98155468a85c97c3a1bc63455b30da5ff63a937eccc5",
+    "testsSha256": "ae7f725bbcb19139138b5e78c2d95fc4aeafaeb9be9bf7cab29c433cf0eecdc5",
+    "additionalControl": "original proposal outlet evidence retained; changed proposal marked context-changed by maintained comparator"
+  },
+  "root": {
+    "focusedPassed": 9,
+    "durationMs": 672.757276,
+    "sourceHashesMatched": 60,
+    "candidateFilesMatched": 8,
+    "pixelsInspected": [
+      "desktop.png",
+      "mobile.png"
+    ]
+  },
+  "browser": {
+    "passed": 9,
+    "browser": "Chrome/156.0.8078.47",
+    "sandboxAdmitted": true,
+    "exceptions": [],
+    "receipt": "browser-receipt.json"
+  },
+  "scope": "Finite declared zero/single/pair surface alternatives; original evidence conditioning fixed; hypothetical changes are not field recommendations, identified capacities or numerical convergence."
+}
