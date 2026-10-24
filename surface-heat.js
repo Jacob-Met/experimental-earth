@@ -64,6 +64,28 @@ export function inspectSurfaceHeat(study, minute) {
   return { minute, existing, proposal, differenceC: proposal.temperatureC - existing.temperatureC };
 }
 
+/** Absorbed incident input over a declared interval, in J/m².
+ * Sum local schedule overlaps; subtracting large cumulative totals can erase
+ * a short late reading. This is neither incident energy nor net stored heat.
+ */
+export function absorbedSurfaceHeatEnergy(study, target, fromMinute, toMinute) {
+  validateSurfaceHeatStudy(study);
+  if (!study || !['existing', 'proposal'].includes(target)) throw Error('Select a retained heat layer for absorbed-energy comparison');
+  const duration = study.schedule.reduce((sum, row) => sum + row.minutes, 0);
+  if (![fromMinute, toMinute].every(Number.isFinite) || fromMinute < 0 || toMinute > duration || fromMinute >= toMinute) {
+    throw Error('Absorbed-energy interval must have ordered start/end times inside the retained exposure');
+  }
+  let elapsed = 0, energyJm2 = 0;
+  for (const row of study.schedule) {
+    const end = elapsed + row.minutes;
+    const minutes = Math.max(0, Math.min(toMinute, end) - Math.max(fromMinute, elapsed));
+    energyJm2 += study[target].absorptivity * row.incidentWm2 * (minutes * 60);
+    elapsed = end;
+    if (elapsed >= toMinute) break;
+  }
+  return energyJm2;
+}
+
 export function compareSurfaceHeat(project) {
   validateProject(project);
   const study = project.surfaceHeatStudy;

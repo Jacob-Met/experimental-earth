@@ -2,13 +2,14 @@ import { validateSurfaceHeatStudy, surfaceHeatContext } from './surface-heat-con
 import { canonicalEvidence } from './outlet-evidence-contract.js';
 
 export const HEAT_EVIDENCE_SCHEMA = 'experimental-earth-surface-heat-evidence/1';
+export const HEAT_ENERGY_EVIDENCE_SCHEMA = 'experimental-earth-surface-heat-evidence/2';
 export const heatDeclarationIdentity = study => JSON.stringify(canonicalEvidence(study));
 const number = (v, low, high) => typeof v === 'number' && Number.isFinite(v) && v >= low && v <= high;
 const text = (s, limit) => typeof s === 'string' && s.trim().length > 0 && s.length <= limit;
 
 export function validateHeatEvidence(evidence) {
   if (evidence === undefined) return;
-  if (!evidence || evidence.schema !== HEAT_EVIDENCE_SCHEMA ||
+  if (!evidence || ![HEAT_EVIDENCE_SCHEMA, HEAT_ENERGY_EVIDENCE_SCHEMA].includes(evidence.schema) ||
       !['existing', 'proposal'].includes(evidence.target) || !text(evidence.associationSource, 600)) {
     throw Error('Retain the selected layer and a source explaining how these readings belong to its exposure.');
   }
@@ -32,6 +33,26 @@ export function validateHeatEvidence(evidence) {
       throw Error('Readings need distinct times within the exposure, −100–500 °C, a 0–100 °C half-width, calibration/challenge use and a source.');
     }
     times.add(r.minute);
+  }
+  if (evidence.schema === HEAT_EVIDENCE_SCHEMA) {
+    if (Object.hasOwn(evidence, 'energyReadings') || Object.hasOwn(evidence, 'energyQuantity')) {
+      throw Error('Absorbed-energy evidence requires schema version 2; it cannot be silently treated as temperature-only evidence.');
+    }
+  } else {
+    if (evidence.energyQuantity !== 'absorbed-input' || !Array.isArray(evidence.energyReadings) || evidence.energyReadings.length > 100) {
+      throw Error('Retain at most 100 explicitly absorbed-input energy readings, not incident energy or stored heat.');
+    }
+    const intervals = new Set();
+    for (const r of evidence.energyReadings) {
+      if (!r || !number(r.fromMinute, 0, duration) || !number(r.toMinute, 0, duration) || r.fromMinute >= r.toMinute ||
+          !number(r.energyJm2, 0, 200000000) || !number(r.halfWidthJm2, 0, 200000000) ||
+          !['calibration', 'challenge'].includes(r.use) || !text(r.source, 600)) {
+        throw Error('Absorbed-energy readings need an ordered interval inside the exposure, 0–200000000 J/m² and half-width, calibration/challenge use, and a source.');
+      }
+      const key = `${r.fromMinute}:${r.toMinute}`;
+      if (intervals.has(key)) throw Error('Retain only one absorbed-energy reading per start/end interval.');
+      intervals.add(key);
+    }
   }
   return evidence;
 }
