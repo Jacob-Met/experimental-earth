@@ -1,0 +1,101 @@
+{
+  "schema": "experimental-earth-receiving/heat-column-1",
+  "baseCommit": "ded8cb6d8c38a3053fcbd3dc4d0a510496d02fff",
+  "environment": {
+    "os": "Ubuntu",
+    "node": "22.23.4",
+    "browser": "Chrome 156.0.8078.47",
+    "sandbox": "Namespace, PID/network namespaces, Seccomp-BPF and TSYNC observed"
+  },
+  "commands": [
+    "node --test tests/*.test.mjs",
+    "CHROME_BIN=/opt/google/chrome/chrome node tests/heat-column.browser.mjs"
+  ],
+  "native": {
+    "tests": 468,
+    "passed": 468,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "checks": 8,
+    "exceptions": 0,
+    "status": "PASS",
+    "receipt": "browser.json",
+    "desktopAnd390pxImagesInspected": true
+  },
+  "executedFeatureBlobs": [
+    {
+      "path": "app.js",
+      "gitBlob": "0b4b6de0357692de3eb6170e3e6905ff9ad03f0f",
+      "sha256": "7292da99d35f184cca9c4e7c547347e8d4c66d6461640028274ff8d53a1622ca"
+    },
+    {
+      "path": "core.js",
+      "gitBlob": "d2eb6ffa35b94312e287a40219bcc7740b31b746",
+      "sha256": "86dbef3f159cdbc69cd609865ff035f03f65f057be63bd2f11d4e401c32582cc"
+    },
+    {
+      "path": "heat-column-step.js",
+      "gitBlob": "ac31721b4ec941c606c1d028bc2bb5cad4226d76",
+      "sha256": "464d7daac265fd40bfc2b51509f9c239411f089d98d7014837fa539f8a703239"
+    },
+    {
+      "path": "heat-column-contract.js",
+      "gitBlob": "e9228d0fa4aabdb4617af4c2a631e55802b7dec6",
+      "sha256": "de401b68bf313f09dc9d90f8d01d9a67b5cecd9e3b3079d8a07e08e0372adb11"
+    },
+    {
+      "path": "heat-column.js",
+      "gitBlob": "2852fe046d8dfa800161a70602d263f64743c85f",
+      "sha256": "79e110dcdd52b1bf4f614fd062df1b854f1ee9751fa467ac89df624ac46351a1"
+    },
+    {
+      "path": "heat-column-panel.js",
+      "gitBlob": "d12ad4505f29cdeba21de49c3ac943778593a57b",
+      "sha256": "18efd9f377ec9128a0c727dc71a16b1782497e6a8bbe2c7cb361b0de1bb4b585"
+    },
+    {
+      "path": "heat-column.css",
+      "gitBlob": "97ba2da7b94e10956e37bb76e6adba8531c2d318",
+      "sha256": "b8820af6db4d4fc04d4094a1b5c9d07da478a8ba603295f917da605a4454d759"
+    },
+    {
+      "path": "tests/heat-column.test.mjs",
+      "gitBlob": "5de480c36cc72ad4bed006b0c41e41771c4a10c5",
+      "sha256": "1e08a5c647b3fac6ab12a17c1dc1eaf37cbec1a8887af1eac85d0758ed5399b3"
+    },
+    {
+      "path": "tests/heat-column.browser.mjs",
+      "gitBlob": "16488fb90db56ddfd0794f87f9ef4ebbaeb57988",
+      "sha256": "2e13b0b86269f0236d4557c9f56ece3979c4647d14f5a54c9037bb5aabdc8227"
+    }
+  ],
+  "images": [
+    {
+      "path": "column-desktop.png",
+      "gitBlob": "100d35329b32113c93fc211f14ab6cb36164413c",
+      "sha256": "481378aab9e4671c15e044a94009783dba892ef3bbc10749f5bb34a6a911523b",
+      "bytes": 157020
+    },
+    {
+      "path": "column-ledger-narrow.png",
+      "gitBlob": "f41a5d0362d1dae3f63a35f3d0995e8afe570d04",
+      "sha256": "aae7e4fc8eac30217120b1c0ca0f5cd5ab6ac27146bc7305033ca01eca13277d",
+      "bytes": 69430
+    },
+    {
+      "path": "column-narrow.png",
+      "gitBlob": "3781a29d9c8f4c5b62ddbe2dffb282e063c8b67d",
+      "sha256": "5fe05c748150fd09ba546508e0322b8bff8df801550c87a280f179df744a3ca7",
+      "bytes": 58762
+    }
+  ],
+  "independentControl": {
+    "surfaceAt60C": 44.53099896635505,
+    "lowerAt60C": 31.201606805625975,
+    "lowerMaximumC": 32.33238368285359,
+    "lowerMaximumMinute": 75.02851661039941
+  },
+  "limits": "Authored linear two-store controls; no site calibration, resolved depth or certified floating-point error bound. Documentation and these receipt files added after the unchanged executable-source run. Merged consumer receiving is a separate step."
+}
