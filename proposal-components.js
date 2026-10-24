@@ -37,6 +37,20 @@ export function compareProposalComponents(project, selectedIndices) {
   return componentExperiment(project, selectedIndices);
 }
 
+export function surfaceElevationEdits(project) {
+  validateProject(project);
+  return {
+    surfaceIndices: project.existing.flatMap((cell, i) => cell.surface !== project.proposal[i].surface ? [i] : []),
+    elevationIndices: project.existing.flatMap((cell, i) => cell.elevationM !== project.proposal[i].elevationM ? [i] : []),
+    barriersChanged: !sameInternalBarriers(project.existing, project.proposal),
+  };
+}
+
+/** Split the two property families, which may overlap in the same cell. */
+export function compareSurfaceElevation(project) {
+  return componentExperiment(project, undefined, {}, 'surface-elevation');
+}
+
 function validatePartition(project, selectedIndices) {
   const edited = componentEditIndices(project);
   if (!Array.isArray(selectedIndices) || !selectedIndices.length ||
@@ -50,28 +64,50 @@ function validatePartition(project, selectedIndices) {
   return edited;
 }
 
-function componentExperiment(project, selectedIndices, options = {}) {
+function experimentPlan(project, selectedIndices, partition) {
+  if (partition === 'surface-elevation') {
+    const edits = surfaceElevationEdits(project);
+    if (edits.barriersChanged) throw Error('Surface/elevation separation requires unchanged internal edge conditions. Changed walls or crests need the cell-group experiment.');
+    if (!edits.surfaceIndices.length || !edits.elevationIndices.length) throw Error('Add both a surface change and an elevation change to separate these two factors. They may share one cell.');
+    return { selectedIndices: edits.surfaceIndices, remainingIndices: edits.elevationIndices,
+      scenarios: {
+        existing: project.existing,
+        selected: project.existing.map((cell, i) => ({ ...cell, surface: project.proposal[i].surface,
+          provenance: 'Derived comparison: existing geometry and proposed surface; retained plans contain the original sources' })),
+        remaining: project.proposal.map((cell, i) => ({ ...cell, surface: project.existing[i].surface,
+          provenance: 'Derived comparison: proposed geometry and existing surface; retained plans contain the original sources' })),
+        full: project.proposal,
+      } };
+  }
+  if (partition !== 'cells') throw Error('Unknown component partition');
   const edited = validatePartition(project, selectedIndices);
+  const selected = new Set(selectedIndices);
+  return { selectedIndices: [...selected].sort((a, b) => a - b),
+    remainingIndices: edited.filter(i => !selected.has(i)),
+    scenarios: {
+      existing: project.existing,
+      selected: project.existing.map((cell, i) => selected.has(i) ? project.proposal[i] : cell),
+      remaining: project.proposal.map((cell, i) => selected.has(i) ? project.existing[i] : cell),
+      full: project.proposal,
+    } };
+}
+
+function componentExperiment(project, selectedIndices, options = {}, partition = 'cells') {
+  const plan = experimentPlan(project, selectedIndices, partition);
   const estimatedCellSteps = 4 * project.existing.length *
     Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
   if (estimatedCellSteps > COMPONENT_WORK_LIMIT) {
     throw new Error(`Component experiment exceeds ${COMPONENT_WORK_LIMIT} estimated cell-steps.`);
   }
-  const selected = new Set(selectedIndices);
-  const scenarios = {
-    existing: project.existing,
-    selected: project.existing.map((cell, i) => selected.has(i) ? project.proposal[i] : cell),
-    remaining: project.proposal.map((cell, i) => selected.has(i) ? project.existing[i] : cell),
-    full: project.proposal,
-  };
-  const runs = Object.fromEntries(Object.entries(scenarios).map(([key, cells]) =>
+  const runs = Object.fromEntries(Object.entries(plan.scenarios).map(([key, cells]) =>
     [key, runRain(structuredClone(cells), project.width, project.height,
       structuredClone(project.weather), options)]));
   const values = read => decompose(...['existing', 'selected', 'remaining', 'full']
     .map(key => read(runs[key])));
   return {
-    selectedIndices: [...selected].sort((a, b) => a - b),
-    remainingIndices: edited.filter(i => !selected.has(i)),
+    selectedIndices: plan.selectedIndices,
+    remainingIndices: plan.remainingIndices,
+    ...(partition === 'surface-elevation' ? { partition } : {}),
     estimatedCellSteps,
     metrics: COMPONENT_METRICS.map(metric => ({ ...metric,
       ...values(run => run[metric.key]) })),
@@ -84,8 +120,8 @@ function componentExperiment(project, selectedIndices, options = {}) {
 
 /** Select rates from the unchanged observed source, then hold each fixed in all four cases. */
 export function compareComponentHypotheses(project, selectedIndices,
-    { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all' } = {}) {
-  validatePartition(project, selectedIndices); validateStudy(study);
+    { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', partition = 'cells' } = {}) {
+  experimentPlan(project, selectedIndices, partition); validateStudy(study);
   if (!['all', 'calibration', 'surviving'].includes(subset)) throw Error('Unknown hypothesis subset');
   // Bound even rejected candidates' source evidence pass before running it.
   const estimatedCellSteps = study.ratesMmHr.length * 5 * project.existing.length *
@@ -103,7 +139,7 @@ export function compareComponentHypotheses(project, selectedIndices,
   if (![...project.existing, ...project.proposal].some(c => c.surface === study.surface)) return empty('surface-absent');
   const candidates = rates.map(rateMmHr => ({ rateMmHr,
     result: componentExperiment(project, selectedIndices,
-      { surfaceInfiltrationOverride: { surface: study.surface, rateMmHr } }) }));
+      { surfaceInfiltrationOverride: { surface: study.surface, rateMmHr } }, partition) }));
   return { status: 'compared', subset, surface: study.surface, evidenceTarget: study.target,
     candidates, estimatedCellSteps,
     interactions: COMPONENT_METRICS.map((metric, i) => ({ ...metric,

@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "value": {
+    "checks": [
+      "editor authors co-located surface and height changes",
+      "keyboard selects factor mode for one changed cell",
+      "four-case site and local results identify overlapping D4 factors",
+      "source plans unchanged by comparison",
+      "saved study changes invalidate results",
+      "rate keyboard retains focus in factor mode",
+      "missing evidence refuses without fallback",
+      "desktop and mobile result pixels and layout",
+      "reopened source recomputes without stale results",
+      "third edge factor refuses while cell groups work",
+      "identical plans refuse factor mode"
+    ],
+    "dimensions": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-24T16:56:38.530Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser",
+    "profileDirectory": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser/profile",
+    "stdoutFile": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser/stdout.bin",
+    "stderrFile": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser/stderr.bin",
+    "receiptFile": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-cb295a6c5277-earth-factor-current-browser/profile",
+      "about:blank"
+    ],
+    "pid": 21584,
+    "cdpUrl": "http://127.0.0.1:37321",
+    "browserWebSocketUrl": "ws://127.0.0.1:37321/devtools/browser/c9c999f8-0c62-4b9b-b2d8-1126255a92c2",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-24T16:56:38.712Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-cb295a6c5277-earth-factor-current-browser/stderr.bin",
+      "bytes": 5314,
+      "sha256": "fd7f696ff09d16e5c554986dc0c9b5a0a9694e3a9f8a0401839c2fd2b853c094"
+    },
+    "finishedAt": "2026-10-24T16:56:44.337Z"
+  }
+}
