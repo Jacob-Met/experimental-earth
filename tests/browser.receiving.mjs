@@ -1,4 +1,5 @@
 import { receiveRainOrigins } from './rain-origin.receiving.mjs';
+import { receiveRainOriginTimes } from './rain-origin-time.receiving.mjs';
 import { receivePonding } from './ponding.receiving.mjs';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
@@ -107,6 +108,7 @@ try {
   await receiveLocalWaterBudget({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveRainTrace({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveRainOrigins({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  await receiveRainOriginTimes({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
 
   const measurementVisuals = await receiveDecisionObservations({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);

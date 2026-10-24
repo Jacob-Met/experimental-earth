@@ -123,12 +123,13 @@ inputs only, never these derived histories.
 ## Explain a destination's rainfall origins
 
 Open **Which areas supplied water here?** inside the water-attribution section.
-Choose one or more inspected destination cells and a fate: final surface storage,
-cumulative infiltration, or cumulative boundary outflow. The paired maps show how
+Choose one or more inspected destination cells and a fate: surface storage,
+cumulative infiltration, or cumulative boundary outflow. The initial query uses
+the modeled end. The paired maps show how
 many liters of rain from each source cell reached that destination and fate.
 Both alternatives use the same cells, fate and forcing; a common color scale
 makes their contributions comparable. Selection inputs survive export/reopen;
-computed results are invalidated by changed site, weather, targets or fate.
+computed results are invalidated by changed site, weather, targets, fate or time.
 
 This answers a conditional attribution question. It is not a prediction of what
 would happen if a source were removed: that intervention can change bulk flow.
@@ -168,3 +169,40 @@ forward comparisons, destination-union additivity, every-origin fate closure,
 starting-water separation and unchanged ordinary/forward/budget outputs qualify
 the recurrence. Native and actual-browser receiving also cover persistence,
 invalidation, dry controls and bounded-work refusal.
+
+### Inspect origins at a modeled time
+
+After explaining the destination, use **Inspect modeled time** to select an
+actual solver boundary. Both maps, the source table and totals update together.
+Storage means water present at that time; infiltration and boundary exit are
+cumulative only through that time. The retained initial inventory stays separate
+from rainfall, including at minute zero. **Use modeled end** restores the default.
+
+For the fictional existing courtyard, destination F4 contains 173.385749 liters
+of rain at minute 60 and 113.316764 liters at minute 240. End-only attribution
+therefore answers a different question. This is an authored model example,
+not an observed catchment or a physical arrival-time measurement.
+
+An optional `rainOriginStudy.minute` preserves the requested time in project
+files. The same field is accepted inside the direct `runRain` option
+`rainOrigins: {targetCells, fate, minute}`. The paired result includes the actual
+`minute` and `availableMinutes`; derived arrays are not saved. A direct timed
+origin result adds its actual `minute`, while an omitted time preserves the
+previous final-origin result shape. Queries match actual boundaries within
+1e-9 minute of numerical clock roundoff; between-step values are refused rather
+than interpolated. An invalidated saved time does not prevent ordinary site
+loading or comparison. The origin query explains its refusal and can reset to
+the current modeled end.
+
+The reverse pass uses only accepted operations through the selected snapshot.
+Its target storage comes from that actual bulk-water snapshot, and its sink
+total is the cumulative selected sink at the same boundary. Later forcing and
+later operations cannot enter the earlier attribution. The full-event retained
+cell-step limit remains unchanged; selecting an early time does not bypass it.
+Each committed time-control change recomputes the bounded paired query.
+
+Receiving compares every source against independently carried forward tags at
+multiple exact times and fates, checks prefix conservation and future-forcing
+independence, and retains analytical initial-water and fractional-end controls.
+The browser course covers real keyboard movement, desktop/narrow maps, saved
+query reopening, fate changes, stale-time recovery and between-step refusal.

@@ -203,7 +203,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     peakPondingLiters: Math.max(...snapshots.map(s => s.storedLiters)),
     cellsOver10Mm: peak.filter(d => d >= 10).length,
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
-    ...(origins ? { rainOrigins: origins.finish(water) } : {}),
+    ...(origins ? { rainOrigins: origins.finish(water, snapshots) } : {}),
   };
   if (traceBudget) {
     for (const cell of budgetCells) {

@@ -2,7 +2,7 @@
 export const MAX_ORIGIN_CELL_STEPS = 250000;
 const FATES = new Set(['stored', 'absorbed', 'exit']);
 
-export function validateRainOriginStudy(study, cellCount) {
+export function validateRainOriginStudy(study, cellCount, durationMinutes = Infinity) {
   if (study === undefined) return null;
   const cells = study?.targetCells;
   if (!study || Array.isArray(study) || !Array.isArray(cells) ||
@@ -11,7 +11,12 @@ export function validateRainOriginStudy(study, cellCount) {
       new Set(cells).size !== cells.length || !FATES.has(study.fate)) {
     throw new Error('Choose distinct destination cells and a rainfall fate');
   }
-  return { targetCells: [...cells].sort((a, b) => a - b), fate: study.fate };
+  if (study.minute !== undefined && (!Number.isFinite(study.minute) ||
+      study.minute < 0 || study.minute > durationMinutes)) {
+    throw new Error('Rainfall origin time must lie within the modeled event');
+  }
+  return { targetCells: [...cells].sort((a, b) => a - b), fate: study.fate,
+    ...(study.minute === undefined ? {} : { minute: study.minute }) };
 }
 
 /**
@@ -50,13 +55,23 @@ export function createRainOriginTracer(cellCount, cellAreaM2, study, stepCount, 
       }
     },
     endStep() {
+      step.selectedSinkLiters = selectedSinkLiters;
       steps.push(step);
       step = null;
     },
-    finish(finalDepthsMm) {
+    finish(finalDepthsMm, snapshots) {
+      let count = steps.length;
+      if (admitted.minute !== undefined) {
+        // Match only an actual solver boundary. The tolerance admits timestamp
+        // roundoff, never a fraction of a hydraulic step or an interpolated fate.
+        count = snapshots?.findIndex(s => Math.abs(s.minute - admitted.minute) <= 1e-9) ?? -1;
+        if (count < 0 || count > steps.length) {
+          throw new Error('Choose an available modeled time; rainfall origins are not interpolated between steps');
+        }
+      }
       let weights = Float64Array.from(selected, value => fate === 'stored' ? value : 0);
       const bySource = new Float64Array(cellCount);
-      for (let s = steps.length - 1; s >= 0; s--) {
+      for (let s = count - 1; s >= 0; s--) {
         const recorded = steps[s];
         // Every transfer uses the same after-step weights, so one step cannot
         // spend incoming water again or inherit a loop-order dependence.
@@ -82,12 +97,15 @@ export function createRainOriginTracer(cellCount, cellAreaM2, study, stepCount, 
       }
       const rainfallLiters = bySource.reduce((sum, value) => sum + value, 0);
       const initialWaterLiters = initial.reduce((sum, depth, i) => sum + depth * weights[i] * cellAreaM2, 0);
+      const depths = count === steps.length ? finalDepthsMm : snapshots[count].depthsMm;
+      const sinkLiters = count ? steps[count - 1].selectedSinkLiters : 0;
       const targetTotalLiters = fate === 'stored'
-        ? targetCells.reduce((sum, i) => sum + finalDepthsMm[i] * cellAreaM2, 0) : selectedSinkLiters;
+        ? targetCells.reduce((sum, i) => sum + depths[i] * cellAreaM2, 0) : sinkLiters;
       return { schema: 'experimental-earth-rain-origins/1', mixing: 'complete-cell',
         targetCells: [...targetCells], fate, bySourceLiters: Array.from(bySource),
         rainfallLiters, initialWaterLiters, targetTotalLiters,
-        balanceErrorLiters: targetTotalLiters - rainfallLiters - initialWaterLiters };
+        balanceErrorLiters: targetTotalLiters - rainfallLiters - initialWaterLiters,
+        ...(admitted.minute === undefined ? {} : { minute: snapshots[count].minute }) };
     },
   };
 }
