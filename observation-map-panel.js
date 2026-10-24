@@ -1,3 +1,4 @@
+import { renderObservationConsistency } from './observation-consistency-panel.js';
 import { mapObservations } from './observation-map.js';
 
 export function mountObservationMap({ getProject, getResults, selectCell }) {
@@ -46,6 +47,7 @@ export function mountObservationMap({ getProject, getResults, selectCell }) {
       if (r.tableSource) text.append(node('small', `Original table: ${r.tableSource.fileName}, line ${r.tableSource.line}; ${r.tableSource.depthValue} ± ${r.tableSource.uncertaintyValue} ${r.tableSource.unit}`));
       row.append(text); detail.append(row);
     }
+    detail.append(renderObservationConsistency(project, report.target, project.selectedIndex ?? 0));
   }
   scenario.addEventListener('change', refresh); role.addEventListener('change', refresh);
   return { refresh };
