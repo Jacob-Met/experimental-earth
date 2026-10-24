@@ -1,0 +1,75 @@
+{
+  "schema": "earth.placement-resolution-receiving/v1",
+  "source": {
+    "base": "ded8cb6d8c38a3053fcbd3dc4d0a510496d02fff",
+    "repository": "experimental-earth",
+    "root": "/tmp/hamon-a08b-earth-resolution-ded8",
+    "paths": [
+      "placement-search.js",
+      "placement-panel.js",
+      "placement-resolution.js",
+      "tests/placement-resolution.test.mjs",
+      "tests/placement-resolution.receiving.mjs",
+      "tests/placement-resolution.browser.mjs",
+      "docs/PLACEMENT_RESOLUTION.md"
+    ],
+    "sha256": {
+      "placement-search.js": "c7688495c774ec71a8e286da810f2f5a3bac4300137827f3d1160edaeb59f885",
+      "placement-panel.js": "a824a15d14a655edf90c2b2c80a65ecbdad2a39080b28eae4c9551810e4fa6a0",
+      "placement-resolution.js": "b685d7f13e8f62b6af88c1ee078c4c88677b95e9b7e4ebec2bea9a0b168da79b",
+      "tests/placement-resolution.test.mjs": "425a440d6c5126b3ab9cc2c0b6968e2aa88b2a03ab95f11c8354c78fb0030945",
+      "tests/placement-resolution.receiving.mjs": "92ec0e68c3bd30988a0c384fe557af56ca05d33f601b0c7e17adce5ca5f72f8e",
+      "tests/placement-resolution.browser.mjs": "e467958beb55646a1e627ecde66768336bf437876b5a4984de53ffe9b26c6147",
+      "docs/PLACEMENT_RESOLUTION.md": "d43ce189629ff9c6c3e6cb5c5f3d813224f0cee0f66cbdb5459db7fc9cae4c43"
+    }
+  },
+  "environment": {
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39"
+  },
+  "native": {
+    "command": "node --test tests/*.test.mjs",
+    "passed": 467,
+    "failed": 0,
+    "skipped": 0,
+    "rawLogSha256": "a501c56bd9c76fda823153d21d4226c4bf25e3e0b4b65d7ab87358585446a847"
+  },
+  "browser": {
+    "command": "CHROME_BIN=/usr/bin/google-chrome-stable PLACEMENT_RESOLUTION_RECEIPT_DIR=<new-dir> node tests/placement-resolution.browser.mjs",
+    "groupsPassed": 5,
+    "receipt": "browser-receipt.json",
+    "sandbox": "sandbox.json"
+  },
+  "independentReview": {
+    "reviewer": "retained Workshop worker",
+    "targetedGroups": 5,
+    "confirmed": "Copied or mutated rejected-rate support refuses; genuine original one-survivor support works."
+  },
+  "qualifiedControl": {
+    "targetMaximumPeakChangeMm": -1.8,
+    "stepsMinutes": [
+      5,
+      2.5,
+      1.25
+    ],
+    "qualifyingLayouts": [
+      4,
+      2,
+      2
+    ],
+    "selectedAtOriginal": [
+      18,
+      36
+    ],
+    "originalWinnerWorstLocalChangesMm": [
+      -1.8894344493,
+      -1.7940404208,
+      -1.7487841812
+    ],
+    "bestAtFiner": [
+      18,
+      27
+    ],
+    "combinedEstimatedCellSteps": 1596672
+  },
+  "limits": "Finite tested intervals show sensitivity, not convergence or physical accuracy; original source-supported hypotheses remain fixed; no source/layout/setting adoption from this result."
+}

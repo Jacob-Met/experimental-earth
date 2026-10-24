@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "report": [
+    "full79-layout combined workload refuses explicitly without silently reducing eligibility",
+    "same11 layouts and three fixed rates expose C2 qualification reversal and changed best set without adopting any source or calculation edit",
+    "target edits remove the old finer-step result; stable -1mm control is recomputed",
+    "one original calibration-supported rate survives as a fixed sensitivity hypothesis instead of being reconditioned at finer intervals",
+    "supported minimum refuses; narrow controls and complete selected-layout witnesses remain focusable and inspectable"
+  ],
+  "exceptions": [],
+  "sandboxAdmitted": true,
+  "sandboxPath": "/tmp/hamon-a08b-earth-resolution-browser-01/browser-session/sandbox.json",
+  "browser": "Chrome/156.0.8078.47",
+  "failure": null
+}

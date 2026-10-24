@@ -12,6 +12,8 @@ export const PLACEMENT_METRICS = Object.freeze({
 });
 export const PLACEMENT_WORK_LIMIT = 3_000_000;
 export const placementSignature = project => JSON.stringify(project);
+// Ephemeral provenance for support produced by this module, never imported result data.
+const originalSupportContexts = new WeakMap();
 
 export function validatePlacementQuery(project, query) {
   validateProject(project);
@@ -43,17 +45,35 @@ const value=(candidate,key)=>key==='unabsorbedLiters' ? candidate.metrics.exitLi
 
 /** Exact finite enumeration; evidence is conditioned once on the unchanged source. */
 export function comparePlacements(project, input) {
+  const report=evaluatePlacements(project,input);
+  if(report.status==='compared')originalSupportContexts.set(report,{sourceSignature:report.sourceSignature,querySignature:JSON.stringify(report.query),rates:[...report.ratesMmHr]});
+  return report;
+}
+
+/** Reevaluate the same layouts at another supported step with baseline support frozen. */
+export function comparePlacementsWithFixedSupport(project,input,baseline,stepMinutes) {
+  const query=validatePlacementQuery(project,input);
+  const context=originalSupportContexts.get(baseline);
+  if(!context||baseline.status!=='compared'||context.sourceSignature!==placementSignature(project)||baseline.sourceSignature!==context.sourceSignature||JSON.stringify(query)!==context.querySignature||JSON.stringify(baseline.query)!==context.querySignature)throw Error('Fixed support requires the matching original in-memory placement comparison');
+  if(JSON.stringify(baseline.ratesMmHr)!==JSON.stringify(context.rates))throw Error('Original hypothesis support was altered');
+  const rates=[...context.rates];
+  const changed={...project,weather:{...project.weather,stepMinutes}};
+  return evaluatePlacements(changed,query,rates);
+}
+
+function evaluatePlacements(project, input, fixedRates=null) {
   const query=validatePlacementQuery(project,input),choices=variants(query);
   // Reuse the maintained comparator's conservative three-run allowance for
   // every variant, including original evidence evaluation. Never shortlist.
   const work=choices.length*query.study.ratesMmHr.length*3*project.width*project.height*
     Math.ceil(project.weather.durationMinutes/project.weather.stepMinutes);
   if(work>PLACEMENT_WORK_LIMIT)throw Error('Placement comparison exceeds 3 million estimated cell-steps; reduce eligible cells, duration, grid or hypothesis count');
-  const original=compareIntervention(project,{study:query.study,subset:query.subset,allowAbsentSurface:query.subset==='all'});
+  const subset=fixedRates?'all':query.subset;
+  const original=compareIntervention(project,{study:query.study,subset,allowAbsentSurface:subset==='all'});
   const context={query,sourceSignature:placementSignature(project),variantCount:choices.length,
-    cellStepUpperBound:work,evidenceTarget:query.study.target};
+    cellStepUpperBound:work,evidenceTarget:query.study.target,supportMode:fixedRates?'fixed-original-support':'original-source-filter'};
   if(original.status!=='compared')return {...context,status:original.status,plans:[],best:[]};
-  const rates=original.candidates.map(c=>c.rateMmHr),reference=new Map(original.candidates.map(c=>[c.rateMmHr,c]));
+  const rates=fixedRates??original.candidates.map(c=>c.rateMmHr),reference=new Map(original.candidates.map(c=>[c.rateMmHr,c]));
   const plans=choices.map(cells=>{
     // Do not refit original observations against hypothetical edited geometry.
     const computed=cells.length?compareIntervention(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true}):original;
