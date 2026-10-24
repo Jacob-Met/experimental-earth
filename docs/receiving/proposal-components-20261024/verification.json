@@ -1,0 +1,83 @@
+{
+  "base": "ab0675f0f5e6f004da257dee32fb50edb00c62c2",
+  "prior_complete_composition": "aeaa12af91c3b9a9b442eafaaff2a2ceed9ac67f",
+  "environment": {
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47",
+    "sandbox": "Independent chrome://sandbox admitted true, Namespace and Seccomp-BPF"
+  },
+  "commands": [
+    {
+      "command": "npm test",
+      "base": "aeaa12af91c3b9a9b442eafaaff2a2ceed9ac67f",
+      "tests": 282,
+      "pass": true
+    },
+    {
+      "command": "npm run browser-receive",
+      "base": "aeaa12af91c3b9a9b442eafaaff2a2ceed9ac67f",
+      "workflow_groups": 85,
+      "pass": true
+    },
+    {
+      "command": "node --test tests/proposal-components.test.mjs tests/threshold-evidence.test.mjs",
+      "base": "ab0675f0f5e6f004da257dee32fb50edb00c62c2",
+      "tests": 15,
+      "pass": true
+    },
+    {
+      "command": "node tests/proposal-components.receiving.mjs",
+      "base": "ab0675f0f5e6f004da257dee32fb50edb00c62c2",
+      "workflow_groups": 10,
+      "pass": true
+    }
+  ],
+  "tested_files": {
+    "app.js": {
+      "sha256": "50e7c3c27c083b0e8987eb4602904fc85de253bcdcf4ffd5312ed9e81d71aa21",
+      "git_blob": "d864871e5b88e5f59f8b01cd4da244be6d71c370",
+      "bytes": 20544
+    },
+    "styles.css": {
+      "sha256": "4967e3cdcfc5be18183ce04856926c0e1ad60e6c773ea4e67bc0ff058f0016bb",
+      "git_blob": "fa93439f459c7c85f8651f4873b6ef81e3327703",
+      "bytes": 19877
+    },
+    "proposal-components.js": {
+      "sha256": "fc1e4d8f17828ed657ed2f919dbcb521e35878cabd07d254ecaa5aa8cdd85254",
+      "git_blob": "f0aade1f79e053698f436f62a91a5e7854ce5436",
+      "bytes": 3436
+    },
+    "proposal-components-panel.js": {
+      "sha256": "0fe4074852565b97b42abb3bb9f2ebbd825b9411cb5b1c40d506976a6c8577c0",
+      "git_blob": "6a05faa67ca9bbcd46906f8d702542db61421b24",
+      "bytes": 6298
+    },
+    "tests/proposal-components.test.mjs": {
+      "sha256": "baf9591a9ad55c836ae233930574932e614393f4e72ebfbfac71986be3c55684",
+      "git_blob": "22a7cbe2e401a224851cb862a9d2498c1c3b1e7d",
+      "bytes": 6838
+    },
+    "tests/proposal-components.receiving.mjs": {
+      "sha256": "3757d8f599cfa541d21463a143c4a3353b400f49fb5661cb0e39c0701b68ee45",
+      "git_blob": "bc17a9da6ca0d33b504f5075b98a47a1d2a0e5eb",
+      "bytes": 7268
+    },
+    "core.js": {
+      "sha256": "5d490343e7c43dbae91ae11d64adc6a37fbf62bab143f619495395f79807886e",
+      "git_blob": "12d5584a5489a1bac0039c7099e81f24612eb694",
+      "bytes": 17233
+    },
+    "internal-barriers.js": {
+      "sha256": "b62f0ea57bd5f782e0ca9fdf4f8c0fdbb8dd9b9dd01b3b148b18db5bf8c16627",
+      "git_blob": "88907f89f76bc91823e663add177a66a63f8277b",
+      "bytes": 6936
+    }
+  },
+  "review": {
+    "independent_coupled_cases": 32,
+    "checks": "exact four hybrid simulations, complement symmetry, equal forcing, conservation and input immutability",
+    "interpretation": "Maximum-depth and peak-storage interaction may arise from the maximizing location/time changing, without water exchange; independent zero-flow analytic test retained."
+  },
+  "limits": "Authored numerical comparisons under the same weather and default surface infiltration rates. No field-calibrated hydrology, real-world causality, physical construction or selected evidence hypothesis."
+}

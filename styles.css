@@ -110,3 +110,14 @@
 #placement-search p,#placement-search li { overflow-wrap:anywhere; }
 
 .cell .internal-crest{background:#126379}
+
+/* Four-case proposal component experiment. */
+#proposal-components { min-width:0; }
+#proposal-components fieldset { min-width:0; border:1px solid #cbded3; border-radius:8px; margin:16px 0; }
+#proposal-components input[type=checkbox] { width:18px; min-height:18px; margin:0; padding:0; }
+#proposal-components .component-table-wrap { max-width:100%; overflow-x:auto; margin:16px 0; }
+#proposal-components table { width:100%; min-width:900px; border-collapse:collapse; font-size:13px; }
+#proposal-components th,#proposal-components td { text-align:right; padding:10px; border-bottom:1px solid #cbded3; font-variant-numeric:tabular-nums; }
+#proposal-components th:first-child { text-align:left; }
+#proposal-components thead { background:#edf3e8; }
+#proposal-components details p { font-size:13px; }
