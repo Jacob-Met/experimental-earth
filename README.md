@@ -18,6 +18,18 @@ Optional actual-browser receiving: with a locally available Chrome/Chromium and 
 
 **Physical boundaries:** The model is a deliberately simplified finite-volume surface transfer on constant-infiltration cells, with an open edge and no measured calibration. Its arithmetic conserves rainfall within tolerance; it does not quantify actual flood risk, stormwater compliance, soil response or intervention benefit. Real readings can be recorded with method and ± uncertainty, but do not automatically tune the model. Sampling suggestions identify the largest simulated scenario difference, not validated information gain. No external data or inference endpoints are called.
 
+## Follow rain from part of the site
+
+The **Where does rain from this area end up?** panel traces rain from selected
+source cells through the existing water calculation. Compare where that water
+infiltrates, remains on the surface or leaves the boundary under each proposal.
+Both destination maps share a scale and preserve the same source area and
+storm. The source selection survives project export/import; changed model
+inputs require a fresh calculation. This is conserved model attribution under
+a complete-cell-mixing assumption, not observed physical pathways. See
+[Rainfall attribution](docs/RAIN_ATTRIBUTION.md) for the calculation, controls and
+interpretation limits.
+
 ## Inspect an unknown surface property
 
 **Probe infiltration assumption** tests the effect of replacing only one proposed cell's authored infiltration parameter with an illustrative lower or upper example bound. It ranks modeled **water not absorbed** (water left through edges plus final standing water), separately from the existing button that suggests measuring where the *two scenarios* disagree. On imported grids over 96 cells it visibly reports a 36-cell heuristic shortlist; it does not claim a globally optimal recommendation. Bounds are neither measured local soil data nor confidence intervals. Use the separate ponding-depth form only for water-depth readings, not permeability tests.
