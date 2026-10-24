@@ -37,6 +37,8 @@ export function mountPondingPanel({ getProject, getResults }) {
     for(const [label,value] of [['Existing',a],['Proposal',b]]) {
       const p=document.createElement('p');
       p.textContent=`${label}: ${num(value.minutesAbove)} min. `+(value.intervals.length?`Wet intervals: ${value.intervals.map(x=>`${num(x.startMinute)}–${num(x.endMinute)} min`).join('; ')}.`:'No retained interval above threshold.');detail.append(p);
+      const integral=document.createElement('p');
+      integral.textContent=`${label}: ${num(value.excessMmMinutes)} mm·min accumulated depth above threshold. `+(value.aboveAtStart?'Already above threshold at the first snapshot; earlier onset unknown. ':'')+(value.aboveAtEnd?'Still above threshold at the last snapshot; later clearance unknown.':'');detail.append(integral);
     }
     const delta=document.createElement('p'), difference=b.minutesAbove-a.minutesAbove;
     delta.textContent=`Proposal minus existing: ${difference>0?'+':''}${num(difference)} min. Both use the same modeled event (${num(project.weather.stepMinutes)} min solver step).`;detail.append(delta);
