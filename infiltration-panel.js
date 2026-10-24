@@ -4,7 +4,10 @@ import { compareInfiltration } from './infiltration-study.js';
 import { chooseInfiltrationQuestion } from './infiltration-question.js';
 
 const $ = id => document.getElementById(id);
-const number = n => n === null ? '—' : n.toLocaleString('en-US', { maximumSignificantDigits: 5 });
+const number = n => n === null ? '—' : n.toLocaleString('en-US', {
+  maximumSignificantDigits: 5, notation: n !== 0 && Math.abs(n) < 0.001 ? 'scientific' : 'standard',
+});
+const errorNumber = n => n !== null && n !== 0 && Math.abs(n) < 1e-9 ? '≈ 0' : number(n);
 function element(tag, text, className) {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -87,7 +90,7 @@ export function mountInfiltrationPanel({ getProject, changed, notice, prepareRea
       card.append(element('h3', `${number(candidate.rateMmHr)} mm/h`));
       for (const [key, name] of [['calibration', 'Calibration'], ['challenge', 'Held aside']]) {
         const metric = candidate[key];
-        card.append(element('p', `${name}: ${metric.count ? `${number(metric.rmseMm)} mm RMSE · ${metric.withinCount}/${metric.count} inside ± bands` : 'no assigned readings'}`, metric.compatible === false ? 'study-mismatch' : 'study-score'));
+        card.append(element('p', `${name}: ${metric.count ? `${errorNumber(metric.rmseMm)} mm RMSE · ${metric.withinCount}/${metric.count} inside ± bands` : 'no assigned readings'}`, metric.compatible === false ? 'study-mismatch' : 'study-score'));
       }
       card.append(element('p', `Run totals: ${number(candidate.absorbedLiters)} L infiltrated · ${number(candidate.exitLiters)} L edge outflow · ${number(candidate.storedLiters)} L stored.`, 'mini-note'));
       const errors = [...candidate.calibration.errors, ...candidate.challenge.errors];

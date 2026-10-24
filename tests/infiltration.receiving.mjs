@@ -37,6 +37,7 @@ export async function receiveInfiltration({ evaluate, send, delay, report }) {
   await run(); assert.equal(await state(), 'one-survivor');
   assert.equal(await evaluate("document.querySelector('.study-candidate').dataset.rate"), '10');
   assert.equal(await evaluate("document.querySelectorAll('.study-candidate').length"), 3);
+  assert.ok(!(await evaluate("document.querySelector('.study-candidate').textContent")).includes('0.000000000000'));
   assert.ok((await evaluate("document.querySelector('#study-results').textContent")).includes('1 calibration · 1 held aside'));
   assert.ok((await evaluate("document.querySelector('.study-candidate details').textContent")).includes('analytic held-aside fixture'));
   const saved = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
