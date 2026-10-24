@@ -119,3 +119,52 @@ explains that the requested grid/time detail is too large. Within the cap,
 `timeline.status = 'retained'` provides independently owned arrays at every
 step, including a fractional final step. Project files still retain source
 inputs only, never these derived histories.
+
+## Explain a destination's rainfall origins
+
+Open **Which areas supplied water here?** inside the water-attribution section.
+Choose one or more inspected destination cells and a fate: final surface storage,
+cumulative infiltration, or cumulative boundary outflow. The paired maps show how
+many liters of rain from each source cell reached that destination and fate.
+Both alternatives use the same cells, fate and forcing; a common color scale
+makes their contributions comparable. Selection inputs survive export/reopen;
+computed results are invalidated by changed site, weather, targets or fate.
+
+This answers a conditional attribution question. It is not a prediction of what
+would happen if a source were removed: that intervention can change bulk flow.
+Boundary destinations are the actual edge cells where the modeled water leaves.
+Rainfall and water present at the start are accounted for separately. Current
+dry-start defaults remain unchanged; the recorder accepts the solver's actual
+starting inventory without introducing an initial-state schema.
+
+### Reverse recurrence
+
+The optional recorder observes the maintained solver's actual absorption and
+accepted, simultaneously capped transfers. It records an absorption fraction
+per cell, a signed fraction per existing neighbor pair, and an exit fraction
+per cell at each step. No hydraulic calculation is repeated.
+
+Let w be the selected fate weight after a step. For each accepted internal
+fraction f from cell i to j, the weight before transport at i gains
+f * (w[j] - w[i]). For a boundary exit fraction e, it gains
+e * (selectedExit[i] - w[i]). All changes use the same unmodified after-step
+weights. With absorption fraction a, the preceding weight is
+(1-a) * transportedWeight + a * selectedInfiltration. Rain added at the start
+of that step contributes rainDepth * cellArea * precedingWeight to its origin.
+Reverse iteration begins with the selected-cell mask for final storage, or
+zero for cumulative sinks. Applying the final reverse weights to the starting
+inventory accounts for that separate water. Numerical roundoff of convex
+weights is limited to [0,1].
+
+The result reports per-source rainfall contributions, their total, starting
+water contribution, the selected bulk-water fate and its closure residual.
+Recording is limited to 250,000 cell-steps per scenario, including the initial
+step allowance. Larger requests are explicitly refused; no partial map is
+presented. Its storage scales with cells plus existing neighbor pairs per step,
+not the square of the cell count.
+
+Analytic capped splitting and delayed second-hop controls, source-by-source
+forward comparisons, destination-union additivity, every-origin fate closure,
+starting-water separation and unchanged ordinary/forward/budget outputs qualify
+the recurrence. Native and actual-browser receiving also cover persistence,
+invalidation, dry controls and bounded-work refusal.
