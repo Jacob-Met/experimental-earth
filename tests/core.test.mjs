@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { makeExample, runRain, compare, validateProject, depthAtMinute, chooseNextObservation } from '../core.js';
+import { makeExample, runRain, compare, validateProject, depthAtMinute, chooseNextObservation, chooseInfiltrationObservation } from '../core.js';
 const close = (a,b,tol=1e-7) => assert.ok(Math.abs(a-b) <= tol, `${a} != ${b}`);
 
 test('sample accepts validated project schema and leaves user-project cells untouched', () => {
@@ -65,4 +65,48 @@ test('saved JSON roundtrips with observation/source and same predictions',()=>{
   const p=makeExample();p.observations.push({cellIndex:9,minute:60,depthMm:8,uncertaintyMm:2,source:'manual ruler reading'});
   const restored=validateProject(JSON.parse(JSON.stringify(p)));
   assert.deepEqual(compare(restored),compare(p)); assert.deepEqual(restored.observations,p.observations);
+});
+
+test('per-cell infiltration overrides conserve water and preserve original cells',()=>{
+ const p=makeExample(), original=JSON.stringify(p);
+ const options=i=>({infiltrationOverride:{cellIndex:27,rateMmHr:i}});
+ const low=runRain(p.proposal,p.width,p.height,p.weather,options(0));
+ const high=runRain(p.proposal,p.width,p.height,p.weather,options(100));
+ assert.ok(high.absorbedLiters>low.absorbedLiters);
+ for(const r of [low,high]) close(r.rainLiters,r.absorbedLiters+r.exitLiters+r.storedLiters,1e-6);
+ assert.equal(JSON.stringify(p),original);
+});
+test('authored-rate sensitivity finds a reproducible impactful input separate from scenario difference',()=>{
+ const p=makeExample(), original=JSON.stringify(p);
+ const result=chooseInfiltrationObservation(p);
+ assert.ok(result && result.impactLiters>0);
+ assert.equal(result.totalCount,p.proposal.length);
+ assert.equal(result.evaluatedCount,result.totalCount);
+ close(result.impactLiters,Math.abs(result.lowUnabsorbedLiters-result.highUnabsorbedLiters));
+ assert.deepEqual(chooseInfiltrationObservation(p),result);
+ assert.equal(JSON.stringify(p),original);
+});
+test('dry storm exposes no consequential sensitivity; no invented measurement advice',()=>{
+ const p=makeExample();p.weather.rainMmHr=0;
+ assert.equal(chooseInfiltrationObservation(p),null);
+});
+test('per-cell override rejects invalid index/rate and unknown scenario',()=>{
+ const p=makeExample(),args=[p.proposal,p.width,p.height,p.weather];
+ for(const infiltrationOverride of [
+   {cellIndex:-1,rateMmHr:10},{cellIndex:999,rateMmHr:10},
+   {cellIndex:1,rateMmHr:NaN},{cellIndex:1,rateMmHr:-2},{cellIndex:1,rateMmHr:2001},
+ ]) assert.throws(()=>runRain(...args,{infiltrationOverride}),/Invalid/);
+ assert.throws(()=>chooseInfiltrationObservation(p,'fake'),/Unknown scenario/);
+});
+
+test('imported larger grids use a visibly bounded heuristic shortlist',()=>{
+ const p=makeExample();
+ p.width=16;p.height=7;
+ p.existing=Array.from({length:p.width*p.height},(_,i)=>({...p.existing[i%48]}));
+ p.proposal=Array.from({length:p.width*p.height},(_,i)=>({...p.proposal[i%48]}));
+ p.selectedIndex=0;
+ const r=chooseInfiltrationObservation(p);
+ assert.ok(r&&r.impactLiters>0);
+ assert.equal(r.totalCount,112);
+ assert.equal(r.evaluatedCount,36);
 });

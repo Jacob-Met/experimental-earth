@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { setTimeout as delay } from 'node:timers/promises';
-const root = new URL('../', import.meta.url).pathname;
+const root = fileURLToPath(new URL('../', import.meta.url));
 const chromeBin = process.env.CHROME_BIN ?? (
   process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
   : process.platform === 'win32' ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
@@ -12,7 +13,7 @@ const debugPort = 18766;
 const baseUrl = `http://127.0.0.1:${port}/`;
 const profile = root + '.chrome-receiving-profile';
 mkdirSync(profile,{recursive:true});
-const server = spawn(process.env.PYTHON_BIN ?? 'python3',['-m','http.server',String(port),'--bind','127.0.0.1','--directory',root],{stdio:'ignore'});
+const server = spawn(process.env.PYTHON_BIN ?? (process.platform === 'win32' ? 'python' : 'python3'),['-m','http.server',String(port),'--bind','127.0.0.1','--directory',root],{stdio:'ignore'});
 const chrome = spawn(chromeBin,['--headless=new','--no-first-run','--no-default-browser-check','--disable-extensions','--disable-gpu',`--remote-debugging-port=${debugPort}`,`--user-data-dir=${profile}`,baseUrl],{stdio:'ignore'});
 let ws;
 const pending = new Map();
@@ -39,8 +40,17 @@ try {
     if(msg.id && pending.has(msg.id)){const p=pending.get(msg.id);pending.delete(msg.id);msg.error?p.reject(Error(msg.error.message)):p.resolve(msg.result);}
   };
   function send(method,params={}){return new Promise((resolve,reject)=>{const id=++serial;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});}
-  async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value;}
+  async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(JSON.stringify(r.exceptionDetails));return r.result.value;}
   await send('Runtime.enable'); await send('Page.enable');
+  // On slower Windows hosts Chrome may create the target before the spawned HTTP
+  // server is accepting requests. Navigate again after CDP attaches to avoid
+  // clearing localStorage on the initial chrome-error:// document.
+  for(let n=0;n<30;n++){
+    await send('Page.navigate',{url:baseUrl});
+    await delay(200);
+    try{if(await evaluate('location.origin')===new URL(baseUrl).origin)break;}catch{}
+  }
+  assert.equal(await evaluate('location.origin'),new URL(baseUrl).origin,'local server must finish loading before storage test');
   // Repeatable test: discard only this test browser profile's previous workspace.
   await evaluate("localStorage.clear()");
   await send('Page.reload',{ignoreCache:true});
@@ -73,6 +83,15 @@ try {
   assert.equal(await evaluate("document.querySelector('#proposal-grid .cell').getAttribute('aria-label').includes('Rain garden')"),true);
   report.push('reload durability, scenario reset, portable JSON import');
   await evaluate("document.querySelector('#suggest').click()");
+  await evaluate("document.querySelector('#suggest-infiltration').click()");
+  for(let n=0;n<30;n++){
+    if((await evaluate("document.querySelector('#infiltration-reading').textContent")).startsWith('Check '))break;
+    await delay(100);
+  }
+  const materialSensitivity=await evaluate("document.querySelector('#infiltration-reading').textContent");
+  assert.ok(materialSensitivity.includes('Evaluated 48/48 cells'),materialSensitivity);
+  assert.ok(materialSensitivity.includes('invented example bounds'),materialSensitivity);
+  report.push('one-cell infiltration-rate sensitivity, distinct from scenario difference');
   assert.equal(await evaluate("document.querySelector('[data-brush=\"inspect\"]').getAttribute('aria-pressed')"),'true');
   await evaluate("document.querySelector('#rain').value='47';document.querySelector('#rain').dispatchEvent(new Event('change',{bubbles:true}))");
   const last=JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));
