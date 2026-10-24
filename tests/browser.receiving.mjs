@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { withBrowserSession } from './support/browser-session.mjs';
 import { setTimeout as delay } from 'node:timers/promises';
+import { receiveIntervention } from './intervention.receiving.mjs';
 import { receiveInfiltration } from './infiltration.receiving.mjs';
 import { receiveInfiltrationResolution } from './infiltration-resolution.receiving.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -83,6 +84,7 @@ try {
   writeFileSync(process.env.BROWSER_SCREENSHOT ?? (session.runDirectory + '/browser-mobile-390.png'),Buffer.from(shot.data,'base64'));
   report.push('390px mobile layout no horizontal overflow');
   await receiveInfiltration({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  await receiveIntervention({ evaluate, send, delay, report });
   await receiveInfiltrationResolution({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);
   return {checks:report,exceptions,dimensions:dims,sandbox:session.sandbox,sandboxPath:session.sandboxPath};

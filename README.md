@@ -72,3 +72,9 @@ The [official Nebius and NVIDIA rules](https://nebiusglobalaihackathon.devpost.c
 Product work should remain useful beyond the competition. An unavailable provider route does not block independent work on geometry, modeling, experiments or interaction; keep the unresolved integration explicit.
 
 Seeded from Jacob's approved exploratory direction on 2026-10-24.
+
+### Proposal effects across infiltration hypotheses
+
+The **Does the proposal still help?** panel carries the saved investigation rates into paired existing/proposed simulations. One hypothetical surface capacity is applied consistently to both scenarios under the same weather. All other surface capacities stay at their defaults; this transfer assumption may fail when an intervention changes soil condition. Inspect each pair, signed metric ranges, sign reversals and every cell that deepens under at least one candidate. Peak-depth differences compare separate scenario maxima, which need not occur simultaneously.
+
+Choose all candidates, calibration-compatible candidates or candidates compatible with both calibration and held-aside readings. Filtered results require the corresponding assigned evidence; a contradicted set is empty, never replaced by its closest fit. The evidence scenario is shown explicitly. These are finite alternatives, not confidence intervals, physical bounds or an overall recommendation. Nothing adopts a rate or changes the project. Edits invalidate results. Work is bounded to 3 million candidate cell-steps, counting the evidence pass conservatively. `tests/intervention.test.mjs` covers analytic reversal, identical plans, evidence exclusion, proposal-target filtering, dry/absent cases and budget refusal; `tests/intervention.receiving.mjs` exports the real browser course.

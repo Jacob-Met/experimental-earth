@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import { makeExample } from '../core.js';
+export async function receiveIntervention({evaluate,send,delay,report}) {
+ const original=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ const p=makeExample();p.width=p.height=2;p.selectedIndex=0;
+ p.existing=Array.from({length:4},()=>({elevationM:0,surface:'turf',provenance:'authored analytic browser fixture'}));p.proposal=p.existing.map(c=>({...c,surface:'garden'}));
+ Object.assign(p.weather,{rainMmHr:30,stormMinutes:60,durationMinutes:60,mobilityPerHour:0,boundaryExitPerHour:0,cellSizeM:1});
+ p.infiltrationStudy={target:'existing',surface:'turf',ratesMmHr:[10,24,28]};
+ await evaluate(`localStorage.setItem('experimental-earth-site-v1',${JSON.stringify(JSON.stringify(p))})`);
+ await send('Page.reload',{ignoreCache:true});await delay(350);
+ await evaluate("document.querySelector('#compare-intervention').click()");
+ assert.equal(await evaluate("document.querySelector('#intervention-status').dataset.state"),'compared');
+ const text=await evaluate("document.querySelector('#intervention-results').textContent");
+ assert.ok(text.includes('-56 to 16 L; reverses'));assert.ok(text.includes('4 cells deepen'));
+ assert.equal(await evaluate("document.querySelectorAll('#intervention-results article').length"),3);
+ report.push('paired analytic browser scenario reveals sign reversal and four local worsening cells');
+ await evaluate("(()=>{const s=document.querySelector('#intervention-subset');s.value='calibration';s.dispatchEvent(new Event('change'));})()");
+ assert.equal(await evaluate("document.querySelector('#intervention-results').textContent"),'');
+ await evaluate("document.querySelector('#compare-intervention').click()");
+ assert.equal(await evaluate("document.querySelector('#intervention-status').dataset.state"),'need-calibration');
+ report.push('explicit evidence filter refuses absent calibration without substituting default rate');
+ await evaluate("(()=>{const s=document.querySelector('#intervention-subset');s.value='all';s.dispatchEvent(new Event('change'));document.querySelector('#compare-intervention').click();document.querySelector('#copy-existing').click();})()");
+ assert.equal(await evaluate("document.querySelector('#intervention-status').dataset.state"),'not-compared');
+ await evaluate("document.querySelector('#compare-intervention').click()");
+ assert.ok((await evaluate("document.querySelector('#intervention-results').textContent")).includes('0 cells deepen'));
+ const saved=JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));assert.deepEqual(saved.infiltrationStudy,p.infiltrationStudy);
+ report.push('actual proposal edit invalidates derived results and reruns identical-plan zero effects without adopting parameters');
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth'));
+ report.push('intervention panel fits 390px viewport');
+ await send('Emulation.clearDeviceMetricsOverride');
+ await evaluate(`localStorage.setItem('experimental-earth-site-v1',${JSON.stringify(original)})`);
+ await send('Page.reload',{ignoreCache:true});await delay(350);
+}
