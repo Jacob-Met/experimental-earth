@@ -209,3 +209,13 @@ one to seven additional calendar dates. It retains the original course, complete
 per-date categories, selected-date spatial witnesses and a separate input-only
 save/reopen path. The selected dates do not establish an annual total or a
 continuous seasonal interval.
+
+## Inspect the declared true-north bearing range
+
+The [bearing-range investigation](SUN_BEARING.md) keeps the original site and one
+selected sampled UTC instant while varying only grid bearing across an explicit
+range. Complete angular envelopes distinguish sufficient obstruction throughout,
+no mapped blocker throughout and unresolved conclusions. Separate maintained-
+kernel witnesses can expose orientation sensitivity. The investigation has its
+own input-only save/reopen path and does not turn sampled times into a continuous
+duration or establish physical sunlight.
