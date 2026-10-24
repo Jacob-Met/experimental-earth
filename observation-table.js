@@ -1,50 +1,10 @@
+import { records } from './csv-records.js';
 import { validateProject } from './core.js';
 import { DEPTH_UNITS, decimalValue } from './observation-units.js';
 
 const REQUIRED = ['cell', 'minute', 'depth', 'uncertainty', 'unit', 'source'];
 const OPTIONAL = ['scenario', 'use'];
 const owns = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
-
-// Bounded reader for this explicit table contract, including quoted commas,
-// escaped double quotes, CRLF and quoted multiline source descriptions.
-function records(text) {
-  if (typeof text !== 'string' || text.length > 128000) throw new Error('Observation table exceeds the 128 KB text limit');
-  text = text.replace(/^\uFEFF/, '');
-  const rows = [];
-  let fields = [], field = '', quoted = false, closed = false, line = 1, startLine = 1;
-  const finishField = () => { fields.push(field); field = ''; closed = false; };
-  const finishRow = () => {
-    finishField();
-    if (fields.some(value => value.trim() !== '')) rows.push({ fields, line: startLine });
-    if (rows.length > 101) throw new Error('At most 100 observation rows may be imported');
-    fields = [];
-  };
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (quoted) {
-      if (c === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++; }
-        else { quoted = false; closed = true; }
-      } else if (c === '\r' || c === '\n') {
-        if (c === '\r' && text[i + 1] === '\n') i++;
-        field += '\n'; line++;
-      } else field += c;
-    } else if (c === ',') finishField();
-    else if (c === '\r' || c === '\n') {
-      finishRow(); if (c === '\r' && text[i + 1] === '\n') i++;
-      line++; startLine = line;
-    } else if (c === '"') {
-      if (field !== '' || closed) throw new Error(`Line ${line}: unexpected quote`);
-      quoted = true;
-    } else {
-      if (closed) throw new Error(`Line ${line}: text after a closing quote`);
-      field += c;
-    }
-  }
-  if (quoted) throw new Error(`Line ${startLine}: unclosed quoted field`);
-  if (fields.length || field !== '' || closed) finishRow();
-  return rows;
-}
 
 export function appendObservations(project, readings) {
   validateProject(project);
