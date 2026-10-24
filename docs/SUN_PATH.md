@@ -145,3 +145,49 @@ sampling and physical-model limitations remain unchanged.
 The stronger viewport check exposed an inherited long-source overflow in the
 existing column list. The accompanying narrow CSS rule wraps those words and
 lets that panel shrink, preserving the original strings and all geometry logic.
+
+## Inspect additional discrete times
+
+After comparing a dated course, use **Inspect additional discrete times** to
+compare a finer whole-minute divisor. A separate control in the reopened
+investigation uses that file's original site and declaration, even when the
+active project is different. Both controls retain the coarse course and offer
+the complete finer course under a disclosure. Changing the selected ground
+cell updates its comparison without changing either source.
+
+The finer interval must be smaller than the original interval and divide it
+evenly. A one-minute original interval has no supported refinement. The full
+finer grid uses the same limit of 193 samples and 16 million conservative slab checks;
+work beyond either limit refuses before exposing a partial comparison. Shared
+times have exactly the maintained coarse calculation. An unaligned final
+endpoint remains included in both grids.
+
+The comparison lists inserted times whose scenario classification differs from
+both original interval endpoints, with the original obstruction witnesses.
+Distinct timestamps and per-scenario observations have separate counts: one
+timestamp can contribute a new classification in both existing and proposal.
+Neither count measures duration, convergence or the absence of further changes
+between the finer samples. A classification can also change its witness without
+changing its status; this summary is about status changes, while the full finer
+course retains all witnesses.
+
+The authored 8-by-2 flat-site control has a distant 10 m opaque column. Hourly
+samples at 06:00, 07:00 and 08:00 UTC report no mapped blocker at A1; the finer grid
+finds 47 blocked samples from 06:07 through 06:53. This does not establish 47 minutes
+of continuous shade. The geometry, solar-position approximation and all source
+uncertainties remain the same in both grids.
+
+Declaration, source, fine-input, new retained import and close changes cancel
+queued comparisons. A refused finer course leaves the accepted original course
+intact. The ordinary saved investigation retains its original coarse declaration;
+reopen it and explicitly compare a finer interval again. No cached derived
+classification or finer choice is silently adopted into the original inputs.
+
+Run `node tests/solar-path-sampling.test.mjs` for the six native groups.
+The following receives the actual current and retained controls, original source
+custody, saved-file reopen, invalidations, keyboard activation and 390px rendering
+through the maintained sandbox verifier:
+
+```sh
+CHROME_BIN=/opt/google/chrome/chrome SUN_SAMPLING_RECEIPT_DIR=/tmp/sun-sampling node tests/solar-path-sampling.browser.mjs
+```
