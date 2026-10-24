@@ -11,8 +11,15 @@ The calculation varies the grid's true-north bearing only. The original site,
 geographic location, sampled time, solar elevation and declared column-height
 bounds stay fixed. A range crossing north remains on one unwrapped degree axis;
 for example, 350 ± 20 degrees is shown as 330 through 370. A zero-width range is
-one direction. The result is conditional on the entered geometry and range,
+one direction. Exactly 180 degrees of half width uses canonical [0, 360]
+degrees while retaining the original nominal bearing, avoiding a rounded span
+slightly greater than a full circle. The result is conditional on the entered geometry and range,
 not a survey of orientation accuracy or a measurement of actual sunlight.
+
+To retain one common bearing across every original UTC timestamp, use the
+[complete-course count investigation](SUN_BEARING_COURSE.md). It composes these
+single-instant envelopes into existing, proposed, additional and removed
+obstruction count enclosures while retaining the original denominator.
 
 ## Whole-range conclusions and checked directions
 

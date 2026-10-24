@@ -22,7 +22,11 @@ export function planSunBearing(project,input,options){
   const estimatedRayTests=SUN_BEARING_LIMITS.maxWitnesses*6*count*(count-1);
   if(estimatedRayTests>SUN_BEARING_LIMITS.maxRayTests)throw Error('The complete original-site witness calculation exceeds its ray budget.');
   const utc=new Date(Math.min(Date.parse(declaration.endUtc),Date.parse(declaration.startUtc)+settings.sampleIndex*declaration.stepMinutes*60000)).toISOString();
-  return {declaration,settings,domain:[center-settings.halfWidthDeg,center+settings.halfWidthDeg],utc,
+  // Every bearing is admitted at180 degrees. A canonical full circle avoids
+  // center±180 rounding to a span slightly greater than360 without widening or
+  // merging any actual angular interval. The original nominal bearing is kept.
+  const domain=settings.halfWidthDeg===180?[0,360]:[center-settings.halfWidthDeg,center+settings.halfWidthDeg];
+  return {declaration,settings,domain,utc,
     position:sunPathPosition(utc,declaration.latitudeDeg,declaration.longitudeDeg,center),estimatedRayTests};
 }
 
