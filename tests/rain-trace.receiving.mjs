@@ -20,6 +20,17 @@ export async function receiveRainTrace({ evaluate, send, delay, report, artifact
   assert.deepEqual(saved.rainTraceStudy, { sourceCells: [27] });
   delete saved.rainTraceStudy; assert.deepEqual(saved, before);
   report.push('rain attribution uses the existing source cell, renders both destination grids and preserves model/evidence inputs');
+  assert.equal(await evaluate("document.querySelector('#trace-time').hidden"), false);
+  assert.equal(await evaluate("document.querySelector('#trace-step').value"), '48');
+  await evaluate("document.querySelector('#trace-step').value='12';document.querySelector('#trace-step').dispatchEvent(new Event('input'))");
+  assert.ok((await evaluate("document.querySelector('#trace-time-label').textContent")).includes('60 / 240 min'));
+  assert.ok((await evaluate("document.querySelector('.trace-total-card:last-child').textContent")).includes('proposal 59.26 L'));
+  await evaluate("document.querySelector('#trace-step').value='0';document.querySelector('#trace-step').dispatchEvent(new Event('input'))");
+  assert.ok((await evaluate("document.querySelector('#trace-summary').textContent")).includes('0 L of rain'));
+  assert.equal(await evaluate("[...document.querySelectorAll('.trace-total-card small')].every(e=>e.textContent==='Change 0 L')"), true);
+  await evaluate("document.querySelector('#trace-step').value='48';document.querySelector('#trace-step').dispatchEvent(new Event('input'))");
+  assert.ok((await evaluate("document.querySelector('.trace-total-card:last-child').textContent")).includes('proposal 0 L'));
+  report.push('retained source timeline reveals the independently established temporary 59.2624 L contribution, initial zero and final zero at matched scenario times');
 
   await evaluate("document.querySelector('#existing-grid [data-cell-index=\"0\"]').click()");
   assert.equal(await state(), 'traced');
@@ -34,6 +45,7 @@ export async function receiveRainTrace({ evaluate, send, delay, report, artifact
   await evaluate("document.querySelector('#trace-run').click()");
   report.push('multi-cell source selection persists; ordinary inspection preserves results and changed source inputs require recomputation');
 
+  await evaluate("document.querySelector('#trace-step').value='12';document.querySelector('#trace-step').dispatchEvent(new Event('input'))");
   if (artifactDirectory) {
     const clip = await evaluate("(()=>{const r=document.querySelector('#rain-trace').getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height,scale:1}})()");
     const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true, clip });
@@ -86,6 +98,16 @@ export async function receiveRainTrace({ evaluate, send, delay, report, artifact
   assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"), accepted);
   assert.ok((await evaluate("document.querySelector('#toast').textContent")).includes('Import refused'));
   report.push('actual project export/import reopens the source selection; invalid duplicate-cell import preserves the accepted workspace');
+  const large=makeExample();large.width=large.height=24;large.selectedIndex=0;
+  large.existing=Array.from({length:576},()=>({surface:'sealed',elevationM:0,provenance:'authored timeline budget control'}));
+  large.proposal=structuredClone(large.existing);large.rainTraceStudy={sourceCells:[0]};
+  Object.assign(large.weather,{durationMinutes:720,stepMinutes:1,mobilityPerHour:0,boundaryExitPerHour:0});
+  await load(large);await evaluate("document.querySelector('#trace-run').click()");
+  assert.equal(await state(),'traced');
+  assert.equal(await evaluate("document.querySelector('#trace-time').hidden"),true);
+  assert.ok((await evaluate("document.querySelector('#trace-status').textContent")).includes('too detailed'));
+  assert.equal(await evaluate("document.querySelector('#trace-results').hidden"),false);
+  report.push('oversized retained timeline is explicitly unavailable while actual final attribution remains usable');
   await send('Emulation.clearDeviceMetricsOverride');
   await evaluate(`localStorage.setItem('experimental-earth-site-v1',${JSON.stringify(original)})`);
   await send('Page.reload', { ignoreCache: true }); await delay(350);

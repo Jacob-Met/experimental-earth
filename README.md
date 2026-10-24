@@ -24,7 +24,9 @@ The **Where does rain from this area end up?** panel traces rain from selected
 source cells through the existing water calculation. Compare where that water
 infiltrates, remains on the surface or leaves the boundary under each proposal.
 Both destination maps share a scale and preserve the same source area and
-storm. The source selection survives project export/import; changed model
+storm. A modeled-time control reveals temporary contributions at exact saved
+steps, with cumulative infiltration/outflow and the attributed water still
+present. Large timeline requests retain a clearly labeled final-only view. The source selection survives project export/import; changed model
 inputs require a fresh calculation. This is conserved model attribution under
 a complete-cell-mixing assumption, not observed physical pathways. See
 [Rainfall attribution](docs/RAIN_ATTRIBUTION.md) for the calculation, controls and
