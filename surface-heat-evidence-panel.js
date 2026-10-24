@@ -1,6 +1,6 @@
-import { prepareHeatEvidence, compareHeatEvidence, authoredHeatEvidenceExample } from './surface-heat-evidence.js';
+import { prepareHeatEvidence, compareHeatEvidence, authoredHeatEvidenceExample, authoredHeatEnergyExample } from './surface-heat-evidence.js';
 import { heatEvidenceCurrent } from './surface-heat-evidence-contract.js';
-import { parseHeatHypotheses, parseHeatReadings, formatHeatHypotheses, formatHeatReadings } from './surface-heat-evidence-table.js';
+import { parseHeatHypotheses, parseHeatReadings, parseHeatEnergyReadings, formatHeatHypotheses, formatHeatReadings, formatHeatEnergyReadings } from './surface-heat-evidence-table.js';
 
 const node = (tag, text = '') => { const e = document.createElement(tag); e.textContent = text; return e; };
 const svg = (tag, attributes = {}) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [key, value] of Object.entries(attributes)) e.setAttribute(key, String(value)); return e; };
@@ -18,8 +18,8 @@ const statuses = {
 export function mountHeatEvidence({ getProject, replaceProject, notice }) {
   const link = node('link'); link.rel = 'stylesheet'; link.href = new URL('./surface-heat-evidence.css', import.meta.url); document.head.append(link);
   const panel = node('section'); panel.id = 'heat-observations'; panel.className = 'panel study';
-  panel.innerHTML = `<span class="eyebrow">HEAT / TEMPERATURE EVIDENCE</span><h2>Which heat responses do the readings challenge?</h2>
-    <p>Associate sourced temperature intervals with one layer in the saved exposure above. Compare a finite set of declared properties. Calibration readings screen the original candidates; separately declared challenge readings can reject them but never refit them.</p>
+  panel.innerHTML = `<span class="eyebrow">HEAT / TEMPERATURE AND ENERGY EVIDENCE</span><h2>Which heat responses do the readings challenge?</h2>
+    <p>Associate sourced temperature and optional absorbed-energy intervals with one layer in the saved exposure above. Compare a finite set of declared properties. Calibration readings screen the original candidates; separately declared challenge readings can reject them but never refit them.</p>
     <form id="heat-evidence-form"><label class="input-label">Observed layer<select id="heat-evidence-target"><option value="existing">Existing layer</option><option value="proposal">Proposed layer</option></select></label>
     <label class="input-label">How the readings belong to this place, layer and exposure<textarea id="heat-evidence-association" rows="3" maxlength="600" required></textarea></label>
     <label class="input-label">Declared layer hypotheses · CSV<textarea id="heat-hypotheses" rows="6" maxlength="24000" spellcheck="false" required></textarea></label>
@@ -27,7 +27,12 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
     <label class="input-label">Temperature readings · CSV<textarea id="heat-readings" rows="6" maxlength="128000" spellcheck="false" required></textarea></label>
     <label class="input-label">Load readings from a CSV file<input id="heat-readings-file" type="file" accept=".csv,text/csv"></label>
     <p class="mini-note">Columns: <code>minute,temperature_c,half_width_c,use,source</code>. Use <code>calibration</code> or <code>challenge</code>. Times are elapsed minutes from the saved exposure; one reading per time, up to 100. Half-widths are supplied bounds, not confidence levels. A challenge label does not verify when the reading was acquired or selected.</p>
-    <div class="obs-actions"><button id="heat-evidence-save" type="submit">Save temperature evidence</button><button id="heat-evidence-example" type="button">Load authored ambiguity example</button><button id="heat-evidence-clear" type="button">Clear retained temperature evidence</button></div></form>
+    <details id="heat-energy-fields"><summary>Optional absorbed-energy readings</summary>
+    <p>Use energy actually absorbed from the declared incident source per square metre over each start/end interval. The source must explain the measurement or derivation and its area/time association. Incident energy alone, net stored heat and a value copied from a candidate are different quantities.</p>
+    <label class="input-label">Absorbed-energy readings · CSV<textarea id="heat-energy-readings" rows="5" maxlength="128000" spellcheck="false"></textarea></label>
+    <label class="input-label">Load absorbed-energy CSV<input id="heat-energy-file" type="file" accept=".csv,text/csv"></label>
+    <p class="mini-note">Columns: <code>from_minute,to_minute,absorbed_j_m2,half_width_j_m2,use,source</code>. Keep up to 100 distinct ordered intervals inside the saved exposure. Values and half-widths are in J/m², from 0 to 200000000. Leave this table empty for temperature-only evidence. Overlapping intervals are allowed; their agreement is not counted as independent statistical evidence.</p></details>
+    <div class="obs-actions"><button id="heat-evidence-save" type="submit">Save heat evidence</button><button id="heat-evidence-example" type="button">Load authored ambiguity example</button><button id="heat-energy-example" type="button">Load authored energy control</button><button id="heat-evidence-clear" type="button">Clear retained heat evidence</button></div></form>
     <p class="heat-assumptions">Temperature responds to absorption / capacity and exchange / capacity. Scaling all three properties together can preserve its response while changing energy. Compatible readings do not establish the model's omissions, material identity or physical validity.</p>
     <button id="heat-evidence-run" class="primary" type="button">Compare saved hypotheses</button><p id="heat-evidence-status" role="status"></p><div id="heat-evidence-results"></div>`;
   document.getElementById('surface-heat').after(panel);
@@ -37,27 +42,36 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
     generation++; $('heat-evidence-results').replaceChildren();
     $('heat-evidence-status').textContent = message; $('heat-evidence-status').dataset.state = state;
   }
-  function changed() { dirty = true; $('heat-evidence-run').disabled = true; invalidate('Draft changed. Save the temperature evidence before comparing.'); }
+  function changed() { dirty = true; $('heat-evidence-run').disabled = true; invalidate('Draft changed. Save the heat evidence before comparing.'); }
   function fill(evidence) {
     $('heat-evidence-target').value = evidence?.target ?? 'existing';
     $('heat-evidence-association').value = evidence?.associationSource ?? '';
     $('heat-hypotheses').value = formatHeatHypotheses(evidence?.hypotheses ?? []);
     $('heat-readings').value = formatHeatReadings(evidence?.readings ?? []);
+    $('heat-energy-readings').value = formatHeatEnergyReadings(evidence?.energyReadings ?? []);
+    $('heat-energy-fields').open = !!evidence?.energyReadings?.length;
   }
   for (const input of panel.querySelectorAll('form textarea, form select')) input.addEventListener('input', changed);
-  $('heat-readings-file').addEventListener('change', async event => {
+  for (const [fileId, tableId, parse, label] of [
+    ['heat-readings-file', 'heat-readings', parseHeatReadings, 'temperature'],
+    ['heat-energy-file', 'heat-energy-readings', parseHeatEnergyReadings, 'absorbed-energy'],
+  ]) $(fileId).addEventListener('change', async event => {
     const file = event.target.files?.[0]; if (!file) return;
     changed(); const request = generation;
     try {
-      if (file.size > 128000) throw Error('Use a temperature table no larger than 128 KB.');
+      if (file.size > 128000) throw Error(`Use a ${label} table no larger than 128 KB.`);
       const text = await file.text(); if (request !== generation) return;
-      parseHeatReadings(text); $('heat-readings').value = text; changed();
+      parse(text); $(tableId).value = text; changed();
       $('heat-evidence-status').textContent = `Loaded ${file.name} into the draft. Review the row sources and save before comparing.`;
     } catch (error) { if (request === generation) { notice(error.message); $('heat-evidence-status').textContent = error.message; } }
     finally { event.target.value = ''; }
   });
   $('heat-evidence-example').addEventListener('click', () => {
     try { fill(authoredHeatEvidenceExample(getProject(), $('heat-evidence-target').value)); changed(); }
+    catch (error) { notice(error.message); invalidate(error.message, 'refused'); }
+  });
+  $('heat-energy-example').addEventListener('click', () => {
+    try { fill(authoredHeatEnergyExample(getProject(), $('heat-evidence-target').value)); changed(); }
     catch (error) { notice(error.message); invalidate(error.message, 'refused'); }
   });
   $('heat-evidence-clear').addEventListener('click', () => {
@@ -68,14 +82,15 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
     try {
       const current = getProject(), old = current.surfaceHeatEvidence, target = $('heat-evidence-target').value;
       if (old && (!heatEvidenceCurrent(current, old) || old.target !== target)) {
-        throw Error('The retained exposure, place or selected layer changed. Export the project to preserve its evidence, then clear this temperature evidence before associating another exposure.');
+        throw Error('The retained exposure, place or selected layer changed. Export the project to preserve its evidence, then clear this heat evidence before associating another exposure.');
       }
       const next = structuredClone(current);
       next.surfaceHeatEvidence = prepareHeatEvidence(current, { target, associationSource: $('heat-evidence-association').value,
-        hypotheses: parseHeatHypotheses($('heat-hypotheses').value), readings: parseHeatReadings($('heat-readings').value) });
+        hypotheses: parseHeatHypotheses($('heat-hypotheses').value), readings: parseHeatReadings($('heat-readings').value),
+        energyReadings: parseHeatEnergyReadings($('heat-energy-readings').value) });
       compareHeatEvidence(next); // Refuse unsupported trajectories before replacing accepted evidence.
       replaceProject(next); dirty = false; $('heat-evidence-run').disabled = false;
-      invalidate('Temperature evidence saved with the original heat declaration. Compare to inspect every candidate.');
+      invalidate('Heat evidence saved with the original heat declaration. Compare to inspect every candidate.');
     } catch (error) { notice(error.message); invalidate(error.message, 'refused'); }
   });
   function table(headers, rows) {
@@ -88,8 +103,9 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
   }
   function draw(result, evidence) {
     const host = $('heat-evidence-results'); host.replaceChildren();
-    host.append(node('h3', result.counts.calibration ? `${result.survivingLabels.length} declared candidates remain after the supplied intervals` : 'Supply calibration readings before assessing candidate support'),
-      node('p', `${result.counts.calibration} calibration and ${result.counts.challenge} challenge intervals. Declared order is retained; no candidate is fitted or automatically adopted.`));
+    const remaining = result.survivingLabels.length;
+    host.append(node('h3', result.counts.calibration ? `${remaining} declared ${remaining === 1 ? 'candidate remains' : 'candidates remain'} after the supplied intervals` : 'Supply calibration readings before assessing candidate support'),
+      node('p', `${result.counts.calibration} calibration and ${result.counts.challenge} challenge intervals: ${result.modalities.temperature} temperature ${result.modalities.temperature === 1 ? 'reading' : 'readings'} and ${result.modalities.absorbedEnergy} absorbed-energy ${result.modalities.absorbedEnergy === 1 ? 'reading' : 'readings'}. Declared order is retained; no candidate is fitted or automatically adopted.`));
     const chart = svg('svg', { viewBox: '0 0 700 290', role: 'img', 'aria-label': 'Declared temperature responses with calibration circles and challenge diamonds and supplied interval half-widths' });
     chart.id = 'heat-evidence-chart';
     const values = result.candidates.flatMap(c => c.trajectory.map(r => r.temperatureC)).concat(evidence.readings.flatMap(r => [r.temperatureC - r.halfWidthC, r.temperatureC + r.halfWidthC]));
@@ -126,10 +142,21 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
       const title = node('summary', candidate.label); title.style.borderLeft = `8px solid ${colors[index % colors.length]}`; detail.append(title);
       detail.append(node('p', `Absorptivity ${h.absorptivity}; capacity ${h.capacityJm2K} J/(m²·K); exchange ${h.exchangeWm2K} W/(m²·K); initial ${h.initialC} °C. ${h.source}`));
       detail.append(node('p', `Calculated absorption / capacity ${candidate.responseRatios.inputPerCapacity.toExponential(5)}; exchange / capacity ${candidate.responseRatios.exchangePerCapacity.toExponential(5)} per second. End absorbed input ${display(candidate.final.inputJm2/1000)}, signed exchange out ${display(candidate.final.exchangedJm2/1000)}, stored change ${display(candidate.final.storedJm2/1000)} kJ/m².`));
-      const rows = [...candidate.calibration.rows, ...candidate.challenge.rows].sort((a, b) => a.index - b.index);
-      detail.append(table(['Minute / use', 'Reading ± half-width · °C', 'Prediction · °C', 'Within bounds?', 'Reading source'], rows.map(r => {
-        const reading = evidence.readings[r.index]; return [`${display(r.minute)} · ${reading.use}`, `${display(reading.temperatureC)} ± ${display(reading.halfWidthC)}`, display(r.predictionC), r.withinBand ? 'Yes' : 'No', reading.source];
+      const allRows = [...candidate.calibration.rows, ...candidate.challenge.rows];
+      const rows = allRows.filter(r => r.kind === 'temperature').sort((a, b) => a.index - b.index);
+      detail.append(table(['Minute / use', 'Reading ± half-width · °C', 'Prediction · °C', 'Reading − prediction · °C', 'Within bounds?', 'Reading source'], rows.map(r => {
+        const reading = evidence.readings[r.index]; return [`${display(r.minute)} · ${reading.use}`, `${display(reading.temperatureC)} ± ${display(reading.halfWidthC)}`, display(r.predictionC), display(r.residualC), r.withinBand ? 'Yes' : 'No', reading.source];
       })));
+      const energyRows = allRows.filter(r => r.kind === 'absorbed-input').sort((a, b) => a.index - b.index);
+      if (energyRows.length) {
+        detail.append(node('h4', 'Absorbed energy over each retained interval'));
+        detail.append(node('p', `Comparison includes a conservative arithmetic allowance up to ${Math.max(...energyRows.map(r => r.arithmeticGuardJm2)).toExponential(3)} J/m² for energy and schedule-boundary rounding. This is separate from the supplied measurement half-width; acquisition-time uncertainty is not modeled.`));
+        const energyTable = table(['Start–end min / use', 'Reading ± half-width · J/m²', 'Prediction · J/m²', 'Reading − prediction · J/m²', 'Within bounds?', 'Absorbed-energy source'], energyRows.map(r => {
+          const reading = evidence.energyReadings[r.index];
+          return [`${display(r.fromMinute)}–${display(r.toMinute)} · ${reading.use}`, `${display(reading.energyJm2)} ± ${display(reading.halfWidthJm2)}`, display(r.predictionJm2), display(r.residualJm2), r.withinBand ? 'Yes' : 'No', reading.source];
+        }));
+        energyTable.classList.add('heat-energy-comparison'); detail.append(energyTable);
+      }
       host.append(detail);
     });
     host.append(node('p', `Association source: ${evidence.associationSource}`));
@@ -143,7 +170,7 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
         const result = compareHeatEvidence(project);
         if (request !== generation || JSON.stringify(getProject()) !== JSON.stringify(project)) return;
         $('heat-evidence-status').dataset.state = result.status;
-        $('heat-evidence-status').textContent = statuses[result.status] ?? (result.status === 'no-evidence' ? 'Save temperature evidence first.' : 'The retained heat declaration or place changed. Preserve the original project before clearing and associating new evidence.');
+        $('heat-evidence-status').textContent = statuses[result.status] ?? (result.status === 'no-evidence' ? 'Save heat evidence first.' : 'The retained heat declaration or place changed. Preserve the original project before clearing and associating new evidence.');
         $('heat-evidence-results').replaceChildren(); if (result.candidates) draw(result, project.surfaceHeatEvidence);
       } catch (error) { invalidate(error.message, 'refused'); notice(error.message); }
       finally { $('heat-evidence-run').disabled = dirty; }
@@ -152,7 +179,7 @@ export function mountHeatEvidence({ getProject, replaceProject, notice }) {
   function refresh() {
     const project = getProject(), next = JSON.stringify(project); if (next === signature && project === lastProject) return;
     signature = next; lastProject = project; dirty = false; fill(project.surfaceHeatEvidence); $('heat-evidence-run').disabled = false;
-    invalidate('Compare the retained temperature evidence after any workspace change.');
+    invalidate('Compare the retained heat evidence after any workspace change.');
   }
   return { refresh };
 }

@@ -27,6 +27,12 @@ implications, with raw evidence retained in the full project. See
 [temperature evidence](docs/SURFACE_HEAT_EVIDENCE.md) for the finite comparison,
 source association and the common-scale ambiguity that temperature cannot resolve.
 
+Optional absorbed-energy intervals can challenge that ambiguity while retaining
+all original temperature evidence. Supply an explicitly absorbed quantity with
+start/end times, a source and a bound; inspect every residual and reopen the
+versioned raw inputs. Incident energy and net stored heat are distinct quantities.
+The authored control illustrates the mechanism without claiming a measurement.
+
 Run `python3 -m http.server 8765` from the repository root and open `http://localhost:8765/` in a modern browser. It is dependency-free and local-only. Edit either 8×6 site grid with surface/height brushes, change rain assumptions, compare the matched scenarios, inspect water balance and time series, and save/reopen the full project via Export/Import JSON. Browser storage also retains the last workspace locally. Open the site through a local HTTP server, not directly as a `file:` URL, because JavaScript modules may be blocked by file-origin security policy.
 
 The base project's **Export JSON** and **Import JSON** share a 4 MiB UTF-8 transfer ceiling, which admits a fully sourced 24×24 survey grid that exceeds the former 1 MB importer limit. Export refuses an oversized workspace without modifying it; Import refuses oversized or invalid files, and a pending file read cannot overwrite newer project edits or a reset. A retained source description is an authored claim, not independent provenance verification.

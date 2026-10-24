@@ -1,13 +1,19 @@
 import { validateProject } from './core.js';
-import { inspectSurfaceHeat } from './surface-heat.js';
-import { HEAT_EVIDENCE_SCHEMA, validateHeatEvidence, heatEvidenceCurrent } from './surface-heat-evidence-contract.js';
+import { inspectSurfaceHeat, absorbedSurfaceHeatEnergy } from './surface-heat.js';
+import { HEAT_EVIDENCE_SCHEMA, HEAT_ENERGY_EVIDENCE_SCHEMA, validateHeatEvidence, heatEvidenceCurrent } from './surface-heat-evidence-contract.js';
 
 export function prepareHeatEvidence(project, input) {
   validateProject(project);
   if (!project.surfaceHeatStudy) throw Error('Save a source-bound heat exposure before associating temperature evidence.');
-  const evidence = validateHeatEvidence({ schema: HEAT_EVIDENCE_SCHEMA,
+  const energyReadings = input.energyReadings === undefined ? [] : structuredClone(input.energyReadings);
+  if (!Array.isArray(energyReadings)) throw Error('Supply an array of absorbed-energy readings.');
+  if (input.energyQuantity !== undefined && input.energyQuantity !== 'absorbed-input') {
+    throw Error('The supplied energy quantity must explicitly be absorbed input; incident energy and stored heat cannot be relabeled.');
+  }
+  const evidence = validateHeatEvidence({ schema: energyReadings.length ? HEAT_ENERGY_EVIDENCE_SCHEMA : HEAT_EVIDENCE_SCHEMA,
     heatStudy: structuredClone(project.surfaceHeatStudy), target: input.target,
-    associationSource: input.associationSource, hypotheses: structuredClone(input.hypotheses), readings: structuredClone(input.readings) });
+    associationSource: input.associationSource, hypotheses: structuredClone(input.hypotheses), readings: structuredClone(input.readings),
+    ...(energyReadings.length ? { energyQuantity: 'absorbed-input', energyReadings } : {}) });
   if (!heatEvidenceCurrent(project, evidence)) throw Error('The saved heat exposure no longer matches the selected place.');
   return evidence;
 }
@@ -34,22 +40,36 @@ export function compareHeatEvidence(project) {
     // Every segment endpoint is evaluated, including unobserved intervals. An
     // unsupported trajectory cannot be accepted just because its readings fit.
     const trajectory = times.map(minute => ({ minute, ...inspectSurfaceHeat(study, minute).existing }));
-    const rows = evidence.readings.map((reading, index) => {
+    const temperatureRows = evidence.readings.map((reading, index) => {
       const prediction = inspectSurfaceHeat(study, reading.minute).existing;
       const residualC = reading.temperatureC - prediction.temperatureC;
       const arithmeticGuardC = Number.EPSILON * 128 * Math.max(1, Math.abs(reading.temperatureC), Math.abs(prediction.temperatureC));
-      return { index, minute: reading.minute, predictionC: prediction.temperatureC, residualC, arithmeticGuardC,
+      return { kind: 'temperature', index, use: reading.use, minute: reading.minute, predictionC: prediction.temperatureC, residualC, arithmeticGuardC,
         withinBand: Math.abs(residualC) <= reading.halfWidthC + arithmeticGuardC };
     });
-    return { label: h.label, calibration: screen(rows.filter(r => evidence.readings[r.index].use === 'calibration')),
-      challenge: screen(rows.filter(r => evidence.readings[r.index].use === 'challenge')), trajectory,
+    const energyRows = (evidence.energyReadings ?? []).map((reading, index) => {
+      const predictionJm2 = absorbedSurfaceHeatEnergy(study, 'existing', reading.fromMinute, reading.toMinute);
+      const residualJm2 = reading.energyJm2 - predictionJm2;
+      // A tiny window near a flux change can be dominated by accumulated
+      // schedule-time rounding, even when its predicted energy is almost zero.
+      // Include that absolute scale, not only the computed energy magnitude.
+      const peakAbsorbedWm2 = h.absorptivity * Math.max(...study.schedule.map(row => row.incidentWm2));
+      const boundaryScaleJm2 = peakAbsorbedWm2 * 60 * durationMinutes * study.schedule.length ** 2;
+      const arithmeticGuardJm2 = Number.EPSILON * 128 * Math.max(1, reading.energyJm2, predictionJm2, boundaryScaleJm2);
+      return { kind: 'absorbed-input', index, use: reading.use, fromMinute: reading.fromMinute, toMinute: reading.toMinute,
+        predictionJm2, residualJm2, arithmeticGuardJm2, withinBand: Math.abs(residualJm2) <= reading.halfWidthJm2 + arithmeticGuardJm2 };
+    });
+    const rows = [...temperatureRows, ...energyRows];
+    return { label: h.label, calibration: screen(rows.filter(r => r.use === 'calibration')),
+      challenge: screen(rows.filter(r => r.use === 'challenge')), trajectory,
       final: trajectory.at(-1), responseRatios: { inputPerCapacity: h.absorptivity / h.capacityJm2K,
         exchangePerCapacity: h.exchangeWm2K / h.capacityJm2K, initialC: h.initialC } };
   });
   const calibration = candidates.filter(c => c.calibration.compatible === true);
   const survivors = calibration.filter(c => c.challenge.compatible !== false);
-  const calibrationCount = evidence.readings.filter(r => r.use === 'calibration').length;
-  const challengeCount = evidence.readings.length - calibrationCount;
+  const allReadings = [...evidence.readings, ...(evidence.energyReadings ?? [])];
+  const calibrationCount = allReadings.filter(r => r.use === 'calibration').length;
+  const challengeCount = allReadings.length - calibrationCount;
   let status = 'ambiguous';
   if (!calibrationCount) status = 'need-calibration';
   else if (!calibration.length) status = 'calibration-rejected';
@@ -62,6 +82,7 @@ export function compareHeatEvidence(project) {
     energyRanges[key] = values.length ? { minimum: Math.min(...values), maximum: Math.max(...values) } : null;
   }
   return { status, durationMinutes, candidates, counts: { calibration: calibrationCount, challenge: challengeCount },
+    modalities: { temperature: evidence.readings.length, absorbedEnergy: evidence.energyReadings?.length ?? 0 },
     calibrationLabels: calibration.map(c => c.label), survivingLabels: survivors.map(c => c.label), energyRanges };
 }
 
@@ -79,4 +100,15 @@ export function authoredHeatEvidenceExample(project, target = 'existing') {
     temperatureC: inspectSurfaceHeat(reference, duration * fraction).existing.temperatureC, halfWidthC: .05,
     use: index < 3 ? 'calibration' : 'challenge', source: 'Authored analytic control generated from hypothesis A; not a measured or independently held-aside reading' }));
   return { target, hypotheses, readings, associationSource: 'Fictional controlled illustration on the retained exposure; no temperature acquisition has occurred' };
+}
+
+export function authoredHeatEnergyExample(project, target = 'existing') {
+  const example = authoredHeatEvidenceExample(project, target);
+  const study = { ...project.surfaceHeatStudy, existing: example.hypotheses[0], proposal: example.hypotheses[0] };
+  const toMinute = study.schedule.reduce((sum, row) => sum + row.minutes, 0);
+  const energyJm2 = absorbedSurfaceHeatEnergy(study, 'existing', 0, toMinute);
+  example.energyReadings = [{ fromMinute: 0, toMinute, energyJm2, halfWidthJm2: Math.max(1, energyJm2 * .01),
+    use: 'challenge', source: 'Authored absorbed-input control generated from hypothesis A; not a measured, independent or held-aside sensor reading' }];
+  example.associationSource = 'Fictional combined temperature/absorbed-energy illustration on the retained exposure; no acquisition has occurred';
+  return example;
 }
