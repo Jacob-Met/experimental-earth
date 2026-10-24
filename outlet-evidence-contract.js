@@ -13,11 +13,11 @@ export function validateOutletRates(rates) {
   return rates;
 }
 
-function canonical(value, depth = 0) {
+export function canonicalEvidence(value, depth = 0) {
   if (depth > 12) throw new Error('Event metadata is too deeply nested.');
-  if (Array.isArray(value)) return value.map(item => canonical(item, depth + 1));
+  if (Array.isArray(value)) return value.map(item => canonicalEvidence(item, depth + 1));
   if (value && typeof value === 'object') return Object.fromEntries(
-    Object.keys(value).sort().map(key => [key, canonical(value[key], depth + 1)]));
+    Object.keys(value).sort().map(key => [key, canonicalEvidence(value[key], depth + 1)]));
   return value;
 }
 
@@ -26,7 +26,7 @@ export function outletContext(project, target) {
   if (!['existing', 'proposal'].includes(target)) throw new Error('Choose the observed scenario.');
   const weather = Object.fromEntries(Object.entries(project.weather).filter(
     ([key]) => !['boundaryExitPerHour', 'stepMinutes'].includes(key)));
-  return JSON.stringify(canonical({ target, width: project.width, height: project.height,
+  return JSON.stringify(canonicalEvidence({ target, width: project.width, height: project.height,
     source: project.source ?? '', cells: project[target], weather }));
 }
 

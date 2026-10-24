@@ -6,6 +6,7 @@
 import { validateStudyMetadata } from './study-contract.js';
 import { validateObservationOrigin } from './observation-units.js';
 import { validateOutletEvidence } from './outlet-evidence-contract.js';
+import { validateJointStudy } from './joint-evidence-contract.js';
 import { createRainTracer, validateRainTraceStudy } from './rain-tracer.js';
 import { validateTerrainOrigin } from './terrain-contract.js';
 export const WIDTH = 8;
@@ -65,6 +66,7 @@ export function validateProject(project) {
   if (project.selectedIndex !== undefined && (!Number.isInteger(project.selectedIndex) || project.selectedIndex < 0 || project.selectedIndex >= width * height)) throw new Error('Selected cell out of range');
   validateStudyMetadata(project);
   validateOutletEvidence(project.outletEvidence);
+  validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
   return project;
 }

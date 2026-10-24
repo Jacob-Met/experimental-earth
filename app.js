@@ -5,6 +5,7 @@ import { mountInterventionPanel } from './intervention-panel.js';
 import { mountTerrainImport } from './terrain-panel.js';
 import { mountObservationImport } from './observation-import-panel.js';
 import { mountOutletEvidence } from './outlet-evidence-panel.js';
+import { mountJointEvidence } from './joint-evidence-panel.js';
 import { mountEventChallengePanel } from './event-challenge-panel.js';
 import { mountLocalWaterBudget } from './local-water-budget-panel.js';
 import { mountRainTrace } from './rain-trace-panel.js';
@@ -29,7 +30,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -204,4 +205,6 @@ const rainTracePanel = mountRainTrace({ getProject: () => project, changed: reru
 const terrainImporter = mountTerrainImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const pondingPanel = mountPondingPanel({getProject: () => project, getResults: () => results});
+const jointEvidencePanel = mountJointEvidence({ getProject: () => project,
+  replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 syncForm();rerun();
