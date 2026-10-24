@@ -24,7 +24,7 @@ const statuses = {
   'ambiguous': 'Multiple explanations survive the assigned readings. The available evidence does not distinguish them.',
 };
 
-export function mountWettingFrontPanel({ getProject, replaceProject }) {
+export function mountWettingFrontPanel({ getProject, replaceProject, prepareReading }) {
   const host = node('section', undefined, 'panel'); host.id = 'wetting-front-study';
   host.setAttribute('aria-labelledby', 'wetting-front-heading');
   host.innerHTML = `<style>
@@ -42,6 +42,10 @@ export function mountWettingFrontPanel({ getProject, replaceProject }) {
     #wetting-front-study table{width:100%;border-collapse:collapse}
     #wetting-front-study th,#wetting-front-study td{padding:.4rem;text-align:left;border-bottom:1px solid #d5e1da}
     #wetting-front-study li{margin-block:.5rem}
+    #wetting-front-study fieldset{min-width:0;border:1px solid #bdcec5;border-radius:8px;padding:.8rem;margin-block:.8rem}
+    #wetting-front-study .wf-question-toggle{display:flex;align-items:center;gap:.6rem}
+    #wetting-front-study .wf-question-toggle input{width:auto}
+    #wetting-front-study .wf-question{padding:1rem;border-left:4px solid #28766b;background:#f2f8f5;margin-block:1rem}
     @media(max-width:480px){#wetting-front-study .wf-hypothesis{grid-template-columns:1fr 1fr}#wetting-front-study .wf-remove{grid-column:1/-1;justify-self:start}}
   </style>
   <div class="section-heading"><div><span class="eyebrow">SOIL RESPONSE / EVIDENCE CHALLENGE</span>
@@ -55,6 +59,13 @@ export function mountWettingFrontPanel({ getProject, replaceProject }) {
     <label>Basis for these choices<textarea id="wetting-front-basis" rows="2" maxlength="400" required></textarea></label>
     <details><summary>What do K and A mean?</summary><p>K is the saturated conductivity in mm/hour. A combines wetting-front suction with the initial moisture deficit, in mm. A = 0 gives a constant-rate explanation. Separate suction and moisture values cannot be recovered from their product alone.</p>
     <p>This event model assumes a homogeneous sharp wetting front. It has no soil-moisture recovery or ponding-head correction. Geometry, surface routing and other materials keep their current assumptions. Use calibration and held-aside roles in the observation notebook below.</p></details>
+    <label class="wf-question-toggle"><input id="wetting-front-question-enabled" type="checkbox">Include a question for a depth reading</label>
+    <fieldset id="wetting-front-question-fields" disabled><legend>Where and when could a reading be available?</legend>
+    <div class="wf-fields"><label>Places to compare<select id="wetting-front-question-scope"><option value="selected">Selected map cell</option><option value="grid">Any cell in this grid</option></select></label>
+    <label>Earliest event time · min<input id="wetting-front-question-from" type="number" min="0" max="720" step="any" required></label>
+    <label>Latest event time · min<input id="wetting-front-question-to" type="number" min="0" max="720" step="any" required></label>
+    <label>Declared reading uncertainty · ± mm<input id="wetting-front-question-uncertainty" type="number" min="0" max="1000" step="any" required></label></div>
+    <p class="mini-note">Compare retained model times inside this window. An earlier time is a question for existing timed evidence or a comparable event; it cannot create a past measurement. Only calibration values choose the alternatives.</p></fieldset>
     <div class="wf-actions"><button id="wetting-front-run" type="submit">Compare soil explanations</button>
     <button id="wetting-front-download" type="button" class="subtle" disabled>Save investigation</button></div>
   </form>
@@ -104,12 +115,69 @@ export function mountWettingFrontPanel({ getProject, replaceProject }) {
     const study = getProject().wettingFrontStudy ?? DEFAULT_WETTING_FRONT_STUDY;
     $('target').value = study.target; $('surface').value = study.surface; $('basis').value = study.basis;
     $('hypotheses').replaceChildren(); study.hypotheses.forEach(addHypothesis); updateButtons();
+    const question = study.question ?? { scope: 'selected', fromMinute: 0,
+      toMinute: getProject().weather.durationMinutes, uncertaintyMm: 1 };
+    $('question-enabled').checked = Boolean(study.question); $('question-fields').disabled = !study.question;
+    $('question-scope').value = question.scope; $('question-from').value = question.fromMinute;
+    $('question-to').value = question.toMinute; $('question-uncertainty').value = question.uncertaintyMm;
   }
   function readStudy() {
+    const numericInput = name => $(name).value.trim() === '' ? NaN : Number($(name).value);
     return { target: $('target').value, surface: $('surface').value, basis: $('basis').value.trim(),
       hypotheses: [...$('hypotheses').children].map(row => Object.fromEntries(
         [...row.querySelectorAll('input')].map(input => [input.dataset.parameter,
-          input.value.trim() === '' ? NaN : Number(input.value)]))) };
+          input.value.trim() === '' ? NaN : Number(input.value)]))),
+      ...($('question-enabled').checked ? { question: { scope: $('question-scope').value,
+        fromMinute: numericInput('question-from'), toMinute: numericInput('question-to'),
+        uncertaintyMm: numericInput('question-uncertainty') } } : {}) };
+  }
+  function showQuestion(container, question, report, project, replay) {
+    const section = node('section', undefined, 'wf-question'); section.dataset.state = question.status;
+    section.append(node('h3', 'A reading to test these explanations'));
+    const messages = {
+      'insufficient-alternatives': 'At least two calibration-compatible declared explanations are needed to compare their predictions. A single compatible choice still needs independent evidence.',
+      'no-supported-times': 'This window contains no retained model time after the initial state. Widen the window or inspect a supported calculation interval.',
+      'all-recorded': 'Every eligible cell and time already has a reading for this scenario. No replacement reading is suggested.',
+      'indistinguishable': 'The compatible explanations predict the same depths at the available points. This event and window do not distinguish them.',
+    };
+    if (question.status !== 'question') section.append(node('p', messages[question.status]));
+    else {
+      section.dataset.disjointPairs = String(question.disjointPairCount);
+      section.append(node('p', `Compare a reading at ${labelCell(question.cellIndex, project.width)}, minute ${number(question.minute)} in the ${question.target} scenario. ` +
+        `Predicted depths span ${number(question.minDepthMm)}–${number(question.maxDepthMm)} mm, a ${number(question.spanMm)} mm difference.`));
+      section.append(node('p', question.allPairsDisjoint
+        ? `All ${question.pairCount} tested pairs have disjoint reading bands at ±${number(question.uncertaintyMm)} mm.`
+        : `${question.disjointPairCount} of ${question.pairCount} tested pairs have disjoint reading bands at ±${number(question.uncertaintyMm)} mm. Overlapping pairs remain unresolved by this reading.`));
+      const predictions = node('ol', undefined, 'wf-question-predictions');
+      for (const prediction of question.predictions) {
+        const row = node('li', `Explanation ${prediction.id} · K ${number(prediction.conductivityMmHr)} mm/h, A ${number(prediction.capillaryDriveMm)} mm: ` +
+          `predicted ${number(prediction.depthMm)} mm; reading band ${number(prediction.lowMm)}–${number(prediction.highMm)} mm.`);
+        row.dataset.hypothesis = String(prediction.id); predictions.append(row);
+      }
+      section.append(predictions);
+      if (!question.allPairsDisjoint) {
+        const unresolved = node('details'); unresolved.append(node('summary', 'Inspect overlapping pairs'));
+        const pairs = node('ul');
+        question.pairs.filter(pair => !pair.disjoint).forEach(pair =>
+          pairs.append(node('li', `Explanations ${pair.firstId} and ${pair.secondId} have overlapping or touching bands.`)));
+        unresolved.append(pairs); section.append(unresolved);
+      }
+      section.append(node('p', `Largest predicted range among ${question.evaluatedCount} unrecorded cell/time points from ${number(question.fromMinute)} to ${number(question.toMinute)} min. ` +
+        `${question.excludedCount} already recorded points excluded. Scope: ${question.scope === 'selected' ? 'selected map cell' : 'whole declared grid'}; calculation interval ${number(question.stepMinutes)} min.`, 'mini-note'));
+      if (!replay && typeof prepareReading === 'function') {
+        const prepare = node('button', 'Prepare held-aside reading', 'subtle'); prepare.type = 'button';
+        prepare.id = 'wetting-front-prepare-reading';
+        prepare.addEventListener('click', () => {
+          if (JSON.stringify(getProject()) !== report.sourceSignature) {
+            clear('The source changed. Compare again before preparing a reading.'); return;
+          }
+          prepareReading(question);
+        });
+        section.append(prepare);
+      }
+    }
+    section.append(node('p', 'This is finite model disagreement, not expected information gain or a guarantee that a real reading identifies soil properties. Held-aside values never choose this question. Only explicit notebook submission retains a measured value and source.', 'mini-note'));
+    container.append(section);
   }
   function show(container, report, project, replay = false) {
     container.replaceChildren();
@@ -118,6 +186,7 @@ export function mountWettingFrontPanel({ getProject, replaceProject }) {
     container.append(node('p', `Basis: ${report.study.basis}`, 'mini-note'));
     container.append(node('p', `${report.counts.calibration} calibration · ${report.counts.challenge} held aside · ${report.counts.ignored} unused readings. ` +
       `${report.counts.affectedExisting} existing and ${report.counts.affectedProposal} proposed ${SURFACES[report.study.surface].label.toLowerCase()} cells use each declared explanation.`, 'mini-note'));
+    if (report.question) showQuestion(container, report.question, report, project, replay);
     const base = report.baseline;
     container.append(node('p', `Current fixed-rate reference: ${number(base.existing.storedLiters)} L standing at the end in the existing site; ${number(base.proposal.storedLiters)} L in the proposal. ` +
       `Calibration ${base.calibration.withinCount}/${base.calibration.count}; held aside ${base.challenge.withinCount}/${base.challenge.count} inside declared bands.`, 'mini-note'));
@@ -147,6 +216,9 @@ export function mountWettingFrontPanel({ getProject, replaceProject }) {
     addHypothesis({ conductivityMmHr: 9, capillaryDriveMm: 0 }); updateButtons(); clear('New explanation added. Give it distinct values and compare.');
   });
   $('form').addEventListener('input', () => clear('Soil choices changed. Compare again; saved site properties have not been changed.'));
+  $('question-enabled').addEventListener('change', () => {
+    $('question-fields').disabled = !$('question-enabled').checked;
+  });
   $('form').addEventListener('submit', event => {
     event.preventDefault(); clear('Comparing the declared soil explanations…');
     const epoch = generation, original = JSON.stringify(getProject());

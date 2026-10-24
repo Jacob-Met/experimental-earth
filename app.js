@@ -264,5 +264,5 @@ const stormIntensityPanel = mountStormIntensityPanel({ getProject: () => project
 const surfaceHeatPanel = mountSurfaceHeat({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 const sunPathPanel = mountSunPathPanel({getProject:()=>project, notice});
 const wettingFrontPanel = mountWettingFrontPanel({ getProject: () => project,
-  replaceProject: next => { project = validateProject(next); rerun(); } });
+  replaceProject: next => { project = validateProject(next); rerun(); }, prepareReading: prepareObservedReading });
 syncForm();rerun();
