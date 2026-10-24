@@ -7,6 +7,7 @@ import { validateStudyMetadata } from './study-contract.js';
 import { validateObservationOrigin } from './observation-units.js';
 import { validateOutletEvidence } from './outlet-evidence-contract.js';
 import { createRainTracer, validateRainTraceStudy } from './rain-tracer.js';
+import { validateTerrainOrigin } from './terrain-contract.js';
 export const WIDTH = 8;
 export const HEIGHT = 6;
 export const SURFACES = Object.freeze({
@@ -55,6 +56,7 @@ export function validateProject(project) {
     }
   }
   if (!weather || !within(weather.rainMmHr, 0, 250) || !within(weather.stormMinutes, 0, 720) || !within(weather.durationMinutes, 5, 720) || !within(weather.stepMinutes, 1, 30) || !within(weather.cellSizeM, 0.25, 100) || !within(weather.mobilityPerHour, 0, 10) || !within(weather.boundaryExitPerHour, 0, 10) || weather.durationMinutes < weather.stormMinutes) throw new Error('Weather or modeling parameters out of bounds');
+  for (const cells of [existing, proposal]) for (const cell of cells) validateTerrainOrigin(cell, weather.cellSizeM);
   if (!Array.isArray(observations) || observations.length > 100) throw new Error('Invalid observation history');
   for (const o of observations) {
     if (!Number.isInteger(o.cellIndex) || o.cellIndex < 0 || o.cellIndex >= width * height || !within(o.minute, 0, weather.durationMinutes) || !within(o.depthMm, 0, 1000) || !within(o.uncertaintyMm, 0, 1000) || typeof o.source !== 'string' || o.source.trim().length === 0 || o.source.length > 200) throw new Error('Invalid observation. A source and bounded measurement are required');
