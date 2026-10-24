@@ -40,6 +40,11 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  assert.equal(liveEvidence.count,3);assert.match(liveEvidence.text,/original minute 35; depth 15 ± 0 mm/);
  assert.match(liveEvidence.text,/not used in this study/);assert.match(liveEvidence.text,/Authored source: <img src=x/);
  assert.equal(liveEvidence.hasImage,false);assert.equal(liveEvidence.malicious,null);
+ const liveTrace=await evaluate("(()=>{const t=document.querySelector('#clock-results .clock-offset-trace');return {groups:t.querySelectorAll('.clock-offset-alternative').length,text:t.textContent};})()");
+ assert.equal(liveTrace.groups,3);
+ assert.match(liveTrace.text,/Source #2 \(cell A1; existing, challenge\): original minute 35 → modeled minute 65 — OUTSIDE modeled event/);
+ assert.match(liveTrace.text,/Source #1 \(cell A1; existing, calibration\): original minute 20 → modeled minute 30/);
+ checks.push('live alternative traces map original source numbers to sampled minutes and refusal');
  checks.push('live original reading evidence lists calibration, challenge and ignored source text without rendering HTML');
  checks.push('source-bound live comparison arms user-initiated export');
 
@@ -75,6 +80,10 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  const replayEvidence=await evaluate("(()=>{const d=document.querySelector('#clock-replay .clock-reading-evidence');return {count:d.querySelectorAll('li').length,text:d.textContent,hasImage:!!d.querySelector('img')};})()");
  assert.equal(replayEvidence.count,3);assert.match(replayEvidence.text,/original minute 35/);
  assert.match(replayEvidence.text,/not used in this study/);assert.equal(replayEvidence.hasImage,false);
+ const replayTrace=await evaluate("(()=>{const t=document.querySelector('#clock-replay .clock-offset-trace');return {groups:t.querySelectorAll('.clock-offset-alternative').length,text:t.textContent};})()");
+ assert.equal(replayTrace.groups,3);
+ assert.equal(replayTrace.text,liveTrace.text);
+ checks.push('reopened alternative trace matches live original-to-sampled source mapping');
  checks.push('reopened evidence retains all original source roles without changing workspace');
  checks.push('real file reopening recalculates saved diagnostic without adopting project');
 
@@ -106,7 +115,7 @@ const result=await withBrowserSession({root,chromeBin,runDirectory},async({baseU
  assert.equal(stale.replay,'');assert.equal(stale.downloadDisabled,true);
  checks.push('stale read cannot publish a replay after input changes');
 
- await evaluate(`(async()=>{const input=document.querySelector('#clock-import'),file=new File([window.__clockDiagnostic],'clock.json');const list=new DataTransfer();list.items.add(file);input.files=list.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,170));document.querySelector('#clock-replay .clock-reading-evidence').open=true;})()`);
+ await evaluate(`(async()=>{const input=document.querySelector('#clock-import'),file=new File([window.__clockDiagnostic],'clock.json');const list=new DataTransfer();list.items.add(file);input.files=list.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,170));document.querySelector('#clock-replay .clock-reading-evidence').open=true;document.querySelector('#clock-replay .clock-offset-trace').open=true;for(const d of document.querySelectorAll('#clock-replay .clock-offset-alternative'))d.open=true;})()`);
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  await delay(180);
  const dims=await evaluate('({inner:innerWidth,scroll:document.documentElement.scrollWidth,panels:document.querySelectorAll("#clock-study").length})');

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {makeExample} from '../core.js';
 import {buildClockReceipt,serializeClockReceipt,parseClockReceipt} from '../clock-receipt.js';
-import {originalClockReadings} from '../clock-panel.js';
+import {originalClockReadings,clockOffsetReadingTrace} from '../clock-panel.js';
 
 function authored(){
  const p=makeExample();p.width=p.height=2;p.selectedIndex=0;
@@ -39,4 +39,26 @@ test('retained unassigned fields are displayed as unassigned, not silently count
  assert.equal(rows[3].scenario,'unassigned');
  assert.equal(rows[3].role,'unassigned');
  assert.equal(rows[3].considered,false);
+});
+
+test('per-offset source trace preserves duplicate rows, negative and positive window refusals',()=>{
+ const project=authored();
+ project.observations.splice(1,0,{...project.observations[0],source:'independent duplicate source'});
+ const before=structuredClone(project);
+ const receipt=buildClockReceipt(project,[0,-30,30],'authored clock alternative');
+ const trace=clockOffsetReadingTrace(receipt);
+ assert.deepEqual(trace.map(x=>x.offsetMinutes),[0,-30,30]);
+ assert.deepEqual(trace[0].readings.map(x=>x.number),[1,2,3]);
+ assert.deepEqual(trace[0].readings.map(x=>x.originalMinute),[20,20,35]);
+ assert.deepEqual(trace[0].readings.map(x=>x.sampleMinute),[20,20,35]);
+ assert.deepEqual(trace[1].readings.map(x=>x.sampleMinute),[-10,-10,5]);
+ assert.deepEqual(trace[1].readings.map(x=>x.outsideModeledWindow),[true,true,false]);
+ assert.deepEqual(trace[2].readings.map(x=>x.sampleMinute),[50,50,65]);
+ assert.deepEqual(trace[2].readings.map(x=>x.outsideModeledWindow),[false,false,true]);
+ assert.equal(trace[1].status,'outside-modeled-window');
+ assert.equal(trace[2].status,'outside-modeled-window');
+ assert.deepEqual(receipt.comparison.offsets[1].outsideReadingIndices,[0,1]);
+ assert.deepEqual(receipt.comparison.offsets[2].outsideReadingIndices,[2]);
+ assert.deepEqual(clockOffsetReadingTrace(parseClockReceipt(serializeClockReceipt(receipt))),trace);
+ assert.deepEqual(project,before,'inspection may not edit original observations');
 });
