@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 
-export async function receiveObservationTable({ evaluate, send, delay, report }) {
+export async function receiveObservationTable({ evaluate, send, delay, report, artifactDirectory = fileURLToPath(new URL('../', import.meta.url)) }) {
   const original = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
   const project = JSON.parse(original); project.observations = [];
   async function importProject(data) {
@@ -66,7 +67,7 @@ export async function receiveObservationTable({ evaluate, send, delay, report })
   await evaluate("document.querySelector('.observation-import').scrollIntoView({behavior:'instant',block:'start'})");
   await delay(100);
   const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
-  writeFileSync(fileURLToPath(new URL('../table-mobile-390.png', import.meta.url)), Buffer.from(shot.data, 'base64'));
+  writeFileSync(join(artifactDirectory, 'table-mobile-390.png'), Buffer.from(shot.data, 'base64'));
   report.push('actual table preview and unit provenance fit the 390px notebook');
   await importProject(original);
 }
