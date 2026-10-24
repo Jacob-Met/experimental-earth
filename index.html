@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Experimental Earth — Rain Lab</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.mjs"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="Experimental Earth home"><span class="brandmark" aria-hidden="true">E<span>.</span></span><span>EXPERIMENTAL <strong>EARTH</strong><small>FIELD LAB / 001</small></span></a>
+      <span class="status"><span class="status-dot"></span> LOCAL EXPERIMENT · NO NETWORK UPLOAD</span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow">ENVIRONMENTAL EXPLORATION <span class="dash"></span> WATER / SURFACE / CONSEQUENCE</div>
+        <div class="intro-row"><div><h1 id="page-title">Change the ground.<br><em>Follow the water.</em></h1>
+          <p class="lead">An interactive, inspectable <strong>thought experiment</strong> for a storm over an imagined schoolyard. Replace paving, change the storm, and see where the water goes—without hiding what the model assumes.</p></div>
+          <div class="intro-index"><span>SCENARIO</span><strong>01 / RAINFALL</strong><p>Model, not measurement.<br>All terrain is authored.</p></div></div>
+      </section>
+      <div class="workbench">
+        <aside class="controls" aria-label="Experiment controls">
+          <div class="section-heading"><span class="section-no">01</span><h2>Set the conditions</h2></div>
+          <div class="control"><div class="control-label"><label for="rain">Rain intensity</label><output id="rain-value" for="rain">54 mm/h</output></div><input id="rain" type="range" min="0" max="120" step="3" value="54"><div class="scale"><span>Dry / 0</span><span>Intense / 120 mm/h</span></div></div>
+          <div class="control"><div class="control-label"><label for="duration">Storm duration</label><output id="duration-value" for="duration">45 min</output></div><input id="duration" type="range" min="5" max="120" step="5" value="45"><div class="scale"><span>5 min</span><span>120 min</span></div></div>
+          <div class="section-heading section-spaced"><span class="section-no">02</span><h2>Propose a change</h2></div>
+          <p class="aside-caption">Select a surface, then paint cells on the <b>proposal</b> map. The original place stays intact.</p>
+          <div class="materials" id="materials" role="group" aria-label="Choose a surface material"></div>
+          <div class="button-row"><button id="undo" type="button" class="quiet">↶ Undo</button><button id="reset" type="button" class="quiet">Reset proposal</button></div>
+          <div class="section-heading section-spaced"><span class="section-no">03</span><h2>Keep the evidence</h2></div>
+          <p class="aside-caption">Export both scenarios, the storm settings, and the authorship note as JSON. Import reopens the same experiment in this browser.</p>
+          <div class="button-row"><button id="export" class="quiet">↓ Export session</button><button id="import" class="quiet">↑ Import</button><input id="import-file" type="file" accept="application/json,.json" hidden></div>
+          <p id="status-message" class="message" role="status" aria-live="polite">Ready. Try replacing the central paving with planting.</p>
+        </aside>
+        <section class="canvas-area" aria-label="Rainfall simulations">
+          <div class="canvas-heading"><div><span class="eyebrow muted">MODELLED WATER DEPTH · EACH CELL 2 × 2 METRES</span><h2>One place, two possible futures.</h2></div><div class="key" aria-label="Map legend"><span><i class="key-swatch key-dry"></i>Dry / shallow</span><span><i class="key-swatch key-wet"></i>Deeper water</span><span><i class="key-swatch key-outlet"></i>Outlet</span></div></div>
+          <div class="maps"><section class="map-panel" aria-labelledby="baseline-title"><div class="map-title"><div><small>REFERENCE / UNCHANGED</small><h3 id="baseline-title">Existing surface</h3></div><span class="read-only">READ ONLY</span></div><div id="baseline-grid" class="grid" aria-label="Baseline simulated water depths"></div><div class="map-footer"><span id="baseline-depth">—</span><span id="baseline-water">—</span></div></section>
+          <section class="map-panel proposal-panel" aria-labelledby="proposal-title"><div class="map-title"><div><small>ALTERNATIVE / EDITABLE</small><h3 id="proposal-title">Your intervention</h3></div><span class="editable">● PAINT CELLS</span></div><div id="proposal-grid" class="grid" role="group" aria-label="Click or use keyboard to edit surface cells"></div><div class="map-footer"><span id="proposal-depth">—</span><span id="proposal-water">—</span></div></section></div>
+          <div class="playback"><div><label for="moment">Inspect the storm</label><small id="moment-label">Minute 45 / 45</small></div><input id="moment" type="range" min="0" max="45" step="1" value="45"><div class="scale"><span>First rainfall</span><span>After storm</span></div></div>
+          <div class="result-band" aria-live="polite"><div class="result"><span>Surface water at end</span><strong id="metric-stored">—</strong><small id="delta-stored">vs. unchanged</small></div><div class="result"><span>Infiltrated through surface</span><strong id="metric-infil">—</strong><small id="delta-infil">vs. unchanged</small></div><div class="result"><span>Left through outlet</span><strong id="metric-outlet">—</strong><small id="delta-outlet">vs. unchanged</small></div></div>
+          <div class="accounting"><span>WATER ACCOUNT</span><p id="balance">Rain = absorbed + drained + standing. —</p></div>
+        </section>
+      </div>
+      <section class="measurement" aria-labelledby="measurement-title"><div><div class="section-heading"><span class="section-no">04</span><h2 id="measurement-title">What would you measure?</h2></div><p>The colored surface map is not a soil test. Examine which cell's assumed infiltration rate has the largest effect among those evaluated on this model's final unabsorbed water. This is sensitivity—not proof the assumptions are plausible.</p><button id="measure" class="solid" type="button">Find a consequential unknown <span aria-hidden="true">↗</span></button></div><div class="measurement-result" id="measurement-result"><span>UNCERTAINTY / NOT YET TESTED</span><strong>Good decisions begin with better questions.</strong><p>Run the local sensitivity check to identify a place to investigate.</p></div></section>
+      <footer><span>EXPERIMENTAL EARTH / OPEN EXPLORATION</span><span>Deterministic 2D illustrative calculation · no site survey · no flood or engineering approval</span></footer>
+    </main>
+  </div>
+</body>
+</html>

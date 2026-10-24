@@ -24,3 +24,7 @@ The [official Nebius and NVIDIA rules](https://nebiusglobalaihackathon.devpost.c
 Product work should remain useful beyond the competition. An unavailable provider route does not block independent work on geometry, modeling, experiments or interaction; keep the unresolved integration explicit.
 
 Seeded from Jacob's approved exploratory direction on 2026-10-24.
+
+## Runnable Rain Lab prototype
+
+Open [Rain Lab](index.html) from a local static HTTP server to compare illustrative rainfall interventions. [Usage, evidence, limitations](docs/RAIN_LAB.md). No provider integration or measured hydrology is claimed.
