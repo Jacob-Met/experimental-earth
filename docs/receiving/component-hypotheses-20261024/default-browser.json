@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "value": {
+    "checks": [
+      "keyboard Space selects edited cell",
+      "invalid empty subset",
+      "four-case metric and all-cell results",
+      "no saved input mutation",
+      "desktop and 390px results",
+      "weather invalidation and recomputation",
+      "reopened project has no stale derived result",
+      "identical plans refuse partition",
+      "focused table region scrolls with keyboard ArrowRight",
+      "crest-only proposal import and canonical component partition"
+    ],
+    "dimensions": {
+      "width": 390,
+      "scroll": 390
+    }
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-24T16:12:04.661Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser",
+    "profileDirectory": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/profile",
+    "stdoutFile": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/stdout.bin",
+    "stderrFile": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/stderr.bin",
+    "receiptFile": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/profile",
+      "about:blank"
+    ],
+    "pid": 17252,
+    "cdpUrl": "http://127.0.0.1:38611",
+    "browserWebSocketUrl": "ws://127.0.0.1:38611/devtools/browser/37358b34-eb9f-445c-a4ce-89151ba046f4",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-24T16:12:04.813Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-cb295a6c5277-earth-hypotheses-default-browser/stderr.bin",
+      "bytes": 5314,
+      "sha256": "9708bf72c21a13564bb4f7e607de5d8da8fd1416cbac2a631f0602df735ea860"
+    },
+    "finishedAt": "2026-10-24T16:12:06.417Z"
+  }
+}

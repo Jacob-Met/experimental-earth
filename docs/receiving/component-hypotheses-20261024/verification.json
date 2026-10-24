@@ -1,0 +1,45 @@
+{
+  "base": "cf830de0d0be2459d8bbc21600b1979cf19eb1e9",
+  "issue": 80,
+  "native": {
+    "runtime": "Node24.19.0",
+    "passed": 295,
+    "scope": "worker current-main full native suite"
+  },
+  "browser": {
+    "runtime": "Chrome156.0.8078.47 / Node22.23.4",
+    "new_groups": 9,
+    "default_groups": 10,
+    "errors": [],
+    "sandbox": "dedicated admission true; Namespace and Seccomp-BPF"
+  },
+  "independent_review": {
+    "reviewer": "mechanism",
+    "cases": 60,
+    "checks": "direct runRain four-world metrics, complement symmetry, original observed-source filtering, calibration/challenge roles, combined work budget and input immutability",
+    "blockers": []
+  },
+  "tested_files": {
+    "proposal-components.js": {
+      "sha256": "8a5c930a62bebb7e3c3016797024eaf26622be94da4e41b43813fd3ac0187a31",
+      "git_blob": "546aebf92eeecb636db921388723d69ccaef7828",
+      "bytes": 6018
+    },
+    "proposal-components-panel.js": {
+      "sha256": "07f9e8e74a4d5f08fa20d3fed4ea3cc60274d002c7c1102b4919f5d16da094de",
+      "git_blob": "1519e7c43da12b8f451a8ea2df422f3de26454ba",
+      "bytes": 10536
+    },
+    "tests/component-hypotheses.test.mjs": {
+      "sha256": "ace06d93088e1c8ddb26571ddb10ee3988ab6ea8d56332cf308fe805444a372d",
+      "git_blob": "6a1082a89ecda703e39345d029ea44ecebb04081",
+      "bytes": 4578
+    },
+    "tests/component-hypotheses.receiving.mjs": {
+      "sha256": "aee08e593a3c02e4757db7c829c7a8dcf24366ce3bb317b4eb9407404f501d62",
+      "git_blob": "a90221b694c1a8ecc2dbb73d0a0ff2ec7dfc34f2",
+      "bytes": 6850
+    }
+  },
+  "limits": "Finite numeric-depth study hypotheses selected on the unchanged observed source before partial worlds. No source refiltering on hybrids, automatic rate adoption, joint threshold/collection inference, physical causality or field qualification."
+}
