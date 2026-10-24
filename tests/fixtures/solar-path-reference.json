@@ -1,0 +1,5833 @@
+{
+  "source": "mourner/suncalc/test/fixtures.json",
+  "commit": "21449f34820c3c80a27a78cdc940747ff19ca1e3",
+  "blob": "ae2a9702cb446f085775d57aeb490a275991e06e",
+  "generated": "2026-06-17T17:39:51.096Z",
+  "about": "JPL Horizons topocentric apparent, REFRACTED for both Sun and Moon. azimuth deg North-referenced clockwise; altitude deg.",
+  "rows": [
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 16.291775,
+      "altitude": -33.551808
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 108.924872,
+      "altitude": -18.766644
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 193.641523,
+      "altitude": -10.721993
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 279.349396,
+      "altitude": -24.565769
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 15.385201,
+      "altitude": -32.74189
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 108.008375,
+      "altitude": -18.06572
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 192.977796,
+      "altitude": -9.808079
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 278.817552,
+      "altitude": -23.543484
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 14.480925,
+      "altitude": -31.37903
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 106.999418,
+      "altitude": -16.821227
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 192.365213,
+      "altitude": -8.346397
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 278.446969,
+      "altitude": -21.988475
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 13.847728,
+      "altitude": -29.834853
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 106.19304,
+      "altitude": -15.368488
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 191.98635,
+      "altitude": -6.735365
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 278.35094,
+      "altitude": -20.327916
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 14.048268,
+      "altitude": -11.03316
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 103.519702,
+      "altitude": 2.885664
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 194.071056,
+      "altitude": 11.464751
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 283.537741,
+      "altitude": -2.095406
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 15.265941,
+      "altitude": 10.769899
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 101.212483,
+      "altitude": 24.896129
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 198.01418,
+      "altitude": 33.378155
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 290.325364,
+      "altitude": 18.471962
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 14.258502,
+      "altitude": 12.118881
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 99.89337,
+      "altitude": 26.040483
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 197.017824,
+      "altitude": 34.779127
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 289.660668,
+      "altitude": 19.941403
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 13.595522,
+      "altitude": 11.355919
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 99.334402,
+      "altitude": 25.15259
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 196.131071,
+      "altitude": 34.041802
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 288.774684,
+      "altitude": 19.295323
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 17.863406,
+      "altitude": -10.578032
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 107.204309,
+      "altitude": 3.638298
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 197.895908,
+      "altitude": 11.108159
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 287.172064,
+      "altitude": -3.174242
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 18.131708,
+      "altitude": -34.047195
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 110.597764,
+      "altitude": -19.06361
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 195.111951,
+      "altitude": -11.447727
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 280.784531,
+      "altitude": -25.542816
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 17.716771,
+      "altitude": -34.055709
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 110.238912,
+      "altitude": -19.114409
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 194.765439,
+      "altitude": -11.401626
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 280.421889,
+      "altitude": -25.436609
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 14.32432,
+      "altitude": 12.129779
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 99.961763,
+      "altitude": 26.062972
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 197.097448,
+      "altitude": 34.784466
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 289.730589,
+      "altitude": 19.938264
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 14.236503,
+      "altitude": 12.110915
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 99.871256,
+      "altitude": 26.028691
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 196.990458,
+      "altitude": 34.773072
+    },
+    {
+      "name": "Longyearbyen",
+      "latitudeDeg": 78.22334,
+      "longitudeDeg": 15.64689,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 289.635932,
+      "altitude": 19.938362
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 22.387845,
+      "altitude": -41.340727
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 114.505968,
+      "altitude": -14.737572
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 196.427916,
+      "altitude": -2.680098
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 278.408289,
+      "altitude": -26.799108
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 21.296644,
+      "altitude": -40.593715
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 113.516361,
+      "altitude": -14.164175
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 195.825539,
+      "altitude": -1.732446
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 278.057993,
+      "altitude": -25.712398
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 20.161235,
+      "altitude": -39.292575
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 112.35684,
+      "altitude": -13.06612
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 195.298636,
+      "altitude": -0.260243
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 277.960698,
+      "altitude": -24.123064
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 19.321168,
+      "altitude": -37.791387
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 111.362887,
+      "altitude": -11.736016
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 195.00619,
+      "altitude": 1.129468
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 278.150656,
+      "altitude": -22.469201
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 18.151379,
+      "altitude": -19.016229
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 106.117269,
+      "altitude": 5.86878
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 198.156859,
+      "altitude": 19.414529
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 286.121596,
+      "altitude": -5.179783
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 18.060449,
+      "altitude": 2.97468
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 100.347957,
+      "altitude": 27.401383
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 204.198266,
+      "altitude": 41.043897
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 295.72267,
+      "altitude": 14.284535
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 16.994657,
+      "altitude": 4.221784
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 98.809694,
+      "altitude": 28.339575
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 203.256573,
+      "altitude": 42.510709
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 295.288396,
+      "altitude": 15.823824
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 16.387625,
+      "altitude": 3.448624
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 98.409714,
+      "altitude": 27.381707
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 202.190111,
+      "altitude": 41.83651
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 294.337238,
+      "altitude": 15.300169
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 22.074915,
+      "altitude": -18.323855
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 109.673834,
+      "altitude": 7.137374
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 202.09449,
+      "altitude": 18.818894
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 289.588197,
+      "altitude": -6.751837
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 24.48452,
+      "altitude": -41.705106
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 116.168025,
+      "altitude": -14.814241
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 197.827324,
+      "altitude": -3.485927
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 279.675034,
+      "altitude": -27.972386
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 24.025554,
+      "altitude": -41.74351
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 115.828033,
+      "altitude": -14.910899
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 197.490844,
+      "altitude": -3.420309
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 279.328916,
+      "altitude": -27.814848
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 17.058562,
+      "altitude": 4.235894
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 98.874542,
+      "altitude": 28.371768
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 203.345717,
+      "altitude": 42.510451
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 295.3557,
+      "altitude": 15.811628
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 16.973592,
+      "altitude": 4.212874
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 98.789615,
+      "altitude": 28.324722
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 203.225518,
+      "altitude": 42.506579
+    },
+    {
+      "name": "Tromsø",
+      "latitudeDeg": 69.6489,
+      "longitudeDeg": 18.95508,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 295.264039,
+      "altitude": 15.824016
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 328.826735,
+      "altitude": -45.365918
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 79.663446,
+      "altitude": -29.75182
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 158.864986,
+      "altitude": 1.575061
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 239.810625,
+      "altitude": -10.351778
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 328.154709,
+      "altitude": -44.36502
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 78.481088,
+      "altitude": -29.308078
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 158.025454,
+      "altitude": 2.263425
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 239.535168,
+      "altitude": -9.253976
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 327.71853,
+      "altitude": -42.835754
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 77.043738,
+      "altitude": -28.357839
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 157.106509,
+      "altitude": 3.483958
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 239.505426,
+      "altitude": -7.662473
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 327.643909,
+      "altitude": -41.20039
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 75.773541,
+      "altitude": -27.150216
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 156.372669,
+      "altitude": 4.918628
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 239.741779,
+      "altitude": -6.016096
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 333.846987,
+      "altitude": -23.120909
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 68.438348,
+      "altitude": -9.616013
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 153.946728,
+      "altitude": 23.525223
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 248.434989,
+      "altitude": 10.248593
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 340.272856,
+      "altitude": -1.603934
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 61.566333,
+      "altitude": 11.07923
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 151.148194,
+      "altitude": 45.650242
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 260.824309,
+      "altitude": 29.115966
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 339.604181,
+      "altitude": -0.113039
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 60.136968,
+      "altitude": 11.950914
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 149.40522,
+      "altitude": 46.741206
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 260.591152,
+      "altitude": 30.702792
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 338.80128,
+      "altitude": -0.669099
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 59.815563,
+      "altitude": 10.984827
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 148.722152,
+      "altitude": 45.815889
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 259.454948,
+      "altitude": 30.306331
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 337.942874,
+      "altitude": -23.54978
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 71.89682,
+      "altitude": -8.027989
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 158.024719,
+      "altitude": 24.047578
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 251.775371,
+      "altitude": 8.406602
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 330.709735,
+      "altitude": -46.296544
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 81.514116,
+      "altitude": -29.607097
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 160.42888,
+      "altitude": 1.220183
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 240.900482,
+      "altitude": -11.571175
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 330.229799,
+      "altitude": -46.202208
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 81.154192,
+      "altitude": -29.749045
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 160.088059,
+      "altitude": 1.194678
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 240.59697,
+      "altitude": -11.400231
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 339.669598,
+      "altitude": -0.115904
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 60.194,
+      "altitude": 11.98531
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 149.494064,
+      "altitude": 46.766251
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 260.663882,
+      "altitude": 30.681691
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 339.58143,
+      "altitude": -0.115603
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 60.119525,
+      "altitude": 11.935417
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 149.376676,
+      "altitude": 46.728589
+    },
+    {
+      "name": "Reykjavík",
+      "latitudeDeg": 64.13548,
+      "longitudeDeg": -21.89541,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 260.564168,
+      "altitude": 30.706222
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 25.69916,
+      "altitude": -50.929838
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 115.962788,
+      "altitude": -10.674015
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 195.698106,
+      "altitude": 6.824966
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 272.168232,
+      "altitude": -27.371708
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 24.288759,
+      "altitude": -50.263472
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 114.903897,
+      "altitude": -10.271371
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 195.132846,
+      "altitude": 7.783489
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 272.069544,
+      "altitude": -26.244389
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 22.76547,
+      "altitude": -49.042949
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 113.587106,
+      "altitude": -9.381443
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 194.662484,
+      "altitude": 9.278296
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 272.325456,
+      "altitude": -24.669308
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 21.591974,
+      "altitude": -47.599311
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 112.388797,
+      "altitude": -8.237068
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 194.431551,
+      "altitude": 10.903135
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 272.869094,
+      "altitude": -23.081606
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 18.679214,
+      "altitude": -28.930396
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 104.09491,
+      "altitude": 8.159198
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 198.666578,
+      "altitude": 29.311911
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 284.081769,
+      "altitude": -7.505282
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 17.36587,
+      "altitude": -6.567253
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 94.09763,
+      "altitude": 28.32183
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 207.689753,
+      "altitude": 50.496046
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 296.943937,
+      "altitude": 10.065166
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 16.234945,
+      "altitude": -5.319281
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 92.363474,
+      "altitude": 28.965324
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 206.816412,
+      "altitude": 52.027958
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 296.787301,
+      "altitude": 11.647603
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 15.661608,
+      "altitude": -6.147809
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 92.190672,
+      "altitude": 27.955687
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 205.437817,
+      "altitude": 51.435969
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 295.775104,
+      "altitude": 11.28699
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 22.860331,
+      "altitude": -28.009836
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 107.389749,
+      "altitude": 10.029757
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 202.866107,
+      "altitude": 28.48656
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 287.237708,
+      "altitude": -9.656063
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 28.252497,
+      "altitude": -51.131938
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 117.586049,
+      "altitude": -10.479713
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 197.064617,
+      "altitude": 5.971745
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 273.144854,
+      "altitude": -28.747566
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 27.71383,
+      "altitude": -51.206523
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 117.273314,
+      "altitude": -10.629914
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 196.730704,
+      "altitude": 6.051511
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 272.840416,
+      "altitude": -28.531314
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 16.298364,
+      "altitude": -5.301833
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 92.419896,
+      "altitude": 29.008483
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 206.922675,
+      "altitude": 52.0209
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 296.850407,
+      "altitude": 11.624733
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 16.214262,
+      "altitude": -5.329424
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 92.347163,
+      "altitude": 28.947189
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 206.77872,
+      "altitude": 52.026207
+    },
+    {
+      "name": "Stockholm",
+      "latitudeDeg": 59.32938,
+      "longitudeDeg": 18.06871,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 296.763755,
+      "altitude": 11.651719
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 50.649891,
+      "altitude": -53.472747
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 126.596772,
+      "altitude": -0.032535
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 207.593217,
+      "altitude": 12.350101
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 277.261005,
+      "altitude": -35.255054
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 48.870959,
+      "altitude": -53.116125
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 125.532508,
+      "altitude": 0.243293
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 207.200698,
+      "altitude": 13.399671
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 277.385926,
+      "altitude": -34.128944
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 46.695394,
+      "altitude": -52.25096
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 124.17651,
+      "altitude": 0.92635
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 206.999967,
+      "altitude": 14.962051
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 277.971299,
+      "altitude": -32.612937
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 44.793517,
+      "altitude": -51.099269
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 122.91014,
+      "altitude": 1.874828
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 207.065204,
+      "altitude": 16.60884
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 278.851787,
+      "altitude": -31.124922
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 35.402066,
+      "altitude": -33.557887
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 112.931832,
+      "altitude": 17.704951
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 215.314768,
+      "altitude": 33.943617
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 292.907165,
+      "altitude": -17.106283
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 29.353944,
+      "altitude": -11.846545
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 99.282591,
+      "altitude": 36.475006
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 232.073023,
+      "altitude": 52.701675
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 307.471261,
+      "altitude": -0.181679
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 27.998724,
+      "altitude": -10.815992
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 97.278104,
+      "altitude": 36.856879
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 232.01015,
+      "altitude": 54.3277
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 307.419846,
+      "altitude": 1.189617
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 27.573221,
+      "altitude": -11.731292
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 97.303727,
+      "altitude": 35.835652
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 230.305676,
+      "altitude": 54.036814
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 306.405729,
+      "altitude": 0.926306
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 39.439267,
+      "altitude": -31.87795
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 116.141954,
+      "altitude": 19.917598
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 219.395052,
+      "altitude": 32.35396
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 295.945192,
+      "altitude": -19.571538
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 53.311362,
+      "altitude": -53.162517
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 128.173244,
+      "altitude": 0.214791
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 208.803605,
+      "altitude": 11.263817
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 278.025208,
+      "altitude": -36.755321
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 52.815927,
+      "altitude": -53.339239
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 127.8764,
+      "altitude": 0.073411
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 208.484794,
+      "altitude": 11.401371
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 277.742067,
+      "altitude": -36.497439
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 28.05899,
+      "altitude": -10.787775
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 97.329781,
+      "altitude": 36.907799
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 232.112522,
+      "altitude": 54.300119
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 307.480085,
+      "altitude": 1.165539
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 27.979875,
+      "altitude": -10.829572
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 97.264378,
+      "altitude": 36.836588
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 231.971513,
+      "altitude": 54.333443
+    },
+    {
+      "name": "Kyiv",
+      "latitudeDeg": 50.45466,
+      "longitudeDeg": 30.5238,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 307.397097,
+      "altitude": 1.194638
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 60.720977,
+      "altitude": -59.740776
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 125.216629,
+      "altitude": 4.228457
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 207.482424,
+      "altitude": 21.200906
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 269.312715,
+      "altitude": -34.695887
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 58.497482,
+      "altitude": -59.629528
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 124.112888,
+      "altitude": 4.395568
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 207.140893,
+      "altitude": 22.275407
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 269.710057,
+      "altitude": -33.613269
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 55.588529,
+      "altitude": -59.063528
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 122.650598,
+      "altitude": 4.96532
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 207.033856,
+      "altitude": 23.850909
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 270.641333,
+      "altitude": -32.223461
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 52.906908,
+      "altitude": -58.16936
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 121.236506,
+      "altitude": 5.796575
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 207.21483,
+      "altitude": 25.494143
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 271.845176,
+      "altitude": -30.908903
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 38.044463,
+      "altitude": -41.791111
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 108.65225,
+      "altitude": 20.027281
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 217.907069,
+      "altitude": 42.180069
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 288.610443,
+      "altitude": -19.429468
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 29.338019,
+      "altitude": -20.617611
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 91.142974,
+      "altitude": 36.236441
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 241.712266,
+      "altitude": 58.812084
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 305.882935,
+      "altitude": -4.911032
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 27.85167,
+      "altitude": -19.674897
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 89.094224,
+      "altitude": 36.281327
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 242.380255,
+      "altitude": 60.403174
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 306.061809,
+      "altitude": -3.319538
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 27.467968,
+      "altitude": -20.614266
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 89.37544,
+      "altitude": 35.285687
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 240.280751,
+      "altitude": 60.351338
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 305.013027,
+      "altitude": -3.467404
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 42.265369,
+      "altitude": -39.748086
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 111.465343,
+      "altitude": 22.72245
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 222.187523,
+      "altitude": 40.223471
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 291.20476,
+      "altitude": -22.346062
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 63.626682,
+      "altitude": -59.074403
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 126.738675,
+      "altitude": 4.732029
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 208.672011,
+      "altitude": 20.03775
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 269.675994,
+      "altitude": -36.2898
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 63.144953,
+      "altitude": -59.314981
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 126.468076,
+      "altitude": 4.528459
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 208.349267,
+      "altitude": 20.195658
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 269.467083,
+      "altitude": -35.991009
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 27.912665,
+      "altitude": -19.643032
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 89.131494,
+      "altitude": 36.339646
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 242.484572,
+      "altitude": 60.362286
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 306.11772,
+      "altitude": -3.354837
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 27.832913,
+      "altitude": -19.689604
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 89.086044,
+      "altitude": 36.259219
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 242.338653,
+      "altitude": 60.41406
+    },
+    {
+      "name": "Istanbul",
+      "latitudeDeg": 41.01384,
+      "longitudeDeg": 28.94966,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 306.040048,
+      "altitude": -3.310728
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 125.814501,
+      "altitude": 11.469309
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 212.062011,
+      "altitude": 28.656312
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 263.553199,
+      "altitude": -36.153206
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 80.038985,
+      "altitude": -61.161479
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 124.686406,
+      "altitude": 11.497366
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 211.848525,
+      "altitude": 29.753613
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 264.216392,
+      "altitude": -35.166122
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 77.696911,
+      "altitude": -61.415419
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 123.143317,
+      "altitude": 11.88452
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 211.957977,
+      "altitude": 31.320241
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 265.481351,
+      "altitude": -33.96904
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 74.305578,
+      "altitude": -61.350629
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 121.609404,
+      "altitude": 12.535443
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 212.392807,
+      "altitude": 32.922097
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 266.994853,
+      "altitude": -32.889911
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 70.899518,
+      "altitude": -60.934052
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 106.604187,
+      "altitude": 24.850205
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 227.461885,
+      "altitude": 47.949372
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 286.366382,
+      "altitude": -24.367227
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 47.59036,
+      "altitude": -47.338081
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 85.20399,
+      "altitude": 37.949375
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 260.047765,
+      "altitude": 60.092186
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 306.249422,
+      "altitude": -12.353028
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 33.933441,
+      "altitude": -27.822059
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 83.11207,
+      "altitude": 37.656044
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 261.8818,
+      "altitude": 61.481435
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 306.65058,
+      "altitude": -10.773842
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 32.280564,
+      "altitude": -27.158613
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 83.628111,
+      "altitude": 36.739112
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 259.844191,
+      "altitude": 61.810245
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 305.590319,
+      "altitude": -10.777821
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 32.062903,
+      "altitude": -28.197647
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 108.816454,
+      "altitude": 28.04958
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 231.67606,
+      "altitude": 45.537659
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 288.669802,
+      "altitude": -27.523893
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 52.094505,
+      "altitude": -45.133938
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 127.273543,
+      "altitude": 12.176913
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 213.16021,
+      "altitude": 27.380234
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 263.514167,
+      "altitude": -37.765109
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 82.531836,
+      "altitude": -60.070308
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 127.028927,
+      "altitude": 11.935066
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 212.841052,
+      "altitude": 27.570904
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 263.3815,
+      "altitude": -37.439401
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 82.201943,
+      "altitude": -60.372754
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 83.134574,
+      "altitude": 37.719044
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 261.950703,
+      "altitude": 61.424632
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 306.702051,
+      "altitude": -10.816169
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 32.338412,
+      "altitude": -27.116874
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 83.109569,
+      "altitude": 37.633234
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 261.850234,
+      "altitude": 61.498902
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 306.629954,
+      "altitude": -10.762379
+    },
+    {
+      "name": "Shanghai",
+      "latitudeDeg": 31.22222,
+      "longitudeDeg": 121.45806,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 32.263351,
+      "altitude": -27.176401
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 247.557867,
+      "altitude": -14.822376
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 143.169762,
+      "altitude": -66.186108
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 114.438026,
+      "altitude": 11.819476
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 207.197483,
+      "altitude": 59.062345
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 248.457792,
+      "altitude": -14.137616
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 143.101075,
+      "altitude": -67.30006
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 113.43134,
+      "altitude": 11.287503
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 206.864795,
+      "altitude": 60.180093
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 249.915226,
+      "altitude": -13.470862
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 141.980916,
+      "altitude": -68.81767
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 111.881196,
+      "altitude": 10.859792
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 207.103769,
+      "altitude": 61.767097
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 251.533783,
+      "altitude": -13.013934
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 139.860466,
+      "altitude": -70.298075
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 110.209927,
+      "altitude": 10.664109
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 207.967033,
+      "altitude": 63.381313
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 270.900065,
+      "altitude": -13.35218
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 72.724029,
+      "altitude": -74.634959
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 91.199723,
+      "altitude": 14.072348
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 252.428624,
+      "altitude": 75.221851
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 293.955021,
+      "altitude": -12.767384
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 30.513024,
+      "altitude": -58.193135
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 68.28947,
+      "altitude": 17.023297
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 319.214774,
+      "altitude": 66.331253
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 295.205418,
+      "altitude": -11.612719
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 27.640986,
+      "altitude": -57.500188
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 66.920288,
+      "altitude": 16.065308
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 323.087135,
+      "altitude": 65.992353
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 294.342575,
+      "altitude": -11.066161
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 27.224235,
+      "altitude": -58.499154
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 67.753415,
+      "altitude": 15.406936
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 323.064466,
+      "altitude": 67.048561
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 271.477928,
+      "altitude": -17.077677
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 76.244056,
+      "altitude": -71.006405
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 91.682413,
+      "altitude": 17.798926
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 255.099324,
+      "altitude": 71.514638
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 246.888506,
+      "altitude": -16.283289
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 141.448147,
+      "altitude": -64.741464
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 115.365116,
+      "altitude": 13.145889
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 208.965264,
+      "altitude": 57.732989
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 246.917899,
+      "altitude": -15.943196
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 142.023034,
+      "altitude": -64.986163
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 115.272147,
+      "altitude": 12.817879
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 208.450913,
+      "altitude": 57.93849
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 295.225143,
+      "altitude": -11.675356
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 27.739342,
+      "altitude": -57.459959
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 66.90803,
+      "altitude": 16.129887
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 322.983129,
+      "altitude": 65.941684
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 295.19444,
+      "altitude": -11.592458
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 27.611897,
+      "altitude": -57.517435
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 66.928856,
+      "altitude": 16.043638
+    },
+    {
+      "name": "Bogotá",
+      "latitudeDeg": 4.60971,
+      "longitudeDeg": -74.08175,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 323.115672,
+      "altitude": 66.012695
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 153.475309,
+      "altitude": -58.82886
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 112.471608,
+      "altitude": 14.835665
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 215.332452,
+      "altitude": 67.000931
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 245.741934,
+      "altitude": -10.645642
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 153.894168,
+      "altitude": -59.915016
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 111.561061,
+      "altitude": 14.157345
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 215.341387,
+      "altitude": 68.123082
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 246.754365,
+      "altitude": -10.106185
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 153.767865,
+      "altitude": -61.474679
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 110.093582,
+      "altitude": 13.499355
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 216.373248,
+      "altitude": 69.659858
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 248.311041,
+      "altitude": -9.668564
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 153.016704,
+      "altitude": -63.074851
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 108.468206,
+      "altitude": 13.05123
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 218.402783,
+      "altitude": 71.167284
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 249.987912,
+      "altitude": -9.463686
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 108.497256,
+      "altitude": -75.190267
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 89.115173,
+      "altitude": 13.474444
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 287.328257,
+      "altitude": 75.896457
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 269.018982,
+      "altitude": -12.793897
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 39.58208,
+      "altitude": -65.906767
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 66.177035,
+      "altitude": 13.028245
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 330.218565,
+      "altitude": 59.370587
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 291.803605,
+      "altitude": -15.652671
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 35.561631,
+      "altitude": -65.444605
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 64.952748,
+      "altitude": 11.893375
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 333.088237,
+      "altitude": 58.687992
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 293.132391,
+      "altitude": -14.688234
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 35.371339,
+      "altitude": -66.447266
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 65.834081,
+      "altitude": 11.349734
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 333.509756,
+      "altitude": 59.704229
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 292.275571,
+      "altitude": -14.031407
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 103.714041,
+      "altitude": -71.656767
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 88.762015,
+      "altitude": 17.207042
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 283.067102,
+      "altitude": 72.31135
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 268.35535,
+      "altitude": -16.524678
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 151.570443,
+      "altitude": -57.573207
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 113.165564,
+      "altitude": 16.288104
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 217.12357,
+      "altitude": 65.559039
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 244.8038,
+      "altitude": -11.98145
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 152.113134,
+      "altitude": -57.760805
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 113.130108,
+      "altitude": 15.949441
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 216.537681,
+      "altitude": 65.801242
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 244.899328,
+      "altitude": -11.651949
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 35.674332,
+      "altitude": -65.397653
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 64.93254,
+      "altitude": 11.955641
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 332.988307,
+      "altitude": 58.647539
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 293.145764,
+      "altitude": -14.753024
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 35.530402,
+      "altitude": -65.463721
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 64.963873,
+      "altitude": 11.873145
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 333.118006,
+      "altitude": 58.705345
+    },
+    {
+      "name": "Kinshasa",
+      "latitudeDeg": -4.32758,
+      "longitudeDeg": 15.31357,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 293.123487,
+      "altitude": -14.666439
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 245.062684,
+      "altitude": -5.381108
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 161.512647,
+      "altitude": -52.604882
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 110.611792,
+      "altitude": 15.481713
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 224.810769,
+      "altitude": 74.457429
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 246.079356,
+      "altitude": -4.933254
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 162.147573,
+      "altitude": -53.654096
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 109.796904,
+      "altitude": 14.684562
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 225.625582,
+      "altitude": 75.568072
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 247.619788,
+      "altitude": -4.642134
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 162.480904,
+      "altitude": -55.2136
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 108.426016,
+      "altitude": 13.831177
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 228.495567,
+      "altitude": 77.00714
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 249.262533,
+      "altitude": -4.600777
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 162.361119,
+      "altitude": -56.857451
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 106.871301,
+      "altitude": 13.164111
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 233.310614,
+      "altitude": 78.314342
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 267.419095,
+      "altitude": -10.133459
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 137.118567,
+      "altitude": -72.927737
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 87.698372,
+      "altitude": 10.955992
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 316.806955,
+      "altitude": 73.621271
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 289.633101,
+      "altitude": -16.23579
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 50.394898,
+      "altitude": -73.018914
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 65.37163,
+      "altitude": 7.769332
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 338.754371,
+      "altitude": 53.364624
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 291.202136,
+      "altitude": -15.489817
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 44.563392,
+      "altitude": -72.873064
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 64.329784,
+      "altitude": 6.531531
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 340.969078,
+      "altitude": 52.481136
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 290.529327,
+      "altitude": -14.720533
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 44.969391,
+      "altitude": -73.889166
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 65.275503,
+      "altitude": 6.096657
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 341.573433,
+      "altitude": 53.472617
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 266.838245,
+      "altitude": -13.857333
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 128.411229,
+      "altitude": -70.253367
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 87.021915,
+      "altitude": 14.646436
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 307.409879,
+      "altitude": 71.11613
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 244.073157,
+      "altitude": -6.63869
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 159.591516,
+      "altitude": -51.501384
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 111.10687,
+      "altitude": 17.016838
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 226.408864,
+      "altitude": 72.900501
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 244.184857,
+      "altitude": -6.315933
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 160.096714,
+      "altitude": -51.645877
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 111.117271,
+      "altitude": 16.676131
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 225.745461,
+      "altitude": 73.182939
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 291.202276,
+      "altitude": -15.555339
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 44.692883,
+      "altitude": -72.818655
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 64.302293,
+      "altitude": 6.590447
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 340.874943,
+      "altitude": 52.448417
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 291.197615,
+      "altitude": -15.467311
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 44.530908,
+      "altitude": -72.894229
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 64.343187,
+      "altitude": 6.512798
+    },
+    {
+      "name": "Lima",
+      "latitudeDeg": -12.04318,
+      "longitudeDeg": -77.02824,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 340.998575,
+      "altitude": 52.496157
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 233.57556,
+      "altitude": -8.860132
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 148.701423,
+      "altitude": -25.02472
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 93.818929,
+      "altitude": 37.259304
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 285.871353,
+      "altitude": 60.92106
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 234.694041,
+      "altitude": -8.944033
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 148.949073,
+      "altitude": -26.116636
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 93.243877,
+      "altitude": 36.236594
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 288.188405,
+      "altitude": 61.042418
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 236.20578,
+      "altitude": -9.410471
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 148.901141,
+      "altitude": -27.687213
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 92.082669,
+      "altitude": 34.969077
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 291.422014,
+      "altitude": 60.792286
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 237.693818,
+      "altitude": -10.142456
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 148.54164,
+      "altitude": -29.302166
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 90.661047,
+      "altitude": 33.80431
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 294.573839,
+      "altitude": 60.196428
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 251.820809,
+      "altitude": -23.289977
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 134.948651,
+      "altitude": -44.845347
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 72.043185,
+      "altitude": 24.177935
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 314.830412,
+      "altitude": 45.557674
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 272.057843,
+      "altitude": -37.625904
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 105.462311,
+      "altitude": -58.556031
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 53.0626,
+      "altitude": 11.166065
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 326.873624,
+      "altitude": 25.596105
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 274.183279,
+      "altitude": -37.456424
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 104.008445,
+      "altitude": -60.040097
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 52.74451,
+      "altitude": 9.581909
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 328.459121,
+      "altitude": 24.885283
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 273.751099,
+      "altitude": -36.510948
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 106.058039,
+      "altitude": -60.251592
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 53.796771,
+      "altitude": 9.637204
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 328.708594,
+      "altitude": 25.915941
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 249.406298,
+      "altitude": -26.362238
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 130.709831,
+      "altitude": -42.612585
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 69.540844,
+      "altitude": 27.193265
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 310.330164,
+      "altitude": 43.547381
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 232.091722,
+      "altitude": -9.500362
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 147.585077,
+      "altitude": -23.7797
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 93.705995,
+      "altitude": 38.867897
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 283.198014,
+      "altitude": 59.978949
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 232.346614,
+      "altitude": -9.269151
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 147.903176,
+      "altitude": -23.961106
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 93.870378,
+      "altitude": 38.551133
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 283.589119,
+      "altitude": 60.260435
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 274.154741,
+      "altitude": -37.51797
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 103.927927,
+      "altitude": -59.987595
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 52.691298,
+      "altitude": 9.621327
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 328.401259,
+      "altitude": 24.845301
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 274.187941,
+      "altitude": -37.433809
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 104.04326,
+      "altitude": -60.055652
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 52.765559,
+      "altitude": 9.571557
+    },
+    {
+      "name": "Buenos Aires",
+      "latitudeDeg": -34.61315,
+      "longitudeDeg": -58.37723,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 328.476529,
+      "altitude": 24.902537
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 74.570626,
+      "altitude": 55.724339
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 272.066726,
+      "altitude": 41.861031
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 215.507417,
+      "altitude": -19.875607
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 130.672482,
+      "altitude": -10.474741
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 74.040375,
+      "altitude": 54.660821
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 273.551386,
+      "altitude": 42.006645
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 216.624797,
+      "altitude": -20.285269
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 130.621967,
+      "altitude": -11.604384
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 72.777849,
+      "altitude": 53.288465
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 275.647512,
+      "altitude": 41.821309
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 218.034613,
+      "altitude": -21.167005
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 130.189827,
+      "altitude": -13.13946
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 71.166541,
+      "altitude": 51.977158
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 277.744094,
+      "altitude": 41.326071
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 219.350456,
+      "altitude": -22.287495
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 129.473371,
+      "altitude": -14.65092
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 50.991355,
+      "altitude": 39.37084
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 294.611185,
+      "altitude": 28.455433
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 230.725311,
+      "altitude": -38.501818
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 114.6563,
+      "altitude": -27.692281
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 34.456122,
+      "altitude": 21.98805
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 308.992698,
+      "altitude": 10.703273
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 251.946244,
+      "altitude": -55.854507
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 91.81378,
+      "altitude": -39.558554
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 34.574164,
+      "altitude": 20.316145
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 310.613761,
+      "altitude": 10.270287
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 254.894948,
+      "altitude": -55.868695
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 90.956474,
+      "altitude": -41.023178
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 35.599472,
+      "altitude": 20.611878
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 310.641387,
+      "altitude": 11.284674
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 254.421331,
+      "altitude": -54.863734
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 92.354518,
+      "altitude": -41.192208
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 46.835473,
+      "altitude": 41.411357
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 291.746095,
+      "altitude": 25.693493
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 226.640492,
+      "altitude": -40.617791
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 112.026685,
+      "altitude": -24.721355
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 73.951166,
+      "altitude": 57.282758
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 270.347659,
+      "altitude": 40.908464
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 213.793414,
+      "altitude": -20.034015
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 129.985486,
+      "altitude": -9.001648
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 74.280621,
+      "altitude": 56.992207
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 270.601245,
+      "altitude": 41.19127
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 214.126434,
+      "altitude": -19.893364
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 130.224132,
+      "altitude": -9.250569
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 34.509724,
+      "altitude": 20.341408
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 310.56934,
+      "altitude": 10.22165
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 254.843709,
+      "altitude": -55.928198
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 90.899783,
+      "altitude": -40.972495
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 34.598087,
+      "altitude": 20.311405
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 310.62589,
+      "altitude": 10.289907
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 254.905815,
+      "altitude": -55.846214
+    },
+    {
+      "name": "Melbourne",
+      "latitudeDeg": -37.814,
+      "longitudeDeg": 144.96332,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 90.980569,
+      "altitude": -41.038196
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 240.453965,
+      "altitude": 7.595614
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 160.757262,
+      "altitude": -9.745394
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 87.255163,
+      "altitude": 30.237578
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 326.176656,
+      "altitude": 54.487197
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 241.517657,
+      "altitude": 7.267731
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 161.276646,
+      "altitude": -10.736121
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 87.253238,
+      "altitude": 29.116382
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 327.809958,
+      "altitude": 53.883514
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 242.866404,
+      "altitude": 6.478779
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 161.671857,
+      "altitude": -12.259049
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 86.851454,
+      "altitude": 27.576903
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 329.644766,
+      "altitude": 52.730101
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 244.117345,
+      "altitude": 5.437198
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 161.8177,
+      "altitude": -13.898146
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 86.159341,
+      "altitude": 26.044662
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 331.118886,
+      "altitude": 51.336833
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 253.477316,
+      "altitude": -10.403547
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 156.257143,
+      "altitude": -32.047557
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 73.608815,
+      "altitude": 11.386717
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 336.189578,
+      "altitude": 32.796202
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 265.291947,
+      "altitude": -29.933793
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 144.112003,
+      "altitude": -52.611202
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 59.603209,
+      "altitude": -5.407446
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 339.115861,
+      "altitude": 10.823886
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 267.145248,
+      "altitude": -30.470348
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 144.707881,
+      "altitude": -54.226785
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 59.651047,
+      "altitude": -7.033872
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 340.31751,
+      "altitude": 9.752696
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 267.237952,
+      "altitude": -29.467997
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 146.281394,
+      "altitude": -53.762201
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 60.658922,
+      "altitude": -6.747962
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 340.82273,
+      "altitude": 10.677368
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 250.397099,
+      "altitude": -12.667387
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 151.937074,
+      "altitude": -31.147258
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 70.466168,
+      "altitude": 13.562132
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 331.763501,
+      "altitude": 32.176351
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 238.873688,
+      "altitude": 7.298079
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 159.424055,
+      "altitude": -8.824284
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 86.382083,
+      "altitude": 31.663812
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 323.388456,
+      "altitude": 54.579762
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 239.171368,
+      "altitude": 7.466755
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 159.756763,
+      "altitude": -8.919182
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 86.674135,
+      "altitude": 31.429606
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 323.955813,
+      "altitude": 54.676423
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 267.091486,
+      "altitude": -30.516933
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 144.597145,
+      "altitude": -54.211058
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 59.590579,
+      "altitude": -7.006657
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 340.255239,
+      "altitude": 9.728657
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 267.160129,
+      "altitude": -30.451323
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 144.747897,
+      "altitude": -54.228055
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 59.673793,
+      "altitude": -7.039476
+    },
+    {
+      "name": "Ushuaia",
+      "latitudeDeg": -54.81084,
+      "longitudeDeg": -68.31591,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 340.337681,
+      "altitude": 9.764924
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-03T00:00:00Z",
+      "azimuth": 16.147972,
+      "altitude": 34.592344
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-03T06:00:00Z",
+      "azimuth": 279.082591,
+      "altitude": 25.336171
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-03T12:00:00Z",
+      "azimuth": 193.549644,
+      "altitude": 11.075729
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-03T18:00:00Z",
+      "azimuth": 108.963133,
+      "altitude": 19.300492
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-10T00:00:00Z",
+      "azimuth": 16.928801,
+      "altitude": 33.695495
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-10T06:00:00Z",
+      "azimuth": 280.04997,
+      "altitude": 24.649871
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-10T12:00:00Z",
+      "azimuth": 194.306978,
+      "altitude": 10.241927
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-10T18:00:00Z",
+      "azimuth": 109.476644,
+      "altitude": 18.282402
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-18T00:00:00Z",
+      "azimuth": 17.628337,
+      "altitude": 32.25056
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-18T06:00:00Z",
+      "azimuth": 281.118165,
+      "altitude": 23.420551
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-18T12:00:00Z",
+      "azimuth": 195.071497,
+      "altitude": 8.864456
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-18T18:00:00Z",
+      "azimuth": 109.839425,
+      "altitude": 16.733458
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-25T00:00:00Z",
+      "azimuth": 18.038329,
+      "altitude": 30.653732
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-25T06:00:00Z",
+      "azimuth": 281.973226,
+      "altitude": 21.979606
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-25T12:00:00Z",
+      "azimuth": 195.618505,
+      "altitude": 7.320425
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-01-25T18:00:00Z",
+      "azimuth": 109.939471,
+      "altitude": 15.079344
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-03-20T00:00:00Z",
+      "azimuth": 15.565424,
+      "altitude": 12.038331
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-03-20T06:00:00Z",
+      "azimuth": 284.845909,
+      "altitude": 3.518172
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-03-20T12:00:00Z",
+      "azimuth": 195.511291,
+      "altitude": -11.034019
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-03-20T18:00:00Z",
+      "azimuth": 104.828374,
+      "altitude": -2.565155
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-01T00:00:00Z",
+      "azimuth": 12.009538,
+      "altitude": -9.508402
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-01T06:00:00Z",
+      "azimuth": 287.177286,
+      "altitude": -18.261701
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-01T12:00:00Z",
+      "azimuth": 194.302578,
+      "altitude": -33.268613
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-01T18:00:00Z",
+      "azimuth": 97.642815,
+      "altitude": -23.648611
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-21T00:00:00Z",
+      "azimuth": 12.863949,
+      "altitude": -10.962895
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-21T06:00:00Z",
+      "azimuth": 288.440602,
+      "altitude": -19.408045
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-21T12:00:00Z",
+      "azimuth": 195.51006,
+      "altitude": -34.556529
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-06-21T18:00:00Z",
+      "azimuth": 98.305505,
+      "altitude": -25.133225
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-07-06T00:00:00Z",
+      "azimuth": 13.604993,
+      "altitude": -10.267968
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-07-06T06:00:00Z",
+      "azimuth": 288.977809,
+      "altitude": -18.519829
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-07-06T12:00:00Z",
+      "azimuth": 196.281111,
+      "altitude": -33.732444
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-07-06T18:00:00Z",
+      "azimuth": 99.242224,
+      "altitude": -24.499912
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-09-23T00:00:00Z",
+      "azimuth": 11.715943,
+      "altitude": 11.980961
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-09-23T06:00:00Z",
+      "azimuth": 281.168706,
+      "altitude": 2.737599
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-09-23T12:00:00Z",
+      "azimuth": 191.662613,
+      "altitude": -11.072771
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-09-23T18:00:00Z",
+      "azimuth": 101.205502,
+      "altitude": -1.455539
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-21T00:00:00Z",
+      "azimuth": 14.388365,
+      "altitude": 35.273973
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-21T06:00:00Z",
+      "azimuth": 277.331419,
+      "altitude": 25.604068
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-21T12:00:00Z",
+      "azimuth": 192.011721,
+      "altitude": 11.641581
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-21T18:00:00Z",
+      "azimuth": 107.588096,
+      "altitude": 20.273664
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-24T00:00:00Z",
+      "azimuth": 14.804024,
+      "altitude": 35.239453
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-24T06:00:00Z",
+      "azimuth": 277.704797,
+      "altitude": 25.661355
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-24T12:00:00Z",
+      "azimuth": 192.360626,
+      "altitude": 11.631593
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2026-12-24T18:00:00Z",
+      "azimuth": 107.934964,
+      "altitude": 20.167742
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "1950-06-21T00:00:00Z",
+      "azimuth": 12.797288,
+      "altitude": -10.966985
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "1950-06-21T06:00:00Z",
+      "azimuth": 288.374999,
+      "altitude": -19.430507
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "1950-06-21T12:00:00Z",
+      "azimuth": 195.431304,
+      "altitude": -34.570093
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "1950-06-21T18:00:00Z",
+      "azimuth": 98.232426,
+      "altitude": -25.12886
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2050-06-21T00:00:00Z",
+      "azimuth": 12.886692,
+      "altitude": -10.957204
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2050-06-21T06:00:00Z",
+      "azimuth": 288.461816,
+      "altitude": -19.396257
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2050-06-21T12:00:00Z",
+      "azimuth": 195.536463,
+      "altitude": -34.547677
+    },
+    {
+      "name": "McMurdo Station",
+      "latitudeDeg": -77.846,
+      "longitudeDeg": 166.676,
+      "utc": "2050-06-21T18:00:00Z",
+      "azimuth": 98.331432,
+      "altitude": -25.130605
+    }
+  ]
+}
