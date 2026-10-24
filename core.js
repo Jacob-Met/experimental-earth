@@ -3,6 +3,8 @@ import {validateThresholdEvidence} from './threshold-evidence-contract.js';
 import { validateInternalBarriers, internalEdgeClosed, internalEdgeCrest } from './internal-barriers.js';
 import { allocateCrestTransfers } from './crest-transfers.js';
 import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
+import { advanceWettingFront } from './wetting-front.js';
+import { validateWettingFrontModel, validateWettingFrontStudy } from './wetting-front-contract.js';
 /**
  * EXPERIMENTAL EARTH / rain experiment core.
  * Deliberately modest conservation-based conceptual grid model, NOT a calibrated
@@ -77,6 +79,7 @@ export function validateProject(project) {
   validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
   validateRainOriginStudy(project.rainOriginStudy, width * height);
+  validateWettingFrontStudy(project.wettingFrontStudy, SURFACES);
   return project;
 }
 
@@ -90,6 +93,12 @@ export function runRain(cells, width, height, weather, options = {}) {
   const tracer = createRainTracer(n, cellArea, options?.rainTrace, Math.ceil(weather.durationMinutes / weather.stepMinutes) + 1);
   const override = options?.infiltrationOverride;
   const surfaceOverride = options?.surfaceInfiltrationOverride;
+  const wettingFront = options?.surfaceWettingFront;
+  if (wettingFront !== undefined) {
+    validateWettingFrontModel(wettingFront, SURFACES);
+    if (override !== undefined || surfaceOverride !== undefined) throw new Error('Choose one infiltration model or override');
+  }
+  const cumulativeInfiltration = wettingFront ? Array(n).fill(0) : null;
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
     throw new Error('Water-budget tracing must be explicitly enabled or disabled');
   }
@@ -134,10 +143,24 @@ export function runRain(cells, width, height, weather, options = {}) {
     tracer?.rain(rainMm);
     origins?.rain(rainMm);
     for (let i = 0; i < n; i++) {
+      const initialSurfaceMm = water[i];
       water[i] += rainMm;
       const rate = override?.cellIndex === i ? override.rateMmHr :
         surfaceOverride?.surface === cells[i].surface ? surfaceOverride.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
-      const absorb = Math.min(water[i], rate * dtHours);
+      let absorb;
+      if (wettingFront?.surface === cells[i].surface) {
+        const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
+        const wet = advanceWettingFront({ cumulativeMm: cumulativeInfiltration[i],
+          surfaceWaterMm: initialSurfaceMm, rainMmHr: weather.rainMmHr,
+          hours: rainyHours, conductivityMmHr: wettingFront.conductivityMmHr,
+          capillaryDriveMm: wettingFront.capillaryDriveMm });
+        const dry = advanceWettingFront({ cumulativeMm: wet.cumulativeMm,
+          surfaceWaterMm: wet.surfaceWaterMm, rainMmHr: 0,
+          hours: Math.max(0, dtHours - rainyHours), conductivityMmHr: wettingFront.conductivityMmHr,
+          capillaryDriveMm: wettingFront.capillaryDriveMm });
+        absorb = Math.min(water[i], wet.infiltratedMm + dry.infiltratedMm);
+        cumulativeInfiltration[i] += absorb;
+      } else absorb = Math.min(water[i], rate * dtHours);
       tracer?.absorb(i, absorb, water[i]);
       origins?.absorb(i, absorb, water[i]);
       water[i] -= absorb;
@@ -220,6 +243,10 @@ export function runRain(cells, width, height, weather, options = {}) {
     cellsOver10Mm: peak.filter(d => d >= 10).length,
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
     ...(origins ? { rainOrigins: origins.finish(water, snapshots) } : {}),
+    ...(wettingFront ? { wettingFront: { surface: wettingFront.surface,
+      conductivityMmHr: wettingFront.conductivityMmHr, capillaryDriveMm: wettingFront.capillaryDriveMm,
+      cumulativeInfiltrationMm: cumulativeInfiltration.map((amount, i) =>
+        cells[i].surface === wettingFront.surface ? amount : null) } } : {}),
   };
   if (traceBudget) {
     for (const cell of budgetCells) {
