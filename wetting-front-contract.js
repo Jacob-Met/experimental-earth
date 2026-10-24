@@ -35,5 +35,19 @@ export function validateWettingFrontStudy(study, surfaces) {
     if (pairs.has(key)) throw new Error('Soil hypotheses must be distinct');
     pairs.add(key);
   }
+  validateWettingFrontQuestion(study.question);
   return study;
+}
+
+/** Optional planning inputs only; calculated questions are never persisted. */
+export function validateWettingFrontQuestion(question) {
+  if (question === undefined) return null;
+  if (!question || Array.isArray(question) ||
+      Object.keys(question).some(key => !['scope', 'fromMinute', 'toMinute', 'uncertaintyMm'].includes(key)) ||
+      !['selected', 'grid'].includes(question.scope) || !bounded(question.fromMinute, 720) ||
+      !bounded(question.toMinute, 720) || question.fromMinute > question.toMinute ||
+      !bounded(question.uncertaintyMm, 1000)) {
+    throw new Error('A reading question needs selected-cell or grid scope, an ordered 0–720 minute window, and uncertainty 0–1000 mm');
+  }
+  return question;
 }

@@ -27,6 +27,49 @@ does not support a parameter; an absent source material cannot identify one.
 Dry readings may agree with every explanation. A single surviving declared pair
 does not establish uniqueness outside the tested set or physical accuracy.
 
+## Find a reading that tests the explanations
+
+Enable **Include a question for a depth reading**, choose the selected map cell
+or the whole declared grid, and give an event-time window and reading uncertainty
+in millimetres. **Compare soil explanations** also finds the greatest predicted
+depth range among the calibration-compatible explanations at unrecorded retained
+solver times. It reuses the target trajectories already calculated for the
+comparison; planning adds no rain-model runs. The same small disagreement helper
+also serves the maintained fixed-rate question consumer.
+
+Every eligible explanation's prediction and reading band stays visible. The
+panel reports how many candidate pairs have disjoint bands and lists overlapping
+or touching pairs. A large range can distinguish the extremes while leaving a
+close pair unresolved. The criterion maximizes the range, not expected information
+gain, the number of resolved pairs or the probability of a correct model.
+Zero uncertainty remains a declared mathematical ideal, not certified precision.
+
+For an authored closed flat grid with 30 mm/hour rain for an hour, K=10/A=20
+and K=24.595279111565403/A=0 both predict approximately 5.404720888 mm at the
+end. That endpoint alone cannot distinguish them. At the retained 30-minute
+time they predict approximately 0.590803718 and 2.702360444 mm. Reading bands of
+±1 mm are disjoint; ±1.1 mm bands overlap. These are computational controls,
+not observed soil properties or a guarantee that a field reading resolves them.
+
+Held-aside values never choose the alternatives or the question. Coordinates
+with an existing reading for the scored scenario are excluded, regardless of
+their role. Only retained times after the initial state are searched. A window
+with no retained times, fully recorded points, identical predictions or fewer
+than two calibration-compatible explanations produces no invented question.
+The calculation interval and search counts are shown; this search is not a
+time-step convergence test. An earlier event time describes a question for
+retained timed evidence or a comparable event, not a future measurement of the
+past. Grid scope does not establish physical access to every modeled cell.
+
+**Prepare held-aside reading** uses the existing notebook workflow: it selects
+the point in inspect mode, fills time/scenario/role/uncertainty, clears unrelated
+depth/source drafts and focuses the empty depth field. It neither paints a cell
+nor creates an observation. Only an explicit notebook submission retains the
+actual value and source. Planning inputs travel with the source investigation;
+reopening recomputes the question in its separate view without preparing a
+reading against the current working site. Editing any source or planning choice
+retires the old question.
+
 ## Mechanism and numerical treatment
 
 This implementation uses the sharp-front capacity with surface ponding head
@@ -105,6 +148,13 @@ consistent input file is not an authenticated measurement record.
   runs actual keyboard comparison, candidate inspection, save/reopen, literal
   source rendering, stale input/file refusal and narrow-screen receiving through
   the maintained same-browser Linux sandbox admission.
+- `node --test tests/wetting-front-question.test.mjs` checks the equal-endpoint
+  ambiguity, precision transition, all unresolved pairs, actual time/cell scope,
+  held-aside independence, input-only replay and invalid/bounded work.
+- `CHROME_BIN=/opt/google/chrome/chrome node tests/wetting-front-question.browser.mjs`
+  receives keyboard comparison, changed precision, window refusal, real notebook
+  preparation and sourced submission, actual download and native-file reopening,
+  stale draft cancellation and desktop/390px reading bands.
 - `npm test` and `npm run browser-receive` exercise the maintained application.
 
 Authored analytical observations establish computational controls only. No
