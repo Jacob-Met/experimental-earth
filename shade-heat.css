@@ -1,0 +1,20 @@
+#shade-heat { overflow-wrap: anywhere; }
+#shade-heat .shade-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; padding: 15px 0; }
+#shade-heat input, #shade-heat select { min-width: 0; width: 100%; box-sizing: border-box; }
+#shade-heat input[type=file] { max-width: 260px; display: block; }
+#shade-heat .shade-file { display: block; font-size: .85rem; }
+#shade-heat details { margin: 14px 0; }
+#shade-heat summary { cursor: pointer; font-weight: 600; }
+#shade-heat svg { display: block; width: 100%; max-height: 340px; margin-top: 14px; }
+#shade-heat svg text { font-size: 13px; fill: #45584f; }
+#shade-heat .shade-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+#shade-heat .shade-card { padding: 16px; border: 1px solid #d6e3dd; border-radius: 10px; background: #f4f8f5; }
+#shade-heat .shade-card span, #shade-heat .shade-card strong { display: block; }
+#shade-heat .shade-card strong { font-size: clamp(1.1rem, 2.5vw, 1.7rem); line-height: 1.35; }
+#shade-heat .shade-card.existing { border-top: 3px solid #b56b3b; }
+#shade-heat .shade-card.proposal { border-top: 3px solid #167467; }
+#shade-heat #shade-inspect { padding: 16px; background: #fafbf7; border-radius: 10px; }
+#shade-heat table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: .85rem; }
+#shade-heat th, #shade-heat td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #dce6df; overflow-wrap: anywhere; }
+#shade-heat #shade-status[data-state=refused], #shade-heat #shade-status[data-state=file-refused] { color: #863e27; }
+@media (max-width: 500px) { #shade-heat .shade-cards { gap: 8px; } #shade-heat .shade-card { padding: 10px; } #shade-heat #shade-inspect { padding: 10px; } }
