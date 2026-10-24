@@ -1,13 +1,17 @@
-import { componentEditIndices, compareProposalComponents, compareComponentHypotheses } from './proposal-components.js';
+import { componentEditIndices, surfaceElevationEdits, compareProposalComponents, compareSurfaceElevation, compareComponentHypotheses } from './proposal-components.js';
 
 export function mountProposalComponents({ getProject }) {
   const panel = document.createElement('section');
   panel.className = 'panel';
   panel.id = 'proposal-components';
   panel.innerHTML = `<h2>Which parts of the proposal work together?</h2>
-    <p>Choose some edited cells as component A. All remaining edits become B.
-    Compare the existing site, A only, B only and the full proposal under the same storm.</p>
-    <p>Each selected cell carries all its authored changes together, including its canonical east/south internal edges.
+    <p>Compare the existing site, A only, B only and the full proposal under the same storm.</p>
+    <label>Separate the proposal by<select data-component-partition>
+      <option value="cells">Groups of edited cells</option>
+      <option value="surface-elevation">Surface versus elevation edits</option>
+    </select></label>
+    <p data-component-partition-help></p>
+    <p data-cell-explanation>Each selected cell carries all its authored changes together, including its canonical east/south internal edges.
     An edge shared with a neighboring cell belongs to its west/north cell. This experiment separates
     modeled effects; it does not establish real-world causality or recommend construction.</p>
     <p>Choose default surface capacities or explicitly propagate the saved infiltration hypotheses below.
@@ -28,7 +32,9 @@ export function mountProposalComponents({ getProject }) {
   const output = panel.querySelector('[data-component-results]');
   const run = panel.querySelector('[data-component-run]');
   const mode = panel.querySelector('[data-component-mode]');
-  mode.addEventListener('change', () => invalidate());
+  const partition = panel.querySelector('[data-component-partition]');
+  mode.addEventListener('change', () => { invalidate(); updatePartitionControls(); });
+  partition.addEventListener('change', () => { invalidate(); updatePartitionControls(); });
   const selected = new Set();
   let fingerprint;
   const fmt = n => Number(n).toLocaleString('en-US', { maximumFractionDigits: 3 });
@@ -37,7 +43,24 @@ export function mountProposalComponents({ getProject }) {
   const text = (tag, value) => { const el = document.createElement(tag); el.textContent = value; return el; };
   function invalidate() {
     output.replaceChildren();
-    status.textContent = 'Choose at least one edited cell for A and leave at least one for B, then compare.';
+    status.textContent = partition.value === 'cells' ? 'Choose at least one edited cell for A and leave at least one for B, then compare.' : 'Compare all proposed surface edits as A and all proposed elevation edits as B. The two factors can share cells.';
+  }
+  function updatePartitionControls() {
+    const project = getProject(), propertyPartition = partition.value === 'surface-elevation';
+    list.closest('fieldset').hidden = propertyPartition;
+    panel.querySelector('[data-cell-explanation]').hidden = propertyPartition;
+    panel.querySelector('[data-component-partition-help]').textContent = propertyPartition
+      ? 'A changes only surfaces; B changes only elevations. Both can affect the same cell, and together they reproduce the full proposal. Internal walls and crests must remain unchanged between the source plans. This is a rain-model comparison; solar declarations are not evaluated here.'
+      : 'Choose some edited cells as A. All remaining edits become B; each cell carries all its changes together.';
+    if (propertyPartition) {
+      const edits = surfaceElevationEdits(project);
+      run.disabled = edits.barriersChanged || !edits.surfaceIndices.length || !edits.elevationIndices.length;
+      if (edits.barriersChanged) status.textContent = 'Changed walls or crests are a third factor. Use Groups of edited cells, or keep edge conditions unchanged before separating surface and elevation.';
+      else if (run.disabled) status.textContent = 'Add both a surface change and an elevation change. They may share one cell.';
+    } else {
+      run.disabled = componentEditIndices(project).length < 2;
+      if (run.disabled) status.textContent = 'This experiment needs changes in at least two cells. Edit the proposal to define two separable parts.';
+    }
   }
   function refresh() {
     const project = getProject();
@@ -61,13 +84,13 @@ export function mountProposalComponents({ getProject }) {
       });
       label.append(input, document.createTextNode(cellName(i, project.width))); list.append(label);
     }
-    run.disabled = edits.length < 2;
-    if (edits.length < 2) status.textContent = 'This experiment needs changes in at least two cells. Edit the proposal to define two separable parts.';
+    updatePartitionControls();
   }
   run.addEventListener('click', () => {
     try {
       const project = getProject();
-      const hypothesis = mode.value === 'default' ? null : compareComponentHypotheses(project, [...selected], { subset: mode.value });
+      const propertyPartition = partition.value === 'surface-elevation';
+      const hypothesis = mode.value === 'default' ? null : compareComponentHypotheses(project, [...selected], { subset: mode.value, partition: partition.value });
       if (hypothesis && hypothesis.status !== 'compared') {
         const reasons = { 'need-calibration': 'Assign calibration readings before filtering hypotheses.',
           'need-challenge': 'Assign held-aside readings before requesting survivors.',
@@ -77,7 +100,7 @@ export function mountProposalComponents({ getProject }) {
         output.replaceChildren(); status.textContent = reasons[hypothesis.status]; return;
       }
       function drawCandidate(candidateIndex = 0) {
-      const result = hypothesis ? hypothesis.candidates[candidateIndex].result : compareProposalComponents(project, [...selected]);
+      const result = hypothesis ? hypothesis.candidates[candidateIndex].result : propertyPartition ? compareSurfaceElevation(project) : compareProposalComponents(project, [...selected]);
       output.replaceChildren();
       if (hypothesis) {
         output.append(text('h3', 'Interaction across source hypotheses'));
@@ -101,7 +124,8 @@ export function mountProposalComponents({ getProject }) {
         label.append(picker); output.append(label);
         output.append(text('p', 'Choosing a rate here only changes the displayed diagnostic. It does not adopt a hypothesis or modify the saved project.'));
       }
-      output.append(text('p', `A: ${result.selectedIndices.map(i => cellName(i, project.width)).join(', ')}. B: ${result.remainingIndices.map(i => cellName(i, project.width)).join(', ')}.`));
+      output.append(text('p', `A${propertyPartition ? ' (surface edits)' : ''}: ${result.selectedIndices.map(i => cellName(i, project.width)).join(', ')}. B${propertyPartition ? ' (elevation edits)' : ''}: ${result.remainingIndices.map(i => cellName(i, project.width)).join(', ')}.`));
+      if (propertyPartition) output.append(text('p', 'Each derived case retains its heights and supplied survey records from the same source plan. Original plans and readings stay unchanged. These mixed cases are explicit model assumptions, not new observations.'));
       output.append(text('p', 'Effects are signed changes from existing. Interaction = full effect − A effect − B effect. Zero means additive for that quantity; a negative interaction reduces it beyond the sum of separate changes. Whether reduction is desirable depends on the quantity and location. For maxima, nonzero interaction can arise solely from a change in which cell or time supplies the maximum; it does not by itself establish water exchange between components.'));
       const wrap = document.createElement('div'); wrap.className = 'component-table-wrap'; wrap.tabIndex = 0; wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', 'Four-case model comparison; scroll horizontally to inspect all columns');
       const table = document.createElement('table');
