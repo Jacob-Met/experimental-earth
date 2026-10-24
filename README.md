@@ -22,6 +22,14 @@ Optional actual-browser receiving: with Python 3, a locally available Chrome/Chr
 
 **Probe infiltration assumption** tests the effect of replacing only one proposed cell's authored infiltration parameter with an illustrative lower or upper example bound. It ranks modeled **water not absorbed** (water left through edges plus final standing water), separately from the existing button that suggests measuring where the *two scenarios* disagree. On imported grids over 96 cells it visibly reports a 36-cell heuristic shortlist; it does not claim a globally optimal recommendation. Bounds are neither measured local soil data nor confidence intervals. Use the separate ponding-depth form only for water-depth readings, not permeability tests.
 
+## Challenge competing infiltration rates
+
+The **infiltration hypothesis challenge** compares 2–9 explicit constant-rate candidates for one surface in one observed scenario. Add depth readings with source and ± tolerance in the notebook, then assign each a scenario and either **Calibration** or **Held aside**. Existing unassigned readings remain notebook entries and are excluded from both scores. Choose the surface and candidate rates, then select **Compare rate hypotheses**. The comparison changes all matching cells' infiltration capacity during each candidate run; it never applies a rate to the project automatically.
+
+Only calibration root-mean-square error determines candidate order. The held-aside residuals can contradict candidates without changing that order. All candidates, including rejected and indistinguishable ones, remain visible; a dry or uncoupled observation cannot establish a unique rate. Every reading's predicted value, signed residual, source and interpolation interval are inspectable. Off-step times use linear interpolation between solver snapshots, not an exact physical solution. The chosen study and evidence roles survive project export/import and browser reload; any changed assumption clears the displayed comparison until you run it again.
+
+Use readings from the same scenario, place and weather event. The other authored inputs are assumed correct for this limited comparison, so a mismatch can reflect bad terrain, rain assumptions or missing physics as well as an infiltration rate. User-entered ± bands are acceptance tolerances, not statistical confidence intervals. Readings used to tune candidate choices cannot also establish independent predictive accuracy. Passing these comparisons establishes bounded agreement in this conceptual model, not field calibration, a unique material property or environmental accuracy.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.
