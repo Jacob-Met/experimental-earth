@@ -46,6 +46,8 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('#proposal-grid .cell').length"),48);
   assert.equal(await evaluate("document.querySelectorAll('.metric').length"),6);
   assert.equal(await evaluate("document.querySelectorAll('#chart path').length"),2);
+  const infiltration=await evaluate("Array.from(document.querySelectorAll('.metric')).find(e=>e.textContent.includes('Water infiltrated')).textContent");
+  assert.ok(infiltration.includes('more'),'infiltration gain must be labeled more, not less');
   report.push('initial 96 cells, six metrics and two live chart curves');
   await evaluate("document.querySelector('[data-brush=\"garden\"]').click();document.querySelector('#proposal-grid .cell').click()");
   assert.equal(await evaluate("document.querySelector('#proposal-grid .cell').getAttribute('aria-label').includes('Rain garden')"),true);
