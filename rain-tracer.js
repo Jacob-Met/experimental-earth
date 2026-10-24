@@ -16,14 +16,29 @@ export function validateRainTraceStudy(study, cellCount) {
  * simultaneous transfers call these hooks in the same order as bulk water.
  * Incoming tagged water is unavailable to outgoing transfers until endStep.
  */
-export function createRainTracer(cellCount, cellAreaM2, study) {
+export const MAX_TRACE_CELL_STEPS = 250000;
+
+export function createRainTracer(cellCount, cellAreaM2, study, stepCount = 1) {
   const sourceCells = validateRainTraceStudy(study, cellCount);
   if (!sourceCells) return null;
+  if (study.captureSteps !== undefined && typeof study.captureSteps !== 'boolean') throw new Error('Rain timeline capture must be a boolean');
+  const captureSteps = study.captureSteps === true;
+  if (captureSteps && cellCount * stepCount > MAX_TRACE_CELL_STEPS) throw new Error('Rain timeline exceeds the retained cell-step budget');
   const depth = Array(cellCount).fill(0);
   const movement = Array(cellCount).fill(0);
   const absorbed = Array(cellCount).fill(0);
   const exited = Array(cellCount).fill(0);
   let rainLiters = 0;
+  const snapshots = [];
+  function snapshot(minute) {
+    const sum = values => values.reduce((a, b) => a + b, 0);
+    const storedLiters = sum(depth) * cellAreaM2;
+    const absorbedLiters = sum(absorbed), exitLiters = sum(exited);
+    snapshots.push({ minute, depthsMm: [...depth], rainLiters, storedLiters, absorbedLiters, exitLiters,
+      massErrorLiters: rainLiters - absorbedLiters - exitLiters - storedLiters,
+      absorbedByCellLiters: [...absorbed], exitByCellLiters: [...exited] });
+  }
+  if (captureSteps) snapshot(0);
   return {
     rain(rainMm) {
       for (const i of sourceCells) depth[i] += rainMm;
@@ -41,9 +56,10 @@ export function createRainTracer(cellCount, cellAreaM2, study) {
       if (dst >= 0) movement[dst] += tagged;
       else exited[src] += tagged * cellAreaM2;
     },
-    endStep() {
+    endStep(minute) {
       for (let i = 0; i < cellCount; i++) depth[i] = Math.max(0, depth[i] + movement[i]);
       movement.fill(0);
+      if (captureSteps) snapshot(minute);
     },
     finish() {
       const storedByCellLiters = depth.map(d => d * cellAreaM2);
@@ -55,6 +71,7 @@ export function createRainTracer(cellCount, cellAreaM2, study) {
         massErrorLiters: rainLiters - absorbedLiters - exitLiters - storedLiters,
         absorbedByCellLiters: [...absorbed], exitByCellLiters: [...exited],
         storedByCellLiters, finalDepthMm: [...depth],
+        ...(captureSteps ? { snapshots } : {}),
       };
     },
   };

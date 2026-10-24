@@ -1,3 +1,5 @@
+import { receiveRainOrigins } from './rain-origin.receiving.mjs';
+import { receivePonding } from './ponding.receiving.mjs';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
@@ -10,6 +12,7 @@ import { receiveIntervention } from './intervention.receiving.mjs';
 import { receiveInfiltration } from './infiltration.receiving.mjs';
 import { receiveInfiltrationResolution } from './infiltration-resolution.receiving.mjs';
 import { receiveOutletEvidence } from './outlet-evidence.receiving.mjs';
+import { receiveJointEvidence } from './joint-evidence.receiving.mjs';
 import { receiveEventChallenge } from './event-challenge.receiving.mjs';
 import { receiveLocalWaterBudget } from './local-water-budget.receiving.mjs';
 import { receiveRainTrace } from './rain-trace.receiving.mjs';
@@ -89,14 +92,18 @@ try {
   const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});
   writeFileSync(process.env.BROWSER_SCREENSHOT ?? (session.runDirectory + '/browser-mobile-390.png'),Buffer.from(shot.data,'base64'));
   report.push('390px mobile layout no horizontal overflow');
+  await receivePonding({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveInfiltration({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveIntervention({ evaluate, send, delay, report });
   await receiveInfiltrationResolution({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveEventChallenge(evaluate, report, {send, artifactDirectory:session.runDirectory});
   await receiveOutletEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  await receiveJointEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   const decisionVisuals = await receiveDecisionQuestion({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveLocalWaterBudget({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveRainTrace({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  await receiveRainOrigins({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+
   const measurementVisuals = await receiveDecisionObservations({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);
   return {checks:report,exceptions,dimensions:dims,decisionVisuals,measurementVisuals,sandbox:session.sandbox,sandboxPath:session.sandboxPath};

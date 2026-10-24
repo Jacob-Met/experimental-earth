@@ -2,869 +2,1145 @@ TAP version 13
 # Subtest: three-way witness despite pairwise compatibility
 ok 1 - three-way witness despite pairwise compatibility
   ---
-  duration_ms: 1.06792
+  duration_ms: 1.059854
   type: 'test'
   ...
 # Subtest: minimum cardinality preferred to early larger witness
 ok 2 - minimum cardinality preferred to early larger witness
   ---
-  duration_ms: 0.215102
+  duration_ms: 0.21555
   type: 'test'
   ...
 # Subtest: tie uses stable indices and compatible evidence has no witness
 ok 3 - tie uses stable indices and compatible evidence has no witness
   ---
-  duration_ms: 1.067053
+  duration_ms: 1.137551
   type: 'test'
   ...
 # Subtest: full candidate bound resolves nine-reading conflict without pair conflict
 ok 4 - full candidate bound resolves nine-reading conflict without pair conflict
   ---
-  duration_ms: 1.407986
+  duration_ms: 1.192089
   type: 'test'
   ...
 # Subtest: dynamic result agrees with exhaustive subset oracle over every four-reading/three-hypothesis support pattern
 ok 5 - dynamic result agrees with exhaustive subset oracle over every four-reading/three-hypothesis support pattern
   ---
-  duration_ms: 63.57743
+  duration_ms: 65.623079
   type: 'test'
   ...
 # Subtest: sample accepts validated project schema and leaves user-project cells untouched
 ok 6 - sample accepts validated project schema and leaves user-project cells untouched
   ---
-  duration_ms: 15.481537
+  duration_ms: 9.34407
   type: 'test'
   ...
 # Subtest: rainfall water balance closes despite outgoing flux and mixed infiltration
 ok 7 - rainfall water balance closes despite outgoing flux and mixed infiltration
   ---
-  duration_ms: 9.347737
+  duration_ms: 15.479324
   type: 'test'
   ...
 # Subtest: no rain gives an exactly dry site
 ok 8 - no rain gives an exactly dry site
   ---
-  duration_ms: 6.864866
+  duration_ms: 6.678204
   type: 'test'
   ...
 # Subtest: closed sealed site without infiltration retains exactly all rain volume
 ok 9 - closed sealed site without infiltration retains exactly all rain volume
   ---
-  duration_ms: 8.056835
+  duration_ms: 5.913577
   type: 'test'
   ...
 # Subtest: garden intervention increases absorption under identical storm
 ok 10 - garden intervention increases absorption under identical storm
   ---
-  duration_ms: 13.376192
+  duration_ms: 12.59652
   type: 'test'
   ...
 # Subtest: each input is deterministic and model does not mutate its arguments
 ok 11 - each input is deterministic and model does not mutate its arguments
   ---
-  duration_ms: 23.49158
+  duration_ms: 12.086899
   type: 'test'
   ...
 # Subtest: rainfall exactly stops at stated fractional storm boundary
 ok 12 - rainfall exactly stops at stated fractional storm boundary
   ---
-  duration_ms: 1.154832
+  duration_ms: 2.253673
   type: 'test'
   ...
 # Subtest: snapshots support attributed observations and bounded suggestion
 ok 13 - snapshots support attributed observations and bounded suggestion
   ---
-  duration_ms: 8.745855
+  duration_ms: 10.856156
   type: 'test'
   ...
 # Subtest: invalid files and dishonest input quantities fail closed
 ok 14 - invalid files and dishonest input quantities fail closed
   ---
-  duration_ms: 1.134862
+  duration_ms: 0.734476
   type: 'test'
   ...
 # Subtest: saved JSON roundtrips with observation/source and same predictions
 ok 15 - saved JSON roundtrips with observation/source and same predictions
   ---
-  duration_ms: 24.014885
+  duration_ms: 19.906613
   type: 'test'
   ...
 # Subtest: per-cell infiltration overrides conserve water and preserve original cells
 ok 16 - per-cell infiltration overrides conserve water and preserve original cells
   ---
-  duration_ms: 9.705215
+  duration_ms: 8.326429
   type: 'test'
   ...
 # Subtest: authored-rate sensitivity finds a reproducible impactful input separate from scenario difference
 ok 17 - authored-rate sensitivity finds a reproducible impactful input separate from scenario difference
   ---
-  duration_ms: 144.701393
+  duration_ms: 126.101136
   type: 'test'
   ...
 # Subtest: dry storm exposes no consequential sensitivity; no invented measurement advice
 ok 18 - dry storm exposes no consequential sensitivity; no invented measurement advice
   ---
-  duration_ms: 20.074116
+  duration_ms: 27.361996
   type: 'test'
   ...
 # Subtest: per-cell override rejects invalid index/rate and unknown scenario
 ok 19 - per-cell override rejects invalid index/rate and unknown scenario
   ---
-  duration_ms: 0.365239
+  duration_ms: 0.330035
   type: 'test'
   ...
 # Subtest: imported larger grids use a visibly bounded heuristic shortlist
 ok 20 - imported larger grids use a visibly bounded heuristic shortlist
   ---
-  duration_ms: 68.81429
+  duration_ms: 45.121179
   type: 'test'
   ...
 # Subtest: actual solver chooses collection35–65 versus depth F2/70 under declared bands
 ok 21 - actual solver chooses collection35–65 versus depth F2/70 under declared bands
   ---
-  duration_ms: 83.178067
+  duration_ms: 85.762156
   type: 'test'
   ...
 # Subtest: precision changes the declared band-margin comparison without changing predictions
 ok 22 - precision changes the declared band-margin comparison without changing predictions
   ---
-  duration_ms: 15.503979
+  duration_ms: 13.876804
   type: 'test'
   ...
 # Subtest: collection is unavailable unless explicitly enabled; no reversal gives no manufactured option
 ok 23 - collection is unavailable unless explicitly enabled; no reversal gives no manufactured option
   ---
-  duration_ms: 39.663018
+  duration_ms: 20.931043
   type: 'test'
   ...
 # Subtest: invalid prospective tolerances and durations refuse
 ok 24 - invalid prospective tolerances and durations refuse
   ---
-  duration_ms: 0.518683
+  duration_ms: 0.458943
   type: 'test'
   ...
 # Subtest: retained interval overlaps excluded; collected values cannot tune the choice
 ok 25 - retained interval overlaps excluded; collected values cannot tune the choice
   ---
-  duration_ms: 81.867851
+  duration_ms: 68.86718
   type: 'test'
   ...
 # Subtest: stale collection context blocks that option without blocking depth
 ok 26 - stale collection context blocks that option without blocking depth
   ---
-  duration_ms: 40.334179
+  duration_ms: 37.357599
   type: 'test'
   ...
 # Subtest: collection can remain useful after every depth snapshot is recorded
 ok 27 - collection can remain useful after every depth snapshot is recorded
   ---
-  duration_ms: 0.715587
+  duration_ms: 0.702573
   type: 'test'
   ...
 # Subtest: dry outlet and fully covered collections never manufacture an option
 ok 28 - dry outlet and fully covered collections never manufacture an option
   ---
-  duration_ms: 45.992749
+  duration_ms: 53.324175
   type: 'test'
   ...
 # Subtest: nonaligned fixed-duration collections disclose interpolation
 ok 29 - nonaligned fixed-duration collections disclose interpolation
   ---
-  duration_ms: 10.346413
+  duration_ms: 8.697906
   type: 'test'
   ...
 # Subtest: budget includes the fifth prediction pass
 ok 30 - budget includes the fifth prediction pass
   ---
-  duration_ms: 1.008733
+  duration_ms: 1.117748
   type: 'test'
   ...
 # Subtest: decision-focused maximin differs from raw depth span in actual courtyard solver
 ok 31 - decision-focused maximin differs from raw depth span in actual courtyard solver
   ---
-  duration_ms: 119.510336
+  duration_ms: 95.80603
   type: 'test'
   ...
 # Subtest: explicit finite tolerance distinguishes separable and overlapping outcome groups
 ok 32 - explicit finite tolerance distinguishes separable and overlapping outcome groups
   ---
-  duration_ms: 17.744627
+  duration_ms: 13.735533
   type: 'test'
   ...
 # Subtest: held-aside values cannot tune a decision question
 ok 33 - held-aside values cannot tune a decision question
   ---
-  duration_ms: 18.682989
+  duration_ms: 15.649474
   type: 'test'
   ...
 # Subtest: recorded points excluded and metric without reversal gives no manufactured suggestion
 ok 34 - recorded points excluded and metric without reversal gives no manufactured suggestion
   ---
-  duration_ms: 22.60082
+  duration_ms: 18.988229
   type: 'test'
   ...
 # Subtest: unassigned evidence, unsupported metrics and tolerances refuse
 ok 35 - unassigned evidence, unsupported metrics and tolerances refuse
   ---
-  duration_ms: 1.707754
+  duration_ms: 1.834761
   type: 'test'
   ...
 # Subtest: analytic separation, equal-effect candidates and tie order remain explicit
 ok 36 - analytic separation, equal-effect candidates and tie order remain explicit
   ---
-  duration_ms: 0.454563
+  duration_ms: 0.463613
   type: 'test'
   ...
 # Subtest: all recorded solver points yield no invented observation
 ok 37 - all recorded solver points yield no invented observation
   ---
-  duration_ms: 0.405654
+  duration_ms: 0.417809
   type: 'test'
   ...
 # Subtest: other scenario records do not exclude the measured scenario
 ok 38 - other scenario records do not exclude the measured scenario
   ---
-  duration_ms: 0.316541
+  duration_ms: 0.353483
   type: 'test'
   ...
 # Subtest: total solver budget includes the extra observation prediction runs
 ok 39 - total solver budget includes the extra observation prediction runs
   ---
-  duration_ms: 0.50086
+  duration_ms: 0.552266
   type: 'test'
   ...
 # Subtest: separate storm narrows ambiguous calibration with analytic depths
 ok 40 - separate storm narrows ambiguous calibration with analytic depths
   ---
-  duration_ms: 4.295088
+  duration_ms: 4.332275
   type: 'test'
   ...
 # Subtest: challenge changes cannot reorder calibration; rejection does not refit
 ok 41 - challenge changes cannot reorder calibration; rejection does not refit
   ---
-  duration_ms: 0.716416
+  duration_ms: 0.740906
   type: 'test'
   ...
 # Subtest: same-event held-aside rejection is retained during transfer
 ok 42 - same-event held-aside rejection is retained during transfer
   ---
-  duration_ms: 0.820433
+  duration_ms: 0.945973
   type: 'test'
   ...
 # Subtest: different geometry and non-weather assumptions reject transfer
 ok 43 - different geometry and non-weather assumptions reject transfer
   ---
-  duration_ms: 0.779846
+  duration_ms: 0.855219
   type: 'test'
   ...
 # Subtest: requires declared separate identity and appropriate evidence roles
 ok 44 - requires declared separate identity and appropriate evidence roles
   ---
-  duration_ms: 0.321275
+  duration_ms: 0.301079
   type: 'test'
   ...
 # Subtest: portable bundle owns snapshots, recomputes verdicts and rejects corruption
 ok 45 - portable bundle owns snapshots, recomputes verdicts and rejects corruption
   ---
-  duration_ms: 1.410594
+  duration_ms: 1.172301
   type: 'test'
   ...
 # Subtest: disjoint compatible readings identify pair and diagnostic omissions
 ok 46 - disjoint compatible readings identify pair and diagnostic omissions
   ---
-  duration_ms: 2.935648
+  duration_ms: 3.132573
   type: 'test'
   ...
 # Subtest: unsupported reading distinguished from pair and challenge excluded
 ok 47 - unsupported reading distinguished from pair and challenge excluded
   ---
-  duration_ms: 0.581649
+  duration_ms: 1.35302
   type: 'test'
   ...
 # Subtest: omitting only calibration yields no evidential support
 ok 48 - omitting only calibration yields no evidential support
   ---
-  duration_ms: 1.26851
+  duration_ms: 0.470403
   type: 'test'
   ...
 # Subtest: absent studied surface does not call readings unsupported
 ok 49 - absent studied surface does not call readings unsupported
   ---
-  duration_ms: 0.214161
+  duration_ms: 0.21967
   type: 'test'
   ...
 # Subtest: pairwise compatibility does not imply joint compatibility
 ok 50 - pairwise compatibility does not imply joint compatibility
   ---
-  duration_ms: 0.526811
+  duration_ms: 0.524111
   type: 'test'
   ...
 # Subtest: analytic linear alternatives separate most at the known final time
 ok 51 - analytic linear alternatives separate most at the known final time
   ---
-  duration_ms: 3.342145
+  duration_ms: 4.017434
   type: 'test'
   ...
 # Subtest: recorded same-scenario coordinates are excluded without reading their values
 ok 52 - recorded same-scenario coordinates are excluded without reading their values
   ---
-  duration_ms: 1.05409
+  duration_ms: 1.004384
   type: 'test'
   ...
 # Subtest: dry event yields no distinguishing measurement even with compatible rates
 ok 53 - dry event yields no distinguishing measurement even with compatible rates
   ---
-  duration_ms: 0.768413
+  duration_ms: 0.880705
   type: 'test'
   ...
 # Subtest: single supported candidate or no calibration gives no experiment recommendation
 ok 54 - single supported candidate or no calibration gives no experiment recommendation
   ---
-  duration_ms: 0.445654
+  duration_ms: 0.455694
   type: 'test'
   ...
 # Subtest: fully observed candidate grid produces no fabricated new question
 ok 55 - fully observed candidate grid produces no fabricated new question
   ---
-  duration_ms: 0.342041
+  duration_ms: 0.357944
   type: 'test'
   ...
 # Subtest: another scenario record cannot hide an unmeasured point in this scenario
 ok 56 - another scenario record cannot hide an unmeasured point in this scenario
   ---
-  duration_ms: 0.709262
+  duration_ms: 0.537142
   type: 'test'
   ...
 # Subtest: fixed reading changes band classification with step alone, preserving inputs
 ok 57 - fixed reading changes band classification with step alone, preserving inputs
   ---
-  duration_ms: 58.693953
+  duration_ms: 64.868148
   type: 'test'
   ...
 # Subtest: closest calibration set can change while compatible candidates stay fixed
 ok 58 - closest calibration set can change while compatible candidates stay fixed
   ---
-  duration_ms: 7.069197
+  duration_ms: 17.576278
   type: 'test'
   ...
 # Subtest: uninterrupted no-flow rain agrees with an independent off-step analytic solution
 ok 59 - uninterrupted no-flow rain agrees with an independent off-step analytic solution
   ---
-  duration_ms: 1.419031
+  duration_ms: 1.343342
   type: 'test'
   ...
 # Subtest: held-aside values cannot affect calibration metrics, order or closest sets
 ok 60 - held-aside values cannot affect calibration metrics, order or closest sets
   ---
-  duration_ms: 3.876258
+  duration_ms: 2.33721
   type: 'test'
   ...
 # Subtest: held-aside band can change survival without changing calibration decisions
 ok 61 - held-aside band can change survival without changing calibration decisions
   ---
-  duration_ms: 30.780299
+  duration_ms: 42.103819
   type: 'test'
   ...
 # Subtest: rain-stop interpolation sensitivity remains visible without surface flow
 ok 62 - rain-stop interpolation sensitivity remains visible without surface flow
   ---
-  duration_ms: 0.460326
+  duration_ms: 0.38355
   type: 'test'
   ...
 # Subtest: minimum step refuses comparison and bounded duplicate steps are not rerun
 ok 63 - minimum step refuses comparison and bounded duplicate steps are not rerun
   ---
-  duration_ms: 0.503334
+  duration_ms: 0.403105
   type: 'test'
   ...
 # Subtest: missing evidence, absent surface and excessive work refuse before simulations
 ok 64 - missing evidence, absent surface and excessive work refuse before simulations
   ---
-  duration_ms: 1.209241
+  duration_ms: 1.004642
   type: 'test'
   ...
 # Subtest: analytic isolated-cell experiment distinguishes constant-rate hypotheses
 ok 65 - analytic isolated-cell experiment distinguishes constant-rate hypotheses
   ---
-  duration_ms: 2.76702
+  duration_ms: 2.920533
   type: 'test'
   ...
 # Subtest: held-aside contradictory reading challenges fit without changing calibration rank
 ok 66 - held-aside contradictory reading challenges fit without changing calibration rank
   ---
-  duration_ms: 1.592835
+  duration_ms: 1.603376
   type: 'test'
   ...
 # Subtest: unsupported calibration rejects every candidate instead of endorsing nearest fit
 ok 67 - unsupported calibration rejects every candidate instead of endorsing nearest fit
   ---
-  duration_ms: 0.3542
+  duration_ms: 0.343407
   type: 'test'
   ...
 # Subtest: dry-event readings cannot identify infiltration; tied alternatives remain
 ok 68 - dry-event readings cannot identify infiltration; tied alternatives remain
   ---
-  duration_ms: 0.425316
+  duration_ms: 0.388518
   type: 'test'
   ...
 # Subtest: no calibration cannot rank by challenge readings or suggest a fitted rate
 ok 69 - no calibration cannot rank by challenge readings or suggest a fitted rate
   ---
-  duration_ms: 0.766489
+  duration_ms: 0.727532
   type: 'test'
   ...
 # Subtest: calibration without holdout is explicitly unchallenged
 ok 70 - calibration without holdout is explicitly unchallenged
   ---
-  duration_ms: 0.345318
+  duration_ms: 0.305272
   type: 'test'
   ...
 # Subtest: legacy, notebook-only and other-scenario readings do not enter either score
 ok 71 - legacy, notebook-only and other-scenario readings do not enter either score
   ---
-  duration_ms: 0.316301
+  duration_ms: 0.330207
   type: 'test'
   ...
 # Subtest: off-step reading reports bracket and linearly interpolates rather than snapping
 ok 72 - off-step reading reports bracket and linearly interpolates rather than snapping
   ---
-  duration_ms: 0.482039
+  duration_ms: 0.479302
   type: 'test'
   ...
 # Subtest: compared off-step measurement uses explicit time and signed residual
 ok 73 - compared off-step measurement uses explicit time and signed residual
   ---
-  duration_ms: 0.540455
+  duration_ms: 0.609293
   type: 'test'
   ...
 # Subtest: equal calibration scores preserve all closest alternatives
 ok 74 - equal calibration scores preserve all closest alternatives
   ---
-  duration_ms: 0.471653
+  duration_ms: 0.471571
   type: 'test'
   ...
 # Subtest: no target surface gives no candidate claim
 ok 75 - no target surface gives no candidate claim
   ---
-  duration_ms: 0.206252
+  duration_ms: 0.204313
   type: 'test'
   ...
 # Subtest: measurement outside affected cells cannot identify rates without physical coupling
 ok 76 - measurement outside affected cells cannot identify rates without physical coupling
   ---
-  duration_ms: 0.338879
+  duration_ms: 0.353569
   type: 'test'
   ...
 # Subtest: surface override affects matching cells and still conserves all water
 ok 77 - surface override affects matching cells and still conserves all water
   ---
-  duration_ms: 0.401789
+  duration_ms: 0.38244
   type: 'test'
   ...
 # Subtest: invalid candidate sets and roles reject on import rather than silently score
 ok 78 - invalid candidate sets and roles reject on import rather than silently score
   ---
-  duration_ms: 0.848912
+  duration_ms: 0.78907
   type: 'test'
   ...
 # Subtest: invalid surface overrides and competing override scopes fail explicitly
 ok 79 - invalid surface overrides and competing override scopes fail explicitly
   ---
-  duration_ms: 0.24206
+  duration_ms: 0.286824
   type: 'test'
   ...
 # Subtest: comparison retains observed data and exact choices across portable JSON
 ok 80 - comparison retains observed data and exact choices across portable JSON
   ---
-  duration_ms: 0.8081
+  duration_ms: 0.80277
   type: 'test'
   ...
 # Subtest: analytic paired intervention reverses, retaining per-rate effects and local harm
 ok 81 - analytic paired intervention reverses, retaining per-rate effects and local harm
   ---
-  duration_ms: 3.002024
+  duration_ms: 3.571282
   type: 'test'
   ...
 # Subtest: identical plans have exactly zero effects even across hypotheses
 ok 82 - identical plans have exactly zero effects even across hypotheses
   ---
-  duration_ms: 1.405298
+  duration_ms: 0.543809
   type: 'test'
   ...
 # Subtest: explicit evidence filters require readings and never fall back to closest
 ok 83 - explicit evidence filters require readings and never fall back to closest
   ---
-  duration_ms: 2.507584
+  duration_ms: 2.383811
   type: 'test'
   ...
 # Subtest: proposal-target evidence selects without changing pairing semantics
 ok 84 - proposal-target evidence selects without changing pairing semantics
   ---
-  duration_ms: 0.556868
+  duration_ms: 0.558244
   type: 'test'
   ...
 # Subtest: absence and dry storm do not invent a benefit
 ok 85 - absence and dry storm do not invent a benefit
   ---
-  duration_ms: 0.606808
+  duration_ms: 0.615296
   type: 'test'
   ...
 # Subtest: bounded work and malformed selections refuse before simulation
 ok 86 - bounded work and malformed selections refuse before simulation
   ---
-  duration_ms: 1.014779
+  duration_ms: 1.198612
   type: 'test'
   ...
 # Subtest: site storage improvement does not hide a locally deeper cell
 ok 87 - site storage improvement does not hide a locally deeper cell
   ---
-  duration_ms: 0.706893
+  duration_ms: 0.457809
   type: 'test'
   ...
 # Subtest: unassigned or different-scenario readings cannot narrow hypotheses
 ok 88 - unassigned or different-scenario readings cannot narrow hypotheses
   ---
-  duration_ms: 0.616667
+  duration_ms: 0.655093
+  type: 'test'
+  ...
+# Subtest: different soil/outlet pairs explain exactly the same first volume
+ok 89 - different soil/outlet pairs explain exactly the same first volume
+  ---
+  duration_ms: 3.295486
+  type: 'test'
+  ...
+# Subtest: explicitly associated held-aside depth distinguishes volume-equivalent pairs
+ok 90 - explicitly associated held-aside depth distinguishes volume-equivalent pairs
+  ---
+  duration_ms: 1.542553
+  type: 'test'
+  ...
+# Subtest: a later held-aside collection distinguishes pairs without depth evidence
+ok 91 - a later held-aside collection distinguishes pairs without depth evidence
+  ---
+  duration_ms: 0.569759
+  type: 'test'
+  ...
+# Subtest: held-aside changes never reorder pairs or change calibration evidence
+ok 92 - held-aside changes never reorder pairs or change calibration evidence
+  ---
+  duration_ms: 0.753359
+  type: 'test'
+  ...
+# Subtest: mixed modalities intersect bands and retain separate native-unit scores
+ok 93 - mixed modalities intersect bands and retain separate native-unit scores
+  ---
+  duration_ms: 0.662853
+  type: 'test'
+  ...
+# Subtest: unused, wrong-scenario and unassigned readings cannot silently enter evidence
+ok 94 - unused, wrong-scenario and unassigned readings cannot silently enter evidence
+  ---
+  duration_ms: 1.183553
+  type: 'test'
+  ...
+# Subtest: changed event and selected source retire comparisons without discarding saved association
+ok 95 - changed event and selected source retire comparisons without discarding saved association
+  ---
+  duration_ms: 1.101075
+  type: 'test'
+  ...
+# Subtest: roundtrip recomputes evidence without changing project, rates or roles
+ok 96 - roundtrip recomputes evidence without changing project, rates or roles
+  ---
+  duration_ms: 0.831519
+  type: 'test'
+  ...
+# Subtest: inconsistent imported collection duration refuses preparation and comparison
+ok 97 - inconsistent imported collection duration refuses preparation and comparison
+  ---
+  duration_ms: 0.500261
+  type: 'test'
+  ...
+# Subtest: pair limits, absent surfaces and work budget refuse misleading computation
+ok 98 - pair limits, absent surfaces and work budget refuse misleading computation
+  ---
+  duration_ms: 10.759296
   type: 'test'
   ...
 # Subtest: closed uncoupled cell accounting matches an independent rain-minus-infiltration integral
-ok 89 - closed uncoupled cell accounting matches an independent rain-minus-infiltration integral
+ok 99 - closed uncoupled cell accounting matches an independent rain-minus-infiltration integral
   ---
-  duration_ms: 1.813971
+  duration_ms: 1.988102
   type: 'test'
   ...
 # Subtest: one-step slope records the actual directed transfer in liters with cell area
-ok 90 - one-step slope records the actual directed transfer in liters with cell area
+ok 100 - one-step slope records the actual directed transfer in liters with cell area
   ---
-  duration_ms: 0.388166
+  duration_ms: 0.380003
   type: 'test'
   ...
 # Subtest: available-water capping is retained: ledger records accepted rather than requested flow
-ok 91 - available-water capping is retained: ledger records accepted rather than requested flow
+ok 101 - available-water capping is retained: ledger records accepted rather than requested flow
   ---
-  duration_ms: 0.329527
+  duration_ms: 0.330426
   type: 'test'
   ...
 # Subtest: opposing transfers on one edge are retained separately rather than canceled
-ok 92 - opposing transfers on one edge are retained separately rather than canceled
+ok 102 - opposing transfers on one edge are retained separately rather than canceled
   ---
-  duration_ms: 0.29873
+  duration_ms: 0.319503
   type: 'test'
   ...
 # Subtest: every local balance and global flux total close on a mixed coupled site
-ok 93 - every local balance and global flux total close on a mixed coupled site
+ok 103 - every local balance and global flux total close on a mixed coupled site
   ---
-  duration_ms: 4.814438
+  duration_ms: 4.928997
   type: 'test'
   ...
 # Subtest: optional trace preserves every ordinary result and existing override behavior exactly
-ok 94 - optional trace preserves every ordinary result and existing override behavior exactly
+ok 104 - optional trace preserves every ordinary result and existing override behavior exactly
   ---
-  duration_ms: 47.914426
+  duration_ms: 47.040748
   type: 'test'
   ...
 # Subtest: horizontal reflection preserves cell fluxes and reverses directed edge labels
-ok 95 - horizontal reflection preserves cell fluxes and reverses directed edge labels
+ok 105 - horizontal reflection preserves cell fluxes and reverses directed edge labels
   ---
-  duration_ms: 7.765132
+  duration_ms: 8.527669
   type: 'test'
   ...
 # Subtest: paired local components explain independently calculated surface-change storage effect
-ok 96 - paired local components explain independently calculated surface-change storage effect
+ok 106 - paired local components explain independently calculated surface-change storage effect
   ---
-  duration_ms: 0.823396
+  duration_ms: 4.351467
   type: 'test'
   ...
 # Subtest: identical plans and a dry event retain honest zero change and zero routing
-ok 97 - identical plans and a dry event retain honest zero change and zero routing
+ok 107 - identical plans and a dry event retain honest zero change and zero routing
   ---
-  duration_ms: 0.622546
+  duration_ms: 0.7315
   type: 'test'
   ...
 # Subtest: neighbor views exactly reconcile local incoming and outgoing totals
-ok 98 - neighbor views exactly reconcile local incoming and outgoing totals
+ok 108 - neighbor views exactly reconcile local incoming and outgoing totals
   ---
-  duration_ms: 13.604787
+  duration_ms: 7.520669
   type: 'test'
   ...
 # Subtest: oversized interactive request is uncomputed and malformed selection is refused
-ok 99 - oversized interactive request is uncomputed and malformed selection is refused
+ok 109 - oversized interactive request is uncomputed and malformed selection is refused
   ---
-  duration_ms: 1.164922
+  duration_ms: 1.007903
   type: 'test'
   ...
 # Subtest: selection and notebook edits preserve the input identity; modeled assumptions invalidate it
-ok 100 - selection and notebook edits preserve the input identity; modeled assumptions invalidate it
+ok 110 - selection and notebook edits preserve the input identity; modeled assumptions invalidate it
   ---
-  duration_ms: 0.258481
+  duration_ms: 0.212672
   type: 'test'
   ...
 # Subtest: explicit inch, centimetre and millimetre quantities convert with original values retained
-ok 101 - explicit inch, centimetre and millimetre quantities convert with original values retained
+ok 111 - explicit inch, centimetre and millimetre quantities convert with original values retained
   ---
-  duration_ms: 2.680135
+  duration_ms: 2.792557
   type: 'test'
   ...
 # Subtest: optional scenario and roles remain explicit and unchanged
-ok 102 - optional scenario and roles remain explicit and unchanged
+ok 112 - optional scenario and roles remain explicit and unchanged
   ---
-  duration_ms: 0.543188
+  duration_ms: 0.54917
   type: 'test'
   ...
 # Subtest: quoted commas, escaped quotes, CRLF, BOM and multiline sources keep record start lines
-ok 103 - quoted commas, escaped quotes, CRLF, BOM and multiline sources keep record start lines
+ok 113 - quoted commas, escaped quotes, CRLF, BOM and multiline sources keep record start lines
   ---
-  duration_ms: 1.296996
+  duration_ms: 0.553821
   type: 'test'
   ...
 # Subtest: preview and failed import do not mutate existing data; commit clones both sides
-ok 104 - preview and failed import do not mutate existing data; commit clones both sides
+ok 114 - preview and failed import do not mutate existing data; commit clones both sides
   ---
-  duration_ms: 0.968495
+  duration_ms: 0.979757
   type: 'test'
   ...
 # Subtest: unknown, missing or duplicate headers and inconsistent column counts reject
-ok 105 - unknown, missing or duplicate headers and inconsistent column counts reject
+ok 115 - unknown, missing or duplicate headers and inconsistent column counts reject
   ---
-  duration_ms: 0.466227
+  duration_ms: 0.411481
   type: 'test'
   ...
 # Subtest: malformed quoting fails with a row location
-ok 106 - malformed quoting fails with a row location
+ok 116 - malformed quoting fails with a row location
   ---
-  duration_ms: 0.784442
+  duration_ms: 1.128767
   type: 'test'
   ...
 # Subtest: ambiguous units, nondecimal values and out-of-range converted readings reject
-ok 107 - ambiguous units, nondecimal values and out-of-range converted readings reject
+ok 117 - ambiguous units, nondecimal values and out-of-range converted readings reject
   ---
-  duration_ms: 3.684528
+  duration_ms: 1.859316
   type: 'test'
   ...
 # Subtest: empty tables, oversized inputs and exhausted history refuse before appending
-ok 108 - empty tables, oversized inputs and exhausted history refuse before appending
+ok 118 - empty tables, oversized inputs and exhausted history refuse before appending
   ---
-  duration_ms: 0.98358
+  duration_ms: 0.999109
   type: 'test'
   ...
 # Subtest: unsupported evidence role and role without a scenario are not silently admitted
-ok 109 - unsupported evidence role and role without a scenario are not silently admitted
+ok 119 - unsupported evidence role and role without a scenario are not silently admitted
   ---
-  duration_ms: 0.539826
+  duration_ms: 0.63621
   type: 'test'
   ...
 # Subtest: retained conversion provenance survives JSON and rejects inconsistent quantities
-ok 110 - retained conversion provenance survives JSON and rejects inconsistent quantities
+ok 120 - retained conversion provenance survives JSON and rejects inconsistent quantities
   ---
-  duration_ms: 0.743471
+  duration_ms: 0.802902
   type: 'test'
   ...
 # Subtest: stale previews cannot remap cells or append to a changed notebook
-ok 111 - stale previews cannot remap cells or append to a changed notebook
+ok 121 - stale previews cannot remap cells or append to a changed notebook
   ---
-  duration_ms: 0.466808
+  duration_ms: 0.421853
   type: 'test'
   ...
 # Subtest: same supplied file-row evidence is not accidentally counted twice
-ok 112 - same supplied file-row evidence is not accidentally counted twice
+ok 122 - same supplied file-row evidence is not accidentally counted twice
   ---
-  duration_ms: 0.507646
+  duration_ms: 0.521208
   type: 'test'
   ...
 # Subtest: matches independently calculated collected volumes and preserves mass
-ok 113 - matches independently calculated collected volumes and preserves mass
+ok 123 - matches independently calculated collected volumes and preserves mass
   ---
-  duration_ms: 2.946265
+  duration_ms: 3.192243
   type: 'test'
   ...
 # Subtest: subtracts cumulative endpoints and discloses off-step interpolation
-ok 114 - subtracts cumulative endpoints and discloses off-step interpolation
+ok 124 - subtracts cumulative endpoints and discloses off-step interpolation
   ---
-  duration_ms: 0.567156
+  duration_ms: 0.482949
   type: 'test'
   ...
 # Subtest: held-aside contradiction does not change calibration ordering or rescue a rejected candidate
-ok 115 - held-aside contradiction does not change calibration ordering or rescue a rejected candidate
+ok 125 - held-aside contradiction does not change calibration ordering or rescue a rejected candidate
   ---
-  duration_ms: 1.983667
+  duration_ms: 1.767942
   type: 'test'
   ...
 # Subtest: dry observations preserve multiple explanations and unassigned evidence stays unscored
-ok 116 - dry observations preserve multiple explanations and unassigned evidence stays unscored
+ok 126 - dry observations preserve multiple explanations and unassigned evidence stays unscored
   ---
-  duration_ms: 0.538084
+  duration_ms: 0.503762
   type: 'test'
   ...
 # Subtest: unit conversions, source details and roles survive ordinary project roundtrip
-ok 117 - unit conversions, source details and roles survive ordinary project roundtrip
+ok 127 - unit conversions, source details and roles survive ordinary project roundtrip
   ---
-  duration_ms: 0.93629
+  duration_ms: 1.365779
   type: 'test'
   ...
 # Subtest: records are bound to the observed scenario and event, without mutating input
-ok 118 - records are bound to the observed scenario and event, without mutating input
+ok 128 - records are bound to the observed scenario and event, without mutating input
   ---
-  duration_ms: 1.626276
+  duration_ms: 1.314571
   type: 'test'
   ...
 # Subtest: invalid coverage, source, intervals, rates, quantities and record limits refuse atomically
-ok 119 - invalid coverage, source, intervals, rates, quantities and record limits refuse atomically
+ok 129 - invalid coverage, source, intervals, rates, quantities and record limits refuse atomically
   ---
-  duration_ms: 1.231142
+  duration_ms: 1.324664
   type: 'test'
   ...
 # Subtest: work budget refuses before running an oversized candidate collection
-ok 120 - work budget refuses before running an oversized candidate collection
+ok 130 - work budget refuses before running an oversized candidate collection
   ---
-  duration_ms: 10.800835
+  duration_ms: 8.975474
+  type: 'test'
+  ...
+# Subtest: triangular pulse gives analytic threshold crossing duration
+ok 131 - triangular pulse gives analytic threshold crossing duration
+  ---
+  duration_ms: 1.189815
+  type: 'test'
+  ...
+# Subtest: separate pulses preserve dry gap rather than duration from first to last
+ok 132 - separate pulses preserve dry gap rather than duration from first to last
+  ---
+  duration_ms: 0.199232
+  type: 'test'
+  ...
+# Subtest: threshold plateau is excluded and wet intervals remain separate
+ok 133 - threshold plateau is excluded and wet intervals remain separate
+  ---
+  duration_ms: 0.152044
+  type: 'test'
+  ...
+# Subtest: start wet / end wet and nonuniform time steps remain clipped to observation horizon
+ok 134 - start wet / end wet and nonuniform time steps remain clipped to observation horizon
+  ---
+  duration_ms: 0.09871
+  type: 'test'
+  ...
+# Subtest: replay interpolates values without mutating stored snapshots
+ok 135 - replay interpolates values without mutating stored snapshots
+  ---
+  duration_ms: 0.346137
+  type: 'test'
+  ...
+# Subtest: bad threshold and malformed timeline refuse
+ok 136 - bad threshold and malformed timeline refuse
+  ---
+  duration_ms: 0.143263
+  type: 'test'
+  ...
+# Subtest: real solver unchanged scenario gives equal exposures and bounded durations
+ok 137 - real solver unchanged scenario gives equal exposures and bounded durations
+  ---
+  duration_ms: 9.408437
+  type: 'test'
+  ...
+# Subtest: replay and exposure both refuse malformed snapshots
+ok 138 - replay and exposure both refuse malformed snapshots
+  ---
+  duration_ms: 0.238839
+  type: 'test'
+  ...
+# Subtest: real fractional event retains dry origin and exact final horizon
+ok 139 - real fractional event retains dry origin and exact final horizon
+  ---
+  duration_ms: 1.612031
+  type: 'test'
+  ...
+# Subtest: one-step reverse origin map reproduces the independent capped split calculation
+ok 140 - one-step reverse origin map reproduces the independent capped split calculation
+  ---
+  duration_ms: 2.360429
+  type: 'test'
+  ...
+# Subtest: a reverse step cannot send a newly received parcel through a second edge
+ok 141 - a reverse step cannot send a newly received parcel through a second edge
+  ---
+  duration_ms: 0.599326
+  type: 'test'
+  ...
+# Subtest: every reverse source agrees with independent forward traces through changing, capped and fractional flows
+ok 142 - every reverse source agrees with independent forward traces through changing, capped and fractional flows
+  ---
+  duration_ms: 214.028783
+  type: 'test'
+  ...
+# Subtest: disjoint destination regions add for every source and fate
+ok 143 - disjoint destination regions add for every source and fate
+  ---
+  duration_ms: 47.471118
+  type: 'test'
+  ...
+# Subtest: all destination fates account for all rainfall at each origin
+ok 144 - all destination fates account for all rainfall at each origin
+  ---
+  duration_ms: 1.670714
+  type: 'test'
+  ...
+# Subtest: closed movement retains local origin and boundary exit is attributed at the actual outlet cell
+ok 145 - closed movement retains local origin and boundary exit is attributed at the actual outlet cell
+  ---
+  duration_ms: 3.173577
+  type: 'test'
+  ...
+# Subtest: optional reverse recording leaves ordinary water, forward tags and local budgets exactly unchanged
+ok 146 - optional reverse recording leaves ordinary water, forward tags and local budgets exactly unchanged
+  ---
+  duration_ms: 12.77937
+  type: 'test'
+  ...
+# Subtest: paired origins use identical destinations, preserve inputs and invalidate only relevant context
+ok 147 - paired origins use identical destinations, preserve inputs and invalidate only relevant context
+  ---
+  duration_ms: 12.208678
+  type: 'test'
+  ...
+# Subtest: initial water remains separate from rain in reverse event accounting
+ok 148 - initial water remains separate from rain in reverse event accounting
+  ---
+  duration_ms: 0.288701
+  type: 'test'
+  ...
+# Subtest: dry controls, invalid destination metadata and finite work admission are explicit
+ok 149 - dry controls, invalid destination metadata and finite work admission are explicit
+  ---
+  duration_ms: 1.425899
+  type: 'test'
+  ...
+# Subtest: saved steps retain initial zero, capped first split and delayed mixed second hop
+ok 150 - saved steps retain initial zero, capped first split and delayed mixed second hop
+  ---
+  duration_ms: 2.352144
+  type: 'test'
+  ...
+# Subtest: retained snapshots reproduce separately stopped model runs including fractional final intervals
+ok 151 - retained snapshots reproduce separately stopped model runs including fractional final intervals
+  ---
+  duration_ms: 5.053278
+  type: 'test'
+  ...
+# Subtest: timeline collection preserves all final attribution and every ordinary water result exactly
+ok 152 - timeline collection preserves all final attribution and every ordinary water result exactly
+  ---
+  duration_ms: 11.136739
+  type: 'test'
+  ...
+# Subtest: recorded arrays own their values independently of earlier steps and final output
+ok 153 - recorded arrays own their values independently of earlier steps and final output
+  ---
+  duration_ms: 0.364623
+  type: 'test'
+  ...
+# Subtest: disjoint source contributions add at every retained time with nonnegative conserved fates
+ok 154 - disjoint source contributions add at every retained time with nonnegative conserved fates
+  ---
+  duration_ms: 15.99029
+  type: 'test'
+  ...
+# Subtest: all-source snapshot depth and fate agree with each ordinary water snapshot
+ok 155 - all-source snapshot depth and fate agree with each ordinary water snapshot
+  ---
+  duration_ms: 4.77254
+  type: 'test'
+  ...
+# Subtest: retention limit refuses oversized capture before simulation while paired consumer preserves final-only attribution
+ok 156 - retention limit refuses oversized capture before simulation while paired consumer preserves final-only attribution
+  ---
+  duration_ms: 124.245924
+  type: 'test'
+  ...
+# Subtest: actual fictional courtyard retains the temporary contribution hidden by final-only storage
+ok 157 - actual fictional courtyard retains the temporary contribution hidden by final-only storage
+  ---
+  duration_ms: 12.155621
+  type: 'test'
+  ...
+# Subtest: dry timeline stays exactly zero and malformed capture choices are refused
+ok 158 - dry timeline stays exactly zero and malformed capture choices are refused
+  ---
+  duration_ms: 0.528832
   type: 'test'
   ...
 # Subtest: no-flow source rainfall stays local with analytic absorption and cell area
-ok 121 - no-flow source rainfall stays local with analytic absorption and cell area
+ok 159 - no-flow source rainfall stays local with analytic absorption and cell area
   ---
-  duration_ms: 1.738824
+  duration_ms: 1.896318
   type: 'test'
   ...
 # Subtest: supply-limited infiltration absorbs all tagged water without inventing flow
-ok 122 - supply-limited infiltration absorbs all tagged water without inventing flow
+ok 160 - supply-limited infiltration absorbs all tagged water without inventing flow
   ---
-  duration_ms: 0.318898
+  duration_ms: 0.367399
   type: 'test'
   ...
 # Subtest: capped simultaneous split moves half the tag to each neighbor with no same-step second hop
-ok 123 - capped simultaneous split moves half the tag to each neighbor with no same-step second hop
+ok 161 - capped simultaneous split moves half the tag to each neighbor with no same-step second hop
   ---
-  duration_ms: 0.451632
+  duration_ms: 0.468794
   type: 'test'
   ...
 # Subtest: uncapped gradient carries the tagged concentration on actual maintained flux
-ok 124 - uncapped gradient carries the tagged concentration on actual maintained flux
+ok 162 - uncapped gradient carries the tagged concentration on actual maintained flux
   ---
-  duration_ms: 0.323272
+  duration_ms: 0.341686
   type: 'test'
   ...
 # Subtest: second-step mixing uses upstream tag fractions and preserves simultaneous update order
-ok 125 - second-step mixing uses upstream tag fractions and preserves simultaneous update order
+ok 163 - second-step mixing uses upstream tag fractions and preserves simultaneous update order
   ---
-  duration_ms: 0.276495
+  duration_ms: 0.269945
   type: 'test'
   ...
 # Subtest: mixed water infiltrates in proportion to its source contribution
-ok 126 - mixed water infiltrates in proportion to its source contribution
+ok 164 - mixed water infiltrates in proportion to its source contribution
   ---
-  duration_ms: 0.92942
+  duration_ms: 0.321601
   type: 'test'
   ...
 # Subtest: boundary losses are attributed at the actual exit cell and conserve partial outflow
-ok 127 - boundary losses are attributed at the actual exit cell and conserve partial outflow
+ok 165 - boundary losses are attributed at the actual exit cell and conserve partial outflow
   ---
-  duration_ms: 0.414693
+  duration_ms: 0.315582
   type: 'test'
   ...
 # Subtest: optional tracing leaves every ordinary water output exactly unchanged
-ok 128 - optional tracing leaves every ordinary water output exactly unchanged
+ok 166 - optional tracing leaves every ordinary water output exactly unchanged
   ---
-  duration_ms: 22.061558
+  duration_ms: 34.306777
   type: 'test'
   ...
 # Subtest: all-source tag reproduces total water fate and final depth
-ok 129 - all-source tag reproduces total water fate and final depth
+ok 167 - all-source tag reproduces total water fate and final depth
   ---
-  duration_ms: 4.108843
+  duration_ms: 7.394717
   type: 'test'
   ...
 # Subtest: disjoint origin regions add to their union without double counting or field changes
-ok 130 - disjoint origin regions add to their union without double counting or field changes
+ok 168 - disjoint origin regions add to their union without double counting or field changes
   ---
-  duration_ms: 9.602991
+  duration_ms: 11.545917
   type: 'test'
   ...
 # Subtest: dry and fractional rain periods conserve the selected area supply
-ok 131 - dry and fractional rain periods conserve the selected area supply
+ok 169 - dry and fractional rain periods conserve the selected area supply
   ---
-  duration_ms: 3.285765
+  duration_ms: 1.09811
   type: 'test'
   ...
 # Subtest: invalid origin sets reject both solver options and saved projects
-ok 132 - invalid origin sets reject both solver options and saved projects
+ok 170 - invalid origin sets reject both solver options and saved projects
   ---
-  duration_ms: 0.96466
+  duration_ms: 0.857806
   type: 'test'
   ...
 # Subtest: paired consumer keeps sources/weather matched, exposes changed destinations and does not mutate the site
-ok 133 - paired consumer keeps sources/weather matched, exposes changed destinations and does not mutate the site
+ok 171 - paired consumer keeps sources/weather matched, exposes changed destinations and does not mutate the site
   ---
-  duration_ms: 0.437878
+  duration_ms: 0.436782
   type: 'test'
   ...
 # Subtest: source inputs roundtrip without persisting derived outputs and changed inputs change the signature
-ok 134 - source inputs roundtrip without persisting derived outputs and changed inputs change the signature
+ok 172 - source inputs roundtrip without persisting derived outputs and changed inputs change the signature
   ---
-  duration_ms: 12.438142
+  duration_ms: 21.927867
   type: 'test'
   ...
 # Subtest: mixed-source amounts stay nonnegative and bounded by bulk water across varied admissible regimes
-ok 135 - mixed-source amounts stay nonnegative and bounded by bulk water across varied admissible regimes
+ok 173 - mixed-source amounts stay nonnegative and bounded by bulk water across varied admissible regimes
   ---
-  duration_ms: 26.583755
+  duration_ms: 43.449529
   type: 'test'
   ...
 # Subtest: internal one-step transfer cancels from the selected region boundary
-ok 136 - internal one-step transfer cancels from the selected region boundary
+ok 174 - internal one-step transfer cancels from the selected region boundary
   ---
-  duration_ms: 2.578018
+  duration_ms: 2.643114
   type: 'test'
   ...
 # Subtest: cutting the same slope at the region boundary retains exactly its external flow
-ok 137 - cutting the same slope at the region boundary retains exactly its external flow
+ok 175 - cutting the same slope at the region boundary retains exactly its external flow
   ---
-  duration_ms: 0.634721
+  duration_ms: 0.645178
   type: 'test'
   ...
 # Subtest: disconnected selections account for each boundary without inventing an interior
-ok 138 - disconnected selections account for each boundary without inventing an interior
+ok 176 - disconnected selections account for each boundary without inventing an interior
   ---
-  duration_ms: 0.327649
+  duration_ms: 0.331547
   type: 'test'
   ...
 # Subtest: whole-site region reduces to maintained global accounting with no external neighbor flow
-ok 139 - whole-site region reduces to maintained global accounting with no external neighbor flow
+ok 177 - whole-site region reduces to maintained global accounting with no external neighbor flow
   ---
-  duration_ms: 8.76389
+  duration_ms: 9.471887
   type: 'test'
   ...
 # Subtest: single-cell regional result preserves existing inspected components and neighbors
-ok 140 - single-cell regional result preserves existing inspected components and neighbors
+ok 178 - single-cell regional result preserves existing inspected components and neighbors
   ---
-  duration_ms: 8.169914
+  duration_ms: 14.457596
   type: 'test'
   ...
 # Subtest: complement regions have opposite accepted boundary crossings in both scenarios
-ok 141 - complement regions have opposite accepted boundary crossings in both scenarios
+ok 179 - complement regions have opposite accepted boundary crossings in both scenarios
   ---
-  duration_ms: 10.809929
+  duration_ms: 7.63908
   type: 'test'
   ...
 # Subtest: footprint means direct modeled edits, independent of metadata, selection and downstream effects
-ok 142 - footprint means direct modeled edits, independent of metadata, selection and downstream effects
+ok 180 - footprint means direct modeled edits, independent of metadata, selection and downstream effects
   ---
-  duration_ms: 0.559223
+  duration_ms: 0.496165
   type: 'test'
   ...
 # Subtest: regional inspection is immutable and rejects empty, repeated or invalid membership
-ok 143 - regional inspection is immutable and rejects empty, repeated or invalid membership
+ok 181 - regional inspection is immutable and rejects empty, repeated or invalid membership
   ---
-  duration_ms: 0.488605
+  duration_ms: 7.133264
   type: 'test'
   ...
-1..143
-# tests 143
+# Subtest: mixed-unit survey gives known elevations, source provenance and no source mutation
+ok 182 - mixed-unit survey gives known elevations, source provenance and no source mutation
+  ---
+  duration_ms: 4.51698
+  type: 'test'
+  ...
+# Subtest: rejects incomplete, duplicate, misplaced, invalid unit/quantity/source/header atomically
+ok 183 - rejects incomplete, duplicate, misplaced, invalid unit/quantity/source/header atomically
+  ---
+  duration_ms: 0.855424
+  type: 'test'
+  ...
+# Subtest: datum and spacing must explicitly correspond to current grid
+ok 184 - datum and spacing must explicitly correspond to current grid
+  ---
+  duration_ms: 0.421228
+  type: 'test'
+  ...
+# Subtest: stale preview cannot overwrite subsequent edits
+ok 185 - stale preview cannot overwrite subsequent edits
+  ---
+  duration_ms: 0.421796
+  type: 'test'
+  ...
+# Subtest: reopen refuses inconsistent provenance, changed geometry and spacing
+ok 186 - reopen refuses inconsistent provenance, changed geometry and spacing
+  ---
+  duration_ms: 0.926902
+  type: 'test'
+  ...
+# Subtest: quoted multiline sources retain physical line numbers and escaped quotes
+ok 187 - quoted multiline sources retain physical line numbers and escaped quotes
+  ---
+  duration_ms: 0.201396
+  type: 'test'
+  ...
+# Subtest: terrain relief changes modeled depths with identical rainfall
+ok 188 - terrain relief changes modeled depths with identical rainfall
+  ---
+  duration_ms: 1.283313
+  type: 'test'
+  ...
+# Subtest: supports all 576 cells with bounded input
+ok 189 - supports all 576 cells with bounded input
+  ---
+  duration_ms: 6.494918
+  type: 'test'
+  ...
+1..189
+# tests 189
 # suites 0
-# pass 143
+# pass 189
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 720.7302
+# duration_ms 949.806717
 
 EXIT 0
