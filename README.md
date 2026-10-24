@@ -220,3 +220,8 @@ Surface-only cases retain existing elevations and their terrain records; elevati
 For example, in the authored courtyard, copy existing to proposal, turn D4 into a rain garden, and lower it twice (5 cm). At default capacities, the separate final-storage effects are approximately −320.915 L for surface conversion and +75.469 L for lowering; the full change is −249.994 L, including −4.548 L of interaction. These are model outputs for an authored example, not measurements or a recommendation. Use the local depth table to inspect where water remains; a site storage change alone does not describe local ponding.
 
 Run `node tests/surface-elevation.test.mjs` for direct four-world, co-located/disjoint edit, terrain-source, fixed-crest, conservation, source-evidence and refusal controls. Run `CHROME_BIN=/opt/google/chrome/chrome node tests/surface-elevation.receiving.mjs` for the actual editor-to-comparison-to-reopen browser course, including continued keyboard rate inspection and desktop/mobile result captures.
+
+
+## Compare a dated sun path
+
+The **How does direct-sun obstruction change through the day?** panel connects the saved columns to explicit geographic coordinates, a sourced true-north grid bearing and UTC sampling times. Inspect changing paired ground-centre results and their original witnesses without replacing the saved single-direction study. Calculations stay local; below-horizon and low-elevation samples remain explicit, and discrete counts do not imply hours of shade. See [dated sun paths](docs/SUN_PATH.md) for use, source pins, privacy, sampling limits and verification.
