@@ -12,6 +12,11 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     <label class="input-label">Maximum edited cells<select id="placement-count"><option value="1">One</option><option value="2" selected>Two</option></select></label></div>
     <label class="input-label">Minimize the worst additional change in<select id="placement-objective"></select></label>
     <label class="input-label">Fixed source hypotheses<select id="placement-subset"><option value="all">All saved rates (no evidence filter)</option><option value="calibration">Within all calibration bands</option><option value="surviving">Within calibration and held-aside bands</option></select></label>
+    <fieldset style="min-width:0"><legend>Optional local peak-depth targets</legend>
+    <label class="input-label">Target cells (for example C2, D2; blank means none)<input id="placement-target-cells" type="text" maxlength="100"></label>
+    <label class="input-label">Maximum peak-depth change at every target (mm)<input id="placement-target-limit" type="number" min="-1000" max="1000" step="any" value="0"></label>
+    <label class="input-label">Declared reason for this target<input id="placement-target-basis" type="text" maxlength="500"></label>
+    <p class="mini-note">Relative to the current proposal, for every retained soil hypothesis. Zero requires no modeled increase; −1 requests at least 1 mm reduction. Peaks may occur at different times. This is a decision condition, not an access or safety threshold.</p></fieldset>
     <p id="placement-study" class="mini-note"></p>
     <div class="obs-actions"><button id="placement-sealed" type="button">Select proposed sealed cells</button><button id="placement-clear" type="button">Clear selection</button></div>
     <p id="placement-selection" class="mini-note"></p><div id="placement-grid" class="placement-grid" aria-label="Eligible proposal cells"></div>
@@ -45,6 +50,17 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     const study=p.infiltrationStudy??DEFAULT_STUDY;
     $('placement-study').textContent=`Saved ${study.surface} rates: ${study.ratesMmHr.join(', ')} mm/h. Evidence scenario: ${study.target}. Support is evaluated once on this unchanged source, never refitted to a hypothetical layout.`;
   }
+  function readTargets(p) {
+    const raw=$('placement-target-cells').value.trim();if(!raw)return [];
+    const limit=$('placement-target-limit').value.trim();if(!limit)throw Error('Enter a local peak-change limit');
+    return raw.split(',').map(label=>{
+      const match=/^([A-X])([1-9][0-9]?)$/.exec(label.trim().toUpperCase());
+      if(!match)throw Error('Use target cell labels such as C2, D2');
+      const col=match[1].charCodeAt(0)-65,row=Number(match[2])-1;
+      if(col>=p.width||row>=p.height)throw Error('Target cell is outside this project');
+      return {cellIndex:row*p.width+col,maxPeakChangeMm:Number(limit),basis:$('placement-target-basis').value};
+    });
+  }
   function inspect(plan,p,current) {
     const detail=$('placement-detail');detail.replaceChildren();
     detail.append(node('h3',plan.cells.length?`${plan.cells.map(i=>name(p,i)).join(' + ')} → ${SURFACES[current.query.surface].label}`:'Unchanged current proposal'));
@@ -60,11 +76,18 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     const perRate=node('details','');perRate.append(node('summary','Inspect every retained hypothesis and its source-to-candidate change'));
     for(const c of plan.candidates){const card=node('article','','study-candidate');card.append(node('h4',`${c.rateMmHr} mm/h ${current.query.study.surface}`));for(const [key,m] of Object.entries(PLACEMENT_METRICS)){const v=c.metrics[key];card.append(node('p',`${m.label}: ${number(v.current)} → ${number(v.proposed)} ${m.unit}; change ${number(v.delta)}.`));}perRate.append(card);}detail.append(perRate);
     const local=node('details','');local.append(node('summary',`${plan.worseningCells.length} cells deepen under at least one retained rate`));for(const c of plan.worseningCells)local.append(node('p',`${name(p,c.cellIndex)}: ${number(c.min)} to ${number(c.max)} mm peak-depth change.`));detail.append(local);
+    if(current.query.targets.length){
+      const targets=node('div','','placement-target-witnesses');targets.style.overflowWrap='anywhere';targets.append(node('h4',plan.localTargets.meets?'Meets every local target':'Does not meet every local target'));
+      for(const check of plan.localTargets.checks){
+        targets.append(node('p',`${name(p,check.cellIndex)}: limit ${number(check.maxPeakChangeMm)} mm; worst change ${number(check.worstChangeMm)} mm. Basis: ${check.basis}`));
+        for(const w of check.witnesses)targets.append(node('p',`${w.rateMmHr} mm/h hypothesis: ${number(w.changeMm)} mm change — ${w.meets?'meets target':'exceeds target by '+number(w.excessMm)+' mm'}.`));
+      }detail.append(targets);
+    }
     if(plan.cells.length){
-      const adopt=node('button','Apply these hypothetical surface edits','primary');adopt.type='button';adopt.id='placement-adopt';adopt.disabled=current.adoptionBlockedByProposalEvidence;
+      const adopt=node('button','Apply these hypothetical surface edits','primary');adopt.type='button';adopt.id='placement-adopt';adopt.disabled=current.adoptionBlockedByProposalEvidence||!plan.localTargets.meets;
       adopt.addEventListener('click',()=>{try{const next=adoptPlacement(getProject(),current.query,plan.cells,current.sourceSignature);replaceProject(next);notice('Hypothetical proposal edits applied; retained source readings were not changed.');}catch(error){notice(error.message);invalidate(error.message);}});
       detail.append(adopt);
-      if(adopt.disabled)detail.append(node('p','This workspace has observations assigned to the proposal. Keep those readings with their observed geometry; this alternative remains inspectable but cannot replace that observed proposal.','mini-note'));
+      if(current.adoptionBlockedByProposalEvidence)detail.append(node('p','This workspace has observations assigned to the proposal. Keep those readings with their observed geometry; this alternative remains inspectable but cannot replace that observed proposal.','mini-note'));
     }
   }
   function show(current,p) {
@@ -72,20 +95,22 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     const refusal={'need-calibration':'Assign calibration readings before filtering.','need-challenge':'Assign held-aside readings before using their bands.','no-compatible-rates':'No source hypotheses meet these bands; no closest-fit fallback is used.','surface-absent':'The studied surface is absent from the source comparison.'};
     if(current.status!=='compared'){$('placement-status').textContent=refusal[current.status]??current.status;return;}
     const metric=PLACEMENT_METRICS[current.query.metric];
-    $('placement-status').textContent=`Compared ${current.variantCount} variants × ${current.ratesMmHr.length} fixed hypotheses. ${current.best.length} placement(s) share the lowest worst additional change within numerical precision.`;
+    $('placement-status').dataset.state=current.qualifyingCount?'compared':'no-qualifying-placement';
+    $('placement-status').textContent=`Compared ${current.variantCount} variants × ${current.ratesMmHr.length} fixed hypotheses. ${current.qualifyingCount} meet every local target; ${current.best.length} share the lowest worst additional change among those placements. ${current.qualifyingCount?'':'No qualifying placement; no fallback is selected.'}`;
     host.append(node('p',`${current.semantics} Ranking objective: ${metric.label}. Negative means less; the unchanged proposal is always included.`));
     if(!current.sourceAffected.existing&&!current.sourceAffected.proposal)host.append(node('p',`The unchanged source contains no ${current.query.study.surface} cells. These capacities are declared hypotheses; source observations have not constrained them. The original result is identical across these rates. They affect a variant only where ${current.query.study.surface} is present.`, 'placement-absent-note'));
-    const table=node('table','','placement-table'),thead=node('thead',''),tr=node('tr','');for(const t of ['Edited cells',`Worst additional ${metric.label} (${metric.unit})`,'Inspect'])tr.append(node('th',t));thead.append(tr);table.append(thead);
-    const body=node('tbody','');for(const plan of current.plans){const row=node('tr','');row.dataset.cells=plan.cells.join(',');const best=current.best.some(c=>c.join(',')===plan.cells.join(','));row.append(node('td',(plan.cells.map(i=>name(p,i)).join(' + ')||'No change')+(best?' · best for this objective':'')),node('td',number(plan.score)));const action=node('td',''),b=node('button','Inspect');b.type='button';b.addEventListener('click',()=>inspect(plan,p,current));action.append(b);row.append(action);body.append(row);}table.append(body);
+    const table=node('table','','placement-table'),thead=node('thead',''),tr=node('tr','');for(const t of ['Edited cells',`Worst additional ${metric.label} (${metric.unit})`,'Local targets','Inspect'])tr.append(node('th',t));thead.append(tr);table.append(thead);
+    const body=node('tbody','');for(const plan of current.plans){const row=node('tr','');row.dataset.cells=plan.cells.join(',');const best=current.best.some(c=>c.join(',')===plan.cells.join(','));row.append(node('td',(plan.cells.map(i=>name(p,i)).join(' + ')||'No change')+(best?' · best for this objective':'')),node('td',number(plan.score)),node('td',plan.localTargets.meets?'Meets all':'Does not meet'));const action=node('td',''),b=node('button','Inspect');b.type='button';b.addEventListener('click',()=>inspect(plan,p,current));action.append(b);row.append(action);body.append(row);}table.append(body);
     const details=node('details','');details.append(node('summary',`Inspect all ${current.plans.length} enumerated placements`));const wrap=node('div','','placement-table-wrap');wrap.append(table);details.append(wrap);host.append(details);
     const calculation=node('details','');calculation.append(node('summary','Calculation details'),node('p',`Numerical tie guard: ${current.tieGuard} ${metric.unit}. Conservative work estimate: ${current.cellStepUpperBound.toLocaleString()} cell-steps. This tolerance groups near-equal numerical scores; it is not a physical uncertainty interval.`));host.append(calculation);
-    const detail=node('div','','placement-detail');detail.id='placement-detail';host.append(detail);inspect(current.plans[0],p,current);
+    const detail=node('div','','placement-detail');detail.id='placement-detail';host.append(detail);inspect(current.plans.find(p=>p.localTargets.meets)??current.plans[0],p,current);
   }
   for(const id of ['placement-surface','placement-count','placement-objective','placement-subset'])$(id).addEventListener('change',()=>{invalidate();drawEligibility();});
+  for(const id of ['placement-target-cells','placement-target-limit','placement-target-basis'])$(id).addEventListener('input',()=>invalidate());
   $('placement-clear').addEventListener('click',()=>{eligible.clear();invalidate();drawEligibility();});
   $('placement-sealed').addEventListener('click',()=>{const cells=getProject().proposal.flatMap((c,i)=>c.surface==='sealed'&&c.surface!==$('placement-surface').value?[i]:[]);if(cells.length>12){notice('More than 12 sealed cells: choose an explicit smaller eligible set.');return;}eligible=new Set(cells);invalidate();drawEligibility();});
   $('placement-run').addEventListener('click',()=>{
-    const p=structuredClone(getProject()),query={eligibleCells:[...eligible],maxEdits:Number($('placement-count').value),surface:$('placement-surface').value,metric:$('placement-objective').value,subset:$('placement-subset').value};
+    const p=structuredClone(getProject());let targets;try{targets=readTargets(p);}catch(error){invalidate(error.message);notice(error.message);return;}const query={targets,eligibleCells:[...eligible],maxEdits:Number($('placement-count').value),surface:$('placement-surface').value,metric:$('placement-objective').value,subset:$('placement-subset').value};
     const request=++generation;$('placement-run').disabled=true;
     setTimeout(()=>{try{if(request!==generation)return;const next=comparePlacements(p,query);if(request!==generation||placementSignature(getProject())!==next.sourceSignature)return;report=next;show(report,p);}catch(error){invalidate(error.message);$('placement-status').dataset.state='error';notice(error.message);}finally{$('placement-run').disabled=false;}},20);
   });

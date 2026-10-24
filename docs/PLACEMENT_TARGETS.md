@@ -1,0 +1,23 @@
+# Local targets in finite placement comparisons
+
+The placement investigation can require a declared local change while optimizing its selected site-wide objective. Enter up to twelve distinct cell labels, a signed maximum peak-depth change in millimetres, and the reason for the target. Blank cell input leaves the original unconstrained search intact.
+
+Every target compares the hypothetical layout with the **current proposal**, under the same retained infiltration hypothesis. A limit of zero requires no modeled increase. A limit of −1 requires at least a 1 mm reduction. Each hypothesis must meet every target separately; a favorable average or another cell's improvement cannot compensate for a violation. Equality meets the declared bound. No numerical feasibility tolerance is added. Peak times may differ; this is a difference between event maxima, not a simultaneous depth comparison, a duration target or a route-clearance assessment.
+
+The underlying exact finite enumeration, original-source evidence filtering, scenario comparison, work bound and score ordering are unchanged. Local conditions reuse the per-cell peak differences already produced by the maintained comparison; they run no additional simulations during comparison. All alternatives remain inspectable, including violating alternatives and every rate's signed change/excess. Only qualifying alternatives receive a best-for-objective label. If none qualify, there is no closest-feasible fallback. A selected violating alternative cannot be applied. Application checks unchanged project identity and recomputes the selected alternative's qualification before returning a changed proposal. Proposal-assigned observations continue to block geometry reassignment.
+
+## Executed modeled control
+
+Using `makeExample()`, proposal copied from existing, all twelve sealed cells eligible for at most two garden edits, sealed hypotheses `[0.2, 1, 4]` mm/h and the unabsorbed-water objective, the unconstrained best pair is `[27,36]`. Its worst additional unabsorbed water is −593.8587984225078 L, but its least improvement in C2's peak depth is only 0.08173370018158721 mm. Pair `[18,19]` improves C2 by at least 2.326965187356244 mm. A C2 limit of −1 mm excludes the former while retaining the latter. Twelve of the 79 layouts qualify; the best qualifying pair is `[18,36]`, with −534.3301482931793 L worst additional unabsorbed water and at least 1.8894344492891264 mm C2 peak reduction. These numbers are software controls, not acquired measurements.
+
+## Verification
+
+`node --test tests/placement-constraints.test.mjs tests/placement-search.test.mjs` exercises the separating control, preserved original scores and hypotheses, all-rate/all-cell acceptance, exact inclusive bounds, impossible and dry controls, declaration refusal, stale-source refusal and guarded application.
+
+`CHROME_BIN=/usr/bin/google-chrome-stable node tests/placement-constraints.browser.mjs` receives the actual import, input controls, comparison, witness inspection, invalidation, impossible/invalid targets, narrow layout and explicit application through the maintained sandbox-checked browser helper. Use the actual browser executable, not a wrapper that injects sandbox-disabling arguments; the maintained helper refuses such a launch. `PLACEMENT_TARGET_RECEIPT_DIR` optionally selects the directory for the JSON receipt and desktop/mobile images; the helper retains its sandbox receipt alongside them. Browser execution must be recorded separately; the existence of this receiver is not a passed run.
+
+These are user-declared decision conditions on a bounded model. They do not establish physical improvements, construction feasibility, permitted intervention, flood safety or accessibility. Targets are transient investigation inputs and are not written into the site's observation notebook or presented as measurements.
+
+## Received composition
+
+Base `97c9afaad29a7e4a27e86d6b5e7e198aa3e40cf1` plus this change passed all 456 native tests. Actual Chrome 156 receiving passed three complete course groups: the qualifying/witness/violating-plan path, impossible and invalid target handling, and narrow keyboard/adoption behavior. Desktop and 390px screenshots were inspected. The maintained same-browser admission reports namespace, PID/network and seccomp/TSYNC protections active using `/usr/bin/google-chrome-stable`. Earlier runs retained a missing-run-directory harness failure and correctly refused a host convenience wrapper that disabled the sandbox before product assertions. Neither failure changed the placement model. See the versioned `receipts/placement-targets-20261024` evidence.

@@ -1,3 +1,4 @@
+import { validatePlacementTargets, assessPlacementTargets } from './placement-constraints.js';
 import { validateProject, SURFACES } from './core.js';
 import { compareIntervention, summarizeEffects } from './intervention-study.js';
 import { validateStudy, DEFAULT_STUDY } from './study-contract.js';
@@ -25,7 +26,7 @@ export function validatePlacementQuery(project, query) {
   const study = query.study ?? project.infiltrationStudy ?? DEFAULT_STUDY;
   validateStudy(study);
   return {eligibleCells:[...query.eligibleCells].sort((a,b)=>a-b),maxEdits:query.maxEdits,
-    surface:query.surface,metric:query.metric,subset:query.subset,study:structuredClone(study)};
+    surface:query.surface,metric:query.metric,subset:query.subset,study:structuredClone(study),targets:validatePlacementTargets(project,query.targets)};
 }
 
 function variants(query) {
@@ -66,11 +67,12 @@ export function comparePlacements(project, input) {
     if(candidates.length!==rates.length)throw Error('A source-supported hypothesis was not evaluated');
     const metrics=Object.fromEntries(Object.keys(PLACEMENT_METRICS).map(key=>[key,summarizeEffects(candidates.map(c=>c.metrics[key].delta))]));
     const worseningCells=project.proposal.map((_,cellIndex)=>({cellIndex,...summarizeEffects(candidates.map(c=>c.peakDeltaMm[cellIndex]))})).filter(c=>c.max>1e-8);
-    return {cells:[...cells],candidates,metrics,worseningCells,score:metrics[query.metric].max};
+    return {cells:[...cells],candidates,metrics,worseningCells,score:metrics[query.metric].max,localTargets:assessPlacementTargets(candidates,query.targets)};
   });
   plans.sort((a,b)=>a.score-b.score||a.cells.length-b.cells.length||a.cells.join(',').localeCompare(b.cells.join(',')));
-  const minimum=plans[0].score,tieGuard=1e-8*Math.max(1,Math.abs(minimum));
-  return {...context,status:'compared',ratesMmHr:rates,sourceAffected:structuredClone(original.affected),plans,best:plans.filter(p=>Math.abs(p.score-minimum)<=tieGuard).map(p=>p.cells),tieGuard,
+  const qualifying=plans.filter(p=>p.localTargets.meets);
+  const minimum=qualifying[0]?.score,tieGuard=minimum===undefined?0:1e-8*Math.max(1,Math.abs(minimum));
+  return {...context,status:'compared',ratesMmHr:rates,sourceAffected:structuredClone(original.affected),plans,best:qualifying.filter(p=>Math.abs(p.score-minimum)<=tieGuard).map(p=>p.cells),tieGuard,qualifyingCount:qualifying.length,
     adoptionBlockedByProposalEvidence:project.observations.some(o=>o.scenario==='proposal'),
     semantics:'Worst additional change from the current proposal across the fixed hypotheses from the unchanged source study. This is a finite comparison over declared eligible cells, not a field recommendation or an optimum outside this set.'};
 }
@@ -81,5 +83,10 @@ export function adoptPlacement(project, input, cells, expectedSignature) {
   if(expectedSignature!==placementSignature(project))throw Error('The project changed; compare placements again before adoption');
   if(!Array.isArray(cells)||cells.length>query.maxEdits||new Set(cells).size!==cells.length||cells.some(i=>!query.eligibleCells.includes(i)))throw Error('Choose an evaluated eligible placement');
   if(cells.length&&project.observations.some(o=>o.scenario==='proposal'))throw Error('Proposal-assigned observations must stay with their observed geometry. This candidate can be inspected, but cannot replace that proposal without a separately prepared evidence workspace');
+  if(query.targets.length){
+    const report=comparePlacements(project,query);
+    const selected=report.plans.find(p=>p.cells.join(',')===[...cells].sort((a,b)=>a-b).join(','));
+    if(!selected?.localTargets.meets)throw Error('This placement does not meet every declared local target');
+  }
   return validateProject(edited(project,query,cells));
 }
