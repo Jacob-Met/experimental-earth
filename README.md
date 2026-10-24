@@ -86,6 +86,10 @@ Cross-event receiving composed with main `3a0eef61`: **63 native tests and 25 ac
 
 The **collected-runoff evidence** panel compares source-attributed collection volumes against explicit outlet coefficients using the existing solver's cumulative edge outflow. Record the event, complete-boundary collection arrangement, time interval, original units and evidence role. Calibration volumes order candidates; held-aside volumes challenge them without changing that order. The record stays bound to its observed site and weather, survives ordinary project export/import and reload, and never adopts an outlet setting. See [Collected-runoff evidence](docs/OUTLET_EVIDENCE.md) for interval interpolation, source binding, controls and physical limits.
 
+## Compare joint soil and outlet explanations
+
+The **joint evidence** panel compares 2–12 explicit infiltration/outlet pairs against collected runoff and selected same-event depth readings. Its prediction plane exposes equal-volume explanations with different ponding depths; the full table keeps each reading's native units, tolerance, role and interpolation brackets. No combined score ranks unlike quantities, and held-aside evidence never chooses a pair. Source changes retire the comparison until the association is reviewed. See [Joint soil and outlet evidence](docs/JOINT_EVIDENCE.md) for the authored ambiguity control, ordinary export/reopen workflow and scientific limits.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.

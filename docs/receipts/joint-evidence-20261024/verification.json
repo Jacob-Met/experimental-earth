@@ -1,0 +1,83 @@
+{
+  "schema": "experimental-earth.receiving-receipt/1",
+  "outcome": 32,
+  "base": "c951f3f4d0c08f68a1ce93c682617caa11d879aa",
+  "environment": {
+    "host": "cursor",
+    "deviceId": "a8f94be0-1322-43bf-ad1a-3819255dd89c",
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47",
+    "sandbox": "Maintained helper admits namespace, PID/network namespaces, Seccomp-BPF and TSYNC"
+  },
+  "verification": [
+    {
+      "command": "node --test tests/*.test.mjs",
+      "passed": 169,
+      "failed": 0
+    },
+    {
+      "command": "CHROME_BIN=/opt/google/chrome/chrome BROWSER_RUN_DIRECTORY=/tmp/hamon-8879578347dd-earth-joint-r5/receiving node tests/browser.receiving.mjs",
+      "passedGroups": 63,
+      "exceptions": []
+    }
+  ],
+  "sourceSha256": {
+    "joint-evidence-contract.js": "4ce1907dbfdb1965849869464f5b319f34dcc3d9df00309f9158f967ee0a8cd3",
+    "joint-evidence.js": "255654307a35870c62e951d9d8b68dfb78509e8f1daead182b752a0c23e1b14a",
+    "joint-evidence-panel.js": "2fd25789f1ef583e607d7388364fe56cbbb4f889ba1d9cbb57416697417d4f01",
+    "joint-evidence-plot.js": "d80278300e045a3b93496d8056555ec51d22cceccdfdae0bed2773691a2785c5",
+    "tests/joint-evidence.test.mjs": "10ae2fc51a9ce2541c8557a84f601d66e63d001064b6da2e9bbfcd7bb3e13dfc",
+    "tests/joint-evidence.receiving.mjs": "d8f95fda0d9562817e0b48113c3f801972b7fadc71963a1b499460c4f0ca6b07",
+    "examples/joint-evidence-ambiguity.json": "a2e397e0fac2b9850d0ad4c6e43502374b5a42eab7176c938e0751bb4f663b95",
+    "outlet-evidence-contract.js": "4dd93c1aa10689d63ded15270b9ebe8d270ceec4788a3eae7a1da1d631d63b3c",
+    "core.js": "80b679a7f5796789267de8a7d603e98953d52f44d703623aaf0a2fae708af7e4",
+    "app.js": "218bd73ac13ab45f387c6917fdab464df48e1d3f8288cb8c51c06d648a116dea",
+    "styles.css": "e7c4232d1d831bb905131c32816ea0d4408ac164587054f3cfe92341bdff0fee",
+    "tests/browser.receiving.mjs": "e312c5bd0d440094318251394ccd9c7f93442320d79c385fbd05a856d068c75c",
+    "README.md": "ab3eba670f7dec953894812c99c06f3b35a917adf153408d6bfe782866504339",
+    "docs/JOINT_EVIDENCE.md": "e70096bf2164aaa61ac99bfc1bd4f7d08c42c3a42fb451ee67594c8826d73d62"
+  },
+  "review": {
+    "peer": "skill_translation independently reviewed engine/source association and UI/plot. Imported duration inconsistency found and fixed with regression; no remaining blocker.",
+    "root": "Analytic two-pair equal-volume control; full current-source native and maintained browser course. Root visually inspected actual1280/390 joint results. Mobile min-content expansion fixed; receiving now asserts physical viewport width, scroll containment and scale1, allowing desktop scrollbar."
+  },
+  "history": [
+    {
+      "run": "earth-joint-r1",
+      "nativePassed": 143,
+      "browserCoursePassed": true,
+      "qualification": "Before terrain and rain timeline composition; visual review found a mobile downscale missed by width-vs-innerWidth assertion."
+    },
+    {
+      "run": "earth-joint-r2",
+      "nativePassed": 151,
+      "browserCoursePassed": false,
+      "reason": "New layout assertion incorrectly required desktop clientWidth to include its15px scrollbar; no page exception."
+    },
+    {
+      "run": "earth-joint-r3",
+      "browserGroupsPassed": 58,
+      "qualification": "Fixed responsive layout/receiving on terrain composition."
+    },
+    {
+      "run": "earth-joint-r4",
+      "nativePassed": 160,
+      "browserGroupsPassed": 60,
+      "qualification": "Current rain-attribution timeline and terrain preserved."
+    },
+    {
+      "run": "earth-joint-r5",
+      "nativePassed": 169,
+      "browserGroupsPassed": 63,
+      "sourceFilesUnchanged": 89,
+      "qualification": "Composed and received current ponding replay alongside joint evidence; all retained source unchanged after receiving."
+    }
+  ],
+  "remoteEvidenceDirectory": "/tmp/hamon-8879578347dd-earth-joint-r5",
+  "limits": [
+    "Authored analytic controls, not field measurement or physical validation.",
+    "Event association and held-aside independence are user declarations.",
+    "No cloud/provider qualification, installed application or deployment claimed.",
+    "No GitHub Actions run is claimed."
+  ]
+}
