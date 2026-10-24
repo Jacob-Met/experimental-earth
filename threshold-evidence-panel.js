@@ -1,0 +1,39 @@
+import {prepareThresholdEvidence,compareThresholdEvidence} from './threshold-evidence.js';
+import {thresholdContext} from './threshold-evidence-contract.js';
+import {DEFAULT_STUDY} from './study-contract.js';
+const node=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
+export function mountThresholdEvidence({getProject,replaceProject,notice}){
+ const panel=node('section','');panel.id='threshold-evidence';panel.className='panel study';
+ panel.innerHTML=`<h2>What did the water level rule out?</h2><p>Record a sourced lower or upper bound when an exact depth was not measured. Both relations include equality. Bound uncertainty expands the admissible side: at least T accepts depths ≥ max(0, T − uncertainty); at most T accepts depths ≤ T + uncertainty. This does not infer a crossing or continuous monitoring between observations.</p>
+ <p id="threshold-context" class="mini-note"></p><label class="input-label">Event reference<input id="threshold-event" maxlength="200"></label>
+ <div class="input-pair"><label>Observed cell<select id="threshold-cell"></select></label><label>Event minute<input id="threshold-minute" type="number" min="0" step="any"></label></div>
+ <div class="input-pair"><label>Observed relation<select id="threshold-relation"><option value="at-least">At least (inclusive lower bound)</option><option value="at-most">At most (inclusive upper bound)</option></select></label><label>Marked depth, mm<input id="threshold-depth" type="number" min="0" max="1000" step="any"></label></div>
+ <div class="input-pair"><label>Bound uncertainty, mm (explicitly enter 0 if exact)<input id="threshold-uncertainty" type="number" min="0" max="1000" step="any"></label><label>Evidence role<select id="threshold-role"><option value="calibration">Calibration</option><option value="challenge">Held aside</option><option value="unassigned">Unassigned</option></select></label></div>
+ <label class="input-label">Observation source and method<input id="threshold-source" maxlength="300"></label>
+ <div class="obs-actions"><button id="threshold-add" type="button">Retain this bound</button><button id="threshold-clear" type="button">Clear this threshold record</button><button id="threshold-compare" type="button">Compare saved infiltration hypotheses</button></div>
+ <p id="threshold-status" role="status"></p><div id="threshold-readings"></div><div id="threshold-results"></div>`;
+ document.querySelector('.observations').before(panel);const $=id=>panel.querySelector('#'+id);let signature='';
+ const number=id=>{const value=$(id).value;if(value.trim()==='')throw Error('Enter all numeric fields, including bound uncertainty');return Number(value);};
+ function invalidate(){ $('threshold-status').dataset.state='not-compared'; $('threshold-results').replaceChildren();$('threshold-status').textContent='Compare again after changing the source, study or retained bounds.'; }
+ $('threshold-add').addEventListener('click',()=>{try{
+  const p=getProject(),study=p.infiltrationStudy??DEFAULT_STUDY,old=p.thresholdEvidence,eventRef=$('threshold-event').value.trim();
+  if(old&&(old.contextJson!==thresholdContext(p,study.target)||old.target!==study.target||old.eventRef!==eventRef))throw Error('Existing bounds belong to a different source/event. Export that project before clearing its threshold record; no automatic reassociation is allowed.');
+  const reading={cellIndex:number('threshold-cell'),minute:number('threshold-minute'),relation:$('threshold-relation').value,thresholdMm:number('threshold-depth'),uncertaintyMm:number('threshold-uncertainty'),source:$('threshold-source').value.trim(),use:$('threshold-role').value};
+  const next=structuredClone(p);next.thresholdEvidence=prepareThresholdEvidence(p,study.target,eventRef,[...(old?.readings??[]),reading]);replaceProject(next);$('threshold-source').value='';notice('One-sided observation retained with its source geometry and event.');
+ }catch(error){notice(error.message);$('threshold-status').textContent=error.message;}});
+ $('threshold-clear').addEventListener('click',()=>{const next=structuredClone(getProject());delete next.thresholdEvidence;replaceProject(next);$('threshold-event').value='';});
+ $('threshold-compare').addEventListener('click',()=>{try{
+  const p=getProject(),r=compareThresholdEvidence(p);$('threshold-results').replaceChildren();$('threshold-status').textContent=r.status;$('threshold-status').dataset.state=r.status;
+  const host=$('threshold-results');if(!r.candidates.length)return;
+  host.append(node('p',r.semantics),node('p',`Calibration-compatible rates: ${r.compatibleRatesMmHr.join(', ')||'none'} mm/h. Remaining after held-aside checks: ${r.survivingRatesMmHr.join(', ')||'none'} mm/h. Unassigned readings do not filter.`));
+  for(const c of r.candidates){const card=node('article','');card.className='study-candidate';card.append(node('h3',`${c.rateMmHr} mm/h`));
+   for(const e of c.readings){const raw=p.thresholdEvidence.readings[e.index];card.append(node('p',`Bound ${e.index+1}, ${e.use}: modeled ${e.depthMm.toFixed(3)} mm; ${raw.relation} ${e.boundMm} mm after declared uncertainty — ${e.compatible?'compatible':'contradicted'}. ${e.method}, bracket ${e.beforeMinute}–${e.afterMinute} min. Source: ${raw.source}`));}host.append(card);
+  }
+  const detail=node('details','');detail.append(node('summary','Numerical comparison details'),node('p','A 1e-9 × max(1, predicted depth, effective bound) mm arithmetic guard admits equality near rounding precision. It is not additional measured uncertainty. No exact-depth residual or best-fit ranking is inferred.'));host.append(detail);
+ }catch(error){invalidate();$('threshold-status').textContent=error.message;notice(error.message);}});
+ function refresh(){const p=getProject(),study=p.infiltrationStudy??DEFAULT_STUDY,s=JSON.stringify(p);if(s!==signature){signature=s;invalidate();$('threshold-source').value='';$('threshold-minute').value='';$('threshold-depth').value='';$('threshold-uncertainty').value='';$('threshold-cell').replaceChildren();for(let i=0;i<p.width*p.height;i++){const option=node('option',`${String.fromCharCode(65+i%p.width)}${Math.floor(i/p.width)+1}`);option.value=String(i);$('threshold-cell').append(option);}$('threshold-cell').value=String(p.selectedIndex);$('threshold-event').value=p.thresholdEvidence?.eventRef??'';}
+  $('threshold-context').textContent=`Observed scenario: ${study.target}. Studied surface: ${study.surface}; rates ${study.ratesMmHr.join(', ')} mm/h. These bounds form a separate evidence record; numeric-depth notebook readings remain unchanged.`;
+  const host=$('threshold-readings');host.replaceChildren();for(const [i,r] of (p.thresholdEvidence?.readings??[]).entries())host.append(node('p',`${i+1}. Cell ${String.fromCharCode(65+r.cellIndex%p.width)}${Math.floor(r.cellIndex/p.width)+1}, minute ${r.minute}: ${r.relation} ${r.thresholdMm} mm, bound uncertainty ${r.uncertaintyMm} mm, ${r.use}. ${r.source}`));
+ }
+ return {refresh};
+}

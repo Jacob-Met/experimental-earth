@@ -1,3 +1,4 @@
+import {validateThresholdEvidence} from './threshold-evidence-contract.js';
 import { validateInternalBarriers, internalEdgeClosed } from './internal-barriers.js';
 import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
 /**
@@ -69,6 +70,7 @@ export function validateProject(project) {
   if (project.selectedIndex !== undefined && (!Number.isInteger(project.selectedIndex) || project.selectedIndex < 0 || project.selectedIndex >= width * height)) throw new Error('Selected cell out of range');
   validateStudyMetadata(project);
   validateOutletEvidence(project.outletEvidence);
+  validateThresholdEvidence(project.thresholdEvidence);
   validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
   validateRainOriginStudy(project.rainOriginStudy, width * height);
