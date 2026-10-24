@@ -1,4 +1,5 @@
-import { validateInternalBarriers, internalEdgeClosed } from './internal-barriers.js';
+import { validateInternalBarriers, internalEdgeClosed, internalEdgeCrest } from './internal-barriers.js';
+import { allocateCrestTransfers } from './crest-transfers.js';
 import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
 /**
  * EXPERIMENTAL EARTH / rain experiment core.
@@ -158,8 +159,16 @@ export function runRain(cells, width, height, weather, options = {}) {
       if (Math.abs(delta) < 1e-12) continue;
       const src = delta > 0 ? a : b;
       const dst = delta > 0 ? b : a;
-      const requested = Math.abs(delta) * weather.mobilityPerHour * dtHours;
-      if (requested > 0) { links.push({ src, dst, requested, edgeIndex }); proposedOut[src] += requested; }
+      const crest = internalEdgeCrest(cells, a, b);
+      // Preserve the literal legacy request for open links and inert low declarations.
+      const requested = crest === null ? Math.abs(delta) * weather.mobilityPerHour * dtHours :
+        Math.max(0, Math.max(headA, headB) - Math.max(Math.min(headA, headB), crest * 1000)) * weather.mobilityPerHour * dtHours;
+      if (requested > 0) {
+        const link = { src, dst, requested, edgeIndex };
+        if (crest !== null) link.stopDepthMm = Math.max(0,
+          Math.max(Math.min(headA, headB), crest * 1000) - cells[src].elevationM * 1000);
+        links.push(link); proposedOut[src] += requested;
+      }
     }
     for (const [i, count] of boundaries) {
       // Exterior outlet stage: cell ground minus a declared 10 mm drop.
@@ -168,8 +177,11 @@ export function runRain(cells, width, height, weather, options = {}) {
       if (requested > 0) { links.push({ src: i, dst: -1, requested }); proposedOut[i] += requested; }
     }
     const movement = Array(n).fill(0);
+    const crestTransfers = allocateCrestTransfers(water, links);
+    let transferIndex = 0;
     for (const { src, dst, requested, edgeIndex } of links) {
-      const capped = requested * Math.min(1, water[src] / proposedOut[src]);
+      const capped = crestTransfers?.[transferIndex] ?? requested * Math.min(1, water[src] / proposedOut[src]);
+      transferIndex++;
       tracer?.transfer(src, dst, capped, water[src]);
       origins?.transfer(src, dst, capped, water[src], edgeIndex);
       movement[src] -= capped;

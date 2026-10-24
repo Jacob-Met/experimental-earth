@@ -155,3 +155,7 @@ The ponding detail also reports **accumulated depth above threshold** in mm·min
 Select a cell and use **Walls and openings** below the paired site maps to close an internal connection or restore an opening in either scenario. Add a source or hypothetical assumption; dark map lines show closed edges. Water can reroute through remaining gaps, and all maintained rain comparisons and attribution consumers use the same connectivity. Declarations survive ordinary export/import, reload and copying the existing site into the proposal.
 
 Closed edges stay impermeable for the full calculation; wall height, overtopping, leakage and structural strength are outside this model. Exterior outlets retain their existing assumptions. Cross-storm comparisons require the same wall/opening geometry. See [Internal walls and openings](docs/INTERNAL_BARRIERS.md) for the representation and independently calculated controls.
+
+## Declared finite internal crests
+
+The wall/opening inspector also accepts a sourced absolute crest elevation in the site ground datum. Blue edges can carry modeled overflow above their declared crest. A donor-layer limiter shares upper storage with every competing outlet, while old open/closed projects retain their exact calculations. See [the model, time-step dependence and source limits](docs/INTERNAL_BARRIERS.md). This is a conceptual mechanism, not calibrated hydraulic or structural evidence.
