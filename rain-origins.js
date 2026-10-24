@@ -1,6 +1,7 @@
 /** Reverse rainfall attribution through the maintained solver's accepted events. */
 export const MAX_ORIGIN_CELL_STEPS = 250000;
 const FATES = new Set(['stored', 'absorbed', 'exit']);
+export const ORIGIN_HYPOTHESIS_SUBSETS = Object.freeze(['all', 'calibration', 'surviving']);
 
 export function validateRainOriginStudy(study, cellCount, durationMinutes = Infinity) {
   if (study === undefined) return null;
@@ -15,8 +16,12 @@ export function validateRainOriginStudy(study, cellCount, durationMinutes = Infi
       study.minute < 0 || study.minute > durationMinutes)) {
     throw new Error('Rainfall origin time must lie within the modeled event');
   }
+  if (study.hypothesisSubset !== undefined && !ORIGIN_HYPOTHESIS_SUBSETS.includes(study.hypothesisSubset)) {
+    throw new Error('Choose a supported rainfall-origin hypothesis subset');
+  }
   return { targetCells: [...cells].sort((a, b) => a - b), fate: study.fate,
-    ...(study.minute === undefined ? {} : { minute: study.minute }) };
+    ...(study.minute === undefined ? {} : { minute: study.minute }),
+    ...(study.hypothesisSubset === undefined ? {} : { hypothesisSubset: study.hypothesisSubset }) };
 }
 
 /**

@@ -1,12 +1,12 @@
 import { runRain, validateProject } from './core.js';
 import { validateRainOriginStudy } from './rain-origins.js';
 
-export function compareRainOrigins(project) {
+export function compareRainOrigins(project, { surfaceInfiltrationOverride } = {}) {
   validateProject(project);
   const study = validateRainOriginStudy(project.rainOriginStudy, project.width * project.height, project.weather.durationMinutes);
   if (!study) throw new Error('Choose a destination before explaining its rainfall origins');
   const run = cells => runRain(cells, project.width, project.height, project.weather,
-    { rainOrigins: study });
+    { rainOrigins: study, ...(surfaceInfiltrationOverride === undefined ? {} : { surfaceInfiltrationOverride }) });
   const existingRun = run(project.existing), proposalRun = run(project.proposal);
   const existing = existingRun.rainOrigins, proposal = proposalRun.rainOrigins;
   return { ...study, durationMinutes: project.weather.durationMinutes,
