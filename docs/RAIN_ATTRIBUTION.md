@@ -87,3 +87,35 @@ controls, ordinary project export/import, rejected-input preservation and a
 390-pixel layout. The same maintained browser owner and sandbox admission are
 used as the rest of the application. The course retains desktop and mobile
 images in its unique browser run directory.
+
+## Inspect temporary contributions
+
+The source attribution panel initially displays the final calculation step.
+Move the **Modeled time** control to inspect any exact retained step in both
+scenarios. Displayed rain, infiltration and boundary exit accumulate from the
+beginning; surface storage is the tagged amount still present at that time.
+The maps and destination table update together. The control selects saved
+steps without interpolating between them or claiming physical arrival time.
+
+In the fictional courtyard, rain originating at cell27 contributes about
+59.2624 liters of proposed-site surface storage at minute60, but none at
+minute240. This is a reproducible modeled example of transient storage hidden
+by the final map, not measured evidence.
+
+Programmatic callers can request a timeline with
+`compareRainTrace(project, {timeline: true})`. Direct solver callers use
+`rainTrace: {sourceCells, captureSteps: true}`. Tagged snapshots use the
+maintained replay shape `{minute, depthsMm, storedLiters, absorbedLiters,
+exitLiters}`, plus cumulative tagged rain and per-cell cumulative fate arrays.
+Here `depthsMm` is attributed volume divided by cell area, not total local water
+depth. Consumers must preserve that attribution label. Existing whole-water
+replay and threshold/exposure modules retain their own scope.
+
+Retention is capped at 250,000 cell-steps per scenario, including the initial
+snapshot. A direct request exceeding that cap is rejected before simulation.
+The paired consumer reports `timeline.status = 'not-retained'` and supplies
+ordinary final attribution instead; the interface hides the timeline and
+explains that the requested grid/time detail is too large. Within the cap,
+`timeline.status = 'retained'` provides independently owned arrays at every
+step, including a fractional final step. Project files still retain source
+inputs only, never these derived histories.

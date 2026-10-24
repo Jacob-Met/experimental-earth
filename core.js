@@ -76,7 +76,7 @@ export function runRain(cells, width, height, weather, options = {}) {
   const water = Array(n).fill(0);
   const peak = Array(n).fill(0);
   const cellArea = weather.cellSizeM ** 2;
-  const tracer = createRainTracer(n, cellArea, options?.rainTrace);
+  const tracer = createRainTracer(n, cellArea, options?.rainTrace, Math.ceil(weather.durationMinutes / weather.stepMinutes) + 1);
   const override = options?.infiltrationOverride;
   const surfaceOverride = options?.surfaceInfiltrationOverride;
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
@@ -178,7 +178,7 @@ export function runRain(cells, width, height, weather, options = {}) {
       peak[i] = Math.max(peak[i], water[i]);
     }
     const minute = Math.min(weather.durationMinutes, start + dtMinutes);
-    tracer?.endStep();
+    tracer?.endStep(minute);
     snapshots.push({ minute, depthsMm: water.slice(), storedLiters: water.reduce((a, b) => a + b, 0) * cellArea, absorbedLiters, exitLiters });
   }
   const storedLiters = water.reduce((a, b) => a + b, 0) * cellArea;
