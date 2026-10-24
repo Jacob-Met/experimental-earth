@@ -2,6 +2,7 @@ import { SURFACES } from './core.js';
 import { DEFAULT_STUDY, validateStudy } from './study-contract.js';
 import { compareInfiltration } from './infiltration-study.js';
 import { chooseInfiltrationQuestion } from './infiltration-question.js';
+import { mountResolutionPanel } from './infiltration-resolution-panel.js';
 
 const $ = id => document.getElementById(id);
 const number = n => n === null ? '—' : n.toLocaleString('en-US', {
@@ -50,8 +51,10 @@ export function evidenceControls(reading, changed) {
 
 export function mountInfiltrationPanel({ getProject, changed, notice, prepareReading }) {
   const button = $('compare-infiltration');
+  const resolution = mountResolutionPanel({ getProject, notice });
   let question = null;
   function clearQuestion() {
+    resolution.clear();
     question = null;
     $('find-infiltration-reading').disabled = true;
     $('prepare-infiltration-reading').hidden = true;
@@ -74,6 +77,7 @@ export function mountInfiltrationPanel({ getProject, changed, notice, prepareRea
     $('study-results').replaceChildren();
   }
   function show(report, project, study) {
+    resolution.enable();
     $('find-infiltration-reading').disabled = false;
     $('study-status').textContent = statuses[report.status];
     $('study-status').dataset.state = report.status;

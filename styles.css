@@ -18,6 +18,15 @@
 .study-mismatch{color:#963d22}
 .study-score,.study-counts{color:#34564c}
 .study-question-actions{justify-content:flex-start;margin:16px 0}
+.resolution-check{border-top:1px solid #d6e5dd;margin-top:20px;padding-top:16px;min-width:0}
+.resolution-check h3{font-size:1rem;margin:0 0 10px}
+.resolution-table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.72rem;line-height:1.5;margin:16px 0}
+.resolution-table caption{text-align:left;font-weight:600;margin-bottom:8px}
+.resolution-table th,.resolution-table td{padding:8px 5px;text-align:left;vertical-align:top;border-bottom:1px solid #d6e5dd;overflow-wrap:anywhere}
+.resolution-table thead{background:#edf5ef}
+.resolution-candidate{padding:12px 0;border-bottom:1px solid #d6e5dd;font-size:.8rem;overflow-wrap:anywhere}
+.resolution-candidate summary{cursor:pointer;color:#34564c;line-height:1.5}
+.resolution-candidate ul{padding-left:20px}.resolution-candidate li{padding:5px 0}
 .observation-import{border:1px solid #d6e5dd;border-radius:10px;padding:16px;margin:20px 0;background:#f8fbf8}
 .observation-import h3{font-size:1rem;margin:0 0 10px}
 .observation-import .obs-actions{justify-content:flex-start}

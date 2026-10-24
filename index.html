@@ -62,6 +62,13 @@
           <div id="study-results"></div>
           <div class="obs-actions study-question-actions"><button id="find-infiltration-reading" type="button" class="subtle" disabled>Find a separating depth reading</button><button id="prepare-infiltration-reading" type="button" class="subtle" hidden>Prepare held-aside reading</button></div>
           <p id="infiltration-question" class="mini-note" role="status" aria-live="polite"></p>
+          <section class="resolution-check" aria-labelledby="resolution-title">
+            <h3 id="resolution-title">Does the calculation interval change the conclusion?</h3>
+            <p class="mini-note">After comparing rates, repeat their reading predictions at finer supported intervals. This can expose numerical sensitivity before a modeled fit is treated as evidence about the place.</p>
+            <button id="compare-resolution" type="button" class="subtle" disabled>Check finer calculation intervals</button>
+            <p id="resolution-status" class="mini-note" role="status" aria-live="polite" data-state="not-compared"></p>
+            <div id="resolution-results"></div>
+          </section>
           <p class="mini-note">Readings must describe this same place, scenario and weather event. Assign their roles in the notebook below; legacy or unassigned readings remain excluded. A ± band is your stated tolerance, not a probability or confidence interval. Off-step predictions interpolate between solver snapshots; changing assumptions or roles clears the comparison. Reusing held-aside readings to tune candidates no longer provides an independent challenge.</p>
         </section>
         <section class="panel observations" aria-labelledby="observations-title"><div class="section-heading"><div><span class="eyebrow">06 / CLOSE THE LOOP</span><h2 id="observations-title">Test it against a reading</h2></div><div class="obs-actions"><button type="button" id="suggest" class="subtle">Suggest a location ↗</button><button type="button" id="suggest-infiltration" class="subtle">Probe infiltration assumption ↗</button></div></div>

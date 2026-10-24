@@ -36,6 +36,12 @@ After comparing candidates, **Find a separating depth reading** scans the retain
 
 **Prepare held-aside reading** fills only the selected cell, time, scenario and evidence role in the notebook form and switches the brush to Inspect. It neither paints the site nor creates evidence. A reading is retained only after the user enters a measured value, uncertainty and source and submits the form. Notebook inputs accept fractional values without imposing the solver's time interval on physical observations.
 
+### Check numerical time-step sensitivity
+
+After comparing candidate rates, **Check finer calculation intervals** repeats the same reading predictions at the saved interval, half that interval and one quarter, bounded by the solver's one-minute minimum. Duplicate intervals are evaluated once. It shows each reading's band classification, calibration-compatible rates, tolerance-aware closest calibration candidates and candidates still compatible after held-aside readings. Expand a rate to inspect full predictions, residuals, source and interpolation brackets. The saved project, weather and readings stay unchanged; edits retire the displayed diagnostic.
+
+This finite sensitivity check does not establish convergence, an error bound or physical validity. Unchanged decisions can coexist with changed predictions. Surface-transfer discretization and interpolation across a rainfall change can both affect results. Held-aside values never influence calibration ranking. At the one-minute minimum, without assigned readings or a matching surface, or above two million estimated cell-steps, the diagnostic gives an explicit uncomputed result. The work estimate is grid cells × candidate rates × summed time steps and bounds interactive work, not numerical accuracy.
+
 ### Import a sourced depth table
 
 The notebook's **Preview CSV** accepts UTF-8 observation tables up to 128 KB. Required columns are `cell,minute,depth,uncertainty,unit,source`; optional `scenario` (`existing`, `proposal`, `unassigned`) and `use` (`calibration`, `challenge`, `unassigned`) make evidence assignment explicit. Missing assignments remain notebook-only. Cell labels such as `B2` refer to the current grid; time is minutes since the modeled event began. `mm`, `cm` and `in` apply to both depth and ± uncertainty in each row. Decimal values use a period; quoted commas, escaped double quotes and multiline source text are supported.
