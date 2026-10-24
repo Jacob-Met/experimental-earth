@@ -200,3 +200,12 @@ at one original UTC instant. Selecting a centre preserves the original scenario
 detail and witnesses. Reopened investigations have their own independent map.
 See [spatial inspection](SUN_PATH_SPATIAL.md) for controls, category semantics,
 limits and the authored site control.
+
+## Compare explicitly selected dates
+
+The [selected-date investigation](SUN_PATH_DATES.md) keeps the original site,
+location, orientation, UTC starting clock and elapsed period while comparing
+one to seven additional calendar dates. It retains the original course, complete
+per-date categories, selected-date spatial witnesses and a separate input-only
+save/reopen path. The selected dates do not establish an annual total or a
+continuous seasonal interval.
