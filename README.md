@@ -159,3 +159,13 @@ Closed edges stay impermeable for the full calculation; wall height, overtopping
 ## Declared finite internal crests
 
 The wall/opening inspector also accepts a sourced absolute crest elevation in the site ground datum. Blue edges can carry modeled overflow above their declared crest. A donor-layer limiter shares upper storage with every competing outlet, while old open/closed projects retain their exact calculations. See [the model, time-step dependence and source limits](docs/INTERNAL_BARRIERS.md). This is a conceptual mechanism, not calibrated hydraulic or structural evidence.
+
+## Separate the parts of a proposal
+
+**Which parts of the proposal work together?** lets you select some physically edited cells as component A; remaining edited cells form B. The workbench runs the existing site, A only, B only and the complete proposal under identical weather and default authored surface capacities. Each cell carries all of its changes together, including canonical east/south closed edges and finite crest declarations. An edge belongs to its west/north cell even when it is inspected from the opposite side. Source-label-only edits are excluded.
+
+The table shows all four modeled quantities and signed differences from existing. Interaction is `full − A − B + existing`: the portion of the full effect not explained by adding the separate effects. A negative interaction means a smaller modeled quantity than that additive sum; whether that is useful depends on the quantity and location. For maxima, nonzero interaction can arise solely from a change in which cell or time supplies the maximum; it does not by itself establish water exchange between components. Expand the result to inspect final depth and interaction at every cell, including cells outside the edited area.
+
+This is a four-case model experiment, not a causal estimate from observations, an optimized plan or an inference-calibrated recommendation. It does not use a selected infiltration hypothesis set or automatically adopt a change. Existing plans, observations and provenance remain unchanged. Select at least one edited cell and leave another in B; calculations exceeding one million estimated cell-steps are refused. Results and the temporary partition clear on reopening, and changed project inputs clear results. Reopened saved plans can be partitioned and recomputed.
+
+Run `node tests/proposal-components.test.mjs` for analytic independent-cell, coupled-flow, canonical-edge, conservation, complement-symmetry, immutability and refusal controls. Run `CHROME_BIN=/opt/google/chrome/chrome node tests/proposal-components.receiving.mjs` for the dedicated actual-browser course using the maintained sandbox admission. Neither test course establishes environmental accuracy.

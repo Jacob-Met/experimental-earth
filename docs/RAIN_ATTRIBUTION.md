@@ -206,3 +206,81 @@ multiple exact times and fates, checks prefix conservation and future-forcing
 independence, and retains analytical initial-water and fractional-end controls.
 The browser course covers real keyboard movement, desktop/narrow maps, saved
 query reopening, fate changes, stale-time recovery and between-step refusal.
+
+### Carry unresolved soil hypotheses into the origin explanation
+
+Open **Compare unresolved soil assumptions** inside the destination-origins
+panel. The comparison uses the saved infiltration investigation: one observed
+site, one surface and 2–9 declared capacity values. It offers the same meaningful
+subsets as the maintained evidence API: all supplied rates without filtering,
+rates compatible with calibration bands, or rates compatible with calibration
+and held-aside bands. No rate is adopted and the ordinary default-capacity
+explanation remains available through its existing button.
+
+`compareRainOriginHypotheses(project, {study, subset})` calls the maintained
+`compareInfiltration` for admission when requested. Missing calibration or
+held-aside evidence, no compatible candidate, and absence of the studied surface
+from the evidence site remain explicit refusals. In particular, a new proposed
+material cannot acquire evidence support from an existing site where it is
+absent. Exploring its supplied rates without filtering is still possible. The
+consumer never substitutes the closest contradicted model or treats an error
+ranking as a probability distribution.
+
+Every retained rate is passed through `compareRainOrigins` using the solver's
+existing `surfaceInfiltrationOverride`. That rate applies to every cell of its
+surface in both sites. Other surfaces retain their default capacities. There is
+no new hydraulic model or independently reconstructed transfer history. The
+destination, fate, exact modeled minute and forcing stay identical across the
+comparison. Each candidate retains its actual paired origin arrays, rainfall,
+starting inventory, total selected fate and conservation residual.
+
+The result provides per-origin and total minimum/maximum values. **Paired change
+ranges subtract proposal minus existing within each identical rate.** They do
+not subtract independently chosen extrema from different hypotheses. For an
+authored courtyard control, a depth band of 42±3 mm at F4/minute60 admits these
+three turf capacities, while held-aside evidence is still absent:
+
+| Turf capacity (mm/h) | G4 rain reaching existing F4 (L) | G4 rain reaching proposed F4 (L) | Paired change (L) |
+| --- | ---: | ---: | ---: |
+| 3 | 33.910575 | 32.201379 | −1.709197 |
+| 9 | 30.191520 | 28.676301 | −1.515219 |
+| 22 | 21.957726 | 20.997042 | −0.960684 |
+
+Every actual paired hypothesis reduces that source contribution. Mixing the
+proposal maximum from one rate with the existing minimum from another would
+invent an increase exceeding 10 L. The implementation retains the actual paired
+range instead. These are authored model controls, not field observations.
+
+Switching the hypothesis selector updates the existing paired maps and totals.
+The color scale spans both sites and every included hypothesis, so changing the
+selection does not silently change the meaning of a color. Selecting an origin
+shows its marginal ranges, paired change range and per-hypothesis table. Each
+displayed map is one actual conserved result. A collection of marginal minima
+or maxima need not describe any one hypothesis and must not be assembled into
+a new flow map or summed into an alternative inventory.
+
+The optional `rainOriginStudy.hypothesisSubset` stores only the requested subset.
+The project already stores the rate hypotheses, evidence, destination and time;
+derived candidates and ranges are not saved. Reopening requires recomputation.
+Model, rate or evidence edits invalidate a displayed hypothesis comparison.
+Inspected origin and selected rate are view state; time and modeled-end changes
+retain them while recomputing. Fate changes require a fresh comparison.
+
+Before evidence fitting, the consumer checks both the existing 250,000
+cell-step limit per origin run and a conservative 2,000,000 cell-step aggregate
+limit. The latter includes two paired runs per declared rate and, when evidence
+filtering is requested, one evidence run per declared rate. Filtering may reduce
+actual work but cannot relax admission. An early or minute-zero query still
+uses the full-event budget. Refusal produces no partial envelope.
+
+Native controls cover independent forward tags under each rate, actual internal
+walls, all fates and fractional times; hand-computed closed-site storage and
+absorption; the paired-extrema counterexample; missing/contradictory evidence;
+absent materials; input order; future independence; persistence and unchanged
+ordinary output. The browser receiver exercises the integrated selector,
+keyboard inspection, common color scale, time/fate controls, reload, default
+mode, evidence invalidation, refusals and desktop/narrow layout.
+
+The range spans only the finite supplied hypotheses at the saved numerical
+resolution. It is not a confidence interval, a bound on real water origins,
+proof of soil transfer between sites, or a source-removal counterfactual.
