@@ -55,6 +55,14 @@ B1,60,0.5,0.02,in,Example held-aside note,existing,challenge
 ```
 
 Preview shows the interpreted millimetres and roles without changing the notebook. **Add previewed readings** appends the whole validated table once. Any bad row, unknown unit, missing source, out-of-grid cell, impossible time or history-limit overflow refuses the entire import. A changed project invalidates the preview. The supplied filename, starting row and original quantities remain alongside each reading through export/import and reload; conversions are checked when reopening projects. Reimporting identical supplied file/row evidence is refused locally. Provenance and user-assigned roles do not establish physical truth or statistical independence. No file contents leave the local application.
+## Challenge a hypothesis across storms
+
+The **Do the hypotheses survive another storm?** panel transfers the finite infiltration alternatives from the current calibration study to a separately saved storm project. Give distinct event references, load a second project with readings explicitly held aside for the same observed scenario, and compare. Geometry, surfaces, grid scale, transfer/outlet assumptions and solver step must match; rainfall and event duration may differ. The second event never changes calibration ordering. A candidate must satisfy calibration, any first-event holdout, and the second event's stated bands to survive.
+
+Expand each candidate to inspect second-event predictions, signed residuals, interpolation brackets and measurement sources. Export two-event evidence to retain both complete project snapshots, chosen candidates and references; reopening recomputes results and does not replace the active workspace. Changing workspace assumptions clears the displayed comparison. Second-event inputs are kept only in memory until exported. Event references are user declarations, not verified event identity or proof of independent measurement. Agreement does not validate the physical model or infer a unique soil property.
+
+
+Cross-event receiving composed with main `3a0eef61`: **63 native tests and 25 actual-browser groups passed**, including visually inspected desktop and 390-pixel cross-event results with active sandbox admission. See the [qualified cross-event receipt](docs/receiving/cross-event-71a7-20261024/README.md) for exact source, environment, historical runs and scientific boundaries.
 
 ## Start here
 
