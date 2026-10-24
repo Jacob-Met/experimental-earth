@@ -54,7 +54,7 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
     if (scope !== 'cell') {
       const membership = node('details', ''); membership.append(node('summary', `Inspect the same ${members.length} cells in both scenarios`), node('p', members.map(label).join(', ')));
       host.append(membership);
-      if (scope === 'edited') host.append(node('p', 'This footprint includes directly changed elevations or surfaces, plus both cells adjoining a changed wall or opening. Downstream locations affected by those edits may lie outside it.', 'mini-note'));
+      if (scope === 'edited') host.append(node('p', 'This footprint includes directly changed elevations or surfaces, plus both cells adjoining a changed wall or finite crest or opening. Downstream locations affected by those edits may lie outside it.', 'mini-note'));
     }
     const table = document.createElement('table'); table.className = 'local-budget-table';
     const caption = node('caption', `Whole-event ${scope === 'cell' ? 'cell' : 'area'} water balance`); table.append(caption);

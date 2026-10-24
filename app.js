@@ -68,10 +68,10 @@ function gridInto(target, result) {
     btn.dataset.grid=target;
     const depthLabel=view==='surface' ? `${Math.round(cell.elevationM*100)} cm` : `${numeric(mm)} mm`;
     btn.innerHTML=`<i class="water"></i><b>${nameCell(index)}</b><span>${depthLabel}</span>`;
-    for (const side of ['east', 'south']) if (cell.internalBarriers?.[side]?.closed) {
-      const line = document.createElement('i'); line.className = 'internal-barrier internal-barrier-' + side;
+    for (const side of ['east', 'south']) if (cell.internalBarriers?.[side]?.closed || typeof cell.internalBarriers?.[side]?.crestElevationM === 'number') {
+      const line = document.createElement('i'); line.className = 'internal-barrier internal-barrier-' + side + (typeof cell.internalBarriers?.[side]?.crestElevationM === 'number' ? ' internal-crest' : '');
       line.setAttribute('aria-hidden', 'true'); btn.append(line);
-      btn.setAttribute('aria-label', btn.getAttribute('aria-label') + ', closed ' + side + ' edge');
+      btn.setAttribute('aria-label', btn.getAttribute('aria-label') + (typeof cell.internalBarriers?.[side]?.crestElevationM === 'number' ? ', finite crest ' + cell.internalBarriers[side].crestElevationM + ' meters on ' + side + ' edge' : ', closed ' + side + ' edge'));
     }
     btn.addEventListener('click',()=>applyBrush(target,index));fragment.appendChild(btn);
   }

@@ -108,3 +108,5 @@
 .placement-table th,.placement-table td { text-align:left; padding:8px; border-bottom:1px solid #cbd9d0; }
 .placement-detail { margin-top:16px; border-top:1px solid #cbd9d0; padding-top:12px; }
 #placement-search p,#placement-search li { overflow-wrap:anywhere; }
+
+.cell .internal-crest{background:#126379}

@@ -1,0 +1,24 @@
+{
+  "base": "aeaa12af91c3b9a9b442eafaaff2a2ceed9ac67f",
+  "loadedSourceHashesMatched": 68,
+  "targetFiles": 71,
+  "native": {
+    "focused": 7,
+    "composed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "command": "node --test --test-isolation=none tests/threshold-evidence.test.mjs tests/rain-origin-time.test.mjs"
+  },
+  "independentReview": {
+    "agent": "mechanism",
+    "groups": 7,
+    "retainedEnvelopeContextMismatchCorrected": true
+  },
+  "actualBrowserGroups": 4,
+  "sandboxAdmitted": true,
+  "pixelsInspected": [
+    "1440px desktop",
+    "390px narrow"
+  ],
+  "limits": "Inclusive one-sided depth evidence with declared uncertainty; authored grid controls, no invented exact readings, physical parameter identification, crossing time or continuous monitoring."
+}
