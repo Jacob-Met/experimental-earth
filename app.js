@@ -8,6 +8,7 @@ import { mountObservationMap } from './observation-map-panel.js';
 import { interpolateDepth } from './infiltration-study.js';
 import { mountInternalBarriers } from './internal-barrier-panel.js';
 import { mountPondingPanel } from './ponding-panel.js';
+import { mountRoutePondingPanel } from './route-ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -43,7 +44,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); stormIntensityPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); stormIntensityPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -232,6 +233,7 @@ const rainTracePanel = mountRainTrace({ getProject: () => project, changed: reru
 const terrainImporter = mountTerrainImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const pondingPanel = mountPondingPanel({getProject: () => project, getResults: () => results});
+const routePondingPanel = mountRoutePondingPanel({getProject: () => project, getResults: () => results});
 const jointEvidencePanel = mountJointEvidence({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const jointEventPanel = mountJointEventChallenge({ getProject: () => project, notice });

@@ -152,6 +152,12 @@ Crossings and intermediate depths use linear interpolation between retained solv
 
 The ponding detail also reports **accumulated depth above threshold** in mm·min: the area under the positive depth-minus-threshold curve, using the same linear interpolation. It distinguishes a deep brief episode from a shallow long one without assigning a damage or safety score. If the first or last retained snapshot is still above threshold, the panel explicitly states that earlier onset or later clearance is unknown outside the modeled horizon.
 
+## Inspect ponding across an authored connected route
+
+Below **Ponding through time**, declare a sequence of different, edge-adjacent grid cells such as D3 E3 F3 and select **Inspect declared route**. The review reuses the replay minute and depth threshold. It identifies the deepest listed cell at that minute and computes the continuous modeled intervals when **all** listed cells are simultaneously at or below the selected threshold. Existing and proposed sites are evaluated under the same weather; their displayed duration difference is arithmetic, not a safety conclusion. The same source snapshot interpolation used by the individual-cell workbench is preserved. The route is a session-only question; project export retains the underlying site, not the unsourced route declaration.
+
+**Limit:** This does not show a moving person's passage along a path, independently measured depths, physical accessibility, flood safety or environmental calibration. Different arrival times, omitted cells, intra-step peaks and changing ground conditions can invalidate practical assumptions. Use sourced measurements and appropriate expertise for real-site decisions.
+
 ## Compare internal walls and openings
 
 Select a cell and use **Walls and openings** below the paired site maps to close an internal connection or restore an opening in either scenario. Add a source or hypothetical assumption; dark map lines show closed edges. Water can reroute through remaining gaps, and all maintained rain comparisons and attribution consumers use the same connectivity. Declarations survive ordinary export/import, reload and copying the existing site into the proposal.
