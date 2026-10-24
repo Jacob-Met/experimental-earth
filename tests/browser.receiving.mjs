@@ -41,6 +41,10 @@ try {
   function send(method,params={}){return new Promise((resolve,reject)=>{const id=++serial;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});}
   async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value;}
   await send('Runtime.enable'); await send('Page.enable');
+  // Repeatable test: discard only this test browser profile's previous workspace.
+  await evaluate("localStorage.clear()");
+  await send('Page.reload',{ignoreCache:true});
+  await delay(350);
   for(let n=0;n<30;n++){if(await evaluate("document.querySelectorAll('#existing-grid .cell').length")===48)break;await delay(120);}
   assert.equal(await evaluate("document.querySelectorAll('#existing-grid .cell').length"),48);
   assert.equal(await evaluate("document.querySelectorAll('#proposal-grid .cell').length"),48);
