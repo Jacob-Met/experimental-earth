@@ -12,6 +12,7 @@ import { receiveInfiltrationResolution } from './infiltration-resolution.receivi
 import { receiveOutletEvidence } from './outlet-evidence.receiving.mjs';
 import { receiveEventChallenge } from './event-challenge.receiving.mjs';
 import { receiveLocalWaterBudget } from './local-water-budget.receiving.mjs';
+import { receiveRainTrace } from './rain-trace.receiving.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const chromeBin = process.env.CHROME_BIN ?? (
   process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
@@ -96,6 +97,7 @@ try {
   await receiveOutletEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   const decisionVisuals = await receiveDecisionQuestion({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveLocalWaterBudget({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  await receiveRainTrace({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);
   return {checks:report,exceptions,dimensions:dims,decisionVisuals,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
   });
