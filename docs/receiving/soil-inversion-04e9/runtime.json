@@ -1,0 +1,11 @@
+{
+  "python": "3.12.14",
+  "node": "v24.19.0",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "logicalCpus": 9,
+  "sourceGenerationCost": null,
+  "externalBuildRequired": false,
+  "jitCost": "included in whole-process receiving; not separated",
+  "deployment": "not attempted"
+}

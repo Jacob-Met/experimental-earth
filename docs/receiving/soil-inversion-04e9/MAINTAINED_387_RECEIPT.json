@@ -1,0 +1,39 @@
+{
+  "sourceCommit": "387a4619f198b1f6d35a4b47085825d72388fc87",
+  "incumbentKernelGitBlob": "c04d2da604713870b1fcedf080d2b5d7c1b6cbc3",
+  "incumbentKernelSha256": "6d0d451a4a35a0997bc8432160324e7c4d0b8ec8dd844349741d545ba9419633",
+  "candidateKernelSha256": "8bc57f051eb7c505aa569e05abd78c1b81d4acca689a9e5dffd8a57c61186694",
+  "adapterSha256": "ad18d57b4589944b4173ac9472c195b44fb559d024bf80ebfd2b85ebaebdb940",
+  "receipt": {
+    "moved": "replace-kernel",
+    "how": "improve",
+    "scalar": 0.11973291348953045
+  },
+  "nativeExecutions": 3,
+  "reopenNativeExecutions": 0,
+  "semanticCases": 12,
+  "semanticDifferences": 0,
+  "maximumSemanticNumericDelta": 2.842170943040401e-14,
+  "wrongFastVeto": true,
+  "quota": {
+    "enabled": true,
+    "enrolled": true,
+    "limit": 30,
+    "reserved": 6,
+    "remaining": 24,
+    "journal_head": "be5c355a61c68fbfd4d1973bb0250d2cf445208492d6e4f01349dbec13634bca",
+    "unit": "evaluator-invocations",
+    "executed": null
+  },
+  "priorHandoffRace": "retained, explicitly unqualified",
+  "optimizedPython": {
+    "receipt": {
+      "moved": "replace-kernel",
+      "how": "improve",
+      "scalar": 0.31832231523551374
+    },
+    "nativeExecutions": 3,
+    "reopenNativeExecutions": 0,
+    "wrongFastVeto": true
+  }
+}

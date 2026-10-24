@@ -44,11 +44,18 @@ function ponded(initialMm, conductivityMmHr, driveMm, hours) {
   // f(F) decreases. This tighter upper bound also preserves tiny increments
   // after a large cumulative depth instead of exhausting the bisection budget.
   let hi = initialMm > 0 ? Math.min(dryStartBound, demand * (1 + driveMm / initialMm)) : dryStartBound;
+  let estimate = hi;
   for (let iteration = 0; iteration < 64; iteration++) {
+    const elapsed = integratedTimeDepth(initialMm, estimate, driveMm);
+    const residual = elapsed - demand;
+    if (residual < 0) lo = estimate;
+    else hi = estimate;
+    if (Math.abs(residual) <= demand * 8 * Number.EPSILON) return estimate;
+    const derivative = (initialMm + estimate) / (initialMm + estimate + driveMm);
+    const next = estimate - residual / derivative;
     const middle = lo + (hi - lo) / 2;
     if (middle === lo || middle === hi) break;
-    if (integratedTimeDepth(initialMm, middle, driveMm) < demand) lo = middle;
-    else hi = middle;
+    estimate = Number.isFinite(next) && next > lo && next < hi ? next : middle;
   }
   return lo + (hi - lo) / 2;
 }
