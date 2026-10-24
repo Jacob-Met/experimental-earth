@@ -158,12 +158,14 @@ $('import').addEventListener('change',async event=>{
   try {if(file.size>1_000_000)throw Error('Project file exceeds 1 MB limit');const parsed=JSON.parse(await file.text());validateProject(parsed);project=parsed;syncForm();rerun();notice('Validated project imported.');}
   catch(err){notice(`Import refused: ${err.message}`);}finally{event.target.value='';}
 });
-const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice,
-  prepareReading: question => {
+function prepareObservedReading(question) {
     project.selectedIndex = question.cellIndex;
     $('obs-minute').value = question.minute;
     $('obs-scenario').value = question.target;
     $('obs-use').value = 'challenge';
+    $('obs-depth').value = '';
+    $('obs-source').value = '';
+    if (question.uncertaintyMm !== undefined) $('obs-uncertainty').value = question.uncertaintyMm;
     brush = 'inspect';
     for (const el of document.querySelectorAll('[data-brush]')) {
       const active = el.dataset.brush === 'inspect';
@@ -171,13 +173,13 @@ const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, ch
     }
     rerun();
     $('obs-depth').focus();
-    notice('Location, time and evidence role prepared. Enter an actual reading and source to retain it.');
-  },
-});
+    notice('Location, time and evidence role prepared. Previous depth/source draft cleared to avoid attaching it to a different reading. Enter an actual reading and source.');
+}
+const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice, prepareReading: prepareObservedReading });
 const observationImporter = mountObservationImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const eventChallengePanel = mountEventChallengePanel({ getProject: () => project });
-const interventionPanel = mountInterventionPanel({ getProject: () => project, notice });
+const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading });
 const outletEvidencePanel = mountOutletEvidence({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 syncForm();rerun();
