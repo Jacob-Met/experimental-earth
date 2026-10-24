@@ -1,0 +1,3185 @@
+{
+  "sourceCommit": "4b867d01e60ce35da3c0e00f88a1b4d1ef382258",
+  "cases": [
+    {
+      "name": "open-step-1",
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 8,
+        "height": 6,
+        "weather": {
+          "rainMmHr": 36,
+          "stormMinutes": 19.5,
+          "durationMinutes": 40,
+          "stepMinutes": 1,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0.5,
+          "boundaryExitPerHour": 0.38
+        },
+        "existing": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "observations": [],
+        "selectedIndex": 27,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "options": {
+        "traceBudget": true,
+        "rainTrace": {
+          "sourceCells": [
+            0,
+            18,
+            27
+          ]
+        },
+        "rainOrigins": {
+          "targetCells": [
+            0,
+            18,
+            27
+          ],
+          "fate": "stored"
+        }
+      },
+      "resultSha256": "66342057a93a0e8477e8cc1503f7be4a85157eef2ddfcf0b184f3f8b05ef24c6"
+    },
+    {
+      "name": "open-step-5",
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 8,
+        "height": 6,
+        "weather": {
+          "rainMmHr": 36,
+          "stormMinutes": 19.5,
+          "durationMinutes": 40,
+          "stepMinutes": 5,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0.5,
+          "boundaryExitPerHour": 0.38
+        },
+        "existing": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "observations": [],
+        "selectedIndex": 27,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "options": {
+        "traceBudget": true,
+        "rainTrace": {
+          "sourceCells": [
+            0,
+            18,
+            27
+          ]
+        },
+        "rainOrigins": {
+          "targetCells": [
+            0,
+            18,
+            27
+          ],
+          "fate": "absorbed"
+        }
+      },
+      "resultSha256": "e43d6eea69bfb4b1890b98d590164f1adfd6d5c3eafd3e0b56627653de1006fa"
+    },
+    {
+      "name": "open-step-17",
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 8,
+        "height": 6,
+        "weather": {
+          "rainMmHr": 36,
+          "stormMinutes": 19.5,
+          "durationMinutes": 40,
+          "stepMinutes": 17,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0.5,
+          "boundaryExitPerHour": 0.38
+        },
+        "existing": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "observations": [],
+        "selectedIndex": 27,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "options": {
+        "traceBudget": true,
+        "rainTrace": {
+          "sourceCells": [
+            0,
+            18,
+            27
+          ]
+        },
+        "rainOrigins": {
+          "targetCells": [
+            0,
+            18,
+            27
+          ],
+          "fate": "exit"
+        }
+      },
+      "resultSha256": "80aeadadb3e18de9e9f531fd87de2662e103d10bc940f630c9f61748d327eae7"
+    },
+    {
+      "name": "walls-step-1",
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 8,
+        "height": 6,
+        "weather": {
+          "rainMmHr": 36,
+          "stormMinutes": 19.5,
+          "durationMinutes": 40,
+          "stepMinutes": 1,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0.5,
+          "boundaryExitPerHour": 0.38
+        },
+        "existing": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption",
+            "internalBarriers": {
+              "east": {
+                "closed": true,
+                "source": "Authored legacy wall"
+              }
+            }
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption",
+            "internalBarriers": {
+              "south": {
+                "closed": true,
+                "source": "Authored legacy wall"
+              }
+            }
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "observations": [],
+        "selectedIndex": 27,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "options": {
+        "traceBudget": true,
+        "rainTrace": {
+          "sourceCells": [
+            0,
+            18,
+            27
+          ]
+        },
+        "rainOrigins": {
+          "targetCells": [
+            0,
+            18,
+            27
+          ],
+          "fate": "stored"
+        }
+      },
+      "resultSha256": "79de348bebe1ec34531ef1c9064f7d378989d953180c8c888c2b74acc63eac8c"
+    },
+    {
+      "name": "walls-step-5",
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 8,
+        "height": 6,
+        "weather": {
+          "rainMmHr": 36,
+          "stormMinutes": 19.5,
+          "durationMinutes": 40,
+          "stepMinutes": 5,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0.5,
+          "boundaryExitPerHour": 0.38
+        },
+        "existing": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption",
+            "internalBarriers": {
+              "east": {
+                "closed": true,
+                "source": "Authored legacy wall"
+              }
+            }
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption",
+            "internalBarriers": {
+              "south": {
+                "closed": true,
+                "source": "Authored legacy wall"
+              }
+            }
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "observations": [],
+        "selectedIndex": 27,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "options": {
+        "traceBudget": true,
+        "rainTrace": {
+          "sourceCells": [
+            0,
+            18,
+            27
+          ]
+        },
+        "rainOrigins": {
+          "targetCells": [
+            0,
+            18,
+            27
+          ],
+          "fate": "absorbed"
+        }
+      },
+      "resultSha256": "fc1abf6a843598521e3394aeca64363d0c6047c16b88b245f3b24d0cdbbe177e"
+    },
+    {
+      "name": "walls-step-17",
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 8,
+        "height": 6,
+        "weather": {
+          "rainMmHr": 36,
+          "stormMinutes": 19.5,
+          "durationMinutes": 40,
+          "stepMinutes": 17,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0.5,
+          "boundaryExitPerHour": 0.38
+        },
+        "existing": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption",
+            "internalBarriers": {
+              "east": {
+                "closed": true,
+                "source": "Authored legacy wall"
+              }
+            }
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.06,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.095,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.107,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.051,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.086,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.098,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption",
+            "internalBarriers": {
+              "south": {
+                "closed": true,
+                "source": "Authored legacy wall"
+              }
+            }
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.042,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.077,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.089,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.033,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.068,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.08,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "garden",
+            "provenance": "proposed hypothetical change"
+          },
+          {
+            "elevationM": 0.024,
+            "surface": "sealed",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.059,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.071,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.015,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.05,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          },
+          {
+            "elevationM": 0.062,
+            "surface": "turf",
+            "provenance": "illustrative assumption"
+          }
+        ],
+        "observations": [],
+        "selectedIndex": 27,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "options": {
+        "traceBudget": true,
+        "rainTrace": {
+          "sourceCells": [
+            0,
+            18,
+            27
+          ]
+        },
+        "rainOrigins": {
+          "targetCells": [
+            0,
+            18,
+            27
+          ],
+          "fate": "exit"
+        }
+      },
+      "resultSha256": "546dea71ce4725d1a88f3fcf1c957ccdb6cb5499dcb79b3873da4d4d59e497b8"
+    }
+  ]
+}
