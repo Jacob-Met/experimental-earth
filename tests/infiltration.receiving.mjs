@@ -37,11 +37,11 @@ export async function receiveInfiltration({ evaluate, send, delay, report, artif
   await assign(0, 'scenario', 'existing'); await assign(0, 'use', 'challenge');
   await assign(1, 'scenario', 'existing'); await assign(1, 'use', 'calibration');
   await run(); assert.equal(await state(), 'one-survivor');
-  assert.equal(await evaluate("document.querySelector('.study-candidate').dataset.rate"), '10');
-  assert.equal(await evaluate("document.querySelectorAll('.study-candidate').length"), 3);
-  assert.ok(!(await evaluate("document.querySelector('.study-candidate').textContent")).includes('0.000000000000'));
+  assert.equal(await evaluate("document.querySelector('#study-results .study-candidate').dataset.rate"), '10');
+  assert.equal(await evaluate("document.querySelectorAll('#study-results .study-candidate').length"), 3);
+  assert.ok(!(await evaluate("document.querySelector('#study-results .study-candidate').textContent")).includes('0.000000000000'));
   assert.ok((await evaluate("document.querySelector('#study-results').textContent")).includes('1 calibration · 1 held aside'));
-  assert.ok((await evaluate("document.querySelector('.study-candidate details').textContent")).includes('analytic held-aside fixture'));
+  assert.ok((await evaluate("document.querySelector('#study-results .study-candidate details').textContent")).includes('analytic held-aside fixture'));
   const saved = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
   assert.deepEqual(JSON.parse(saved).infiltrationStudy.ratesMmHr, [0, 10, 20]);
   assert.equal(JSON.parse(saved).observations[1].use, 'challenge');
@@ -56,7 +56,7 @@ export async function receiveInfiltration({ evaluate, send, delay, report, artif
   const contradictory = JSON.parse(saved); contradictory.observations[1].depthMm = 0;
   await importProject(JSON.stringify(contradictory)); await run();
   assert.equal(await state(), 'challenged');
-  assert.equal(await evaluate("document.querySelector('.study-candidate').dataset.rate"), '10');
+  assert.equal(await evaluate("document.querySelector('#study-results .study-candidate').dataset.rate"), '10');
   assert.ok((await evaluate("document.querySelector('#study-status').textContent")).includes('no replacement rate has been adopted'));
   report.push('contradictory held-aside import rejects predictions without changing calibration order');
 
