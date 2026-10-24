@@ -140,3 +140,9 @@ The **Ponding through time** panel replays both scenarios at the same selected m
 Crossings and intermediate depths use linear interpolation between retained solver snapshots. Dry gaps or peaks between snapshots can be missed; a smaller time step may change the reported duration. Threshold duration is a modeled diagnostic, not a field observation or a flood/access-safety rating.
 
 The ponding detail also reports **accumulated depth above threshold** in mm·min: the area under the positive depth-minus-threshold curve, using the same linear interpolation. It distinguishes a deep brief episode from a shallow long one without assigning a damage or safety score. If the first or last retained snapshot is still above threshold, the panel explicitly states that earlier onset or later clearance is unknown outside the modeled horizon.
+
+## Compare internal walls and openings
+
+Select a cell and use **Walls and openings** below the paired site maps to close an internal connection or restore an opening in either scenario. Add a source or hypothetical assumption; dark map lines show closed edges. Water can reroute through remaining gaps, and all maintained rain comparisons and attribution consumers use the same connectivity. Declarations survive ordinary export/import, reload and copying the existing site into the proposal.
+
+Closed edges stay impermeable for the full calculation; wall height, overtopping, leakage and structural strength are outside this model. Exterior outlets retain their existing assumptions. Cross-storm comparisons require the same wall/opening geometry. See [Internal walls and openings](docs/INTERNAL_BARRIERS.md) for the representation and independently calculated controls.
