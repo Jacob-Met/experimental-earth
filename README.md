@@ -30,6 +30,12 @@ Only calibration root-mean-square error determines candidate order. The held-asi
 
 Use readings from the same scenario, place and weather event. The other authored inputs are assumed correct for this limited comparison, so a mismatch can reflect bad terrain, rain assumptions or missing physics as well as an infiltration rate. User-entered ± bands are acceptance tolerances, not statistical confidence intervals. Readings used to tune candidate choices cannot also establish independent predictive accuracy. Passing these comparisons establishes bounded agreement in this conceptual model, not field calibration, a unique material property or environmental accuracy.
 
+### Ask a separating measurement question
+
+After comparing candidates, **Find a separating depth reading** scans the retained solver cell/time grid for the greatest predicted depth spread among calibration-compatible rates. It excludes points already recorded for that scenario, displays every candidate's predicted depth, and states the number of evaluated points and the solver interval. Held-aside reading values do not select the question. This deterministic disagreement heuristic does not establish expected information gain, physical feasibility, instrument adequacy or global optimality outside the discrete grid. A dry event or fewer than two supported alternatives yields no suggested measurement.
+
+**Prepare held-aside reading** fills only the selected cell, time, scenario and evidence role in the notebook form and switches the brush to Inspect. It neither paints the site nor creates evidence. A reading is retained only after the user enters a measured value, uncertainty and source and submits the form. Notebook inputs accept fractional values without imposing the solver's time interval on physical observations.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.
