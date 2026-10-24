@@ -125,6 +125,15 @@ The report compares the minimum separation with twice the supplied ± tolerance.
 
 The water-attribution section also explains **which rainfall origins supplied a chosen destination**. Select destination cells and final storage, cumulative infiltration or boundary outflow to compare paired origin maps using the same maintained water transfers. See [rainfall attribution](docs/RAIN_ATTRIBUTION.md) for assumptions and receiving controls.
 
+
+### Compare depth and collected-volume measurement options
+
+The decision-question panel can compare local depth with an explicitly available whole-boundary collection. Set the prospective depth tolerance, opt into collection availability, and specify its duration and tolerance in liters. The model computes each opposing-pair gap divided by twice that measurement's tolerance. The largest band margin is a declared-precision comparison, not a probability, cost estimate or information-gain optimum. A margin above one indicates disjoint opposing prediction bands under these assumptions; model error remains outside the comparison.
+
+Candidates come from the saved depth-calibration study, with the outlet coefficient fixed. Collected values never fit or select the question. Their retained intervals exclude overlapping collection suggestions. A mismatched retained collection event/scenario blocks that option. Starts lie on retained solver snapshots; nonaligned ends disclose cumulative-volume interpolation. No reversal or distinguishing signal creates no invented option. Computation is bounded to three million cell-steps across at most five solver passes per original candidate.
+
+**Prepare collection reading** uses the maintained collected-runoff form. It fills only interval, liters/tolerance and held-aside role, clears stale value/source drafts, and leaves coverage unasserted for a new record. A valid existing record keeps its event and collection identity. Actual volume/source and explicit coverage are required before submission retains evidence. Depth preparation reuses the existing notebook callback. Changed settings or project inputs invalidate derived options. These controls do not authorize a collection or establish physical observability.
+
 ## Import a supplied elevation grid
 
 The surveyed elevation panel accepts a complete CSV for the current grid with columns `cell,elevation,uncertainty,unit,source`. Units are `m`, `cm`, or `mm`; elevation and supplied ± uncertainty share the row unit. Supply a common named local datum and grid cell spacing. Spacing must equal the current model cell width. Elevations must lie between −10 and 10 metres relative to that datum; absolute geographic heights need an explicit local reference before import. No datum or geographic registration is inferred.

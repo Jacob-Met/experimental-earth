@@ -3,12 +3,12 @@ import { mountDecisionQuestionPanel } from './decision-question-panel.js';
 import { DEFAULT_STUDY } from './study-contract.js';
 const number = n => Number(n.toPrecision(5)).toLocaleString('en-US', { maximumSignificantDigits: 5 });
 const node = (tag, text) => { const e = document.createElement(tag); e.textContent = text; return e; };
-export function mountInterventionPanel({ getProject, notice, prepareReading }) {
+export function mountInterventionPanel({ getProject, notice, prepareReading, prepareCollection }) {
   const panel = document.createElement('section'); panel.className = 'panel study'; panel.id = 'intervention-panel';
   panel.innerHTML = `<h2>Does the proposal still help?</h2><p>Carry the saved infiltration hypotheses into paired existing/proposed simulations. Each rate applies to that surface in both places; other surface rates and the weather stay fixed. This assumes the same surface capacity transfers between scenarios.</p><label class="input-label">Hypotheses to compare<select id="intervention-subset"><option value="all">All saved candidates (no evidence filter)</option><option value="calibration">Within all calibration bands</option><option value="surviving">Within calibration and held-aside bands</option></select></label><p id="intervention-choices" class="mini-note"></p><button type="button" id="compare-intervention" class="primary">Compare proposal across rates</button><p id="intervention-status" role="status"></p><div id="intervention-results"></div><p class="mini-note">Ranges span only these finite hypotheses, not confidence intervals or bounds on reality. Lower outflow, storage and depth are separate objectives; no overall winner is declared. Peak depths may occur at different times. Changed soils, unmodeled processes and numerical time-step sensitivity remain outside this comparison. No rate is adopted.</p>`;
   document.querySelector('.observations').before(panel);
   const find = id => panel.querySelector(`#${id}`);
-  const decisionPanel = mountDecisionQuestionPanel({ host: panel, getProject, notice, prepareReading });
+  const decisionPanel = mountDecisionQuestionPanel({ host: panel, getProject, notice, prepareReading, prepareCollection });
   function refresh() {
     decisionPanel.refresh();
     const study = getProject().infiltrationStudy ?? DEFAULT_STUDY;
