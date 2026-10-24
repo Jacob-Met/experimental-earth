@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { setTimeout as delay } from 'node:timers/promises';
+import { receiveInfiltration } from './infiltration.receiving.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const chromeBin = process.env.CHROME_BIN ?? (
   process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
@@ -107,6 +108,7 @@ try {
   const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});
   writeFileSync(root + 'browser-mobile-390.png',Buffer.from(shot.data,'base64'));
   report.push('390px mobile layout no horizontal overflow');
+  await receiveInfiltration({ evaluate, send, delay, report });
   assert.deepEqual(exceptions,[]);
   console.log(JSON.stringify({status:'PASS',browser:chromeBin,checks:report,exceptions,dimensions:dims},null,2));
 } catch(e) {

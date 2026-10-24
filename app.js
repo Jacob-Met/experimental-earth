@@ -1,4 +1,5 @@
 import { SURFACES, makeExample, validateProject, compare, depthAtMinute, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
+import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
 const $ = id => document.getElementById(id);
 const storeKey = 'experimental-earth-site-v1';
 let project;
@@ -17,9 +18,10 @@ function notice(message) {
 }
 function nameCell(index) { return `${String.fromCharCode(65 + index % project.width)}${Math.floor(index / project.width) + 1}`; }
 function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFractionDigits:1}); }
+function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -87,9 +89,9 @@ function observations() {
   for(let i=project.observations.length-1;i>=0;i--){
     const o=project.observations[i];const a=depthAtMinute(results.existing,o.cellIndex,o.minute),b=depthAtMinute(results.proposal,o.cellIndex,o.minute);
     const row=document.createElement('div');row.className='observation';
-    const info=document.createElement('div');const main=document.createElement('strong');main.textContent=`${nameCell(o.cellIndex)} · ${o.minute} min · ${numeric(o.depthMm)} ± ${numeric(o.uncertaintyMm)} mm measured`;
+    const info=document.createElement('div');const main=document.createElement('strong');main.textContent=`${nameCell(o.cellIndex)} · ${o.minute} min · ${readingNumber(o.depthMm)} ± ${readingNumber(o.uncertaintyMm)} mm measured`;
     const body=document.createElement('small');body.textContent=`${o.source} · model depths at ${a.minute} min: existing ${numeric(a.depthMm)} mm (residual ${numeric(o.depthMm-a.depthMm)}), proposal ${numeric(b.depthMm)} mm (residual ${numeric(o.depthMm-b.depthMm)})`;
-    info.append(main,body);const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.addEventListener('click',()=>{project.observations.splice(i,1);rerun();});row.append(info,remove);list.append(row);
+    info.append(main,body,evidenceControls(o,rerun));const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.addEventListener('click',()=>{project.observations.splice(i,1);rerun();});row.append(info,remove);list.append(row);
   }
 }
 function draw() {
@@ -150,4 +152,5 @@ $('import').addEventListener('change',async event=>{
   try {if(file.size>1_000_000)throw Error('Project file exceeds 1 MB limit');const parsed=JSON.parse(await file.text());validateProject(parsed);project=parsed;syncForm();rerun();notice('Validated project imported.');}
   catch(err){notice(`Import refused: ${err.message}`);}finally{event.target.value='';}
 });
+const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice });
 syncForm();rerun();

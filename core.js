@@ -3,6 +3,7 @@
  * Deliberately modest conservation-based conceptual grid model, NOT a calibrated
  * hydrologic or flood-risk predictor. All quantities retain their units.
  */
+import { validateStudyMetadata } from './study-contract.js';
 export const WIDTH = 8;
 export const HEIGHT = 6;
 export const SURFACES = Object.freeze({
@@ -56,6 +57,7 @@ export function validateProject(project) {
     if (!Number.isInteger(o.cellIndex) || o.cellIndex < 0 || o.cellIndex >= width * height || !within(o.minute, 0, weather.durationMinutes) || !within(o.depthMm, 0, 1000) || !within(o.uncertaintyMm, 0, 1000) || typeof o.source !== 'string' || o.source.trim().length === 0 || o.source.length > 200) throw new Error('Invalid observation. A source and bounded measurement are required');
   }
   if (project.selectedIndex !== undefined && (!Number.isInteger(project.selectedIndex) || project.selectedIndex < 0 || project.selectedIndex >= width * height)) throw new Error('Selected cell out of range');
+  validateStudyMetadata(project);
   return project;
 }
 
@@ -67,6 +69,12 @@ export function runRain(cells, width, height, weather, options = {}) {
   const peak = Array(n).fill(0);
   const cellArea = weather.cellSizeM ** 2;
   const override = options?.infiltrationOverride;
+  const surfaceOverride = options?.surfaceInfiltrationOverride;
+  if (surfaceOverride !== undefined && (!surfaceOverride ||
+      !OWN(SURFACES, surfaceOverride.surface) || !within(surfaceOverride.rateMmHr, 0, 2000))) {
+    throw new Error('Invalid surface infiltration override');
+  }
+  if (override !== undefined && surfaceOverride !== undefined) throw new Error('Choose one infiltration override scope');
   if (override !== undefined && (!override || !Number.isInteger(override.cellIndex) ||
       override.cellIndex < 0 || override.cellIndex >= n ||
       !within(override.rateMmHr, 0, 2000))) {
@@ -90,7 +98,8 @@ export function runRain(cells, width, height, weather, options = {}) {
     const rainMm = weather.rainMmHr * rainOverlap / 60;
     for (let i = 0; i < n; i++) {
       water[i] += rainMm;
-      const rate = override?.cellIndex === i ? override.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
+      const rate = override?.cellIndex === i ? override.rateMmHr :
+        surfaceOverride?.surface === cells[i].surface ? surfaceOverride.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
       const absorb = Math.min(water[i], rate * dtHours);
       water[i] -= absorb;
       absorbedLiters += absorb * cellArea;
