@@ -12,6 +12,11 @@ direction can block all of them. The common-bearing profile preserves that
 relationship across time. The original geographic location, terrain, columns,
 height bounds and timestamp declaration remain fixed.
 
+To compare separately sourced obstruction states with one common bearing, use
+the [recorded-pattern investigation](SUN_BEARING_EVIDENCE.md). It retains the
+original course and declaration while showing which bearings sufficiently
+match, possibly match or exclude the complete entered record set.
+
 ## Reading the count enclosures
 
 The summary shows four separate count enclosures: existing obstruction,
