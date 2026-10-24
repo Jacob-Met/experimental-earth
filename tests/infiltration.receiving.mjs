@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 import { makeExample } from '../core.js';
 import { receiveObservationTable } from './observation-table.receiving.mjs';
 
 // Reuses the maintained browser receiver's real Chrome/CDP and HTTP lifecycle.
-export async function receiveInfiltration({ evaluate, send, delay, report }) {
+export async function receiveInfiltration({ evaluate, send, delay, report, artifactDirectory = fileURLToPath(new URL('../', import.meta.url)) }) {
   const original = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
   const p = makeExample(); p.width = 2; p.height = 2; p.selectedIndex = 0;
   p.existing = Array.from({ length: 4 }, () => ({ elevationM: 0, surface: 'turf', provenance: 'authored analytic fixture' }));
@@ -113,13 +114,13 @@ export async function receiveInfiltration({ evaluate, send, delay, report }) {
   await evaluate("document.querySelector('.study').scrollIntoView({behavior:'instant',block:'start'})");
   await delay(120);
   const mobile = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
-  writeFileSync(fileURLToPath(new URL('../study-mobile-390.png', import.meta.url)), Buffer.from(mobile.data, 'base64'));
+  writeFileSync(join(artifactDirectory, 'study-mobile-390.png'), Buffer.from(mobile.data, 'base64'));
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await delay(100); await evaluate("document.querySelector('.study').scrollIntoView({behavior:'instant',block:'start'})");
   await delay(120);
   const desktop = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
-  writeFileSync(fileURLToPath(new URL('../study-desktop.png', import.meta.url)), Buffer.from(desktop.data, 'base64'));
+  writeFileSync(join(artifactDirectory, 'study-desktop.png'), Buffer.from(desktop.data, 'base64'));
   report.push('candidate and evidence controls fit 390px mobile; mobile/desktop images captured');
-  await receiveObservationTable({ evaluate, send, delay, report });
+  await receiveObservationTable({ evaluate, send, delay, report, artifactDirectory });
   await importProject(original);
 }

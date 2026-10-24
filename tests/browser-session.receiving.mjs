@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import { mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { withBrowserSession } from './support/browser-session.mjs';
+const root=await mkdtemp(join(tmpdir(),'earth-session-controls-'));
+await writeFile(join(root,'index.html'),'<html><title>Isolation control</title></html>');
+const options={root,chromeBin:process.env.CHROME_BIN,commandMs:500};
+let first, second;
+const result=await withBrowserSession({...options,runDirectory:join(root,'first')},async a=>{
+  first=a;
+  await a.send('Page.enable');
+  for(let n=0;n<30 && await a.evaluate('location.origin')!==new URL(a.baseUrl).origin;n++)await new Promise(r=>setTimeout(r,100));
+  await a.evaluate("localStorage.setItem('isolation','first')");
+  const peer=await withBrowserSession({...options,runDirectory:join(root,'second')},async b=>{
+    second=b;
+    assert.notEqual(a.baseUrl,b.baseUrl);assert.notEqual(a.profileDirectory,b.profileDirectory);assert.notEqual(a.cdpUrl,b.cdpUrl);
+    for(let n=0;n<30 && await b.evaluate('location.origin')!==new URL(b.baseUrl).origin;n++)await new Promise(r=>setTimeout(r,100));
+    assert.equal(await b.evaluate("localStorage.getItem('isolation')"),null);
+    await assert.rejects(a.evaluate('new Promise(()=>{})'),/timed out/);
+    assert.equal(await a.evaluate('document.title'),'Isolation control');
+    return 'peer completed';
+  });
+  assert.equal(peer.receipt.cleanup.directChildExited,true);
+  assert.equal(await a.evaluate("localStorage.getItem('isolation')"),'first');
+  await assert.rejects(fetch(second.baseUrl),/fetch failed/);
+  return 'surviving peer completed';
+});
+assert.equal(result.receipt.cleanup.directChildExited,true);
+await assert.rejects(fetch(first.baseUrl),/fetch failed/);
+await assert.rejects(withBrowserSession({...options,chromeBin:join(root,'absent'),runDirectory:join(root,'absent-run')},()=>{}),/ENOENT/);
+const failing=join(root,'failing');
+await assert.rejects(withBrowserSession({...options,runDirectory:failing},()=>{throw Error('controlled callback failure');}),/session failed/);
+const receipt=JSON.parse(await readFile(join(failing,'session.json'),'utf8'));
+assert.equal(receipt.status,'failed');assert.equal(receipt.cleanup.directChildExited,true);
+console.log(JSON.stringify({status:'PASS',root,checks:['independent HTTP and CDP ports and profiles','independent localStorage','bounded command timeout and subsequent command','peer cleanup preserves survivor','HTTP servers close','missing executable refusal','callback failure retains cleanup receipt']}));
