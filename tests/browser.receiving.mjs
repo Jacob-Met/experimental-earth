@@ -12,6 +12,7 @@ import { receiveInfiltration } from './infiltration.receiving.mjs';
 import { receiveInfiltrationResolution } from './infiltration-resolution.receiving.mjs';
 import { receiveOutletEvidence } from './outlet-evidence.receiving.mjs';
 import { receiveJointEvidence } from './joint-evidence.receiving.mjs';
+import { receiveJointEvents } from './joint-event.receiving.mjs';
 import { receiveEventChallenge } from './event-challenge.receiving.mjs';
 import { receiveLocalWaterBudget } from './local-water-budget.receiving.mjs';
 import { receiveRainTrace } from './rain-trace.receiving.mjs';
@@ -98,6 +99,7 @@ try {
   await receiveEventChallenge(evaluate, report, {send, artifactDirectory:session.runDirectory});
   await receiveOutletEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveJointEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  await receiveJointEvents({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   const decisionVisuals = await receiveDecisionQuestion({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveLocalWaterBudget({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveRainTrace({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });

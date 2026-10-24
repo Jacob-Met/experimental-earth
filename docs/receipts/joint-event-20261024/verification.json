@@ -1,0 +1,49 @@
+{
+  "schema": "experimental-earth.receiving-receipt/1",
+  "issue": 53,
+  "base": "04c54a16495d21a019c4b846c97f9c0c626f2b17",
+  "native": {
+    "command": "node --test tests/*.test.mjs",
+    "node": "22.23.4",
+    "passed": 188,
+    "failed": 0
+  },
+  "browser": {
+    "command": "CHROME_BIN=/opt/google/chrome/chrome BROWSER_RUN_DIRECTORY=/tmp/hamon-8879578347dd-earth-cross-r2/receiving node tests/browser.receiving.mjs",
+    "chrome": "156.0.8078.47",
+    "groupsPassed": 71,
+    "exceptions": [],
+    "sandbox": "Maintained namespace/PID/network/seccomp/TSYNC admission",
+    "visualReview": "Root inspected actual inputs at1280 and results at390; normal-scale viewport assertions and internal table scroll."
+  },
+  "sourceSha256": {
+    "README.md": "07b8ba32d221f28bc7c44b1aeed3f926c6289edf51fe7e1f17d80d986d78789f",
+    "app.js": "167e5ae06dc0e67ddb73c260e88a0ee74adde21c09b15e64e0c437c160510ba6",
+    "styles.css": "1efee4a866b3e1d2fc420c131b47eade0567e3d2facf64c14bda4336e564cb81",
+    "event-challenge.js": "5de922ac095bbbde39995510c3983b9c4563eee27ee8742ef916822357c2eb35",
+    "joint-event-challenge.js": "60277f726c1d1170d385b4052bbfcbe80697381b6cf433dff41116a9373f0a94",
+    "joint-event-panel.js": "a4eeae9829b7a9e325a84406266781620164da517b790798be45da258f1014ab",
+    "tests/joint-event-challenge.test.mjs": "6c980e576d802206332e4f77cb024ea56607f9dff630acaa418d521885a0de15",
+    "tests/joint-event.receiving.mjs": "54ea38d1d83f7e2bbbc04b78630f8cefa98e3c0bd418a77a4ae9cca6694845cc",
+    "tests/browser.receiving.mjs": "610bd1ff6972692e2526464931f8e817af4300c7c11c3e39c439267c1a66698b",
+    "examples/joint-two-storms.json": "8f2da9cf5887405fc23341037612295ccbfee4011fce5a1aaea63629cc7a69c3",
+    "docs/JOINT_EVENT_CHALLENGE.md": "ec811a1e01f3e61f44a0d3e1810b441f5a68bff08966b13cd11cc84dfc630ea7"
+  },
+  "finalSourceFilesUnchangedAfterReceiving": 103,
+  "history": [
+    {
+      "directory": "/tmp/hamon-8879578347dd-earth-cross-r1",
+      "nativePassed": 178,
+      "browserGroupsPassed": 66,
+      "base": "f1a33e547ba4f91fe24572acccd65fdc60b49844"
+    }
+  ],
+  "integration": "Current reverse-rainfall attribution retained. Existing event-challenge geometry/model admission extracted without changing default infiltration-only admission. Each actual UI comparison runs each pair once per event.",
+  "proof": "Independently calculated second-storm volumes12L and32/3L challenge pairs that both predict16L in the first event; first calibration/order/first holdout remain unchanged. Actual raw bundle download, unchanged-workspace reopen, role/source/pair refusal and delayed real file read tested.",
+  "limits": [
+    "Authored arithmetic control, not measured field evidence.",
+    "Event identity and independence are user declarations.",
+    "No unique physical parameters, prediction accuracy, deployment or cloud qualification claimed.",
+    "No GitHub Actions run claimed."
+  ]
+}

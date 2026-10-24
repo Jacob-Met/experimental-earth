@@ -90,6 +90,10 @@ The **collected-runoff evidence** panel compares source-attributed collection vo
 
 The **joint evidence** panel compares 2–12 explicit infiltration/outlet pairs against collected runoff and selected same-event depth readings. Its prediction plane exposes equal-volume explanations with different ponding depths; the full table keeps each reading's native units, tolerance, role and interpolation brackets. No combined score ranks unlike quantities, and held-aside evidence never chooses a pair. Source changes retire the comparison until the association is reviewed. See [Joint soil and outlet evidence](docs/JOINT_EVIDENCE.md) for the authored ambiguity control, ordinary export/reopen workflow and scientific limits.
 
+## Challenge joint explanations across storms
+
+The **Will these explanations survive another storm?** panel carries the current fixed infiltration/outlet pairs to a separately retained event. It compares explicitly held-aside collections and associated depths without changing pair values, first calibration or the active workspace. Download both source snapshots and reopen to recompute. See [Joint event challenge](docs/JOINT_EVENT_CHALLENGE.md) for the independently calculated two-storm control, source/model admission, bounded work and limits of the supplied independence declaration.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.
