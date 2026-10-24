@@ -18,6 +18,18 @@ Optional actual-browser receiving: with a locally available Chrome/Chromium and 
 
 **Physical boundaries:** The model is a deliberately simplified finite-volume surface transfer on constant-infiltration cells, with an open edge and no measured calibration. Its arithmetic conserves rainfall within tolerance; it does not quantify actual flood risk, stormwater compliance, soil response or intervention benefit. Real readings can be recorded with method and ± uncertainty, but do not automatically tune the model. Sampling suggestions identify the largest simulated scenario difference, not validated information gain. No external data or inference endpoints are called.
 
+## Follow rain from part of the site
+
+The **Where does rain from this area end up?** panel traces rain from selected
+source cells through the existing water calculation. Compare where that water
+infiltrates, remains on the surface or leaves the boundary under each proposal.
+Both destination maps share a scale and preserve the same source area and
+storm. The source selection survives project export/import; changed model
+inputs require a fresh calculation. This is conserved model attribution under
+a complete-cell-mixing assumption, not observed physical pathways. See
+[Rainfall attribution](docs/RAIN_ATTRIBUTION.md) for the calculation, controls and
+interpretation limits.
+
 ## Inspect an unknown surface property
 
 ### Follow the water at a selected cell
