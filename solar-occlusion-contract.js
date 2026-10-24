@@ -2,7 +2,7 @@ import {canonicalEvidence} from './outlet-evidence-contract.js';
 export const SOLAR_SCHEMA='experimental-earth-solar-occlusion/1';
 const finite=(v,a,b)=>typeof v==='number'&&Number.isFinite(v)&&v>=a&&v<=b;
 const text=(v,n)=>typeof v==='string'&&v.trim().length>0&&v.length<=n;
-export function solarContext(project){return JSON.stringify(canonicalEvidence({width:project.width,height:project.height,cellSizeM:project.weather.cellSizeM,source:project.source??'',existing:project.existing.map(c=>({elevationM:c.elevationM,provenance:c.provenance})),proposal:project.proposal.map(c=>({elevationM:c.elevationM,provenance:c.provenance}))}));}
+export function solarContext(project){return JSON.stringify(canonicalEvidence({width:project.width,height:project.height,cellSizeM:project.weather.cellSizeM,source:project.source??'',existing:project.existing.map(c=>({elevationM:c.elevationM,provenance:c.provenance,terrainSource:c.terrainSource??null})),proposal:project.proposal.map(c=>({elevationM:c.elevationM,provenance:c.provenance,terrainSource:c.terrainSource??null}))}));}
 export function validateSolarStudy(study){
  if(study===undefined)return;
  if(!study||study.schema!==SOLAR_SCHEMA||study.geometry!=='opaque-ground-columns'||!text(study.contextJson,400000)||!finite(study.headingDeg,0,360)||study.headingDeg===360||!finite(study.elevationDeg,1,90)||!text(study.sunSource,400))throw Error('Declare a sourced grid-relative sun direction: heading0–<360°, elevation1–90°');

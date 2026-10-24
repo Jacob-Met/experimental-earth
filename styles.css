@@ -110,3 +110,12 @@
 #placement-search p,#placement-search li { overflow-wrap:anywhere; }
 
 .cell .internal-crest{background:#126379}
+
+.solar-grids { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.solar-grids article { min-width:0; }
+.solar-grids svg { display:block; width:100%; height:auto; max-height:580px; }
+.solar-grids [role="button"] { cursor:pointer; }
+.solar-grids [role="button"]:focus { outline:2px solid #204b63; }
+.solar-legend { display:flex; flex-wrap:wrap; gap:.7rem; margin:1rem 0; }
+.solar-legend span { padding-left:.4rem; font-size:.85rem; }
+@media(max-width:700px) { .solar-grids { grid-template-columns:1fr; } }

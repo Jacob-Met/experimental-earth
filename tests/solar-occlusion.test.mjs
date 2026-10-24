@@ -36,3 +36,11 @@ test('explicit source, angle, interval, duplicate and work bounds refuse',()=>{
  assert.throws(()=>model(p,{proposal:Array.from({length:65},(_,cellIndex)=>({...column(),cellIndex}))}));
  assert.equal(model(p,{proposal:[]}).proposal.every(x=>x.status==='no-mapped-blocker'),true);
 });
+
+test('retained survey provenance changes invalidate without propagating or erasing its uncertainty',()=>{
+ const p=fixture();p.existing[0].terrainSource={kind:'supplied-elevation-table/1',fileName:'authored.csv',line:2,datum:'authored datum',source:'software control',unit:'m',elevationValue:0,uncertaintyValue:.2,cellSizeM:2};model(p);const before=structuredClone(p.existing[0].terrainSource);
+ compareSolarOcclusion(p);assert.deepEqual(p.existing[0].terrainSource,before);p.existing[0].terrainSource.line=3;assert.equal(compareSolarOcclusion(p).status,'context-changed');
+});
+test('maximum admitted grid and metric spacing remain bounded and finite',()=>{
+ const p=fixture();p.width=p.height=24;p.weather.cellSizeM=100;p.existing=Array.from({length:576},()=>({...p.existing[0]}));p.proposal=structuredClone(p.existing);const r=model(p,{proposal:[column(50,100)],elevationDeg:1});assert.equal(r.proposal.length,576);assert.ok(r.proposal.every(x=>Object.hasOwn(x,'status')&&(!x.witness||Number.isFinite(x.witness.distanceM))));
+});
