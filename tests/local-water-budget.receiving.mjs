@@ -49,6 +49,30 @@ export async function receiveLocalWaterBudget({ evaluate, send, delay, report, a
   assert.equal(await evaluate("document.querySelectorAll('.local-budget-neighbor').length"), 4);
   report.push('coupled courtyard consumer retains incoming water and both directions for four actual neighbors');
 
+  await evaluate("(()=>{const s=document.querySelector('#local-budget-scope');s.value='edited';s.dispatchEvent(new Event('change'));})()");
+  assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellCount"), '6');
+  const footprintText = await evaluate("document.querySelector('#local-budget-results').textContent");
+  assert.ok(footprintText.includes('D3, E3, D4, E4, D5, E5'), footprintText);
+  assert.ok(footprintText.includes('internal crossings cancel'), footprintText);
+  await evaluate("(()=>{const s=document.querySelector('#local-budget-scope');s.value='site';s.dispatchEvent(new Event('change'));})()");
+  assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellCount"), '48');
+  for (const key of ['incomingLiters', 'outgoingLiters']) assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('#local-budget-results [data-component=${key}] td')).map(x=>x.textContent)`), ['0', '0', '0']);
+  assert.equal(await evaluate("document.querySelectorAll('.local-budget-neighbor').length"), 0);
+  report.push('edited-area membership is explicit and whole-site crossings cancel while global water losses remain');
+  await evaluate("(()=>{const s=document.querySelector('#local-budget-scope');s.value='edited';s.dispatchEvent(new Event('change'));})()");
+  const neighbor = await evaluate("document.querySelector('.local-budget-neighbor').dataset.neighbor");
+  await evaluate("document.querySelector('.local-budget-neighbor button').click()");
+  assert.equal(await evaluate("document.querySelector('#local-budget-scope').value"), 'cell');
+  assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellIndex"), neighbor);
+  await evaluate("(()=>{const s=document.querySelector('#local-budget-scope');s.value='edited';s.dispatchEvent(new Event('change'));document.querySelector('#copy-existing').click();})()");
+  assert.equal(await evaluate("document.querySelector('#local-budget-status').dataset.state"), 'stale');
+  await evaluate("document.querySelector('#trace-local-budget').click()");
+  assert.equal(await evaluate("document.querySelector('#local-budget-status').dataset.state"), 'no-edits');
+  assert.equal(await evaluate("document.querySelectorAll('#local-budget-results table').length"), 0);
+  await evaluate("document.querySelector('#reset').click();document.querySelector('#trace-local-budget').click()");
+  assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellCount"), '6');
+  report.push('regional neighbor navigation returns to a cell; identical plans explicitly have no edited footprint');
+
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await evaluate("document.querySelector('#local-budget-panel').scrollIntoView({block:'start',behavior:'instant'})");
   await delay(200);

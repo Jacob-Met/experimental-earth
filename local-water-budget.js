@@ -59,6 +59,72 @@ export function inspectLocalWaterBudget(comparison, cellIndex) {
     changeBalanceErrorLiters: explainedStorageChangeLiters - changes.storedLiters };
 }
 
+/** Sum a fixed region's boundary budget; internal crossings cancel exactly by construction. */
+export function inspectRegionalWaterBudget(comparison, cellIndices) {
+  const n = comparison?.width * comparison?.height;
+  if (comparison?.status !== 'computed' || !Array.isArray(cellIndices) ||
+      !cellIndices.length || cellIndices.length > n ||
+      cellIndices.some(i => !Number.isInteger(i) || i < 0 || i >= n) ||
+      new Set(cellIndices).size !== cellIndices.length) {
+    throw new Error('Choose a nonempty set of distinct cells within a computed water budget');
+  }
+  const members = [...cellIndices].sort((a, b) => a - b), inside = new Set(members);
+  if (members.length === 1) {
+    // Preserve the already qualified single-cell summation order exactly.
+    const local = structuredClone(inspectLocalWaterBudget(comparison, members[0]));
+    delete local.cellIndex; delete local.existing.cellIndex; delete local.proposal.cellIndex;
+    local.existing.internalCrossingLiters = 0; local.proposal.internalCrossingLiters = 0;
+    return { cellIndices: members, ...local };
+  }
+  const outside = new Map();
+  const totals = {};
+  for (const target of ['existing', 'proposal']) {
+    const ledger = comparison[target];
+    const total = Object.fromEntries(COMPONENTS.map(key => [key, 0]));
+    total.internalCrossingLiters = 0;
+    for (const i of members) for (const key of ['rainLiters', 'absorbedLiters', 'boundaryExitLiters', 'storedLiters']) {
+      total[key] += ledger.cells[i][key];
+    }
+    for (const edge of ledger.edges) {
+      const aInside = inside.has(edge.a), bInside = inside.has(edge.b);
+      if (aInside && bInside) {
+        total.internalCrossingLiters += edge.aToBLiters + edge.bToALiters;
+      } else if (aInside !== bInside) {
+        const incoming = aInside ? edge.bToALiters : edge.aToBLiters;
+        const outgoing = aInside ? edge.aToBLiters : edge.bToALiters;
+        total.incomingLiters += incoming; total.outgoingLiters += outgoing;
+        const cellIndex = aInside ? edge.b : edge.a;
+        if (!outside.has(cellIndex)) outside.set(cellIndex, { cellIndex,
+          existing: { incomingLiters: 0, outgoingLiters: 0 },
+          proposal: { incomingLiters: 0, outgoingLiters: 0 } });
+        const neighbor = outside.get(cellIndex)[target];
+        neighbor.incomingLiters += incoming; neighbor.outgoingLiters += outgoing;
+      }
+    }
+    total.balanceErrorLiters = total.rainLiters + total.incomingLiters - total.outgoingLiters -
+      total.absorbedLiters - total.boundaryExitLiters - total.storedLiters;
+    totals[target] = total;
+  }
+  const changes = Object.fromEntries(COMPONENTS.map(key => [key, totals.proposal[key] - totals.existing[key]]));
+  const neighbors = [...outside.values()].sort((a, b) => a.cellIndex - b.cellIndex).map(n => ({ ...n,
+    incomingChangeLiters: n.proposal.incomingLiters - n.existing.incomingLiters,
+    outgoingChangeLiters: n.proposal.outgoingLiters - n.existing.outgoingLiters,
+  }));
+  const explainedStorageChangeLiters = changes.rainLiters + changes.incomingLiters -
+    changes.outgoingLiters - changes.absorbedLiters - changes.boundaryExitLiters;
+  return { cellIndices: members, ...totals, changes, neighbors, explainedStorageChangeLiters,
+    changeBalanceErrorLiters: explainedStorageChangeLiters - changes.storedLiters };
+}
+
+export function localBudgetRegion(project, scope) {
+  validateProject(project);
+  if (scope === 'cell') return [project.selectedIndex ?? 0];
+  if (scope === 'site') return project.existing.map((_, i) => i);
+  if (scope === 'edited') return project.existing.flatMap((cell, i) =>
+    cell.elevationM !== project.proposal[i].elevationM || cell.surface !== project.proposal[i].surface ? [i] : []);
+  throw new Error('Choose selected cell, edited footprint or whole site');
+}
+
 // Selection, notebook readings and other investigative controls do not change a
 // saved-assumption budget. Weather and both geometries do; retain unknown weather
 // fields so later qualified forcing extensions also invalidate this consumer.
