@@ -1,0 +1,99 @@
+{
+  "schema": "experimental-earth-site/1",
+  "title": "Authored synthetic fixed-reading method challenge, no field observation",
+  "width": 2,
+  "height": 2,
+  "weather": {
+    "rainMmHr": 67,
+    "stormMinutes": 19,
+    "durationMinutes": 60,
+    "stepMinutes": 5,
+    "cellSizeM": 1,
+    "mobilityPerHour": 2.79,
+    "boundaryExitPerHour": 1.91
+  },
+  "existing": [
+    {
+      "surface": "sealed",
+      "elevationM": 0.031,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": 0.04,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "turf",
+      "elevationM": -0.032,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": 0.026,
+      "provenance": "authored changed-step model control"
+    }
+  ],
+  "proposal": [
+    {
+      "surface": "sealed",
+      "elevationM": 0.031,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": 0.04,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "turf",
+      "elevationM": -0.032,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": -0.036,
+      "provenance": "authored -62 mm single-cell grade intervention"
+    }
+  ],
+  "observations": [
+    {
+      "cellIndex": 2,
+      "minute": 20,
+      "depthMm": 14.88979337871315,
+      "uncertaintyMm": 0.1,
+      "scenario": "existing",
+      "use": "calibration",
+      "source": "Authored source A: synthetic incumbent prediction, not a field measurement"
+    },
+    {
+      "cellIndex": 3,
+      "minute": 15,
+      "depthMm": 1.2106545228228112,
+      "uncertaintyMm": 0.12,
+      "scenario": "existing",
+      "use": "challenge",
+      "source": "Authored source B: synthetic separate held-aside control, not a field measurement"
+    },
+    {
+      "cellIndex": 0,
+      "minute": 15,
+      "depthMm": 0.8,
+      "uncertaintyMm": 0.2,
+      "scenario": "proposal",
+      "use": "unassigned",
+      "source": "Authored unrelated scenario, explicitly excluded from calibration"
+    }
+  ],
+  "selectedIndex": 0,
+  "source": "Illustrative geometry and rates; no site measurements",
+  "infiltrationStudy": {
+    "target": "existing",
+    "surface": "turf",
+    "ratesMmHr": [
+      1,
+      9,
+      24
+    ]
+  }
+}
