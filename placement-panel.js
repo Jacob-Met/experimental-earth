@@ -1,3 +1,4 @@
+import {comparePlacementResolution} from './placement-resolution.js';
 import { comparePlacements, adoptPlacement, placementSignature, PLACEMENT_METRICS } from './placement-search.js';
 import { SURFACES } from './core.js';
 import { DEFAULT_STUDY } from './study-contract.js';
@@ -90,6 +91,28 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
       if(current.adoptionBlockedByProposalEvidence)detail.append(node('p','This workspace has observations assigned to the proposal. Keep those readings with their observed geometry; this alternative remains inspectable but cannot replace that observed proposal.','mini-note'));
     }
   }
+  function resolutionView(result,p,host) {
+    host.replaceChildren();host.dataset.state=result.status;
+    if(result.status!=='compared'){
+      const reasons={'minimum-step':'Already at the supported one-minute minimum; no finer comparison was run.','work-limit':'The combined calculation exceeds the 3 million cell-step limit. Choose fewer eligible cells, a shorter event or fewer declared hypotheses; no layouts were silently removed.'};
+      host.append(node('p',reasons[result.status]??`Source comparison refused: ${result.status}.`));return;
+    }
+    host.append(node('h3','Sensitivity to calculation interval'),node('p',result.semantics),node('p',`Fixed original support: ${result.ratesMmHr.join(', ')} mm/h; original evidence subset: ${result.sourceSupport.subset}. Combined work: ${result.estimatedCellSteps.toLocaleString()} estimated cell-steps.`));
+    host.append(node('p',`${result.qualificationChanged?'Some local-target qualifications change.':'Local-target qualifications are unchanged across these tested intervals.'} ${result.bestChanged?'The best qualifying set changes.':'The best qualifying set is unchanged across these tested intervals.'}`));
+    const table=node('table','','placement-table'),body=node('tbody','');
+    const head=node('tr','');for(const label of ['Step (min)','Qualifying layouts','Best qualifying edits'])head.append(node('th',label));body.append(head);
+    for(const run of result.runs){const row=node('tr','');row.append(node('td',String(run.stepMinutes)),node('td',String(run.qualifyingCount)),node('td',run.best.length?run.best.map(c=>c.map(i=>name(p,i)).join(' + ')||'No change').join('; '):'None'));body.append(row);}table.append(body);
+    const wrap=node('div','','placement-table-wrap');wrap.append(table);host.append(wrap);
+    const all=node('details','');all.append(node('summary',`Inspect all ${result.plans.length} layouts at every tested interval`));
+    for(const plan of result.plans){
+      const item=node('details','');item.append(node('summary',`${plan.cells.map(i=>name(p,i)).join(' + ')||'No change'}${plan.qualificationChanged?' · local qualification changes':''}${plan.bestChanged?' · best-set membership changes':''}`));
+      for(const at of plan.atSteps){
+        item.append(node('h4',`${at.stepMinutes} min: ${at.meets?'meets every local target':'does not meet every local target'}${at.isBest?' · best qualifying set':''}`),node('p',`Worst additional ${PLACEMENT_METRICS[result.query.metric].label}: ${number(at.score)} ${PLACEMENT_METRICS[result.query.metric].unit}.`));
+        for(const check of at.checks){item.append(node('p',`${name(p,check.cellIndex)} limit ${number(check.maxPeakChangeMm)} mm; worst ${number(check.worstChangeMm)} mm. Basis: ${check.basis}`));
+          for(const w of check.witnesses)item.append(node('p',`${w.rateMmHr} mm/h: ${number(w.changeMm)} mm change; ${w.meets?'meets target':'exceeds by '+number(w.excessMm)+' mm'}.`));}
+      }all.append(item);
+    }host.append(all);host.style.overflowWrap='anywhere';
+  }
   function show(current,p) {
     const host=$('placement-results');host.replaceChildren();$('placement-status').dataset.state=current.status;
     const refusal={'need-calibration':'Assign calibration readings before filtering.','need-challenge':'Assign held-aside readings before using their bands.','no-compatible-rates':'No source hypotheses meet these bands; no closest-fit fallback is used.','surface-absent':'The studied surface is absent from the source comparison.'};
@@ -104,6 +127,15 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     const details=node('details','');details.append(node('summary',`Inspect all ${current.plans.length} enumerated placements`));const wrap=node('div','','placement-table-wrap');wrap.append(table);details.append(wrap);host.append(details);
     const calculation=node('details','');calculation.append(node('summary','Calculation details'),node('p',`Numerical tie guard: ${current.tieGuard} ${metric.unit}. Conservative work estimate: ${current.cellStepUpperBound.toLocaleString()} cell-steps. This tolerance groups near-equal numerical scores; it is not a physical uncertainty interval.`));host.append(calculation);
     const detail=node('div','','placement-detail');detail.id='placement-detail';host.append(detail);inspect(current.plans.find(p=>p.localTargets.meets)??current.plans[0],p,current);
+    const finer=node('button','Check finer calculation intervals');finer.id='placement-resolution-run';finer.type='button';
+    const sensitivity=node('section','');sensitivity.id='placement-resolution-results';sensitivity.setAttribute('aria-live','polite');host.append(finer,sensitivity);
+    finer.addEventListener('click',()=>{
+      const request=generation;finer.disabled=true;sensitivity.textContent='Checking the same layouts and fixed original hypotheses…';
+      setTimeout(()=>{try{if(request!==generation||placementSignature(getProject())!==current.sourceSignature)return;
+        const result=comparePlacementResolution(p,current.query);
+        if(request===generation&&placementSignature(getProject())===current.sourceSignature)resolutionView(result,p,sensitivity);
+      }catch(error){if(request===generation){sensitivity.textContent=error.message;sensitivity.dataset.state='error';}}finally{finer.disabled=false;}},20);
+    });
   }
   for(const id of ['placement-surface','placement-count','placement-objective','placement-subset'])$(id).addEventListener('change',()=>{invalidate();drawEligibility();});
   for(const id of ['placement-target-cells','placement-target-limit','placement-target-basis'])$(id).addEventListener('input',()=>invalidate());
