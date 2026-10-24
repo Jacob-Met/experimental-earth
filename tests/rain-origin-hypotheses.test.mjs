@@ -141,6 +141,24 @@ test('full-event individual and cohort budgets cannot be bypassed by early queri
   assert.equal(investigate(p).status, 'work-limit');
 });
 
+test('initial boundary counts toward the individual tracer cap before evidence fitting', () => {
+  const p = courtyard();p.width = p.height = 24;
+  p.existing = Array.from({ length: 576 }, () => ({ surface: 'turf', elevationM: 0, provenance: 'authored admission-boundary control' }));
+  p.proposal = structuredClone(p.existing);p.rainOriginStudy = { targetCells: [0], fate: 'stored', minute: 0 };
+  p.infiltrationStudy.ratesMmHr = [3, 9];p.observations = [];
+  Object.assign(p.weather, { stormMinutes: 1, durationMinutes: 434, stepMinutes: 1 });
+  for (const subset of ['all', 'calibration', 'surviving']) {
+    const r = investigate(p, { subset });
+    assert.equal(r.status, 'work-limit');assert.equal(r.originCellSteps, 250560);
+    assert.ok(r.cellStepUpperBound < MAX_ORIGIN_HYPOTHESIS_CELL_STEPS, 'the individual tracer cap is decisive');
+    assert.equal(r.evidence, null);assert.deepEqual(r.candidates, []);
+  }
+  p.weather.durationMinutes = 433;
+  const admitted = investigate(p);
+  assert.equal(admitted.status, 'compared');assert.equal(admitted.originCellSteps, 249984);
+  assert.equal(admitted.minute, 0);assert.equal(admitted.candidates.length, 2);
+});
+
 test('default explanation and ordinary simulation are unchanged by examining other rates', () => {
   const p = courtyard(), before = structuredClone(p), plain = compareRainOrigins(p), bulk = compare(p);
   const r = investigate(p);assert.notEqual(r.candidates[0].comparison.existing.rainfallLiters, plain.existing.rainfallLiters);
