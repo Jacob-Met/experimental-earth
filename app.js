@@ -8,6 +8,7 @@ import { interpolateDepth } from './infiltration-study.js';
 import { mountInternalBarriers } from './internal-barrier-panel.js';
 import { mountPondingPanel } from './ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
+import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
 import { mountInterventionPanel } from './intervention-panel.js';
 import { mountTerrainImport } from './terrain-panel.js';
@@ -27,6 +28,8 @@ let brush = 'inspect';
 let view = 'peak';
 let results;
 let toastTimeout;
+let projectRevision = 0;
+let projectImportSerial = 0;
 
 function notice(message) {
   $('toast').textContent = message;
@@ -39,7 +42,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -172,14 +175,22 @@ $('observe-form').addEventListener('submit',event=>{
   try{validateProject(project);rerun();$('obs-depth').value='';$('obs-source').value='';notice(`Observation for ${nameCell(o.cellIndex)} retained locally.`);}catch(err){project.observations.pop();notice(err.message);}
 });
 $('export').addEventListener('click',()=>{
-  const data=new Blob([JSON.stringify(project,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(data);const link=document.createElement('a');link.href=url;link.download='experimental-earth-site.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
-  notice('Portable project downloaded.');
+  try {
+    const data=new Blob([serializePortableProject(project)],{type:'application/json'});
+    const url=URL.createObjectURL(data);const link=document.createElement('a');link.href=url;link.download='experimental-earth-site.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
+    notice('Portable project downloaded.');
+  } catch(err) { notice(`Export refused: ${err.message}. Current workspace was not changed.`); }
 });
 $('import').addEventListener('change',async event=>{
   const file=event.target.files?.[0];if(!file)return;
-  try {if(file.size>1_000_000)throw Error('Project file exceeds 1 MB limit');const parsed=JSON.parse(await file.text());validateProject(parsed);project=parsed;syncForm();rerun();notice('Validated project imported.');}
-  catch(err){notice(`Import refused: ${err.message}`);}finally{event.target.value='';}
+  const serial=++projectImportSerial, revision=projectRevision;
+  try {
+    checkProjectFileBytes(file.size);
+    const parsed=parsePortableProject(await file.text());
+    if(serial!==projectImportSerial || revision!==projectRevision) throw Error('Workspace changed while reading; select the file again');
+    project=parsed;syncForm();rerun();notice('Validated project imported.');
+  } catch(err) { if(serial===projectImportSerial) notice(`Import refused: ${err.message}`); }
+  finally { if(serial===projectImportSerial) event.target.value=''; }
 });
 function prepareObservedReading(question) {
     project.selectedIndex = question.cellIndex;
