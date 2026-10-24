@@ -20,6 +20,10 @@ Optional actual-browser receiving: with a locally available Chrome/Chromium and 
 
 ## Inspect an unknown surface property
 
+### Follow the water at a selected cell
+
+**Trace both scenarios**, below the site totals, explains each cell's whole-event rain, incoming and outgoing neighbor water, infiltration, boundary exit and final storage in liters. Compare the component changes between the saved plans, then follow a neighboring cell to inspect its contribution. Both travel directions remain visible; repeated crossings are not unique water-parcel provenance. Site/weather edits clear the derived result; ordinary project export/import preserves its inputs for recomputation. See [local water accounting](docs/LOCAL_WATER_ACCOUNTING.md) for the conservation relation, interactive work limit and verification boundaries.
+
 **Probe infiltration assumption** tests the effect of replacing only one proposed cell's authored infiltration parameter with an illustrative lower or upper example bound. It ranks modeled **water not absorbed** (water left through edges plus final standing water), separately from the existing button that suggests measuring where the *two scenarios* disagree. On imported grids over 96 cells it visibly reports a 36-cell heuristic shortlist; it does not claim a globally optimal recommendation. Bounds are neither measured local soil data nor confidence intervals. Use the separate ponding-depth form only for water-depth readings, not permeability tests.
 
 ## Challenge competing infiltration rates
