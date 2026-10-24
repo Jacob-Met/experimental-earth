@@ -1,4 +1,5 @@
 import {validateSolarStudy} from './solar-occlusion-contract.js';
+import {validateSurfaceHeatStudy} from './surface-heat-contract.js';
 import {validateThresholdEvidence} from './threshold-evidence-contract.js';
 import { validateInternalBarriers, internalEdgeClosed, internalEdgeCrest } from './internal-barriers.js';
 import { allocateCrestTransfers } from './crest-transfers.js';
@@ -76,6 +77,7 @@ export function validateProject(project) {
   validateOutletEvidence(project.outletEvidence);
   validateThresholdEvidence(project.thresholdEvidence);
   validateSolarStudy(project.solarStudy);
+  validateSurfaceHeatStudy(project.surfaceHeatStudy);
   validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
   validateRainOriginStudy(project.rainOriginStudy, width * height);
