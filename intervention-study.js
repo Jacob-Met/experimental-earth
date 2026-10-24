@@ -17,9 +17,11 @@ export function summarizeEffects(values) {
 }
 /** Paired finite hypotheses, not probabilities. Same rate transfers to every
  * cell of the chosen surface in BOTH scenarios; other surfaces keep defaults. */
-export function compareIntervention(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all' } = {}) {
+export function compareIntervention(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false } = {}) {
   validateProject(project); validateStudy(study);
   if (!['all', 'calibration', 'surviving'].includes(subset)) throw Error('Unknown hypothesis subset');
+  if (typeof allowAbsentSurface !== 'boolean') throw Error('Absent-surface evaluation must be an explicit boolean');
+  if (allowAbsentSurface && subset !== 'all') throw Error('Absent-surface evaluation cannot filter evidence');
   // Three simulations per candidate at most, including evidence comparison.
   const work = study.ratesMmHr.length * 3 * project.width * project.height * Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
   if (work > 3000000) throw Error('This comparison exceeds the 3 million cell-step budget. Reduce grid, duration or candidate count.');
@@ -29,7 +31,7 @@ export function compareIntervention(project, { study = project.infiltrationStudy
   const rates = subset === 'all' ? study.ratesMmHr : subset === 'calibration' ? evidence.compatibleRatesMmHr : evidence.survivingRatesMmHr;
   if (!rates.length) return { status: 'no-compatible-rates', candidates: [], metrics: {}, cells: [], subset };
   const affected = Object.fromEntries(['existing', 'proposal'].map(target => [target, project[target].filter(c => c.surface === study.surface).length]));
-  if (!affected.existing && !affected.proposal) return { status: 'surface-absent', candidates: [], metrics: {}, cells: [], subset };
+  if (!affected.existing && !affected.proposal && !allowAbsentSurface) return { status: 'surface-absent', candidates: [], metrics: {}, cells: [], subset };
   const candidates = rates.map(rateMmHr => {
     const options = { surfaceInfiltrationOverride: { surface: study.surface, rateMmHr } };
     const existing = runRain(project.existing, project.width, project.height, project.weather, options);

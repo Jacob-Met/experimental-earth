@@ -56,3 +56,13 @@ test('unassigned or different-scenario readings cannot narrow hypotheses',()=>{
  assert.equal(compareIntervention(p,{subset:'calibration'}).status,'need-calibration');
  assert.equal(compareIntervention(p).candidates.length,3);
 });
+
+test('explicit absent-surface all-rate evaluation preserves the default refusal and identity',()=>{
+ const p=fixture();p.infiltrationStudy.surface='sealed';const before=structuredClone(p);
+ assert.equal(compareIntervention(p).status,'surface-absent');
+ const r=compareIntervention(p,{allowAbsentSurface:true});assert.equal(r.status,'compared');assert.deepEqual(r.affected,{existing:0,proposal:0});
+ assert.equal(r.candidates.length,3);for(const c of r.candidates)assert.deepEqual(c.metrics,r.candidates[0].metrics);
+ assert.deepEqual(p,before);
+ for(const subset of ['calibration','surviving'])assert.throws(()=>compareIntervention(p,{subset,allowAbsentSurface:true}),/cannot filter evidence/);
+ assert.throws(()=>compareIntervention(p,{allowAbsentSurface:'yes'}),/explicit boolean/);
+});

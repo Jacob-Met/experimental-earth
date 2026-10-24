@@ -53,12 +53,30 @@ test('adoption refuses stale/foreign selections and preserves observed-proposal 
  const ordinary=fixture();ordinary.observations=[{cellIndex:0,minute:5,depthMm:5,uncertaintyMm:1,source:'Retained source',scenario:'existing',use:'calibration'}];
  const next=adoptPlacement(ordinary,q,[0],placementSignature(ordinary));assert.deepEqual(next.observations,ordinary.observations);
 });
-test('maintained absent-surface limitation remains explicit; no partial variant ranking',()=>{
- const p=fixture(),q=query({eligibleCells:[0],study:{...study,surface:'garden'}});
- assert.equal(comparePlacements(p,q).status,'surface-absent');
- p.proposal[0].surface='garden';const before=structuredClone(p);
- assert.throws(()=>comparePlacements(p,{...q,surface:'sealed'}),/Not every declared variant/);
+test('introduced material keeps unconstrained rates and reveals reversal against no change',()=>{
+ const p=fixture();Object.assign(p.weather,{rainMmHr:30,stormMinutes:60,durationMinutes:60});
+ const q=query({eligibleCells:[0],study:{...study,surface:'garden',ratesMmHr:[0,12,24]}}),before=structuredClone(p);
+ const r=comparePlacements(p,q);assert.equal(r.status,'compared');assert.deepEqual(r.sourceAffected,{existing:0,proposal:0});
+ assert.deepEqual(r.ratesMmHr,[0,12,24]);assert.deepEqual(r.best,[[]]);
+ const added=r.plans.find(x=>x.cells.length);assert.equal(added.metrics.unabsorbedLiters.direction,'reverses');
+ added.candidates.forEach((c,i)=>{assert.ok(Math.abs(c.metrics.unabsorbedLiters.current-116)<1e-8);assert.ok(Math.abs(c.metrics.unabsorbedLiters.delta-[1,-11,-23][i])<1e-8);});
+ const supported=comparePlacements(p,{...q,study:{...q.study,ratesMmHr:[12,24]}});assert.deepEqual(supported.best,[[0]]);
  assert.deepEqual(p,before);
+});
+test('removing the final studied material still evaluates every declared variant',()=>{
+ const p=fixture();p.proposal[0].surface='garden';const before=structuredClone(p);
+ const r=comparePlacements(p,query({eligibleCells:[0],surface:'sealed',study:{...study,surface:'garden',ratesMmHr:[0,12,24]}}));
+ assert.equal(r.plans.length,2);assert.deepEqual(r.sourceAffected,{existing:0,proposal:1});
+ const removed=r.plans.find(x=>x.cells.length);assert.equal(removed.metrics.unabsorbedLiters.direction,'reverses');
+ assert.equal(new Set(removed.candidates.map(c=>Math.round(c.metrics.unabsorbedLiters.proposed*1e8))).size,1);
+ assert.deepEqual(p,before);
+});
+test('absent target material cannot gain calibration support from hypothetical introduction',()=>{
+ const p=fixture(),q=query({eligibleCells:[0],study:{...study,surface:'garden',ratesMmHr:[0,12,24]}});
+ p.observations=[{cellIndex:0,minute:10,depthMm:10,uncertaintyMm:100,source:'Authored broad band',scenario:'existing',use:'calibration'},
+ {cellIndex:0,minute:10,depthMm:10,uncertaintyMm:100,source:'Authored held-aside broad band',scenario:'existing',use:'challenge'}];
+ for(const subset of ['calibration','surviving']){const r=comparePlacements(p,{...q,subset});assert.equal(r.status,'no-compatible-rates');assert.deepEqual(r.plans,[]);}
+ assert.deepEqual(comparePlacements(p,q).ratesMmHr,[0,12,24]);
 });
 test('bounds and combined work refusal precede enumeration; original source stays intact',()=>{
  const p=fixture();for(const q of [query({eligibleCells:[]}),query({eligibleCells:[0,0]}),query({maxEdits:3}),query({metric:'score'})])assert.throws(()=>comparePlacements(p,q));
