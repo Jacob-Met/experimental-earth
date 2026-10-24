@@ -2,6 +2,7 @@ import { mountPondingPanel } from './ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, depthAtMinute, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
 import { mountInterventionPanel } from './intervention-panel.js';
+import { mountTerrainImport } from './terrain-panel.js';
 import { mountObservationImport } from './observation-import-panel.js';
 import { mountOutletEvidence } from './outlet-evidence-panel.js';
 import { mountEventChallengePanel } from './event-challenge-panel.js';
@@ -28,7 +29,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -40,7 +41,7 @@ function applyBrush(target, index) {
   if (brush !== 'inspect') {
     const cell = project[target][index];
     if (['sealed','turf','garden'].includes(brush)) cell.surface = brush;
-    else if (brush==='raise'||brush==='lower') cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3));
+    else if (brush==='raise'||brush==='lower') { delete cell.terrainSource; cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3)); }
     cell.provenance = 'manually edited hypothetical assumption';
   }
   rerun();
@@ -89,6 +90,10 @@ function observations() {
   const n=project.selectedIndex; const base=project.existing[n]; const plan=project.proposal[n];
   $('obs-cell').value=nameCell(n);
   $('selection').innerHTML=`<div><strong>Selected ${nameCell(n)}</strong> · existing: ${SURFACES[base.surface].label}, ${numeric(base.elevationM)} m</div><div>proposed: ${SURFACES[plan.surface].label}, ${numeric(plan.elevationM)} m</div>`;
+  $('terrain-origin').textContent = ['existing', 'proposal'].map(target => {
+    const origin = project[target][n].terrainSource;
+    return origin ? `${target}: ${origin.fileName}, line ${origin.line}; ${origin.elevationValue} ± ${origin.uncertaintyValue} ${origin.unit}; datum ${origin.datum}; ${origin.source}. Supplied uncertainty is retained, not propagated by the solver.` : `${target}: ${project[target][n].provenance}`;
+  }).join(' | ');
   const suggested=chooseNextObservation(project,results);
   $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement. Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
   const list=$('observation-list');list.replaceChildren();
@@ -196,5 +201,7 @@ const localWaterBudgetPanel = mountLocalWaterBudget({ getProject: () => project,
 const outletEvidencePanel = mountOutletEvidence({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const rainTracePanel = mountRainTrace({ getProject: () => project, changed: rerun, notice });
+const terrainImporter = mountTerrainImport({ getProject: () => project,
+  replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const pondingPanel = mountPondingPanel({getProject: () => project, getResults: () => results});
 syncForm();rerun();
