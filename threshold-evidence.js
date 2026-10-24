@@ -4,7 +4,7 @@ import {interpolateDepth} from './infiltration-study.js';
 import {THRESHOLD_SCHEMA,thresholdContext,validateThresholdEvidence,assessThreshold} from './threshold-evidence-contract.js';
 export function prepareThresholdEvidence(project,target,eventRef,readings){
  validateProject(project);
- const record={schema:THRESHOLD_SCHEMA,target,eventRef:eventRef.trim(),contextJson:thresholdContext(project,target),cellCount:project.width*project.height,durationMinutes:project.weather.durationMinutes,readings:structuredClone(readings)};
+ const record={schema:THRESHOLD_SCHEMA,target,eventRef:eventRef.trim(),contextJson:thresholdContext(project,target),width:project.width,height:project.height,cellCount:project.width*project.height,durationMinutes:project.weather.durationMinutes,readings:structuredClone(readings)};
  return validateThresholdEvidence(record);
 }
 export function compareThresholdEvidence(project,study=project.infiltrationStudy??DEFAULT_STUDY){
