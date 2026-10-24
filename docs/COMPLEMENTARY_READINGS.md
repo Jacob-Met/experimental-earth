@@ -1,0 +1,17 @@
+# Complementary depth readings
+
+In the infiltration workbench, expand **Plan complementary depth readings** after retaining a candidate study and calibration readings. Supply a prospective ± depth tolerance and a budget of one to three readings. The planner retains only calibration-compatible rates and inspects the existing solver snapshots. Held-aside values cannot select questions, improve candidate support or rescue a calibration-rejected candidate. All previously recorded coordinates for that scenario are excluded regardless of their evidence role.
+
+At each step, the planner selects the point distinguishing the greatest number of previously unresolved pairs. Two predictions distinguish a pair only if their prospective tolerance bands are disjoint beyond a numerical guard of `1e-9 × max(1, predicted depths, tolerance)` mm. Touching bands do not count. Earliest time, then lowest cell index, breaks ties. It stops when no additional pair can be distinguished or the budget is exhausted. A separate list retains every unresolved pair.
+
+This is a deterministic greedy coverage heuristic, not a globally minimal experiment set, expected information gain, probability or an adaptive policy conditioned on future results. A pair can be distinguished at one point while other pairs require different points. Each question gives all candidate predictions and the extra distinctions it contributes. Nothing removes a candidate or supplies an actual measurement. **Prepare reading** reuses the notebook's existing action: scenario, cell, minute, held-aside role and tolerance are filled; old depth and source drafts are cleared. Enter the actual depth and source yourself.
+
+The model's spatial/time discretization and physical errors are outside the prospective tolerance. Proposed observations may be practically unavailable. Distinguishing all finite alternatives does not establish a unique physical infiltration rate. The planner does not propagate terrain, forcing or outlet uncertainty. Questions are temporary and invalidated by changed project or query inputs; ordinary saved source can be reopened and recomputed.
+
+## Executed-model control
+
+On the maintained authored courtyard, set rain to 12 mm/h and turf candidates to 0, 3, 9, 22 mm/h. An authored zero-depth calibration control at minute 0 retains all four; it is not acquired field evidence. With ±4 mm prospective tolerance, F2 at 45 min distinguishes four pairs. The depths are approximately 16.0927, 13.2061, 4.48065, 0 mm. F2 at 235 min adds the 0/3 mm/h pair (8.22840 versus 0.170720 mm), taking coverage to five of six. The 9/22 pair remains unresolved. A single large-span question cannot substitute for the second time's additional distinction.
+
+The combined calibration and question simulations are admitted conservatively before execution against one million estimated cell-steps. At most nine candidates and three questions are supported. Equal separation patterns keep their earliest coordinate, reducing repeated scanning without changing the defined greedy choice.
+
+Run `node --test --test-isolation=none tests/complementary*.test.mjs` for independent synthetic coverage and actual maintained-solver controls. Run `CHROME_BIN=/path/to/chrome node tests/complementary-depth.browser.mjs` for source import, actual paired questions, keyboard notebook preparation, changed-input invalidation, reload and narrow layout. Browser execution must pass maintained sandbox admission.
