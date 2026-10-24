@@ -1,5 +1,11 @@
 import {mountSolarPanel} from './solar-panel.js';
+import {mountSunPathPanel} from './solar-path-panel.js';
+import {mountSurfaceHeat} from './surface-heat-panel.js';
+import {mountHeatEvidence} from './surface-heat-evidence-panel.js';
+import {mountHeatColumn} from './heat-column-panel.js';
+import {mountHeatColumnEvidence} from './heat-column-evidence-panel.js';
 import { mountStormIntensityPanel } from './storm-intensity-panel.js';
+import { mountWettingFrontPanel } from './wetting-front-panel.js';
 import { mountProposalComponents } from './proposal-components-panel.js';
 import {mountThresholdEvidence} from './threshold-evidence-panel.js';
 import {mountClockPanel} from './clock-panel.js';
@@ -8,6 +14,7 @@ import { mountObservationMap } from './observation-map-panel.js';
 import { interpolateDepth } from './infiltration-study.js';
 import { mountInternalBarriers } from './internal-barrier-panel.js';
 import { mountPondingPanel } from './ponding-panel.js';
+import { mountRoutePondingPanel } from './route-ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -43,7 +50,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); stormIntensityPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { projectRevision++; results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -114,7 +121,15 @@ function observations() {
     return origin ? `${target}: ${origin.fileName}, line ${origin.line}; ${origin.elevationValue} ± ${origin.uncertaintyValue} ${origin.unit}; datum ${origin.datum}; ${origin.source}. Supplied uncertainty is retained, not propagated by the solver.` : `${target}: ${project[target][n].provenance}`;
   }).join(' | ');
   const suggested=chooseNextObservation(project,results);
-  $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement. Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
+  $('suggest').disabled = suggested === null;
+  if (suggested === null) {
+    $('next-reading').textContent='No difference-driven depth reading at storm end: the two modeled scenarios agree at every cell at that time. You can still record an independent observation to challenge the shared assumptions; this is not evidence the model matches the real site.';
+  } else {
+    const timeSupport = suggested.method === 'linear interpolation'
+      ? ` This is a linear estimate between modeled ${suggested.beforeMinute} and ${suggested.afterMinute} min snapshots, not a separate solver result at that minute.`
+      : ' The model has an exact saved snapshot at that minute.';
+    $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement.${timeSupport} Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
+  }
   const list=$('observation-list');list.replaceChildren();
   if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);return;}
   for(let i=project.observations.length-1;i>=0;i--){
@@ -147,7 +162,7 @@ $('brushes').addEventListener('click',event=>{const b=event.target.closest('[dat
 $('map-view').addEventListener('change',()=>{view=$('map-view').value;draw();});
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
-$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
+$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
 $('suggest-infiltration').addEventListener('click',()=>{
   const button=$('suggest-infiltration');
   button.disabled=true;
@@ -232,6 +247,7 @@ const rainTracePanel = mountRainTrace({ getProject: () => project, changed: reru
 const terrainImporter = mountTerrainImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const pondingPanel = mountPondingPanel({getProject: () => project, getResults: () => results});
+const routePondingPanel = mountRoutePondingPanel({getProject: () => project, getResults: () => results});
 const jointEvidencePanel = mountJointEvidence({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const jointEventPanel = mountJointEventChallenge({ getProject: () => project, notice });
@@ -256,4 +272,11 @@ const solarPanel = mountSolarPanel({getProject:()=>project, replaceProject:next=
 const clockPanel = mountClockPanel({getProject:()=>project,notice});
 const proposalComponentsPanel = mountProposalComponents({ getProject: () => project });
 const stormIntensityPanel = mountStormIntensityPanel({ getProject: () => project });
+const surfaceHeatPanel = mountSurfaceHeat({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
+const heatColumnPanel = mountHeatColumn({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
+const heatColumnEvidencePanel = mountHeatColumnEvidence({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
+const sunPathPanel = mountSunPathPanel({getProject:()=>project, notice});
+const wettingFrontPanel = mountWettingFrontPanel({ getProject: () => project,
+  replaceProject: next => { project = validateProject(next); rerun(); }, prepareReading: prepareObservedReading });
+const heatEvidencePanel = mountHeatEvidence({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 syncForm();rerun();

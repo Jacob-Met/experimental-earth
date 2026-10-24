@@ -10,6 +10,29 @@ The product should help people understand and improve a courtyard, schoolyard, g
 
 ## Run the Rain Experiment Lab
 
+The workbench also includes **How does a surface warm up and cool down?**, a
+source-bound comparison of two declared uniform thermal layers at a chosen cell.
+Supply absorption, heat capacity, linear exchange and a consecutive exposure
+schedule; inspect the temperature history and signed energy accounting, then
+retain it through ordinary project export/reopen. The fictional example exposes
+a heating-versus-late-cooling tradeoff. See [the heat experiment](docs/SURFACE_HEAT.md)
+for the exact model, retained sources, omitted processes and browser controls.
+This is a declared-model experiment, with no inferred material properties or
+physical heat/comfort validation.
+
+The adjacent **Temperature Evidence** panel compares explicit material hypotheses
+with sourced temperature intervals, keeping calibration and challenge readings
+separate. It preserves indistinguishable alternatives and their different energy
+implications, with raw evidence retained in the full project. See
+[temperature evidence](docs/SURFACE_HEAT_EVIDENCE.md) for the finite comparison,
+source association and the common-scale ambiguity that temperature cannot resolve.
+
+Optional absorbed-energy intervals can challenge that ambiguity while retaining
+all original temperature evidence. Supply an explicitly absorbed quantity with
+start/end times, a source and a bound; inspect every residual and reopen the
+versioned raw inputs. Incident energy and net stored heat are distinct quantities.
+The authored control illustrates the mechanism without claiming a measurement.
+
 Run `python3 -m http.server 8765` from the repository root and open `http://localhost:8765/` in a modern browser. It is dependency-free and local-only. Edit either 8×6 site grid with surface/height brushes, change rain assumptions, compare the matched scenarios, inspect water balance and time series, and save/reopen the full project via Export/Import JSON. Browser storage also retains the last workspace locally. Open the site through a local HTTP server, not directly as a `file:` URL, because JavaScript modules may be blocked by file-origin security policy.
 
 The base project's **Export JSON** and **Import JSON** share a 4 MiB UTF-8 transfer ceiling, which admits a fully sourced 24×24 survey grid that exceeds the former 1 MB importer limit. Export refuses an oversized workspace without modifying it; Import refuses oversized or invalid files, and a pending file read cannot overwrite newer project edits or a reset. A retained source description is an authored claim, not independent provenance verification.
@@ -43,6 +66,26 @@ interpretation limits.
 **Probe infiltration assumption** tests the effect of replacing only one proposed cell's authored infiltration parameter with an illustrative lower or upper example bound. It ranks modeled **water not absorbed** (water left through edges plus final standing water), separately from the existing button that suggests measuring where the *two scenarios* disagree. On imported grids over 96 cells it visibly reports a 36-cell heuristic shortlist; it does not claim a globally optimal recommendation. Bounds are neither measured local soil data nor confidence intervals. Use the separate ponding-depth form only for water-depth readings, not permeability tests.
 
 ## Challenge competing infiltration rates
+
+### Investigate changing soil absorption
+
+The **What changes as the soil wets?** panel compares explicitly declared
+Green–Ampt wetting-front explanations with the current fixed-rate model. Enter
+conductivity and capillary-drive alternatives, inspect matched existing/proposal
+water outcomes and selected-cell curves, and challenge each explanation with
+the original calibration and held-aside readings. Save the complete input
+investigation and reopen it for independent recomputation without replacing the
+working site. This is an event-scale model comparison, not automatic soil
+identification or field validation. See [the mechanism, controls and use](docs/WETTING_FRONT.md).
+
+Optionally include a depth-reading question with an explicit cell scope, event
+window and measurement uncertainty. The comparison reuses trajectories from
+compatible explanations to find their largest unrecorded depth difference, displays every
+predicted reading band and retains unresolved pairs. Preparing a question uses
+the ordinary notebook and leaves the measured value/source empty. Saved inputs
+recompute the question on reopening; held-aside values never select it.
+
+### Compare constant-rate alternatives
 
 The **infiltration hypothesis challenge** compares 2–9 explicit constant-rate candidates for one surface in one observed scenario. Add depth readings with source and ± tolerance in the notebook, then assign each a scenario and either **Calibration** or **Held aside**. Existing unassigned readings remain notebook entries and are excluded from both scores. Choose the surface and candidate rates, then select **Compare rate hypotheses**. The comparison changes all matching cells' infiltration capacity during each candidate run; it never applies a rate to the project automatically.
 
@@ -152,6 +195,12 @@ Crossings and intermediate depths use linear interpolation between retained solv
 
 The ponding detail also reports **accumulated depth above threshold** in mm·min: the area under the positive depth-minus-threshold curve, using the same linear interpolation. It distinguishes a deep brief episode from a shallow long one without assigning a damage or safety score. If the first or last retained snapshot is still above threshold, the panel explicitly states that earlier onset or later clearance is unknown outside the modeled horizon.
 
+## Inspect ponding across an authored connected route
+
+Below **Ponding through time**, declare a sequence of different, edge-adjacent grid cells such as D3 E3 F3 and select **Inspect declared route**. The review reuses the replay minute and depth threshold. It identifies the deepest listed cell at that minute and computes the continuous modeled intervals when **all** listed cells are simultaneously at or below the selected threshold. Existing and proposed sites are evaluated under the same weather; their displayed duration difference is arithmetic, not a safety conclusion. The same source snapshot interpolation used by the individual-cell workbench is preserved. The route is a session-only question; project export retains the underlying site, not the unsourced route declaration.
+
+**Limit:** This does not show a moving person's passage along a path, independently measured depths, physical accessibility, flood safety or environmental calibration. Different arrival times, omitted cells, intra-step peaks and changing ground conditions can invalidate practical assumptions. Use sourced measurements and appropriate expertise for real-site decisions.
+
 ## Compare internal walls and openings
 
 Select a cell and use **Walls and openings** below the paired site maps to close an internal connection or restore an opening in either scenario. Add a source or hypothetical assumption; dark map lines show closed edges. Water can reroute through remaining gaps, and all maintained rain comparisons and attribution consumers use the same connectivity. Declarations survive ordinary export/import, reload and copying the existing site into the proposal.
@@ -191,3 +240,18 @@ Surface-only cases retain existing elevations and their terrain records; elevati
 For example, in the authored courtyard, copy existing to proposal, turn D4 into a rain garden, and lower it twice (5 cm). At default capacities, the separate final-storage effects are approximately −320.915 L for surface conversion and +75.469 L for lowering; the full change is −249.994 L, including −4.548 L of interaction. These are model outputs for an authored example, not measurements or a recommendation. Use the local depth table to inspect where water remains; a site storage change alone does not describe local ponding.
 
 Run `node tests/surface-elevation.test.mjs` for direct four-world, co-located/disjoint edit, terrain-source, fixed-crest, conservation, source-evidence and refusal controls. Run `CHROME_BIN=/opt/google/chrome/chrome node tests/surface-elevation.receiving.mjs` for the actual editor-to-comparison-to-reopen browser course, including continued keyboard rate inspection and desktop/mobile result captures.
+
+
+## Compare a dated sun path
+
+The **How does direct-sun obstruction change through the day?** panel connects the saved columns to explicit geographic coordinates, a sourced true-north grid bearing and UTC sampling times. Inspect changing paired ground-centre results and their original witnesses without replacing the saved single-direction study. Calculations stay local; below-horizon and low-elevation samples remain explicit, and discrete counts do not imply hours of shade. See [dated sun paths](docs/SUN_PATH.md) for use, source pins, privacy, sampling limits and verification.
+
+After comparing, **Save investigation with location and site** retains the original project and dated declarations in a separate input-only JSON file. Reopen that file to recompute and inspect its original grid alongside whichever project is active. No saved verdict is trusted and the active project is unchanged. The file includes geographic location and site sources; ordinary project export still omits the temporary dated-path draft.
+
+### Heat retained below the surface
+
+The saved surface heat experiment can now add a sourced lower heat store for each existing/proposed place. Compare the two temperature traces, inspect delayed interior peaks after heating stops, and follow absorbed input, ambient exchange, internal transfer and stored energy separately. The original exposure and place remain bound to the declaration; whole-project reopening recomputes the result. This is a two-store model with an insulated bottom, not a resolved depth profile or inferred material calibration. See [the equations, workflow, controls and limits](docs/HEAT_COLUMN.md).
+
+### Surface evidence for hidden heat stores
+
+Compare sourced surface-temperature bands against explicit lower-capacity/conductance alternatives while keeping the original column, initial temperatures and exposure fixed. Structured cards preserve calibration and challenge roles; linked surface/lower curves and a remaining-peak spread show what those readings distinguish and what stays unresolved. One survivor refers only to the offered finite set, not unique physical parameters. Whole-project reopening recomputes the investigation. See [the workflow, five-explanation control and numerical limits](docs/HEAT_COLUMN_EVIDENCE.md).

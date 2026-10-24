@@ -1,8 +1,14 @@
 import {validateSolarStudy} from './solar-occlusion-contract.js';
+import {validateSurfaceHeatStudy} from './surface-heat-contract.js';
+import {validateHeatEvidence} from './surface-heat-evidence-contract.js';
+import {validateHeatColumnStudy} from './heat-column-contract.js';
+import {validateHeatColumnEvidence} from './heat-column-evidence-contract.js';
 import {validateThresholdEvidence} from './threshold-evidence-contract.js';
 import { validateInternalBarriers, internalEdgeClosed, internalEdgeCrest } from './internal-barriers.js';
 import { allocateCrestTransfers } from './crest-transfers.js';
 import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
+import { advanceWettingFront } from './wetting-front.js';
+import { validateWettingFrontModel, validateWettingFrontStudy } from './wetting-front-contract.js';
 /**
  * EXPERIMENTAL EARTH / rain experiment core.
  * Deliberately modest conservation-based conceptual grid model, NOT a calibrated
@@ -74,9 +80,14 @@ export function validateProject(project) {
   validateOutletEvidence(project.outletEvidence);
   validateThresholdEvidence(project.thresholdEvidence);
   validateSolarStudy(project.solarStudy);
+  validateSurfaceHeatStudy(project.surfaceHeatStudy);
+  validateHeatEvidence(project.surfaceHeatEvidence);
+  validateHeatColumnStudy(project.heatColumnStudy);
+  validateHeatColumnEvidence(project.heatColumnEvidence);
   validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
   validateRainOriginStudy(project.rainOriginStudy, width * height);
+  validateWettingFrontStudy(project.wettingFrontStudy, SURFACES);
   return project;
 }
 
@@ -90,6 +101,12 @@ export function runRain(cells, width, height, weather, options = {}) {
   const tracer = createRainTracer(n, cellArea, options?.rainTrace, Math.ceil(weather.durationMinutes / weather.stepMinutes) + 1);
   const override = options?.infiltrationOverride;
   const surfaceOverride = options?.surfaceInfiltrationOverride;
+  const wettingFront = options?.surfaceWettingFront;
+  if (wettingFront !== undefined) {
+    validateWettingFrontModel(wettingFront, SURFACES);
+    if (override !== undefined || surfaceOverride !== undefined) throw new Error('Choose one infiltration model or override');
+  }
+  const cumulativeInfiltration = wettingFront ? Array(n).fill(0) : null;
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
     throw new Error('Water-budget tracing must be explicitly enabled or disabled');
   }
@@ -134,10 +151,24 @@ export function runRain(cells, width, height, weather, options = {}) {
     tracer?.rain(rainMm);
     origins?.rain(rainMm);
     for (let i = 0; i < n; i++) {
+      const initialSurfaceMm = water[i];
       water[i] += rainMm;
       const rate = override?.cellIndex === i ? override.rateMmHr :
         surfaceOverride?.surface === cells[i].surface ? surfaceOverride.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
-      const absorb = Math.min(water[i], rate * dtHours);
+      let absorb;
+      if (wettingFront?.surface === cells[i].surface) {
+        const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
+        const wet = advanceWettingFront({ cumulativeMm: cumulativeInfiltration[i],
+          surfaceWaterMm: initialSurfaceMm, rainMmHr: weather.rainMmHr,
+          hours: rainyHours, conductivityMmHr: wettingFront.conductivityMmHr,
+          capillaryDriveMm: wettingFront.capillaryDriveMm });
+        const dry = advanceWettingFront({ cumulativeMm: wet.cumulativeMm,
+          surfaceWaterMm: wet.surfaceWaterMm, rainMmHr: 0,
+          hours: Math.max(0, dtHours - rainyHours), conductivityMmHr: wettingFront.conductivityMmHr,
+          capillaryDriveMm: wettingFront.capillaryDriveMm });
+        absorb = Math.min(water[i], wet.infiltratedMm + dry.infiltratedMm);
+        cumulativeInfiltration[i] += absorb;
+      } else absorb = Math.min(water[i], rate * dtHours);
       tracer?.absorb(i, absorb, water[i]);
       origins?.absorb(i, absorb, water[i]);
       water[i] -= absorb;
@@ -220,6 +251,10 @@ export function runRain(cells, width, height, weather, options = {}) {
     cellsOver10Mm: peak.filter(d => d >= 10).length,
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
     ...(origins ? { rainOrigins: origins.finish(water, snapshots) } : {}),
+    ...(wettingFront ? { wettingFront: { surface: wettingFront.surface,
+      conductivityMmHr: wettingFront.conductivityMmHr, capillaryDriveMm: wettingFront.capillaryDriveMm,
+      cumulativeInfiltrationMm: cumulativeInfiltration.map((amount, i) =>
+        cells[i].surface === wettingFront.surface ? amount : null) } } : {}),
   };
   if (traceBudget) {
     for (const cell of budgetCells) {
@@ -241,12 +276,32 @@ export function compare(project) {
   };
 }
 
+/** Interpolate only within retained solver steps; disclose both bracket times. */
+export function interpolateDepth(result, cellIndex, minute) {
+  const snapshots = result.snapshots;
+  if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= snapshots[0].depthsMm.length ||
+      !Number.isFinite(minute) || minute < 0 || minute > snapshots.at(-1).minute) {
+    throw new Error('Reading time or cell is outside the modeled event');
+  }
+  let lo = 0, hi = snapshots.length - 1;
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (snapshots[mid].minute < minute) lo = mid + 1;
+    else hi = mid;
+  }
+  const after = snapshots[lo];
+  if (after.minute === minute) return { depthMm: after.depthsMm[cellIndex], beforeMinute: minute, afterMinute: minute, method: 'snapshot' };
+  const before = snapshots[lo - 1];
+  const fraction = (minute - before.minute) / (after.minute - before.minute);
+  return {
+    depthMm: before.depthsMm[cellIndex] + fraction * (after.depthsMm[cellIndex] - before.depthsMm[cellIndex]),
+    beforeMinute: before.minute, afterMinute: after.minute, method: 'linear interpolation',
+  };
+}
+
 export function depthAtMinute(result, cellIndex, minute) {
-  const snaps = result.snapshots;
-  if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= snaps[0].depthsMm.length || !within(minute, 0, snaps[snaps.length - 1].minute)) throw new Error('Observation time or cell out of range');
-  let nearest = snaps[0];
-  for (const s of snaps) if (Math.abs(s.minute - minute) < Math.abs(nearest.minute - minute)) nearest = s;
-  return { depthMm: nearest.depthsMm[cellIndex], minute: nearest.minute };
+  const sampled = interpolateDepth(result, cellIndex, minute);
+  return { ...sampled, minute };
 }
 
 export function chooseNextObservation(project, results) {
@@ -255,11 +310,15 @@ export function chooseNextObservation(project, results) {
   const at = project.weather.stormMinutes;
   let best = { cellIndex: 0, differenceMm: -1 };
   for (let i = 0; i < project.existing.length; i++) {
-    const a = depthAtMinute(results.existing, i, at).depthMm;
-    const b = depthAtMinute(results.proposal, i, at).depthMm;
-    const diff = Math.abs(a - b);
-    if (diff > best.differenceMm) best = { cellIndex: i, differenceMm: diff };
+    const a = depthAtMinute(results.existing, i, at);
+    const b = depthAtMinute(results.proposal, i, at);
+    const diff = Math.abs(a.depthMm - b.depthMm);
+    if (diff > best.differenceMm) {
+      best = { cellIndex: i, differenceMm: diff,
+        beforeMinute: a.beforeMinute, afterMinute: a.afterMinute, method: a.method };
+    }
   }
+  if (best.differenceMm === 0) return null;
   return { ...best, minute: at, reason: 'Largest simulated baseline/proposal ponding difference at storm end; validate local conditions before treating it as meaningful.' };
 }
 

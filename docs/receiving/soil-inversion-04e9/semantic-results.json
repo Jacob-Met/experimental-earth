@@ -1,0 +1,1611 @@
+{
+  "maxNumeric": 2.842170943040401e-14,
+  "rows": [
+    {
+      "name": "precision-1",
+      "changes": [],
+      "baseline": {
+        "status": "needs-challenge",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          2,
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 11,
+          "excludedCount": 1,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 30,
+          "spanMm": 2.111556726326808,
+          "minDepthMm": 0.5908037178904904,
+          "maxDepthMm": 2.702360444217298,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.5908037178904904,
+              "lowMm": 0,
+              "highMm": 1.5908037178904904
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.702360444217298,
+              "lowMm": 1.7023604442172982,
+              "highMm": 3.702360444217298
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.1115567263268078,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "needs-challenge",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          2,
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 11,
+          "excludedCount": 1,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 30,
+          "spanMm": 2.1115567263268087,
+          "minDepthMm": 0.5908037178904895,
+          "maxDepthMm": 2.702360444217298,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.5908037178904895,
+              "lowMm": 0,
+              "highMm": 1.5908037178904895
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.702360444217298,
+              "lowMm": 1.7023604442172982,
+              "highMm": 3.702360444217298
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.11155672632680869,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "precision-1.1",
+      "changes": [],
+      "baseline": {
+        "status": "needs-challenge",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          2,
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1.1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 11,
+          "excludedCount": 1,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 30,
+          "spanMm": 2.111556726326808,
+          "minDepthMm": 0.5908037178904904,
+          "maxDepthMm": 2.702360444217298,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.5908037178904904,
+              "lowMm": 0,
+              "highMm": 1.6908037178904904
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.702360444217298,
+              "lowMm": 1.602360444217298,
+              "highMm": 3.8023604442172982
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": -0.08844327367319238,
+              "disjoint": false
+            }
+          ],
+          "disjointPairCount": 0,
+          "pairCount": 1,
+          "allPairsDisjoint": false
+        }
+      },
+      "candidate": {
+        "status": "needs-challenge",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          2,
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1.1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 11,
+          "excludedCount": 1,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 30,
+          "spanMm": 2.1115567263268087,
+          "minDepthMm": 0.5908037178904895,
+          "maxDepthMm": 2.702360444217298,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.5908037178904895,
+              "lowMm": 0,
+              "highMm": 1.6908037178904896
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.702360444217298,
+              "lowMm": 1.602360444217298,
+              "highMm": 3.8023604442172982
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": -0.08844327367319149,
+              "disjoint": false
+            }
+          ],
+          "disjointPairCount": 0,
+          "pairCount": 1,
+          "allPairsDisjoint": false
+        }
+      }
+    },
+    {
+      "name": "precision-1.055778363163404",
+      "changes": [],
+      "baseline": {
+        "status": "needs-challenge",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          2,
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1.055778363163404,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 11,
+          "excludedCount": 1,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 30,
+          "spanMm": 2.111556726326808,
+          "minDepthMm": 0.5908037178904904,
+          "maxDepthMm": 2.702360444217298,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.5908037178904904,
+              "lowMm": 0,
+              "highMm": 1.6465820810538943
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.702360444217298,
+              "lowMm": 1.6465820810538943,
+              "highMm": 3.758138807380702
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0,
+              "disjoint": false
+            }
+          ],
+          "disjointPairCount": 0,
+          "pairCount": 1,
+          "allPairsDisjoint": false
+        }
+      },
+      "candidate": {
+        "status": "needs-challenge",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          2,
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1.055778363163404,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 11,
+          "excludedCount": 1,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 30,
+          "spanMm": 2.1115567263268087,
+          "minDepthMm": 0.5908037178904895,
+          "maxDepthMm": 2.702360444217298,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.5908037178904895,
+              "lowMm": 0,
+              "highMm": 1.6465820810538934
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.702360444217298,
+              "lowMm": 1.6465820810538943,
+              "highMm": 3.758138807380702
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 8.881784197001252e-16,
+              "disjoint": false
+            }
+          ],
+          "disjointPairCount": 0,
+          "pairCount": 1,
+          "allPairsDisjoint": false
+        }
+      }
+    },
+    {
+      "name": "challenge-0.5908037178904904--1e-8",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.6008037178904904--1e-8",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.5808037178904903--1e-8",
+      "changes": [],
+      "baseline": {
+        "status": "challenged",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "challenged",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.5908037178904904-0",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.6008037178904904-0",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.5808037178904903-0",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.5908037178904904-1e-8",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.6008037178904904-1e-8",
+      "changes": [],
+      "baseline": {
+        "status": "challenged",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "challenged",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    },
+    {
+      "name": "challenge-0.5808037178904903-1e-8",
+      "changes": [],
+      "baseline": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.080125045912964,
+          "minDepthMm": 0.17184199093478458,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.17184199093478458,
+              "lowMm": 0,
+              "highMm": 1.1718419909347846
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296388,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      },
+      "candidate": {
+        "status": "one-survivor",
+        "order": [
+          2,
+          1
+        ],
+        "compatible": [
+          2,
+          1
+        ],
+        "surviving": [
+          1
+        ],
+        "question": {
+          "status": "question",
+          "target": "existing",
+          "surface": "turf",
+          "scope": "selected",
+          "fromMinute": 0,
+          "toMinute": 60,
+          "uncertaintyMm": 1,
+          "candidateIds": [
+            1,
+            2
+          ],
+          "stepMinutes": 5,
+          "evaluatedCount": 10,
+          "excludedCount": 2,
+          "eligibleCount": 12,
+          "cellIndex": 0,
+          "minute": 25,
+          "spanMm": 2.0801250459129648,
+          "minDepthMm": 0.1718419909347837,
+          "maxDepthMm": 2.2519670368477485,
+          "predictions": [
+            {
+              "id": 1,
+              "conductivityMmHr": 10,
+              "capillaryDriveMm": 20,
+              "depthMm": 0.1718419909347837,
+              "lowMm": 0,
+              "highMm": 1.1718419909347837
+            },
+            {
+              "id": 2,
+              "conductivityMmHr": 24.595279111565404,
+              "capillaryDriveMm": 0,
+              "depthMm": 2.2519670368477485,
+              "lowMm": 1.2519670368477485,
+              "highMm": 3.2519670368477485
+            }
+          ],
+          "pairs": [
+            {
+              "firstId": 1,
+              "secondId": 2,
+              "bandGapMm": 0.08012504591296477,
+              "disjoint": true
+            }
+          ],
+          "disjointPairCount": 1,
+          "pairCount": 1,
+          "allPairsDisjoint": true
+        }
+      }
+    }
+  ]
+}

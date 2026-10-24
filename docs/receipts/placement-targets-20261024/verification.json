@@ -1,0 +1,26 @@
+{
+  "base_commit": "97c9afaad29a7e4a27e86d6b5e7e198aa3e40cf1",
+  "node": "22.23.4",
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "passed": 456,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "command": "CHROME_BIN=/usr/bin/google-chrome-stable PLACEMENT_TARGET_RECEIPT_DIR=<fresh> node tests/placement-constraints.browser.mjs",
+    "groups": 3,
+    "sandbox_admitted": true
+  },
+  "independent_review": "WORLDLAW worker checked all-hypothesis semantics, unchanged simulations/scores, ranking, stale adoption; sparse-target-array defect found and fixed before final receiving",
+  "files": {
+    "placement-constraints.js": "b6c193420168154a090bfe2e8de2cb4148ed253d1fa4ea9bf4db69ae13264002",
+    "placement-search.js": "19dfe1692f9529d4cfac32c1367fc67c8f820547bbcff8db3613eb8aa4f02e3b",
+    "placement-panel.js": "dd24ddaf4d379f9dc28ea3c1d8ace62fc60fe533c2234495c97941e696f7dfe3",
+    "tests/placement-constraints.test.mjs": "7720fe730b8311b5aa23809857399ddac713dbe3ad31a3b9ca00fb0590497538",
+    "tests/placement-constraints.receiving.mjs": "c7ff59b77933bcd88108b3491fd6dbbfb19d713922d5c942a752c5ca41f8c489",
+    "tests/placement-constraints.browser.mjs": "5e35b32e58166589b7dd8635e01287c42f6516f121159763d1c543469954c65f",
+    "docs/PLACEMENT_TARGETS.md": "b8e17282c912eff061f2387b08065e55364ea7d38aee0a02c1c5d2155af161df"
+  },
+  "limits": "Finite authored software controls and declared local decision targets; no field benefit, accessibility, physical construction or numerical-convergence qualification."
+}

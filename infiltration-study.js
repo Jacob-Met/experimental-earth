@@ -1,30 +1,8 @@
-import { runRain, validateProject } from './core.js';
+import { runRain, validateProject, interpolateDepth } from './core.js';
+export { interpolateDepth };
 import { validateStudy } from './study-contract.js';
 
-/** Interpolate only within retained solver steps; disclose both bracket times. */
-export function interpolateDepth(result, cellIndex, minute) {
-  const snapshots = result.snapshots;
-  if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= snapshots[0].depthsMm.length ||
-      !Number.isFinite(minute) || minute < 0 || minute > snapshots.at(-1).minute) {
-    throw new Error('Reading time or cell is outside the modeled event');
-  }
-  let lo = 0, hi = snapshots.length - 1;
-  while (lo < hi) {
-    const mid = Math.floor((lo + hi) / 2);
-    if (snapshots[mid].minute < minute) lo = mid + 1;
-    else hi = mid;
-  }
-  const after = snapshots[lo];
-  if (after.minute === minute) return { depthMm: after.depthsMm[cellIndex], beforeMinute: minute, afterMinute: minute, method: 'snapshot' };
-  const before = snapshots[lo - 1];
-  const fraction = (minute - before.minute) / (after.minute - before.minute);
-  return {
-    depthMm: before.depthsMm[cellIndex] + fraction * (after.depthsMm[cellIndex] - before.depthsMm[cellIndex]),
-    beforeMinute: before.minute, afterMinute: after.minute, method: 'linear interpolation',
-  };
-}
-
-function evaluateReadings(result, readings) {
+export function evaluateReadings(result, readings) {
   const errors = readings.map(({ reading, index }) => {
     const prediction = interpolateDepth(result, reading.cellIndex, reading.minute);
     const residualMm = reading.depthMm - prediction.depthMm;
