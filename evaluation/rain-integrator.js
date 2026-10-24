@@ -12,10 +12,11 @@ const KEYS = Object.keys(INTERVENTION_METRICS);
 const EPS = 1e-8;
 const direction = d => d > EPS ? 1 : d < -EPS ? -1 : 0;
 
-export function runSubstepped(cells, width, height, weather, {substeps = 2, surface, rateMmHr} = {}) {
+export function runSubstepped(cells, width, height, weather, {substeps = 2, surface, rateMmHr, captureDepths = false} = {}) {
   validateProject({schema:'experimental-earth-site/1',title:'numerical research',
     width,height,existing:cells,proposal:cells,weather,observations:[]});
   if (!Number.isInteger(substeps) || substeps < 1 || substeps > 8) throw Error('Substeps must be an integer from 1 to 8');
+  if (typeof captureDepths !== 'boolean') throw Error('Depth capture must be an explicit boolean');
   if (surface !== undefined && (!Object.hasOwn(SURFACES,surface) ||
       typeof rateMmHr !== 'number' || !Number.isFinite(rateMmHr) || rateMmHr < 0 || rateMmHr > 2000)) {
     throw Error('Invalid fixed-rate surface override');
@@ -31,7 +32,7 @@ export function runSubstepped(cells, width, height, weather, {substeps = 2, surf
     if(count) boundaries.push([i,count]);
   }
   let rainLiters=0,absorbedLiters=0,exitLiters=0,minDepthMm=0,internalPeakStorageLiters=0;
-  const snapshots=[{minute:0,storedLiters:0}];
+  const snapshots=[{minute:0,storedLiters:0,...(captureDepths?{depthsMm:water.slice()}: {})}];
   let actualSubsteps=0;
   for(let start=0;start<weather.durationMinutes-1e-10;start+=weather.stepMinutes) {
     const outerMinutes=Math.min(weather.stepMinutes,weather.durationMinutes-start);
@@ -93,7 +94,8 @@ export function runSubstepped(cells, width, height, weather, {substeps = 2, surf
       internalPeakStorageLiters=Math.max(internalPeakStorageLiters,water.reduce((a,b)=>a+b,0)*cellArea);
     }
     snapshots.push({minute:Math.min(weather.durationMinutes,start+outerMinutes),
-      storedLiters:water.reduce((a,b)=>a+b,0)*cellArea});
+      storedLiters:water.reduce((a,b)=>a+b,0)*cellArea,
+      ...(captureDepths?{depthsMm:water.slice()}: {})});
   }
   const storedLiters=water.reduce((a,b)=>a+b,0)*cellArea;
   return {rainLiters,absorbedLiters,exitLiters,storedLiters,
