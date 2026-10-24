@@ -1,4 +1,5 @@
 import {compareSunPath,sunPathCellCourse,sunPathContext,SUN_PATH_SEMANTICS} from './solar-path.js';
+import {serializeSunPathInvestigation,parseSunPathInvestigation,checkSunPathInvestigationBytes,SUN_PATH_INVESTIGATION_LIMITS} from './solar-path-receipt.js';
 
 const labels={
   blocked:'Blocked across declared height bounds',
@@ -29,19 +30,31 @@ export function mountSunPathPanel({getProject,notice}) {
     <div class="input-pair sun-path-times"><label>Start, UTC<input id="sun-path-start" type="text" placeholder="2026-06-21T08:00:00Z" spellcheck="false"></label><label>End, UTC<input id="sun-path-end" type="text" placeholder="2026-06-21T18:00:00Z" spellcheck="false"></label></div>
     <p class="mini-note">Use explicit UTC timestamps with seconds and Z. To inspect a local day, enter that day's UTC endpoints. Dates and times are never interpreted in your device's time zone.</p>
     <label class="input-label">Sample interval, minutes<input id="sun-path-step" type="number" min="1" max="240" step="1" value="30"></label>
-    <div class="obs-actions"><button id="sun-path-run" type="button" class="primary">Compare dated sun path</button></div>
+    <div class="obs-actions"><button id="sun-path-run" type="button" class="primary">Compare dated sun path</button><button id="sun-path-save" type="button" disabled>Save investigation with location and site</button></div>
     <p id="sun-path-status" role="status"></p>
     <label class="input-label">Inspect ground sample<select id="sun-path-cell"></select></label>
     <div id="sun-path-results"></div>
-    <p class="mini-note">This is a temporary inspection. It does not change the saved sun direction, columns, location or project file. Location and orientation drafts are not retained after a reload.</p>`;
+    <p class="mini-note">This inspection does not change the saved sun direction, columns or project file. Drafts disappear on reload. Save an investigation to retain its original site, geographic coordinates, source words and UTC inputs in a separate local file.</p>
+    <details id="sun-path-retained"><summary>Reopen a retained sun-path investigation</summary>
+      <p>Choose a saved investigation to recalculate its original site independently of the active project. The file contains declared inputs, including geographic location; it does not authenticate the sources.</p>
+      <label class="input-label">Investigation JSON<input id="sun-path-open" type="file" accept="application/json,.json"></label>
+      <p id="sun-path-open-status" role="status"></p>
+      <div id="sun-path-retained-inspection" hidden>
+        <p id="sun-path-retained-source"></p>
+        <label class="input-label">Inspect retained ground sample<select id="sun-path-retained-cell"></select></label>
+        <div id="sun-path-retained-results"></div>
+      </div>
+      <button id="sun-path-forget" type="button" disabled>Close retained investigation</button>
+    </details>`;
   document.querySelector('#solar-occlusion').after(panel);
   panel.querySelector('.sun-path-times').style.gridTemplateColumns='repeat(auto-fit,minmax(min(100%,240px),1fr))';
   const $=id=>panel.querySelector('#'+id);
-  let signature='',size='',generation=0,report=null;
+  let signature='',size='',generation=0,report=null,reportSource=null;
+  let openGeneration=0,retained=null;
   const controls=['latitude','longitude','location-source','bearing','orientation-source','start','end','step'];
 
   function invalidate(message='Compare again after changing a declaration or source.') {
-    generation++;report=null;$('sun-path-results').replaceChildren();
+    generation++;report=null;reportSource=null;$('sun-path-save').disabled=true;$('sun-path-results').replaceChildren();
     $('sun-path-status').dataset.state='not-compared';$('sun-path-status').textContent=message;
     $('sun-path-run').disabled=false;$('sun-path-run').textContent='Compare dated sun path';
   }
@@ -53,9 +66,9 @@ export function mountSunPathPanel({getProject,notice}) {
       startUtc:$('sun-path-start').value.trim(),endUtc:$('sun-path-end').value.trim(),stepMinutes:number('step')};
   }
   function add(parent,tag,text){const e=node(tag,text);parent.append(e);return e;}
-  function draw() {
-    const out=$('sun-path-results');out.replaceChildren();if(!report)return;
-    const cellIndex=Number($('sun-path-cell').value),rows=sunPathCellCourse(report,cellIndex);
+  function drawCourse(out,report,cellIndex) {
+    out.replaceChildren();if(!report)return;
+    const rows=sunPathCellCourse(report,cellIndex);
     add(out,'h3',`Existing and proposal at ${cellName(report.width,cellIndex)}`);
     add(out,'p',`${rows.length} discrete samples from ${report.declaration.startUtc} through ${report.declaration.endUtc}. The final interval can be shorter than the chosen spacing. Counts do not measure hours of shade.`);
     add(out,'p',`Declared location: ${report.declaration.latitudeDeg}° north, ${report.declaration.longitudeDeg}° east. Source: ${report.declaration.locationSource}. Grid column bearing: ${report.declaration.gridColumnBearingDeg}° from true north. Source: ${report.declaration.orientationSource}.`);
@@ -101,6 +114,56 @@ export function mountSunPathPanel({getProject,notice}) {
     add(out,'p',SUN_PATH_SEMANTICS);
     add(out,'p',`Calculated with ${report.model.name} ${report.model.version}, apparent altitude with its standard refraction approximation. Below 1° the existing obstruction model is not evaluated; no continuous night/visibility interval is inferred.`);
   }
+  function draw() {drawCourse($('sun-path-results'),report,Number($('sun-path-cell').value));}
+  function drawRetained() {drawCourse($('sun-path-retained-results'),retained?.report,Number($('sun-path-retained-cell').value));}
+  function cellOptions(select,width,height,selected=0) {
+    select.replaceChildren();
+    for(let i=0;i<width*height;i++){const option=node('option',cellName(width,i));option.value=String(i);select.append(option);}
+    select.value=String(Number.isInteger(selected)&&selected>=0&&selected<width*height?selected:0);
+  }
+  $('sun-path-save').addEventListener('click',()=>{
+    try {
+      if(!report||!reportSource||sunPathContext(reportSource)!==sunPathContext(getProject()))throw Error('Compare the current source before saving an investigation.');
+      const text=serializeSunPathInvestigation(reportSource,report.declaration,Number($('sun-path-cell').value));
+      const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
+      const link=node('a');link.href=url;link.download='experimental-earth-sun-path.json';link.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      notice('Saved investigation includes its original site, geographic coordinates and source words.');
+    } catch(error){notice(error.message);}
+  });
+  $('sun-path-retained-cell').addEventListener('change',drawRetained);
+  $('sun-path-open').addEventListener('change',async()=>{
+    const file=$('sun-path-open').files?.[0];if(!file)return;
+    const token=++openGeneration;
+    $('sun-path-open-status').dataset.state='opening';$('sun-path-open-status').textContent='Reading the retained inputs and recomputing their comparison…';
+    // Closing also cancels an in-flight first import, before any inspection exists.
+    $('sun-path-forget').disabled=false;
+    try {
+      checkSunPathInvestigationBytes(file.size);
+      const text=await file.text();
+      if(token!==openGeneration)return;
+      const reopened=parseSunPathInvestigation(text);
+      if(token!==openGeneration)return;
+      retained=reopened;
+      const source=retained.investigation.project;
+      cellOptions($('sun-path-retained-cell'),source.width,source.height,retained.investigation.selectedCellIndex);
+      $('sun-path-retained-source').textContent=`Retained source: ${source.title}. Grid ${source.width} × ${source.height}. Site source: ${source.source}. ${SUN_PATH_INVESTIGATION_LIMITS}`;
+      $('sun-path-retained-inspection').hidden=false;drawRetained();
+      $('sun-path-open-status').dataset.state='reopened';$('sun-path-open-status').textContent=`Recomputed ${retained.report.samples.length} complete samples from the file's original site. The active project is unchanged.`;
+    } catch(error){
+      if(token!==openGeneration)return;
+      $('sun-path-open-status').dataset.state='refused';$('sun-path-open-status').textContent=`${error.message} ${retained?'The previously reopened investigation is still shown.':'No investigation was opened.'}`;
+      notice(error.message);
+    } finally {
+      if(token===openGeneration){$('sun-path-open').value='';$('sun-path-forget').disabled=!retained;}
+    }
+  });
+  $('sun-path-forget').addEventListener('click',()=>{
+    openGeneration++;retained=null;$('sun-path-open').value='';$('sun-path-retained-results').replaceChildren();
+    $('sun-path-retained-cell').replaceChildren();$('sun-path-retained-source').textContent='';$('sun-path-retained-inspection').hidden=true;
+    $('sun-path-open-status').dataset.state='closed';$('sun-path-open-status').textContent='Retained investigation closed. Its file and the active project are unchanged.';
+    $('sun-path-forget').disabled=true;
+  });
   $('sun-path-cell').addEventListener('change',draw);
   $('sun-path-run').addEventListener('click',()=>{
     invalidate();let input,source;
@@ -110,7 +173,7 @@ export function mountSunPathPanel({getProject,notice}) {
     setTimeout(()=>{
       if(token!==generation || context!==sunPathContext(getProject()))return;
       try {
-        report=compareSunPath(source,input);draw();
+        report=compareSunPath(source,input);reportSource=source;draw();$('sun-path-save').disabled=false;
         $('sun-path-status').dataset.state='compared';$('sun-path-status').textContent=`Compared ${report.samples.length} complete samples. Saved project and single-direction declaration are unchanged.`;
       } catch(error){report=null;$('sun-path-results').replaceChildren();$('sun-path-status').dataset.state='error';$('sun-path-status').textContent=error.message;notice(error.message);}
       finally{if(token===generation){$('sun-path-run').disabled=false;$('sun-path-run').textContent='Compare dated sun path';}}
@@ -118,7 +181,7 @@ export function mountSunPathPanel({getProject,notice}) {
   });
   return {refresh(){
     const p=getProject(),next=sunPathContext(p),shape=`${p.width}x${p.height}`;
-    if(shape!==size){const selected=Number($('sun-path-cell').value);$('sun-path-cell').replaceChildren();for(let i=0;i<p.width*p.height;i++){const option=node('option',cellName(p.width,i));option.value=String(i);$('sun-path-cell').append(option);}if(selected<p.width*p.height)$('sun-path-cell').value=String(selected);size=shape;}
+    if(shape!==size){cellOptions($('sun-path-cell'),p.width,p.height,Number($('sun-path-cell').value));size=shape;}
     if(next!==signature){signature=next;invalidate('Declare the location, orientation and UTC times, then compare the saved obstructions.');}
   }};
 }
