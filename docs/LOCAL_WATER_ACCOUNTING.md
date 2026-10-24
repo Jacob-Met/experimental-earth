@@ -10,6 +10,14 @@ Every component is in liters, so the cell area is included. Both directions acro
 
 These quantities describe the conceptual model. Summed neighbor crossings can exceed total rainfall because the same water can cross several edges or return along an edge. The ledger does not label individual parcels or establish their original source, a physical flow path, a confidence interval or field validity. It cannot isolate an intervention's real-world causal effect. The calculation uses the saved surface capacities; the separate infiltration and outlet hypothesis investigations retain their own assumptions and evidence.
 
+## Inspect the intervention's footprint
+
+The area control switches among the selected cell, the **directly edited footprint**, and the **whole site**, reusing the computed ledger. The edited footprint includes cells whose proposed elevation or surface differs from the existing plan. The exact same cells are compared in both scenarios; this is not a claim that downstream effects stay within that footprint. Expand the membership list to inspect the selected cells. Identical plans have no edited footprint and are reported explicitly.
+
+For a region, incoming and outgoing totals count only crossings between its members and other modeled cells. Transfers entirely inside it cancel from this boundary budget and appear separately as gross internal circulation. Site-boundary exits remain a separate loss. An outside neighbor touching several selected cells is counted once in the neighbor list, with its actual boundary transfers summed. Selecting that neighbor returns to single-cell inspection.
+
+The whole-site view therefore has zero incoming/outgoing neighbor crossings while retaining modeled site exits, infiltration and storage; it reduces to the existing global water balance. Disconnected selections obey the same relation. No extra simulation or source-water tagging is introduced by grouping cells.
+
 ## Persistence and limits
 
 The ordinary site JSON preserves all inputs. Import/reload followed by tracing recomputes the budget; derived ledgers are not silently reused as evidence. Changing geometry, grid dimensions or weather clears the displayed comparison. Selecting a cell or changing notebook readings preserves it because these actions do not change the model. Neighbor inspection always switches to Inspect, so following the flow cannot accidentally paint a cell.
