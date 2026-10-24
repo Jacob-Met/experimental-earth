@@ -39,3 +39,5 @@
 .evidence-controls label{font-size:.72rem;color:#4b665d;display:grid;gap:4px;min-width:0}
 .evidence-controls select{max-width:100%;font:inherit;padding:7px;border:1px solid #c9d9d1;border-radius:6px;background:white;color:#26463c}
 @media(max-width:650px){.study-fields{grid-template-columns:1fr}.study-candidate{padding:13px}.evidence-controls{gap:8px}.evidence-controls label{flex:1 1 120px}}
+#outlet-evidence-panel .outlet-coverage { display: flex; gap: 0.65rem; align-items: flex-start; margin: 0.8rem 0; }
+#outlet-coverage { width: 1.1rem; height: 1.1rem; flex: 0 0 1.1rem; margin: 0.15rem 0 0; padding: 0; }

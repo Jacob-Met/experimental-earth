@@ -64,6 +64,10 @@ Expand each candidate to inspect second-event predictions, signed residuals, int
 
 Cross-event receiving composed with main `3a0eef61`: **63 native tests and 25 actual-browser groups passed**, including visually inspected desktop and 390-pixel cross-event results with active sandbox admission. See the [qualified cross-event receipt](docs/receiving/cross-event-71a7-20261024/README.md) for exact source, environment, historical runs and scientific boundaries.
 
+## Compare collected runoff
+
+The **collected-runoff evidence** panel compares source-attributed collection volumes against explicit outlet coefficients using the existing solver's cumulative edge outflow. Record the event, complete-boundary collection arrangement, time interval, original units and evidence role. Calibration volumes order candidates; held-aside volumes challenge them without changing that order. The record stays bound to its observed site and weather, survives ordinary project export/import and reload, and never adopts an outlet setting. See [Collected-runoff evidence](docs/OUTLET_EVIDENCE.md) for interval interpolation, source binding, controls and physical limits.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.
