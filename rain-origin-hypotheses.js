@@ -26,7 +26,8 @@ export function compareRainOriginHypotheses(project, {
   const cellCount = project.width * project.height;
   const query = validateRainOriginStudy(project.rainOriginStudy, cellCount, project.weather.durationMinutes);
   if (!query) throw new Error('Choose a destination before comparing rainfall origins');
-  const originCellSteps = cellCount * Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
+  // The maintained tracer retains the initial boundary as well as every step.
+  const originCellSteps = cellCount * (Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes) + 1);
   // Bound before evidence fitting. Filtering can reduce actual work, not admission.
   const cellStepUpperBound = originCellSteps * study.ratesMmHr.length * (subset === 'all' ? 2 : 3);
   const affected = Object.fromEntries(['existing', 'proposal'].map(target =>
