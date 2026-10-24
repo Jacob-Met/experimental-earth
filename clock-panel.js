@@ -18,6 +18,57 @@ export function originalClockReadings(receipt){
  }));
 }
 
+/** Auditable source-row mapping for every declared alternative; no observations shift in memory. */
+export function clockOffsetReadingTrace(receipt){
+ const originals=originalClockReadings(receipt);
+ const assigned=receipt.comparison.shiftedReadingIndices;
+ return receipt.comparison.offsets.map(offset=>{
+  const outside=new Set(offset.outsideReadingIndices);
+  return {offsetMinutes:offset.offsetMinutes,status:offset.status,
+   readings:assigned.map(index=>{
+    const row=originals[index];
+    return {number:row.number,cell:row.cell,scenario:row.scenario,role:row.role,
+     originalMinute:row.originalMinute,sampleMinute:row.originalMinute+offset.offsetMinutes,
+     outsideModeledWindow:outside.has(index)};
+   })};
+ });
+}
+
+function drawClockOffsetTrace(container,receipt){
+ const trace=clockOffsetReadingTrace(receipt);
+ const disclosure=document.createElement('details');
+ disclosure.className='clock-offset-trace';
+ const summary=document.createElement('summary');
+ summary.textContent='Trace which original readings each timing hypothesis samples';
+ disclosure.append(summary);
+ const note=document.createElement('p');
+ note.textContent='Source # identifies the unchanged one-based row in the original evidence below. An alternative with any out-of-window reading is refused as a whole; in-window rows are not selectively fitted. These are modeled sample times, not corrections or authenticated clocks.';
+ disclosure.append(note);
+ for(const alternative of trace){
+  const section=document.createElement('details');
+  section.className='clock-offset-alternative';
+  const heading=document.createElement('summary');
+  const outsideCount=alternative.readings.filter(row=>row.outsideModeledWindow).length;
+  heading.textContent=String(alternative.offsetMinutes)+' min offset: '+alternative.status+
+   '; '+alternative.readings.length+' assigned source readings'+
+   (outsideCount?'; '+outsideCount+' outside modeled event':'');
+  section.append(heading);
+  const list=document.createElement('ol');
+  list.style.overflowWrap='anywhere';
+  for(const row of alternative.readings){
+   const entry=document.createElement('li');
+   entry.textContent='Source #'+row.number+' (cell '+row.cell+'; '+row.scenario+
+    ', '+row.role+'): original minute '+row.originalMinute+
+    ' → modeled minute '+row.sampleMinute+
+    (row.outsideModeledWindow?' — OUTSIDE modeled event':' — inside modeled event');
+   list.append(entry);
+  }
+  section.append(list);
+  disclosure.append(section);
+ }
+ container.append(disclosure);
+}
+
 function drawOriginalReadings(container,receipt){
  const rows=originalClockReadings(receipt);
  const details=document.createElement('details');
@@ -33,7 +84,7 @@ function drawOriginalReadings(container,receipt){
  for(const row of rows){
   const entry=document.createElement('li');
   const detail=document.createElement('span');
-  detail.textContent=`Cell ${row.cell}; original minute ${row.originalMinute}; depth ${row.depthMm} ± ${row.uncertaintyMm} mm; ${row.considered?'assigned to this study':'not used in this study'} (scenario: ${row.scenario}, role: ${row.role}). `;
+  detail.textContent=`Source #${row.number}; Cell ${row.cell}; original minute ${row.originalMinute}; depth ${row.depthMm} ± ${row.uncertaintyMm} mm; ${row.considered?'assigned to this study':'not used in this study'} (scenario: ${row.scenario}, role: ${row.role}). `;
   const source=document.createElement('span');
   source.textContent='Authored source: '+row.source;
   entry.append(detail,source);
@@ -60,6 +111,7 @@ function drawComparison(container,receipt,{reopened=false}={}){
   const c=row.comparison;
   add(`${row.offsetMinutes} min: ${c.status}. Calibration-compatible rates: ${c.compatibleRatesMmHr.join(', ')||'none'} mm/h. Rates remaining after ${c.counts.challenge} held-aside checks: ${c.survivingRatesMmHr.join(', ')||'none'} mm/h.`);
  }
+ drawClockOffsetTrace(container,receipt);
  drawOriginalReadings(container,receipt);
  add(comparison.semantics);
  add(CLOCK_RECEIPT_LIMITS);
