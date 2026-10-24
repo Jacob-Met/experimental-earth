@@ -7,6 +7,7 @@ export function pondingExposure(result, thresholdMm) {
   const count = snapshots[0].depthsMm.length;
   return Array.from({ length: count }, (_, cellIndex) => {
     const intervals = [];
+    let excessMmMinutes = 0;
     for (let i = 1; i < snapshots.length; i++) {
       const a = snapshots[i - 1], b = snapshots[i];
       const da = a.depthsMm[cellIndex], db = b.depthsMm[cellIndex];
@@ -15,12 +16,19 @@ export function pondingExposure(result, thresholdMm) {
       const startMinute = da > thresholdMm ? a.minute : crossing;
       const endMinute = db > thresholdMm ? b.minute : crossing;
       if (endMinute <= startMinute) continue;
+      const slope = (db - da) / (b.minute - a.minute);
+      const startExcess = Math.max(0, da + slope * (startMinute - a.minute) - thresholdMm);
+      const endExcess = Math.max(0, da + slope * (endMinute - a.minute) - thresholdMm);
+      excessMmMinutes += (endMinute - startMinute) * (startExcess + endExcess) / 2;
       const previous = intervals.at(-1);
       // Merge adjacent wet segments only if their shared snapshot is wet.
       if (previous && previous.endMinute === startMinute && da > thresholdMm) previous.endMinute = endMinute;
       else intervals.push({ startMinute, endMinute });
     }
-    return { cellIndex, minutesAbove: intervals.reduce((sum, x) => sum + x.endMinute - x.startMinute, 0), intervals };
+    return { cellIndex, excessMmMinutes,
+      aboveAtStart: snapshots[0].depthsMm[cellIndex] > thresholdMm,
+      aboveAtEnd: snapshots.at(-1).depthsMm[cellIndex] > thresholdMm,
+      minutesAbove: intervals.reduce((sum, x) => sum + x.endMinute - x.startMinute, 0), intervals };
   });
 }
 

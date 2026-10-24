@@ -4,7 +4,7 @@ import { pondingExposure, snapshotDepths } from '../ponding-exposure.js';
 import { compare, makeExample } from '../core.js';
 const series = depths => ({ snapshots: depths.map((d, i) => ({minute:i * 10,depthsMm:[d]})) });
 test('triangular pulse gives analytic threshold crossing duration', () => {
-  assert.deepEqual(pondingExposure(series([0,20,0]), 5)[0], {cellIndex:0,minutesAbove:15,intervals:[{startMinute:2.5,endMinute:17.5}]});
+  assert.deepEqual(pondingExposure(series([0,20,0]), 5)[0], {cellIndex:0,excessMmMinutes:112.5,aboveAtStart:false,aboveAtEnd:false,minutesAbove:15,intervals:[{startMinute:2.5,endMinute:17.5}]});
 });
 test('separate pulses preserve dry gap rather than duration from first to last', () => {
   const r = pondingExposure(series([0,20,0,20,0]), 10)[0];

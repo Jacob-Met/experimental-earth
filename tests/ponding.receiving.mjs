@@ -23,6 +23,8 @@ export async function receivePonding({evaluate,send,delay,report,artifactDirecto
     const detail=await evaluate("document.querySelector('#ponding-detail').textContent");
     assert.match(detail,/Existing: 5.3 min/);assert.match(detail,/Proposal minus existing: 0 min/);
     assert.match(detail,/5–10.3 min/);
+    assert.match(detail,/14.05 mm·min accumulated depth above threshold/);
+    assert.match(detail,/Still above threshold at the last snapshot; later clearance unknown/);
     report.push('ponding analytic 2×2 rain control: final10.3mm, above5mm for5.3minutes, identical proposal');
     if (artifactDirectory) {
       for (const [width,height,label] of [[1280,1000,'desktop-1280'],[390,844,'mobile-390']]) {
