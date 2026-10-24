@@ -94,7 +94,10 @@ export function mountProposalComponents({ getProject }) {
         hypothesis.candidates.forEach((candidate, index) => {
           const option = text('option', `${candidate.rateMmHr} mm/h`); option.value = String(index); picker.append(option);
         });
-        picker.value = String(candidateIndex); picker.addEventListener('change', () => drawCandidate(Number(picker.value)));
+        picker.value = String(candidateIndex); picker.addEventListener('change', () => {
+          drawCandidate(Number(picker.value));
+          output.querySelector('[data-component-rate]').focus({ preventScroll: true });
+        });
         label.append(picker); output.append(label);
         output.append(text('p', 'Choosing a rate here only changes the displayed diagnostic. It does not adopt a hypothesis or modify the saved project.'));
       }
