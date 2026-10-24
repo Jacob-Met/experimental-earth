@@ -8,6 +8,17 @@ The product should help people understand and improve a courtyard, schoolyard, g
 
 **First runnable local workbench available.** The Rain Experiment Lab compares hypothetical rainfall, terrain and surface edits with explicit water accounting and an attributed observation notebook. This is a conceptual computation on invented starting conditions—not an environmentally validated forecast, site survey, authorized intervention or Nebius/model deployment. Read current source, issues and pull requests for subsequent progress.
 
+## Connect shade to surface and stored heat
+
+**What does a shade change do to stored heat?** now connects the saved mapped
+obstructions and geographic sun path with the declared surface and lower heat
+stores. Compare a dated exposure, inspect the original blocker and incident-input
+assumptions, and follow temperature ranges when column height or grazing leaves
+mapped beam uncertain. The isolated authored courtyard example demonstrates a
+morning-shade change without replacing the working site. Original site and raw
+inputs can be downloaded and independently reopened. See [Shade and stored heat](docs/SHADE_HEAT.md)
+for use, the retained mechanisms, midpoint approximation, input sources and tests.
+
 ## Run the Rain Experiment Lab
 
 The workbench also includes **How does a surface warm up and cool down?**, a
