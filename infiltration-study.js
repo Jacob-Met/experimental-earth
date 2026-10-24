@@ -24,7 +24,7 @@ export function interpolateDepth(result, cellIndex, minute) {
   };
 }
 
-function evaluateReadings(result, readings) {
+export function evaluateReadings(result, readings) {
   const errors = readings.map(({ reading, index }) => {
     const prediction = interpolateDepth(result, reading.cellIndex, reading.minute);
     const residualMm = reading.depthMm - prediction.depthMm;

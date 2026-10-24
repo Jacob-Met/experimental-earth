@@ -54,6 +54,19 @@ interpretation limits.
 
 ## Challenge competing infiltration rates
 
+### Investigate changing soil absorption
+
+The **What changes as the soil wets?** panel compares explicitly declared
+Green–Ampt wetting-front explanations with the current fixed-rate model. Enter
+conductivity and capillary-drive alternatives, inspect matched existing/proposal
+water outcomes and selected-cell curves, and challenge each explanation with
+the original calibration and held-aside readings. Save the complete input
+investigation and reopen it for independent recomputation without replacing the
+working site. This is an event-scale model comparison, not automatic soil
+identification or field validation. See [the mechanism, controls and use](docs/WETTING_FRONT.md).
+
+### Compare constant-rate alternatives
+
 The **infiltration hypothesis challenge** compares 2–9 explicit constant-rate candidates for one surface in one observed scenario. Add depth readings with source and ± tolerance in the notebook, then assign each a scenario and either **Calibration** or **Held aside**. Existing unassigned readings remain notebook entries and are excluded from both scores. Choose the surface and candidate rates, then select **Compare rate hypotheses**. The comparison changes all matching cells' infiltration capacity during each candidate run; it never applies a rate to the project automatically.
 
 Only calibration root-mean-square error determines candidate order. The held-aside residuals can contradict candidates without changing that order. All candidates, including rejected and indistinguishable ones, remain visible; a dry or uncoupled observation cannot establish a unique rate. Every reading's predicted value, signed residual, source and interpolation interval are inspectable. Off-step times use linear interpolation between solver snapshots, not an exact physical solution. The chosen study and evidence roles survive project export/import and browser reload; any changed assumption clears the displayed comparison until you run it again.
