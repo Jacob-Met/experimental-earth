@@ -1,0 +1,68 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { makeExample, runRain, compare, validateProject, depthAtMinute, chooseNextObservation } from '../core.js';
+const close = (a,b,tol=1e-7) => assert.ok(Math.abs(a-b) <= tol, `${a} != ${b}`);
+
+test('sample accepts validated project schema and leaves user-project cells untouched', () => {
+  const p = makeExample(); const orig = JSON.stringify(p);
+  validateProject(p); const r = compare(p);
+  assert.ok(r.existing.rainLiters > 0);
+  assert.equal(JSON.stringify(p), orig);
+});
+test('rainfall water balance closes despite outgoing flux and mixed infiltration', () => {
+  const p = makeExample(); const {existing,proposal}=compare(p);
+  for (const r of [existing,proposal]) {
+    close(r.rainLiters, r.absorbedLiters + r.exitLiters + r.storedLiters, 1e-6);
+    assert.ok(Math.abs(r.massErrorLiters)<1e-6);
+    for (const s of r.snapshots) {
+      assert.ok(s.storedLiters >= 0);
+      assert.ok(s.depthsMm.every(d => Number.isFinite(d) && d >= 0));
+    }
+  }
+});
+test('no rain gives an exactly dry site', () => {
+  const p=makeExample();p.weather.rainMmHr=0;
+  const r=runRain(p.existing,p.width,p.height,p.weather);
+  close(r.rainLiters,0);close(r.absorbedLiters,0);close(r.exitLiters,0);close(r.storedLiters,0);
+});
+test('closed sealed site without infiltration retains exactly all rain volume', () => {
+  const p=makeExample();p.existing.forEach(c=>{c.surface='sealed'});p.weather.boundaryExitPerHour=0;
+  // Sealed still infiltrates at 1 mm/hr by design; mass balance is the invariant.
+  const r=runRain(p.existing,p.width,p.height,p.weather);
+  close(r.exitLiters,0);close(r.rainLiters,r.absorbedLiters+r.storedLiters,1e-6);
+});
+test('garden intervention increases absorption under identical storm', () => {
+  const p=makeExample();const r=compare(p);
+  assert.ok(r.proposal.absorbedLiters > r.existing.absorbedLiters+1);
+  assert.ok(r.proposal.exitLiters <= r.existing.exitLiters+1e-6);
+});
+test('each input is deterministic and model does not mutate its arguments',()=>{
+  const p=makeExample();const before=JSON.stringify(p);
+  assert.deepEqual(compare(p),compare(p));assert.equal(JSON.stringify(p),before);
+});
+test('rainfall exactly stops at stated fractional storm boundary',()=>{
+  const p=makeExample();p.weather.stormMinutes=17;p.weather.durationMinutes=35;p.weather.rainMmHr=30;
+  const r=runRain(p.existing,p.width,p.height,p.weather);
+  close(r.rainLiters,30*17/60*p.weather.cellSizeM**2*p.existing.length,1e-7);
+});
+test('snapshots support attributed observations and bounded suggestion',()=>{
+  const p=makeExample();const r=compare(p);
+  const v=depthAtMinute(r.existing,12,60);
+  assert.equal(v.minute,60);assert.ok(v.depthMm>=0);
+  const n=chooseNextObservation(p,r);
+  assert.ok(n.cellIndex>=0 && n.cellIndex<p.existing.length);
+  assert.equal(n.minute,p.weather.stormMinutes);
+});
+test('invalid files and dishonest input quantities fail closed',()=>{
+  const p=makeExample(); const bad=structuredClone(p);
+  bad.proposal[0].surface='unrecognized'; assert.throws(()=>validateProject(bad),/Invalid/);
+  p.weather.durationMinutes=5; assert.throws(()=>compare(p),/parameters/);
+  p.weather.durationMinutes=240;
+  p.observations.push({cellIndex:0,minute:20,depthMm:7,uncertaintyMm:1,source:''});
+  assert.throws(()=>validateProject(p),/observation/);
+});
+test('saved JSON roundtrips with observation/source and same predictions',()=>{
+  const p=makeExample();p.observations.push({cellIndex:9,minute:60,depthMm:8,uncertaintyMm:2,source:'manual ruler reading'});
+  const restored=validateProject(JSON.parse(JSON.stringify(p)));
+  assert.deepEqual(compare(restored),compare(p)); assert.deepEqual(restored.observations,p.observations);
+});

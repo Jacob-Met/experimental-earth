@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a31">
+  <title>Experimental Earth — Rain Experiment Lab</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#maps">Skip to site editor</a>
+  <header class="masthead">
+    <div class="brand"><div class="mark" aria-hidden="true">◎</div><div><span class="eyebrow">EXPERIMENTAL EARTH <span class="sep">/</span> FIELD LAB 01</span><h1>Make a change. Test the assumptions.</h1></div></div>
+    <p>Explore an illustrative courtyard storm, compare a proposed change under identical rain, then bring real observations back to the model.</p>
+    <div class="header-actions"><button type="button" id="reset" class="ghost">Reset fictional example</button><button type="button" id="export" class="light">Export project ↗</button><label class="light file-label">Import project <input type="file" id="import" accept="application/json,.json"></label></div>
+  </header>
+  <main>
+    <section class="disclosure" aria-label="Model status"><span class="pulse" aria-hidden="true"></span><strong>Conceptual model · not a real-site forecast</strong><span>Geometry and infiltration rates here are invented. Surface movement conserves water in this bounded grid; it does not model full soil, sewer or flood physics.</span></section>
+    <div class="layout">
+      <aside class="controls panel" aria-labelledby="site-controls-title">
+        <div class="panel-title"><span class="eyebrow">01 / FIELD ASSUMPTIONS</span><h2 id="site-controls-title">Describe the site</h2></div>
+        <label class="input-label">Workspace name<input id="project-title" type="text" maxlength="120"></label>
+        <label class="input-label">Hypothetical rain intensity <span class="unit">mm / hour</span><input id="rain" type="number" min="0" max="250" step="1"></label>
+        <div class="input-pair"><label class="input-label">Storm length <span class="unit">minutes</span><input id="storm" type="number" min="0" max="720" step="5"></label><label class="input-label">Run duration <span class="unit">minutes</span><input id="duration" type="number" min="5" max="720" step="5"></label></div>
+        <label class="input-label">Grid cell width <span class="unit">metres</span><input id="cell-size" type="number" min="0.25" max="100" step="0.25"></label>
+        <div class="mini-note">The numerical model treats each cell as a uniform square. All runs start dry. Outflow exits at the grid boundary, not into a modeled drain network.</div>
+        <div class="panel-title divider"><span class="eyebrow">02 / SITE EDITOR</span><h2>Choose a brush</h2></div>
+        <div class="brushes" id="brushes" role="group" aria-label="Site editing brush">
+          <button type="button" class="brush active" data-brush="inspect" aria-pressed="true">Inspect</button>
+          <button type="button" class="brush" data-brush="sealed" aria-pressed="false">◻ Sealed</button>
+          <button type="button" class="brush" data-brush="turf" aria-pressed="false">✿ Turf</button>
+          <button type="button" class="brush" data-brush="garden" aria-pressed="false">▨ Garden</button>
+          <button type="button" class="brush" data-brush="raise" aria-pressed="false">↑ Raise 2.5 cm</button>
+          <button type="button" class="brush" data-brush="lower" aria-pressed="false">↓ Lower 2.5 cm</button>
+        </div>
+        <button type="button" id="copy-existing" class="full subtle">Copy existing site → proposed</button>
+        <label class="input-label" for="map-view">Cell visualization<select id="map-view"><option value="peak">Peak water depth (mm)</option><option value="final">Final water depth (mm)</option><option value="surface">Surface / elevation</option></select></label>
+        <p class="mini-note">Click any cell in either grid to inspect or edit it. The two scenarios remain separate; comparing them always uses the same rain.</p>
+        <div class="legend"><span><i style="background:#aeb8bb"></i>Sealed · 1 mm/h</span><span><i style="background:#b6c990"></i>Turf · 9 mm/h</span><span><i style="background:#478e79"></i>Garden · 24 mm/h</span></div>
+      </aside>
+      <div class="workspace">
+        <section class="panel" id="maps" aria-labelledby="maps-title"><div class="section-heading"><div><span class="eyebrow">03 / EDITABLE FIELD</span><h2 id="maps-title">Same storm, two different places</h2></div><div class="site-area" id="site-area"></div></div>
+          <div class="maps"><div class="map-col"><div class="map-heading"><strong>Existing site</strong><span>Editable reference</span></div><div class="grid" id="existing-grid" role="group" aria-label="Existing-site cells"></div></div><div class="map-col"><div class="map-heading"><strong>Proposed change</strong><span>Independent alternative</span></div><div class="grid" id="proposal-grid" role="group" aria-label="Proposed-site cells"></div></div></div>
+          <div class="selection" id="selection" aria-live="polite"></div>
+          <p class="caption">Each square is one modeled cell. Overlaid blue indicates simulated depth, not observed water. Elevations are hypothetical absolute model levels.</p>
+        </section>
+        <section class="panel results" aria-labelledby="results-title"><div class="section-heading"><div><span class="eyebrow">04 / COMPARISON</span><h2 id="results-title">What changed in the simulation?</h2></div><span id="storm-total" class="summary-tag"></span></div>
+          <div class="metrics" id="metrics"></div>
+          <div class="chart-wrap"><div class="chart-title"><strong>Water still on the surface</strong><span>litres · modeled over time</span></div><svg id="chart" viewBox="0 0 700 215" role="img" aria-label="Surface water over time for existing and proposed scenarios" preserveAspectRatio="xMidYMid meet"></svg><div class="chart-key"><span><i class="swatch existing"></i>Existing</span><span><i class="swatch proposal"></i>Proposed</span></div></div>
+          <div class="balance" id="balance"></div>
+        </section>
+        <section class="panel observations" aria-labelledby="observations-title"><div class="section-heading"><div><span class="eyebrow">05 / CLOSE THE LOOP</span><h2 id="observations-title">Test it against a reading</h2></div><button type="button" id="suggest" class="subtle">Suggest a location ↗</button></div>
+          <p class="muted">Record a manually obtained ponding-depth observation and its source. This changes the evidence record, <em>not</em> the model parameters. A discrepancy is useful evidence, not a failed measurement.</p>
+          <form id="observe-form"><div class="obs-fields"><label class="input-label">Selected cell <input id="obs-cell" type="text" readonly></label><label class="input-label">Time after start <span class="unit">min</span><input id="obs-minute" type="number" min="0" max="720" step="5" required value="60"></label><label class="input-label">Observed depth <span class="unit">mm</span><input id="obs-depth" type="number" min="0" max="1000" step="0.1" required placeholder="e.g. 12"></label><label class="input-label">± uncertainty <span class="unit">mm</span><input id="obs-uncertainty" type="number" min="0" max="1000" step="0.1" required value="2"></label></div><label class="input-label">Source / measurement method <input id="obs-source" type="text" maxlength="200" required placeholder="e.g. ruler reading after rain, 2026-10-24"></label><button type="submit" class="primary">Retain observation</button></form>
+          <div id="next-reading" class="next-reading"></div>
+          <div id="observation-list" class="history" aria-live="polite"></div>
+        </section>
+      </div>
+    </div>
+    <footer><p><strong>Scientific boundary.</strong> This numerical sandbox uses a finite-volume surface-water transfer approximation, constant infiltration capacities and a simplified open-edge outlet. It omits infiltration decline, subsurface storage, drainage infrastructure, site-specific slopes, rainfall variability and calibrated roughness. Passing conservation checks means internal arithmetic is coherent, <em>not</em> that physical runoff or intervention effectiveness has been validated. No data leaves your browser.</p></footer>
+  </main>
+  <div class="toast" id="toast" aria-live="polite" role="status"></div>
+</body>
+</html>
