@@ -1,0 +1,268 @@
+{
+  "status": "PASS",
+  "browser": "/opt/google/chrome/chrome",
+  "checks": [
+    "initial 96 cells, six metrics and two live chart curves",
+    "brush edit, sourced field observation, local-save",
+    "reload durability, scenario reset, portable JSON import",
+    "one-cell infiltration-rate sensitivity, distinct from scenario difference",
+    "sensitivity suggestion and parameter-change recomputation",
+    "390px mobile layout no horizontal overflow",
+    "legacy readings excluded until explicit scenario/evidence assignment",
+    "actual notebook assignment, analytic candidate comparison and inspectable source residuals",
+    "candidate choices and roles survive reload; stale reports are cleared",
+    "contradictory held-aside import rejects predictions without changing calibration order",
+    "invalid candidate edit is refused without corrupting saved study",
+    "calibration-candidate question prepares location/time/role without painting or inventing observations",
+    "new sourced reading is retained only after explicit form submit, preserving fractional values",
+    "dry indistinguishable event refuses to manufacture a useful measurement",
+    "candidate and evidence controls fit 390px mobile; mobile/desktop images captured",
+    "unit table preview leaves notebook unchanged; explicit append feeds actual candidate comparison",
+    "table source/quantities survive reload and portable project import; repeat evidence refused",
+    "one invalid unit refuses the entire table with its source row; no partial evidence",
+    "project edits invalidate pending import; a fresh preview is required",
+    "actual table preview and unit provenance fit the 390px notebook",
+    "paired analytic browser scenario reveals sign reversal and four local worsening cells",
+    "explicit evidence filter refuses absent calibration without substituting default rate",
+    "actual proposal edit invalidates derived results and reruns identical-plan zero effects without adopting parameters",
+    "intervention panel fits 390px viewport",
+    "resolution band flip: full rate-9 predictions, original source and unchanged saved project",
+    "native keyboard Tab reaches resolution action with visible focus",
+    "open resolution predictions fit 1280px and 390px without horizontal overflow; screenshots retained",
+    "candidate input and invalid submit clear/disable numerical results without changing saved evidence",
+    "weather change clears numerical comparison and requires a fresh study",
+    "evidence role change clears numerical comparison and disables stale action",
+    "minimum interval and unassigned evidence refuse numerical comparison without manufactured rows",
+    "no-flow 1.5-minute control deduplicates to two intervals and qualifies agreement without claiming convergence",
+    "closest calibration candidate changes 3\u21929\u21929 while compatible set stays unchanged",
+    "cross-event import, analytic challenge, escaped sources, portable recomputation, transactional rejection and stale invalidation",
+    "outlet: actual manual collection forms, mL-to-L scoring, fixed event/source, calibration versus held-aside interval",
+    "outlet: invalid candidate refusal preserves accepted record; actual project download and reload retain quantities/sources/roles",
+    "outlet: changed storm refuses stale evidence and actual exported project import restores the comparison",
+    "outlet: partial-collection import refused atomically; collection controls and results visually received at desktop and 390px",
+    "actual courtyard decision question selects F2 at70min across opposing outflow effects",
+    "tolerance change invalidates question, overlap is disclosed, preparation sets metadata without inventing evidence",
+    "nonreversing objective gives no manufactured question; proposal changes invalidate derived state",
+    "decision question controls fit390px viewport; visible F2/70 question and predictions captured at1440px and390px after stable paint",
+    "local accounting consumer reproduces analytic 15-liter storage reduction per cell",
+    "neighbor/map navigation preserves computed trace and cannot paint the site",
+    "ordinary project reopen and changed rainfall produce fresh accounting without reusing stale results",
+    "coupled courtyard consumer retains incoming water and both directions for four actual neighbors",
+    "edited-area membership is explicit and whole-site crossings cancel while global water losses remain",
+    "regional neighbor navigation returns to a cell; identical plans explicitly have no edited footprint",
+    "computed local-balance table and neighbor controls fit desktop and 390px layouts",
+    "rain attribution uses the existing source cell, renders both destination grids and preserves model/evidence inputs",
+    "multi-cell source selection persists; ordinary inspection preserves results and changed source inputs require recomputation",
+    "rain attribution fits the actual 390px viewport; paired heatmaps and source controls remain visible",
+    "independent one-step analytic fixture renders conserved splitting and the actual changed destination quantities",
+    "weather/terrain edits invalidate attribution; dry and identical-scenario controls have zero contribution or change",
+    "actual project export/import reopens the source selection; invalid duplicate-cell import preserves the accepted workspace",
+    "measurement options require declared collection feasibility and compare depth against35\u201365min collected-volume bands",
+    "both measurement options visibly received at1440px and390px with stable painted bounds",
+    "prospective depth precision invalidates results and changes the declared band-margin choice",
+    "preparation clears stale drafts and fills interval/tolerance only, without a measured value, source or coverage assertion",
+    "only actual explicit form submission retains a sourced collection; reload preserves it and later options exclude overlapping intervals",
+    "changed event context removes collection preparation while retaining independent depth investigation"
+  ],
+  "exceptions": [],
+  "dimensions": {
+    "inner": 390,
+    "scroll": 390,
+    "grids": 96
+  },
+  "decisionVisuals": [
+    {
+      "name": "desktop",
+      "screenshot": "/tmp/hamon-3ee49983-earth-observation-current-browser/decision-question-desktop.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "scroll": 1425
+      },
+      "question": "F2 at 70 min in the existing scenario: nearest opposing-pair depth gap 23.078 mm across 3 pairs. The \u00b1 tolerance bands of opposing predictions do not overlap. Evaluated 2304 unrecorded points; excluded 0.",
+      "predictions": "Less: 1, 10, 20 mm/h. More: 35 mm/h. Equal within numerical tolerance: none.1 mm/h: depth 42.973 mm; proposal minus existing -1,466.1 L edge outflow.10 mm/h: depth 34.406 mm; proposal minus existing -605.6 L edge outflow.20 mm/h: depth 24.716 mm; proposal minus existing -150.27 L edge outflow.35 mm/h: depth 1.638 mm; proposal minus existing 194.9 L edge outflow.",
+      "questionRect": {
+        "top": 31.71875,
+        "left": 354,
+        "width": 1030,
+        "height": 45,
+        "bottom": 76.71875
+      },
+      "predictionsRect": {
+        "top": 91.71875,
+        "left": 354,
+        "width": 1030,
+        "height": 127.5,
+        "bottom": 219.21875
+      },
+      "stable": true,
+      "frontmost": true,
+      "scrollY": 4583
+    },
+    {
+      "name": "narrow",
+      "screenshot": "/tmp/hamon-3ee49983-earth-observation-current-browser/decision-question-narrow.png",
+      "viewport": {
+        "width": 390,
+        "height": 1000,
+        "scroll": 375
+      },
+      "question": "F2 at 70 min in the existing scenario: nearest opposing-pair depth gap 23.078 mm across 3 pairs. The \u00b1 tolerance bands of opposing predictions do not overlap. Evaluated 2304 unrecorded points; excluded 0.",
+      "predictions": "Less: 1, 10, 20 mm/h. More: 35 mm/h. Equal within numerical tolerance: none.1 mm/h: depth 42.973 mm; proposal minus existing -1,466.1 L edge outflow.10 mm/h: depth 34.406 mm; proposal minus existing -605.6 L edge outflow.20 mm/h: depth 24.716 mm; proposal minus existing -150.27 L edge outflow.35 mm/h: depth 1.638 mm; proposal minus existing 194.9 L edge outflow.",
+      "questionRect": {
+        "top": 32.25,
+        "left": 46,
+        "width": 283,
+        "height": 135,
+        "bottom": 167.25
+      },
+      "predictionsRect": {
+        "top": 182.25,
+        "left": 46,
+        "width": 283,
+        "height": 330,
+        "bottom": 512.25
+      },
+      "stable": true,
+      "frontmost": true,
+      "scrollY": 7860
+    }
+  ],
+  "measurementVisuals": [
+    {
+      "name": "desktop",
+      "screenshot": "/tmp/hamon-3ee49983-earth-observation-current-browser/decision-options-desktop.png",
+      "status": "Largest declared band margin: full-boundary collection. A margin above 1 means opposing prediction bands do not overlap; it does not guarantee a real-world decision.",
+      "options": "local depth \u00b7 band margin 5.7694F2, 70 min in the existing scenario. Minimum opposing gap 23.078 mm for \u00b12 mm tolerance.Inspect modeled predictions1 mm/h \u2192 42.973 mm depth.10 mm/h \u2192 34.406 mm depth.20 mm/h \u2192 24.716 mm depth.35 mm/h \u2192 1.638 mm depth.Prepare depth readingfull-boundary collection \u00b7 band margin 7.59135\u201365 min in the existing scenario. Minimum opposing gap 303.64 L for \u00b120 L tolerance. 43 windows evaluated; 0 overlapping recorded windows excluded.Inspect modeled predictions1 mm/h \u2192 663.54 L (less of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.10 mm/h \u2192 527.46 L (less of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.20 mm/h \u2192 373.43 L (less of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.35 mm/h \u2192 69.787 L (more of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.Prepare collection reading",
+      "stable": true,
+      "frontmost": true,
+      "top": 24.203125,
+      "bottom": 497.265625,
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1425
+    },
+    {
+      "name": "narrow",
+      "screenshot": "/tmp/hamon-3ee49983-earth-observation-current-browser/decision-options-narrow.png",
+      "status": "Largest declared band margin: full-boundary collection. A margin above 1 means opposing prediction bands do not overlap; it does not guarantee a real-world decision.",
+      "options": "local depth \u00b7 band margin 5.7694F2, 70 min in the existing scenario. Minimum opposing gap 23.078 mm for \u00b12 mm tolerance.Inspect modeled predictions1 mm/h \u2192 42.973 mm depth.10 mm/h \u2192 34.406 mm depth.20 mm/h \u2192 24.716 mm depth.35 mm/h \u2192 1.638 mm depth.Prepare depth readingfull-boundary collection \u00b7 band margin 7.59135\u201365 min in the existing scenario. Minimum opposing gap 303.64 L for \u00b120 L tolerance. 43 windows evaluated; 0 overlapping recorded windows excluded.Inspect modeled predictions1 mm/h \u2192 663.54 L (less of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.10 mm/h \u2192 527.46 L (less of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.20 mm/h \u2192 373.43 L (less of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.35 mm/h \u2192 69.787 L (more of the selected proposal outcome). Start: snapshot 35\u201335 min; end: snapshot 65\u201365 min.Prepare collection reading",
+      "stable": true,
+      "frontmost": true,
+      "top": 24.296875,
+      "bottom": 748.171875,
+      "width": 390,
+      "height": 1100,
+      "scrollWidth": 375
+    }
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-24T05:40:46.118Z",
+    "completedAt": "2026-10-24T05:40:46.213Z",
+    "durationMs": 94.84084000000001,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "76D82B102E2063691C69E4BFE340765F",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "6E6B5DC4C92D8ED76CD533A58E6CA743"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "sandboxPath": "/tmp/hamon-3ee49983-earth-observation-current-browser/sandbox.json",
+  "session": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-24T05:40:45.924Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-3ee49983-earth-observation-current-browser",
+    "profileDirectory": "/tmp/hamon-3ee49983-earth-observation-current-browser/profile",
+    "stdoutFile": "/tmp/hamon-3ee49983-earth-observation-current-browser/stdout.bin",
+    "stderrFile": "/tmp/hamon-3ee49983-earth-observation-current-browser/stderr.bin",
+    "receiptFile": "/tmp/hamon-3ee49983-earth-observation-current-browser/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-3ee49983-earth-observation-current-browser/profile",
+      "about:blank"
+    ],
+    "pid": 122816,
+    "cdpUrl": "http://127.0.0.1:37853",
+    "browserWebSocketUrl": "ws://127.0.0.1:37853/devtools/browser/be2fae03-98f1-40bd-bb00-729b1453107d",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-24T05:40:46.085Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-3ee49983-earth-observation-current-browser/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-3ee49983-earth-observation-current-browser/stderr.bin",
+      "bytes": 5420,
+      "sha256": "687110800b8be733c7c2803d11eff3cd52dad8e46f5b97a340ea8d2edcff945d"
+    },
+    "finishedAt": "2026-10-24T05:41:07.989Z"
+  }
+}

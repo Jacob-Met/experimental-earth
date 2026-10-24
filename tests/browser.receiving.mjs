@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { withBrowserSession } from './support/browser-session.mjs';
 import { setTimeout as delay } from 'node:timers/promises';
+import { receiveDecisionObservations } from './decision-observation.receiving.mjs';
 import { receiveDecisionQuestion } from './decision-question.receiving.mjs';
 import { receiveIntervention } from './intervention.receiving.mjs';
 import { receiveInfiltration } from './infiltration.receiving.mjs';
@@ -96,8 +97,9 @@ try {
   const decisionVisuals = await receiveDecisionQuestion({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveLocalWaterBudget({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveRainTrace({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  const measurementVisuals = await receiveDecisionObservations({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);
-  return {checks:report,exceptions,dimensions:dims,decisionVisuals,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
+  return {checks:report,exceptions,dimensions:dims,decisionVisuals,measurementVisuals,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
   });
   console.log(JSON.stringify({status:'PASS',browser:chromeBin,...result.value,session:result.receipt},null,2));
 } catch(e) {

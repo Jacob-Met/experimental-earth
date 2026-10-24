@@ -181,7 +181,8 @@ const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, ch
 const observationImporter = mountObservationImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const eventChallengePanel = mountEventChallengePanel({ getProject: () => project });
-const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading });
+const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading,
+  prepareCollection: question => outletEvidencePanel.prepareReading(question) });
 const localWaterBudgetPanel = mountLocalWaterBudget({ getProject: () => project,
   selectCell: cellIndex => {
     brush = 'inspect';
