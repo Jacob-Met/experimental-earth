@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import { makeExample } from '../core.js';
+
+export async function receiveObservationMap({evaluate, send, delay, report}) {
+  const p=makeExample();p.width=p.height=2;p.selectedIndex=0;
+  p.existing=Array.from({length:4},()=>({elevationM:0,surface:'sealed',provenance:'authored browser control'}));
+  p.proposal=structuredClone(p.existing);
+  p.weather={...p.weather,rainMmHr:61,stormMinutes:10,durationMinutes:10,stepMinutes:5,mobilityPerHour:0,boundaryExitPerHour:0,cellSizeM:1};
+  const reading={cellIndex:0,minute:2.5,depthMm:2.5,uncertaintyMm:0,scenario:'existing',use:'challenge',source:'Authored browser control <not field data>'};
+  p.observations=[reading,{...reading,depthMm:1,use:'calibration'},{...reading,depthMm:4},{...reading,cellIndex:1,scenario:'proposal'}];
+  const importProject=async data=>evaluate(`(async()=>{const input=document.querySelector('#import');const dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(JSON.stringify(data))}],'evidence-map-control.json',{type:'application/json'}));input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,200));})()`);
+  const text=selector=>evaluate(`document.querySelector(${JSON.stringify(selector)}).textContent`);
+  await importProject(p);
+  assert.equal(await evaluate("document.querySelectorAll('#evidence-map-grid button').length"),4);
+  assert.ok((await text('#evidence-map-details')).includes('both directions'));
+  assert.ok((await text('#evidence-map-details')).includes('solver brackets 0–5 min'));
+  assert.ok((await text('#observation-list')).includes('model depths at 2.5 min'));
+  assert.ok((await text('#evidence-map-details')).includes('<not field data>'));
+  report.push('spatial mixed evidence retains opposite errors, exact-time predictions and escaped source text');
+  await evaluate("{const role=document.querySelector('#evidence-map-role');role.value='challenge';role.dispatchEvent(new Event('change'));}");
+  assert.ok((await text('#evidence-map-summary')).includes('2 readings'));
+  await evaluate("document.querySelector('[data-brush=\"garden\"]').click();document.querySelector('#obs-depth').value='999';document.querySelector('#obs-source').value='old draft';document.querySelectorAll('#evidence-map-grid button')[2].click()");
+  const saved=JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));
+  assert.equal(saved.selectedIndex,2);assert.deepEqual(saved.existing,p.existing);assert.deepEqual(saved.observations,p.observations);
+  assert.equal(await evaluate("document.querySelector('#obs-depth').value"),'');
+  assert.ok((await text('#evidence-map-details')).includes('untested here'));
+  report.push('role filtering and map navigation inspect without painting, preserve evidence and clear stale measurement draft');
+  await evaluate("{document.querySelectorAll('#evidence-map-grid button')[0].click();const rain=document.querySelector('#rain');rain.value='1';rain.dispatchEvent(new Event('change'));}");
+  assert.ok((await text('#evidence-map-details')).includes('Predicted 0 mm'));
+  await send('Page.reload',{ignoreCache:true});await delay(300);
+  assert.ok((await text('#evidence-map-details')).includes('Predicted 0 mm'));
+  await evaluate("{const s=document.querySelector('#evidence-map-scenario');s.value='proposal';s.dispatchEvent(new Event('change'));}");
+  assert.ok((await text('#evidence-map-summary')).includes('1 readings'));
+  await importProject(p);
+  await evaluate("{const s=document.querySelector('#evidence-map-scenario');s.value='existing';s.dispatchEvent(new Event('change'));}");
+  assert.ok((await text('#evidence-map-details')).includes('Predicted 2.5 mm'));
+  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'),true);
+  report.push('changed rain recomputes mismatch; reload and ordinary project reopen retain evidence; 390px layout stays contained');
+}

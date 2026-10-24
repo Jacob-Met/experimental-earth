@@ -17,12 +17,17 @@
 .trace-cell:focus-visible { outline: 3px solid #a25800; outline-offset: 1px; }
 .trace-dense .trace-cell { font-size: 0; }
 .trace-table-wrap { overflow: auto; max-height: 340px; margin-top: 12px; }
-#trace-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
-#trace-table th, #trace-table td { text-align: right; padding: 8px; border-bottom: 1px solid #dce6df; }
-#trace-table th:first-child { text-align: left; }
-#trace-table thead { background: #eef4f0; }
+.trace-table-wrap table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.trace-table-wrap table th, .trace-table-wrap table td { text-align: right; padding: 8px; border-bottom: 1px solid #dce6df; }
+.trace-table-wrap table th:first-child { text-align: left; }
+.trace-table-wrap table thead { background: #eef4f0; }
 .rain-trace summary { cursor: pointer; padding: 12px 0; font-weight: 600; }
 @media (max-width: 700px) {
   .trace-totals, .trace-maps { grid-template-columns: minmax(0, 1fr); }
   .trace-actions button { flex: 1 1 180px; }
 }
+
+.rain-origin { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #cbd8d0; }
+.rain-origin > summary { font-size: 1.08rem; font-weight: 700; cursor: pointer; padding: .5rem 0; }
+.rain-origin .trace-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 600px) { .rain-origin .trace-totals { grid-template-columns: 1fr; } }

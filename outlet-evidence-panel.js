@@ -127,5 +127,22 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
       }
     } catch (error) { find('outlet-results').replaceChildren(); status('error', error.message); notice(error.message); }
   });
-  return { refresh };
+  function prepareReading(question) {
+    const project=getProject(),record=project.outletEvidence;
+    if (!['existing','proposal'].includes(question.target) || !Number.isFinite(question.startMinute) || !Number.isFinite(question.endMinute) ||
+        question.startMinute<0 || question.endMinute<=question.startMinute || question.endMinute>project.weather.durationMinutes ||
+        !Number.isFinite(question.toleranceLiters) || question.toleranceLiters<0 || question.toleranceLiters>1e12) throw Error('Invalid prospective collection');
+    if (record && (record.target!==question.target || record.durationMinutes!==project.weather.durationMinutes || record.contextJson!==outletContext(project,question.target))) {
+      throw Error('The existing collection record belongs to a different scenario or event context. Keep it separate.');
+    }
+    if (!record) {
+      find('outlet-target').value=question.target;find('outlet-event').value='';find('outlet-collection').value='';find('outlet-coverage').checked=false;
+    }
+    find('outlet-entry').open=true;
+    find('outlet-start').value=question.startMinute;find('outlet-end').value=question.endMinute;
+    find('outlet-unit').value='L';find('outlet-uncertainty').value=question.toleranceLiters;find('outlet-use').value='challenge';
+    find('outlet-volume').value='';find('outlet-source').value='';find('outlet-volume').focus();
+    notice('Collection interval and tolerance prepared. Prior volume/source draft cleared. Supply actual evidence; coverage is not inferred.');
+  }
+  return { refresh, prepareReading };
 }

@@ -1,9 +1,17 @@
 import {mountClockPanel} from './clock-panel.js';
-import { SURFACES, makeExample, validateProject, compare, depthAtMinute, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
+import { mountPlacementSearch } from './placement-panel.js';
+import { mountObservationMap } from './observation-map-panel.js';
+import { interpolateDepth } from './infiltration-study.js';
+import { mountInternalBarriers } from './internal-barrier-panel.js';
+import { mountPondingPanel } from './ponding-panel.js';
+import { SURFACES, makeExample, validateProject, compare, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
 import { mountInterventionPanel } from './intervention-panel.js';
+import { mountTerrainImport } from './terrain-panel.js';
 import { mountObservationImport } from './observation-import-panel.js';
 import { mountOutletEvidence } from './outlet-evidence-panel.js';
+import { mountJointEvidence } from './joint-evidence-panel.js';
+import { mountJointEventChallenge } from './joint-event-panel.js';
 import { mountEventChallengePanel } from './event-challenge-panel.js';
 import { mountLocalWaterBudget } from './local-water-budget-panel.js';
 import { mountRainTrace } from './rain-trace-panel.js';
@@ -28,7 +36,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); clockPanel.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -40,7 +48,7 @@ function applyBrush(target, index) {
   if (brush !== 'inspect') {
     const cell = project[target][index];
     if (['sealed','turf','garden'].includes(brush)) cell.surface = brush;
-    else if (brush==='raise'||brush==='lower') cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3));
+    else if (brush==='raise'||brush==='lower') { delete cell.terrainSource; cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3)); }
     cell.provenance = 'manually edited hypothetical assumption';
   }
   rerun();
@@ -59,6 +67,11 @@ function gridInto(target, result) {
     btn.dataset.grid=target;
     const depthLabel=view==='surface' ? `${Math.round(cell.elevationM*100)} cm` : `${numeric(mm)} mm`;
     btn.innerHTML=`<i class="water"></i><b>${nameCell(index)}</b><span>${depthLabel}</span>`;
+    for (const side of ['east', 'south']) if (cell.internalBarriers?.[side]?.closed) {
+      const line = document.createElement('i'); line.className = 'internal-barrier internal-barrier-' + side;
+      line.setAttribute('aria-hidden', 'true'); btn.append(line);
+      btn.setAttribute('aria-label', btn.getAttribute('aria-label') + ', closed ' + side + ' edge');
+    }
     btn.addEventListener('click',()=>applyBrush(target,index));fragment.appendChild(btn);
   }
   el.replaceChildren(fragment);
@@ -89,15 +102,19 @@ function observations() {
   const n=project.selectedIndex; const base=project.existing[n]; const plan=project.proposal[n];
   $('obs-cell').value=nameCell(n);
   $('selection').innerHTML=`<div><strong>Selected ${nameCell(n)}</strong> · existing: ${SURFACES[base.surface].label}, ${numeric(base.elevationM)} m</div><div>proposed: ${SURFACES[plan.surface].label}, ${numeric(plan.elevationM)} m</div>`;
+  $('terrain-origin').textContent = ['existing', 'proposal'].map(target => {
+    const origin = project[target][n].terrainSource;
+    return origin ? `${target}: ${origin.fileName}, line ${origin.line}; ${origin.elevationValue} ± ${origin.uncertaintyValue} ${origin.unit}; datum ${origin.datum}; ${origin.source}. Supplied uncertainty is retained, not propagated by the solver.` : `${target}: ${project[target][n].provenance}`;
+  }).join(' | ');
   const suggested=chooseNextObservation(project,results);
   $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement. Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
   const list=$('observation-list');list.replaceChildren();
   if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);return;}
   for(let i=project.observations.length-1;i>=0;i--){
-    const o=project.observations[i];const a=depthAtMinute(results.existing,o.cellIndex,o.minute),b=depthAtMinute(results.proposal,o.cellIndex,o.minute);
+    const o=project.observations[i];const a=interpolateDepth(results.existing,o.cellIndex,o.minute),b=interpolateDepth(results.proposal,o.cellIndex,o.minute);
     const row=document.createElement('div');row.className='observation';
     const info=document.createElement('div');const main=document.createElement('strong');main.textContent=`${nameCell(o.cellIndex)} · ${o.minute} min · ${readingNumber(o.depthMm)} ± ${readingNumber(o.uncertaintyMm)} mm measured`;
-    const body=document.createElement('small');body.textContent=`${o.source} · model depths at ${a.minute} min: existing ${numeric(a.depthMm)} mm (residual ${numeric(o.depthMm-a.depthMm)}), proposal ${numeric(b.depthMm)} mm (residual ${numeric(o.depthMm-b.depthMm)})`;
+    const body=document.createElement('small');body.textContent=`${o.source} · model depths at ${o.minute} min (solver brackets ${a.beforeMinute}–${a.afterMinute} min): existing ${numeric(a.depthMm)} mm (residual ${numeric(o.depthMm-a.depthMm)}), proposal ${numeric(b.depthMm)} mm (residual ${numeric(o.depthMm-b.depthMm)})`;
     info.append(main,body);
     if(o.tableSource){const origin=document.createElement('small');origin.className='table-origin';origin.textContent=`Supplied table: ${o.tableSource.fileName}, line ${o.tableSource.line} · original ${o.tableSource.depthValue} ± ${o.tableSource.uncertaintyValue} ${o.tableSource.unit}`;info.append(origin);}
     info.append(evidenceControls(o,rerun));const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.addEventListener('click',()=>{project.observations.splice(i,1);rerun();});row.append(info,remove);list.append(row);
@@ -182,7 +199,8 @@ const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, ch
 const observationImporter = mountObservationImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const eventChallengePanel = mountEventChallengePanel({ getProject: () => project });
-const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading });
+const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading,
+  prepareCollection: question => outletEvidencePanel.prepareReading(question) });
 const localWaterBudgetPanel = mountLocalWaterBudget({ getProject: () => project,
   selectCell: cellIndex => {
     brush = 'inspect';
@@ -196,6 +214,27 @@ const localWaterBudgetPanel = mountLocalWaterBudget({ getProject: () => project,
 const outletEvidencePanel = mountOutletEvidence({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const rainTracePanel = mountRainTrace({ getProject: () => project, changed: rerun, notice });
+const terrainImporter = mountTerrainImport({ getProject: () => project,
+  replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
+const pondingPanel = mountPondingPanel({getProject: () => project, getResults: () => results});
+const jointEvidencePanel = mountJointEvidence({ getProject: () => project,
+  replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
+const jointEventPanel = mountJointEventChallenge({ getProject: () => project, notice });
+const observationMap = mountObservationMap({ getProject: () => project, getResults: () => results,
+  selectCell: cellIndex => {
+    brush = 'inspect';
+    for (const el of document.querySelectorAll('[data-brush]')) {
+      const active = el.dataset.brush === 'inspect';
+      el.classList.toggle('active', active); el.setAttribute('aria-pressed', String(active));
+    }
+    $('obs-depth').value = ''; $('obs-source').value = '';
+    applyBrush('existing', cellIndex);
+    notice('Cell selected for inspection. Previous depth/source draft cleared; retained readings are unchanged.');
+  },
+});
+const internalBarriersPanel = mountInternalBarriers({ getProject: () => project,
+  replaceProject: next => { validateProject(next); project = next; syncForm(); rerun(); }, notice });
+const placementPanel = mountPlacementSearch({ getProject: () => project,
+  replaceProject: next => { validateProject(next); project = next; syncForm(); rerun(); }, notice });
 const clockPanel = mountClockPanel({getProject:()=>project,notice});
 syncForm();rerun();
-

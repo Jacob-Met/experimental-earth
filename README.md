@@ -24,7 +24,9 @@ The **Where does rain from this area end up?** panel traces rain from selected
 source cells through the existing water calculation. Compare where that water
 infiltrates, remains on the surface or leaves the boundary under each proposal.
 Both destination maps share a scale and preserve the same source area and
-storm. The source selection survives project export/import; changed model
+storm. A modeled-time control reveals temporary contributions at exact saved
+steps, with cumulative infiltration/outflow and the attributed water still
+present. Large timeline requests retain a clearly labeled final-only view. The source selection survives project export/import; changed model
 inputs require a fresh calculation. This is conserved model attribution under
 a complete-cell-mixing assumption, not observed physical pathways. See
 [Rainfall attribution](docs/RAIN_ATTRIBUTION.md) for the calculation, controls and
@@ -84,6 +86,14 @@ Cross-event receiving composed with main `3a0eef61`: **63 native tests and 25 ac
 
 The **collected-runoff evidence** panel compares source-attributed collection volumes against explicit outlet coefficients using the existing solver's cumulative edge outflow. Record the event, complete-boundary collection arrangement, time interval, original units and evidence role. Calibration volumes order candidates; held-aside volumes challenge them without changing that order. The record stays bound to its observed site and weather, survives ordinary project export/import and reload, and never adopts an outlet setting. See [Collected-runoff evidence](docs/OUTLET_EVIDENCE.md) for interval interpolation, source binding, controls and physical limits.
 
+## Compare joint soil and outlet explanations
+
+The **joint evidence** panel compares 2–12 explicit infiltration/outlet pairs against collected runoff and selected same-event depth readings. Its prediction plane exposes equal-volume explanations with different ponding depths; the full table keeps each reading's native units, tolerance, role and interpolation brackets. No combined score ranks unlike quantities, and held-aside evidence never chooses a pair. Source changes retire the comparison until the association is reviewed. See [Joint soil and outlet evidence](docs/JOINT_EVIDENCE.md) for the authored ambiguity control, ordinary export/reopen workflow and scientific limits.
+
+## Challenge joint explanations across storms
+
+The **Will these explanations survive another storm?** panel carries the current fixed infiltration/outlet pairs to a separately retained event. It compares explicitly held-aside collections and associated depths without changing pair values, first calibration or the active workspace. Download both source snapshots and reopen to recompute. See [Joint event challenge](docs/JOINT_EVENT_CHALLENGE.md) for the independently calculated two-storm control, source/model admission, bounded work and limits of the supplied independence declaration.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.
@@ -112,3 +122,36 @@ Choose all candidates, calibration-compatible candidates or candidates compatibl
 Within the proposal comparison, select an outcome and a prospective measurement tolerance, then **Find a decision-focused reading**. Only calibration-compatible hypotheses enter this question, regardless of the comparison filter above; held-aside values never tune it. The question requires candidate pairs predicting opposite proposal effects and maximizes their smallest predicted depth separation across unrecorded solver cell/time points. This can choose a different time than the existing largest-overall-spread question. Equal-effect candidates remain visible but are outside the opposite-pair score.
 
 The report compares the minimum separation with twice the supplied ± tolerance. Touching or overlapping bands cannot separate every opposing pair at that tolerance; disjoint predicted bands are a model-conditioned property, not a guarantee about a field reading or model error. No reversal, no compatible calibration or no available separating point produces an explicit explanation instead of a recommendation. **Prepare this reading** fills only cell, time, observed scenario, held-aside role and tolerance in the existing notebook form; it clears any prior depth/source draft so that it cannot be attached to this new location or time. The person must still supply actual depth and source. All site/evidence edits clear derived questions. No physical intervention or measurement is authorized by this suggestion.
+
+The water-attribution section also explains **which rainfall origins supplied a chosen destination**. Select destination cells and final storage, cumulative infiltration or boundary outflow to compare paired origin maps using the same maintained water transfers. See [rainfall attribution](docs/RAIN_ATTRIBUTION.md) for assumptions and receiving controls.
+
+
+### Compare depth and collected-volume measurement options
+
+The decision-question panel can compare local depth with an explicitly available whole-boundary collection. Set the prospective depth tolerance, opt into collection availability, and specify its duration and tolerance in liters. The model computes each opposing-pair gap divided by twice that measurement's tolerance. The largest band margin is a declared-precision comparison, not a probability, cost estimate or information-gain optimum. A margin above one indicates disjoint opposing prediction bands under these assumptions; model error remains outside the comparison.
+
+Candidates come from the saved depth-calibration study, with the outlet coefficient fixed. Collected values never fit or select the question. Their retained intervals exclude overlapping collection suggestions. A mismatched retained collection event/scenario blocks that option. Starts lie on retained solver snapshots; nonaligned ends disclose cumulative-volume interpolation. No reversal or distinguishing signal creates no invented option. Computation is bounded to three million cell-steps across at most five solver passes per original candidate.
+
+**Prepare collection reading** uses the maintained collected-runoff form. It fills only interval, liters/tolerance and held-aside role, clears stale value/source drafts, and leaves coverage unasserted for a new record. A valid existing record keeps its event and collection identity. Actual volume/source and explicit coverage are required before submission retains evidence. Depth preparation reuses the existing notebook callback. Changed settings or project inputs invalidate derived options. These controls do not authorize a collection or establish physical observability.
+
+## Import a supplied elevation grid
+
+The surveyed elevation panel accepts a complete CSV for the current grid with columns `cell,elevation,uncertainty,unit,source`. Units are `m`, `cm`, or `mm`; elevation and supplied ± uncertainty share the row unit. Supply a common named local datum and grid cell spacing. Spacing must equal the current model cell width. Elevations must lie between −10 and 10 metres relative to that datum; absolute geographic heights need an explicit local reference before import. No datum or geographic registration is inferred.
+
+Preview is read-only. Apply replaces only the selected scenario's elevations and provenance while retaining its surfaces, the other scenario and observations. Check whether retained observations still describe that geometry. All grid cells must appear exactly once; malformed, incomplete, duplicate or out-of-grid rows refuse the entire import. A changed project or changed preview settings invalidates the preview. File, physical source line, original unit quantities, datum and spacing survive portable JSON and reload. Inspect a cell to see its supplied source. Raising or lowering a cell discards its obsolete survey origin; surface-only edits retain the elevation origin.
+
+The solver uses central elevations and does not propagate supplied uncertainty. Retaining provenance does not verify a survey, cell registration, environmental forecast or intervention. This table path uses the existing bounded CSV reader (128 KB maximum); grids remain limited to 24×24 cells. Run `node tests/terrain-browser.receiving.mjs` with the same browser prerequisites as the existing receiver for the dedicated import course.
+
+## Follow ponding through time
+
+The **Ponding through time** panel replays both scenarios at the same selected minute. Select a cell in either replay map to inspect its total time strictly above a chosen depth and each separate wet interval. Proposal minus existing reports the duration change for that cell, using the same modeled event. Ordinary site/weather edits and project imports refresh the diagnostic. Replay minute, selected replay cell and threshold are temporary inspection controls; saved project assumptions remain unchanged.
+
+Crossings and intermediate depths use linear interpolation between retained solver snapshots. Dry gaps or peaks between snapshots can be missed; a smaller time step may change the reported duration. Threshold duration is a modeled diagnostic, not a field observation or a flood/access-safety rating.
+
+The ponding detail also reports **accumulated depth above threshold** in mm·min: the area under the positive depth-minus-threshold curve, using the same linear interpolation. It distinguishes a deep brief episode from a shallow long one without assigning a damage or safety score. If the first or last retained snapshot is still above threshold, the panel explicitly states that earlier onset or later clearance is unknown outside the modeled horizon.
+
+## Compare internal walls and openings
+
+Select a cell and use **Walls and openings** below the paired site maps to close an internal connection or restore an opening in either scenario. Add a source or hypothetical assumption; dark map lines show closed edges. Water can reroute through remaining gaps, and all maintained rain comparisons and attribution consumers use the same connectivity. Declarations survive ordinary export/import, reload and copying the existing site into the proposal.
+
+Closed edges stay impermeable for the full calculation; wall height, overtopping, leakage and structural strength are outside this model. Exterior outlets retain their existing assumptions. Cross-storm comparisons require the same wall/opening geometry. See [Internal walls and openings](docs/INTERNAL_BARRIERS.md) for the representation and independently calculated controls.

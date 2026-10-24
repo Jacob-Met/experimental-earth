@@ -17,7 +17,7 @@
     <div class="header-actions"><button type="button" id="reset" class="ghost">Reset fictional example</button><button type="button" id="export" class="light">Export project ↗</button><label class="light file-label">Import project <input type="file" id="import" accept="application/json,.json"></label></div>
   </header>
   <main>
-    <section class="disclosure" aria-label="Model status"><span class="pulse" aria-hidden="true"></span><strong>Conceptual model · not a real-site forecast</strong><span>Geometry and infiltration rates here are invented. Surface movement conserves water in this bounded grid; it does not model full soil, sewer or flood physics.</span></section>
+    <section class="disclosure" aria-label="Model status"><span class="pulse" aria-hidden="true"></span><strong>Conceptual model · not a real-site forecast</strong><span>The example geometry and infiltration rates are invented; imported elevations retain their supplied sources. Surface movement conserves water in this bounded grid; it does not model full soil, sewer or flood physics.</span></section>
     <div class="layout">
       <aside class="controls panel" aria-labelledby="site-controls-title">
         <div class="panel-title"><span class="eyebrow">01 / FIELD ASSUMPTIONS</span><h2 id="site-controls-title">Describe the site</h2></div>
@@ -43,8 +43,17 @@
       <div class="workspace">
         <section class="panel" id="maps" aria-labelledby="maps-title"><div class="section-heading"><div><span class="eyebrow">03 / EDITABLE FIELD</span><h2 id="maps-title">Same storm, two different places</h2></div><div class="site-area" id="site-area"></div></div>
           <div class="maps"><div class="map-col"><div class="map-heading"><strong>Existing site</strong><span>Editable reference</span></div><div class="grid" id="existing-grid" role="group" aria-label="Existing-site cells"></div></div><div class="map-col"><div class="map-heading"><strong>Proposed change</strong><span>Independent alternative</span></div><div class="grid" id="proposal-grid" role="group" aria-label="Proposed-site cells"></div></div></div>
-          <div class="selection" id="selection" aria-live="polite"></div>
-          <p class="caption">Each square is one modeled cell. Overlaid blue indicates simulated depth, not observed water. Elevations are hypothetical absolute model levels.</p>
+          <div class="selection" id="selection" aria-live="polite"></div><p id="terrain-origin" class="mini-note" style="overflow-wrap:anywhere"></p>
+          <p class="caption">Each square is one modeled cell. Overlaid blue indicates simulated depth, not observed water. Elevations use a local model datum; inspect a cell for its supplied source.</p>
+        </section>
+        <section class="panel" aria-labelledby="terrain-title">
+          <h2 id="terrain-title">Bring in a surveyed elevation grid</h2>
+          <p class="mini-note">CSV columns: <code>cell,elevation,uncertainty,unit,source</code>. Supply every current grid cell exactly once. Units are m, cm or mm for both elevation and ± uncertainty. Values must be relative to one common local datum (−10 to 10 m). Cell labels refer to this grid, not geographic coordinates.</p>
+          <div class="input-pair"><label class="input-label">Common local elevation datum<input id="terrain-datum" maxlength="160" placeholder="e.g. marked courtyard reference point"></label><label class="input-label">Survey cell spacing (m)<input id="terrain-spacing" type="number" min="0.25" max="100" step="any" placeholder="Must match grid cell width"></label></div>
+          <label class="input-label">Grid to receive elevations<select id="terrain-target"><option value="existing">Existing site only</option><option value="proposal">Proposed site only</option></select></label>
+          <div class="obs-actions"><label class="light file-label">Preview elevation CSV<input id="terrain-file" type="file" accept=".csv,text/csv"></label><button id="apply-terrain" type="button" class="subtle" disabled>Apply previewed elevations</button></div>
+          <p id="terrain-status" class="mini-note" style="overflow-wrap:anywhere" role="status"></p><ol id="terrain-preview" style="max-height:16rem;overflow:auto;overflow-wrap:anywhere"></ol>
+          <p class="mini-note">Registration, datum and survey accuracy are supplied by you and are not verified. The solver uses the central elevations; retained ± uncertainty is not propagated. Applying changes only the selected grid's elevations and source, retaining surfaces and notebook readings. Check whether those readings still describe the changed geometry. Height-brush edits discard that cell's survey origin; changing grid spacing requires a new consistent survey.</p>
         </section>
         <section class="panel results" aria-labelledby="results-title"><div class="section-heading"><div><span class="eyebrow">04 / COMPARISON</span><h2 id="results-title">What changed in the simulation?</h2></div><span id="storm-total" class="summary-tag"></span></div>
           <div class="metrics" id="metrics"></div>
@@ -84,6 +93,7 @@
             <ol id="observation-table-preview" tabindex="0" aria-label="Interpreted table readings"></ol>
             <p class="mini-note">Import keeps the supplied filename, row and original quantities. That records provenance supplied by you; it does not independently verify a physical measurement. The notebook holds up to 100 readings.</p>
           </div>
+          <div id="observation-map"></div>
           <div id="observation-list" class="history" aria-live="polite"></div>
         </section>
       </div>

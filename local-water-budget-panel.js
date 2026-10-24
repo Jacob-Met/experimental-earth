@@ -41,7 +41,7 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
     delete host.dataset.cellIndex;
     if (!members.length) {
       find('local-budget-status').dataset.state = 'no-edits';
-      find('local-budget-status').textContent = 'The two plans have identical elevations and surfaces. There is no edited footprint to compare; choose a cell or the whole site.';
+      find('local-budget-status').textContent = 'The two plans have identical elevations, surfaces and internal connectivity. There is no edited footprint to compare; choose a cell or the whole site.';
       return;
     }
     const selected = scope === 'cell' ? inspectLocalWaterBudget(comparison, members[0]) :
@@ -54,7 +54,7 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
     if (scope !== 'cell') {
       const membership = node('details', ''); membership.append(node('summary', `Inspect the same ${members.length} cells in both scenarios`), node('p', members.map(label).join(', ')));
       host.append(membership);
-      if (scope === 'edited') host.append(node('p', 'This footprint includes directly changed elevations or surfaces. Downstream locations affected by those edits may lie outside it.', 'mini-note'));
+      if (scope === 'edited') host.append(node('p', 'This footprint includes directly changed elevations or surfaces, plus both cells adjoining a changed wall or opening. Downstream locations affected by those edits may lie outside it.', 'mini-note'));
     }
     const table = document.createElement('table'); table.className = 'local-budget-table';
     const caption = node('caption', `Whole-event ${scope === 'cell' ? 'cell' : 'area'} water balance`); table.append(caption);

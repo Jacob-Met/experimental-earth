@@ -1,3 +1,5 @@
+import { validateInternalBarriers, internalEdgeClosed } from './internal-barriers.js';
+import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
 /**
  * EXPERIMENTAL EARTH / rain experiment core.
  * Deliberately modest conservation-based conceptual grid model, NOT a calibrated
@@ -6,7 +8,9 @@
 import { validateStudyMetadata } from './study-contract.js';
 import { validateObservationOrigin } from './observation-units.js';
 import { validateOutletEvidence } from './outlet-evidence-contract.js';
+import { validateJointStudy } from './joint-evidence-contract.js';
 import { createRainTracer, validateRainTraceStudy } from './rain-tracer.js';
+import { validateTerrainOrigin } from './terrain-contract.js';
 export const WIDTH = 8;
 export const HEIGHT = 6;
 export const SURFACES = Object.freeze({
@@ -54,7 +58,9 @@ export function validateProject(project) {
       if (!cell || !within(cell.elevationM, -10, 10) || !OWN(SURFACES, cell.surface) || typeof cell.provenance !== 'string' || cell.provenance.length > 240) throw new Error('Invalid elevation, surface or source in a grid cell');
     }
   }
+  for (const cells of [existing, proposal]) validateInternalBarriers(cells, width, height);
   if (!weather || !within(weather.rainMmHr, 0, 250) || !within(weather.stormMinutes, 0, 720) || !within(weather.durationMinutes, 5, 720) || !within(weather.stepMinutes, 1, 30) || !within(weather.cellSizeM, 0.25, 100) || !within(weather.mobilityPerHour, 0, 10) || !within(weather.boundaryExitPerHour, 0, 10) || weather.durationMinutes < weather.stormMinutes) throw new Error('Weather or modeling parameters out of bounds');
+  for (const cells of [existing, proposal]) for (const cell of cells) validateTerrainOrigin(cell, weather.cellSizeM);
   if (!Array.isArray(observations) || observations.length > 100) throw new Error('Invalid observation history');
   for (const o of observations) {
     if (!Number.isInteger(o.cellIndex) || o.cellIndex < 0 || o.cellIndex >= width * height || !within(o.minute, 0, weather.durationMinutes) || !within(o.depthMm, 0, 1000) || !within(o.uncertaintyMm, 0, 1000) || typeof o.source !== 'string' || o.source.trim().length === 0 || o.source.length > 200) throw new Error('Invalid observation. A source and bounded measurement are required');
@@ -63,7 +69,9 @@ export function validateProject(project) {
   if (project.selectedIndex !== undefined && (!Number.isInteger(project.selectedIndex) || project.selectedIndex < 0 || project.selectedIndex >= width * height)) throw new Error('Selected cell out of range');
   validateStudyMetadata(project);
   validateOutletEvidence(project.outletEvidence);
+  validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
+  validateRainOriginStudy(project.rainOriginStudy, width * height);
   return project;
 }
 
@@ -74,7 +82,7 @@ export function runRain(cells, width, height, weather, options = {}) {
   const water = Array(n).fill(0);
   const peak = Array(n).fill(0);
   const cellArea = weather.cellSizeM ** 2;
-  const tracer = createRainTracer(n, cellArea, options?.rainTrace);
+  const tracer = createRainTracer(n, cellArea, options?.rainTrace, Math.ceil(weather.durationMinutes / weather.stepMinutes) + 1);
   const override = options?.infiltrationOverride;
   const surfaceOverride = options?.surfaceInfiltrationOverride;
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
@@ -100,6 +108,8 @@ export function runRain(cells, width, height, weather, options = {}) {
     const exits = Number(x === 0) + Number(x === width - 1) + Number(y === 0) + Number(y === height - 1);
     if (exits) boundaries.push([i, exits]);
   }
+  const origins = createRainOriginTracer(n, cellArea, options?.rainOrigins,
+    Math.ceil(weather.durationMinutes / weather.stepMinutes) + 1, pairs, water);
   // Optional accounting of the same accepted fluxes used below. This does not
   // alter the hydraulic calculation or infer the origin of individual parcels.
   const budgetCells = traceBudget ? Array.from({ length: n }, (_, cellIndex) => ({
@@ -117,12 +127,14 @@ export function runRain(cells, width, height, weather, options = {}) {
     const rainOverlap = Math.max(0, Math.min(start + dtMinutes, weather.stormMinutes) - Math.min(start, weather.stormMinutes));
     const rainMm = weather.rainMmHr * rainOverlap / 60;
     tracer?.rain(rainMm);
+    origins?.rain(rainMm);
     for (let i = 0; i < n; i++) {
       water[i] += rainMm;
       const rate = override?.cellIndex === i ? override.rateMmHr :
         surfaceOverride?.surface === cells[i].surface ? surfaceOverride.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
       const absorb = Math.min(water[i], rate * dtHours);
       tracer?.absorb(i, absorb, water[i]);
+      origins?.absorb(i, absorb, water[i]);
       water[i] -= absorb;
       absorbedLiters += absorb * cellArea;
       if (traceBudget) {
@@ -138,6 +150,8 @@ export function runRain(cells, width, height, weather, options = {}) {
     const proposedOut = Array(n).fill(0);
     for (let edgeIndex = 0; edgeIndex < pairs.length; edgeIndex++) {
       const [a, b] = pairs[edgeIndex];
+      // Keep every edge index for accounting/tracing, including zero-flux walls.
+      if (internalEdgeClosed(cells, a, b, width)) continue;
       const headA = cells[a].elevationM * 1000 + water[a];
       const headB = cells[b].elevationM * 1000 + water[b];
       const delta = headA - headB;
@@ -157,6 +171,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     for (const { src, dst, requested, edgeIndex } of links) {
       const capped = requested * Math.min(1, water[src] / proposedOut[src]);
       tracer?.transfer(src, dst, capped, water[src]);
+      origins?.transfer(src, dst, capped, water[src], edgeIndex);
       movement[src] -= capped;
       if (dst >= 0) movement[dst] += capped;
       else exitLiters += capped * cellArea;
@@ -176,7 +191,8 @@ export function runRain(cells, width, height, weather, options = {}) {
       peak[i] = Math.max(peak[i], water[i]);
     }
     const minute = Math.min(weather.durationMinutes, start + dtMinutes);
-    tracer?.endStep();
+    tracer?.endStep(minute);
+    origins?.endStep();
     snapshots.push({ minute, depthsMm: water.slice(), storedLiters: water.reduce((a, b) => a + b, 0) * cellArea, absorbedLiters, exitLiters });
   }
   const storedLiters = water.reduce((a, b) => a + b, 0) * cellArea;
@@ -187,6 +203,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     peakPondingLiters: Math.max(...snapshots.map(s => s.storedLiters)),
     cellsOver10Mm: peak.filter(d => d >= 10).length,
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
+    ...(origins ? { rainOrigins: origins.finish(water) } : {}),
   };
   if (traceBudget) {
     for (const cell of budgetCells) {
