@@ -6,7 +6,15 @@ The product should help people understand and improve a courtyard, schoolyard, g
 
 ## Current state
 
-**Product seed only.** These documents describe approved exploratory direction and contributor guidance. They do not establish an implemented application, validated environmental predictions, passing tests, a deployed model integration or a completed submission. Read current source, issues and pull requests for subsequent progress.
+**First runnable local workbench available.** The Rain Experiment Lab compares hypothetical rainfall, terrain and surface edits with explicit water accounting and an attributed observation notebook. This is a conceptual computation on invented starting conditions—not an environmentally validated forecast, site survey, authorized intervention or Nebius/model deployment. Read current source, issues and pull requests for subsequent progress.
+
+## Run the Rain Experiment Lab
+
+Run `python3 -m http.server 8765` from the repository root and open `http://localhost:8765/` in a modern browser. It is dependency-free and local-only. Edit either 8×6 site grid with surface/height brushes, change rain assumptions, compare the matched scenarios, inspect water balance and time series, and save/reopen the full project via Export/Import JSON. Browser storage also retains the last workspace locally. Open the site through a local HTTP server, not directly as a `file:` URL, because JavaScript modules may be blocked by file-origin security policy.
+
+Run `npm test` with Node.js 20+ for the native conservation and record-validation suite.
+
+**Physical boundaries:** The model is a deliberately simplified finite-volume surface transfer on constant-infiltration cells, with an open edge and no measured calibration. Its arithmetic conserves rainfall within tolerance; it does not quantify actual flood risk, stormwater compliance, soil response or intervention benefit. Real readings can be recorded with method and ± uncertainty, but do not automatically tune the model. Sampling suggestions identify the largest simulated scenario difference, not validated information gain. No external data or inference endpoints are called.
 
 ## Start here
 
