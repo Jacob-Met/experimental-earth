@@ -6,9 +6,9 @@
 export const WIDTH = 8;
 export const HEIGHT = 6;
 export const SURFACES = Object.freeze({
-  sealed: { label: 'Sealed paving', infiltrationMmHr: 1, color: '#aeb8bb' },
-  turf: { label: 'Turf', infiltrationMmHr: 9, color: '#b6c990' },
-  garden: { label: 'Rain garden', infiltrationMmHr: 24, color: '#478e79' },
+  sealed: { label: 'Sealed paving', infiltrationMmHr: 1, rangeLowMmHr: 0.2, rangeHighMmHr: 4, color: '#aeb8bb' },
+  turf: { label: 'Turf', infiltrationMmHr: 9, rangeLowMmHr: 3, rangeHighMmHr: 22, color: '#b6c990' },
+  garden: { label: 'Rain garden', infiltrationMmHr: 24, rangeLowMmHr: 12, rangeHighMmHr: 55, color: '#478e79' },
 });
 export const DEFAULT_WEATHER = Object.freeze({
   rainMmHr: 36, stormMinutes: 60, durationMinutes: 240,
@@ -59,13 +59,19 @@ export function validateProject(project) {
   return project;
 }
 
-export function runRain(cells, width, height, weather) {
+export function runRain(cells, width, height, weather, options = {}) {
   validateProject({ schema: 'experimental-earth-site/1', title: 'model', width, height,
     existing: cells, proposal: cells, weather, observations: [] });
   const n = width * height;
   const water = Array(n).fill(0);
   const peak = Array(n).fill(0);
   const cellArea = weather.cellSizeM ** 2;
+  const override = options?.infiltrationOverride;
+  if (override !== undefined && (!override || !Number.isInteger(override.cellIndex) ||
+      override.cellIndex < 0 || override.cellIndex >= n ||
+      !within(override.rateMmHr, 0, 2000))) {
+    throw new Error('Invalid infiltration override');
+  }
   const boundaries = [];
   const pairs = [];
   for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
@@ -84,7 +90,8 @@ export function runRain(cells, width, height, weather) {
     const rainMm = weather.rainMmHr * rainOverlap / 60;
     for (let i = 0; i < n; i++) {
       water[i] += rainMm;
-      const absorb = Math.min(water[i], SURFACES[cells[i].surface].infiltrationMmHr * dtHours);
+      const rate = override?.cellIndex === i ? override.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
+      const absorb = Math.min(water[i], rate * dtHours);
       water[i] -= absorb;
       absorbedLiters += absorb * cellArea;
       peak[i] = Math.max(peak[i], water[i]);
@@ -162,4 +169,48 @@ export function chooseNextObservation(project, results) {
     if (diff > best.differenceMm) best = { cellIndex: i, differenceMm: diff };
   }
   return { ...best, minute: at, reason: 'Largest simulated baseline/proposal ponding difference at storm end; validate local conditions before treating it as meaningful.' };
+}
+
+/**
+ * One-input-at-a-time local sensitivity on an authored, *not measured* range.
+ * Distinct from chooseNextObservation (which finds scenario disagreement).
+ * Ranking is by final water not absorbed (storage + modeled edge outflow).
+ * On grids >96 cells, a cheap, explicitly labeled heuristic chooses 36
+ * candidates instead of blocking browser input on 2N full solver runs.
+ */
+export function chooseInfiltrationObservation(project, target = 'proposal') {
+  validateProject(project);
+  if (target !== 'proposal' && target !== 'existing') throw new Error('Unknown scenario');
+  const cells = project[target], n = cells.length, {width,height,weather} = project;
+  const indices = Array.from({length:n},(_,i)=>i);
+  if (n > 96) {
+    const reference = runRain(cells,width,height,weather);
+    const priority = i => {
+      const m = SURFACES[cells[i].surface];
+      const depth = reference.finalDepthMm[i];
+      return (m.rangeHighMmHr-m.rangeLowMmHr) * (0.2+depth/(depth+5));
+    };
+    indices.sort((a,b)=>priority(b)-priority(a)||a-b);
+    indices.length = 36;
+  }
+  let winner = null;
+  for(const cellIndex of indices) {
+    const surface = cells[cellIndex].surface;
+    const m = SURFACES[surface];
+    const low=runRain(cells,width,height,weather,{infiltrationOverride:{cellIndex,rateMmHr:m.rangeLowMmHr}});
+    const high=runRain(cells,width,height,weather,{infiltrationOverride:{cellIndex,rateMmHr:m.rangeHighMmHr}});
+    const lowUnabsorbed = low.storedLiters + low.exitLiters;
+    const highUnabsorbed = high.storedLiters + high.exitLiters;
+    const impactLiters = Math.abs(highUnabsorbed - lowUnabsorbed);
+    if (!winner || impactLiters > winner.impactLiters + 1e-9) {
+      winner={target,cellIndex,surface,rangeLowMmHr:m.rangeLowMmHr,
+        rangeHighMmHr:m.rangeHighMmHr,impactLiters,
+        lowUnabsorbedLiters:lowUnabsorbed,highUnabsorbedLiters:highUnabsorbed};
+    }
+  }
+  // A dry event or a fully absorbing site cannot justify a measurement
+  // based on the tested output; never claim one is informative.
+  return winner && winner.impactLiters > 1e-9
+    ? {...winner,evaluatedCount:indices.length,totalCount:n}
+    : null;
 }

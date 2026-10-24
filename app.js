@@ -1,4 +1,4 @@
-import { SURFACES, makeExample, validateProject, compare, depthAtMinute, chooseNextObservation } from './core.js';
+import { SURFACES, makeExample, validateProject, compare, depthAtMinute, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
 const $ = id => document.getElementById(id);
 const storeKey = 'experimental-earth-site-v1';
 let project;
@@ -19,7 +19,7 @@ function nameCell(index) { return `${String.fromCharCode(65 + index % project.wi
 function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFractionDigits:1}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); }
+function rerun() { results = compare(project); persist(); draw(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -113,6 +113,27 @@ $('map-view').addEventListener('change',()=>{view=$('map-view').value;draw();});
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
 $('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
+$('suggest-infiltration').addEventListener('click',()=>{
+  const button=$('suggest-infiltration');
+  button.disabled=true;
+  setTimeout(()=>{
+    try{
+      const check=chooseInfiltrationObservation(project,'proposal');
+      if(!check) { notice('Under these storm settings, no evaluated infiltration uncertainty changes the modeled outcome.');return; }
+      project.selectedIndex=check.cellIndex;
+      brush='inspect';
+      for (const el of document.querySelectorAll('[data-brush]')) {
+        const active=el.dataset.brush==='inspect';
+        el.classList.toggle('active',active);
+        el.setAttribute('aria-pressed',String(active));
+      }
+      rerun();
+      $('infiltration-reading').textContent='Check '+nameCell(check.cellIndex)+': the proposed '+SURFACES[check.surface].label.toLowerCase()+' cell was tested from '+check.rangeLowMmHr+'–'+check.rangeHighMmHr+' mm/h assumed infiltration. That single input changes modeled water remaining + exiting by '+numeric(check.impactLiters)+' L. Evaluated '+check.evaluatedCount+'/'+check.totalCount+' cells'+(check.evaluatedCount<check.totalCount?' (heuristic shortlist)':'')+'; these rates are invented example bounds, NOT tested soil properties or statistical confidence limits. A permitted infiltration observation here could help challenge the model. The measured-depth form below is for water depth, not infiltration-rate readings.';
+      // This soil-rate sensitivity must not focus the unrelated water-depth form.
+    }catch(error){notice('Sensitivity unavailable: '+error.message)}
+    finally{button.disabled=false}
+  },20);
+});
 $('observe-form').addEventListener('submit',event=>{
   event.preventDefault();
   const o={cellIndex:project.selectedIndex,minute:Number($('obs-minute').value),depthMm:Number($('obs-depth').value),uncertaintyMm:Number($('obs-uncertainty').value),source:$('obs-source').value.trim()};
