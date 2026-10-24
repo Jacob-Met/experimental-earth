@@ -78,6 +78,45 @@ column declaration also clears it, including a queued calculation. An obsolete
 geometry context is refused rather than reassigning old columns to new terrain.
 Unrelated rainfall-only changes do not alter the solar comparison.
 
+## Save and reopen an investigation
+
+After a successful comparison, **Save investigation with location and site**
+downloads `experimental-earth-sun-path.json`. This is a separate input-only file,
+not the ordinary project export. It includes the original complete project,
+geographic coordinates and source words, true-north grid bearing, UTC endpoints,
+sampling step, selected ground cell and exact SunCalc identity. Share it only
+when you intend to include that location and site information. Saving uses the
+source captured for the displayed comparison; an unrelated later rain edit does
+not quietly replace that original project in the file.
+
+Open **Reopen a retained sun-path investigation** and choose the file. The app
+validates the full original project through the maintained project-portability
+contract, checks the saved obstruction context, and runs `compareSunPath` again.
+Its separate selector and result table use the retained grid, even when the
+active project has different dimensions or is subsequently replaced. No saved
+verdict is accepted and no retained location, columns or scenario is adopted
+into the active project. Closing this view or reloading clears the inspection;
+the downloaded file remains available to reopen.
+
+Files use `experimental-earth/sun-path-inputs/1`, accept at most 5 MiB of UTF-8
+JSON, and preserve the ordinary 4 MiB project admission limit. The envelope has
+exactly `kind`, `model`, `project`, `declaration` and `selectedCellIndex` fields.
+The declaration contains the eight geographic/source/time inputs accepted by
+the panel; sample counts and all results are derived again. Unknown envelope or
+declaration fields, a different sun-position model, an out-of-grid selection,
+invalid UTC inputs, stale column context and excess calculation work are refused.
+A failed file leaves the previously accepted independent inspection visible.
+A later import or closing the view prevents a delayed older file read from
+publishing over it.
+
+This is reproducibility from declared inputs, not an authenticity certificate.
+A person can edit valid inputs and receive the corresponding new comparison.
+The SunCalc version/commit is pinned and checked; obstruction is recalculated
+with this application's maintained kernel, so the file does not promise an
+unchanging result across future revisions of that kernel. The versioned format
+is an admission contract, not a hash of all application source. Height, point
+sampling and physical-model limitations remain unchanged.
+
 ## Verification
 
 - `node tests/solar-path.test.mjs`: external ephemeris residuals, geographic/grid
@@ -86,6 +125,15 @@ Unrelated rainfall-only changes do not alter the solar comparison.
   endpoint coverage, source invalidation, no mutation, bounded work and time-zone
   independence.
 - `npm test`: maintained product regression suite.
+- `node tests/solar-path-receipt.test.mjs`: input-only roundtrip, independently
+  recomputed changing outcomes, changed-source refusal, model/envelope admission,
+  retained-grid selection, UTF-8 byte limits, literal sources and immutability.
+- `CHROME_BIN=/opt/google/chrome/chrome node tests/solar-path-receipt.browser.mjs`:
+  the original dated-path course followed by actual download, fresh-page native
+  file reopen beside a different active project, keyboard inspection, malformed
+  files, delayed import supersession/close, source independence and actual 390px
+  layout. Set `SUN_PATH_INVESTIGATION_RECEIPT_DIR` to retain its captures and
+  exact loaded-source hashes in a chosen directory.
 - `CHROME_BIN=/opt/google/chrome/chrome node tests/solar-path.browser.mjs`:
   actual authored-source import, paired timeline, changed inputs, literal source
   text, stale queued work, source mismatch, reload, keyboard inspection, no

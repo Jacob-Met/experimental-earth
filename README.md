@@ -225,3 +225,5 @@ Run `node tests/surface-elevation.test.mjs` for direct four-world, co-located/di
 ## Compare a dated sun path
 
 The **How does direct-sun obstruction change through the day?** panel connects the saved columns to explicit geographic coordinates, a sourced true-north grid bearing and UTC sampling times. Inspect changing paired ground-centre results and their original witnesses without replacing the saved single-direction study. Calculations stay local; below-horizon and low-elevation samples remain explicit, and discrete counts do not imply hours of shade. See [dated sun paths](docs/SUN_PATH.md) for use, source pins, privacy, sampling limits and verification.
+
+After comparing, **Save investigation with location and site** retains the original project and dated declarations in a separate input-only JSON file. Reopen that file to recompute and inspect its original grid alongside whichever project is active. No saved verdict is trusted and the active project is unchanged. The file includes geographic location and site sources; ordinary project export still omits the temporary dated-path draft.
