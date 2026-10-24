@@ -14,6 +14,8 @@ Run `python3 -m http.server 8765` from the repository root and open `http://loca
 
 Run `npm test` with Node.js 20+ for the native conservation and record-validation suite.
 
+Optional actual-browser receiving: with Python 3, a locally available Chrome/Chromium, and Node.js 22+, run `npm run browser-receive` (override `CHROME_BIN` if necessary). This starts its own local test server/browser and checks real editing, observation retention, reload, import and 390px layout without an external test framework. It writes a local `browser-mobile-390.png` inspection screenshot; do not mistake a successful UI test for physical field validation.
+
 **Physical boundaries:** The model is a deliberately simplified finite-volume surface transfer on constant-infiltration cells, with an open edge and no measured calibration. Its arithmetic conserves rainfall within tolerance; it does not quantify actual flood risk, stormwater compliance, soil response or intervention benefit. Real readings can be recorded with method and ± uncertainty, but do not automatically tune the model. Sampling suggestions identify the largest simulated scenario difference, not validated information gain. No external data or inference endpoints are called.
 
 ## Start here
