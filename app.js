@@ -37,7 +37,7 @@ function applyBrush(target, index) {
   rerun();
 }
 function gridInto(target, result) {
-  const el=$(`${target}-grid`);const fragment=document.createDocumentFragment();
+  const el=$(`${target}-grid`);el.style.gridTemplateColumns=`repeat(${project.width},minmax(0,1fr))`;const fragment=document.createDocumentFragment();
   for (let index=0;index<project[target].length;index++) {
     const cell=project[target][index];
     const mm=view==='peak'?result.peakDepthMm[index]:view==='final'?result.finalDepthMm[index]:0;
@@ -57,7 +57,7 @@ function gridInto(target, result) {
 function metric(title,a,b,unit,desirable='low') {
   const delta=b-a;
   let change=Math.abs(delta)<0.001?'No change':`${delta>0?'+':'−'}${numeric(Math.abs(delta))} ${unit} in proposal`;
-  if(Math.abs(delta)>.001 && desirable!=='neutral')change+=` · ${delta*(desirable==='low'?1:-1)<0?'less':'more'}`;
+  if(Math.abs(delta)>.001 && desirable!=='neutral')change+=` · ${delta<0?'less':'more'}`;
   return `<div class="metric"><div class="metric-label">${title}</div><div class="metric-columns"><div><small>Existing</small><strong>${numeric(a)}</strong></div><div><small>Proposal</small><strong>${numeric(b)}</strong></div></div><div class="metric-foot ${Math.abs(delta)<.001?'no-change':''}">${change}</div></div>`;
 }
 function chart() {
