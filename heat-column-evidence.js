@@ -48,19 +48,24 @@ export function compareHeatColumnEvidence(project) {
   if (!evidence) return { status: 'no-evidence' };
   if (!heatColumnEvidenceCurrent(project, evidence)) return { status: 'context-changed' };
   const durationMinutes = evidence.columnStudy.heatStudy.schedule.reduce((sum, row) => sum + row.minutes, 0);
-  const times = [...new Set([...evidence.readings.map(r => r.minute),
+  const times = [...new Set([...evidence.readings.flatMap(r => r.aggregation === 'interval-mean' ? [r.fromMinute, r.minute] : [r.minute]),
     ...Array.from({ length: 121 }, (_, i) => i === 120 ? durationMinutes : durationMinutes * (i / 120))])];
   const candidates = evidence.hypotheses.map(h => {
     const study = variant(evidence, h);
     // Evaluation checks the complete exposure and both stores' interior extrema,
     // including unsupported intervals where no observation was supplied.
-    const course = evaluateHeatColumnTarget(study, evidence.target, times);
+    const windows = evidence.readings.filter(r => r.aggregation === 'interval-mean').map(r => ({ fromMinute: r.fromMinute, minute: r.minute }));
+    const course = evaluateHeatColumnTarget(study, evidence.target, times, windows);
     const byTime = new Map(course.trajectory.map(row => [row.minute, row]));
+    const means = new Map(course.averages.map(row => [JSON.stringify([row.fromMinute, row.minute]), row]));
     const rows = evidence.readings.map((r, index) => {
       const prediction = byTime.get(r.minute);
-      const predictionC = prediction.surfaceC, residualC = r.temperatureC - predictionC;
-      const arithmeticGuardC = arithmeticGuard(study, evidence.target, prediction, r);
+      const mean = r.aggregation === 'interval-mean' ? means.get(JSON.stringify([r.fromMinute, r.minute])) : null;
+      const predictionC = mean ? mean.surfaceMeanC : prediction.surfaceC, residualC = r.temperatureC - predictionC;
+      const arithmeticGuardC = arithmeticGuard(study, evidence.target, mean ?
+        { ...prediction, surfaceC: mean.surfaceMeanC, subsurfaceC: mean.subsurfaceMeanC } : prediction, r);
       return { index, use: r.use, minute: r.minute, predictionC, residualC, arithmeticGuardC,
+        ...(mean ? { aggregation: 'interval-mean', fromMinute: r.fromMinute } : {}),
         withinBand: Math.abs(residualC) <= r.halfWidthC + arithmeticGuardC };
     });
     return { label: h.label, calibration: screenHeatReadings(rows.filter(r => r.use === 'calibration')),
@@ -83,7 +88,7 @@ export function compareHeatColumnEvidence(project) {
     calibrationLabels: calibration.map(c => c.label), survivingLabels: survivors.map(c => c.label),
     peakRanges: { lowerMaximumC: range(survivors.map(c => c.summary.subsurface.maximumC)),
       lowerMaximumMinute: range(survivors.map(c => c.summary.subsurface.maximumMinute)) },
-    semantics: 'Only these finite sourced lower-capacity/conductance alternatives are screened. Surface properties, lower initial temperature and exposure stay fixed. Challenge readings never refit or rank alternatives. Engineering arithmetic guards and maxima are not certified bounds, physical calibration or probabilities.' };
+    semantics: 'Only these finite sourced lower-capacity/conductance alternatives are screened. Surface properties, lower initial temperature and exposure stay fixed. Instantaneous readings compare point values; interval means compare the complete declared averaging window. Overlapping windows or role labels do not establish independent acquisition. Challenge readings never refit or rank alternatives. Engineering arithmetic guards and maxima are not certified bounds, physical calibration or probabilities.' };
 }
 
 export function authoredHeatColumnEvidenceExample(project, target = 'existing') {

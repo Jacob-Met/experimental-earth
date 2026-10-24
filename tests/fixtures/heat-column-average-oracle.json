@@ -1,0 +1,86 @@
+[
+  {
+    "name": "heating hour",
+    "fromMinute": 0.0,
+    "toMinute": 60.0,
+    "g": 20.0,
+    "h": 10.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 37.47920767285588,
+    "averageLowerC": 25.032977888827105,
+    "endpointSurfaceC": 44.53099896635471,
+    "endpointLowerC": 31.20160680562588
+  },
+  {
+    "name": "cooling hour",
+    "fromMinute": 60.0,
+    "toMinute": 120.0,
+    "g": 20.0,
+    "h": 10.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 30.949145738082176,
+    "averageLowerC": 31.6761228678559,
+    "endpointSurfaceC": 27.439654304991905,
+    "endpointLowerC": 30.547327388829537
+  },
+  {
+    "name": "crosses pulse boundary",
+    "fromMinute": 30.0,
+    "toMinute": 90.0,
+    "g": 20.0,
+    "h": 10.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 37.93648145350857,
+    "averageLowerC": 30.092607363102093,
+    "endpointSurfaceC": 29.195793897366322,
+    "endpointLowerC": 31.94285962094581
+  },
+  {
+    "name": "short interval across pulse",
+    "fromMinute": 59.9,
+    "toMinute": 60.1,
+    "g": 20.0,
+    "h": 10.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 44.489123000097166,
+    "averageLowerC": 31.201584469781135,
+    "endpointSurfaceC": 44.378178153656144,
+    "endpointLowerC": 31.22147116079141
+  },
+  {
+    "name": "insulated coupled",
+    "fromMinute": 0.0,
+    "toMinute": 60.0,
+    "g": 20.0,
+    "h": 0.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 44.06201627065893,
+    "averageLowerC": 26.584495932335255,
+    "endpointSurfaceC": 57.88092678203463,
+    "endpointLowerC": 35.7297683044913
+  },
+  {
+    "name": "uncoupled exchange",
+    "fromMinute": 0.0,
+    "toMinute": 60.0,
+    "g": 0.0,
+    "h": 10.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 50.03152096689378,
+    "averageLowerC": 19.999999999999996,
+    "endpointSurfaceC": 66.74326225959109,
+    "endpointLowerC": 20.0
+  },
+  {
+    "name": "uncoupled insulated ramp",
+    "fromMinute": 0.0,
+    "toMinute": 60.0,
+    "g": 0.0,
+    "h": 0.0,
+    "pulseMinutes": 60.0,
+    "averageSurfaceC": 70.4,
+    "averageLowerC": 20.0,
+    "endpointSurfaceC": 120.80000000000001,
+    "endpointLowerC": 20.0
+  }
+]

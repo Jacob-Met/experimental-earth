@@ -1,0 +1,875 @@
+{
+  "schema": "experimental-earth-site/1",
+  "title": "NOAA Tucson hourly means · illustrative unfitted column",
+  "width": 8,
+  "height": 6,
+  "weather": {
+    "rainMmHr": 36,
+    "stormMinutes": 60,
+    "durationMinutes": 240,
+    "stepMinutes": 5,
+    "cellSizeM": 2,
+    "mobilityPerHour": 0.5,
+    "boundaryExitPerHour": 0.38
+  },
+  "existing": [
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured."
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.107,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.098,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.089,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.08,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.071,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.062,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    }
+  ],
+  "proposal": [
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured."
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.107,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.098,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "garden",
+      "provenance": "proposed hypothetical change"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "garden",
+      "provenance": "proposed hypothetical change"
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.089,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "garden",
+      "provenance": "proposed hypothetical change"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "garden",
+      "provenance": "proposed hypothetical change"
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.08,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "garden",
+      "provenance": "proposed hypothetical change"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "garden",
+      "provenance": "proposed hypothetical change"
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.071,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    },
+    {
+      "elevationM": 0.062,
+      "surface": "turf",
+      "provenance": "illustrative assumption"
+    }
+  ],
+  "observations": [],
+  "selectedIndex": 27,
+  "source": "Illustrative geometry and rates; no site measurements",
+  "surfaceHeatStudy": {
+    "schema": "experimental-earth-surface-heat/1",
+    "model": "uniform-layer-forced-linear-exchange",
+    "cellIndex": 0,
+    "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured.\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured.\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+    "existing": {
+      "capacityJm2K": 20000,
+      "exchangeWm2K": 10,
+      "absorptivity": 0.8,
+      "initialC": 20,
+      "source": "Authored illustrative C1=20000 J/(m² K), h=10 W/(m² K), alpha=0.8; point initial surface20 C at2025-01-01T15:00Z. Not fitted or calibrated."
+    },
+    "proposal": {
+      "capacityJm2K": 20000,
+      "exchangeWm2K": 10,
+      "absorptivity": 0.8,
+      "initialC": 20,
+      "source": "Authored illustrative C1=20000 J/(m² K), h=10 W/(m² K), alpha=0.8; point initial surface20 C at2025-01-01T15:00Z. Not fitted or calibrated."
+    },
+    "schedule": [
+      {
+        "minutes": 60,
+        "incidentWm2": 121,
+        "reservoirC": 11.2,
+        "source": "NOAA Tucson source line 16; UTC (2025-01-01T15:00:00.000Z, 2025-01-01T16:00:00.000Z]; SOLARAD=121 W/m² flag0, T_HR_AVG=11.2 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 344,
+        "reservoirC": 15.9,
+        "source": "NOAA Tucson source line 17; UTC (2025-01-01T16:00:00.000Z, 2025-01-01T17:00:00.000Z]; SOLARAD=344 W/m² flag0, T_HR_AVG=15.9 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 490,
+        "reservoirC": 17.6,
+        "source": "NOAA Tucson source line 18; UTC (2025-01-01T17:00:00.000Z, 2025-01-01T18:00:00.000Z]; SOLARAD=490 W/m² flag0, T_HR_AVG=17.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 580,
+        "reservoirC": 18.9,
+        "source": "NOAA Tucson source line 19; UTC (2025-01-01T18:00:00.000Z, 2025-01-01T19:00:00.000Z]; SOLARAD=580 W/m² flag0, T_HR_AVG=18.9 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 610,
+        "reservoirC": 20.4,
+        "source": "NOAA Tucson source line 20; UTC (2025-01-01T19:00:00.000Z, 2025-01-01T20:00:00.000Z]; SOLARAD=610 W/m² flag0, T_HR_AVG=20.4 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 575,
+        "reservoirC": 21.2,
+        "source": "NOAA Tucson source line 21; UTC (2025-01-01T20:00:00.000Z, 2025-01-01T21:00:00.000Z]; SOLARAD=575 W/m² flag0, T_HR_AVG=21.2 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 478,
+        "reservoirC": 21.6,
+        "source": "NOAA Tucson source line 22; UTC (2025-01-01T21:00:00.000Z, 2025-01-01T22:00:00.000Z]; SOLARAD=478 W/m² flag0, T_HR_AVG=21.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 324,
+        "reservoirC": 21.3,
+        "source": "NOAA Tucson source line 23; UTC (2025-01-01T22:00:00.000Z, 2025-01-01T23:00:00.000Z]; SOLARAD=324 W/m² flag0, T_HR_AVG=21.3 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      },
+      {
+        "minutes": 60,
+        "incidentWm2": 114,
+        "reservoirC": 20.6,
+        "source": "NOAA Tucson source line 24; UTC (2025-01-01T23:00:00.000Z, 2025-01-02T00:00:00.000Z]; SOLARAD=114 W/m² flag0, T_HR_AVG=20.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+      }
+    ]
+  },
+  "heatColumnStudy": {
+    "schema": "experimental-earth-heat-column/1",
+    "model": "two-uniform-stores-forced-surface-linear-exchange",
+    "heatStudy": {
+      "schema": "experimental-earth-surface-heat/1",
+      "model": "uniform-layer-forced-linear-exchange",
+      "cellIndex": 0,
+      "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured.\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured.\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+      "existing": {
+        "capacityJm2K": 20000,
+        "exchangeWm2K": 10,
+        "absorptivity": 0.8,
+        "initialC": 20,
+        "source": "Authored illustrative C1=20000 J/(m² K), h=10 W/(m² K), alpha=0.8; point initial surface20 C at2025-01-01T15:00Z. Not fitted or calibrated."
+      },
+      "proposal": {
+        "capacityJm2K": 20000,
+        "exchangeWm2K": 10,
+        "absorptivity": 0.8,
+        "initialC": 20,
+        "source": "Authored illustrative C1=20000 J/(m² K), h=10 W/(m² K), alpha=0.8; point initial surface20 C at2025-01-01T15:00Z. Not fitted or calibrated."
+      },
+      "schedule": [
+        {
+          "minutes": 60,
+          "incidentWm2": 121,
+          "reservoirC": 11.2,
+          "source": "NOAA Tucson source line 16; UTC (2025-01-01T15:00:00.000Z, 2025-01-01T16:00:00.000Z]; SOLARAD=121 W/m² flag0, T_HR_AVG=11.2 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 344,
+          "reservoirC": 15.9,
+          "source": "NOAA Tucson source line 17; UTC (2025-01-01T16:00:00.000Z, 2025-01-01T17:00:00.000Z]; SOLARAD=344 W/m² flag0, T_HR_AVG=15.9 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 490,
+          "reservoirC": 17.6,
+          "source": "NOAA Tucson source line 18; UTC (2025-01-01T17:00:00.000Z, 2025-01-01T18:00:00.000Z]; SOLARAD=490 W/m² flag0, T_HR_AVG=17.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 580,
+          "reservoirC": 18.9,
+          "source": "NOAA Tucson source line 19; UTC (2025-01-01T18:00:00.000Z, 2025-01-01T19:00:00.000Z]; SOLARAD=580 W/m² flag0, T_HR_AVG=18.9 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 610,
+          "reservoirC": 20.4,
+          "source": "NOAA Tucson source line 20; UTC (2025-01-01T19:00:00.000Z, 2025-01-01T20:00:00.000Z]; SOLARAD=610 W/m² flag0, T_HR_AVG=20.4 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 575,
+          "reservoirC": 21.2,
+          "source": "NOAA Tucson source line 21; UTC (2025-01-01T20:00:00.000Z, 2025-01-01T21:00:00.000Z]; SOLARAD=575 W/m² flag0, T_HR_AVG=21.2 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 478,
+          "reservoirC": 21.6,
+          "source": "NOAA Tucson source line 22; UTC (2025-01-01T21:00:00.000Z, 2025-01-01T22:00:00.000Z]; SOLARAD=478 W/m² flag0, T_HR_AVG=21.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 324,
+          "reservoirC": 21.3,
+          "source": "NOAA Tucson source line 23; UTC (2025-01-01T22:00:00.000Z, 2025-01-01T23:00:00.000Z]; SOLARAD=324 W/m² flag0, T_HR_AVG=21.3 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        },
+        {
+          "minutes": 60,
+          "incidentWm2": 114,
+          "reservoirC": 20.6,
+          "source": "NOAA Tucson source line 24; UTC (2025-01-01T23:00:00.000Z, 2025-01-02T00:00:00.000Z]; SOLARAD=114 W/m² flag0, T_HR_AVG=20.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+        }
+      ]
+    },
+    "lowerLayers": {
+      "existing": {
+        "capacityJm2K": 80000,
+        "conductanceWm2K": 20,
+        "initialC": 20,
+        "source": "Authored reference lower store; point initial20 C at2025-01-01T15:00Z. Not a measured depth temperature or fitted property."
+      },
+      "proposal": {
+        "capacityJm2K": 80000,
+        "conductanceWm2K": 20,
+        "initialC": 20,
+        "source": "Authored reference lower store; point initial20 C at2025-01-01T15:00Z. Not a measured depth temperature or fitted property."
+      }
+    }
+  },
+  "heatColumnEvidence": {
+    "schema": "experimental-earth-heat-column-evidence/1",
+    "quantity": "surface-temperature",
+    "columnStudy": {
+      "schema": "experimental-earth-heat-column/1",
+      "model": "two-uniform-stores-forced-surface-linear-exchange",
+      "heatStudy": {
+        "schema": "experimental-earth-surface-heat/1",
+        "model": "uniform-layer-forced-linear-exchange",
+        "cellIndex": 0,
+        "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured.\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"Illustrative model cell associated with NOAA Tucson hourly source for a declared exercise; no station terrain or physical column was measured.\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+        "existing": {
+          "capacityJm2K": 20000,
+          "exchangeWm2K": 10,
+          "absorptivity": 0.8,
+          "initialC": 20,
+          "source": "Authored illustrative C1=20000 J/(m² K), h=10 W/(m² K), alpha=0.8; point initial surface20 C at2025-01-01T15:00Z. Not fitted or calibrated."
+        },
+        "proposal": {
+          "capacityJm2K": 20000,
+          "exchangeWm2K": 10,
+          "absorptivity": 0.8,
+          "initialC": 20,
+          "source": "Authored illustrative C1=20000 J/(m² K), h=10 W/(m² K), alpha=0.8; point initial surface20 C at2025-01-01T15:00Z. Not fitted or calibrated."
+        },
+        "schedule": [
+          {
+            "minutes": 60,
+            "incidentWm2": 121,
+            "reservoirC": 11.2,
+            "source": "NOAA Tucson source line 16; UTC (2025-01-01T15:00:00.000Z, 2025-01-01T16:00:00.000Z]; SOLARAD=121 W/m² flag0, T_HR_AVG=11.2 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 344,
+            "reservoirC": 15.9,
+            "source": "NOAA Tucson source line 17; UTC (2025-01-01T16:00:00.000Z, 2025-01-01T17:00:00.000Z]; SOLARAD=344 W/m² flag0, T_HR_AVG=15.9 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 490,
+            "reservoirC": 17.6,
+            "source": "NOAA Tucson source line 18; UTC (2025-01-01T17:00:00.000Z, 2025-01-01T18:00:00.000Z]; SOLARAD=490 W/m² flag0, T_HR_AVG=17.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 580,
+            "reservoirC": 18.9,
+            "source": "NOAA Tucson source line 19; UTC (2025-01-01T18:00:00.000Z, 2025-01-01T19:00:00.000Z]; SOLARAD=580 W/m² flag0, T_HR_AVG=18.9 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 610,
+            "reservoirC": 20.4,
+            "source": "NOAA Tucson source line 20; UTC (2025-01-01T19:00:00.000Z, 2025-01-01T20:00:00.000Z]; SOLARAD=610 W/m² flag0, T_HR_AVG=20.4 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 575,
+            "reservoirC": 21.2,
+            "source": "NOAA Tucson source line 21; UTC (2025-01-01T20:00:00.000Z, 2025-01-01T21:00:00.000Z]; SOLARAD=575 W/m² flag0, T_HR_AVG=21.2 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 478,
+            "reservoirC": 21.6,
+            "source": "NOAA Tucson source line 22; UTC (2025-01-01T21:00:00.000Z, 2025-01-01T22:00:00.000Z]; SOLARAD=478 W/m² flag0, T_HR_AVG=21.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 324,
+            "reservoirC": 21.3,
+            "source": "NOAA Tucson source line 23; UTC (2025-01-01T22:00:00.000Z, 2025-01-01T23:00:00.000Z]; SOLARAD=324 W/m² flag0, T_HR_AVG=21.3 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          },
+          {
+            "minutes": 60,
+            "incidentWm2": 114,
+            "reservoirC": 20.6,
+            "source": "NOAA Tucson source line 24; UTC (2025-01-01T23:00:00.000Z, 2025-01-02T00:00:00.000Z]; SOLARAD=114 W/m² flag0, T_HR_AVG=20.6 C. Hourly means assumed constant within hour; source receipt accompanies project."
+          }
+        ]
+      },
+      "lowerLayers": {
+        "existing": {
+          "capacityJm2K": 80000,
+          "conductanceWm2K": 20,
+          "initialC": 20,
+          "source": "Authored reference lower store; point initial20 C at2025-01-01T15:00Z. Not a measured depth temperature or fitted property."
+        },
+        "proposal": {
+          "capacityJm2K": 80000,
+          "conductanceWm2K": 20,
+          "initialC": 20,
+          "source": "Authored reference lower store; point initial20 C at2025-01-01T15:00Z. Not a measured depth temperature or fitted property."
+        }
+      }
+    },
+    "target": "existing",
+    "associationSource": "NOAA Tucson WBAN 53131 hourly surface means, literal parent lines16–24; see accompanying byte/SHA receipt. Illustrative cell and initial point states20 C each; hourly forcing assumed constant. Fixed alternatives are not fitted. Supplied ±0.5 C is an authored comparison band, not instrument uncertainty. First3 calibration and next6 challenge are labels, not independent held-out validation.",
+    "hypotheses": [
+      {
+        "label": "Lower capacity 60000 J/(m² K)",
+        "capacityJm2K": 60000,
+        "conductanceWm2K": 20,
+        "source": "Offered illustrative capacity with fixed g=20 W/(m² K); selected before comparison, not fitted to NOAA readings."
+      },
+      {
+        "label": "Lower capacity 80000 J/(m² K)",
+        "capacityJm2K": 80000,
+        "conductanceWm2K": 20,
+        "source": "Offered illustrative capacity with fixed g=20 W/(m² K); selected before comparison, not fitted to NOAA readings."
+      },
+      {
+        "label": "Lower capacity 160000 J/(m² K)",
+        "capacityJm2K": 160000,
+        "conductanceWm2K": 20,
+        "source": "Offered illustrative capacity with fixed g=20 W/(m² K); selected before comparison, not fitted to NOAA readings."
+      }
+    ],
+    "readings": [
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 0,
+        "minute": 60,
+        "temperatureC": 4.5,
+        "halfWidthC": 0.5,
+        "use": "calibration",
+        "source": "NOAA Tucson parent line16; UTC (2025-01-01T15:00:00.000Z, 2025-01-01T16:00:00.000Z]; SUR_TEMP=4.5 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 60,
+        "minute": 120,
+        "temperatureC": 10.9,
+        "halfWidthC": 0.5,
+        "use": "calibration",
+        "source": "NOAA Tucson parent line17; UTC (2025-01-01T16:00:00.000Z, 2025-01-01T17:00:00.000Z]; SUR_TEMP=10.9 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 120,
+        "minute": 180,
+        "temperatureC": 18.1,
+        "halfWidthC": 0.5,
+        "use": "calibration",
+        "source": "NOAA Tucson parent line18; UTC (2025-01-01T17:00:00.000Z, 2025-01-01T18:00:00.000Z]; SUR_TEMP=18.1 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 180,
+        "minute": 240,
+        "temperatureC": 24.4,
+        "halfWidthC": 0.5,
+        "use": "challenge",
+        "source": "NOAA Tucson parent line19; UTC (2025-01-01T18:00:00.000Z, 2025-01-01T19:00:00.000Z]; SUR_TEMP=24.4 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 240,
+        "minute": 300,
+        "temperatureC": 28.9,
+        "halfWidthC": 0.5,
+        "use": "challenge",
+        "source": "NOAA Tucson parent line20; UTC (2025-01-01T19:00:00.000Z, 2025-01-01T20:00:00.000Z]; SUR_TEMP=28.9 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 300,
+        "minute": 360,
+        "temperatureC": 31,
+        "halfWidthC": 0.5,
+        "use": "challenge",
+        "source": "NOAA Tucson parent line21; UTC (2025-01-01T20:00:00.000Z, 2025-01-01T21:00:00.000Z]; SUR_TEMP=31.0 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 360,
+        "minute": 420,
+        "temperatureC": 30.4,
+        "halfWidthC": 0.5,
+        "use": "challenge",
+        "source": "NOAA Tucson parent line22; UTC (2025-01-01T21:00:00.000Z, 2025-01-01T22:00:00.000Z]; SUR_TEMP=30.4 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 420,
+        "minute": 480,
+        "temperatureC": 28.3,
+        "halfWidthC": 0.5,
+        "use": "challenge",
+        "source": "NOAA Tucson parent line23; UTC (2025-01-01T22:00:00.000Z, 2025-01-01T23:00:00.000Z]; SUR_TEMP=28.3 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      },
+      {
+        "aggregation": "interval-mean",
+        "fromMinute": 480,
+        "minute": 540,
+        "temperatureC": 22.1,
+        "halfWidthC": 0.5,
+        "use": "challenge",
+        "source": "NOAA Tucson parent line24; UTC (2025-01-01T23:00:00.000Z, 2025-01-02T00:00:00.000Z]; SUR_TEMP=22.1 C, typeC, flag0. Supplied ±0.5 C is illustrative, not NOAA uncertainty; source bytes and SHA in receipt."
+      }
+    ]
+  }
+}

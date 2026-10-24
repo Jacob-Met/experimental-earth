@@ -1,0 +1,50 @@
+{
+  "sources": [
+    {
+      "file": "README.txt",
+      "url": "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/README.txt",
+      "sha256": "4ace9cbbb3d63c98d8bbcf909e626d98ee4cc2ab8c1e4e59eece88eeec665872",
+      "bytes": 21821
+    },
+    {
+      "file": "HEADERS.txt",
+      "url": "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/HEADERS.txt",
+      "sha256": "7a321027feb186ed49bead2d4315081270b9a2b8f03adaac9905f545fe4cc7a1",
+      "bytes": 813
+    },
+    {
+      "file": "CRNH0203-2025-AZ_Tucson_11_W.txt",
+      "url": "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/2025/CRNH0203-2025-AZ_Tucson_11_W.txt",
+      "sha256": "8a3f9e470c96557cb21a0e1bab0f556630f4c8ec50965666a8f5a32a0677ea75",
+      "bytes": 2137440
+    }
+  ],
+  "excerpt": {
+    "file": "tucson-hourly-excerpt.txt",
+    "sourceLineNumbers": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "sha256": "247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac",
+    "bytes": 2196,
+    "hashScope": "Exact literal excerpt bytes, including line endings; not the parent year file",
+    "parentFile": "CRNH0203-2025-AZ_Tucson_11_W.txt",
+    "parentSha256": "8a3f9e470c96557cb21a0e1bab0f556630f4c8ec50965666a8f5a32a0677ea75"
+  },
+  "note": "Literal source rows, UTC ends2025-01-01T16:00Z through2025-01-02T00:00Z. No initial point-temperature or uncertainty inference.",
+  "qualification": {
+    "localExcerptVerified": true,
+    "parentYearDigestBasis": "Root direct NOAA fetch receipt; full year bytes not included here",
+    "noFitting": true,
+    "initialStates": "Illustrative point states surface=20 C and lower=20 C at 2025-01-01T15:00Z",
+    "band": "Authored +/-0.5 C comparison band; not instrument error, source rounding uncertainty or confidence interval",
+    "roles": "First 3 calibration, remaining 6 challenge; labels do not establish independently held-out validation"
+  }
+}

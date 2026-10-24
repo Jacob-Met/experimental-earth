@@ -83,7 +83,13 @@ export function advanceHeatColumn(surface, lower, interval, initial, seconds) {
   validate(surface, lower, interval, initial, seconds);
   if (lower.conductanceWm2K === 0) {
     const one = advanceSurfaceHeat(surface, interval, initial.surfaceC, seconds);
+    const rate = surface.exchangeWm2K / surface.capacityJm2K;
+    const velocity = (surface.absorptivity * interval.incidentWm2 -
+      surface.exchangeWm2K * (initial.surfaceC - interval.reservoirC)) / surface.capacityJm2K;
+    const surfaceMeanC = initial.surfaceC + seconds * factors(rate * seconds).psi * velocity;
     return { surfaceC: one.temperatureC, subsurfaceC: initial.subsurfaceC,
+      surfaceMeanC, subsurfaceMeanC: initial.subsurfaceC,
+      surfaceDegreeSeconds: surfaceMeanC * seconds, subsurfaceDegreeSeconds: initial.subsurfaceC * seconds,
       inputJm2: one.inputJm2, exchangeOutJm2: one.exchangedJm2, transferDownJm2: 0,
       surfaceStoredJm2: one.storedJm2, subsurfaceStoredJm2: 0, totalStoredJm2: one.storedJm2,
       balanceResidualJm2: one.balanceResidualJm2, surfaceBalanceResidualJm2: one.balanceResidualJm2,
@@ -93,17 +99,24 @@ export function advanceHeatColumn(surface, lower, interval, initial, seconds) {
   const f = factors(s.fast * seconds), diff = differences(s.slow * seconds, s.fast * seconds);
   const delta = s.u.map((u, i) => seconds * (f.phi * u + diff.phi * s.projected[i]) / s.scale[i]);
   const integral = s.u.map((u, i) => seconds * seconds * (f.psi * u + diff.psi * s.projected[i]) / s.scale[i]);
+  // Compute the mean change directly. Dividing a cumulative integral difference
+  // would lose short windows; dividing by ambient exchange would fail at h=0.
+  const meanChange = s.u.map((u, i) => seconds * (f.psi * u + diff.psi * s.projected[i]) / s.scale[i]);
+  const surfaceMeanC = initial.surfaceC + meanChange[0], subsurfaceMeanC = initial.subsurfaceC + meanChange[1];
   const surfaceC = initial.surfaceC + delta[0], subsurfaceC = initial.subsurfaceC + delta[1];
   const inputJm2 = s.q * seconds;
   const exchangeOutJm2 = s.h * ((initial.surfaceC - interval.reservoirC) * seconds + integral[0]);
   const transferDownJm2 = s.g * ((initial.surfaceC - initial.subsurfaceC) * seconds + integral[0] - integral[1]);
   const surfaceStoredJm2 = s.c1 * (surfaceC - initial.surfaceC), subsurfaceStoredJm2 = s.c2 * (subsurfaceC - initial.subsurfaceC);
   const totalStoredJm2 = surfaceStoredJm2 + subsurfaceStoredJm2;
-  if (![surfaceC, subsurfaceC, inputJm2, exchangeOutJm2, transferDownJm2, totalStoredJm2].every(Number.isFinite) ||
+  if (![surfaceC, subsurfaceC, surfaceMeanC, subsurfaceMeanC, inputJm2, exchangeOutJm2, transferDownJm2, totalStoredJm2].every(Number.isFinite) ||
       surfaceC < -100 || surfaceC > 500 || subsurfaceC < -100 || subsurfaceC > 500) {
     throw Error('Predicted two-layer temperature leaves the supported −100–500 °C range; revise the declaration');
   }
   return { surfaceC, subsurfaceC, inputJm2, exchangeOutJm2, transferDownJm2, surfaceStoredJm2,
+    surfaceMeanC, subsurfaceMeanC,
+    surfaceDegreeSeconds: initial.surfaceC * seconds + integral[0],
+    subsurfaceDegreeSeconds: initial.subsurfaceC * seconds + integral[1],
     subsurfaceStoredJm2, totalStoredJm2, balanceResidualJm2: inputJm2 - exchangeOutJm2 - totalStoredJm2,
     surfaceBalanceResidualJm2: inputJm2 - exchangeOutJm2 - transferDownJm2 - surfaceStoredJm2,
     subsurfaceBalanceResidualJm2: transferDownJm2 - subsurfaceStoredJm2,

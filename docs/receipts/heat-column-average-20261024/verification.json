@@ -1,0 +1,949 @@
+{
+  "base": "f3fb59967d8f8d8dab2a585e5b140be4a3eaf58e",
+  "native": {
+    "tests": 501,
+    "pass": 501,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "status": "PASS",
+    "checks": [
+      "Legacy instant course retains exact raw reading keys/order, five calibration explanations and original challenge result",
+      "Heating and cooling interval means use independent numerical oracles and horizontal full-support bands with preserved roles",
+      "Endpoint temperature is rejected as an hourly mean; an interval crossing the pulse boundary uses the independent split-course average",
+      "Invalid interval refuses transactionally; switching back to instant removes aggregation and interval start from raw exports",
+      "Actual downloaded mean-reading project reopens with interval support and roles intact; forged derived predictions are ignored",
+      "Changed exposure and unsaved role edits preserve accepted source-bound mean readings and invalidate derived views",
+      "Actual desktop390px mean support bands and structured reading cards fit the viewport; keyboard aggregation changes remain draft-only",
+      "Actual NOAA portable-project File import preserves nine UTC-supported interval means, explicit initial-state/band qualifications and all three rejected calibration alternatives",
+      "Actual NOAA project download and File reopen preserve all raw declarations, source strings, averaging windows and roles; rejected result recomputes and narrow source course fits"
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-24T22:55:00.258Z",
+      "completedAt": "2026-10-24T22:55:00.345Z",
+      "durationMs": 87.63951900000004,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "1A3BBE3CBC6E0940A458840ACFCBE9F6",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "1725989F1F7371701430ED05A587F00D"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": [],
+    "receipt": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-24T22:55:00.071Z",
+      "executable": "/opt/google/chrome/chrome",
+      "runDirectory": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278",
+      "profileDirectory": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/profile",
+      "stdoutFile": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/stdout.bin",
+      "stderrFile": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/stderr.bin",
+      "receiptFile": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 120000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/profile",
+        "about:blank"
+      ],
+      "pid": 137656,
+      "cdpUrl": "http://127.0.0.1:44369",
+      "browserWebSocketUrl": "ws://127.0.0.1:44369/devtools/browser/434790c1-99a8-4bb5-9cdd-faee5f51ccb8",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-24T22:55:00.220Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+      "stdout": {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/stderr.bin",
+        "bytes": 5370,
+        "sha256": "2b023c0175ebe29aafcb5e01fd3dc59dd5e365bde7df687e5ad5f377e5b12e67"
+      },
+      "finishedAt": "2026-10-24T22:55:07.912Z"
+    }
+  },
+  "instantBrowser": {
+    "status": "PASS",
+    "checks": [
+      "Actual original-column import and structured alternatives/calibration admit five explanations with materially different hidden peaks",
+      "120minute challenge leaves the80000capacity candidate without refitting; selected lower maximum remains independently correct",
+      "Challenge and calibration rejection remain separate; no surviving hidden-peak range is fabricated when all candidates fail",
+      "Distinct labels with identical physics remain ambiguous rather than manufacturing unique identification",
+      "Actual downloaded project fresh reopening recomputes role-preserving evidence despite forged derived output",
+      "Unsaved role edits invalidate the view without changing accepted readings; changed exposure refuses reassociation and retains original evidence",
+      "Literal source notes and per-reading calibration/challenge guards remain visible without executing markup or claiming certification",
+      "Actual desktop390px curves and hidden-peak spread fit viewport, with keyboard alternative/time inspection"
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-24T22:55:11.197Z",
+      "completedAt": "2026-10-24T22:55:11.310Z",
+      "durationMs": 113.28030100000001,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "62036CE1168B379BC9B59AAF3F4CFC63",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "7DCEE05093856BC208C8E4636CB19330"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": [],
+    "receipt": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-24T22:55:10.974Z",
+      "executable": "/opt/google/chrome/chrome",
+      "runDirectory": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97",
+      "profileDirectory": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/profile",
+      "stdoutFile": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/stdout.bin",
+      "stderrFile": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/stderr.bin",
+      "receiptFile": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 120000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/profile",
+        "about:blank"
+      ],
+      "pid": 137894,
+      "cdpUrl": "http://127.0.0.1:33039",
+      "browserWebSocketUrl": "ws://127.0.0.1:33039/devtools/browser/eb076441-afb0-4b95-b770-eb5d31765dd1",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-24T22:55:11.169Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+      "stdout": {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-evidence-ad7d410a-941d-4019-91b1-9e3997bc6e97/stderr.bin",
+        "bytes": 5370,
+        "sha256": "1c13b349f42e4ff1e894707e0eb69856b92561db815299ff455775b4e072f396"
+      },
+      "finishedAt": "2026-10-24T22:55:17.922Z"
+    }
+  },
+  "manifest": {
+    "base": "f3fb59967d8f8d8dab2a585e5b140be4a3eaf58e",
+    "sources": [
+      {
+        "path": "heat-column-step.js",
+        "bytes": 7264,
+        "sha256": "ebea6e51d701565acf39d515cecf0b3b37b2abef19fc9fdb10bd25de7e8bf9c0",
+        "gitBlob": "6ba5808769a406d9f9065207b53353f29bb98984"
+      },
+      {
+        "path": "heat-column.js",
+        "bytes": 9711,
+        "sha256": "448497ace75f85c60ff5a62459b4276f2e29c31936f265d792ded3059a367db6",
+        "gitBlob": "a9500bfd9500b1639d8e92d504ba91e0c663c894"
+      },
+      {
+        "path": "heat-column-evidence-contract.js",
+        "bytes": 3342,
+        "sha256": "221d45053b591d860b43cb46aaa7b2c055623ac33eb56ae3217ea40ca8f571a2",
+        "gitBlob": "29c7f3179b3ab3a477a12f21fa32e1284f88f9c5"
+      },
+      {
+        "path": "heat-column-evidence.js",
+        "bytes": 8585,
+        "sha256": "bad45983cf6d9b29086fafbb7303d6103dd1ca6967920fef8162c49675844230",
+        "gitBlob": "5d0f60172271903c5623487ab5410e3d3459c6f7"
+      },
+      {
+        "path": "heat-column-evidence-panel.js",
+        "bytes": 19034,
+        "sha256": "82f29ff0c114044d8c5fead68b33d45b7994c82c031a5110befabfd7ee21ffb7",
+        "gitBlob": "ee345ab6d2efb97446002c1ce161fe36781f6498"
+      },
+      {
+        "path": "heat-column-evidence.css",
+        "bytes": 2227,
+        "sha256": "76814b31db445e41e53afb53f82244b56489b6ccd1ad1b7fa9dbcd02270a1bbd",
+        "gitBlob": "5ad3acb7e78b86b008b8f1b4f6472ab664ecb902"
+      },
+      {
+        "path": "tests/heat-column-average.test.mjs",
+        "bytes": 7335,
+        "sha256": "7812394fe666f44a2f7992072f05bb9c29492c689260cb7617caa6044828cde1",
+        "gitBlob": "5bcdf88c927eb95fb39d9274b7708f0e514bad62"
+      },
+      {
+        "path": "tests/fixtures/heat-column-average-oracle.json",
+        "bytes": 2130,
+        "sha256": "a23986bec4c96e18f88cd7f420a0a5f17285cc8cf70eeef35a0e553b5f922013",
+        "gitBlob": "827374186df9e34c01706747101a026a7ad8bc9b"
+      },
+      {
+        "path": "tests/heat-column-average-oracle.py",
+        "bytes": 1471,
+        "sha256": "ab9fbe36fc8c0d065cd58b6bdc6bc52f115c3cd9f7573118a519c64c80b1e628",
+        "gitBlob": "d30d19a5b6a9b21baa9ff53a914506d814915d30"
+      },
+      {
+        "path": "tests/heat-column-average.browser.mjs",
+        "bytes": 18440,
+        "sha256": "9b48ad0f9b344abec991962a6d3e5e14f224fdc39ecb2ae5ac7b3406a2bc5c11",
+        "gitBlob": "0cfa68eb16b76675ae24aea30564fc4637cf35c6"
+      },
+      {
+        "path": "docs/HEAT_COLUMN_AVERAGES.md",
+        "bytes": 7362,
+        "sha256": "dc1241f0323977598883233aaec6045efc08560924297aa85b0b4d810bbb7f92",
+        "gitBlob": "f24a66cf29c5c53682626b66c7b17674306dd89e"
+      },
+      {
+        "path": "docs/HEAT_COLUMN_EVIDENCE.md",
+        "bytes": 13074,
+        "sha256": "d78f3243efe10a7f6074efe3500e36227a7cd2e29930329df0a081425125bdb8",
+        "gitBlob": "103cf7fc64fdec35e892f5a14dde9c46c50aa6dd"
+      },
+      {
+        "path": "README.md",
+        "bytes": 40115,
+        "sha256": "1ea49f5f33b7d38cfa1fe23a93420b7a26cd224cd68e358b659a2cbeea75930f",
+        "gitBlob": "a3cd90455908ac5184c5d79a7f5b65d93bd2fc03"
+      },
+      {
+        "path": "examples/noaa-tucson-hourly/README.md",
+        "bytes": 4278,
+        "sha256": "ae2826fab23cb4f49f424a67bdd13bf94fa4d0948079ca6f4f004d140729191a",
+        "gitBlob": "221c1f9ee748e0fdccc59b3cee5fbb49a50162bf"
+      },
+      {
+        "path": "examples/noaa-tucson-hourly/build.mjs",
+        "bytes": 4571,
+        "sha256": "52af22d41aed4471ad3c5f830dfa421654f09af44ac55fd4b0f4c57db2de3640",
+        "gitBlob": "6b6c71206028eb243af3155bf4869f7077fe5a45"
+      },
+      {
+        "path": "examples/noaa-tucson-hourly/intake.mjs",
+        "bytes": 6652,
+        "sha256": "a7883e565f6732a93ce9d5e421ad47ae9a84ef9b1d89fb1790643d13dba49bda",
+        "gitBlob": "782cd1b40e7d686913d85e96f9543f4ffb2be9ea"
+      },
+      {
+        "path": "examples/noaa-tucson-hourly/project.json",
+        "bytes": 31217,
+        "sha256": "59e78c7248ad52822f1294cfa769bbd812530aa7a3d113a6612854f539420af7",
+        "gitBlob": "9ee19427fe139b20b21a50a2a5cea08d3c44f20f"
+      },
+      {
+        "path": "examples/noaa-tucson-hourly/source-receipt.json",
+        "bytes": 1954,
+        "sha256": "ee2ad528b80fe01c12de94d215cc3bec899b4ac7c93c4a5d3f3432713f0ef589",
+        "gitBlob": "0a4a11e8e9ae15d2e90926d81b0f870abdf9ab47"
+      },
+      {
+        "path": "examples/noaa-tucson-hourly/tucson-hourly-excerpt.txt",
+        "bytes": 2196,
+        "sha256": "247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac",
+        "gitBlob": "24db29e0fb964ce7002e994c979a2587df839c00"
+      },
+      {
+        "path": "tests/noaa-hourly-example.test.mjs",
+        "bytes": 3044,
+        "sha256": "3c47ab1dca984783ec92ac25a27ac98f93d5779df0d9e774e0d8447634a05af2",
+        "gitBlob": "8527e7ae53f91ecafed5b50d103a9c9147ae662e"
+      }
+    ],
+    "images": [
+      {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/column-average-narrow.png",
+        "bytes": 70111,
+        "sha256": "e50d09a3485faf9395551ae9d359a95e4bd2d55e8cbdce43c78928d0a30a9f1c",
+        "gitBlob": "ce4369f9985e5ba8aa5efcc9110998510e5ce821"
+      },
+      {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/column-average-noaa-sources.png",
+        "bytes": 378988,
+        "sha256": "1487d0c1c9baf982194c979cf771479f30f871309154dcfdc69537098d7dce3e",
+        "gitBlob": "46df92137431de38982668439a1a24478274282c"
+      },
+      {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/column-average-desktop.png",
+        "bytes": 205626,
+        "sha256": "9f59a5d4b9196efed2a1ee326b55d4a185600a6200fce9876c17fb8aec9b2c60",
+        "gitBlob": "dd9ef8934fb30f7d28919471bb68327540106e3b"
+      },
+      {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/column-average-noaa-narrow.png",
+        "bytes": 68483,
+        "sha256": "9da41aa7dc891bd4e3a5e422f6df5f4282aa9c18a5efea199ec07034fce85e2f",
+        "gitBlob": "7304cb7bb38b1e133ce719882606649dc643a5a7"
+      },
+      {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/column-average-input-narrow.png",
+        "bytes": 44849,
+        "sha256": "6683d3688606b1713f1e0d55ffef958f0fbb05bfcda2796d9c07c46bbe755811",
+        "gitBlob": "3b62acff658d1566a61ceed17e034eef6ddf4eca"
+      },
+      {
+        "path": "/home/ubuntu/hamon-5e42-earth-averages/.browser-run-column-average-d10648ed-7d39-42cf-adc3-d172a853b278/column-average-noaa-desktop.png",
+        "bytes": 186140,
+        "sha256": "b13981155f2ab38ce8067bb14358b0d19e6965405aa6e1a96139e84be33c0738",
+        "gitBlob": "87dd3180302334401e610ad8b3d5a5d57c830393"
+      }
+    ]
+  },
+  "independentReview": "CHRONOS and WORLDLAW peers found no concrete scientific or custody blocker; direct local analytic mean, full-course admission, row/role identity and source reopen guards inspected.",
+  "reviewHistory": [
+    "Initial browser receiver reused a global const; isolated its evaluation scopes before the qualified course.",
+    "Actual same-project reopening preserved an unsaved role draft. Refresh now recognizes a replaced project object as a new opening even when its raw values match; ordinary same-object refresh preserves the draft.",
+    "Final 501 native and9 new/8 original browser groups passed after the refresh correction."
+  ],
+  "visualReview": "Desktop authored mean support and acquired NOAA course, plus390px NOAA display inspected; all declared alternatives remain visibly rejected without fitting.",
+  "meaning": "Intervals constrain model means. Supplied bands and engineering guards are not sensor uncertainty or certified numerical enclosures.",
+  "publicationComposition": {
+    "manifest": {
+      "base": "072ee3ae7ce703a2290eab6817db754783a686d4",
+      "overlays": true,
+      "execution": [
+        {
+          "course": "native",
+          "command": [
+            "node",
+            "--test",
+            "tests/clock-reading-review.test.mjs",
+            "tests/clock-receipt.test.mjs",
+            "tests/clock-study.test.mjs",
+            "tests/component-hypotheses.test.mjs",
+            "tests/conflict-witness.test.mjs",
+            "tests/core.test.mjs",
+            "tests/decision-observation.test.mjs",
+            "tests/decision-question.test.mjs",
+            "tests/event-challenge.test.mjs",
+            "tests/evidence-conflict.test.mjs",
+            "tests/finite-crests.test.mjs",
+            "tests/heat-column-average.test.mjs",
+            "tests/heat-column-evidence.test.mjs",
+            "tests/heat-column.test.mjs",
+            "tests/infiltration-question.test.mjs",
+            "tests/infiltration-resolution.test.mjs",
+            "tests/infiltration.test.mjs",
+            "tests/internal-barriers.test.mjs",
+            "tests/intervention-resolution.test.mjs",
+            "tests/intervention.test.mjs",
+            "tests/joint-event-challenge.test.mjs",
+            "tests/joint-evidence.test.mjs",
+            "tests/local-water-budget.test.mjs",
+            "tests/noaa-hourly-example.test.mjs",
+            "tests/observation-consistency.test.mjs",
+            "tests/observation-map.test.mjs",
+            "tests/observation-table.test.mjs",
+            "tests/outlet-evidence.test.mjs",
+            "tests/placement-constraints.test.mjs",
+            "tests/placement-resolution.test.mjs",
+            "tests/placement-search.test.mjs",
+            "tests/ponding-exposure.test.mjs",
+            "tests/ponding-integral.test.mjs",
+            "tests/project-portability.test.mjs",
+            "tests/proposal-components.test.mjs",
+            "tests/rain-integrator.test.mjs",
+            "tests/rain-origin-hypotheses.test.mjs",
+            "tests/rain-origin-time.test.mjs",
+            "tests/rain-origins.test.mjs",
+            "tests/rain-trace-timeline.test.mjs",
+            "tests/rain-trace.test.mjs",
+            "tests/regional-water-budget.test.mjs",
+            "tests/route-ponding.test.mjs",
+            "tests/solar-bearing-course-sweep.test.mjs",
+            "tests/solar-bearing-course.test.mjs",
+            "tests/solar-bearing-evidence.test.mjs",
+            "tests/solar-bearing.test.mjs",
+            "tests/solar-occlusion.test.mjs",
+            "tests/solar-path-dates.test.mjs",
+            "tests/solar-path-receipt.test.mjs",
+            "tests/solar-path-sampling.test.mjs",
+            "tests/solar-path-spatial.test.mjs",
+            "tests/solar-path.test.mjs",
+            "tests/storm-intensity.test.mjs",
+            "tests/storm-minimum.test.mjs",
+            "tests/storm-resolution.test.mjs",
+            "tests/surface-elevation.test.mjs",
+            "tests/surface-heat-energy.test.mjs",
+            "tests/surface-heat-evidence.test.mjs",
+            "tests/surface-heat.test.mjs",
+            "tests/terrain.test.mjs",
+            "tests/threshold-evidence.test.mjs",
+            "tests/wetting-front-question.test.mjs",
+            "tests/wetting-front-solver.test.mjs",
+            "tests/wetting-front.test.mjs"
+          ],
+          "exit": 0,
+          "seconds": 5.102546280017123
+        },
+        {
+          "course": "browser",
+          "command": [
+            "node",
+            "tests/heat-column-average.browser.mjs"
+          ],
+          "exit": 0,
+          "seconds": 11.1532669349981
+        },
+        {
+          "course": "instant-browser",
+          "command": [
+            "node",
+            "tests/heat-column-evidence.browser.mjs"
+          ],
+          "exit": 0,
+          "seconds": 10.246223038004246
+        }
+      ],
+      "archiveSha256": "846cdb053d497dda5953099e9a80f330fad66f714e3ecc8a95febfc2c7fdd215",
+      "reconstruction": {
+        "archiveBase": "f3fb59967d8f8d8dab2a585e5b140be4a3eaf58e",
+        "targetBase": "072ee3ae7ce703a2290eab6817db754783a686d4",
+        "verifiedChangedBlobs": 32
+      },
+      "sources": [
+        {
+          "path": "heat-column-step.js",
+          "bytes": 7264,
+          "sha256": "ebea6e51d701565acf39d515cecf0b3b37b2abef19fc9fdb10bd25de7e8bf9c0",
+          "gitBlob": "6ba5808769a406d9f9065207b53353f29bb98984"
+        },
+        {
+          "path": "heat-column.js",
+          "bytes": 9711,
+          "sha256": "448497ace75f85c60ff5a62459b4276f2e29c31936f265d792ded3059a367db6",
+          "gitBlob": "a9500bfd9500b1639d8e92d504ba91e0c663c894"
+        },
+        {
+          "path": "heat-column-evidence-contract.js",
+          "bytes": 3342,
+          "sha256": "221d45053b591d860b43cb46aaa7b2c055623ac33eb56ae3217ea40ca8f571a2",
+          "gitBlob": "29c7f3179b3ab3a477a12f21fa32e1284f88f9c5"
+        },
+        {
+          "path": "heat-column-evidence.js",
+          "bytes": 8585,
+          "sha256": "bad45983cf6d9b29086fafbb7303d6103dd1ca6967920fef8162c49675844230",
+          "gitBlob": "5d0f60172271903c5623487ab5410e3d3459c6f7"
+        },
+        {
+          "path": "heat-column-evidence-panel.js",
+          "bytes": 19034,
+          "sha256": "82f29ff0c114044d8c5fead68b33d45b7994c82c031a5110befabfd7ee21ffb7",
+          "gitBlob": "ee345ab6d2efb97446002c1ce161fe36781f6498"
+        },
+        {
+          "path": "heat-column-evidence.css",
+          "bytes": 2227,
+          "sha256": "76814b31db445e41e53afb53f82244b56489b6ccd1ad1b7fa9dbcd02270a1bbd",
+          "gitBlob": "5ad3acb7e78b86b008b8f1b4f6472ab664ecb902"
+        },
+        {
+          "path": "tests/heat-column-average.test.mjs",
+          "bytes": 7335,
+          "sha256": "7812394fe666f44a2f7992072f05bb9c29492c689260cb7617caa6044828cde1",
+          "gitBlob": "5bcdf88c927eb95fb39d9274b7708f0e514bad62"
+        },
+        {
+          "path": "tests/fixtures/heat-column-average-oracle.json",
+          "bytes": 2130,
+          "sha256": "a23986bec4c96e18f88cd7f420a0a5f17285cc8cf70eeef35a0e553b5f922013",
+          "gitBlob": "827374186df9e34c01706747101a026a7ad8bc9b"
+        },
+        {
+          "path": "tests/heat-column-average-oracle.py",
+          "bytes": 1471,
+          "sha256": "ab9fbe36fc8c0d065cd58b6bdc6bc52f115c3cd9f7573118a519c64c80b1e628",
+          "gitBlob": "d30d19a5b6a9b21baa9ff53a914506d814915d30"
+        },
+        {
+          "path": "tests/heat-column-average.browser.mjs",
+          "bytes": 18440,
+          "sha256": "9b48ad0f9b344abec991962a6d3e5e14f224fdc39ecb2ae5ac7b3406a2bc5c11",
+          "gitBlob": "0cfa68eb16b76675ae24aea30564fc4637cf35c6"
+        },
+        {
+          "path": "docs/HEAT_COLUMN_AVERAGES.md",
+          "bytes": 7916,
+          "sha256": "be06e14de1dba92825db2389345db512fde11ab7bf9ad831af08118d9d318566",
+          "gitBlob": "aa6f720829e859322333cd98bbd6c328b97c717f"
+        },
+        {
+          "path": "docs/HEAT_COLUMN_EVIDENCE.md",
+          "bytes": 13074,
+          "sha256": "d78f3243efe10a7f6074efe3500e36227a7cd2e29930329df0a081425125bdb8",
+          "gitBlob": "103cf7fc64fdec35e892f5a14dde9c46c50aa6dd"
+        },
+        {
+          "path": "README.md",
+          "bytes": 40115,
+          "sha256": "1ea49f5f33b7d38cfa1fe23a93420b7a26cd224cd68e358b659a2cbeea75930f",
+          "gitBlob": "a3cd90455908ac5184c5d79a7f5b65d93bd2fc03"
+        },
+        {
+          "path": "examples/noaa-tucson-hourly/README.md",
+          "bytes": 4278,
+          "sha256": "ae2826fab23cb4f49f424a67bdd13bf94fa4d0948079ca6f4f004d140729191a",
+          "gitBlob": "221c1f9ee748e0fdccc59b3cee5fbb49a50162bf"
+        },
+        {
+          "path": "examples/noaa-tucson-hourly/build.mjs",
+          "bytes": 4571,
+          "sha256": "52af22d41aed4471ad3c5f830dfa421654f09af44ac55fd4b0f4c57db2de3640",
+          "gitBlob": "6b6c71206028eb243af3155bf4869f7077fe5a45"
+        },
+        {
+          "path": "examples/noaa-tucson-hourly/intake.mjs",
+          "bytes": 6652,
+          "sha256": "a7883e565f6732a93ce9d5e421ad47ae9a84ef9b1d89fb1790643d13dba49bda",
+          "gitBlob": "782cd1b40e7d686913d85e96f9543f4ffb2be9ea"
+        },
+        {
+          "path": "examples/noaa-tucson-hourly/project.json",
+          "bytes": 31217,
+          "sha256": "59e78c7248ad52822f1294cfa769bbd812530aa7a3d113a6612854f539420af7",
+          "gitBlob": "9ee19427fe139b20b21a50a2a5cea08d3c44f20f"
+        },
+        {
+          "path": "examples/noaa-tucson-hourly/source-receipt.json",
+          "bytes": 1954,
+          "sha256": "ee2ad528b80fe01c12de94d215cc3bec899b4ac7c93c4a5d3f3432713f0ef589",
+          "gitBlob": "0a4a11e8e9ae15d2e90926d81b0f870abdf9ab47"
+        },
+        {
+          "path": "examples/noaa-tucson-hourly/tucson-hourly-excerpt.txt",
+          "bytes": 2196,
+          "sha256": "247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac",
+          "gitBlob": "24db29e0fb964ce7002e994c979a2587df839c00"
+        },
+        {
+          "path": "tests/noaa-hourly-example.test.mjs",
+          "bytes": 3044,
+          "sha256": "3c47ab1dca984783ec92ac25a27ac98f93d5779df0d9e774e0d8447634a05af2",
+          "gitBlob": "8527e7ae53f91ecafed5b50d103a9c9147ae662e"
+        },
+        {
+          "path": "docs/receipts/heat-column-average-20261024/verification.json",
+          "bytes": 20059,
+          "sha256": "f0fff21937b2ce63ba7535984a3857717126ae57d6d9866a0a6b9a2af0507843",
+          "gitBlob": "8d3a92497d0cd767ecc44a33721ac7c037888deb"
+        }
+      ],
+      "images": [
+        {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/column-average-desktop.png",
+          "bytes": 205631,
+          "sha256": "3633c3ad04150ece298e0523fe8199778476ae109faf40172b4568d713be6a74",
+          "gitBlob": "6ea42d7cedf2adf8aebda49a5aa4850c65e67c88"
+        },
+        {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/column-average-input-narrow.png",
+          "bytes": 45368,
+          "sha256": "b91644c4b1b95b7ad30da90d92a6ca17f769d50385d5596877d21cd573a8b905",
+          "gitBlob": "cf938695d5002aa2096bed662d6ebedb57f12c2c"
+        },
+        {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/column-average-narrow.png",
+          "bytes": 70208,
+          "sha256": "a86480c126db46d27399bd9109e5513c97f63942b585361d4eb33e5dbf3f0b42",
+          "gitBlob": "39d88bc82033b8ea8c3ee2c6442debea8dcefa84"
+        },
+        {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/column-average-noaa-desktop.png",
+          "bytes": 186161,
+          "sha256": "9d73763c710df52e95084e980434536e4c68e34a53fe2266e32731fc7ec976a1",
+          "gitBlob": "8357d1d17d0b4fe12198ac0bed083d76bed1f80d"
+        },
+        {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/column-average-noaa-narrow.png",
+          "bytes": 68585,
+          "sha256": "4fab075fa90929c09e24967f275bed3b699b2fc22c0bbe079b0d733c2874d8f7",
+          "gitBlob": "c86537fc8a8ead3fd8a06c90b964cf5338444a11"
+        },
+        {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/column-average-noaa-sources.png",
+          "bytes": 378745,
+          "sha256": "88eb9f5685e9eed553b50adf3be1a2023696f47ac98104834baf3dec5963a842",
+          "gitBlob": "5b6458491a975cea86711ace51dcf4f007ea7a85"
+        }
+      ]
+    },
+    "browser": {
+      "status": "PASS",
+      "checks": [
+        "Legacy instant course retains exact raw reading keys/order, five calibration explanations and original challenge result",
+        "Heating and cooling interval means use independent numerical oracles and horizontal full-support bands with preserved roles",
+        "Endpoint temperature is rejected as an hourly mean; an interval crossing the pulse boundary uses the independent split-course average",
+        "Invalid interval refuses transactionally; switching back to instant removes aggregation and interval start from raw exports",
+        "Actual downloaded mean-reading project reopens with interval support and roles intact; forged derived predictions are ignored",
+        "Changed exposure and unsaved role edits preserve accepted source-bound mean readings and invalidate derived views",
+        "Actual desktop390px mean support bands and structured reading cards fit the viewport; keyboard aggregation changes remain draft-only",
+        "Actual NOAA portable-project File import preserves nine UTC-supported interval means, explicit initial-state/band qualifications and all three rejected calibration alternatives",
+        "Actual NOAA project download and File reopen preserve all raw declarations, source strings, averaging windows and roles; rejected result recomputes and narrow source course fits"
+      ],
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-24T23:28:16.075Z",
+        "completedAt": "2026-10-24T23:28:16.177Z",
+        "durationMs": 102.128715,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "96C28C088348329B8D670DCB17B94B32",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "A8C06B347FF4CD484BEB06D211A2E056"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      },
+      "exceptions": [],
+      "receipt": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-24T23:28:15.836Z",
+        "executable": "/opt/google/chrome/chrome",
+        "runDirectory": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e",
+        "profileDirectory": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/profile",
+        "stdoutFile": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/stdout.bin",
+        "stderrFile": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/stderr.bin",
+        "receiptFile": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 120000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-direct-child-only",
+          "signals": [
+            "SIGTERM"
+          ]
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/profile",
+          "about:blank"
+        ],
+        "pid": 143159,
+        "cdpUrl": "http://127.0.0.1:46735",
+        "browserWebSocketUrl": "ws://127.0.0.1:46735/devtools/browser/2fa144bc-f499-4c3c-b17f-f22e8159d628",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-24T23:28:16.038Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+        "stdout": {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-average-06e4a8e4-ee4d-4ef8-90d3-1df35f3f139e/stderr.bin",
+          "bytes": 5370,
+          "sha256": "70ce98ed8b1c8e44ab5bc660140a43167da34ecef6c4bd0da3309582cfa54b44"
+        },
+        "finishedAt": "2026-10-24T23:28:23.929Z"
+      }
+    },
+    "instantBrowser": {
+      "status": "PASS",
+      "checks": [
+        "Actual original-column import and structured alternatives/calibration admit five explanations with materially different hidden peaks",
+        "120minute challenge leaves the80000capacity candidate without refitting; selected lower maximum remains independently correct",
+        "Challenge and calibration rejection remain separate; no surviving hidden-peak range is fabricated when all candidates fail",
+        "Distinct labels with identical physics remain ambiguous rather than manufacturing unique identification",
+        "Actual downloaded project fresh reopening recomputes role-preserving evidence despite forged derived output",
+        "Unsaved role edits invalidate the view without changing accepted readings; changed exposure refuses reassociation and retains original evidence",
+        "Literal source notes and per-reading calibration/challenge guards remain visible without executing markup or claiming certification",
+        "Actual desktop390px curves and hidden-peak spread fit viewport, with keyboard alternative/time inspection"
+      ],
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-24T23:28:27.226Z",
+        "completedAt": "2026-10-24T23:28:27.343Z",
+        "durationMs": 117.807365,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "66546FBAB6E49C834240D765C3197817",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "A451B39BAAFE8383E12FB3372D1EE2D6"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      },
+      "exceptions": [],
+      "receipt": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-24T23:28:27.005Z",
+        "executable": "/opt/google/chrome/chrome",
+        "runDirectory": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539",
+        "profileDirectory": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/profile",
+        "stdoutFile": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/stdout.bin",
+        "stderrFile": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/stderr.bin",
+        "receiptFile": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 120000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-direct-child-only",
+          "signals": [
+            "SIGTERM"
+          ]
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/profile",
+          "about:blank"
+        ],
+        "pid": 143397,
+        "cdpUrl": "http://127.0.0.1:37015",
+        "browserWebSocketUrl": "ws://127.0.0.1:37015/devtools/browser/f77b4215-0fa1-42c5-9c7a-3d1f8d3b3879",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-24T23:28:27.186Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+        "stdout": {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/home/ubuntu/hamon-5e42-earth-averages-publication-v2/.browser-run-column-evidence-efca2c5e-6f2d-42e8-a719-06f353c47539/stderr.bin",
+          "bytes": 5370,
+          "sha256": "4586b1a177a7876bc42f22ac954b373b7d74fb4d6084664e4aa0ac71126d91a9"
+        },
+        "finishedAt": "2026-10-24T23:28:34.202Z"
+      }
+    },
+    "native": {
+      "tests": 541,
+      "pass": 541,
+      "fail": 0,
+      "skipped": 0
+    },
+    "scope": "Cached f3 source plus all32 previously retrieved incoming072 changes; every reconstructed changed Git blob matched before feature overlay. This is pre-merge composition receiving, not a fresh merged checkout."
+  }
+}

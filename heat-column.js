@@ -72,11 +72,34 @@ function summarizeCourse(c) {
   return result;
 }
 
+function averageCourse(c, fromMinute, minute) {
+  const durationMinutes = minute - fromMinute;
+  let surface = 0, lower = 0, totalWeight = 0, segments = 0;
+  for (const interval of c.intervals) {
+    const from = Math.max(fromMinute, interval.from), to = Math.min(minute, interval.to);
+    if (!(to > from)) continue;
+    const initial = from === interval.from ? interval.initial :
+      advanceHeatColumn(c.surface, c.lower, interval.forcing, interval.initial, (from - interval.from) * 60);
+    const step = from === interval.from && to === interval.to ? interval.step :
+      advanceHeatColumn(c.surface, c.lower, interval.forcing, initial, (to - from) * 60);
+    const weight = (to - from) / durationMinutes;
+    surface += weight * step.surfaceMeanC; lower += weight * step.subsurfaceMeanC;
+    totalWeight += weight; segments++;
+  }
+  // Normalize positive relative durations so a constant remains constant even
+  // when subtraction of binary64 interval boundaries slightly changes their sum.
+  if (!(totalWeight > 0) || ![surface, lower, totalWeight].every(Number.isFinite)) {
+    throw Error('The averaging interval could not be completely evaluated');
+  }
+  return { fromMinute, minute, durationMinutes, segments,
+    surfaceMeanC: surface / totalWeight, subsurfaceMeanC: lower / totalWeight };
+}
+
 /** Evaluate one complete, validated course once, retaining every stationary
  * point as well as requested samples. This reuses the same propagator and
  * extrema calculation as the original two-store consumer.
  */
-export function evaluateHeatColumnTarget(study, target, requestedMinutes = []) {
+export function evaluateHeatColumnTarget(study, target, requestedMinutes = [], requestedWindows = []) {
   validateHeatColumnStudy(study);
   if (!study || !targets.includes(target)) throw Error('Select an existing or proposed two-store declaration');
   const duration = study.heatStudy.schedule.reduce((sum, row) => sum + row.minutes, 0);
@@ -84,11 +107,19 @@ export function evaluateHeatColumnTarget(study, target, requestedMinutes = []) {
       Array.from(requestedMinutes).some(t => typeof t !== 'number' || !Number.isFinite(t) || t < 0 || t > duration)) {
     throw Error('Request at most 2000 finite times within the retained heat exposure');
   }
+  if (!Array.isArray(requestedWindows) || requestedMinutes.length + 2 * requestedWindows.length > 2000 ||
+      Array.from(requestedWindows).some(w => !w || typeof w.fromMinute !== 'number' ||
+        !Number.isFinite(w.fromMinute) || typeof w.minute !== 'number' || !Number.isFinite(w.minute) ||
+        w.fromMinute < 0 || !(w.minute > w.fromMinute) || w.minute > duration)) {
+    throw Error('Request finite nonempty averaging windows within the retained exposure and the 2000-endpoint work limit');
+  }
   const c = course(study, target);
   const times = [...new Set([0, ...c.intervals.map(row => row.to), ...requestedMinutes,
+    ...requestedWindows.flatMap(w => [w.fromMinute, w.minute]),
     ...c.critical.surface, ...c.critical.subsurface])].sort((a, b) => a - b);
   return { durationMinutes: duration, summary: summarizeCourse(c),
-    trajectory: times.map(minute => inspectCourse(c, minute)) };
+    trajectory: times.map(minute => inspectCourse(c, minute)),
+    averages: requestedWindows.map(w => averageCourse(c, w.fromMinute, w.minute)) };
 }
 
 export function inspectHeatColumn(study, minute) {
