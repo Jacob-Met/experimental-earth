@@ -1,0 +1,15 @@
+# Reopenable clock-offset investigations
+
+The **Does the event clock change the evidence?** panel compares explicitly chosen common minute offsets against the current infiltration-study hypothesis and assigned depth observations. It never changes the original observation timestamps or the modeled storm clock.
+
+To exchange an investigation, enter 2–7 distinct offsets in ±60 minutes (including zero), provide the reason these offsets are being considered, and choose **Compare timing hypotheses**. Once a comparison succeeds, **Download independent clock diagnostic JSON** saves the entire current authored project, observation sources, selected infiltration study, offsets, reason and computed outcomes. The file discloses source descriptions and potentially sensitive field notes; inspect them before sharing. File size is bounded to 8 MiB. Editing the project or clock inputs invalidates the pending download.
+
+To inspect a diagnostic, use **Reopen a saved clock diagnostic without importing its site**. The receiver checks its schema, version, size and model work budget and independently recomputes all saved outcomes from the included project and declarations. Inconsistent saved conclusions and malformed files are refused. The current working project, readings and study settings are not replaced. The read is revision-fenced: a later project/input change or newly selected file cannot be overwritten by an older asynchronous import.
+
+The offset status may be compatible, rejected or out of the modeled time window. An out-of-window hypothesis retains the indices of excluded readings and does not silently drop evidence. Calibration-compatible and held-aside-surviving rate sets remain distinct. Source readings and held-aside classifications are preserved in the file, never silently adopted as new observations.
+
+**Limits:** This is a deterministic model/replay integrity check, not a signed evidence chain. An adversary can modify *both* the authored input and a self-consistent result. Reopening therefore cannot prove capture time, source authenticity, true infiltration rate, external clock alignment, physical safety or field calibration. No automatic external upload, clock correction or modification of project state is performed.
+
+## Local verification
+
+Run `npm test` for deterministic changed-source, altered-verdict, oversized, malformed and work-budget controls. On a supported Linux browser receiving host use the existing session owner with `BROWSER_EXECUTABLE=/absolute/path/to/chrome RUN_DIRECTORY=/absolute/new/path node tests/clock-receipt.browser.mjs`; existing support requires admitted Chromium sandbox and exclusive CDP profile. The browser script exercises user-triggered download, independent file reopen, forged results, stale asynchronous reads and 390px layout. Platform-specific receipt adapters used for independent receiving are not a substitute for the maintained Linux sandbox-admission contract.
