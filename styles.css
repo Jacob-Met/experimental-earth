@@ -18,6 +18,14 @@
 .study-mismatch{color:#963d22}
 .study-score,.study-counts{color:#34564c}
 .study-question-actions{justify-content:flex-start;margin:16px 0}
+.observation-import{border:1px solid #d6e5dd;border-radius:10px;padding:16px;margin:20px 0;background:#f8fbf8}
+.observation-import h3{font-size:1rem;margin:0 0 10px}
+.observation-import .obs-actions{justify-content:flex-start}
+.observation-import code,.table-origin{overflow-wrap:anywhere}
+.table-origin{display:block;margin-top:4px}
+#observation-table-preview{max-height:320px;overflow:auto;padding-left:24px;font-size:.8rem;line-height:1.6;overflow-wrap:anywhere}
+#observation-table-preview:empty{display:none}
+#observation-table-preview li{padding:8px 0;border-bottom:1px solid #dce8e1}
 .evidence-controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .evidence-controls label{font-size:.72rem;color:#4b665d;display:grid;gap:4px;min-width:0}
 .evidence-controls select{max-width:100%;font:inherit;padding:7px;border:1px solid #c9d9d1;border-radius:6px;background:white;color:#26463c}

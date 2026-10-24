@@ -36,6 +36,20 @@ After comparing candidates, **Find a separating depth reading** scans the retain
 
 **Prepare held-aside reading** fills only the selected cell, time, scenario and evidence role in the notebook form and switches the brush to Inspect. It neither paints the site nor creates evidence. A reading is retained only after the user enters a measured value, uncertainty and source and submits the form. Notebook inputs accept fractional values without imposing the solver's time interval on physical observations.
 
+### Import a sourced depth table
+
+The notebook's **Preview CSV** accepts UTF-8 observation tables up to 128 KB. Required columns are `cell,minute,depth,uncertainty,unit,source`; optional `scenario` (`existing`, `proposal`, `unassigned`) and `use` (`calibration`, `challenge`, `unassigned`) make evidence assignment explicit. Missing assignments remain notebook-only. Cell labels such as `B2` refer to the current grid; time is minutes since the modeled event began. `mm`, `cm` and `in` apply to both depth and ± uncertainty in each row. Decimal values use a period; quoted commas, escaped double quotes and multiline source text are supported.
+
+For example, this **authored format example is not a field dataset**:
+
+```csv
+cell,minute,depth,uncertainty,unit,source,scenario,use
+A1,30,1.2,0.05,cm,"Example ruler note, fictional",existing,calibration
+B1,60,0.5,0.02,in,Example held-aside note,existing,challenge
+```
+
+Preview shows the interpreted millimetres and roles without changing the notebook. **Add previewed readings** appends the whole validated table once. Any bad row, unknown unit, missing source, out-of-grid cell, impossible time or history-limit overflow refuses the entire import. A changed project invalidates the preview. The supplied filename, starting row and original quantities remain alongside each reading through export/import and reload; conversions are checked when reopening projects. Reimporting identical supplied file/row evidence is refused locally. Provenance and user-assigned roles do not establish physical truth or statistical independence. No file contents leave the local application.
+
 ## Start here
 
 - [Product seed](docs/PRODUCT_SEED.md): concrete experiences, hard problems, uses, possible growth, and more.
