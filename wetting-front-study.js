@@ -1,6 +1,7 @@
 import { runRain, validateProject, SURFACES } from './core.js';
 import { evaluateReadings } from './infiltration-study.js';
 import { validateWettingFrontStudy, MAX_WETTING_FRONT_CELL_STEPS } from './wetting-front-contract.js';
+import { planWettingFrontQuestion } from './wetting-front-question.js';
 
 export const WETTING_FRONT_MEANING = 'Declared homogeneous sharp-front event hypotheses. K is conductivity; A is wetting-front suction × initial moisture deficit. No moisture recovery, ponding-head correction or field calibration. Held-aside readings never rank the hypotheses; agreement cannot identify suction and deficit separately.';
 
@@ -19,6 +20,9 @@ function summary(result, cellIndex) {
 function admittedWork(project, study) {
   validateProject(project);
   if (!validateWettingFrontStudy(study, SURFACES)) throw new Error('Choose a wetting-front study first');
+  if (study.question?.toMinute > project.weather.durationMinutes) {
+    throw new Error('The reading-question window must fit inside the modeled event');
+  }
   const cellSteps = project.width * project.height * Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes) *
     2 * (study.hypotheses.length + 1);
   if (cellSteps > MAX_WETTING_FRONT_CELL_STEPS) {
@@ -40,14 +44,20 @@ export function compareWettingFront(project, study = project.wettingFrontStudy) 
     ignored: all.length - calibration.length - challenge.length,
     affectedExisting: project.existing.filter(cell => cell.surface === surface).length,
     affectedProposal: project.proposal.filter(cell => cell.surface === surface).length };
-  const runPair = model => {
+  const supportedRuns = [];
+  const runPair = (model, id) => {
     const options = model ? { surfaceWettingFront: { surface,
       conductivityMmHr: model.conductivityMmHr, capillaryDriveMm: model.capillaryDriveMm } } : {};
     const existing = runRain(project.existing, width, height, weather, options);
     const proposal = runRain(project.proposal, width, height, weather, options);
     const scored = target === 'existing' ? existing : proposal;
+    const scoredCalibration = evaluateReadings(scored, calibration);
+    if (study.question && id !== undefined && scoredCalibration.compatible === true) {
+      supportedRuns.push({ id, conductivityMmHr: model.conductivityMmHr,
+        capillaryDriveMm: model.capillaryDriveMm, snapshots: scored.snapshots });
+    }
     return { existing: summary(existing, selectedIndex), proposal: summary(proposal, selectedIndex),
-      calibration: evaluateReadings(scored, calibration), challenge: evaluateReadings(scored, challenge),
+      calibration: scoredCalibration, challenge: evaluateReadings(scored, challenge),
       change: { exitLiters: proposal.exitLiters - existing.exitLiters,
         storedLiters: proposal.storedLiters - existing.storedLiters,
         peakPondingLiters: proposal.peakPondingLiters - existing.peakPondingLiters,
@@ -56,7 +66,7 @@ export function compareWettingFront(project, study = project.wettingFrontStudy) 
   const baseline = runPair(null);
   const candidates = study.hypotheses.map((model, index) => ({ id: index + 1,
     conductivityMmHr: model.conductivityMmHr, capillaryDriveMm: model.capillaryDriveMm,
-    ...runPair(model) }));
+    ...runPair(model, index + 1) }));
   candidates.sort((a, b) => (a.calibration.rmseMm ?? 0) - (b.calibration.rmseMm ?? 0) || a.id - b.id);
   const supported = candidates.filter(row => row.calibration.compatible === true);
   const surviving = supported.filter(row => row.challenge.compatible !== false);
@@ -73,6 +83,7 @@ export function compareWettingFront(project, study = project.wettingFrontStudy) 
     study: structuredClone(study), selectedIndex, cellSteps, counts, status, baseline, candidates,
     compatibleIds: affectedTarget ? supported.map(row => row.id) : [],
     survivingIds: affectedTarget ? surviving.map(row => row.id) : [],
+    ...(study.question ? { question: planWettingFrontQuestion(project, study, affectedTarget ? supportedRuns : []) } : {}),
     meaning: WETTING_FRONT_MEANING };
 }
 

@@ -65,6 +65,13 @@ investigation and reopen it for independent recomputation without replacing the
 working site. This is an event-scale model comparison, not automatic soil
 identification or field validation. See [the mechanism, controls and use](docs/WETTING_FRONT.md).
 
+Optionally include a depth-reading question with an explicit cell scope, event
+window and measurement uncertainty. The comparison reuses trajectories from
+compatible explanations to find their largest unrecorded depth difference, displays every
+predicted reading band and retains unresolved pairs. Preparing a question uses
+the ordinary notebook and leaves the measured value/source empty. Saved inputs
+recompute the question on reopening; held-aside values never select it.
+
 ### Compare constant-rate alternatives
 
 The **infiltration hypothesis challenge** compares 2–9 explicit constant-rate candidates for one surface in one observed scenario. Add depth readings with source and ± tolerance in the notebook, then assign each a scenario and either **Calibration** or **Held aside**. Existing unassigned readings remain notebook entries and are excluded from both scores. Choose the surface and candidate rates, then select **Compare rate hypotheses**. The comparison changes all matching cells' infiltration capacity during each candidate run; it never applies a rate to the project automatically.
