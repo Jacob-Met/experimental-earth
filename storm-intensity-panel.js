@@ -2,6 +2,10 @@ import { compareStormIntensities, STORM_INTENSITY_METRICS } from './storm-intens
 import { compareStormResolution } from './storm-resolution.js';
 
 const fmt = value => Number(value).toLocaleString('en-US', { maximumFractionDigits: 3 });
+// Preserve the sign of small but model-resolved effects; do not round them to ±0.
+const fmtResolutionDelta = value => value !== 0 && Math.abs(value) < 0.0001
+  ? Number(value).toExponential(3)
+  : Number(value).toLocaleString('en-US', { maximumFractionDigits: 6 });
 function parseRates(raw) {
   const parts = raw.split(',');
   if (parts.some(part => !part.trim() || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(part.trim()))) {
@@ -32,6 +36,8 @@ export function mountStormIntensityPanel({ getProject }) {
     <button id="storm-resolution-run" class="subtle" type="button" disabled>Check finer calculation intervals</button>
     <p id="storm-resolution-status" class="mini-note" role="status" aria-live="polite">First compare the declared storms.</p>
     <div id="storm-resolution-results"></div>
+    <button id="storm-minimum-run" class="subtle" type="button" disabled>Also check the 1-minute boundary</button>
+    <p id="storm-minimum-status" class="mini-note" role="status" aria-live="polite">First check finer intervals. The minimum boundary requires a separate, potentially expensive comparison.</p>
     <p class="mini-note">This is sensitivity to assumed constant rainfall, not uncertainty probabilities, a new measured storm, or a calibrated safety or flood-risk prediction. No actual measurements are transferred between events.</p>`;
   const anchor = document.getElementById('results-title')?.closest('.panel');
   if (!anchor) throw new Error('The Rain Lab results panel is unavailable');
@@ -41,16 +47,20 @@ export function mountStormIntensityPanel({ getProject }) {
   const run = $('storm-intensity-run');
   const resolutionRun = $('storm-resolution-run'), resolutionStatus = $('storm-resolution-status');
   const resolutionResults = $('storm-resolution-results');
-  let generation = 0, comparedRates = null;
+  const minimumRun = $('storm-minimum-run'), minimumStatus = $('storm-minimum-status');
+  let generation = 0, comparedRates = null, resolutionReport = null;
 
   function refresh() {
     generation++;
     comparedRates = null;
+    resolutionReport = null;
     target.replaceChildren();
     resolutionResults.replaceChildren();
     status.textContent = 'Site, evidence or intensity input changed; compare declared storms again.';
     resolutionStatus.textContent = 'First compare the declared storms.';
     resolutionRun.disabled = true;
+    minimumRun.disabled = true;
+    minimumStatus.textContent = 'First check finer intervals.';
     run.disabled = false;
   }
   function show(report) {
@@ -124,7 +134,7 @@ export function mountStormIntensityPanel({ getProject }) {
       tr.dataset.direction = metric.opposed ? 'opposed' :
         metric.unresolvedAcrossSteps ? 'unresolved' : 'consistent';
       const cells=[fmt(row.rateMmHr),label + ' / ' + unit,
-        ...metric.deltas.map(v => (v>0?'+':'') + fmt(v)),metric.finding];
+        ...metric.deltas.map(v => (v>0?'+':'') + fmtResolutionDelta(v)),metric.finding];
       for(const entry of cells) {
         const td=document.createElement('td');
         td.textContent=entry;
@@ -147,10 +157,13 @@ export function mountStormIntensityPanel({ getProject }) {
     const original = JSON.stringify(getProject());
     const raw = $('storm-intensity-rates').value;
     comparedRates = null;
+    resolutionReport = null;
     target.replaceChildren();
     resolutionResults.replaceChildren();
     resolutionStatus.textContent = 'First compare the declared storms.';
     resolutionRun.disabled = true;
+    minimumRun.disabled = true;
+    minimumStatus.textContent = 'First check finer intervals.';
     status.textContent = 'Computing alternatives from unchanged site assumptions…';
     run.disabled = true;
     setTimeout(() => {
@@ -185,6 +198,9 @@ export function mountStormIntensityPanel({ getProject }) {
     const original = JSON.stringify(getProject());
     const rates = [...comparedRates];
     resolutionResults.replaceChildren();
+    resolutionReport = null;
+    minimumRun.disabled = true;
+    minimumStatus.textContent = 'First check finer intervals.';
     resolutionStatus.textContent = 'Checking supported finer steps on the unchanged site…';
     resolutionRun.disabled = true;
     setTimeout(() => {
@@ -196,6 +212,11 @@ export function mountStormIntensityPanel({ getProject }) {
           throw Error('The project changed during the resolution check.');
         }
         showResolution(report);
+        resolutionReport = report;
+        minimumRun.disabled = report.stepsMinutes.at(-1) <= 1;
+        minimumStatus.textContent = minimumRun.disabled
+          ? 'The tested refinement already reached the supported 1-minute minimum.'
+          : 'The reported steps stop above 1 minute. You may separately test the minimum boundary.';
         const opposed = report.issues.filter(x => x.finding.startsWith('opposite')).length;
         resolutionStatus.textContent = report.stepsMinutes.length + ' numerical steps checked (' +
           report.stepsMinutes.map(fmt).join(', ') + ' minutes); ' + opposed +
@@ -207,6 +228,42 @@ export function mountStormIntensityPanel({ getProject }) {
         resolutionStatus.textContent = 'Resolution check refused: ' + error.message;
       } finally {
         if (epoch === generation) resolutionRun.disabled = false;
+      }
+    }, 0);
+  });
+  minimumRun.addEventListener('click', () => {
+    if (!comparedRates || !resolutionReport ||
+        resolutionReport.stepsMinutes.at(-1) <= 1 || resolutionReport.minimumIncluded) return;
+    const epoch = ++generation;
+    const original = JSON.stringify(getProject());
+    const rates = [...comparedRates];
+    minimumRun.disabled = true;
+    minimumStatus.textContent = 'Checking the 1-minute boundary on the unchanged sources…';
+    setTimeout(() => {
+      if (epoch !== generation) return;
+      try {
+        if (resolutionReport.sourceSignature !== original ||
+            JSON.stringify(getProject()) !== original) throw Error('The project changed; compare again.');
+        const report = compareStormResolution(getProject(), rates, {includeMinimumStep:true});
+        if (epoch !== generation || report.sourceSignature !== JSON.stringify(getProject())) {
+          throw Error('The project changed during the boundary check.');
+        }
+        resolutionResults.replaceChildren();
+        showResolution(report);
+        resolutionReport = report;
+        const opposed = report.issues.filter(x => x.finding.startsWith('opposite')).length;
+        resolutionStatus.textContent = report.stepsMinutes.length + ' numerical steps checked (' +
+          report.stepsMinutes.map(fmt).join(', ') + ' minutes); ' + opposed +
+          ' rate/metric pairs have opposite tested directions. This does not prove convergence.';
+        minimumStatus.textContent = 'The supported 1-minute calculation boundary is now included. ' +
+          'Same geometry, same hypothetical rain, no new field evidence.';
+      } catch (error) {
+        // Keep the earlier qualified finer-step table if the optional boundary run is refused.
+        minimumStatus.textContent = '1-minute boundary check refused: ' + error.message +
+          ' The prior numerical comparison remains visible.';
+      } finally {
+        if (epoch === generation && !resolutionReport?.minimumIncluded &&
+            resolutionReport?.stepsMinutes.at(-1) > 1) minimumRun.disabled = false;
       }
     }, 0);
   });

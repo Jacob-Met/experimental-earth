@@ -10,12 +10,22 @@ const sign = (delta, reference) => {
   return delta > tolerance ? 1 : delta < -tolerance ? -1 : 0;
 };
 
-export function prepareStormResolution(project, rates) {
+export function prepareStormResolution(project, rates, options = {}) {
+  if (!options || typeof options !== 'object' || Array.isArray(options) ||
+      (options.includeMinimumStep !== undefined && typeof options.includeMinimumStep !== 'boolean')) {
+    throw new TypeError('Resolution options must declare a boolean includeMinimumStep.');
+  }
   const query = validateStormIntensities(project, rates);
   const baseStep = project.weather.stepMinutes;
   const steps = [baseStep, baseStep/2, baseStep/4].filter(step => step >= 1);
   if (steps.length < 2) {
     throw new Error('This storm is already at or near the minimum supported 1-minute calculation step; no finer supported comparison exists.');
+  }
+  if (options.includeMinimumStep) {
+    if (steps.at(-1) <= 1) {
+      throw new Error('The existing refinement already includes the minimum supported 1-minute step.');
+    }
+    steps.push(1);
   }
   if (new Set(steps).size !== steps.length || steps.some(x => !Number.isFinite(x) || x > 30)) {
     throw new Error('Unsupported calculation interval sequence.');
@@ -31,8 +41,8 @@ export function prepareStormResolution(project, rates) {
 }
 
 /** Pure, same-input evaluation of explicitly supported time-step refinements. */
-export function compareStormResolution(project, rates) {
-  const {ratesMmHr,stepsMinutes,cellSteps} = prepareStormResolution(project,rates);
+export function compareStormResolution(project, rates, options = {}) {
+  const {ratesMmHr,stepsMinutes,cellSteps} = prepareStormResolution(project,rates,options);
   const sourceSignature = JSON.stringify(project);
   const results = stepsMinutes.map(stepMinutes =>
     compareStormIntensities({
@@ -65,6 +75,7 @@ export function compareStormResolution(project, rates) {
   });
   return {
     status:'compared',sourceSignature,ratesMmHr,stepsMinutes,cellSteps,rows,issues,
+    minimumIncluded:options.includeMinimumStep === true,
     sameTestedDirections:issues.length===0,
     meaning: 'Only selected supported numerical steps were compared. Matching signs do not '+
       'prove numerical convergence or physical accuracy. Opposite signs show that the '+
