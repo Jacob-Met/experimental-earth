@@ -1,0 +1,26 @@
+{
+  "source_base_commit": "2cd82d0d4cc9169e52729c6759287952fdde1851",
+  "native": {
+    "tests": 229,
+    "failures": 0,
+    "focused_added": 8
+  },
+  "independent_review": {
+    "reviewer": "direct worker /root/skill_translation",
+    "focused_reproduced": 8,
+    "blocking_findings": 0,
+    "additional_controls": [
+      "all evidence roles retained",
+      "reversed input order preserves extremal witness gap",
+      "floating near-contact versus positive gap at1000mm"
+    ]
+  },
+  "browser": {
+    "groups": 5,
+    "sandbox_admitted": true,
+    "pixels_inspected": true,
+    "desktop_width": 1440,
+    "mobile_width": 390
+  },
+  "limitations": "Authored observation controls, exact declared scenario/cell/time and tolerance bands; no measurement truth, physical co-location, independence or hydrology validation established."
+}

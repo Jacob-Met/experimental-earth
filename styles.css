@@ -91,3 +91,8 @@
 #barrier-edge-state,#barrier-status,#barrier-selection,#barrier-details{font-size:12px;overflow-wrap:anywhere}
 #barrier-details{padding-left:20px}
 @media(max-width:520px){.barrier-inputs{grid-template-columns:1fr}.barrier-actions button{flex:1 1 120px}.internal-barrier-panel{padding:12px}}
+
+.observation-consistency { margin-top:1.25rem; padding-top:1rem; border-top:1px solid #c7d5cc; }
+.observation-consistency p { font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
+.observation-consistency details { margin:12px 0; }
+.observation-consistency summary { cursor:pointer; font-size:13px; font-weight:600; }
