@@ -1,3 +1,4 @@
+import { mountRainOrigins } from './rain-origin-panel.js';
 import { compareRainTrace, rainTraceSignature } from './rain-trace-study.js';
 
 const format = value => (Math.abs(value) < 1e-9 ? 0 : value).toLocaleString('en-US', { maximumSignificantDigits: 4 });
@@ -28,6 +29,7 @@ export function mountRainTrace({ getProject, changed, notice }) {
     </div>
     <p class="mini-note">This is attribution within the conceptual model, using complete mixing inside each cell and the existing water transfers. It does not establish measured flow paths, physical travel times or real intervention effects. Your source selection is retained with the project; results are recomputed after reopening.</p>`;
   document.querySelector('.results').after(panel);
+  const origins = mountRainOrigins({ host: panel, getProject, changed, notice });
   const $ = id => panel.querySelector('#' + id);
   let result = null, resultSignature = null, destination = 0, stepIndex = 0;
   function frame() {
@@ -160,6 +162,7 @@ export function mountRainTrace({ getProject, changed, notice }) {
       $('trace-status').textContent = chosen.length ? `${chosen.length} source cell${chosen.length === 1 ? '' : 's'} selected. Trace to inspect where this rain ends up.` : 'Choose at least one source cell to begin.';
     }
     if (!result) $('trace-status').dataset.state = 'not-traced';
+    origins.refresh();
   }
   return { refresh };
 }
