@@ -1,0 +1,71 @@
+{
+  "schema": "experimental-earth-site/1",
+  "title": "Authored step-sensitive tiny terrain - not field evidence",
+  "width": 2,
+  "height": 2,
+  "weather": {
+    "rainMmHr": 67,
+    "stormMinutes": 19,
+    "durationMinutes": 60,
+    "stepMinutes": 5,
+    "cellSizeM": 1,
+    "mobilityPerHour": 2.79,
+    "boundaryExitPerHour": 1.91
+  },
+  "existing": [
+    {
+      "surface": "sealed",
+      "elevationM": 0.031,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": 0.04,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "turf",
+      "elevationM": -0.032,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": 0.026,
+      "provenance": "authored changed-step model control"
+    }
+  ],
+  "proposal": [
+    {
+      "surface": "sealed",
+      "elevationM": 0.031,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": 0.04,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "turf",
+      "elevationM": -0.032,
+      "provenance": "authored changed-step model control"
+    },
+    {
+      "surface": "garden",
+      "elevationM": -0.036,
+      "provenance": "authored -62 mm single-cell grade intervention"
+    }
+  ],
+  "observations": [],
+  "selectedIndex": 0,
+  "source": "Illustrative geometry and rates; no site measurements",
+  "infiltrationStudy": {
+    "target": "existing",
+    "surface": "turf",
+    "ratesMmHr": [
+      1,
+      9,
+      24
+    ]
+  }
+}
