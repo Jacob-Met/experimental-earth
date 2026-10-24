@@ -48,14 +48,14 @@ export function comparePlacements(project, input) {
   const work=choices.length*query.study.ratesMmHr.length*3*project.width*project.height*
     Math.ceil(project.weather.durationMinutes/project.weather.stepMinutes);
   if(work>PLACEMENT_WORK_LIMIT)throw Error('Placement comparison exceeds 3 million estimated cell-steps; reduce eligible cells, duration, grid or hypothesis count');
-  const original=compareIntervention(project,{study:query.study,subset:query.subset});
+  const original=compareIntervention(project,{study:query.study,subset:query.subset,allowAbsentSurface:query.subset==='all'});
   const context={query,sourceSignature:placementSignature(project),variantCount:choices.length,
     cellStepUpperBound:work,evidenceTarget:query.study.target};
   if(original.status!=='compared')return {...context,status:original.status,plans:[],best:[]};
   const rates=original.candidates.map(c=>c.rateMmHr),reference=new Map(original.candidates.map(c=>[c.rateMmHr,c]));
   const plans=choices.map(cells=>{
     // Do not refit original observations against hypothetical edited geometry.
-    const computed=cells.length?compareIntervention(edited(project,query,cells),{study:query.study,subset:'all'}):original;
+    const computed=cells.length?compareIntervention(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true}):original;
     if(computed.status!=='compared')throw Error('Not every declared variant can be evaluated by the maintained intervention comparison; choose another eligible set or studied surface');
     const candidates=computed.candidates.filter(c=>rates.includes(c.rateMmHr)).map(c=>{
       const base=reference.get(c.rateMmHr);
@@ -70,9 +70,9 @@ export function comparePlacements(project, input) {
   });
   plans.sort((a,b)=>a.score-b.score||a.cells.length-b.cells.length||a.cells.join(',').localeCompare(b.cells.join(',')));
   const minimum=plans[0].score,tieGuard=1e-8*Math.max(1,Math.abs(minimum));
-  return {...context,status:'compared',ratesMmHr:rates,plans,best:plans.filter(p=>Math.abs(p.score-minimum)<=tieGuard).map(p=>p.cells),tieGuard,
+  return {...context,status:'compared',ratesMmHr:rates,sourceAffected:structuredClone(original.affected),plans,best:plans.filter(p=>Math.abs(p.score-minimum)<=tieGuard).map(p=>p.cells),tieGuard,
     adoptionBlockedByProposalEvidence:project.observations.some(o=>o.scenario==='proposal'),
-    semantics:'Worst additional change from the current proposal across the fixed source-supported hypotheses. This is a finite comparison over declared eligible cells, not a field recommendation or an optimum outside this set.'};
+    semantics:'Worst additional change from the current proposal across the fixed hypotheses from the unchanged source study. This is a finite comparison over declared eligible cells, not a field recommendation or an optimum outside this set.'};
 }
 
 /** Explicit hypothetical adoption, with no evidence reassignment or deletion. */

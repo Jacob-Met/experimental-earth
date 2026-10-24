@@ -33,9 +33,9 @@ field measurement or evidence that such a real intervention would work.
 
 Missing calibration or held-aside evidence, and a contradicted finite set, return
 explicit uncomputed states. There is no closest-fit fallback. The maintained
-comparison also refuses a studied surface absent from both scenarios. This
-restriction is preserved: if an admitted variant removes the final occurrence,
-the whole placement comparison refuses instead of ranking a partial search.
+comparison defaults to refusing a studied surface absent from both scenarios.
+Placement uses an explicit all-rate opt-in for introduction/removal of that
+material, described below; evidence-filtered source evaluation remains unchanged.
 
 ## Objective, tradeoffs and ties
 
@@ -84,12 +84,13 @@ enumeration. The three-run allowance conservatively follows the maintained
 intervention comparator, including original evidence evaluation. It bounds
 interactive work, not numerical error or field validity.
 
-On source `9f5ba933511c8c599a30fe45823e5fe5dff92422`, the composed candidate passes
-238 native groups with `node --test --test-isolation=none tests/*.test.mjs`.
-Nine added groups exercise enumeration/conservation, non-greedy pairs, changed
+The #66 candidate on merged placement source
+`9d2d261cdc3bbece7345ddc30167a5528e115b58` passes 241 native groups with `node --test --test-isolation=none tests/*.test.mjs`.
+Placement and intervention groups exercise enumeration/conservation, non-greedy pairs, changed
 objectives and eligibility, original-geometry conditioning, held-aside separation,
 empty evidence support, no-change/ties, bounded work, proposal preservation,
-adoption/refusal, and the maintained absent-surface boundary.
+adoption/refusal, default absence refusal, explicit introduction/removal and
+absent-target calibration refusal.
 
 Run `CHROME_BIN=/opt/google/chrome/chrome node tests/placement.browser.mjs` for the
 actual consumer course through the maintained sandbox-admitted browser owner.
@@ -97,3 +98,14 @@ It composes the observation-map and consistency regressions with placement
 selection, objective/eligibility changes, source-conditioned comparison, explicit
 adoption, reload and narrow layout. Browser receipts are retained separately from
 native qualification; neither implies field or cloud deployment.
+
+
+## Introducing a material absent from the source (#66)
+
+The all-saved-rates comparison explicitly allows the studied surface to be absent from the unchanged source. Those rates are authored hypotheses for the prospective material, not capacities constrained by observations of a different material. The source result is identical across the absent material's rates. Every hypothetical placement still uses the maintained intervention comparison, and may introduce or remove the last studied-surface cell.
+
+The maintained `compareIntervention` API preserves its default `surface-absent` refusal. The opt-in `allowAbsentSurface: true` is valid only with `subset: 'all'`; it never relaxes calibration or held-aside evidence requirements. Placement computes original evidence support before edits and uses that fixed support for every hypothetical variant. Calibration/surviving subsets still cannot infer a capacity for a material absent from the observed target.
+
+An authored four-cell, closed, immobile control receives 30 mm over one hour. The original sealed cells absorb 1 mm each, leaving 116 L. Introducing one garden cell at declared 0, 12 or 24 mm/h changes unabsorbed water by +1, −11 or −23 L. No change is best for the worst-case objective across all three rates; the garden becomes best when the explicitly declared set contains only 12 and 24. These are analytic software controls, not measured site evidence. The UI retains the reversal and warns that the source did not constrain the new material.
+
+`tests/absent-material.receiving.mjs` extends the existing actual-browser course with introduction, changed declared hypotheses, source invalidation and absence-of-calibration controls.

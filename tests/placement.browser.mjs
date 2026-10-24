@@ -1,6 +1,7 @@
 import {withBrowserSession} from './support/browser-session.mjs';
 import {receiveObservationMap} from './observation-map.receiving.mjs';
 import {receiveObservationConsistency} from './observation-consistency.receiving.mjs';
+import {receiveAbsentMaterial} from './absent-material.receiving.mjs';
 import {receivePlacements} from './placement.receiving.mjs';
 import {mkdir, mkdtemp, readFile, readdir, writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -15,7 +16,7 @@ const output = process.env.PLACEMENT_RECEIPT_DIR
 await mkdir(output, {recursive: true});
 const report = [], delay = ms => new Promise(r => setTimeout(r, ms));
 const sourceFiles = (await readdir(root)).filter(p => /\.(js|css|html)$/.test(p));
-sourceFiles.push('tests/observation-map.receiving.mjs', 'tests/observation-consistency.receiving.mjs', 'tests/placement.receiving.mjs', 'tests/placement.browser.mjs');
+sourceFiles.push('tests/observation-map.receiving.mjs', 'tests/observation-consistency.receiving.mjs', 'tests/placement.receiving.mjs', 'tests/placement.browser.mjs', 'tests/absent-material.receiving.mjs');
 const sourceHashes = {};
 for (const path of sourceFiles) {
   sourceHashes[path] = createHash('sha256').update(await readFile(join(root, path))).digest('hex');
@@ -30,7 +31,7 @@ await withBrowserSession({root, chromeBin: process.env.CHROME_BIN,
     await delay(50);
   }
   let failure = null;
-  try { await receiveObservationMap({evaluate, send, delay, report}); await receiveObservationConsistency({evaluate, send, delay, report, artifactDirectory: output}); await receivePlacements({evaluate, send, delay, report}); }
+  try { await receiveObservationMap({evaluate, send, delay, report}); await receiveObservationConsistency({evaluate, send, delay, report, artifactDirectory: output}); await receivePlacements({evaluate, send, delay, report}); await receiveAbsentMaterial({evaluate, send, delay, report}); }
   catch (error) { failure = error; }
   const project = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
   if (project) await writeFile(join(output, 'project.json'), project + '\n');

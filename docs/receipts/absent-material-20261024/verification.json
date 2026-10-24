@@ -1,0 +1,62 @@
+{
+  "schema": "hamon.experimental-earth.absent-material-receiving.v1",
+  "issue": 66,
+  "originalBase": "9d2d261cdc3bbece7345ddc30167a5528e115b58",
+  "composedBase": "85b78c02b718bdf43faa3eb7ebe4b6ac2ed572a8",
+  "recovery": {
+    "allEightSourceHashesMatchFrozenCandidate": true,
+    "sourceCheckpoint": "dd1daacf270b0eea22a63ae8eeece77473297afb",
+    "note": "Recovered exact candidate from saved tool state after scratch reset; no reconstructed semantic changes."
+  },
+  "review": {
+    "independentReviewer": "root, separate from implementing experimental_earth worker",
+    "reviewed": "Explicit opt-in/default refusal, calibration and surviving subsets, fixed original support, introduced/removal cases, evidence wording and original observation preservation",
+    "blockers": []
+  },
+  "native": {
+    "originalCandidateFullSuitePassed": 241,
+    "composedFocusedPassed": 32,
+    "failed": 0,
+    "durationMs": 537.300747,
+    "command": "node --test tests/intervention.test.mjs tests/placement-search.test.mjs tests/clock-study.test.mjs tests/intervention-resolution.test.mjs",
+    "log": "composed-native-tests.tap"
+  },
+  "browser": {
+    "checks": 12,
+    "passed": true,
+    "browser": "Chrome/156.0.8078.47",
+    "sandboxAdmitted": true,
+    "sourceHashesMatched": 64,
+    "exceptions": [],
+    "screenshotsInspected": [
+      "desktop.png",
+      "mobile.png"
+    ],
+    "receipt": "browser-receipt.json"
+  },
+  "analyticControl": {
+    "ratesMmHr": [
+      0,
+      12,
+      24
+    ],
+    "originalUnabsorbedLiters": [
+      116,
+      116,
+      116
+    ],
+    "additionalUnabsorbedLiters": [
+      1,
+      -11,
+      -23
+    ],
+    "bestWithAllRates": "no change",
+    "bestWithExplicitRates12And24": "garden cell0",
+    "observationSupport": "No garden in original source; capacities remain unconstrained hypotheses."
+  },
+  "preservedMainWork": [
+    "clock offset diagnostic",
+    "paired intervention step-size sensitivity"
+  ],
+  "limits": "Finite authored model alternatives; no new evidence identification, field outcome, global optimum or numerical convergence is established."
+}
