@@ -1,0 +1,90 @@
+{
+  "base": "2c473e3f76acc5121278ab333c58d3ffa49f4228",
+  "reason": "The inspected rate selector was replaced by redraw, dropping keyboard focus after the first change.",
+  "change": "Focus the replacement rate selector with preventScroll after rendering.",
+  "additional_assertions": [
+    "After ArrowDown, document.activeElement is the replacement rate selector",
+    "ArrowUp returns to the negative-interaction rate without refocusing",
+    "A second ArrowDown continues navigation without refocusing"
+  ],
+  "scope": "UI-only correction; model and evidence arithmetic unchanged; focused9group browser course only",
+  "receiving": {
+    "status": "PASS",
+    "value": {
+      "checks": [
+        "saved source hypotheses reused",
+        "interaction reversal visible",
+        "keyboard rate inspection changes four-case table",
+        "no automatic rate adoption",
+        "missing calibration refuses without fallback",
+        "desktop and 390px result pixels/layout",
+        "calibration and surviving modes use original source bands",
+        "changed holdout preserves calibration but changes survivors",
+        "contradicted evidence has no fallback"
+      ],
+      "dimensions": {
+        "width": 390,
+        "scroll": 390
+      }
+    },
+    "receipt": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-24T16:24:21.572Z",
+      "executable": "/opt/google/chrome/chrome",
+      "runDirectory": "/tmp/hamon-cb295a6c5277-earth-focus-browser",
+      "profileDirectory": "/tmp/hamon-cb295a6c5277-earth-focus-browser/profile",
+      "stdoutFile": "/tmp/hamon-cb295a6c5277-earth-focus-browser/stdout.bin",
+      "stderrFile": "/tmp/hamon-cb295a6c5277-earth-focus-browser/stderr.bin",
+      "receiptFile": "/tmp/hamon-cb295a6c5277-earth-focus-browser/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 120000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/tmp/hamon-cb295a6c5277-earth-focus-browser/profile",
+        "about:blank"
+      ],
+      "pid": 18006,
+      "cdpUrl": "http://127.0.0.1:37165",
+      "browserWebSocketUrl": "ws://127.0.0.1:37165/devtools/browser/10c74a16-5371-419f-bcc2-833a0eafa392",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-24T16:24:21.733Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+      "stdout": {
+        "path": "/tmp/hamon-cb295a6c5277-earth-focus-browser/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/tmp/hamon-cb295a6c5277-earth-focus-browser/stderr.bin",
+        "bytes": 5314,
+        "sha256": "2a705807223625d9390e7ebe3bc300537b3b203789e3ede416ee79b7dc5639d1"
+      },
+      "finishedAt": "2026-10-24T16:24:23.240Z"
+    }
+  }
+}
