@@ -98,7 +98,11 @@ distinguishes that case. After depletion, mass balance determines when the
 continuously supplied water reaches Fp. Using only the minimum of full-step
 ponded capacity and total supply gives the wrong result for this transition.
 
-The ponded root is bracketed and bisected. A cancellation-resistant series
+The ponded root uses safeguarded Newton steps within its physical bracket,
+falling back to bisection when a proposed step is nonfinite or outside the
+bracket. It stops at an integrated-time residual within eight machine epsilons
+of the demand, with the existing 64-iteration ceiling and stagnation guard.
+A cancellation-resistant series
 evaluates small `x - log1p(x)` terms. The decreasing instantaneous capacity
 provides a tighter upper bound when initial cumulative depth is large. The
 independent tiny-increment reference exposed insufficient precision from using
