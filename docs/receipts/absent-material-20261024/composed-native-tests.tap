@@ -1,0 +1,202 @@
+TAP version 13
+# Subtest: common offset resolves analytic clock error without modifying evidence
+ok 1 - common offset resolves analytic clock error without modifying evidence
+  ---
+  duration_ms: 3.480736
+  type: 'test'
+  ...
+# Subtest: outside-window hypothesis refuses without dropping a reading
+ok 2 - outside-window hypothesis refuses without dropping a reading
+  ---
+  duration_ms: 1.342356
+  type: 'test'
+  ...
+# Subtest: held-aside contradiction cannot improve rank or be independently shifted
+ok 3 - held-aside contradiction cannot improve rank or be independently shifted
+  ---
+  duration_ms: 0.505295
+  type: 'test'
+  ...
+# Subtest: invalid offsets and missing assigned evidence refused explicitly
+ok 4 - invalid offsets and missing assigned evidence refused explicitly
+  ---
+  duration_ms: 0.549794
+  type: 'test'
+  ...
+# Subtest: unassigned and other-scenario readings are not shifted or scored
+ok 5 - unassigned and other-scenario readings are not shifted or scored
+  ---
+  duration_ms: 0.917096
+  type: 'test'
+  ...
+# Subtest: bounded work rejects worst-case model before comparison
+ok 6 - bounded work rejects worst-case model before comparison
+  ---
+  duration_ms: 0.591791
+  type: 'test'
+  ...
+# Subtest: analytic closed-edge, no-motion paired runoff stays invariant under changed step
+ok 7 - analytic closed-edge, no-motion paired runoff stays invariant under changed step
+  ---
+  duration_ms: 8.117965
+  type: 'test'
+  ...
+# Subtest: actual paired grid shows changed exit-benefit classification as step refines
+ok 8 - actual paired grid shows changed exit-benefit classification as step refines
+  ---
+  duration_ms: 4.355811
+  type: 'test'
+  ...
+# Subtest: identical plans give zero effects at every step even with outflow
+ok 9 - identical plans give zero effects at every step even with outflow
+  ---
+  duration_ms: 5.780084
+  type: 'test'
+  ...
+# Subtest: strictly finer supported steps and solver minimum are explicit, never extrapolated
+ok 10 - strictly finer supported steps and solver minimum are explicit, never extrapolated
+  ---
+  duration_ms: 2.660226
+  type: 'test'
+  ...
+# Subtest: missing intervention surface and too-large study refuse before any simulations
+ok 11 - missing intervention surface and too-large study refuse before any simulations
+  ---
+  duration_ms: 1.148778
+  type: 'test'
+  ...
+# Subtest: observations never reselect different rates as step changes
+ok 12 - observations never reselect different rates as step changes
+  ---
+  duration_ms: 7.64671
+  type: 'test'
+  ...
+# Subtest: analytic paired intervention reverses, retaining per-rate effects and local harm
+ok 13 - analytic paired intervention reverses, retaining per-rate effects and local harm
+  ---
+  duration_ms: 4.279812
+  type: 'test'
+  ...
+# Subtest: identical plans have exactly zero effects even across hypotheses
+ok 14 - identical plans have exactly zero effects even across hypotheses
+  ---
+  duration_ms: 0.596721
+  type: 'test'
+  ...
+# Subtest: explicit evidence filters require readings and never fall back to closest
+ok 15 - explicit evidence filters require readings and never fall back to closest
+  ---
+  duration_ms: 2.978337
+  type: 'test'
+  ...
+# Subtest: proposal-target evidence selects without changing pairing semantics
+ok 16 - proposal-target evidence selects without changing pairing semantics
+  ---
+  duration_ms: 0.68955
+  type: 'test'
+  ...
+# Subtest: absence and dry storm do not invent a benefit
+ok 17 - absence and dry storm do not invent a benefit
+  ---
+  duration_ms: 0.71728
+  type: 'test'
+  ...
+# Subtest: bounded work and malformed selections refuse before simulation
+ok 18 - bounded work and malformed selections refuse before simulation
+  ---
+  duration_ms: 1.291918
+  type: 'test'
+  ...
+# Subtest: site storage improvement does not hide a locally deeper cell
+ok 19 - site storage improvement does not hide a locally deeper cell
+  ---
+  duration_ms: 0.604182
+  type: 'test'
+  ...
+# Subtest: unassigned or different-scenario readings cannot narrow hypotheses
+ok 20 - unassigned or different-scenario readings cannot narrow hypotheses
+  ---
+  duration_ms: 0.689818
+  type: 'test'
+  ...
+# Subtest: explicit absent-surface all-rate evaluation preserves the default refusal and identity
+ok 21 - explicit absent-surface all-rate evaluation preserves the default refusal and identity
+  ---
+  duration_ms: 2.71679
+  type: 'test'
+  ...
+# Subtest: enumerates exact zero/single/pair set and conserves each matched comparison
+ok 22 - enumerates exact zero/single/pair set and conserves each matched comparison
+  ---
+  duration_ms: 10.624201
+  type: 'test'
+  ...
+# Subtest: actual courtyard pair choice differs from the two individually best locations
+ok 23 - actual courtyard pair choice differs from the two individually best locations
+  ---
+  duration_ms: 362.982574
+  type: 'test'
+  ...
+# Subtest: original proposal evidence support is frozen before hypothetical geometry changes
+ok 24 - original proposal evidence support is frozen before hypothetical geometry changes
+  ---
+  duration_ms: 3.977648
+  type: 'test'
+  ...
+# Subtest: held-aside values do not tune calibration subset; rejected evidence never falls back
+ok 25 - held-aside values do not tune calibration subset; rejected evidence never falls back
+  ---
+  duration_ms: 7.897831
+  type: 'test'
+  ...
+# Subtest: no change remains best when edits worsen the chosen outcome; dry ties stay explicit
+ok 26 - no change remains best when edits worsen the chosen outcome; dry ties stay explicit
+  ---
+  duration_ms: 1.731063
+  type: 'test'
+  ...
+# Subtest: existing authored proposal edits are preserved and deltas reference that proposal
+ok 27 - existing authored proposal edits are preserved and deltas reference that proposal
+  ---
+  duration_ms: 1.147073
+  type: 'test'
+  ...
+# Subtest: adoption refuses stale/foreign selections and preserves observed-proposal provenance
+ok 28 - adoption refuses stale/foreign selections and preserves observed-proposal provenance
+  ---
+  duration_ms: 31.285312
+  type: 'test'
+  ...
+# Subtest: introduced material keeps unconstrained rates and reveals reversal against no change
+ok 29 - introduced material keeps unconstrained rates and reveals reversal against no change
+  ---
+  duration_ms: 1.324379
+  type: 'test'
+  ...
+# Subtest: removing the final studied material still evaluates every declared variant
+ok 30 - removing the final studied material still evaluates every declared variant
+  ---
+  duration_ms: 0.697226
+  type: 'test'
+  ...
+# Subtest: absent target material cannot gain calibration support from hypothetical introduction
+ok 31 - absent target material cannot gain calibration support from hypothetical introduction
+  ---
+  duration_ms: 0.697412
+  type: 'test'
+  ...
+# Subtest: bounds and combined work refusal precede enumeration; original source stays intact
+ok 32 - bounds and combined work refusal precede enumeration; original source stays intact
+  ---
+  duration_ms: 0.859308
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 537.300747

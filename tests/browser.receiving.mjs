@@ -9,6 +9,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { receiveDecisionObservations } from './decision-observation.receiving.mjs';
 import { receiveDecisionQuestion } from './decision-question.receiving.mjs';
 import { receiveIntervention } from './intervention.receiving.mjs';
+import { receiveInterventionResolution } from './intervention-resolution.receiving.mjs';
 import { receiveInfiltration } from './infiltration.receiving.mjs';
 import { receiveInfiltrationResolution } from './infiltration-resolution.receiving.mjs';
 import { receiveOutletEvidence } from './outlet-evidence.receiving.mjs';
@@ -96,6 +97,7 @@ try {
   await receivePonding({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveInfiltration({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveIntervention({ evaluate, send, delay, report });
+  await receiveInterventionResolution({ evaluate, send, delay, report });
   await receiveInfiltrationResolution({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveEventChallenge(evaluate, report, {send, artifactDirectory:session.runDirectory});
   await receiveOutletEvidence({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
