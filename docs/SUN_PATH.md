@@ -191,3 +191,12 @@ through the maintained sandbox verifier:
 ```sh
 CHROME_BIN=/opt/google/chrome/chrome SUN_SAMPLING_RECEIPT_DIR=/tmp/sun-sampling node tests/solar-path-sampling.browser.mjs
 ```
+
+## Inspect changes across the site
+
+The original-course spatial map shows every retained ground centre, with
+separate additional, removed and limited sample counts or the paired categories
+at one original UTC instant. Selecting a centre preserves the original scenario
+detail and witnesses. Reopened investigations have their own independent map.
+See [spatial inspection](SUN_PATH_SPATIAL.md) for controls, category semantics,
+limits and the authored site control.
