@@ -1,0 +1,165 @@
+/**
+ * EXPERIMENTAL EARTH / rain experiment core.
+ * Deliberately modest conservation-based conceptual grid model, NOT a calibrated
+ * hydrologic or flood-risk predictor. All quantities retain their units.
+ */
+export const WIDTH = 8;
+export const HEIGHT = 6;
+export const SURFACES = Object.freeze({
+  sealed: { label: 'Sealed paving', infiltrationMmHr: 1, color: '#aeb8bb' },
+  turf: { label: 'Turf', infiltrationMmHr: 9, color: '#b6c990' },
+  garden: { label: 'Rain garden', infiltrationMmHr: 24, color: '#478e79' },
+});
+export const DEFAULT_WEATHER = Object.freeze({
+  rainMmHr: 36, stormMinutes: 60, durationMinutes: 240,
+  stepMinutes: 5, cellSizeM: 2, mobilityPerHour: 0.5,
+  boundaryExitPerHour: 0.38,
+});
+const OWN = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+const within = (n, min, max) => typeof n === 'number' && Number.isFinite(n) && n >= min && n <= max;
+
+export function makeExample() {
+  const existing = [];
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
+      const trough = Math.abs(x - 3.5) <= 1.5 ? -0.035 : 0;
+      const elevationM = Number((0.05 + 0.009 * (HEIGHT - 1 - y) + trough + (x === 7 ? 0.012 : 0)).toFixed(3));
+      const surface = x >= 2 && x <= 5 && y >= 2 && y <= 4 ? 'sealed' : 'turf';
+      existing.push({ elevationM, surface, provenance: 'illustrative assumption' });
+    }
+  }
+  const proposal = structuredClone(existing);
+  for (let y = 2; y <= 4; y++) for (let x = 3; x <= 4; x++) {
+    proposal[y * WIDTH + x] = { ...proposal[y * WIDTH + x], surface: 'garden', provenance: 'proposed hypothetical change' };
+  }
+  return {
+    schema: 'experimental-earth-site/1', title: 'Example courtyard · fictional',
+    width: WIDTH, height: HEIGHT, weather: { ...DEFAULT_WEATHER },
+    existing, proposal, observations: [], selectedIndex: 27,
+    source: 'Illustrative geometry and rates; no site measurements',
+  };
+}
+
+export function validateProject(project) {
+  if (!project || project.schema !== 'experimental-earth-site/1' || typeof project.title !== 'string' || project.title.length > 120) throw new Error('Unsupported or invalid site project');
+  const { width, height, existing, proposal, weather, observations } = project;
+  if (!Number.isInteger(width) || !Number.isInteger(height) || width < 2 || height < 2 || width > 24 || height > 24) throw new Error('Grid dimensions out of bounds');
+  if (!Array.isArray(existing) || !Array.isArray(proposal) || existing.length !== width * height || proposal.length !== width * height) throw new Error('Grid cell count does not match dimensions');
+  for (const cells of [existing, proposal]) {
+    for (const cell of cells) {
+      if (!cell || !within(cell.elevationM, -10, 10) || !OWN(SURFACES, cell.surface) || typeof cell.provenance !== 'string' || cell.provenance.length > 240) throw new Error('Invalid elevation, surface or source in a grid cell');
+    }
+  }
+  if (!weather || !within(weather.rainMmHr, 0, 250) || !within(weather.stormMinutes, 0, 720) || !within(weather.durationMinutes, 5, 720) || !within(weather.stepMinutes, 1, 30) || !within(weather.cellSizeM, 0.25, 100) || !within(weather.mobilityPerHour, 0, 10) || !within(weather.boundaryExitPerHour, 0, 10) || weather.durationMinutes < weather.stormMinutes) throw new Error('Weather or modeling parameters out of bounds');
+  if (!Array.isArray(observations) || observations.length > 100) throw new Error('Invalid observation history');
+  for (const o of observations) {
+    if (!Number.isInteger(o.cellIndex) || o.cellIndex < 0 || o.cellIndex >= width * height || !within(o.minute, 0, weather.durationMinutes) || !within(o.depthMm, 0, 1000) || !within(o.uncertaintyMm, 0, 1000) || typeof o.source !== 'string' || o.source.trim().length === 0 || o.source.length > 200) throw new Error('Invalid observation. A source and bounded measurement are required');
+  }
+  if (project.selectedIndex !== undefined && (!Number.isInteger(project.selectedIndex) || project.selectedIndex < 0 || project.selectedIndex >= width * height)) throw new Error('Selected cell out of range');
+  return project;
+}
+
+export function runRain(cells, width, height, weather) {
+  validateProject({ schema: 'experimental-earth-site/1', title: 'model', width, height,
+    existing: cells, proposal: cells, weather, observations: [] });
+  const n = width * height;
+  const water = Array(n).fill(0);
+  const peak = Array(n).fill(0);
+  const cellArea = weather.cellSizeM ** 2;
+  const boundaries = [];
+  const pairs = [];
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+    const i = y * width + x;
+    if (x + 1 < width) pairs.push([i, i + 1]);
+    if (y + 1 < height) pairs.push([i, i + width]);
+    const exits = Number(x === 0) + Number(x === width - 1) + Number(y === 0) + Number(y === height - 1);
+    if (exits) boundaries.push([i, exits]);
+  }
+  let rainLiters = 0, absorbedLiters = 0, exitLiters = 0;
+  const snapshots = [{ minute: 0, depthsMm: water.slice(), storedLiters: 0, absorbedLiters: 0, exitLiters: 0 }];
+  for (let start = 0; start < weather.durationMinutes - 1e-10; start += weather.stepMinutes) {
+    const dtMinutes = Math.min(weather.stepMinutes, weather.durationMinutes - start);
+    const dtHours = dtMinutes / 60;
+    const rainOverlap = Math.max(0, Math.min(start + dtMinutes, weather.stormMinutes) - Math.min(start, weather.stormMinutes));
+    const rainMm = weather.rainMmHr * rainOverlap / 60;
+    for (let i = 0; i < n; i++) {
+      water[i] += rainMm;
+      const absorb = Math.min(water[i], SURFACES[cells[i].surface].infiltrationMmHr * dtHours);
+      water[i] -= absorb;
+      absorbedLiters += absorb * cellArea;
+      peak[i] = Math.max(peak[i], water[i]);
+    }
+    rainLiters += rainMm * cellArea * n;
+    // Explicit finite-volume pair transfers. Simultaneously cap each source's
+    // total proposed outflux to available depth; no neighbor creation/loss.
+    const links = [];
+    const proposedOut = Array(n).fill(0);
+    for (const [a, b] of pairs) {
+      const headA = cells[a].elevationM * 1000 + water[a];
+      const headB = cells[b].elevationM * 1000 + water[b];
+      const delta = headA - headB;
+      if (Math.abs(delta) < 1e-12) continue;
+      const src = delta > 0 ? a : b;
+      const dst = delta > 0 ? b : a;
+      const requested = Math.abs(delta) * weather.mobilityPerHour * dtHours;
+      if (requested > 0) { links.push({ src, dst, requested }); proposedOut[src] += requested; }
+    }
+    for (const [i, count] of boundaries) {
+      // Exterior outlet stage: cell ground minus a declared 10 mm drop.
+      // Only depth already inside the cell is eligible to leave.
+      const requested = (water[i] + 10) * weather.boundaryExitPerHour * dtHours * count;
+      if (requested > 0) { links.push({ src: i, dst: -1, requested }); proposedOut[i] += requested; }
+    }
+    const movement = Array(n).fill(0);
+    for (const { src, dst, requested } of links) {
+      const capped = requested * Math.min(1, water[src] / proposedOut[src]);
+      movement[src] -= capped;
+      if (dst >= 0) movement[dst] += capped;
+      else exitLiters += capped * cellArea;
+    }
+    for (let i = 0; i < n; i++) {
+      water[i] = Math.max(0, water[i] + movement[i]);
+      peak[i] = Math.max(peak[i], water[i]);
+    }
+    const minute = Math.min(weather.durationMinutes, start + dtMinutes);
+    snapshots.push({ minute, depthsMm: water.slice(), storedLiters: water.reduce((a, b) => a + b, 0) * cellArea, absorbedLiters, exitLiters });
+  }
+  const storedLiters = water.reduce((a, b) => a + b, 0) * cellArea;
+  const massErrorLiters = rainLiters - absorbedLiters - exitLiters - storedLiters;
+  return {
+    rainLiters, absorbedLiters, exitLiters, storedLiters, massErrorLiters,
+    maxDepthMm: Math.max(...peak), peakDepthMm: peak, finalDepthMm: water.slice(), snapshots,
+    peakPondingLiters: Math.max(...snapshots.map(s => s.storedLiters)),
+    cellsOver10Mm: peak.filter(d => d >= 10).length,
+  };
+}
+
+export function compare(project) {
+  validateProject(project);
+  return {
+    existing: runRain(project.existing, project.width, project.height, project.weather),
+    proposal: runRain(project.proposal, project.width, project.height, project.weather),
+  };
+}
+
+export function depthAtMinute(result, cellIndex, minute) {
+  const snaps = result.snapshots;
+  if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= snaps[0].depthsMm.length || !within(minute, 0, snaps[snaps.length - 1].minute)) throw new Error('Observation time or cell out of range');
+  let nearest = snaps[0];
+  for (const s of snaps) if (Math.abs(s.minute - minute) < Math.abs(nearest.minute - minute)) nearest = s;
+  return { depthMm: nearest.depthsMm[cellIndex], minute: nearest.minute };
+}
+
+export function chooseNextObservation(project, results) {
+  // Sensitivity heuristic, not a statistical information-gain claim. Suggest
+  // where the two *simulations* disagree most at the end of the storm.
+  const at = project.weather.stormMinutes;
+  let best = { cellIndex: 0, differenceMm: -1 };
+  for (let i = 0; i < project.existing.length; i++) {
+    const a = depthAtMinute(results.existing, i, at).depthMm;
+    const b = depthAtMinute(results.proposal, i, at).depthMm;
+    const diff = Math.abs(a - b);
+    if (diff > best.differenceMm) best = { cellIndex: i, differenceMm: diff };
+  }
+  return { ...best, minute: at, reason: 'Largest simulated baseline/proposal ponding difference at storm end; validate local conditions before treating it as meaningful.' };
+}
