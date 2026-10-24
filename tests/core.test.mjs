@@ -110,3 +110,51 @@ test('imported larger grids use a visibly bounded heuristic shortlist',()=>{
  assert.equal(r.totalCount,112);
  assert.equal(r.evaluatedCount,36);
 });
+
+test('storm-end observation suggestions interpolate non-grid times rather than reading a dry nearest snapshot', () => {
+  const p = makeExample();
+  p.weather.stepMinutes = 30;
+  p.weather.stormMinutes = 5;
+  p.weather.durationMinutes = 30;
+  p.weather.rainMmHr = 250;
+  const source = JSON.stringify(p);
+  const results = compare(p);
+  assert.deepEqual(results.existing.snapshots.map(s => s.minute), [0, 30]);
+
+  // Independent linear interpolation of both solver outputs to the actual
+  // requested time. A nearest-snapshot lookup incorrectly selects minute 0.
+  const sampled = (result, index) => {
+    const [before, after] = result.snapshots;
+    return before.depthsMm[index] + (after.depthsMm[index] - before.depthsMm[index]) * 5 / 30;
+  };
+  const differences = p.existing.map((_, index) => Math.abs(
+    sampled(results.existing, index) - sampled(results.proposal, index)));
+  const winner = differences.reduce((best, value, index) =>
+    value > differences[best] ? index : best, 0);
+  assert.equal(winner, 27);
+  close(differences[winner], 1.4375, 1e-9);
+
+  const suggestion = chooseNextObservation(p, results);
+  assert.equal(suggestion.minute, 5);
+  assert.equal(suggestion.cellIndex, winner);
+  close(suggestion.differenceMm, differences[winner], 1e-9);
+  assert.equal(suggestion.beforeMinute, 0);
+  assert.equal(suggestion.afterMinute, 30);
+  assert.equal(suggestion.method, 'linear interpolation');
+  const sampledCell = depthAtMinute(results.existing, winner, 5);
+  close(sampledCell.depthMm, sampled(results.existing, winner));
+  assert.equal(sampledCell.minute, 5);
+  assert.throws(() => depthAtMinute(results.existing, winner, 31), /outside/);
+  assert.throws(() => depthAtMinute(results.existing, winner, NaN), /outside/);
+
+  // At a retained snapshot the same consumer must use the exact solver output.
+  const aligned = structuredClone(p);
+  aligned.weather.stepMinutes = 5;
+  const alignedResults = compare(aligned);
+  const exact = chooseNextObservation(aligned, alignedResults);
+  assert.equal(exact.minute, 5);
+  assert.equal(exact.beforeMinute, 5);
+  assert.equal(exact.afterMinute, 5);
+  assert.equal(exact.method, 'snapshot');
+  assert.equal(JSON.stringify(p), source);
+});

@@ -118,7 +118,10 @@ function observations() {
     return origin ? `${target}: ${origin.fileName}, line ${origin.line}; ${origin.elevationValue} ± ${origin.uncertaintyValue} ${origin.unit}; datum ${origin.datum}; ${origin.source}. Supplied uncertainty is retained, not propagated by the solver.` : `${target}: ${project[target][n].provenance}`;
   }).join(' | ');
   const suggested=chooseNextObservation(project,results);
-  $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement. Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
+  const timeSupport = suggested.method === 'linear interpolation'
+    ? ` This is a linear estimate between modeled ${suggested.beforeMinute} and ${suggested.afterMinute} min snapshots, not a separate solver result at that minute.`
+    : ' The model has an exact saved snapshot at that minute.';
+  $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement.${timeSupport} Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
   const list=$('observation-list');list.replaceChildren();
   if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);return;}
   for(let i=project.observations.length-1;i>=0;i--){

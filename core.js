@@ -270,12 +270,32 @@ export function compare(project) {
   };
 }
 
+/** Interpolate only within retained solver steps; disclose both bracket times. */
+export function interpolateDepth(result, cellIndex, minute) {
+  const snapshots = result.snapshots;
+  if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= snapshots[0].depthsMm.length ||
+      !Number.isFinite(minute) || minute < 0 || minute > snapshots.at(-1).minute) {
+    throw new Error('Reading time or cell is outside the modeled event');
+  }
+  let lo = 0, hi = snapshots.length - 1;
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (snapshots[mid].minute < minute) lo = mid + 1;
+    else hi = mid;
+  }
+  const after = snapshots[lo];
+  if (after.minute === minute) return { depthMm: after.depthsMm[cellIndex], beforeMinute: minute, afterMinute: minute, method: 'snapshot' };
+  const before = snapshots[lo - 1];
+  const fraction = (minute - before.minute) / (after.minute - before.minute);
+  return {
+    depthMm: before.depthsMm[cellIndex] + fraction * (after.depthsMm[cellIndex] - before.depthsMm[cellIndex]),
+    beforeMinute: before.minute, afterMinute: after.minute, method: 'linear interpolation',
+  };
+}
+
 export function depthAtMinute(result, cellIndex, minute) {
-  const snaps = result.snapshots;
-  if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= snaps[0].depthsMm.length || !within(minute, 0, snaps[snaps.length - 1].minute)) throw new Error('Observation time or cell out of range');
-  let nearest = snaps[0];
-  for (const s of snaps) if (Math.abs(s.minute - minute) < Math.abs(nearest.minute - minute)) nearest = s;
-  return { depthMm: nearest.depthsMm[cellIndex], minute: nearest.minute };
+  const sampled = interpolateDepth(result, cellIndex, minute);
+  return { ...sampled, minute };
 }
 
 export function chooseNextObservation(project, results) {
@@ -284,10 +304,13 @@ export function chooseNextObservation(project, results) {
   const at = project.weather.stormMinutes;
   let best = { cellIndex: 0, differenceMm: -1 };
   for (let i = 0; i < project.existing.length; i++) {
-    const a = depthAtMinute(results.existing, i, at).depthMm;
-    const b = depthAtMinute(results.proposal, i, at).depthMm;
-    const diff = Math.abs(a - b);
-    if (diff > best.differenceMm) best = { cellIndex: i, differenceMm: diff };
+    const a = depthAtMinute(results.existing, i, at);
+    const b = depthAtMinute(results.proposal, i, at);
+    const diff = Math.abs(a.depthMm - b.depthMm);
+    if (diff > best.differenceMm) {
+      best = { cellIndex: i, differenceMm: diff,
+        beforeMinute: a.beforeMinute, afterMinute: a.afterMinute, method: a.method };
+    }
   }
   return { ...best, minute: at, reason: 'Largest simulated baseline/proposal ponding difference at storm end; validate local conditions before treating it as meaningful.' };
 }
