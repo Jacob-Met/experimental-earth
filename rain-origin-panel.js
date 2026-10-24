@@ -1,6 +1,6 @@
 import { compareRainOrigins, rainOriginSignature } from './rain-origin-study.js';
 const format = value => (Math.abs(value) < 1e-9 ? 0 : value).toLocaleString('en-US', { maximumSignificantDigits: 4 });
-const labels = { stored: 'on the surface at the modeled end', absorbed: 'infiltrated during the event', exit: 'left through the boundary during the event' };
+const labels = { stored: 'on the surface', absorbed: 'infiltrated', exit: 'left through the boundary' };
 
 export function mountRainOrigins({ host, getProject, changed, notice }) {
   const panel = document.createElement('details'); panel.id = 'rain-origin'; panel.className = 'rain-origin';
@@ -10,10 +10,13 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
     <p class="mini-note">Inspect a cell on either site map above, then use or add it here. Boundary outflow belongs to the edge cell where it left the site.</p>
     <div class="trace-actions"><button id="origin-use-selected" type="button" class="subtle">Use inspected cell</button><button id="origin-add-selected" type="button" class="subtle">Add inspected cell</button><button id="origin-clear" type="button" class="subtle">Clear destinations</button></div>
     <div id="origin-targets" class="trace-sources" aria-label="Chosen water destination cells"></div>
-    <label class="input-label trace-fate">Explain water that<select id="origin-fate"><option value="absorbed">Infiltrated during the event</option><option value="stored">Remains on the surface at the modeled end</option><option value="exit">Left through the boundary during the event</option></select></label>
+    <label class="input-label trace-fate">Explain water that<select id="origin-fate"><option value="absorbed">Infiltrated</option><option value="stored">Remains on the surface</option><option value="exit">Left through the boundary</option></select></label>
     <button id="origin-run" class="primary" type="button" disabled>Explain rainfall origins in both sites</button>
+    <button id="origin-final" class="subtle" type="button" hidden>Use modeled end</button>
     <p id="origin-status" class="next-reading" role="status" aria-live="polite" data-state="not-explained"></p>
     <div id="origin-results" hidden>
+      <label class="input-label">Inspect modeled time <output id="origin-minute" for="origin-time"></output><input id="origin-time" type="range" min="0" max="0" step="1" value="0" aria-label="Rainfall origin inspection time"></label>
+      <p class="mini-note">Each position is an exact model step. Surface water is attributed at that time; infiltration and outflow are accumulated only through it.</p>
       <p id="origin-total" class="trace-total"></p>
       <div id="origin-summary" class="trace-totals"></div>
       <p id="origin-scale" class="mini-note"></p>
@@ -30,7 +33,9 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
   const targets = () => getProject().rainOriginStudy?.targetCells ?? [];
   function setTargets(cells) {
     const p = getProject();
-    if (cells.length) p.rainOriginStudy = { targetCells: [...new Set(cells)].sort((a,b) => a-b), fate: $('origin-fate').value };
+    const minute = p.rainOriginStudy?.minute;
+    if (cells.length) p.rainOriginStudy = { targetCells: [...new Set(cells)].sort((a,b) => a-b), fate: $('origin-fate').value,
+      ...(minute === undefined ? {} : { minute }) };
     else delete p.rainOriginStudy;
     changed();
   }
@@ -78,7 +83,10 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
     table.append(head,body);
   }
   function render() {
-    $('origin-total').textContent = `Rainfall ${labels[result.fate]} in ${result.targetCells.length} chosen destination cell${result.targetCells.length === 1 ? '' : 's'}, through ${format(result.durationMinutes)} minutes.`;
+    $('origin-time').max = String(result.availableMinutes.length - 1);
+    $('origin-time').value = String(result.availableMinutes.indexOf(result.minute));
+    $('origin-minute').textContent = `${format(result.minute)} of ${format(result.durationMinutes)} minutes`;
+    $('origin-total').textContent = `Rainfall ${labels[result.fate]} in ${result.targetCells.length} chosen destination cell${result.targetCells.length === 1 ? '' : 's'}, ${result.fate === 'stored' ? 'at' : 'through'} ${format(result.minute)} minutes.`;
     const summary = $('origin-summary');summary.replaceChildren();
     for (const [scenario,label] of [['existing','Existing site'],['proposal','Proposed change']]) {
       const r = result[scenario], card = document.createElement('div');card.className = 'trace-total-card';
@@ -90,9 +98,10 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
     $('origin-balance').textContent = `Rainfall origins plus starting water account for the selected water fate. Residual: existing ${format(result.existing.balanceErrorLiters)} L; proposal ${format(result.proposal.balanceErrorLiters)} L. Change in rain contribution: ${result.deltaLiters > 1e-9 ? '+' : ''}${format(result.deltaLiters)} L.`;
     $('origin-results').hidden = false;renderMaps();
   }
-  $('origin-run').addEventListener('click', () => {
+  function explain(preserveSource = false) {
     try {
-      result = compareRainOrigins(getProject());signature = rainOriginSignature(getProject());source = result.targetCells[0];
+      result = compareRainOrigins(getProject());signature = rainOriginSignature(getProject());
+      if (!preserveSource || source >= result.existing.bySourceLiters.length) source = result.targetCells[0];
       render();$('origin-status').dataset.state = 'explained';
       $('origin-status').textContent = result.existing.rainfallLiters + result.proposal.rainfallLiters > 1e-9
         ? 'Rainfall origins calculated for the chosen destination and fate.'
@@ -101,6 +110,19 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
       result = null;signature = null;$('origin-results').hidden = true;
       $('origin-status').dataset.state = 'error';$('origin-status').textContent = error.message;notice(error.message);
     }
+  }
+  $('origin-run').addEventListener('click', () => explain());
+  $('origin-time').addEventListener('change', () => {
+    if (!result) return;
+    const minute = result.availableMinutes[Number($('origin-time').value)];
+    if (minute === undefined) return;
+    getProject().rainOriginStudy = { ...getProject().rainOriginStudy, minute };
+    changed();explain(true);
+  });
+  $('origin-final').addEventListener('click', () => {
+    if (!getProject().rainOriginStudy) return;
+    delete getProject().rainOriginStudy.minute;
+    changed();explain(true);
   });
   function refresh() {
     const p = getProject(),selected = p.selectedIndex ?? 0,chosen = targets();
@@ -109,6 +131,7 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
     $('origin-add-selected').textContent = `Add inspected cell ${name(selected)}`;
     $('origin-add-selected').disabled = chosen.includes(selected);
     $('origin-clear').disabled = !chosen.length;$('origin-run').disabled = !chosen.length;
+    $('origin-final').hidden = p.rainOriginStudy?.minute === undefined;
     $('origin-targets').replaceChildren();
     for (const i of chosen) {
       const button = document.createElement('button');button.type = 'button';button.className = 'trace-chip';
@@ -118,9 +141,10 @@ export function mountRainOrigins({ host, getProject, changed, notice }) {
     }
     if (result && signature !== rainOriginSignature(p)) {
       result = null;signature = null;$('origin-results').hidden = true;
-      $('origin-status').textContent = 'The site, storm, destination or fate changed. Explain origins again to update the contributions.';
+      $('origin-status').textContent = 'The site, storm, destination, fate or time changed. Explain origins again to update the contributions.';
     } else if (!result) {
-      $('origin-status').textContent = chosen.length ? `${chosen.length} destination cell${chosen.length === 1 ? '' : 's'} chosen. Explain its rainfall origins.` : 'Choose at least one destination cell to begin.';
+      const time = p.rainOriginStudy?.minute;
+      $('origin-status').textContent = chosen.length ? `${chosen.length} destination cell${chosen.length === 1 ? '' : 's'} chosen${time === undefined ? ' at the modeled end' : ` at ${format(time)} minutes`}. Explain its rainfall origins.` : 'Choose at least one destination cell to begin.';
     }
     if (!result) $('origin-status').dataset.state = 'not-explained';
   }

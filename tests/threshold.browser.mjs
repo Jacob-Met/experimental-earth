@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';import {tmpdir} from 'node:os';import {re
 const root=fileURLToPath(new URL('../',import.meta.url));
 const output=process.env.THRESHOLD_RECEIPT_DIR?resolve(process.env.THRESHOLD_RECEIPT_DIR):await mkdtemp(join(tmpdir(),'earth-threshold-'));await mkdir(output,{recursive:true});
 const report=[],delay=ms=>new Promise(r=>setTimeout(r,ms));
-const pending=['app.js','index.html','styles.css','tests/threshold.browser.mjs'],seen=new Set(),sourceHashes={};
+const pending=['app.js','index.html','styles.css','rain-trace.css','tests/threshold.browser.mjs'],seen=new Set(),sourceHashes={};
 while(pending.length){
  const path=pending.pop();if(seen.has(path))continue;seen.add(path);
  const absolute=resolve(root,path);if(!absolute.startsWith(root))throw Error('Dependency escaped source root');

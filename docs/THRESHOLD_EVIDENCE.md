@@ -21,4 +21,4 @@ The endpoints do not establish a unique crossing, absence of rewetting or contin
 
 ## Bounds and verification
 
-At most 80 readings, 2–9 maintained study rates and 3 million estimated cell-steps. Invalid records reject on project import. Six focused native groups cover the analytic mechanism, equality/uncertainty, role separation, exact source binding, numeric-depth compatibility, roundtrip recomputation and resource refusal. Actual browser qualification is recorded separately.
+At most 80 readings, 2–9 maintained study rates and 3 million estimated cell-steps. Invalid records reject on project import. Redundant grid dimensions, duration and scenario must agree with the retained context; stale evidence remains tied to that original context rather than the current edited project. Seven focused native groups cover the analytic mechanism, equality/uncertainty, role separation, exact source binding, numeric-depth compatibility, roundtrip recomputation and resource refusal. Actual browser qualification is recorded separately.

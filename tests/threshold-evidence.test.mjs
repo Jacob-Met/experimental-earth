@@ -39,3 +39,12 @@ test('malformed and oversized evidence refuses; absent material and work bounds 
  attach(p,[lower]);p.infiltrationStudy.surface='garden';assert.equal(compareThresholdEvidence(p).status,'surface-absent');
  const q=fixture();q.width=q.height=24;q.existing=Array.from({length:576},()=>({...q.existing[0]}));q.proposal=structuredClone(q.existing);q.weather.durationMinutes=720;q.weather.stepMinutes=1;q.infiltrationStudy.ratesMmHr=[1,2,3,4,5,6,7,8,9];attach(q,[lower]);assert.equal(compareThresholdEvidence(q).status,'work-limit');
 });
+
+test('retained envelope dimensions, time and cells cannot contradict the original context',()=>{
+ const p=attach(fixture(),[lower,upper]);
+ for(const change of [r=>{r.width=4;r.height=2;r.cellCount=8;},r=>{r.durationMinutes=300;},r=>{r.target='proposal';},r=>{r.readings[0].cellIndex=4;},r=>{r.readings[0].minute=241;},r=>{r.contextJson='not json';}]){
+  const q=structuredClone(p);change(q.thresholdEvidence);assert.throws(()=>validateProject(q));assert.throws(()=>compareThresholdEvidence(q));
+ }
+ const changed=structuredClone(p);changed.width=4;changed.existing=Array.from({length:8},()=>({...p.existing[0]}));changed.proposal=structuredClone(changed.existing);
+ assert.doesNotThrow(()=>validateProject(changed));assert.equal(compareThresholdEvidence(changed).status,'context-changed');assert.equal(changed.thresholdEvidence.width,2);
+});
