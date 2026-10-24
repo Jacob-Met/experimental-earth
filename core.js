@@ -312,6 +312,7 @@ export function chooseNextObservation(project, results) {
         beforeMinute: a.beforeMinute, afterMinute: a.afterMinute, method: a.method };
     }
   }
+  if (best.differenceMm === 0) return null;
   return { ...best, minute: at, reason: 'Largest simulated baseline/proposal ponding difference at storm end; validate local conditions before treating it as meaningful.' };
 }
 

@@ -158,3 +158,24 @@ test('storm-end observation suggestions interpolate non-grid times rather than r
   assert.equal(exact.method, 'snapshot');
   assert.equal(JSON.stringify(p), source);
 });
+
+test('identical site alternatives and dry storms do not invent a discriminating location', () => {
+  const p = makeExample();
+  const original = JSON.stringify(p);
+  assert.ok(chooseNextObservation(p, compare(p))?.differenceMm > 0,
+    'the unchanged example still supports a difference-driven suggestion');
+  p.proposal = structuredClone(p.existing);
+  const same = JSON.stringify(p);
+  assert.equal(chooseNextObservation(p, compare(p)), null,
+    'copying the baseline must not recommend arbitrary cell A1 at zero difference');
+  assert.equal(JSON.stringify(p), same);
+  p.weather.rainMmHr = 0;
+  const dry = JSON.stringify(p);
+  assert.equal(chooseNextObservation(p, compare(p)), null);
+  assert.equal(JSON.stringify(p), dry);
+  p.weather.rainMmHr = 48;
+  p.proposal[27].surface = 'garden';
+  const recovered = chooseNextObservation(p, compare(p));
+  assert.ok(recovered && recovered.differenceMm > 0);
+  assert.equal(original.includes('fictional'), true);
+});
