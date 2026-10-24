@@ -1,3 +1,4 @@
+import { renderEvidenceConflict } from './evidence-conflict-panel.js';
 import { SURFACES } from './core.js';
 import { DEFAULT_STUDY, validateStudy } from './study-contract.js';
 import { compareInfiltration } from './infiltration-study.js';
@@ -111,6 +112,7 @@ export function mountInfiltrationPanel({ getProject, changed, notice, prepareRea
       cards.append(card);
     }
     host.append(cards);
+    host.append(renderEvidenceConflict(project, study, report));
   }
   $('infiltration-form').addEventListener('submit', event => {
     event.preventDefault();
@@ -152,3 +154,4 @@ export function mountInfiltrationPanel({ getProject, changed, notice, prepareRea
   });
   return { refresh };
 }
+
