@@ -1,3 +1,4 @@
+import { mountInternalBarriers } from './internal-barrier-panel.js';
 import { mountPondingPanel } from './ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, depthAtMinute, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -31,7 +32,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { results = compare(project); persist(); draw(); infiltrationPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); terrainImporter.refresh(); internalBarriersPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -62,6 +63,11 @@ function gridInto(target, result) {
     btn.dataset.grid=target;
     const depthLabel=view==='surface' ? `${Math.round(cell.elevationM*100)} cm` : `${numeric(mm)} mm`;
     btn.innerHTML=`<i class="water"></i><b>${nameCell(index)}</b><span>${depthLabel}</span>`;
+    for (const side of ['east', 'south']) if (cell.internalBarriers?.[side]?.closed) {
+      const line = document.createElement('i'); line.className = 'internal-barrier internal-barrier-' + side;
+      line.setAttribute('aria-hidden', 'true'); btn.append(line);
+      btn.setAttribute('aria-label', btn.getAttribute('aria-label') + ', closed ' + side + ' edge');
+    }
     btn.addEventListener('click',()=>applyBrush(target,index));fragment.appendChild(btn);
   }
   el.replaceChildren(fragment);
@@ -210,4 +216,6 @@ const pondingPanel = mountPondingPanel({getProject: () => project, getResults: (
 const jointEvidencePanel = mountJointEvidence({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
 const jointEventPanel = mountJointEventChallenge({ getProject: () => project, notice });
+const internalBarriersPanel = mountInternalBarriers({ getProject: () => project,
+  replaceProject: next => { validateProject(next); project = next; syncForm(); rerun(); }, notice });
 syncForm();rerun();

@@ -1,3 +1,4 @@
+import { sameInternalBarriers } from './internal-barriers.js';
 import { validateProject } from './core.js';
 import { compareInfiltration } from './infiltration-study.js';
 import { validateStudy } from './study-contract.js';
@@ -13,6 +14,7 @@ export function assertMatchingEventSite(calibrationProject, challengeProject, ta
   for (const key of ['cellSizeM', 'mobilityPerHour', 'stepMinutes', ...(explicitOutletPairs ? [] : ['boundaryExitPerHour'])]) {
     if (calibrationProject.weather[key] !== challengeProject.weather[key]) throw Error(`Event modeling assumptions must match: ${key}`);
   }
+  if (!sameInternalBarriers(calibrationProject[target], challengeProject[target])) throw Error('Observed scenario internal walls and openings must match across events');
   if (calibrationProject[target].some((cell, i) => cell.surface !== challengeProject[target][i].surface || cell.elevationM !== challengeProject[target][i].elevationM)) throw Error('Observed scenario geometry and surfaces must match across events');
 }
 

@@ -1,3 +1,4 @@
+import { validateInternalBarriers, internalEdgeClosed } from './internal-barriers.js';
 import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
 /**
  * EXPERIMENTAL EARTH / rain experiment core.
@@ -57,6 +58,7 @@ export function validateProject(project) {
       if (!cell || !within(cell.elevationM, -10, 10) || !OWN(SURFACES, cell.surface) || typeof cell.provenance !== 'string' || cell.provenance.length > 240) throw new Error('Invalid elevation, surface or source in a grid cell');
     }
   }
+  for (const cells of [existing, proposal]) validateInternalBarriers(cells, width, height);
   if (!weather || !within(weather.rainMmHr, 0, 250) || !within(weather.stormMinutes, 0, 720) || !within(weather.durationMinutes, 5, 720) || !within(weather.stepMinutes, 1, 30) || !within(weather.cellSizeM, 0.25, 100) || !within(weather.mobilityPerHour, 0, 10) || !within(weather.boundaryExitPerHour, 0, 10) || weather.durationMinutes < weather.stormMinutes) throw new Error('Weather or modeling parameters out of bounds');
   for (const cells of [existing, proposal]) for (const cell of cells) validateTerrainOrigin(cell, weather.cellSizeM);
   if (!Array.isArray(observations) || observations.length > 100) throw new Error('Invalid observation history');
@@ -148,6 +150,8 @@ export function runRain(cells, width, height, weather, options = {}) {
     const proposedOut = Array(n).fill(0);
     for (let edgeIndex = 0; edgeIndex < pairs.length; edgeIndex++) {
       const [a, b] = pairs[edgeIndex];
+      // Keep every edge index for accounting/tracing, including zero-flux walls.
+      if (internalEdgeClosed(cells, a, b, width)) continue;
       const headA = cells[a].elevationM * 1000 + water[a];
       const headB = cells[b].elevationM * 1000 + water[b];
       const delta = headA - headB;

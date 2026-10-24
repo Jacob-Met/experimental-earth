@@ -1,3 +1,4 @@
+import { changedBarrierCells } from './internal-barriers.js';
 import { runRain, validateProject } from './core.js';
 
 export const MAX_LOCAL_BUDGET_CELL_STEPS = 500_000;
@@ -120,8 +121,13 @@ export function localBudgetRegion(project, scope) {
   validateProject(project);
   if (scope === 'cell') return [project.selectedIndex ?? 0];
   if (scope === 'site') return project.existing.map((_, i) => i);
-  if (scope === 'edited') return project.existing.flatMap((cell, i) =>
-    cell.elevationM !== project.proposal[i].elevationM || cell.surface !== project.proposal[i].surface ? [i] : []);
+  if (scope === 'edited') {
+    const changed = new Set(changedBarrierCells(project.existing, project.proposal, project.width, project.height));
+    project.existing.forEach((cell, i) => {
+      if (cell.elevationM !== project.proposal[i].elevationM || cell.surface !== project.proposal[i].surface) changed.add(i);
+    });
+    return [...changed].sort((a, b) => a - b);
+  }
   throw new Error('Choose selected cell, edited footprint or whole site');
 }
 

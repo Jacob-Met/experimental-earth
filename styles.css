@@ -65,3 +65,16 @@
 .joint-table-wrap{max-width:100%;overflow-x:auto;margin:16px 0}.joint-table-wrap table{width:100%;min-width:650px;border-collapse:collapse;table-layout:fixed;font-size:12px}.joint-table-wrap th,.joint-table-wrap td{text-align:left;vertical-align:top;padding:10px 8px;border-bottom:1px solid #cedfd5;overflow-wrap:anywhere}.joint-table-wrap thead{background:#e7f2eb}.joint-residuals{margin:12px 0;font-size:12px;overflow-wrap:anywhere}.joint-residuals p{border-left:2px solid #bdd7ca;padding-left:12px}
 
 #joint-event-panel{min-width:0}#joint-event-panel fieldset{min-width:0;border:1px solid #cbded3;border-radius:8px;margin:16px 0;padding:12px}#joint-event-panel textarea{font:inherit;width:100%;resize:vertical;border:1px solid #cfddd7;border-radius:8px;padding:10px}#joint-event-panel .mini-note,#joint-event-panel .muted{color:#3c5f56}#jce-results>p,#jce-status{font-size:13px;overflow-wrap:anywhere}.jce-files{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:20px}#jce-results .joint-table-wrap table{min-width:650px}@media(max-width:650px){.jce-files{grid-template-columns:minmax(0,1fr)}}
+
+/* Internal connectivity is part of the actual paired site editor. */
+.cell .internal-barrier{position:absolute;z-index:3;display:block;background:#673f29;pointer-events:none;border-radius:1px}
+.cell .internal-barrier-east{right:0;top:0;bottom:0;width:4px}
+.cell .internal-barrier-south{bottom:0;left:0;right:0;height:4px}
+.internal-barrier-panel{margin-top:16px;border:1px solid #d9e4df;border-radius:12px;padding:16px;background:#f9fbf8}
+.internal-barrier-panel h3{margin:0;font-size:17px}
+.internal-barrier-panel .caption{margin:8px 0}
+.barrier-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.barrier-actions{display:flex;flex-wrap:wrap;gap:8px}
+#barrier-edge-state,#barrier-status,#barrier-selection,#barrier-details{font-size:12px;overflow-wrap:anywhere}
+#barrier-details{padding-left:20px}
+@media(max-width:520px){.barrier-inputs{grid-template-columns:1fr}.barrier-actions button{flex:1 1 120px}.internal-barrier-panel{padding:12px}}
