@@ -32,6 +32,11 @@ const result = await withBrowserSession({ root,
   for (const type of ['keyDown', 'keyUp']) await send('Input.dispatchKeyEvent', { type, key: 'ArrowDown', code: 'ArrowDown', windowsVirtualKeyCode: 40 });
   const second = await evaluate("document.querySelector('[data-component-results] tbody tr').lastElementChild.textContent");
   assert.ok(second.startsWith('+'), second);
+  assert.equal(await evaluate("document.activeElement.matches('[data-component-rate]')"), true, 'rate inspection must retain keyboard focus after redrawing');
+  for (const type of ['keyDown', 'keyUp']) await send('Input.dispatchKeyEvent', { type, key: 'ArrowUp', code: 'ArrowUp', windowsVirtualKeyCode: 38 });
+  assert.ok((await evaluate("document.querySelector('[data-component-results] tbody tr').lastElementChild.textContent")).startsWith('-'));
+  assert.equal(await evaluate("document.activeElement.matches('[data-component-rate]')"), true);
+  for (const type of ['keyDown', 'keyUp']) await send('Input.dispatchKeyEvent', { type, key: 'ArrowDown', code: 'ArrowDown', windowsVirtualKeyCode: 40 });
   assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"), saved);
   async function capturePanel(name) {
     const clip = await evaluate(`(async()=>{const p=document.querySelector('#proposal-components');p.scrollIntoView({behavior:'instant',block:'start'});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const b=p.getBoundingClientRect();return {x:b.x+scrollX,y:b.y+scrollY,width:b.width,height:b.height,scale:1};})()`);
