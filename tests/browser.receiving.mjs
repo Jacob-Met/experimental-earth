@@ -1,3 +1,4 @@
+import { receivePonding } from './ponding.receiving.mjs';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
@@ -88,6 +89,7 @@ try {
   const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});
   writeFileSync(process.env.BROWSER_SCREENSHOT ?? (session.runDirectory + '/browser-mobile-390.png'),Buffer.from(shot.data,'base64'));
   report.push('390px mobile layout no horizontal overflow');
+  await receivePonding({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveInfiltration({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   await receiveIntervention({ evaluate, send, delay, report });
   await receiveInfiltrationResolution({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
