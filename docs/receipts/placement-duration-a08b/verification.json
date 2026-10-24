@@ -1,0 +1,36 @@
+{
+  "schema": "earth.placement-duration-integration-receipt/v1",
+  "capturedAtUtc": "2026-10-24T22:08:34.954859+00:00",
+  "issue": "https://github.com/Jacob-Met/experimental-earth/issues/140",
+  "baseCommit": "a6222dd0a0c0ca523d0bf2ab949cd6edc2afb878",
+  "baseTree": "fcd6bfdbfd9c66e7ce8cf0085e26665da8f90962",
+  "native": {
+    "status": "passed",
+    "tests": 486,
+    "pass": 486,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "rawLog": "native.log"
+  },
+  "browser": {
+    "status": "passed",
+    "groups": [
+      "site winner fails full-family duration goal; all original-rate intervals and wet modeled-end flags retained, adoption disabled",
+      "unchanged source and fixed original support: -50min stable, -50.75min qualification changes at finer intervals; editing removes stale result",
+      "impossible duration goal has no fallback winner; narrow screen exposes inspectable censored intervals and focusable threshold input"
+    ],
+    "exceptions": [],
+    "rawReceipt": "browser-receipt.json",
+    "sandboxReceipt": "sandbox.json",
+    "actualSandboxSourcePath": "/tmp/hamon-a08b-earth-duration-browser-final/browser-session/sandbox.json"
+  },
+  "independentReview": {
+    "status": "reported-passed",
+    "reviewer": "existing Workshop worker",
+    "scope": "Per-rate unchanged-proposal exposure reference; full-family qualification; fixed original support; endpoint flags and intervals; joint work estimate; six authored native groups and twelve independently replayed altered-proposal plan/rate witnesses. Staging does not rerun independent review."
+  },
+  "limitations": "Strict-threshold wet minutes inside the modeled window under authored hypotheses; wet endpoints do not establish complete drawdown or physical safety. No source evidence, calibration support or calculation setting adopted by sensitivity.",
+  "publicationStatus": "Staged only. Normal PR, merge and exact merge receiving remain integration-owner actions."
+}

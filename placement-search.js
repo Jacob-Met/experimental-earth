@@ -1,3 +1,4 @@
+import {validateDurationGoal,assessDurationGoal} from './placement-duration.js';
 import { validatePlacementTargets, assessPlacementTargets } from './placement-constraints.js';
 import { validateProject, SURFACES } from './core.js';
 import { compareIntervention, summarizeEffects } from './intervention-study.js';
@@ -28,9 +29,15 @@ export function validatePlacementQuery(project, query) {
   const study = query.study ?? project.infiltrationStudy ?? DEFAULT_STUDY;
   validateStudy(study);
   return {eligibleCells:[...query.eligibleCells].sort((a,b)=>a-b),maxEdits:query.maxEdits,
-    surface:query.surface,metric:query.metric,subset:query.subset,study:structuredClone(study),targets:validatePlacementTargets(project,query.targets)};
+    surface:query.surface,metric:query.metric,subset:query.subset,study:structuredClone(study),targets:validatePlacementTargets(project,query.targets),durationGoal:validateDurationGoal(project,query.durationGoal)};
 }
 
+export function estimatePlacementWork(project,query,stepsMinutes=[project.weather.stepMinutes]) {
+ const n=query.eligibleCells.length,variantCount=1+n+(query.maxEdits===2?n*(n-1)/2:0);
+ const unit=variantCount*query.study.ratesMmHr.length*project.width*project.height*stepsMinutes.reduce((sum,step)=>sum+Math.ceil(project.weather.durationMinutes/step),0);
+ const modelCellSteps=3*unit,exposureCellSegments=query.durationGoal?2*unit:0;
+ return {variantCount,modelCellSteps,exposureCellSegments,estimatedCellSteps:modelCellSteps+exposureCellSegments};
+}
 function variants(query) {
   const out=[[]];for(const i of query.eligibleCells)out.push([i]);
   if(query.maxEdits===2)for(let a=0;a<query.eligibleCells.length;a++)for(let b=a+1;b<query.eligibleCells.length;b++)out.push([query.eligibleCells[a],query.eligibleCells[b]]);
@@ -65,32 +72,33 @@ function evaluatePlacements(project, input, fixedRates=null) {
   const query=validatePlacementQuery(project,input),choices=variants(query);
   // Reuse the maintained comparator's conservative three-run allowance for
   // every variant, including original evidence evaluation. Never shortlist.
-  const work=choices.length*query.study.ratesMmHr.length*3*project.width*project.height*
-    Math.ceil(project.weather.durationMinutes/project.weather.stepMinutes);
-  if(work>PLACEMENT_WORK_LIMIT)throw Error('Placement comparison exceeds 3 million estimated cell-steps; reduce eligible cells, duration, grid or hypothesis count');
+  const workDetail=estimatePlacementWork(project,query),work=workDetail.estimatedCellSteps;
+  const exposureRequest=query.durationGoal?{thresholdMm:query.durationGoal.thresholdMm,cellIndices:query.durationGoal.cellIndices}:null;
+  if(work>PLACEMENT_WORK_LIMIT)throw Error('Placement comparison exceeds 3 million estimated model/exposure work units; reduce eligible cells, duration, grid or hypothesis count');
   const subset=fixedRates?'all':query.subset;
-  const original=compareIntervention(project,{study:query.study,subset,allowAbsentSurface:subset==='all'});
+  const original=compareIntervention(project,{study:query.study,subset,allowAbsentSurface:subset==='all',exposureRequest});
   const context={query,sourceSignature:placementSignature(project),variantCount:choices.length,
-    cellStepUpperBound:work,evidenceTarget:query.study.target,supportMode:fixedRates?'fixed-original-support':'original-source-filter'};
+    cellStepUpperBound:work,workDetail,evidenceTarget:query.study.target,supportMode:fixedRates?'fixed-original-support':'original-source-filter'};
   if(original.status!=='compared')return {...context,status:original.status,plans:[],best:[]};
   const rates=fixedRates??original.candidates.map(c=>c.rateMmHr),reference=new Map(original.candidates.map(c=>[c.rateMmHr,c]));
   const plans=choices.map(cells=>{
     // Do not refit original observations against hypothetical edited geometry.
-    const computed=cells.length?compareIntervention(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true}):original;
+    const computed=cells.length?compareIntervention(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true,exposureRequest}):original;
     if(computed.status!=='compared')throw Error('Not every declared variant can be evaluated by the maintained intervention comparison; choose another eligible set or studied surface');
     const candidates=computed.candidates.filter(c=>rates.includes(c.rateMmHr)).map(c=>{
       const base=reference.get(c.rateMmHr);
-      return {rateMmHr:c.rateMmHr,metrics:Object.fromEntries(Object.keys(PLACEMENT_METRICS).map(key=>
+      return {rateMmHr:c.rateMmHr,...(exposureRequest?{exposure:{current:base.pondingExposure.proposal,proposed:c.pondingExposure.proposal}}:{}),metrics:Object.fromEntries(Object.keys(PLACEMENT_METRICS).map(key=>
         [key,{current:value(base,key),proposed:value(c,key),delta:value(c,key)-value(base,key)}])),
         peakDeltaMm:c.peakDeltaMm.map((depth,i)=>depth-base.peakDeltaMm[i]),massErrorLiters:structuredClone(c.massErrorLiters)};
     });
     if(candidates.length!==rates.length)throw Error('A source-supported hypothesis was not evaluated');
     const metrics=Object.fromEntries(Object.keys(PLACEMENT_METRICS).map(key=>[key,summarizeEffects(candidates.map(c=>c.metrics[key].delta))]));
     const worseningCells=project.proposal.map((_,cellIndex)=>({cellIndex,...summarizeEffects(candidates.map(c=>c.peakDeltaMm[cellIndex]))})).filter(c=>c.max>1e-8);
-    return {cells:[...cells],candidates,metrics,worseningCells,score:metrics[query.metric].max,localTargets:assessPlacementTargets(candidates,query.targets)};
+    const localTargets=assessPlacementTargets(candidates,query.targets),durationTargets=assessDurationGoal(candidates,query.durationGoal);
+    return {cells:[...cells],candidates,metrics,worseningCells,score:metrics[query.metric].max,localTargets,durationTargets,meetsAllTargets:localTargets.meets&&durationTargets.meets};
   });
   plans.sort((a,b)=>a.score-b.score||a.cells.length-b.cells.length||a.cells.join(',').localeCompare(b.cells.join(',')));
-  const qualifying=plans.filter(p=>p.localTargets.meets);
+  const qualifying=plans.filter(p=>p.meetsAllTargets);
   const minimum=qualifying[0]?.score,tieGuard=minimum===undefined?0:1e-8*Math.max(1,Math.abs(minimum));
   return {...context,status:'compared',ratesMmHr:rates,sourceAffected:structuredClone(original.affected),plans,best:qualifying.filter(p=>Math.abs(p.score-minimum)<=tieGuard).map(p=>p.cells),tieGuard,qualifyingCount:qualifying.length,
     adoptionBlockedByProposalEvidence:project.observations.some(o=>o.scenario==='proposal'),
@@ -103,10 +111,10 @@ export function adoptPlacement(project, input, cells, expectedSignature) {
   if(expectedSignature!==placementSignature(project))throw Error('The project changed; compare placements again before adoption');
   if(!Array.isArray(cells)||cells.length>query.maxEdits||new Set(cells).size!==cells.length||cells.some(i=>!query.eligibleCells.includes(i)))throw Error('Choose an evaluated eligible placement');
   if(cells.length&&project.observations.some(o=>o.scenario==='proposal'))throw Error('Proposal-assigned observations must stay with their observed geometry. This candidate can be inspected, but cannot replace that proposal without a separately prepared evidence workspace');
-  if(query.targets.length){
+  if(query.targets.length||query.durationGoal){
     const report=comparePlacements(project,query);
     const selected=report.plans.find(p=>p.cells.join(',')===[...cells].sort((a,b)=>a-b).join(','));
-    if(!selected?.localTargets.meets)throw Error('This placement does not meet every declared local target');
+    if(!selected?.meetsAllTargets)throw Error('This placement does not meet every declared local target');
   }
   return validateProject(edited(project,query,cells));
 }
