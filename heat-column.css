@@ -1,0 +1,16 @@
+#heat-column fieldset{min-width:0;border:1px solid #d7e3dc;border-radius:12px;padding:16px}
+#heat-column input,#heat-column textarea,#heat-column select{min-width:0;max-width:100%}
+#column-chart{display:block;width:100%;max-width:900px;margin:18px auto 8px}
+#column-chart text{font:14px system-ui,sans-serif;fill:#25494b}
+.column-stores{display:grid;gap:8px;margin:16px 0}
+.column-stores>div{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px;border-radius:9px}
+.column-stores strong{font-size:1.5rem;white-space:nowrap}
+.column-surface{background:#f6e9dc;border-left:7px solid #b56b3b}
+.column-lower{background:#e3f0f7;border-left:7px solid #286a91}
+.column-ledger{width:100%;border-collapse:collapse;margin:18px 0}
+.column-ledger caption{text-align:left;font-weight:650;padding:8px 0}
+.column-ledger th,.column-ledger td{padding:9px 6px;border-bottom:1px solid #d7e3dc}
+.column-ledger th{text-align:left;font-weight:500}.column-ledger td{text-align:right;font-variant-numeric:tabular-nums}
+#heat-column details{margin-top:16px}#heat-column summary{cursor:pointer;font-weight:650}
+#heat-column details p{overflow-wrap:anywhere}
+@media(max-width:560px){#heat-column fieldset{padding:12px}.column-stores>div{padding:14px}.column-stores strong{font-size:1.25rem}.column-ledger th{max-width:190px}#column-chart{margin-left:0;margin-right:0}}
