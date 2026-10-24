@@ -37,6 +37,7 @@ export async function receiveInfiltration({ evaluate, send, delay, report }) {
   await run(); assert.equal(await state(), 'one-survivor');
   assert.equal(await evaluate("document.querySelector('.study-candidate').dataset.rate"), '10');
   assert.equal(await evaluate("document.querySelectorAll('.study-candidate').length"), 3);
+  assert.ok(!(await evaluate("document.querySelector('.study-candidate').textContent")).includes('0.000000000000'));
   assert.ok((await evaluate("document.querySelector('#study-results').textContent")).includes('1 calibration · 1 held aside'));
   assert.ok((await evaluate("document.querySelector('.study-candidate details').textContent")).includes('analytic held-aside fixture'));
   const saved = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
@@ -64,6 +65,45 @@ export async function receiveInfiltration({ evaluate, send, delay, report }) {
   assert.deepEqual(JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')")).infiltrationStudy.ratesMmHr, [0, 10, 20]);
   await evaluate("document.querySelector('#study-rates').value='0, 10, 20'"); await run();
   report.push('invalid candidate edit is refused without corrupting saved study');
+
+  const broad = JSON.parse(saved); broad.observations[0].uncertaintyMm = 5;
+  await importProject(JSON.stringify(broad)); await run();
+  await evaluate("document.querySelector('[data-brush=garden]').click();document.querySelector('#find-infiltration-reading').click()");
+  const questionText = await evaluate("document.querySelector('#infiltration-question').textContent");
+  assert.ok(questionText.includes('A1, 60 min'), questionText);
+  assert.ok(questionText.includes('20 mm difference'), questionText);
+  assert.ok(questionText.includes('Held-aside values do not choose this question'), questionText);
+  assert.equal(await evaluate("document.querySelector('#prepare-infiltration-reading').hidden"), false);
+  const beforeQuestion = JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));
+  await evaluate("document.querySelector('#prepare-infiltration-reading').click()");
+  assert.equal(await evaluate("document.querySelector('#obs-minute').value"), '60');
+  assert.equal(await evaluate("document.querySelector('#obs-scenario').value"), 'existing');
+  assert.equal(await evaluate("document.querySelector('#obs-use').value"), 'challenge');
+  assert.equal(await evaluate("document.querySelector('[data-brush=inspect]').getAttribute('aria-pressed')"), 'true');
+  const afterQuestion = JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));
+  assert.deepEqual(afterQuestion.observations, beforeQuestion.observations);
+  assert.deepEqual(afterQuestion.existing, beforeQuestion.existing);
+  assert.deepEqual(afterQuestion.proposal, beforeQuestion.proposal);
+  report.push('calibration-candidate question prepares location/time/role without painting or inventing observations');
+
+  await evaluate("document.querySelector('#obs-depth').value='20.001';document.querySelector('#obs-uncertainty').value='0.01';document.querySelector('#obs-source').value='new author-supplied analytic reading';document.querySelector('#observe-form').requestSubmit()");
+  const submitted = JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));
+  assert.equal(submitted.observations.length, 3);
+  assert.equal(submitted.observations[2].scenario, 'existing');
+  assert.equal(submitted.observations[2].use, 'challenge');
+  assert.equal(submitted.observations[2].depthMm, 20.001);
+  assert.equal(submitted.observations[2].uncertaintyMm, 0.01);
+  report.push('new sourced reading is retained only after explicit form submit, preserving fractional values');
+
+  const dry = structuredClone(broad); dry.weather.rainMmHr = 0;
+  dry.observations.forEach(o => { o.depthMm = 0; o.uncertaintyMm = 0; });
+  await importProject(JSON.stringify(dry)); await run();
+  await evaluate("document.querySelector('#find-infiltration-reading').click()");
+  assert.ok((await evaluate("document.querySelector('#infiltration-question').textContent")).includes('predict the same depths'));
+  assert.equal(await evaluate("document.querySelector('#prepare-infiltration-reading').hidden"), true);
+  report.push('dry indistinguishable event refuses to manufacture a useful measurement');
+  await importProject(JSON.stringify(broad)); await run();
+  await evaluate("document.querySelector('#find-infiltration-reading').click()");
 
   await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   await delay(100);

@@ -1,9 +1,13 @@
 import { SURFACES } from './core.js';
 import { DEFAULT_STUDY, validateStudy } from './study-contract.js';
 import { compareInfiltration } from './infiltration-study.js';
+import { chooseInfiltrationQuestion } from './infiltration-question.js';
 
 const $ = id => document.getElementById(id);
-const number = n => n === null ? '—' : n.toLocaleString('en-US', { maximumSignificantDigits: 5 });
+const number = n => n === null ? '—' : n.toLocaleString('en-US', {
+  maximumSignificantDigits: 5, notation: n !== 0 && Math.abs(n) < 0.001 ? 'scientific' : 'standard',
+});
+const errorNumber = n => n !== null && n !== 0 && Math.abs(n) < 1e-9 ? '≈ 0' : number(n);
 function element(tag, text, className) {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -44,14 +48,23 @@ export function evidenceControls(reading, changed) {
   return row;
 }
 
-export function mountInfiltrationPanel({ getProject, changed, notice }) {
+export function mountInfiltrationPanel({ getProject, changed, notice, prepareReading }) {
   const button = $('compare-infiltration');
+  let question = null;
+  function clearQuestion() {
+    question = null;
+    $('find-infiltration-reading').disabled = true;
+    $('prepare-infiltration-reading').hidden = true;
+    $('infiltration-question').textContent = '';
+  }
   $('infiltration-form').addEventListener('input', () => {
+    clearQuestion();
     $('study-results').replaceChildren();
     $('study-status').dataset.state = 'not-compared';
     $('study-status').textContent = 'Choices changed. Compare again to evaluate these candidates; the site parameters remain unchanged.';
   });
   function refresh() {
+    clearQuestion();
     const study = getProject().infiltrationStudy ?? DEFAULT_STUDY;
     $('study-target').value = study.target;
     $('study-surface').value = study.surface;
@@ -61,6 +74,7 @@ export function mountInfiltrationPanel({ getProject, changed, notice }) {
     $('study-results').replaceChildren();
   }
   function show(report, project, study) {
+    $('find-infiltration-reading').disabled = false;
     $('study-status').textContent = statuses[report.status];
     $('study-status').dataset.state = report.status;
     const host = $('study-results'); host.replaceChildren();
@@ -76,7 +90,7 @@ export function mountInfiltrationPanel({ getProject, changed, notice }) {
       card.append(element('h3', `${number(candidate.rateMmHr)} mm/h`));
       for (const [key, name] of [['calibration', 'Calibration'], ['challenge', 'Held aside']]) {
         const metric = candidate[key];
-        card.append(element('p', `${name}: ${metric.count ? `${number(metric.rmseMm)} mm RMSE · ${metric.withinCount}/${metric.count} inside ± bands` : 'no assigned readings'}`, metric.compatible === false ? 'study-mismatch' : 'study-score'));
+        card.append(element('p', `${name}: ${metric.count ? `${errorNumber(metric.rmseMm)} mm RMSE · ${metric.withinCount}/${metric.count} inside ± bands` : 'no assigned readings'}`, metric.compatible === false ? 'study-mismatch' : 'study-score'));
       }
       card.append(element('p', `Run totals: ${number(candidate.absorbedLiters)} L infiltrated · ${number(candidate.exitLiters)} L edge outflow · ${number(candidate.storedLiters)} L stored.`, 'mini-note'));
       const errors = [...candidate.calibration.errors, ...candidate.challenge.errors];
@@ -109,6 +123,28 @@ export function mountInfiltrationPanel({ getProject, changed, notice }) {
       show(compareInfiltration(project, study), project, study);
     } catch (error) { notice(error.message); }
     finally { button.disabled = false; }
+  });
+  $('find-infiltration-reading').addEventListener('click', () => {
+    try {
+      const project = getProject();
+      const result = chooseInfiltrationQuestion(project);
+      const output = $('infiltration-question');
+      question = result.status === 'question' ? result : null;
+      $('prepare-infiltration-reading').hidden = !question;
+      if (!question) {
+        output.textContent = result.status === 'insufficient-alternatives'
+          ? 'A separating question needs at least two calibration-compatible rates. Assign calibration readings or revise contradicted assumptions first.'
+          : result.status === 'all-recorded'
+            ? 'Every retained solver cell/time point has an assigned reading for this scenario. No new point is suggested.'
+            : 'The compatible candidates predict the same depths at all evaluated points. This modeled event cannot distinguish those rates.';
+        return;
+      }
+      const cell = `${String.fromCharCode(65 + question.cellIndex % project.width)}${Math.floor(question.cellIndex / project.width) + 1}`;
+      output.textContent = `Compare a reading at ${cell}, ${question.minute} min in the ${question.target} scenario. Calibration-compatible predictions span ${number(question.minDepthMm)}–${number(question.maxDepthMm)} mm (${number(question.spanMm)} mm difference): ${question.predictions.map(p => `${number(p.rateMmHr)} mm/h → ${number(p.depthMm)} mm depth`).join('; ')}. Largest difference among ${question.evaluatedCount} unrecorded cell/time points on the ${question.stepMinutes}-minute solver grid; ${question.excludedCount} already recorded points excluded. This is a disagreement heuristic, not expected information gain. Held-aside values do not choose this question. A measurement still needs an appropriate source and tolerance.`;
+    } catch (error) { notice(error.message); }
+  });
+  $('prepare-infiltration-reading').addEventListener('click', () => {
+    if (question) prepareReading(question);
   });
   return { refresh };
 }

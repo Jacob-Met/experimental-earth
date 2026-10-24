@@ -138,7 +138,7 @@ $('suggest-infiltration').addEventListener('click',()=>{
 });
 $('observe-form').addEventListener('submit',event=>{
   event.preventDefault();
-  const o={cellIndex:project.selectedIndex,minute:Number($('obs-minute').value),depthMm:Number($('obs-depth').value),uncertaintyMm:Number($('obs-uncertainty').value),source:$('obs-source').value.trim()};
+  const o={cellIndex:project.selectedIndex,minute:Number($('obs-minute').value),depthMm:Number($('obs-depth').value),uncertaintyMm:Number($('obs-uncertainty').value),source:$('obs-source').value.trim(),scenario:$('obs-scenario').value,use:$('obs-use').value};
   project.observations.push(o);
   try{validateProject(project);rerun();$('obs-depth').value='';$('obs-source').value='';notice(`Observation for ${nameCell(o.cellIndex)} retained locally.`);}catch(err){project.observations.pop();notice(err.message);}
 });
@@ -152,5 +152,20 @@ $('import').addEventListener('change',async event=>{
   try {if(file.size>1_000_000)throw Error('Project file exceeds 1 MB limit');const parsed=JSON.parse(await file.text());validateProject(parsed);project=parsed;syncForm();rerun();notice('Validated project imported.');}
   catch(err){notice(`Import refused: ${err.message}`);}finally{event.target.value='';}
 });
-const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice });
+const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice,
+  prepareReading: question => {
+    project.selectedIndex = question.cellIndex;
+    $('obs-minute').value = question.minute;
+    $('obs-scenario').value = question.target;
+    $('obs-use').value = 'challenge';
+    brush = 'inspect';
+    for (const el of document.querySelectorAll('[data-brush]')) {
+      const active = el.dataset.brush === 'inspect';
+      el.classList.toggle('active', active); el.setAttribute('aria-pressed', String(active));
+    }
+    rerun();
+    $('obs-depth').focus();
+    notice('Location, time and evidence role prepared. Enter an actual reading and source to retain it.');
+  },
+});
 syncForm();rerun();

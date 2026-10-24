@@ -17,6 +17,7 @@
 .study-candidate li{margin:12px 0}
 .study-mismatch{color:#963d22}
 .study-score,.study-counts{color:#34564c}
+.study-question-actions{justify-content:flex-start;margin:16px 0}
 .evidence-controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .evidence-controls label{font-size:.72rem;color:#4b665d;display:grid;gap:4px;min-width:0}
 .evidence-controls select{max-width:100%;font:inherit;padding:7px;border:1px solid #c9d9d1;border-radius:6px;background:white;color:#26463c}
