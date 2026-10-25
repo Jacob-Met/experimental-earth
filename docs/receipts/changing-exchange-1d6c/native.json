@@ -1,0 +1,22 @@
+{
+  "schema": "earth.changing-exchange-native/v1",
+  "runtime": "Node22.23.4 / Linux / cursor",
+  "command": "node tests/changing-heat-exchange.test.mjs",
+  "tests": 5,
+  "passed": 5,
+  "failed": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "durationMs": 15.473075,
+  "productionOverlaySHA256": "bbd1661d3e45b9f89cf33650b3387a62448584705d1cdcbb5b14351d6a83c03c",
+  "dependencyOverlaySHA256": "e1d7502194e61509b9e5a8371774f8d363badbfd3f776c8efff8415b066cbb04",
+  "finalBrowser": {
+    "command": "PORT=18745 RECEIVING_OUT=/tmp/earth-changing-exchange-final-receiving node tests/changing-heat-exchange.receiving.mjs",
+    "exit": 0,
+    "seconds": 2.3282562000094913,
+    "checks": 9,
+    "labelOverlaySHA256": "5124d85ace7298dcc2e19e502e701ecd27b3d85b4b1cf6ee105cdf024f029fbb",
+    "screenshotsVisuallyInspected": true
+  },
+  "limits": "Authored uniform-layer histories and readings; no field validation or deployment."
+}
