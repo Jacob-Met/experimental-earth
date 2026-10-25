@@ -1,9 +1,11 @@
+import { validateRasterOrigin } from './terrain-raster-contract.js';
 /** Supplied survey provenance, not independent verification of site geometry. */
 export const ELEVATION_UNITS = Object.freeze({ m: 1, cm: 0.01, mm: 0.001 });
 const finite = value => typeof value === 'number' && Number.isFinite(value);
 const text = (value, max) => typeof value === 'string' && value.trim().length > 0 && value.length <= max;
 
 export function validateTerrainOrigin(cell, cellSizeM) {
+  validateRasterOrigin(cell, cellSizeM, ELEVATION_UNITS);
   if (cell.terrainSource === undefined) return;
   const origin = cell.terrainSource;
   if (!origin || origin.kind !== 'supplied-elevation-table/1' ||

@@ -1,0 +1,21 @@
+{
+  "dataset": "USGS Data Series 684, DEM 1, North-Central California Coast",
+  "upstream": "https://pubs.usgs.gov/ds/684/ds684_DEM_ASCII_files/DEM_1_ASCII.asc.zip",
+  "metadata": "https://pubs.usgs.gov/ds/684/ds684_metadata/NCenCA_DEM_FGDCmetadata.html",
+  "acquiredDateUtc": "2026-10-25",
+  "archiveSha256": "3ac33712bcba1dd673f609854387a30ab51bca044001b5b7651ca15c600f098e",
+  "originalEntry": "DEM_1_ASCII.asc",
+  "originalEntryBytes": 412580611,
+  "originalHeader": {"ncols":8240,"nrows":6985,"xllcorner":536483,"yllcorner":4140283,"cellsize":2,"nodata_value":-9999},
+  "firstOriginalRow": 4,
+  "firstOriginalColumn": 4800,
+  "windowWidth": 8,
+  "windowHeight": 6,
+  "windowSha256": "6a48a02fa1de3f47f35dc107d5f1a39c951815bcba4f8e6c7bbbbf5de3e4d0d0",
+  "horizontalReference": "NAD83 / UTM zone 10N; metres",
+  "verticalReference": "NAVD88; metres",
+  "selection": "First complete 8 by 6 original window in top-to-bottom then left-to-right order with every value present and within 10 metres of its first sample.",
+  "derivation": "Original sample tokens retained unchanged; dimensions and lower-left origin rewritten only to describe the selected window. No interpolation or added observation.",
+  "use": "Historical public source-acquisition control. Acknowledge USGS, the dataset originator. Not suitable for navigation. Hypothetical surface and rainfall settings are not observed site conditions; successful import is not environmental prediction validation.",
+  "uncertainty": "No per-sample uncertainty is supplied by this ASCII input. Metadata altitude resolution is not interpreted as measurement uncertainty."
+}

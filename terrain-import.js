@@ -58,6 +58,10 @@ export function applyTerrainPreview(project, preview, target) {
   if (!preview || preview.context !== JSON.stringify(project)) throw new Error('Project changed since preview. Preview the table again.');
   if (!Array.isArray(preview.cells) || preview.cells.length !== project.width * project.height) throw new Error('Invalid terrain preview');
   const next = structuredClone(project);
-  next[target] = next[target].map((cell, i) => ({ ...cell, ...structuredClone(preview.cells[i]) }));
+  next[target] = next[target].map((cell, i) => {
+    const result = { ...cell, ...structuredClone(preview.cells[i]) };
+    delete result.rasterSource;
+    return result;
+  });
   return validateProject(next);
 }

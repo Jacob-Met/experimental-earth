@@ -1,7 +1,9 @@
 import { previewTerrainTable, applyTerrainPreview } from './terrain-import.js';
+import { mountTerrainRasterImport } from './terrain-raster-panel.js';
 
 const $ = id => document.getElementById(id);
 export function mountTerrainImport({ getProject, replaceProject, notice }) {
+  const rasterImporter = mountTerrainRasterImport({ getProject, replaceProject, notice });
   let preview = null, generation = 0;
   function clear() {
     generation++; preview = null;
@@ -10,6 +12,7 @@ export function mountTerrainImport({ getProject, replaceProject, notice }) {
   }
   function refresh() {
     clear();
+    rasterImporter.refresh();
     $('terrain-status').textContent = 'Preview a complete table for the current grid. A changed project clears the preview.';
   }
   for (const id of ['terrain-datum', 'terrain-spacing']) $(id).addEventListener('input', refresh);

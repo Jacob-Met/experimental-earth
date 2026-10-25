@@ -48,7 +48,7 @@
           <p class="caption">Each square is one modeled cell. Overlaid blue indicates simulated depth, not observed water. Elevations use a local model datum; inspect a cell for its supplied source.</p>
         </section>
         <section class="panel" aria-labelledby="terrain-title">
-          <h2 id="terrain-title">Bring in a surveyed elevation grid</h2>
+          <h2 id="terrain-title">Bring in terrain elevations</h2>
           <p class="mini-note">CSV columns: <code>cell,elevation,uncertainty,unit,source</code>. Supply every current grid cell exactly once. Units are m, cm or mm for both elevation and ± uncertainty. Values must be relative to one common local datum (−10 to 10 m). Cell labels refer to this grid, not geographic coordinates.</p>
           <div class="input-pair"><label class="input-label">Common local elevation datum<input id="terrain-datum" maxlength="160" placeholder="e.g. marked courtyard reference point"></label><label class="input-label">Survey cell spacing (m)<input id="terrain-spacing" type="number" min="0.25" max="100" step="any" placeholder="Must match grid cell width"></label></div>
           <label class="input-label">Grid to receive elevations<select id="terrain-target"><option value="existing">Existing site only</option><option value="proposal">Proposed site only</option></select></label>

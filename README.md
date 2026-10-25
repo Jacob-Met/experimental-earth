@@ -195,6 +195,8 @@ Candidates come from the saved depth-calibration study, with the outlet coeffici
 
 ## Import a supplied elevation grid
 
+The terrain section also receives **original ESRI ASCII elevation rasters**: select a source window, preview its original samples and apply them to either or both site grids without per-cell CSV transcription. Original units, coordinates, file identity and the local vertical reference survive project export/reopen; unspecified measurement uncertainty stays unspecified. See [raster intake and its actual USGS source control](docs/TERRAIN_RASTER.md).
+
 The surveyed elevation panel accepts a complete CSV for the current grid with columns `cell,elevation,uncertainty,unit,source`. Units are `m`, `cm`, or `mm`; elevation and supplied ± uncertainty share the row unit. Supply a common named local datum and grid cell spacing. Spacing must equal the current model cell width. Elevations must lie between −10 and 10 metres relative to that datum; absolute geographic heights need an explicit local reference before import. No datum or geographic registration is inferred.
 
 Preview is read-only. Apply replaces only the selected scenario's elevations and provenance while retaining its surfaces, the other scenario and observations. Check whether retained observations still describe that geometry. All grid cells must appear exactly once; malformed, incomplete, duplicate or out-of-grid rows refuse the entire import. A changed project or changed preview settings invalidates the preview. File, physical source line, original unit quantities, datum and spacing survive portable JSON and reload. Inspect a cell to see its supplied source. Raising or lowering a cell discards its obsolete survey origin; surface-only edits retain the elevation origin.
