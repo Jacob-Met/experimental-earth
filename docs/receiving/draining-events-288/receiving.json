@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "03a51f08a9e6ae644b656ba305ded138a04405ba",
+  "sourceTree": "37bec0551d715779411531e98bc870c23d1a9d69",
+  "completeCanonicalSourceTreeMatched": true,
+  "exactGitHeadMatched": true,
+  "native": {
+    "pass": 1030,
+    "fail": 0,
+    "skip": 0,
+    "command": "node --test --test-concurrency=2 with all maintained tests/*.test.mjs"
+  },
+  "browser": {
+    "pass": 9,
+    "command": "node tests/draining-events.receiving.mjs",
+    "sandbox": "Chrome/156.0.8078.47",
+    "sandboxAdmitted": true,
+    "checks": [
+      "four original hypotheses, two first-event fits and one independently challenged survivor with analytic source prediction and no site adoption",
+      "actual complete source-only download and fresh390px reopen preserve original hypotheses, roles and declarations",
+      "changing only second-event depth changes survival without refitting original calibration",
+      "a passing second event cannot revive first-event held-aside rejection; all rows and empty consequence groups remain",
+      "freezing current original evidence and matching one-event challenge retains independent snapshots when parent declarations change",
+      "changed hypothesis basis refuses challenge import without substituting hypotheses or losing original event snapshots",
+      "cached conclusions and malformed UTF8 refuse with accepted original snapshots intact and old report retired",
+      "reference edits retire delayed source files and immediately reset picker for same-file retry",
+      "actual frozen-source controls and complete result rows received at desktop and390px without overflow or runtime exceptions"
+    ]
+  },
+  "independentReview": {
+    "core": "MICROVERSE analytic check across1,5,30 minute steps; observed error below4.3e-14.",
+    "ui": "SKILL source replacement, source-only replay, generation fences and reference custody; no blocker."
+  },
+  "visualReview": "Root inspected actual desktop source, desktop result and390px captures.",
+  "limitations": "Fictional conditional hydraulics; matching site, event independence and initial water are declared, not physically established; no state carryover or deployment."
+}
