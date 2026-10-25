@@ -1,0 +1,23 @@
+{
+  "reviewer": "hamon-551724dc/mechanism",
+  "result": "No blocking issue found in bounded source review",
+  "scope": "Mean-vs-endpoint handling; calibration/challenge custody; unchanged source; coefficient guards. No browser receipt. Underlying operators remain separately owned.",
+  "tests": {
+    "command": "node --test --test-isolation=none tests/heat-column-average-question.test.mjs tests/heat-column-question.test.mjs",
+    "runtime": "Node24.19.0",
+    "pass": 16,
+    "fail": 0
+  },
+  "notes": [
+    "Actual surfaceMeanC consumed rather than endpoint temperature",
+    "Calibration alone selects alternatives; challenge values do not choose support",
+    "Closed-support exclusion conservative, does not assert independence",
+    "Engineering arithmetic guard remains heuristic, not certified bound",
+    "UI visibly raises earliest report time on selecting averaging; document this behavior"
+  ],
+  "sha256": {
+    "earth-average-experiment/heat-column-question.js": "e3f529237be77814130db82260a7de15bf75497ae89ba735ac005f4e38de3b95",
+    "earth-average-experiment/heat-column-question-panel.js": "9b5de6dbd9872aa9f49bda3eb3912c59e7f4a6a0cc891dbf49be39874ebee913",
+    "earth-average-experiment/tests/heat-column-average-question.test.mjs": "393e3d50589f86d85f127b88368043134319f517e3d21a56f7537352b5831715"
+  }
+}

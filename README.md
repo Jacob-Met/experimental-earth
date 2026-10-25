@@ -275,8 +275,9 @@ Readings can also declare an **interval mean**, with explicit start and end. The
 ### Choose another surface-temperature reading
 
 The **When could a surface reading distinguish hidden stores?** panel compares
-prospective instantaneous readings across calibration-compatible two-store
-alternatives. Declare a time window, a bounded sampling grid and a measurement
+prospective instantaneous or interval-mean readings across calibration-compatible
+two-store alternatives. Mean questions retain an explicit sensor averaging duration
+and complete time support. Declare a time window, a bounded sampling grid and a measurement
 half-width; inspect the proposed time, every predicted band and every unresolved
 pair. Challenge values never select the question, and no observed value or source
 is fabricated. See [the prospective heat-reading question](docs/HEAT_COLUMN_QUESTION.md)

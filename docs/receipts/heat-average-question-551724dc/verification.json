@@ -1,0 +1,50 @@
+{
+  "issue": 166,
+  "qualifiedBaseCommit": "a4f0c574d9cd28570ba4a135e5d16aae465ffa69",
+  "qualifiedBaseTree": "9bdbf03c86c917248ee9043b8a720aeda2ff3223",
+  "runtimeArchiveSha256": "dc05b2111c0844581face0819a79b141cd7e53b27a20f919da00f326301812e2",
+  "sourceSnapshotCommit": "4b4e908dc0f663e330f066360af2225eba22292b",
+  "sourceSnapshotMeaning": "Local receiving snapshot, not an upstream Git commit",
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "runtime": "Node22.23.4",
+    "passed": 602,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 8.114,
+    "receivingLog": "/tmp/hamon-551724dc-earth/earth-average-final-step0.log"
+  },
+  "browser": {
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/heat-column-question.browser.mjs",
+    "groupsPassed": 3,
+    "exceptions": [],
+    "receipt": "browser.json records earlier c977-based run; current composed run passed three groups as recorded in receiving log",
+    "receivingLog": "/tmp/hamon-551724dc-earth/earth-average-final-step1.log"
+  },
+  "changedSourceSha256": {
+    "README.md": "9aef4c45aa469c5a4e0a7cb13d898f36f8ac06f019bf7552b7866b4b8f288f6e",
+    "docs/HEAT_COLUMN_QUESTION.md": "0f68257259c4dd0af06c26cb7b733f1e8f73b9572dbc8db80e9ce2e77c60b297",
+    "heat-column-question-panel.js": "e8d471149c7d8a43cd68d602315c6ddf94e21c7e14affae56c8eacec38dfb94a",
+    "heat-column-question.js": "a6f7231f535ba839fc98d07aeb555bf36bc09f0ee142d31adb9c5214fa136efc",
+    "tests/heat-column-average-question.test.mjs": "04a20ade67aeec28e71ba7fd79c803ac54a8b3bf66886975b802cd0d06d142a5",
+    "tests/heat-column-question.browser.mjs": "c440e6b47c0fb117bf55d6c9ab11e2c812cec0e6bf517b07cca31c8156c261ba"
+  },
+  "qualificationLimits": [
+    "Authored synthetic hypotheses; no field validation or recommendation to deploy a sensor",
+    "Finite declared grid; not continuous-time optimization",
+    "Closed support exclusion is a conservative policy, not proof of statistical independence",
+    "Numerical guard is an engineering allowance, not a certified error bound"
+  ],
+  "peerReviewScope": "review.json records earlier exact hashes and 16 tests. Final packet additionally fixes short-exposure query wording, documents closed support, rejects collapsed time grids, and adds two tests. Final full receiving qualifies 602 tests.",
+  "screenshots": {
+    "source": "prior c977-based receiving with unchanged question core/panel/browser code",
+    "desktop": "desktop.png",
+    "narrow": "narrow.png"
+  },
+  "priorQualification": {
+    "base": "c97797d4c78134bf54d27647c3a3f6621c533af6",
+    "nativePassed": 578,
+    "browserGroupsPassed": 3,
+    "rawBrowserReceipt": "browser.json"
+  }
+}

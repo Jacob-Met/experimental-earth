@@ -1,0 +1,23 @@
+{
+  "operatorSource": "Merged #144 analytic mean operator; identical bytes to staged independent receiving",
+  "independentMethod": "SciPy augmented affine matrix exponentials and cumulative temperature integrals",
+  "windowsMinutes": [
+    [
+      72,
+      132
+    ],
+    [
+      123,
+      183
+    ]
+  ],
+  "candidateCount": 5,
+  "comparisonCount": 10,
+  "maximumAbsoluteDifferenceC": 2.2382096176443156e-13,
+  "fieldValidation": false,
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  }
+}
