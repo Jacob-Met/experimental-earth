@@ -1,0 +1,49 @@
+{
+  "schema": "hamon-product-receiving/v1",
+  "issue": "https://github.com/Jacob-Met/experimental-earth/issues/285",
+  "team": "hamon-e95e7d4e6bc8-20261025",
+  "compositionBase": "21807fd472263ef0479030b68b577f14cf0113d8",
+  "source": [
+    {
+      "path": "app.js",
+      "sha256": "12ca1bcc9ecbe5e54d4b070365b85c898f2527cd20f2bc467a6c6a7d83a396d2",
+      "gitBlob": "454dfc52052aa1e2e42d35333749f78c2c6081fd"
+    },
+    {
+      "path": "observed-shared-connection.js",
+      "sha256": "9fa25089418362114b12a59e79f7e7fbafdcfbab4d94f8942c30035b99116a24",
+      "gitBlob": "3f9e246fa5abf1ede563b4ae8b9ec1f746c81099"
+    },
+    {
+      "path": "observed-shared-connection-panel.js",
+      "sha256": "001367cd61d283a1bda178147a9d44b7b885200cbfa6bf795342a4eb49a0bab4",
+      "gitBlob": "0469d9afd6cf98f1e34d113b0254644e1f6dc87e"
+    },
+    {
+      "path": "tests/observed-shared-connection.test.mjs",
+      "sha256": "b522939a0259a109853a084d2ff4ea62c348ce0a847770e27f35739c7bf2671c",
+      "gitBlob": "cf64284e558e9de1a9d85f258234c3a357f17e78"
+    },
+    {
+      "path": "tests/observed-shared-connection.browser.mjs",
+      "sha256": "9c5c3a2f4607b3d862d0ffe71f4b36fb79fc2a59d2cde55ec528365c3590f22a",
+      "gitBlob": "0ecd6881b9090299c2625a98a83ed5d4fc56c1bf"
+    },
+    {
+      "path": "docs/SHARED_OBSERVED_CONNECTION.md",
+      "sha256": "a93fbd648a62e7f59f915a91945a167535f7c10f371874f605a6c2ff7f6a0c5c",
+      "gitBlob": "4290c67058debf9d84f4b0196f76fc7af0dcf020"
+    }
+  ],
+  "received": {
+    "runtime": "Node.js22.23.4; Chrome156.0.8078.47 with actual namespace/PID/network/seccomp sandbox",
+    "native": {
+      "passed": 19,
+      "failed": 0,
+      "nativeBase": "74967a9591a8e606396b33064341eb739426d506",
+      "browserBase": "ae711c50825f98ec3e28fec0bdc2580e3d53d457"
+    },
+    "browserGroups": 6
+  },
+  "scope": "Shared path over exact selected observed visits; no interpolation, between-visit condition or physical access claim"
+}

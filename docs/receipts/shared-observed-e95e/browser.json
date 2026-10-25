@@ -1,0 +1,70 @@
+{
+  "schema": "earth-shared-observed-browser/1",
+  "directory": "/tmp/earth285-browser-ZOiXSD",
+  "status": "passed",
+  "startedAt": "2026-10-25T18:26:19.879Z",
+  "checks": [
+    "different individually supported paths do not certify a shared path; isolated original source preserved",
+    "keyboard completed source-only download retains all original rows and roles",
+    "removed original readings become explicit unresolved cell/time pairs",
+    "inclusive support and missing intermediate visit remain distinct without interpolation",
+    "reopen recomputes original result preserving newer working notebook; desktop/390px",
+    "malformed and stale asynchronous reads cannot restore a successful result"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T18:26:20.368Z",
+    "completedAt": "2026-10-25T18:26:20.458Z",
+    "durationMs": 89.59268499999996,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "306A0C06BBD939352EF5C8AD1BCD0B79",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "BCAC4C9E2A1D21AD5530FBC0E4EDCD60"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "sourceHashes": {
+    "observed-shared-connection.js": "9fa25089418362114b12a59e79f7e7fbafdcfbab4d94f8942c30035b99116a24",
+    "observed-shared-connection-panel.js": "001367cd61d283a1bda178147a9d44b7b885200cbfa6bf795342a4eb49a0bab4",
+    "app.js": "12ca1bcc9ecbe5e54d4b070365b85c898f2527cd20f2bc467a6c6a7d83a396d2"
+  },
+  "pageErrors": [],
+  "completedAt": "2026-10-25T18:26:23.109Z"
+}
