@@ -1,3 +1,4 @@
+import {mountCommonClockPanel} from './common-clock-panel.js';
 import {mountReadingTimeWindowPanel} from './reading-time-window-panel.js';
 import {DEFAULT_STUDY} from './study-contract.js';
 import {
@@ -180,5 +181,6 @@ export function mountClockPanel({getProject,notice}){
   }finally{if(serial===importSerial)importInput.value='';}
  });
  const readingWindows=mountReadingTimeWindowPanel({getProject,notice});
- return {refresh:()=>{refresh();readingWindows.refresh();}};
+ const commonClock=mountCommonClockPanel({getProject,notice});
+ return {refresh:()=>{refresh();readingWindows.refresh();commonClock.refresh();}};
 }
