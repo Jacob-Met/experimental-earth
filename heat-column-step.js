@@ -1,5 +1,5 @@
 import { advanceSurfaceHeat } from './surface-heat.js';
-import { exponentialSurfaceLoss } from './heat-exponential-loss.js';
+import { exponentialSurfaceLoss,exponentialDrivenSurfaceLoss } from './heat-exponential-loss.js';
 
 // Exact-real propagator for two declared, internally uniform heat stores.
 // Computation is floating point; these are not certified interval bounds.
@@ -97,6 +97,19 @@ export function advanceHeatColumnWithLoss(surface, lower, interval, initial, sec
   return advanceColumn(surface, lower, interval, initial, seconds, loss);
 }
 
+/** Same propagator with a nonnegative loss approaching an explicit level.
+ * Rising and falling responses share stable analytic modal integrals. */
+export function advanceHeatColumnWithDrivenLoss(surface,lower,interval,initial,seconds,loss) {
+  if(!loss||!finite(loss.initialWm2,0,5000)||!finite(loss.equilibriumWm2,0,2e6)||
+    !finite(loss.decayPerSecond,0,1e100)||!finite(seconds,0,86400))throw Error('Driven loss needs supported nonnegative initial/equilibrium flux, rate and duration');
+  const z=loss.decayPerSecond*seconds,end=loss.initialWm2*Math.exp(-z)+loss.equilibriumWm2*(-Math.expm1(-z));
+  if(!finite(end,0,5000))throw Error('Driven loss exceeds 5000 W/m² during this interval');
+  if(loss.equilibriumWm2===0)return advanceHeatColumnWithLoss(surface,lower,interval,initial,seconds,loss);
+  if(loss.decayPerSecond===0||loss.initialWm2===loss.equilibriumWm2)
+    return advanceHeatColumnWithLoss(surface,lower,interval,initial,seconds,{initialWm2:loss.initialWm2,decayPerSecond:0});
+  return advanceColumn(surface,lower,interval,initial,seconds,loss);
+}
+
 function advanceColumn(surface, lower, interval, initial, seconds, loss) {
   validate(surface, lower, interval, initial, seconds);
   if (lower.conductanceWm2K === 0 && !loss) {
@@ -122,7 +135,8 @@ function advanceColumn(surface, lower, interval, initial, seconds, loss) {
   const meanChange = s.u.map((u, i) => seconds * (f.psi * u + diff.psi * s.projected[i]) / s.scale[i]);
   let surfaceLossJm2 = 0;
   if (loss) {
-    const response = exponentialSurfaceLoss(s, loss.initialWm2, loss.decayPerSecond, seconds);
+    const response = loss.equilibriumWm2===undefined?exponentialSurfaceLoss(s,loss.initialWm2,loss.decayPerSecond,seconds):
+      exponentialDrivenSurfaceLoss(s,loss.initialWm2,loss.equilibriumWm2,loss.decayPerSecond,seconds);
     for (let i = 0; i < 2; i++) {
       delta[i] += response.delta[i]; integral[i] += response.integral[i]; meanChange[i] += response.mean[i];
     }

@@ -175,3 +175,7 @@ longwave radiation, human comfort and crop suitability are omitted. Recharge
 association, effective thermal stores and latent fraction need independent
 qualification for a real place. No field validation, physical intervention,
 Nebius execution or deployment is claimed.
+
+## Explicit timing during the rain
+
+The separate [recharge-timing investigation](RECHARGE_COOLING.md) follows original native infiltration while the thermal exposure is running. It requires an explicit common event-start clock and compares interval recharge with the same water held until event end. This after-rain investigation and its original-reading inference retain their original source meaning.
