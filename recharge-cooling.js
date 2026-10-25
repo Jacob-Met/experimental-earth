@@ -23,7 +23,7 @@ export function validateRechargeCooling(project,study){
  if(retainedCellSteps>MAX_TRACE_CELL_STEPS)throw Error('Recharge cooling exceeds the maintained original rain-trace work limit');
  return {...work,durationMinutes,retainedCellSteps,eventMinutes:project.weather.durationMinutes};
 }
-function coupled(cooling,side,capacityMm,forcingIndex,rechargeMmPerDay,initial,seconds){
+function coupled(cooling,side,capacityMm,forcingIndex,rechargeMmPerDay,initial,seconds,withMeans=false){
  const heat=cooling.heatColumn,surface=heat.heatStudy[side],lower=heat.lowerLayers[side],root=cooling.roots[side];
  const water=advanceRootZoneForcedWithSupply({availableMm:initial.availableMm,capacityMm,depletionFraction:root.depletionFraction,
   rechargeMmPerDay,demandMmPerDay:cooling.demands[forcingIndex].potentialTranspirationMmPerDay,days:seconds/86400});
@@ -40,7 +40,7 @@ function coupled(cooling,side,capacityMm,forcingIndex,rechargeMmPerDay,initial,s
  }
  const next={...state,availableMm:water.availableMm};
  for(const key of accountKeys)next[key]=initial[key]+(key in thermal?thermal[key]:water[key]);
- return next;
+ return withMeans?{state:next,surfaceMeanC:seconds>0?thermal.surfaceIntegralCSeconds/seconds:initial.surfaceC,subsurfaceMeanC:seconds>0?thermal.subsurfaceIntegralCSeconds/seconds:initial.subsurfaceC}:next;
 }
 function pulse(state,rechargeMm,capacityMm){
  const retained=Math.min(rechargeMm,Math.max(0,capacityMm-state.availableMm));
@@ -116,4 +116,37 @@ export function parseRechargeCooling(text){
  if(typeof text!=='string'||new TextEncoder().encode(text).byteLength>COOLING_FILE_LIMIT)throw Error('Recharge cooling investigation must be UTF-8 JSON up to 5 MiB');
  const value=JSON.parse(text);if(!exact(value,['schema','project','study'])||value.schema!==RECHARGE_COOLING_FILE)throw Error('Unsupported recharge cooling source file; derived conclusions are not accepted');
  validateRechargeCooling(value.project,value.study);return value;
+}
+
+/** Reuse already accepted original infiltration for a thermal fraction variant.
+ * Original water declarations and the timing clock remain fixed. */
+export function rechargeCoolingFractionVariant(result,side,fraction){
+ if(result?.schema!=='experimental-earth-recharge-cooling-result/1'||!sides.includes(side)||!finite(fraction,0,1))throw Error('Use a computed original recharge source, selected place and fraction from0to1');
+ const cooling={...result.study.cooling,surfaceLatentFraction:{...result.study.cooling.surfaceLatentFraction,[side]:fraction}};
+ const original={intervals:result[side].originalIntervals,rechargeMm:result[side].originalRechargeMm};
+ const variant={...result,study:{...result.study,cooling},[side]:{...result[side],
+  ...Object.fromEntries(kinds.map(kind=>[kind,profile(cooling,side,original,kind,result.durationMinutes,result.eventMinutes)]))}};
+ delete variant.trajectory;delete variant.final;return variant;
+}
+/** Direct interval means integrate local analytic means across native forcing
+ * boundaries. They never subtract two large cumulative thermal integrals. */
+export function evaluateRechargeCoolingTarget(result,side,kind,minutes=[],windows=[]){
+ if(result?.schema!=='experimental-earth-recharge-cooling-result/1'||!sides.includes(side)||!kinds.includes(kind))throw Error('Use a computed recharge timing and selected place/course');
+ const duration=result.durationMinutes;
+ if(!Array.isArray(minutes)||!Array.isArray(windows)||minutes.length+2*windows.length>2000||
+  Array.from(minutes).some(t=>!finite(t,0,duration))||Array.from(windows).some(w=>!w||!finite(w.fromMinute,0,duration)||!finite(w.minute,0,duration)||!(w.minute>w.fromMinute)))
+  throw Error('Request finite times and nonempty windows within the recharge exposure and2000endpoint work limit');
+ const times=[...new Set([0,duration,...minutes,...windows.flatMap(w=>[w.fromMinute,w.minute])])].sort((a,b)=>a-b),p=result[side][kind];
+ const averages=windows.map(window=>{
+  let surfaceMeanC=0,subsurfaceMeanC=0,totalWeight=0,segments=0;
+  for(const row of p.segments){
+   const from=Math.max(window.fromMinute,row.startMinute),to=Math.min(window.minute,row.endMinute);if(!(to>from))continue;
+   const initial=at(result,side,kind,from);
+   const step=coupled(result.study.cooling,side,p.capacityMm,row.forcingIndex,row.rechargeMmPerDay,initial,(to-from)*60,true);
+   const weight=(to-from)/(window.minute-window.fromMinute);surfaceMeanC+=step.surfaceMeanC*weight;subsurfaceMeanC+=step.subsurfaceMeanC*weight;totalWeight+=weight;segments++;
+  }
+  if(!(totalWeight>0)||![surfaceMeanC,subsurfaceMeanC,totalWeight].every(Number.isFinite))throw Error('The recharge averaging window could not be completely evaluated');
+  return {...window,durationMinutes:window.minute-window.fromMinute,surfaceMeanC:surfaceMeanC/totalWeight,subsurfaceMeanC:subsurfaceMeanC/totalWeight,segments};
+ });
+ return {trajectory:times.map(minute=>at(result,side,kind,minute)),averages};
 }
