@@ -1,3 +1,4 @@
+import {mountRootZoneTiming} from './root-zone-timing-panel.js';
 import {serializeRootZoneInvestigation, parseRootZoneInvestigation, checkRootZoneFileBytes, ROOT_ZONE_MEANING} from './root-zone-study.js';
 import {rootZoneAtDay} from './root-zone.js';
 import {compareRootZoneFactors} from './root-zone-factors.js';
@@ -28,10 +29,10 @@ export function mountRootZone({getProject}) {
  document.querySelector('.observations').before(panel);
  const $=id=>panel.querySelector('#rz-'+id);
  $('meaning').textContent=ROOT_ZONE_MEANING;
- let opened=null,accepted=null,generation=0,busy=false,key='',factorInspector=null;
+ let opened=null,accepted=null,generation=0,busy=false,key='',factorInspector=null,timingPanel=null;
  const source=()=>opened??getProject();
  function setStatus(text,state){$('status').textContent=text;$('status').dataset.state=state;}
- function invalidate(message){generation++;busy=false;accepted=null;factorInspector=null;$('results').replaceChildren();$('save').disabled=true;$('run').disabled=false;setStatus(message,'draft');}
+ function invalidate(message,preserveTiming=false){if(!preserveTiming)timingPanel?.invalidate(message);generation++;busy=false;accepted=null;factorInspector=null;$('results').replaceChildren();$('save').disabled=true;$('run').disabled=false;setStatus(message,'draft');}
  function numbers(id){const s=$(id).value;if(!s.trim())throw Error('Enter every declared property and interval');const n=Number(s);if(!Number.isFinite(n))throw Error('Enter finite numeric declarations');return n;}
  function addInterval(row={}){
   const box=node('fieldset');box.className='rz-interval';
@@ -132,16 +133,17 @@ export function mountRootZone({getProject}) {
  };
  $('save').onclick=()=>{if(!accepted||busy)return;try{const text=serializeRootZoneInvestigation(accepted.project,accepted.study),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=node('a');a.href=url;a.download='experimental-earth-root-zone.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){setStatus(e.message,'refused');}};
  $('open').onchange=async()=>{
-  const file=$('open').files?.[0];if(!file)return;const token=++generation;busy=true;$('run').disabled=true;$('save').disabled=true;setStatus('Checking original investigation…','opening');
+  const file=$('open').files?.[0];if(!file)return;timingPanel?.cancelPending();const token=++generation;busy=true;$('run').disabled=true;$('save').disabled=true;setStatus('Checking original investigation…','opening');
   try{checkRootZoneFileBytes(file.size);const bytes=await file.arrayBuffer();if(token!==generation)return;
    const original=parseRootZoneInvestigation(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
    const report=compareRootZoneFactors(original.project,original.study);if(token!==generation)return;
    opened=original.project;key=JSON.stringify(opened);
    $('cell').replaceChildren(...opened.existing.map((_,i)=>{const o=node('option',name(opened,i));o.value=String(i);return o;}));
-   fill(original.study);install(opened,original.study,report);refresh();setStatus('Recomputed from the file’s original site and declarations. Active site unchanged.','reopened');
+   timingPanel?.invalidate('Original rooted-store inputs changed. Compare timing again.');fill(original.study);install(opened,original.study,report);refresh();setStatus('Recomputed from the file’s original site and declarations. Active site unchanged.','reopened');
   }catch(e){if(token===generation)setStatus(e.message+' Previous accepted comparison retained.','refused');}
   finally{if(token===generation){busy=false;$('run').disabled=false;$('save').disabled=!accepted;$('open').value='';}}
  };
+ timingPanel=mountRootZoneTiming({host:panel,cancelParentPending:()=>{const wasBusy=busy;generation++;busy=false;$('run').disabled=false;$('save').disabled=!accepted;if(wasBusy)setStatus('Pending root-store work retired by a newer timing action.',accepted?'computed':'draft');},getInputs:()=>({project:structuredClone(source()),study:readStudy()}),installInputs:(project,study)=>{opened=project;key=JSON.stringify(project);$('cell').replaceChildren(...opened.existing.map((_,i)=>{const o=node('option',name(opened,i));o.value=String(i);return o;}));fill(study);invalidate('Original rooted-store draft restored from timing investigation. Compare the earlier pulse profile separately.',true);refresh();}});
  addInterval();refresh();return {refresh};
 }
 
