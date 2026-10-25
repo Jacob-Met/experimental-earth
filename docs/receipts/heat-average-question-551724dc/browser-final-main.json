@@ -1,0 +1,119 @@
+{
+  "runDirectory": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b",
+  "value": {
+    "checks": [
+      "Imported source yields a question and literal sources, with original project unchanged",
+      "Keyboard mean selection explicitly adjusts the query and selects 123–183 minute support without creating a reading or changing source",
+      "Settings invalidate derived result, wide bands preserve no-signal, 390px fits, reopening recomputes"
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-25T00:31:21.187Z",
+      "completedAt": "2026-10-25T00:31:21.295Z",
+      "durationMs": 107.91703399999997,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "8424087909CB1A402E49E51688762ECE",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "16C1E68D465A5965A9016B18DBE36A26"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": []
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T00:31:20.990Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b",
+    "profileDirectory": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/profile",
+    "stdoutFile": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/stdout.bin",
+    "stderrFile": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/stderr.bin",
+    "receiptFile": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/profile",
+      "about:blank"
+    ],
+    "pid": 16333,
+    "cdpUrl": "http://127.0.0.1:45707",
+    "browserWebSocketUrl": "ws://127.0.0.1:45707/devtools/browser/d78cae58-d333-4cba-b290-ba3a2db2ef6d",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T00:31:21.150Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-551724dc-earth/average-v1/.browser-run-column-average-question-099c0f8c-c433-4e0d-b1f1-3b091daf828b/stderr.bin",
+      "bytes": 5314,
+      "sha256": "dcba476494840438e848753b4a5f83f20c367fc0adf4b502d2401086b87c9021"
+    },
+    "finishedAt": "2026-10-25T00:31:22.731Z"
+  }
+}
