@@ -16,7 +16,10 @@ stores. Compare a dated exposure, inspect the original blocker and incident-inpu
 assumptions, and follow temperature ranges when column height or grazing leaves
 mapped beam uncertain. The isolated authored courtyard example demonstrates a
 morning-shade change without replacing the working site. Original site and raw
-inputs can be downloaded and independently reopened. See [Shade and stored heat](docs/SHADE_HEAT.md)
+inputs can be downloaded and independently reopened. An original NASA POWER hourly
+UTC JSON can now supply each hour's direct/diffuse radiation and ambient reservoir,
+with its units, timestamps and full source retained. Constant-input investigations
+remain supported. See [Shade and stored heat](docs/SHADE_HEAT.md)
 for use, the retained mechanisms, midpoint approximation, input sources and tests.
 
 ## Run the Rain Experiment Lab
