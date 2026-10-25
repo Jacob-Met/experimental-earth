@@ -68,3 +68,8 @@ boundary contact, blank-bound refusal, late-read refusal and1280/390px fit.
 The retained four-reading browser course still passes five groups. Independent
 SECOND GROUND source review found no blocking defect. These software controls do
 not qualify physical measurements, causal conclusions or deployment.
+
+A nested [explicit trend-family comparison](PAIRED_TRENDS.md) now retains offered
+linear pre-existing alternatives when a constant gap is inadequate or ambiguous.
+Its exact arithmetic and extrapolation assumptions are separately identified;
+this original constant-gap path remains available.
