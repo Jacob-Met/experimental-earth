@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "value": {
+    "checks": [
+      "actual file source receiving and literal provenance",
+      "explicit transfer refusal and keyboard computation",
+      "three paired cases and sign reversal",
+      "original project immutability",
+      "desktop and 390px local inspection",
+      "query/weather invalidation",
+      "original input reopen and recomputation",
+      "explicit denser sampling exposes missed interior reversal without adopting input",
+      "sample count invalidates derived output",
+      "separate proposal survey refusal"
+    ],
+    "dimensions": {
+      "top": -0.265625,
+      "bottom": 5599,
+      "height": 844,
+      "width": 390,
+      "scroll": 390,
+      "attempts": 3,
+      "stylesReady": true,
+      "heading": {
+        "top": 57.90625,
+        "bottom": 159.15625,
+        "left": 29,
+        "right": 361
+      },
+      "button": {
+        "top": 730.921875,
+        "bottom": 775.421875,
+        "left": 29,
+        "right": 308.84375
+      },
+      "stable": 2
+    },
+    "runDirectory": "/tmp/hamon-c11405-earth-181/single-browser-v1"
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T01:05:08.233Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-c11405-earth-181/single-browser-v1",
+    "profileDirectory": "/tmp/hamon-c11405-earth-181/single-browser-v1/profile",
+    "stdoutFile": "/tmp/hamon-c11405-earth-181/single-browser-v1/stdout.bin",
+    "stderrFile": "/tmp/hamon-c11405-earth-181/single-browser-v1/stderr.bin",
+    "receiptFile": "/tmp/hamon-c11405-earth-181/single-browser-v1/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-c11405-earth-181/single-browser-v1/profile",
+      "about:blank"
+    ],
+    "pid": 33948,
+    "cdpUrl": "http://127.0.0.1:43741",
+    "browserWebSocketUrl": "ws://127.0.0.1:43741/devtools/browser/0899bfb4-1746-4f64-a84d-6ab390293c50",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T01:05:08.479Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-c11405-earth-181/single-browser-v1/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-c11405-earth-181/single-browser-v1/stderr.bin",
+      "bytes": 5314,
+      "sha256": "d346e5d351833d4325b73848148e245e96fc8135362c53c3c8496799d36b346a"
+    },
+    "finishedAt": "2026-10-25T01:05:11.256Z"
+  }
+}

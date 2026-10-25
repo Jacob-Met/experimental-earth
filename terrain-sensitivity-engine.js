@@ -5,10 +5,10 @@ import { INTERVENTION_METRICS } from './intervention-study.js';
 export const TERRAIN_SENSITIVITY_BUDGET = 1000000;
 const originKeys = ['kind','fileName','line','datum','source','unit','elevationValue','uncertaintyValue','cellSizeM'];
 
-/** Admit one original supplied interval without running a derived world. */
-export function admitTerrainAxis(project, { cellIndex, transferConfirmed = false, sampleCount = 3 }) {
-  validateProject(project);
-  if (![3, 5, 9, 17].includes(sampleCount)) throw Error('Choose 3, 5, 9 or 17 elevation samples');
+/** Original-source admission is separate from the proposed sample family. A
+ * common error interval can be smaller than an individual source's interval.
+ */
+function sourceAxis(project, { cellIndex, transferConfirmed = false }) {
   if (!Number.isInteger(cellIndex) || cellIndex < 0 || cellIndex >= project.existing.length) throw Error('Choose one existing-site cell');
   if (transferConfirmed !== true) throw Error('Confirm the fixed intervention-height transfer assumption');
   const original = project.existing[cellIndex], proposed = project.proposal[cellIndex], source = original.terrainSource;
@@ -17,14 +17,35 @@ export function admitTerrainAxis(project, { cellIndex, transferConfirmed = false
   if (!(uncertaintyM > 0)) throw Error('The selected source needs a positive supplied uncertainty');
   if (proposed.terrainSource && (proposed.elevationM !== original.elevationM ||
       originKeys.some(key => proposed.terrainSource[key] !== source[key]))) throw Error('A separately surveyed proposal cannot receive this shared ground perturbation');
-  const offsets = Array.from({ length: sampleCount }, (_, i) => uncertaintyM * (2 * i / (sampleCount - 1) - 1));
-  for (const offset of offsets) for (const cell of [original, proposed]) {
+  return { cellIndex, source: structuredClone(source), originalExisting: structuredClone(original),
+    originalProposal: structuredClone(proposed), interventionDeltaM: proposed.elevationM - original.elevationM, uncertaintyM };
+}
+function sampleCountAdmission(sampleCount) {
+  if (![3, 5, 9, 17].includes(sampleCount)) throw Error('Choose 3, 5, 9 or 17 elevation samples');
+}
+export function terrainOffsets(halfWidthM, sampleCount) {
+  sampleCountAdmission(sampleCount);
+  if (!(Number.isFinite(halfWidthM) && halfWidthM > 0)) throw Error('Declare a positive finite shared error interval');
+  return Array.from({ length: sampleCount }, (_, i) => halfWidthM * (2 * i / (sampleCount - 1) - 1));
+}
+export function assertTerrainOffsets(axes, offsets) {
+  for (const axis of axes) for (const offset of offsets) for (const cell of [axis.originalExisting, axis.originalProposal]) {
     const height = cell.elevationM + offset;
     if (!Number.isFinite(height) || height < -10 || height > 10) throw Error('A sampled elevation exceeds the supported −10 to 10 m range');
   }
-  return { cellIndex, source: structuredClone(source), originalExisting: structuredClone(original),
-    originalProposal: structuredClone(proposed), interventionDeltaM: proposed.elevationM - original.elevationM,
-    uncertaintyM, offsets };
+}
+export function admitTerrainSources(project, { cellIndices, transferConfirmed = false }) {
+  validateProject(project);
+  return cellIndices.map(cellIndex => sourceAxis(project, { cellIndex, transferConfirmed }));
+}
+/** Preserve the original single-axis admission and exact report shape. */
+export function admitTerrainAxis(project, { cellIndex, transferConfirmed = false, sampleCount = 3 }) {
+  validateProject(project);
+  sampleCountAdmission(sampleCount);
+  const axis = sourceAxis(project, { cellIndex, transferConfirmed });
+  const offsets = terrainOffsets(axis.uncertaintyM, sampleCount);
+  assertTerrainOffsets([axis], offsets);
+  return { ...axis, offsets };
 }
 
 export function reserveTerrainWork(project, candidateCount) {

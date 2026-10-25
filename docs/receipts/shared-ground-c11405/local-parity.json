@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "completeSerializedReports": 11,
+  "baseline": "merged137163d0190359b6f3871f1128b82c40ac72de9c",
+  "singleCounts": [
+    3,
+    5,
+    9,
+    17
+  ],
+  "singleCells": [
+    2,
+    10
+  ],
+  "jointCounts": [
+    3,
+    5,
+    9
+  ],
+  "script": "/tmp/earth-shared-ground-c11405/retained-parity.mjs",
+  "criterion": "Byte-identical complete serialized reports; no old single/joint behavior changed"
+}

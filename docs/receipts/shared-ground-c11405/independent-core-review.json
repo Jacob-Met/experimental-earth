@@ -1,0 +1,26 @@
+{
+  "reviewer": "hamon-c11405-20261024/skill_translator",
+  "finding": "No blocker found",
+  "scope": "Earth181 core/admission/shared footprint only; consumer not reviewed yet",
+  "checks": [
+    "Complete3-member footprint and5-common-offset family preserved; min interval0.02m and limiting member retained",
+    "All10 paired direct solver runs match every aggregate metric; distinct existing/proposal absolute crests0.11/0.12 remain fixed",
+    "45 unselected cells accounted; paired authored height deltas unchanged; original bytes unchanged",
+    "Missing member and oversized common halfwidth refuse; explicit0.01m interval retained without clipping",
+    "Source admission and full2N work reservation precede derived solves; prior single/joint source semantics preserved"
+  ],
+  "paths": [
+    {
+      "path": "terrain-shared-ground.js",
+      "sha256": "a1dc5d7d676dd307461f521a349aea55e5225a6e3df0d8774bef648c76c0b977"
+    },
+    {
+      "path": "terrain-sensitivity-engine.js",
+      "sha256": "cb4fca83362ea0ec26a57f02c69d603008347e23facd9836e79aab9496647b75"
+    },
+    {
+      "path": "tests/terrain-shared-ground.test.mjs",
+      "sha256": "14659d9a7464be4d7d184a05b9f55cfdd106e20f68f596216268774186722efc"
+    }
+  ]
+}

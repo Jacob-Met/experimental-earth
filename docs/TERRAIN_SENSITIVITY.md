@@ -29,3 +29,7 @@ The complete work estimate (two solves per requested sample) is checked against 
 ## Simultaneous two-cell hypotheses
 
 The same panel now offers an explicit second supplied cell. Its complete two-axis table preserves both authored height changes and exposes combined effects that isolated comparisons can miss. See [Two supplied ground intervals](JOINT_TERRAIN_SENSITIVITY.md) for the executed joint reversal, admission, custody and finite-sampling limits. The default remains the single-cell instrument described above.
+
+## Shared ground error across a selected footprint
+
+The same instrument also offers an explicitly declared common additive error across selected supplied cells. It intersects their original intervals, retains every source and authored change, and exposes fixed crests and unselected ground as reference assumptions. It does not infer shared error or perform a datum conversion. See [Shared ground-height error](SHARED_GROUND_ERROR.md) for the executed full-footprint/fixed-crest distinction and complete admission and custody rules.

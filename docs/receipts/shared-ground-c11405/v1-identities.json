@@ -1,0 +1,91 @@
+{
+  "root": "/tmp/earth-shared-ground-c11405",
+  "manifest": "/tmp/earth-shared-ground-c11405/shared-ground-candidate.json",
+  "baseDir": "/tmp/hamon-c11405-earth-172/source-merged-v1",
+  "destination": "/tmp/hamon-c11405-earth-181",
+  "commands": [
+    [
+      "native",
+      "node --test --test-concurrency=2 tests/*.test.mjs"
+    ],
+    [
+      "single-browser",
+      "node tests/terrain-sensitivity.receiving.mjs"
+    ],
+    [
+      "joint-browser",
+      "node tests/terrain-joint.receiving.mjs"
+    ],
+    [
+      "shared-browser",
+      "node tests/terrain-shared-ground.receiving.mjs"
+    ]
+  ],
+  "candidateManifest": {
+    "issue": 181,
+    "base": "137163d0190359b6f3871f1128b82c40ac72de9c",
+    "tree": "9623433ee5d5399be1d0eeb5484e027cefcb88fe",
+    "sourceFiles": 403,
+    "revision": 1,
+    "files": [
+      {
+        "path": "terrain-sensitivity-engine.js",
+        "sha256": "cb4fca83362ea0ec26a57f02c69d603008347e23facd9836e79aab9496647b75"
+      },
+      {
+        "path": "terrain-sensitivity-panel.js",
+        "sha256": "949acdb28f94bfe6e930b66f207fa0d6a89cc918cbf37ff4a984a249be96b22d"
+      },
+      {
+        "path": "terrain-shared-ground.js",
+        "sha256": "a1dc5d7d676dd307461f521a349aea55e5225a6e3df0d8774bef648c76c0b977"
+      },
+      {
+        "path": "terrain-shared-ground-panel.js",
+        "sha256": "f35353927f341d9c827e60411afcc76e357c75335706a757664435d86ddba70b"
+      },
+      {
+        "path": "terrain-shared-ground-view.js",
+        "sha256": "b44f9bb0f6a9a700862d398f809434599315c32f0ccc685ba6213fbae5b6a21d"
+      },
+      {
+        "path": "tests/terrain-shared-ground.test.mjs",
+        "sha256": "14659d9a7464be4d7d184a05b9f55cfdd106e20f68f596216268774186722efc"
+      },
+      {
+        "path": "tests/terrain-shared-ground.receiving.mjs",
+        "sha256": "a3852f0baea06c48abaacb2cdcd7b24f6a53df0feb456d03d0ffe19fe1bcede9"
+      }
+    ]
+  },
+  "files": {
+    "terrain-sensitivity-engine.js": {
+      "sha256": "cb4fca83362ea0ec26a57f02c69d603008347e23facd9836e79aab9496647b75",
+      "bytes": 4941
+    },
+    "terrain-sensitivity-panel.js": {
+      "sha256": "949acdb28f94bfe6e930b66f207fa0d6a89cc918cbf37ff4a984a249be96b22d",
+      "bytes": 9055
+    },
+    "terrain-shared-ground.js": {
+      "sha256": "a1dc5d7d676dd307461f521a349aea55e5225a6e3df0d8774bef648c76c0b977",
+      "bytes": 3208
+    },
+    "terrain-shared-ground-panel.js": {
+      "sha256": "f35353927f341d9c827e60411afcc76e357c75335706a757664435d86ddba70b",
+      "bytes": 5847
+    },
+    "terrain-shared-ground-view.js": {
+      "sha256": "b44f9bb0f6a9a700862d398f809434599315c32f0ccc685ba6213fbae5b6a21d",
+      "bytes": 5674
+    },
+    "tests/terrain-shared-ground.test.mjs": {
+      "sha256": "14659d9a7464be4d7d184a05b9f55cfdd106e20f68f596216268774186722efc",
+      "bytes": 8250
+    },
+    "tests/terrain-shared-ground.receiving.mjs": {
+      "sha256": "a3852f0baea06c48abaacb2cdcd7b24f6a53df0feb456d03d0ffe19fe1bcede9",
+      "bytes": 12240
+    }
+  }
+}
