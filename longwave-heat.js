@@ -63,12 +63,12 @@ function rk4(layer, forcing, emissivity, skyC, temperatureC, seconds) {
  * local temperature error; a conservative derivative-based cap avoids explicit
  * instability even at the admitted smallest capacity/largest conductance.
  */
-function advance(layer, forcing, emissivity, skyC, initialC, seconds, budget) {
+function advance(layer, forcing, emissivity, skyC, initialC, seconds, budget, toleranceC) {
   let temperatureC = initialC, elapsed = 0, convectionJm2 = 0, radiationJm2 = 0;
   const stiffness = layer.exchangeWm2K + 4 * emissivity * STEFAN_BOLTZMANN * 773.15 ** 3;
   let step = Math.min(60, stiffness ? .5 * layer.capacityJm2K / stiffness : 60, seconds);
   while (elapsed < seconds) {
-    if (++budget.used > 100000) throw Error('Longwave comparison exceeds 100000 integration attempts; reduce duration or stiffness');
+    if (++budget.used > budget.limit) throw Error('Longwave comparison exceeds its integration-attempt budget; reduce duration or stiffness');
     const dt = Math.min(step, seconds - elapsed);
     if (!(dt > 0) || elapsed + dt === elapsed) throw Error('Longwave integration cannot resolve the declared interval');
     const whole = rk4(layer, forcing, emissivity, skyC, temperatureC, dt);
@@ -77,20 +77,20 @@ function advance(layer, forcing, emissivity, skyC, initialC, seconds, budget) {
     const fine = first.map((v, i) => v + second[i]);
     const errorC = Math.abs(fine[0] - whole[0]) / 15;
     if (!fine.every(Number.isFinite) || !Number.isFinite(errorC)) throw Error('Nonfinite longwave integration refused');
-    if (errorC > 1e-8) { step = dt * Math.max(.1, .8 * (1e-8 / errorC) ** .2); continue; }
+    if (errorC > toleranceC) { step = dt * Math.max(.1, .8 * (toleranceC / errorC) ** .2); continue; }
     temperatureC += fine[0];
     if (!finite(temperatureC, -100, 500)) throw Error('Predicted layer temperature leaves the supported −100–500 °C range');
     convectionJm2 += fine[1]; radiationJm2 += fine[2]; elapsed += dt;
     step = Math.min(60, stiffness ? .5 * layer.capacityJm2K / stiffness : 60,
-      dt * Math.min(2, errorC ? .9 * (1e-8 / errorC) ** .2 : 2));
+      dt * Math.min(2, errorC ? .9 * (toleranceC / errorC) ** .2 : 2));
   }
   return {temperatureC, convectionJm2, radiationJm2};
 }
 
-export function compareLongwaveHeat(input) {
+/** Lower bound only: adaptive rejection and query boundaries can cost more. */
+export function minimumLongwaveAttempts(input) {
   validateLongwaveHeat(input);
-  const study = input.heatStudy, budget = {used: 0}, results = {};
-  // Lower bound on mandatory stable steps, before allocating/running either layer.
+  const study = input.heatStudy;
   const durationMinutes = study.schedule.reduce((sum, row) => sum + row.minutes, 0);
   let minimumAttempts = 0;
   for (const target of targets) {
@@ -98,7 +98,20 @@ export function compareLongwaveHeat(input) {
     const stiffness = layer.exchangeWm2K + 4 * e * STEFAN_BOLTZMANN * 773.15 ** 3;
     minimumAttempts += durationMinutes * 60 / Math.min(60, stiffness ? .5 * layer.capacityJm2K / stiffness : 60);
   }
-  if (minimumAttempts > 100000) throw Error('Longwave comparison exceeds the integration work budget before execution');
+  return minimumAttempts;
+}
+
+export function compareLongwaveHeat(input, {sampleMinutes = [], toleranceC = 1e-8, workLimit = 100000} = {}) {
+  validateLongwaveHeat(input);
+  const study = input.heatStudy, budget = {used: 0, limit: workLimit}, results = {};
+  if (!Number.isSafeInteger(workLimit) || workLimit < 1 || workLimit > 100000) throw Error('Unsupported integration work limit');
+  if (![1e-8, 1e-10].includes(toleranceC)) throw Error('Unsupported integration tolerance');
+  // Lower bound on mandatory stable steps, before allocating/running either layer.
+  const durationMinutes = study.schedule.reduce((sum, row) => sum + row.minutes, 0);
+  if (!Array.isArray(sampleMinutes) || sampleMinutes.length > 100 || !sampleMinutes.every(v => finite(v, 0, durationMinutes))) throw Error('Supply at most 100 reading times inside the original exposure');
+  const queries = [...new Set(sampleMinutes)].sort((a,b) => a-b);
+  const minimumAttempts = minimumLongwaveAttempts(input);
+  if (minimumAttempts > workLimit) throw Error('Longwave comparison exceeds the integration work budget before execution');
   for (const target of targets) {
     const layer = study[target];
     let temperatureC = layer.initialC, minute = 0, inputJm2 = 0, convectionJm2 = 0, radiationJm2 = 0;
@@ -109,8 +122,9 @@ export function compareLongwaveHeat(input) {
     study.schedule.forEach((forcing, index) => {
       const end = minute + forcing.minutes;
       while (minute < end) {
-        const next = Math.min(end, minute + 1), seconds = (next - minute) * 60;
-        const step = advance(layer, forcing, input[target].emissivity, input.radiationSchedule[index].skyC, temperatureC, seconds, budget);
+        const query = queries.find(value => value > minute);
+        const next = Math.min(end, minute + 1, query ?? end), seconds = (next - minute) * 60;
+        const step = advance(layer, forcing, input[target].emissivity, input.radiationSchedule[index].skyC, temperatureC, seconds, budget, toleranceC);
         temperatureC = step.temperatureC;
         convectionJm2 += step.convectionJm2; radiationJm2 += step.radiationJm2;
         inputJm2 += layer.absorptivity * forcing.incidentWm2 * seconds;
