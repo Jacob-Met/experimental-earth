@@ -1,0 +1,14 @@
+✔ cold and warm incoming rain reverse signed water exchange and conserve both stores (2.239173ms)
+✔ independent one-store closed form and separate-flux RK4 agree with exact kernel adapter (15.011431ms)
+✔ dry and zero-contact paths retain old behavior, and interval partition preserves signed accounts (0.593756ms)
+✔ source event splits at nonaligned rain end, retains exact rain amount and nonmutation (4.717099ms)
+✔ source-only save and reopen recompute, stale place and invalid assumptions refuse (3.95108ms)
+✔ liquid phase omission is a refusal, never silently extrapolated through frozen or boiling contact (0.446746ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.771937

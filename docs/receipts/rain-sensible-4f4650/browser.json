@@ -1,0 +1,13 @@
+{
+  "sourceExample": true,
+  "originalRainBoundary17_5": true,
+  "coldSurfaceC": 25.7172,
+  "changedRainTemperature": true,
+  "sourceOnlyDownload": true,
+  "freshReopen": true,
+  "invalidRefusal": true,
+  "noHorizontalOverflow": true,
+  "pageErrors": [],
+  "externalRequests": [],
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
+}

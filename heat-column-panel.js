@@ -1,3 +1,4 @@
+import { mountRainSensible } from './rain-sensible-panel.js';
 import { mountBottomHeat } from './bottom-heat-panel.js';
 import { prepareHeatColumnStudy, compareHeatColumn, inspectHeatColumn } from './heat-column.js';
 
@@ -22,6 +23,7 @@ export function mountHeatColumn({ getProject, replaceProject, notice }) {
     <p class="mini-note">Absorbed heat enters the surface. The two stores exchange heat through the declared conductance; the lower boundary is insulated. Moisture, lateral conduction and nonlinear radiation are not included.</p>
     <button id="column-run" class="primary" type="button">Compare saved heat stores</button><p id="column-status" role="status"></p><div id="column-results"></div>`;
   document.querySelector('#surface-heat').after(panel);
+  const rainSensiblePanel = mountRainSensible({getProject});
   const bottomPanel = mountBottomHeat({ getProject, notice });
   const $ = id => panel.querySelector('#' + id);
   let signature = '', generation = 0, dirty = false, report = null, accepted = null, selected = 'existing', minute = null;
@@ -152,6 +154,7 @@ export function mountHeatColumn({ getProject, replaceProject, notice }) {
   });
   window.addEventListener('resize', () => { if (report) draw(); });
   function refresh() {
+    rainSensiblePanel.refresh();
     bottomPanel.refresh();
     const project = getProject(), next = JSON.stringify(project); if (next === signature) return;
     signature = next; dirty = false; minute = null; fill(project.heatColumnStudy);
