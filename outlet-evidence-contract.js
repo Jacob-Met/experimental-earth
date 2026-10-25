@@ -1,3 +1,4 @@
+import { validateOutletTableOrigin } from './outlet-table-origin.js';
 // Source-bound collected volumes. No solver or DOM dependency.
 export const OUTLET_EVIDENCE_SCHEMA = 'experimental-earth-outlet-evidence/1';
 export const OUTLET_UNITS = Object.freeze({ L: 1, mL: 0.001, m3: 1000 });
@@ -41,6 +42,7 @@ export function validateOutletEvidence(record) {
   }
   validateOutletRates(record.ratesPerHour);
   for (const reading of record.readings) {
+    validateOutletTableOrigin(reading);
     if (!reading || !bounded(reading.startMinute, 0, record.durationMinutes) ||
         !bounded(reading.endMinute, 0, record.durationMinutes) || reading.endMinute <= reading.startMinute ||
         !own(OUTLET_UNITS, reading.unit) || !bounded(reading.volume, 0, 1e15) ||
