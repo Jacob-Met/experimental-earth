@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Actual accepted-source handoff and original point-band forms retain confounding, then separate offered conductances with held-aside evidence",
+    "Original source is independent of parent drafts; dirty evidence hides results and restores accepted readings",
+    "True means use complete intervals; interpreting the same first-hour value as an endpoint fails the held-aside intersection",
+    "Actual original-input download/fresh reopen and malformed replacement retain sources, means, roles and accepted results",
+    "Late old file completion cannot replace a newer draft or invent a successful comparison",
+    "Desktop/narrow continuous-interval chart and source records fit the actual viewport without page exceptions"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T09:37:30.686Z",
+    "completedAt": "2026-10-25T09:37:30.786Z",
+    "durationMs": 100.86781100000002,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "F191AAF919338857976767A47D3E6F34",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "F1D429B0BD156754A9F2796F3D7FDA6D"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T09:37:30.468Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2",
+    "profileDirectory": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/profile",
+    "stdoutFile": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/stdout.bin",
+    "stderrFile": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/stderr.bin",
+    "receiptFile": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/profile",
+      "about:blank"
+    ],
+    "pid": 31318,
+    "cdpUrl": "http://127.0.0.1:43185",
+    "browserWebSocketUrl": "ws://127.0.0.1:43185/devtools/browser/2415f4bf-78bf-4e87-a654-2e2827c80e58",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T09:37:30.652Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-76dca340-earth/evidence-source/.browser-run-bottom-evidence-7a1a2e1b-b2cb-4078-b697-9b5ad2a34cf2/stderr.bin",
+      "bytes": 5314,
+      "sha256": "68a2ee5cf19531d38ca03408be524f9f69eb5f33849b92c18b68d8102be1c664"
+    },
+    "finishedAt": "2026-10-25T09:37:35.945Z"
+  }
+}

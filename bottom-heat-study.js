@@ -137,3 +137,37 @@ export function compareBottomHeatStudy(study) {
   return { status: 'compared', durationMinutes, summary, trajectory,
     semantics: 'Two uniform stores with an explicitly declared constant deep reservoir. Positive bottom exchange leaves the lower store; negative exchange supplies heat. Conditional model response, not inferred depth, soil properties, physical calibration or field validation.' };
 }
+
+/** Evaluate retained source once and integrate each actual observation window.
+ * Full-course endpoint and interior-extremum admission precedes observations. */
+export function evaluateBottomHeatTarget(study, target, requestedMinutes = [], requestedWindows = []) {
+  validateBottomHeatStudy(study);
+  const duration = study.heatColumnStudy.heatStudy.schedule.reduce((n, r) => n + r.minutes, 0);
+  if (!targets.includes(target) || !Array.isArray(requestedMinutes) || !Array.isArray(requestedWindows) ||
+      requestedMinutes.length + 2 * requestedWindows.length > 2000 ||
+      Array.from(requestedMinutes).some(t => !finite(t, 0, duration)) ||
+      Array.from(requestedWindows).some(w => !w || !finite(w.fromMinute, 0, duration) ||
+        !finite(w.minute, 0, duration) || !(w.minute > w.fromMinute))) {
+    throw Error('Request a selected place, in-exposure times/windows and at most 2000 endpoints');
+  }
+  const c = course(study, target);
+  const times = [...new Set([0, ...c.intervals.map(r => r.to), ...c.critical.surface,
+    ...c.critical.subsurface, ...requestedMinutes, ...requestedWindows.flatMap(w => [w.fromMinute, w.minute])])].sort((a, b) => a - b);
+  const averages = requestedWindows.map(window => {
+    let surface = 0, lower = 0, weightSum = 0, segments = 0;
+    for (const interval of c.intervals) {
+      const from = Math.max(window.fromMinute, interval.from), to = Math.min(window.minute, interval.to);
+      if (!(to > from)) continue;
+      const initial = from === interval.from ? interval.initial :
+        advanceHeatColumnWithBottom(c.surface, c.lower, interval.forcing, interval.initial, (from - interval.from) * 60, c.bottom);
+      const step = from === interval.from && to === interval.to ? interval.step :
+        advanceHeatColumnWithBottom(c.surface, c.lower, interval.forcing, initial, (to - from) * 60, c.bottom);
+      const weight = (to - from) / (window.minute - window.fromMinute);
+      surface += weight * step.surfaceMeanC; lower += weight * step.subsurfaceMeanC; weightSum += weight; segments++;
+    }
+    if (!(weightSum > 0) || ![surface, lower, weightSum].every(Number.isFinite)) throw Error('The complete averaging window could not be evaluated');
+    return { fromMinute: window.fromMinute, minute: window.minute, segments,
+      surfaceMeanC: surface / weightSum, subsurfaceMeanC: lower / weightSum };
+  });
+  return { durationMinutes: duration, trajectory: times.map(t => inspect(c, t)), averages };
+}

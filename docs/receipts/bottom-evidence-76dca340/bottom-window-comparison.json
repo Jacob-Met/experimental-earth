@@ -1,0 +1,873 @@
+{
+  "status": "PASS",
+  "referenceSha256": "d44632ec32a572ea9d5f4cff951ceea0e3ed9be9ff42dc365d100f6f64178b80",
+  "comparisons": 96,
+  "declaredAbsoluteToleranceC": 3e-10,
+  "maximumAbsoluteErrorC": 1.4210854715202004e-14,
+  "rows": [
+    {
+      "case": "insulated",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "37.479207672856037111442595660276148936729186766365543370730508655361774514652053",
+      "actual": 37.479207672856035,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "25.032977888827148530594357624142024661145022355963398369636073358361099998955776",
+      "actual": 25.032977888827148,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "37.936481453508696060915022962285996997301795080638020282120278111938107612795728",
+      "actual": 37.9364814535087,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "30.092607363102160391384796998586077674615147464811328912563688184209200978343453",
+      "actual": 30.09260736310216,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "44.530578978789630618275943722013609995653883732768775640371961485101378671333333",
+      "actual": 44.530578978789634,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "31.20160680338696889404489505402367561860362100122913448013106520125779873105",
+      "actual": 31.20160680338697,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "28.395607446775111921633445638354833988744677676084415122771158526075744666666667",
+      "actual": 28.39560744677511,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "31.518801793694292082321932443520744172095144553725809919515263459498423333333333",
+      "actual": 31.51880179369429,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "25.718944082049366962646829292839432456370091004191538276887180505156374696421660",
+      "actual": 25.718944082049365,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "28.147133008283715506522915311866916284676600728235496642131733927218934881753491",
+      "actual": 28.147133008283717,
+      "absoluteError": 0
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "22.217432998828070609142653034391791661762083556986420742448677988546157031981567",
+      "actual": 22.217432998828066,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "insulated",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "23.160707996727157823099499849917335318934056729943101116455632974299609458053183",
+      "actual": 23.16070799672715,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "drained",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "37.260998079770926076939126483231046035983138938342125057026312194067727282607847",
+      "actual": 37.26099807977093,
+      "absoluteError": 0
+    },
+    {
+      "case": "drained",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "24.485304412933907790560668930801812096340587919310393633096986207610037903049892",
+      "actual": 24.485304412933907,
+      "absoluteError": 0
+    },
+    {
+      "case": "drained",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "37.0744654518593788144884073427824113274000488817032992524735275398584870667691",
+      "actual": 37.074465451859375,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "drained",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "28.321517719070736213315530644370562773865293826160474242830802378841300410311872",
+      "actual": 28.321517719070734,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "drained",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "43.737286268140607141969378263394178082680718380156631386629900445542920501083333",
+      "actual": 43.73728626814061,
+      "absoluteError": 0
+    },
+    {
+      "case": "drained",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "29.4797373119787005618847651498861467914582019239155607566952128713514290879",
+      "actual": 29.4797373119787,
+      "absoluteError": 0
+    },
+    {
+      "case": "drained",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "26.260687369035404385603860678787005565020986348114276642507558692941630666666667",
+      "actual": 26.260687369035402,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "drained",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "27.837485863788358776153567834848295023941925565315162423408383742643151833333333",
+      "actual": 27.837485863788363,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "drained",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "22.630392548507861767187921895936390756678120893046632236681577528408007441637891",
+      "actual": 22.630392548507864,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "drained",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "23.455276980009069171326593977420894323131330487920357308010982208442316307531869",
+      "actual": 23.45527698000907,
+      "absoluteError": 0
+    },
+    {
+      "case": "drained",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "20.243398977465167763243055985967569765445192836443558798914324894607176357723025",
+      "actual": 20.24339897746517,
+      "absoluteError": 0
+    },
+    {
+      "case": "drained",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.320093912794447609535782090584242163359501310333707861090248451208419857926294",
+      "actual": 20.320093912794448,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "39.663839729556948107596627696160588230451311037972693074756840519573104730670519",
+      "actual": 39.663839729556955,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "29.500242083198217317497562235065990730650737639208460116038425956937658150326822",
+      "actual": 29.500242083198216,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "42.032520369885135905719502057351891696832918622678560276031373378707548568538058",
+      "actual": 42.032520369885134,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "37.043291645125760233098134540770319722257242517251937307490577432950793281439328",
+      "actual": 37.04329164512576,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "48.815716972111307945859838573864687444576140991966894701430658657101760001583333",
+      "actual": 48.815716972111304,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "38.372128941741398180849578005981795676010436511823929086446974492547871476",
+      "actual": 38.372128941741394,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "33.792869579992560867726499007847358618244770193864072338933680139420788833333333",
+      "actual": 33.792869579992555,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "39.961768130032416309356647111541886888727323736202756104362606486079760666666667",
+      "actual": 39.96176813003242,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "32.672864712276265388361057234962309390281177454472185533172481880912399634884206",
+      "actual": 32.672864712276265,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "38.880931866981315264382359351525991683836728848815599879137104859002416991194278",
+      "actual": 38.880931866981314,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "32.062081398905599975089747140741627320814847161793218789716527826782189613171672",
+      "actual": 32.0620813989056,
+      "absoluteError": 0
+    },
+    {
+      "case": "warm-reservoir",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "38.081643226665775826212712918490281233225487959214454937365412105473374948735319",
+      "actual": 38.081643226665776,
+      "absoluteError": 0
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "25.827834666250130873508023929429953203384876098124779378329234059080263473132550",
+      "actual": 25.827834666250126,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "1.3893002083685339911860342130940507716482028541848312974060263849921160752522394",
+      "actual": 1.3893002083685388,
+      "absoluteError": 4.884981308350689e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "16.447467964448723057751667969503656205073625501387095651558354995529761269544761",
+      "actual": 16.44746796444872,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "-6.3302695689668712487734571384102365808067665845672534149610965070748024076970628",
+      "actual": -6.3302695689668695,
+      "absoluteError": 1.7763568394002505e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "22.330753565509484337302704647227509785582331412780356396786485110308319127283333",
+      "actual": 22.330753565509482,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "-6.1312444582648971441192980190309221333123872583340072005222016646028327581166667",
+      "actual": -6.131244458264895,
+      "absoluteError": 1.7763568394002505e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "0.00589105828130491082730559109351286361937987873296937180403388049565",
+      "actual": 0.005891058281298847,
+      "absoluteError": 6.063725910276929e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "-12.314784197608740670223612238357332637369366536015876449111026729431331266666667",
+      "actual": -12.314784197608743,
+      "absoluteError": 1.7763568394002505e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "-3.1638401674912091221770615744105583767256839689215426847053211120449841881380575",
+      "actual": -3.163840167491211,
+      "absoluteError": 1.7763568394002505e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "-14.966114805570250684615989854627935870279154353475050240810340038065725264007925",
+      "actual": -14.966114805570252,
+      "absoluteError": 0
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "-3.5292912544277329955597352198087089277208831046411870842482310884658198664779336",
+      "actual": -3.5292912544277364,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "strong-cold-reservoir",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "-15.294008931866287687144809253953886819159607647045802627316562036267279804574436",
+      "actual": -15.294008931866289,
+      "absoluteError": 1.7763568394002505e-15
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "50.031520966893803413678369080113325943755105078324866060609663456612561710490964",
+      "actual": 50.03152096689381,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000000000000000000000000000000000000000000000000000000000000000000000000000264",
+      "actual": 20,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "55.904281568043825731188900226457759840947123665874833917593527946687158444862853",
+      "actual": 55.90428156804382,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000000000000000000000000000000000000000000000000000000000000000000000000000436",
+      "actual": 20,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "66.742842262402611694444124809357805001951959707253474532934172154616338061166667",
+      "actual": 66.7428422624026,
+      "absoluteError": 1.4210854715202004e-14
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000000000000000000000000000000000000000000000000000000000000000000000018408333",
+      "actual": 20,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "34.291573638802710424327806241810779095890407442272261887980040640103248166666667",
+      "actual": 34.29157363880271,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000000000000000000000000000000000000000000000000000000000000000000029166666667",
+      "actual": 20,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "22.064302602374932195136449658195394088787052767328836556507641035145270641381245",
+      "actual": 22.064302602374934,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "19.999999999999999999999999999999999999999999999999999999999999999999999999999130",
+      "actual": 20,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "20.002675020833285884529028690327972359893734936538390700309489588313044766224186",
+      "actual": 20.002675020833287,
+      "absoluteError": 0
+    },
+    {
+      "case": "uncoupled",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "19.999999999999999999999999999999999999999999999999999999999999999999999999986042",
+      "actual": 20,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "43.3139149410187505923107001367286521885541230776424198533541124351555339004642",
+      "actual": 43.31391494101875,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "25.040732337008857797393601518177913567499201872807607777602556958796178822662163",
+      "actual": 25.04073233700886,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "46.525264182965464933730458171128649017986663549361554406392443463013030909853931",
+      "actual": 46.52526418296547,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "29.453548916818809876794119142882139424758499005700971879804077280124116565129511",
+      "actual": 29.45354891681881,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "55.0161226333250349744612703369891574001980360831308670276878446112479848515",
+      "actual": 55.01612263332504,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "30.775040462028815691294535219331909703807261182981519548444925441019943660741667",
+      "actual": 30.775040462028816,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "32.284143580336202993277897445544186238850316420791967551118583751289476666666667",
+      "actual": 32.284143580336206,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "28.7024575061099170579587227502222323781314203995576068511012480138047915",
+      "actual": 28.70245750610992,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "24.187421980510986804627275226528232914535634279745141358865231269056267903647196",
+      "actual": 24.187421980510987,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "23.187557781122313533784599505413819455156976971438377742818194446619730729384755",
+      "actual": 23.187557781122315,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "20.198038570352540419828888330866713986372098861400464920567871326677441815809017",
+      "actual": 20.19803857035254,
+      "absoluteError": 0
+    },
+    {
+      "case": "no-surface-exchange",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.151402029098223013951929082324854529821936273657550113186816370389957911266519",
+      "actual": 20.15140202909822,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "50.031519634915903006802159362747679940717965870581882895108798715788527668567333",
+      "actual": 50.0315196349159,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000000509211952030037151398402395519683856870900620207871574475325306400120016",
+      "actual": 20.00000050921195,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "55.904278899451512111537201180019583657077014910863193291540103937573295154072628",
+      "actual": 55.90427889945151,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000001307392870370372930896920362482270521679233069191926537175391193061562609",
+      "actual": 20.00000130739287,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "66.7428392542893903311846881642434674090424523865397749481020061296021907345",
+      "actual": 66.74283925428941,
+      "absoluteError": 1.4210854715202004e-14
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000001351418360563476799501682675087681777993012877205112036361096880880516667",
+      "actual": 20.000001351418362,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "34.291571025532443433671833953929220311628939330117187512200815499904688166666667",
+      "actual": 34.29157102553244,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000002162710430726129796584764454904772220845620354223147277179069920333333333",
+      "actual": 20.000002162710434,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "22.064301910618567646790308187616703125366420379915376439923241045706295719488379",
+      "actual": 22.064301910618568,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000002468391982437441356953556001428554525004245992739922133876373251643942387",
+      "actual": 20.000002468391983,
+      "absoluteError": 0
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "20.002675018081724181502532574567837048395032159291739125639686569874805402254275",
+      "actual": 20.00267501808172,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "weak-coupling",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.000002519932254535790315680190560899756678020601482589030999930216732549695086",
+      "actual": 20.000002519932256,
+      "absoluteError": 0
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "surfaceMeanC",
+      "expected": "48.750644617166938010008976502160685668194705952987847431061319152329778005847317",
+      "actual": 48.75064461716694,
+      "absoluteError": 0
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 0,
+      "minute": 60,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.283296748753609522380816003491355408140184420102745253920432024159234428817391",
+      "actual": 20.28329674875361,
+      "absoluteError": 0
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "surfaceMeanC",
+      "expected": "38.033742469076958306281252051944749202161916208969959780450764920194898778099017",
+      "actual": 38.033742469076955,
+      "absoluteError": 0
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 30,
+      "minute": 90,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.541701860428875670148950439882455166538104248981057055686672848902635001853665",
+      "actual": 20.541701860428873,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "surfaceMeanC",
+      "expected": "51.20188685977691214648285698715349335588153094047311179393864850252113925025",
+      "actual": 51.20188685977692,
+      "absoluteError": 7.105427357601002e-15
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 59.999,
+      "minute": 60.001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.60469603079941236119656412479116536353611119332371617138330700251966742465",
+      "actual": 20.60469603079941,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "surfaceMeanC",
+      "expected": "20.112188791834264349162185686554874309444722426380664632185811341508382666666667",
+      "actual": 20.11218879183426,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 99.5,
+      "minute": 99.500001,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.6337947779342251051800085414330054651799578878264501776062673712229965",
+      "actual": 20.633794777934224,
+      "absoluteError": 0
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "surfaceMeanC",
+      "expected": "20.098671192279289036341551395907966814533305391685769550837664793199186197673621",
+      "actual": 20.098671192279287,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 120.25,
+      "minute": 240.75,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.589545209727605659130582942840197710133442106268736400407506359298197788568864",
+      "actual": 20.589545209727603,
+      "absoluteError": 3.552713678800501e-15
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "surfaceMeanC",
+      "expected": "20.081687453581141348271175391320642845788790386070228954441028407944426755692394",
+      "actual": 20.081687453581143,
+      "absoluteError": 0
+    },
+    {
+      "case": "unequal-capacities",
+      "fromMinute": 360,
+      "minute": 420,
+      "quantity": "subsurfaceMeanC",
+      "expected": "20.488083104635316600208393392070336824391439001654064574211718277616640236100306",
+      "actual": 20.48808310463532,
+      "absoluteError": 3.552713678800501e-15
+    }
+  ]
+}

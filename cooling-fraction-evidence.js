@@ -100,3 +100,7 @@ export function parseCoolingFraction(text) {
   if(x.schema!=='experimental-earth-cooling-fraction-investigation/1')throw Error('Unsupported cooling evidence investigation');
   validateCoolingStudy(x.project,x.study);validateCoolingFractionEvidence(x.study,x.evidence);return x;
 }
+
+// The bottom-reservoir investigation reuses the same normalized affine-band
+// arithmetic. Existing cooling callers and guards remain unchanged.
+export { constraint as constrainAffineReading, intersection as intersectParameterIntervals };

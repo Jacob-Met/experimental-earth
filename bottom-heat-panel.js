@@ -1,3 +1,4 @@
+import { mountBottomHeatEvidence } from './bottom-heat-evidence-panel.js';
 import { prepareBottomHeatStudy, canonicalBottomHeatStudy, compareBottomHeatStudy, inspectBottomHeatStudy } from './bottom-heat-study.js';
 import { evaluateHeatColumnTarget } from './heat-column.js';
 import { heatColumnCurrent } from './heat-column-contract.js';
@@ -164,6 +165,7 @@ export function mountBottomHeat({ getProject, notice }) {
       }
     } finally { if (request === revision) $('bottom-file').value = ''; }
   });
+  mountBottomHeatEvidence({ getOriginal: () => accepted, notice });
   return { refresh() {
     const next = context(); if (next === signature) return; signature = next; revision++;
     if (imported && accepted && !dirty) {
