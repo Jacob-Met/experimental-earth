@@ -1,0 +1,5 @@
+export function trendFixture(ambiguous=false){
+ const series={schema:'experimental-earth-paired-series/1',quantity:'Surface temperature',unit:'°C',treatedPlace:'Authored treatment patch',comparisonPlace:'Authored comparison patch',association:'Authored numerical control, not a measured dataset',parallelChange:'Explicit constant or declared linear gap alternatives; not proven',intervention:'2026-06-03T00:00:00Z',pairs:[]};
+ for(const [i,v] of (ambiguous?[[19,21,10,10],[19,21,10,10],[19.9,20.1,10,10]]:[[19.9,20.1,10,10],[21.9,22.1,10,10],[23.9,24.1,10,10]]).entries()){const time=`2026-06-0${i===2?(ambiguous?4:3):i+1}T12:00:00Z`;series.pairs.push({role:i===2?'post':'pre',time,treated:{lower:v[0],upper:v[1],source:'Authored control',unit:series.unit,place:series.treatedPlace,time},comparison:{lower:v[2],upper:v[3],source:'Authored control',unit:series.unit,place:series.comparisonPlace,time}});}
+ return {schema:'experimental-earth-paired-trends/1',series,slopes:ambiguous?[-2,0,2]:[0,1,2,3],basis:'Explicit authored finite trend family, not estimated or causally identified'};
+}

@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "original pretrend contradiction becomes complete finite-family comparison with explicit extrapolation",
+    "download preserves original source and complete declarations without verdict",
+    "independent trend reopen preserves active site and original context",
+    "no compatible slope cannot fabricate post residual",
+    "all pre-compatible alternatives retain opposing later directions",
+    "blank offered slope cannot become zero or retain success",
+    "late original-trend read cannot replace newer family draft",
+    "desktop390px complete family and exact-source inspection fit"
+  ],
+  "browser": "156.0.8078.47",
+  "base": "249821aba21307d149eff50c9341302463439dab",
+  "native": {
+    "command": "node tests/paired-trends.test.mjs",
+    "groups": 4,
+    "passed": 4,
+    "independentOracle": "Python Fraction60courses/180candidates and outward enclosures"
+  },
+  "regressions": {
+    "pairedSeriesBrowser": 8,
+    "fourReadingBrowser": 5
+  },
+  "independentReview": "SECOND GROUND: no blocker; later display-only overview rounding explicitly labeled, exact expanded results unchanged"
+}
