@@ -1,3 +1,5 @@
+import { compareJointTerrainSensitivity } from './terrain-joint-sensitivity.js';
+import { renderJointTerrain } from './terrain-joint-view.js';
 import { compareTerrainSensitivity } from './terrain-sensitivity.js';
 import { INTERVENTION_METRICS } from './intervention-study.js';
 const fmt = n => n !== 0 && Math.abs(n) < .0001 ? n.toExponential(3) : Number(n).toLocaleString('en-US', { maximumFractionDigits: 5 });
@@ -9,12 +11,16 @@ export function mountTerrainSensitivity({ getProject }) {
   host.style.minWidth = '0'; host.style.overflowWrap = 'anywhere';
   host.innerHTML = `<span class="eyebrow">SUPPLIED GROUND / SAMPLED HYPOTHESES</span>
     <h2>Could an uncertain ground height change the proposal's effect?</h2>
-    <p>Choose one supplied existing-site elevation. Start with low, central and high values, or request more equally spaced samples to inspect interior effects. All other heights, the storm and default material capacities stay fixed.</p>
+    <p>Choose one supplied existing-site elevation. Start with low, central and high values, or request more equally spaced samples to inspect interior effects. Optionally vary a second supplied cell with the first. All unselected heights, the storm and default material capacities stay fixed.</p>
     <form id="terrain-sensitivity-form">
       <label class="input-label">Supplied existing-site cell <select id="terrain-sensitivity-cell"></select></label>
       <label class="input-label">Elevation samples <select id="terrain-sensitivity-samples"><option value="3">3 · low, central, high</option><option value="5">5 · include quarter points</option><option value="9">9 · finer interior samples</option><option value="17">17 · finest offered samples</option></select></label>
       <p id="terrain-sensitivity-source" class="mini-note"></p>
-      <label style="display:flex;gap:10px;align-items:start;margin:16px 0"><input id="terrain-sensitivity-transfer" type="checkbox" style="width:18px;flex:0 0 18px;margin-top:4px">I assume this ground-height error transfers equally to the proposal, preserving its authored elevation change. Other heights and absolute wall crests stay fixed.</label>
+      <details id="terrain-sensitivity-joint-options"><summary>Also vary a second supplied cell</summary>
+      <label><input id="terrain-sensitivity-joint" type="checkbox"> Compare simultaneous two-cell hypotheses</label>
+      <label class="input-label">Second supplied cell <select id="terrain-sensitivity-second"></select></label>
+      <p id="terrain-sensitivity-second-source" class="mini-note"></p></details>
+      <label style="display:flex;gap:10px;align-items:start;margin:16px 0"><input id="terrain-sensitivity-transfer" type="checkbox" style="width:18px;flex:0 0 18px;margin-top:4px">I assume each selected ground-height error transfers equally to the proposal, preserving its authored elevation change. Other heights and absolute wall crests stay fixed.</label>
       <button id="terrain-sensitivity-run" type="submit" class="subtle">Compare sampled ground heights</button>
     </form>
     <p id="terrain-sensitivity-status" role="status" aria-live="polite"></p>
@@ -27,9 +33,18 @@ export function mountTerrainSensitivity({ getProject }) {
   function clear(message = 'Choose a sourced cell and confirm the transfer assumption.') { $('results').replaceChildren(); $('status').textContent = message; }
   function source() {
     clear(); $('transfer').checked = false;
+    const previous = $('second').value; $('second').replaceChildren();
+    for (const option of $('cell').options) if (option.value !== $('cell').value) $('second').append(option.cloneNode(true));
+    if ([...$('second').options].some(o => o.value === previous)) $('second').value = previous;
+    secondSource();
     const p = getProject(), cell = p.existing[Number($('cell').value)], s = cell?.terrainSource;
     $('source').textContent = s ? `${s.fileName}, line ${s.line} · ${s.elevationValue} ± ${s.uncertaintyValue} ${s.unit} · datum: ${s.datum} · ${s.source}` : 'Import a supplied elevation table first.';
     $('run').disabled = !s;
+  }
+  function secondSource() {
+    clear(); $('transfer').checked = false;
+    const s = getProject().existing[Number($('second').value)]?.terrainSource;
+    $('second-source').textContent = $('second').value && s ? `${s.fileName}, line ${s.line} · ${s.elevationValue} ± ${s.uncertaintyValue} ${s.unit} · datum: ${s.datum} · ${s.source}` : 'A second distinct supplied cell is required.';
   }
   function refresh() {
     const p = getProject(), next = JSON.stringify(p);
@@ -41,6 +56,8 @@ export function mountTerrainSensitivity({ getProject }) {
     if ([...$('cell').options].some(o => o.value === old)) $('cell').value = old;
     source();
   }
+  $('second').addEventListener('change', secondSource);
+  $('joint').addEventListener('change', secondSource);
   $('cell').addEventListener('change', source);
   $('samples').addEventListener('change', () => clear('Sample count changed; recompute all requested heights.'));
   $('transfer').addEventListener('change', () => clear('Transfer assumption changed; recompute to inspect results.'));
@@ -50,6 +67,12 @@ export function mountTerrainSensitivity({ getProject }) {
       const p = getProject();
       if (JSON.stringify(p) !== fingerprint) { refresh(); throw Error('Project changed; confirm the current source and recompute'); }
       if (!$('cell').value) throw Error('Choose a supplied elevation');
+      if ($('joint').checked) {
+        if (!$('second').value) throw Error('Choose a second distinct supplied elevation');
+        const report = compareJointTerrainSensitivity(p, { cellIndices: [Number($('cell').value), Number($('second').value)], transferConfirmed: $('transfer').checked, sampleCount: Number($('samples').value) });
+        $('status').textContent = `${report.candidateCount} paired comparisons · ${report.sampleCount} samples per axis · ${report.cellStepUpperBound.toLocaleString()} cell-steps.`;
+        renderJointTerrain($('results'), report, p.width); return;
+      }
       const report = compareTerrainSensitivity(p, { cellIndex: Number($('cell').value), transferConfirmed: $('transfer').checked, sampleCount: Number($('samples').value) });
       $('status').textContent = `${report.sampleCount} paired comparisons · ${name(report.cellIndex, p.width)} · fixed intervention height change ${fmt(report.interventionDeltaM)} m · ${report.cellStepUpperBound.toLocaleString()} cell-steps.`;
       const output = $('results');

@@ -1,0 +1,199 @@
+{
+  "status": "PASS",
+  "value": {
+    "checks": [
+      "actual two-source file and literal provenance",
+      "explicit transfer and keyboard run",
+      "complete nine-entry matrix",
+      "keyboard positive joint corner and full local depths",
+      "metric switch retains combination",
+      "desktop and narrow matrix receiving",
+      "source custody and complete budget refusal",
+      "axis edits clear stale results and confirmation",
+      "different datum refusal",
+      "original input reopen and default single-axis parity"
+    ],
+    "desktop": {
+      "top": 51.46875,
+      "bottom": 249.96875,
+      "left": 337,
+      "right": 1401,
+      "width": 1440,
+      "height": 1000,
+      "scroll": 1425,
+      "selectedTop": 267.515625,
+      "cells": [
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 85,
+          "width": 85
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 84,
+          "width": 84
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 85,
+          "width": 85
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 77,
+          "width": 77
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 83,
+          "width": 83
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 78,
+          "width": 78
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 86,
+          "width": 86
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 77,
+          "width": 77
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 77,
+          "width": 77
+        }
+      ],
+      "active": {
+        "left": 1134.5625,
+        "right": 1213.953125
+      }
+    },
+    "mobile": {
+      "top": 50.609375,
+      "bottom": 271.609375,
+      "left": 29,
+      "right": 361,
+      "width": 390,
+      "height": 844,
+      "scroll": 390,
+      "selectedTop": 289.15625,
+      "cells": [
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 85,
+          "width": 85
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 84,
+          "width": 84
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 85,
+          "width": 85
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 77,
+          "width": 77
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 83,
+          "width": 83
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 78,
+          "width": 78
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 86,
+          "width": 86
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 77,
+          "width": 77
+        },
+        {
+          "whiteSpace": "nowrap",
+          "scroll": 77,
+          "width": 77
+        }
+      ],
+      "active": {
+        "left": 272.5625,
+        "right": 351.953125
+      }
+    },
+    "runDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1"
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T00:45:33.171Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1",
+    "profileDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/profile",
+    "stdoutFile": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/stdout.bin",
+    "stderrFile": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/stderr.bin",
+    "receiptFile": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/profile",
+      "about:blank"
+    ],
+    "pid": 28851,
+    "cdpUrl": "http://127.0.0.1:42949",
+    "browserWebSocketUrl": "ws://127.0.0.1:42949/devtools/browser/135057fa-dd78-480c-b155-3f646be9d9ee",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T00:45:33.342Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/stderr.bin",
+      "bytes": 5314,
+      "sha256": "298b465aa2bd156130be8d75fd2a4a5e576c484f72abeb331a1465aba5aa4f45"
+    },
+    "finishedAt": "2026-10-25T00:45:35.467Z"
+  }
+}

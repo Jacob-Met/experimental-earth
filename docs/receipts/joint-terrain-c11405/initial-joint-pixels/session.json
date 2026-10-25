@@ -1,0 +1,59 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "course-completed",
+  "startedAt": "2026-10-25T00:33:57.289Z",
+  "executable": "/opt/google/chrome/chrome",
+  "runDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-v1",
+  "profileDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-v1/profile",
+  "stdoutFile": "/tmp/hamon-c11405-earth-172/joint-browser-v1/stdout.bin",
+  "stderrFile": "/tmp/hamon-c11405-earth-172/joint-browser-v1/stderr.bin",
+  "receiptFile": "/tmp/hamon-c11405-earth-172/joint-browser-v1/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": true,
+    "directChildExited": true,
+    "scope": "launched-direct-child-only",
+    "signals": [
+      "SIGTERM"
+    ]
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/tmp/hamon-c11405-earth-172/joint-browser-v1/profile",
+    "about:blank"
+  ],
+  "pid": 23980,
+  "cdpUrl": "http://127.0.0.1:43369",
+  "browserWebSocketUrl": "ws://127.0.0.1:43369/devtools/browser/e060ffcc-6516-4a99-9ac5-762c42124e59",
+  "browserVersion": "Chrome/156.0.8078.47",
+  "readyAt": "2026-10-25T00:33:57.477Z",
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "logsComplete": true,
+  "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+  "stdout": {
+    "path": "/tmp/hamon-c11405-earth-172/joint-browser-v1/stdout.bin",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/tmp/hamon-c11405-earth-172/joint-browser-v1/stderr.bin",
+    "bytes": 5314,
+    "sha256": "0b731b57a84dc7943bed86f89331b8cbf12f2dea8529ed1074339b99c013656d"
+  },
+  "finishedAt": "2026-10-25T00:33:59.522Z"
+}

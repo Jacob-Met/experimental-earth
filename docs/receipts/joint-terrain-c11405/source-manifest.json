@@ -1,0 +1,36 @@
+{
+  "issue": 172,
+  "base": "06fbcdab513e8f53e32eca21a0413bcd3c2cd7f8",
+  "revision": 4,
+  "files": [
+    {
+      "path": "terrain-sensitivity-engine.js",
+      "sha256": "f72f317e84e8e859eb9822ac40416aa746183a398b3dcf2e4d1a1d3f0bc9dbc3"
+    },
+    {
+      "path": "terrain-sensitivity.js",
+      "sha256": "2ccb83469473ae10e42b0452f2002be3c6baf706a9435c7b846e307beb22cec6"
+    },
+    {
+      "path": "terrain-joint-sensitivity.js",
+      "sha256": "004a85213cc5df5435067e33cf35405035df7c7188ca4d0b42f9380cc69a129b"
+    },
+    {
+      "path": "terrain-joint-view.js",
+      "sha256": "397b5e5489bfbd69f6d86cc56adf65d7a70d2bf713865d8680e6358a86c4e2ed"
+    },
+    {
+      "path": "terrain-sensitivity-panel.js",
+      "sha256": "f233aea9753dd712edb0de12d08c36c5fa39a3ba8f408fd7fc5271265e48e267"
+    },
+    {
+      "path": "tests/terrain-joint-sensitivity.test.mjs",
+      "sha256": "3c34df5e557fe25b871976f641a57d8f76ce640622835a751ad487404b2ce011"
+    },
+    {
+      "path": "tests/terrain-joint.receiving.mjs",
+      "sha256": "fdb8d1d2d4a7cfbe6166c66e60b8749129bfeeca475a90a31018b21f7bc554cb"
+    }
+  ],
+  "composition": 1
+}

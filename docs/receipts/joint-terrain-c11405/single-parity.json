@@ -1,0 +1,1 @@
+{"status":"PASS","comparisons":16,"criterion":"Byte-identical serialized reports against pre-extraction maintained implementation"}

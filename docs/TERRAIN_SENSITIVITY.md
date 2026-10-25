@@ -10,7 +10,7 @@ Three samples can reveal a reversal that a central-elevation calculation hides. 
 
 A separate executed control illustrates the sampling limit: keep that B1 lowering but put the ±5 cm interval at A1. Low/central/high peak-standing-water effects are −6.129196, −1.509384 and −3.312427 L; the interior +2.5 cm perturbation gives **+0.098758 L**. Even three negative samples can miss a positive interior effect.
 
-These are three evaluations, **not extrema over the continuous interval**. A consistent direction at all three can reverse between them. Other cells' errors and spatially correlated survey errors are excluded; supplied uncertainty does not define a probability distribution. The numerical interval and conceptual physics remain additional uncertainties. A negative difference denotes a smaller modeled quantity, not an overall recommendation. The maximum depths compared may occur at different places or times.
+In single-cell mode these are three evaluations, **not extrema over the continuous interval**. A consistent direction at all three can reverse between them. In this mode other cells' errors and spatially correlated survey errors are excluded; supplied uncertainty does not define a probability distribution. The numerical interval and conceptual physics remain additional uncertainties. A negative difference denotes a smaller modeled quantity, not an overall recommendation. The maximum depths compared may occur at different places or times.
 
 ## Custody and admission
 
@@ -25,3 +25,7 @@ The complete work estimate (two solves per requested sample) is checked against 
 `node tests/terrain-sensitivity.test.mjs` exercises the sign-changing control, direct maintained-solver comparisons for every metric and local depth, conservation, exact source immutability, invariant intervention delta, same-plan parity, units, proposal/source admission and whole-experiment capacity refusal.
 
 `CHROME_BIN=/opt/google/chrome/chrome node tests/terrain-sensitivity.receiving.mjs` receives an actual project File through the normal importer. It checks literal provenance, the explicit transfer gate, keyboard computation, all three cases, source immutability, desktop/narrow inspection, invalidation, original-project reopening and separate-source refusal through the maintained sandbox admission gate. Running a script is distinct from scientific validation; receipts must record the actual source and execution environment.
+
+## Simultaneous two-cell hypotheses
+
+The same panel now offers an explicit second supplied cell. Its complete two-axis table preserves both authored height changes and exposes combined effects that isolated comparisons can miss. See [Two supplied ground intervals](JOINT_TERRAIN_SENSITIVITY.md) for the executed joint reversal, admission, custody and finite-sampling limits. The default remains the single-cell instrument described above.

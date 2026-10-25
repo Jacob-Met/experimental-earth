@@ -1,0 +1,18 @@
+✔ supplied interval reverses the authored lowering effect, retaining original sources (21.374571ms)
+✔ every sampled quantity and every local depth equals a separate maintained solver oracle (25.478084ms)
+✔ identical plans retain identical effects and copied survey origins are accepted (7.611275ms)
+✔ explicit assumption and sourced positive intervals are required (1.391786ms)
+✔ separately surveyed proposal and endpoint overflow refuse without source mutation (1.085273ms)
+✔ unit normalization preserves the experiment and literal source text (25.206543ms)
+✔ work accounting reserves all six runs and refuses supported oversized grids (6.408729ms)
+✔ three same-sign samples do not establish a sign across the continuous interval (22.795469ms)
+✔ explicit denser samples expose the interior reversal and retain all original hypotheses (61.159894ms)
+✔ sample count must be explicit supported integer; larger requested work refuses as a whole (74.756353ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 257.885585
