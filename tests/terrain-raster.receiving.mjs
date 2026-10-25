@@ -70,6 +70,12 @@ const result=await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/
   await send('Page.reload',{ignoreCache:true});await wait("document.querySelectorAll('#existing-grid .cell').length===48",'reload');assert.deepEqual(await getSite(),received);
   checks.push('actual exported project download, fresh import and reload retain every original raster sample');
 
+  await upload('\ufeff'+raw,'bom-prefixed.asc');
+  assert.match(await evaluate("document.getElementById('raster-file-status').textContent"),/refused.*ASCII/);
+  assert.equal(await evaluate("document.getElementById('raster-preview-button').disabled"),true);
+  assert.deepEqual(await getSite(),received);
+  checks.push('original BOM bytes cannot be silently stripped before source identity is recorded');
+
   await upload(raw.replace('1000.11 1000.12','-9999 1000.12'));await configure();await preview();
   assert.match(await evaluate("document.getElementById('raster-status').textContent"),/NoData/);assert.deepEqual(await getSite(),received);
   await upload(raw);await configure();await preview();

@@ -34,7 +34,7 @@ export function mountTerrainRasterImport({ getProject, replaceProject, notice })
     $('file-status').textContent = 'Reading the original raster…';
     try {
       if (file.size > TERRAIN_RASTER_MAX_BYTES) throw Error('Original raster exceeds 8 MiB');
-      const original = new TextDecoder('utf-8', { fatal: true }).decode(await file.arrayBuffer());
+      const original = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(await file.arrayBuffer());
       if (ticket !== generation) return;
       const { header } = parseTerrainRaster(original);
       rawText = original; fileName = file.name;
