@@ -1,0 +1,16 @@
+#root-zone{min-width:0}#root-zone h2{margin-top:6px}#root-zone p,#root-zone figcaption{overflow-wrap:anywhere}#root-zone .rz-note{font-size:13px;color:#3c5f56}
+#root-zone textarea{width:100%;font:inherit;resize:vertical;border:1px solid #cfddd7;border-radius:8px;padding:9px;margin-top:6px;color:#15323a;background:#fbfcfa}
+#root-zone textarea:focus-visible{outline:3px solid #f2a53f;outline-offset:2px}
+#root-zone fieldset{min-width:0;border:1px solid #cbded3;border-radius:10px;margin:12px 0;padding:14px}#root-zone legend{font-weight:700;font-size:13px;padding:0 5px}
+#root-zone .rz-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+#root-zone .rz-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}#root-zone .rz-actions>*{max-width:100%}
+#root-zone .rz-interval{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 14px}#root-zone .rz-interval label:nth-of-type(3){grid-column:1/-1}
+#root-zone .rz-interval button{justify-self:start}#root-zone button{white-space:normal;max-width:100%}#root-zone input{max-width:100%;min-width:0}
+#root-zone #rz-status{font-weight:600;color:#245649}#root-zone #rz-status[data-state=refused]{color:#8a3823}
+#root-zone figure{margin:20px 0}#root-zone svg{display:block;width:100%;height:auto}#root-zone svg text{font:12px system-ui;fill:#36574e}#root-zone figcaption{font-size:12px;color:#44665c}
+#root-zone .rz-table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;margin:20px 0}#root-zone caption{text-align:left;font-weight:650;margin-bottom:8px}
+#root-zone th,#root-zone td{padding:10px 7px;border-bottom:1px solid #d4e3da;text-align:right;overflow-wrap:anywhere}#root-zone th:first-child{width:50%;text-align:left}#root-zone tbody th{font-weight:500}#root-zone thead{background:#eaf3ed}
+#root-zone .rz-time{background:#f0f6ef;border-radius:12px;padding:15px}#root-zone #rz-at-day p{font-size:13px;margin:6px 0}#root-zone details{padding:12px 0;font-size:13px}#root-zone summary{cursor:pointer;font-weight:700}
+@media(max-width:650px){#root-zone .rz-pair{grid-template-columns:minmax(0,1fr)}#root-zone .rz-table{font-size:12px}#root-zone th,#root-zone td{padding:9px 4px}#root-zone .rz-interval{grid-template-columns:minmax(0,1fr)}}
+
+@media(max-width:650px){#root-zone #rz-chart text{font-size:23px}}

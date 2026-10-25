@@ -285,3 +285,7 @@ for its finite-grid selection, original-source custody and limits.
 ## Challenge a supplied ground-height uncertainty
 
 The surveyed-ground sensitivity panel compares low, central and high values for one supplied existing-site elevation while preserving the authored proposal height change under an explicit shared-error assumption. Inspect paired water quantities and local depth changes; a sign reversal exposes dependence on the selected ground uncertainty. Explicitly request 5, 9 or 17 equally spaced samples to investigate interior reversals that the initial three can miss. No offered sample count bounds the continuous interval. Original survey records and saved plans stay unchanged. See [the experiment, source rules and authored reversal](docs/TERRAIN_SENSITIVITY.md).
+
+## Water retained for roots after a modeled storm
+
+The **How long does water remain available to roots?** panel carries each source cell’s modeled infiltration into an attributed rooted-soil store and follows the same declared dry-period transpiration demand in both places. Inspect retained recharge, excess drainage, supplied and unmet demand, and the original-source water account through time. Save and reopen the complete input-only investigation without replacing the active site. This is an explicitly simplified plant-water model, with no inferred soil or crop properties and no field or irrigation qualification. See [the root-zone model, workflow and controls](docs/ROOT_ZONE.md).
