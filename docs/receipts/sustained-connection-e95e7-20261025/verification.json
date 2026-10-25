@@ -1,0 +1,64 @@
+{
+  "schema": "hamon-composed-consumer-receiving/1",
+  "team": "hamon-e95e7d4e6bc8-20261025",
+  "date": "2026-10-25",
+  "base": "c0b15a667db8d4685eff6175bc538c2722a212a6",
+  "sourceFiles": {
+    "sustained-connection.js": "0c68985af4a6b410b1d2c6521f6bc73f17e97d98",
+    "sustained-connection-panel.js": "266b0aadcf1793aeecd6500f98453a36203249b7",
+    "ponding-connectivity-panel.js": "b2d717a2e198fd02aeb22b8b328d2d8f265c1f3c",
+    "tests/sustained-connection.test.mjs": "d6fc2e8ed9ab069abfa3550c4c87b1f91650847d",
+    "tests/sustained-connection.browser.mjs": "df34d847d90a6c35150c3cfb7e3d62660f89a94a",
+    "docs/SUSTAINED_CONNECTION.md": "0013dc7d0d668b692e3f09c936faa5e9922b0563",
+    "docs/SUSTAINED_CONNECTION_RECEIVING.md": "92508ebba38028c4b2ce99fc1098fa2ba70e070f"
+  },
+  "runtimePackage": {
+    "base": "4eb9b65c129d796f1fccb626048fbbd98ee3ea1a",
+    "sha256": "2ea4b884ee15d68fbd0320d0d4078fcfe81591c08718af9fe9bdb765fb481fba",
+    "finalUpstreamDelta": {
+      "draining-evidence-panel.js": "441bcf3dac3efd5bafd188edf93b42823c839134",
+      "draining-layer-evidence.js": "a828dbb388fe0d2ce9f97e5e48375a4e976e3ea1",
+      "draining-layer-panel.js": "519b9b3d211f6e75c6272c9f8cc45411d6a5bfe3",
+      "draining-layer.css": "502424f6a733d013ee2b21121b91d15b24c37254",
+      "longwave-heat-evidence-panel.js": "7f38c0e6d895a971b0f4c67cb96fa73ac7d2b539",
+      "longwave-heat-evidence.js": "9fc7dfda79d0a4d63d2c3d8491adaa01766af61a",
+      "longwave-heat-panel.js": "ae06dff5a9d03a6793bbc02b7fcfb6e83cc93a13",
+      "longwave-heat.js": "d5f85b4e9eb9948b81f38c4c149eeb2f8d46de82"
+    }
+  },
+  "native": {
+    "runtime": "Node 22.23.4",
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0,
+    "command": "node --test tests/sustained-connection.test.mjs tests/ponding-connectivity.test.mjs tests/route-ponding.test.mjs tests/ponding-exposure.test.mjs",
+    "base": "4eb9b65c129d796f1fccb626048fbbd98ee3ea1a",
+    "finalDelta": "No fixed-window/graph/interpolation source changed by the subsequent upstream heat/drainage additions."
+  },
+  "independent": {
+    "simplePathHistories": 100,
+    "review": "Separate retained worker, 14 native groups; no blocking findings."
+  },
+  "browser": {
+    "base": "c0b15a667db8d4685eff6175bc538c2722a212a6",
+    "groups": 5,
+    "errors": 0,
+    "sandboxAdmitted": true,
+    "receipt": "browser.json",
+    "screenshots": [
+      {
+        "path": "docs/receipts/sustained-connection-e95e7-20261025/desktop.png",
+        "sha": "9dac5f1b23a3210f0c1e1d316530c9ffb7e12abb"
+      },
+      {
+        "path": "docs/receipts/sustained-connection-e95e7-20261025/narrow.png",
+        "sha": "94181a9b31972834bbb13f78159fd9165370f6b8"
+      }
+    ]
+  },
+  "limits": [
+    "Authored and maintained-model evidence; not measured environmental accuracy.",
+    "Linear interpolation between original snapshots, not unobserved solver extrema.",
+    "One fixed offered grid path, not moving traversal or physical access advice."
+  ]
+}

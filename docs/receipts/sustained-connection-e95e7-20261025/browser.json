@@ -1,0 +1,70 @@
+{
+  "schema": "experimental-earth-sustained-browser/1",
+  "startedAt": "2026-10-25T18:02:27.728Z",
+  "status": "passed",
+  "outputDirectory": "/tmp/earth272-browser-ud0m9u",
+  "assertions": [
+    "keyboard comparison",
+    "source-only download",
+    "reopen recomputes exact window and preserves newer workspace",
+    "malformed replay retires result",
+    "390px and changed-question retirement"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T18:02:28.075Z",
+    "completedAt": "2026-10-25T18:02:28.158Z",
+    "durationMs": 82.67869999999999,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "4433F3F5A2805689EE72DAD8BFB2C9E5",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "301B53E60682406DB420697B1955C450"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "sourceHashes": {
+    "sustained-connection.js": "52c58d3a306ab617ce322520af24c1764c8d836937aabb6cef760d16fa8caad1",
+    "sustained-connection-panel.js": "ceb4710703e3b642fc02a9ea3064a4e31d474433bc201ff32a426256f6446b1b",
+    "ponding-connectivity-panel.js": "69f84f0dbc2e7212d17bf2cf26767d09e35c395fb11f21245f228ce4bcfb164c"
+  },
+  "passed": 5,
+  "completedAt": "2026-10-25T18:02:30.779Z",
+  "pageErrors": []
+}
