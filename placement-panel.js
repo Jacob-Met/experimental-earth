@@ -5,18 +5,24 @@ import { SURFACES } from './core.js';
 import { DEFAULT_STUDY } from './study-contract.js';
 import {DRAINING_LAYER_SCHEMA} from './draining-infiltration.js';
 import {serializePlacementInvestigation,parsePlacementInvestigation,PLACEMENT_FILE_LIMIT} from './placement-investigation.js';
+import {parseDrainingEvidence} from './draining-layer-evidence.js';
 
 const node=(tag,text,cls)=>{const e=document.createElement(tag);e.textContent=text;if(cls)e.className=cls;return e;};
 const number=n=>Number(n).toLocaleString('en-US',{maximumSignificantDigits:6});
+const hypothesisLabel=row=>row.hypothesis?`${row.hypothesis.label} (${row.hypothesis.id})`:`${row.rateMmHr} mm/h`;
 export function mountPlacementSearch({getProject,replaceProject,notice}) {
   const panel=document.createElement('section');panel.id='placement-search';panel.className='panel study';
   panel.innerHTML=`<h2>Where could a small surface change help?</h2>
-    <p>Choose eligible cells in the current proposal, then compare every zero-, one- and two-cell change within that set. The investigation's supported infiltration rates are fixed from the unchanged source before any hypothetical edit.</p>
+    <p>Choose eligible cells in the current proposal, then compare every zero-, one- and two-cell change within that set. Supported hypotheses are fixed from the unchanged source before any hypothetical edit.</p>
     <div class="input-pair"><label class="input-label">Replace selected surfaces with<select id="placement-surface"><option value="garden">Rain garden</option><option value="turf">Turf</option><option value="sealed">Sealed paving</option></select></label>
     <label class="input-label">Maximum edited cells<select id="placement-count"><option value="1">One</option><option value="2" selected>Two</option></select></label></div>
     <label class="input-label">Minimize the worst additional change in<select id="placement-objective"></select></label>
     <label class="input-label">Fixed source hypotheses<select id="placement-subset"><option value="all">All saved rates (no evidence filter)</option><option value="calibration">Within all calibration bands</option><option value="surviving">Within calibration and held-aside bands</option></select></label>
-    <fieldset style="min-width:0"><legend>Optional finite receiving layer</legend>
+    <fieldset style="min-width:0"><legend>Receiving explanations from original readings</legend>
+    <label class="input-label">Open original receiving-evidence inputs<input id="placement-receiving-open" type="file" accept=".json,application/json"></label>
+    <p class="mini-note">Open the original inputs downloaded from the receiving-evidence investigation to compare its declared storage and drainage explanations. This opens that source project. Infiltration keeps the same model defaults; source readings filter receiving explanations only.</p>
+    <button id="placement-receiving-clear" type="button" hidden>Return to infiltration-rate comparison</button></fieldset>
+    <fieldset id="placement-single-layer" style="min-width:0"><legend>Optional finite receiving layer</legend>
     <label><input id="placement-layer-enabled" type="checkbox"> Compare a layer that can fill and drain</label>
     <div id="placement-layer-inputs" hidden>
     <label class="input-label">Applies to every cell of this surface<select id="placement-layer-surface"><option value="garden">Rain garden</option><option value="turf">Turf</option><option value="sealed">Sealed paving</option></select></label>
@@ -51,7 +57,7 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
   document.querySelector('.observations').before(panel);
   const $=id=>panel.querySelector('#'+id);
   for(const [key,m] of Object.entries(PLACEMENT_METRICS)){const o=node('option',`${m.label} (${m.unit})`);o.value=key;$('placement-objective').append(o);}
-  let eligible=new Set(),generation=0,openRequest=0,lastSource='',report=null,loadedStudy=null;
+  let eligible=new Set(),generation=0,openRequest=0,lastSource='',report=null,loadedStudy=null,loadedReceiving=null;
   const name=(p,i)=>`${String.fromCharCode(65+i%p.width)}${Math.floor(i/p.width)+1}`;
   const declaredCosts=new Map();
   for(const [key,m] of Object.entries(PLACEMENT_METRICS)){
@@ -109,11 +115,18 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     const n=eligible.size,count=Number($('placement-count').value),variants=1+n+(count===2?n*(n-1)/2:0);
     $('placement-selection').textContent=`${n}/12 eligible cells; ${variants} variants including the unchanged proposal. Selection does not paint or edit the project.`;
     drawCostInputs(p);
-    const study=loadedStudy??p.infiltrationStudy??DEFAULT_STUDY;
-    $('placement-study').textContent=`${loadedStudy?'Loaded placement':'Saved'} ${study.surface} rates: ${study.ratesMmHr.join(', ')} mm/h. Evidence scenario: ${study.target}. ${$('placement-layer-enabled').checked?'The complete declared rate family is used; original readings have not calibrated this receiving layer.':'Support is evaluated once on this unchanged source, never refitted to a hypothetical layout.'}`;
+    $('placement-single-layer').hidden=Boolean(loadedReceiving);$('placement-layer-enabled').disabled=Boolean(loadedReceiving);
+    $('placement-receiving-clear').hidden=!loadedReceiving;
+    $('placement-subset').options[0].textContent=loadedReceiving?'All declared receiving explanations (no evidence filter)':'All saved rates (no evidence filter)';
+    if(loadedReceiving) {
+      $('placement-study').textContent=`${loadedReceiving.hypotheses.length} declared receiving explanations for ${loadedReceiving.surface}; evidence scenario: ${loadedReceiving.target}. Infiltration defaults: ${Object.entries(SURFACES).map(([key,s])=>key+' '+s.infiltrationMmHr+' mm/h').join(', ')}. Support is evaluated once on the unchanged source, never refitted to a hypothetical layout.`;
+    } else {
+      const study=loadedStudy??p.infiltrationStudy??DEFAULT_STUDY;
+      $('placement-study').textContent=`${loadedStudy?'Loaded placement':'Saved'} ${study.surface} rates: ${study.ratesMmHr.join(', ')} mm/h. Evidence scenario: ${study.target}. ${$('placement-layer-enabled').checked?'The complete declared rate family is used; original readings have not calibrated this receiving layer.':'Support is evaluated once on this unchanged source, never refitted to a hypothetical layout.'}`;
+    }
   }
   function readLayer() {
-    if(!$('placement-layer-enabled').checked)return null;
+    if(loadedReceiving||!$('placement-layer-enabled').checked)return null;
     const amount=id=>{const value=$(id).value.trim();if(!value)throw Error('Enter every receiving-layer amount explicitly');return Number(value);};
     return {schema:DRAINING_LAYER_SCHEMA,surface:$('placement-layer-surface').value,
       capacityMm:amount('placement-layer-capacity'),initialStoredMm:amount('placement-layer-initial'),
@@ -125,7 +138,7 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
       throw Error('This panel requires one common peak target and basis; keep distinct targets in their original investigation');
     if(t&&t.cellCosts.some(x=>x.source!==t.cellCosts[0].source))
       throw Error('This panel requires one common cost basis; keep distinct cost sources in their original investigation');
-    replaceProject(p);loadedStudy=structuredClone(q.study);eligible=new Set(q.eligibleCells);
+    replaceProject(p);loadedStudy=q.study?structuredClone(q.study):null;loadedReceiving=q.receivingStudy?structuredClone(q.receivingStudy):null;eligible=new Set(q.eligibleCells);
     for(const [id,value] of Object.entries({'placement-surface':q.surface,'placement-count':q.maxEdits,'placement-objective':q.metric,'placement-subset':q.subset,
       'placement-target-cells':q.targets.map(t=>name(p,t.cellIndex)).join(', '),'placement-target-limit':q.targets[0]?.maxPeakChangeMm??0,'placement-target-basis':q.targets[0]?.basis??'',
       'placement-duration-cells':q.durationGoal?.cellIndices.map(i=>name(p,i)).join(', ')??'','placement-duration-threshold':q.durationGoal?.thresholdMm??5,
@@ -165,9 +178,9 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
       const block=node('div','','placement-duration-witnesses');block.style.overflowWrap='anywhere';
       block.append(node('h4',`${name(p,check.cellIndex)}: minutes above ${number(check.thresholdMm)} mm within 0–${number(p.weather.durationMinutes)} min`),node('p',`Change limit ${number(check.maxAdditionalMinutes)} min; worst change ${number(check.worstChangeMinutes)} min. Basis: ${check.basis}`));
       for(const w of check.witnesses){
-        block.append(node('p',`${w.rateMmHr} mm/h: ${number(w.current.minutesAbove)} → ${number(w.proposed.minutesAbove)} wet min; change ${number(w.minutesChange)} min — ${w.meets?'meets goal':'exceeds goal by '+number(w.excessMinutes)+' min'}.`));
+        block.append(node('p',`${hypothesisLabel(w)}: ${number(w.current.minutesAbove)} → ${number(w.proposed.minutesAbove)} wet min; change ${number(w.minutesChange)} min — ${w.meets?'meets goal':'exceeds goal by '+number(w.excessMinutes)+' min'}.`));
         block.append(node('p',`Current proposal ${conditions(w.current)}. Candidate ${conditions(w.proposed)}. A wet endpoint does not establish when wetness began or will end.`));
-        const times=node('details','');times.append(node('summary',`Inspect ${w.rateMmHr} mm/h within-window wet intervals`),node('p',`Current proposal: ${intervals(w.current)}.`),node('p',`Candidate: ${intervals(w.proposed)}.`));block.append(times);
+        const times=node('details','');times.append(node('summary',`Inspect ${hypothesisLabel(w)} within-window wet intervals`),node('p',`Current proposal: ${intervals(w.current)}.`),node('p',`Candidate: ${intervals(w.proposed)}.`));block.append(times);
       }host.append(block);
     }
   }
@@ -184,15 +197,15 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     detail.append(grid,node('p','★ hypothetical edit · ↑ a higher cell peak under at least one retained hypothesis. Peak times can differ.'));
     const list=node('ul','');for(const [key,m] of Object.entries(PLACEMENT_METRICS)){const range=plan.metrics[key];list.append(node('li',`${m.label}: ${number(range.min)} to ${number(range.max)} ${m.unit}; ${range.direction}.`));}detail.append(list);
     const perRate=node('details','');perRate.append(node('summary','Inspect every retained hypothesis and its source-to-candidate change'));
-    for(const c of plan.candidates){const card=node('article','','study-candidate');card.append(node('h4',`${c.rateMmHr} mm/h ${current.query.study.surface}`));for(const [key,m] of Object.entries(PLACEMENT_METRICS)){const v=c.metrics[key];card.append(node('p',`${m.label}: ${number(v.current)} → ${number(v.proposed)} ${m.unit}; change ${number(v.delta)}.`));}
+    for(const c of plan.candidates){const card=node('article','','study-candidate');card.append(node('h4',`${hypothesisLabel(c)} · ${(current.query.receivingStudy??current.query.study).surface}`));for(const [key,m] of Object.entries(PLACEMENT_METRICS)){const v=c.metrics[key];card.append(node('p',`${m.label}: ${number(v.current)} → ${number(v.proposed)} ${m.unit}; change ${number(v.delta)}.`));}
       if(c.drainingLayer)for(const [side,label] of [['current','Current proposal'],['proposed','Candidate']]){const r=c.drainingLayer[side];card.append(node('p',`${label} receiving layer: ${r.affectedCellCount} cells; initial ${number(r.initialLiters)} L, retained ${number(r.retainedLiters)} L, drained ${number(r.drainedLiters)} L; accepted ${number(r.infiltratedLiters)} L from the surface. Receiver balance error ${number(r.balanceErrorLiters)} L.`));}
       perRate.append(card);}detail.append(perRate);
-    const local=node('details','');local.append(node('summary',`${plan.worseningCells.length} cells deepen under at least one retained rate`));for(const c of plan.worseningCells)local.append(node('p',`${name(p,c.cellIndex)}: ${number(c.min)} to ${number(c.max)} mm peak-depth change.`));detail.append(local);
+    const local=node('details','');local.append(node('summary',`${plan.worseningCells.length} cells deepen under at least one retained hypothesis`));for(const c of plan.worseningCells)local.append(node('p',`${name(p,c.cellIndex)}: ${number(c.min)} to ${number(c.max)} mm peak-depth change.`));detail.append(local);
     if(current.query.targets.length||current.query.durationGoal){
       const targets=node('div','','placement-target-witnesses');targets.style.overflowWrap='anywhere';targets.append(node('h4',plan.meetsAllTargets?'Meets every local target':'Does not meet every local target'));
       for(const check of plan.localTargets.checks){
         targets.append(node('p',`${name(p,check.cellIndex)}: limit ${number(check.maxPeakChangeMm)} mm; worst change ${number(check.worstChangeMm)} mm. Basis: ${check.basis}`));
-        for(const w of check.witnesses)targets.append(node('p',`${w.rateMmHr} mm/h hypothesis: ${number(w.changeMm)} mm change — ${w.meets?'meets target':'exceeds target by '+number(w.excessMm)+' mm'}.`));
+        for(const w of check.witnesses)targets.append(node('p',`${hypothesisLabel(w)}: ${number(w.changeMm)} mm change — ${w.meets?'meets target':'exceeds target by '+number(w.excessMm)+' mm'}.`));
       }appendDurationChecks(targets,plan.durationTargets.checks,p);detail.append(targets);
     }
     const costPlan=current.tradeoffs?.plans.find(row=>row.cells.join(',')===plan.cells.join(','));
@@ -210,7 +223,7 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
       const reasons={'minimum-step':'Already at the supported one-minute minimum; no finer comparison was run.','work-limit':'The combined calculation exceeds the 3 million combined model/exposure work limit. Choose fewer eligible cells, a shorter event or fewer declared hypotheses; no layouts were silently removed.'};
       host.append(node('p',reasons[result.status]??`Source comparison refused: ${result.status}.`));return;
     }
-    host.append(node('h3','Sensitivity to calculation interval'),node('p',result.semantics),node('p',`Fixed original support: ${result.ratesMmHr.join(', ')} mm/h; original evidence subset: ${result.sourceSupport.subset}. Combined work: ${result.workDetail.modelCellSteps.toLocaleString()} model cell-steps + ${result.workDetail.exposureCellSegments.toLocaleString()} exposure cell-segments = ${result.estimatedCellSteps.toLocaleString()} total.`));
+    host.append(node('h3','Sensitivity to calculation interval'),node('p',result.semantics),node('p',`Fixed original support: ${result.hypothesisIds?result.hypothesisIds.join(', '):result.ratesMmHr.join(', ')+' mm/h'}; original evidence subset: ${result.sourceSupport.subset}. Combined work: ${result.workDetail.modelCellSteps.toLocaleString()} model cell-steps + ${result.workDetail.exposureCellSegments.toLocaleString()} exposure cell-segments = ${result.estimatedCellSteps.toLocaleString()} total.`));
     host.append(node('p',`${result.qualificationChanged?'Some local-target qualifications change.':'Local-target qualifications are unchanged across these tested intervals.'} ${result.bestChanged?'The best qualifying set changes.':'The best qualifying set is unchanged across these tested intervals.'}`));
     const table=node('table','','placement-table'),body=node('tbody','');
     const head=node('tr','');for(const label of ['Step (min)','Qualifying layouts','Best qualifying edits'])head.append(node('th',label));body.append(head);
@@ -222,18 +235,34 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
       for(const at of plan.atSteps){
         item.append(node('h4',`${at.stepMinutes} min: ${at.meets?'meets every local target':'does not meet every local target'}${at.isBest?' · best qualifying set':''}`),node('p',`Worst additional ${PLACEMENT_METRICS[result.query.metric].label}: ${number(at.score)} ${PLACEMENT_METRICS[result.query.metric].unit}.`));
         for(const check of at.checks){item.append(node('p',`${name(p,check.cellIndex)} limit ${number(check.maxPeakChangeMm)} mm; worst ${number(check.worstChangeMm)} mm. Basis: ${check.basis}`));
-          for(const w of check.witnesses)item.append(node('p',`${w.rateMmHr} mm/h: ${number(w.changeMm)} mm change; ${w.meets?'meets target':'exceeds by '+number(w.excessMm)+' mm'}.`));}
+          for(const w of check.witnesses)item.append(node('p',`${hypothesisLabel(w)}: ${number(w.changeMm)} mm change; ${w.meets?'meets target':'exceeds by '+number(w.excessMm)+' mm'}.`));}
         appendDurationChecks(item,at.durationChecks,p);
       }all.append(item);
     }host.append(all);host.style.overflowWrap='anywhere';
   }
+  function showReceivingEvidence(current,host) {
+    if(!current.query.receivingStudy)return;
+    const evidence=current.originalEvidence,study=current.query.receivingStudy;
+    const details=node('details','');details.id='placement-receiving-evidence';
+    details.append(node('summary',`Inspect all ${study.hypotheses.length} original receiving explanations`),
+      node('p',`Original evidence status: ${evidence.status}. ${evidence.counts.calibration} calibration and ${evidence.counts.challenge} held-aside readings on ${study.target}; ${evidence.counts.affectedCells} affected cells. Every offered explanation remains below. Bands describe compatibility with these original inputs, not probability or physical validation.`));
+    const band=result=>result?.compatible===true?'within every band':result?.compatible===false?'outside at least one band':'not evaluated';
+    for(const hypothesis of study.hypotheses) {
+      const row=evidence.candidates.find(c=>c.hypothesis.id===hypothesis.id),card=node('article','','study-candidate');
+      card.dataset.hypothesisId=hypothesis.id;card.append(node('h4',`${hypothesis.label} (${hypothesis.id})`),
+        node('p',`${number(hypothesis.capacityMm)} mm total storage; ${number(hypothesis.initialStoredMm)} mm initially stored; drainage ${number(hypothesis.drainagePerHour)} per hour. Source: ${hypothesis.source}`),
+        node('p',`Calibration: ${band(row?.calibration)}. Held-aside readings: ${band(row?.challenge)}. ${current.hypothesisIds?.includes(hypothesis.id)?'Retained for this layout comparison.':'Not retained for this layout comparison.'}`));
+      details.append(card);
+    }host.append(details);
+  }
   function show(current,p) {
     const host=$('placement-results');host.replaceChildren();$('placement-status').dataset.state=current.status;
-    const refusal={'need-calibration':'Assign calibration readings before filtering.','need-challenge':'Assign held-aside readings before using their bands.','no-compatible-rates':'No source hypotheses meet these bands; no closest-fit fallback is used.','surface-absent':'The studied surface is absent from the source comparison.'};
+    showReceivingEvidence(current,host);
+    const refusal={'need-calibration':'Assign calibration readings before filtering.','need-challenge':'Assign held-aside readings before using their bands.','no-compatible-rates':'No source hypotheses meet these bands; no closest-fit fallback is used.','no-compatible-receivers':'No receiving explanations meet these original bands; no closest-fit fallback is used.','surface-absent':'The studied surface is absent from the original evidence scenario.'};
     if(current.status!=='compared'){$('placement-status').textContent=refusal[current.status]??current.status;return;}
     const metric=PLACEMENT_METRICS[current.query.metric];
     $('placement-status').dataset.state=current.qualifyingCount?'compared':'no-qualifying-placement';
-    $('placement-status').textContent=`Compared ${current.variantCount} variants × ${current.ratesMmHr.length} fixed hypotheses. ${current.qualifyingCount} meet every local target; ${current.best.length} share the lowest worst additional change among those placements. ${current.qualifyingCount?'':'No qualifying placement; no fallback is selected.'}`;
+    $('placement-status').textContent=`Compared ${current.variantCount} variants × ${(current.hypothesisIds??current.ratesMmHr).length} fixed hypotheses. ${current.qualifyingCount} meet every local target; ${current.best.length} share the lowest worst additional change among those placements. ${current.qualifyingCount?'':'No qualifying placement; no fallback is selected.'}`;
     host.append(node('p',`${current.semantics} Ranking objective: ${metric.label}. Negative means less; the unchanged proposal is always included.`));
     if(current.query.drainingLayer){const r=current.query.drainingLayer;host.append(node('p',`Receiving layer on ${SURFACES[r.surface].label}: ${number(r.capacityMm)} mm total storage, ${number(r.initialStoredMm)} mm initially stored, drainage ${number(r.drainagePerHour)} per hour. Basis: ${r.source}`,'placement-layer-basis'));}
     const save=node('button','Download original placement inputs');save.id='placement-save';save.type='button';
@@ -241,7 +270,7 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
       const text=serializePlacementInvestigation(p,current.query,current.tradeoffs?.declaration??null),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');
       a.href=url;a.download='placement-investigation.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     }catch(error){notice(error.message);}});host.append(save);
-    if(!current.sourceAffected.existing&&!current.sourceAffected.proposal)host.append(node('p',`The unchanged source contains no ${current.query.study.surface} cells. These capacities are declared hypotheses; source observations have not constrained them. The original result is identical across these rates. They affect a variant only where ${current.query.study.surface} is present.`, 'placement-absent-note'));
+    if(!current.sourceAffected.existing&&!current.sourceAffected.proposal){const surface=(current.query.receivingStudy??current.query.study).surface;host.append(node('p',`The unchanged source contains no ${surface} cells. These capacities are declared hypotheses; source observations have not constrained them. The original result is identical across these explanations. They affect a variant only where ${surface} is present.`, 'placement-absent-note'));}
     showTradeoffs(current,p,host);
     const table=node('table','','placement-table'),thead=node('thead',''),tr=node('tr','');for(const t of ['Edited cells',`Worst additional ${metric.label} (${metric.unit})`,'Local targets','Inspect'])tr.append(node('th',t));thead.append(tr);table.append(thead);
     const body=node('tbody','');for(const plan of current.plans){const row=node('tr','');row.dataset.cells=plan.cells.join(',');const best=current.best.some(c=>c.join(',')===plan.cells.join(','));row.append(node('td',(plan.cells.map(i=>name(p,i)).join(' + ')||'No change')+(best?' · best for this objective':'')),node('td',number(plan.score)),node('td',plan.meetsAllTargets?'Meets all':'Does not meet'));const action=node('td',''),b=node('button','Inspect');b.type='button';b.addEventListener('click',()=>inspect(plan,p,current));action.append(b);row.append(action);body.append(row);}table.append(body);
@@ -263,27 +292,33 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
   $('placement-tradeoff-enabled').addEventListener('change',()=>{$('placement-tradeoff-inputs').hidden=!$('placement-tradeoff-enabled').checked;invalidate();});
   $('placement-layer-enabled').addEventListener('change',()=>{$('placement-layer-inputs').hidden=!$('placement-layer-enabled').checked;invalidate();drawEligibility();});
   for(const id of ['placement-layer-surface','placement-layer-capacity','placement-layer-initial','placement-layer-drainage','placement-layer-source'])$(id).addEventListener('input',()=>invalidate());
-  $('placement-open').addEventListener('change',async()=>{
-    const file=$('placement-open').files?.[0];if(!file)return;
-    const request=++openRequest;invalidate('Opening original placement inputs…');const sourceGeneration=generation;
+  function attachOpen(id,read) {$(id).addEventListener('change',async()=>{
+    const file=$(id).files?.[0];if(!file)return;
+    const request=++openRequest;invalidate('Opening original investigation inputs…');const sourceGeneration=generation;
     try{
       if(file.size>PLACEMENT_FILE_LIMIT)throw Error('Placement investigation exceeds the 5 MiB input limit');
       const text=await file.text();
       // A later intake, source edit or choice owns the interface now. An old
       // asynchronous read must not replace that newer project or declarations.
       if(request!==openRequest||sourceGeneration!==generation)return;
-      loadInputs(parsePlacementInvestigation(text));
+      loadInputs(read(text));
     }catch(error){if(request===openRequest&&sourceGeneration===generation){notice(error.message);invalidate(error.message);}}
-    finally{if(request===openRequest)$('placement-open').value='';}
+    finally{if(request===openRequest)$(id).value='';}
+  });}
+  attachOpen('placement-open',parsePlacementInvestigation);
+  attachOpen('placement-receiving-open',text=>{
+    const {project,study}=parseDrainingEvidence(text);
+    return {project,query:{eligibleCells:[],maxEdits:2,surface:study.surface,metric:'unabsorbedLiters',subset:'all',receivingStudy:study,targets:[],durationGoal:null},tradeoffs:null};
   });
+  $('placement-receiving-clear').addEventListener('click',()=>{loadedReceiving=null;loadedStudy=null;$('placement-subset').value='all';invalidate('Returned to infiltration-rate hypotheses. Compare again.');drawEligibility();});
   for(const id of ['placement-cost-unit','placement-budget','placement-cost-basis'])$(id).addEventListener('input',()=>invalidate());
   $('placement-clear').addEventListener('click',()=>{eligible.clear();invalidate();drawEligibility();});
   $('placement-sealed').addEventListener('click',()=>{const cells=getProject().proposal.flatMap((c,i)=>c.surface==='sealed'&&c.surface!==$('placement-surface').value?[i]:[]);if(cells.length>12){notice('More than 12 sealed cells: choose an explicit smaller eligible set.');return;}eligible=new Set(cells);invalidate();drawEligibility();});
   $('placement-run').addEventListener('click',()=>{
-    const p=structuredClone(getProject());let targets,durationGoal,tradeoffs,drainingLayer;try{targets=readTargets(p);durationGoal=readDurationGoal(p);tradeoffs=readTradeoffs();drainingLayer=readLayer();}catch(error){invalidate(error.message);notice(error.message);return;}const query={targets,durationGoal,eligibleCells:[...eligible],maxEdits:Number($('placement-count').value),surface:$('placement-surface').value,metric:$('placement-objective').value,subset:$('placement-subset').value,...(loadedStudy?{study:loadedStudy}:{}),...(drainingLayer?{drainingLayer}:{})};
+    const p=structuredClone(getProject());let targets,durationGoal,tradeoffs,drainingLayer;try{targets=readTargets(p);durationGoal=readDurationGoal(p);tradeoffs=readTradeoffs();drainingLayer=readLayer();}catch(error){invalidate(error.message);notice(error.message);return;}const query={targets,durationGoal,eligibleCells:[...eligible],maxEdits:Number($('placement-count').value),surface:$('placement-surface').value,metric:$('placement-objective').value,subset:$('placement-subset').value,...(loadedReceiving?{receivingStudy:loadedReceiving}:loadedStudy?{study:loadedStudy}:{}),...(drainingLayer?{drainingLayer}:{})};
     const request=++generation;$('placement-run').disabled=true;
     setTimeout(()=>{try{if(request!==generation)return;const next=tradeoffs?comparePlacementTradeoffs(p,query,tradeoffs):comparePlacements(p,query);if(request!==generation||placementSignature(getProject())!==next.sourceSignature)return;report=next;show(report,p);}catch(error){invalidate(error.message);$('placement-status').dataset.state='error';notice(error.message);}finally{$('placement-run').disabled=false;}},20);
   });
-  function refresh(){const source=placementSignature(getProject());if(source!==lastSource){lastSource=source;loadedStudy=null;invalidate('Source changed; compare the current eligible set again.');}drawEligibility();}
+  function refresh(){const source=placementSignature(getProject());if(source!==lastSource){lastSource=source;loadedStudy=null;loadedReceiving=null;invalidate('Source changed; compare the current eligible set again.');}drawEligibility();}
   return {refresh};
 }

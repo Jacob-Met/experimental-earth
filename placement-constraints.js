@@ -18,7 +18,7 @@ export function assessPlacementTargets(candidates, targets) {
       const changeMm = candidate.peakDeltaMm[target.cellIndex];
       if (!Number.isFinite(changeMm)) throw Error('Missing local peak change for a retained hypothesis');
       // Deliberately no feasibility tolerance: a declared upper bound is inclusive.
-      return {rateMmHr:candidate.rateMmHr,changeMm,excessMm:changeMm-target.maxPeakChangeMm,meets:changeMm<=target.maxPeakChangeMm};
+      return {...(candidate.hypothesis?{hypothesis:structuredClone(candidate.hypothesis)}:{rateMmHr:candidate.rateMmHr}),changeMm,excessMm:changeMm-target.maxPeakChangeMm,meets:changeMm<=target.maxPeakChangeMm};
     });
     return {...target,meets:witnesses.every(w=>w.meets),worstChangeMm:Math.max(...witnesses.map(w=>w.changeMm)),witnesses};
   });
