@@ -1,0 +1,62 @@
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {randomUUID} from 'node:crypto';
+import {readFileSync,writeFileSync,readdirSync,mkdirSync} from 'node:fs';
+import {setTimeout as delay} from 'node:timers/promises';
+import {withBrowserSession} from './support/browser-session.mjs';
+const root=fileURLToPath(new URL('../',import.meta.url)),chromeBin=process.env.CHROME_BIN??'/opt/google/chrome/chrome';
+const evidence=process.env.RECHARGE_COOLING_RECEIPT_DIR??'/tmp/earth-recharge-cooling-'+randomUUID();mkdirSync(evidence,{recursive:false});
+const state="document.querySelector('#rc-status').dataset.state";
+const quantity=(field,kind)=>"Number(document.querySelector('#rc-account [data-quantity="+field+"] [data-kind="+kind+"]').dataset.value)";
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(a),Math.abs(b)),a+' != '+b);
+async function course(name,run){return withBrowserSession({root,chromeBin,runDirectory:evidence+'/'+name},async ctx=>{
+ assert.equal(ctx.sandbox.admitted,true);await ctx.send('Runtime.enable');await ctx.send('Page.enable');
+ await ctx.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});await ctx.send('Page.navigate',{url:ctx.baseUrl});
+ const wait=async exp=>{for(let i=0;i<120;i++){if(await ctx.evaluate(exp))return;await delay(50);}throw Error('Timed out '+exp);};
+ await wait("!!document.querySelector('#rc-form')");
+ const open=async path=>{const d=await ctx.send('DOM.getDocument'),q=await ctx.send('DOM.querySelector',{nodeId:d.root.nodeId,selector:'#rc-open'});await ctx.send('DOM.setFileInputFiles',{nodeId:q.nodeId,files:[path]});};
+ const capture=async name=>{await ctx.evaluate("document.querySelector('#rc-results').scrollIntoView({behavior:'instant',block:'start'})");await delay(40);writeFileSync(evidence+'/'+name+'.png',Buffer.from((await ctx.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));};
+ const result=await run({...ctx,wait,open,capture});assert.deepEqual(ctx.exceptions,[]);return {checks:result,sandbox:ctx.sandbox};
+});}
+let savedPath;
+const first=await course('first',async({send,evaluate,wait,capture})=>{
+ const checks=[],active=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ assert.equal(await evaluate("document.querySelector('#rc-use').disabled"),true);
+ await evaluate("document.querySelector('#ec-example').click();document.querySelector('#ec-form').requestSubmit();document.querySelector('#rc-use').click()");
+ assert.equal(await evaluate("document.querySelector('#rc-clock').value"),'');assert.equal(await evaluate("document.querySelector('#rc-form').hidden"),false);
+ await evaluate("document.querySelector('#rc-clock').value='Explicit authored common start';document.querySelector('#rc-form').requestSubmit()");await wait(state+"==='computed'");checks.push('explicit source adoption requires a separate event-start clock declaration');
+ await evaluate("document.querySelector('#rc-example').click();document.querySelector('#rc-form').requestSubmit()");await wait(state+"==='computed'");
+ assert.match(await evaluate("document.querySelector('#rc-results').textContent"),/48 intervals/);
+ await evaluate("document.querySelector('#rc-minute').value='240';document.querySelector('#rc-minute').dispatchEvent(new Event('change',{bubbles:true}))");
+ near(await evaluate(quantity('surfaceC','interval')),42.129284417107804);near(await evaluate(quantity('surfaceC','latePulse')),50.30877216918685);near(await evaluate(quantity('surfaceMeanC','interval')),41.60119183800371);checks.push('actual native48interval rain reproduces independent rising-loss temperature and direct mean control');
+ await evaluate("document.querySelector('#rc-minute').value='239.9';document.querySelector('#rc-minute').dispatchEvent(new Event('change',{bubbles:true}))");assert.equal(await evaluate(quantity('rechargeMm','latePulse')),0);
+ await evaluate("document.querySelector('#rc-minute').value='240';document.querySelector('#rc-minute').dispatchEvent(new Event('change',{bubbles:true}))");near(await evaluate(quantity('rechargeMm','latePulse')),3);assert.equal(await evaluate(quantity('surfaceLossJm2','latePulse')),0);checks.push('event-end pulse changes present water without cooling the earlier exposure');
+ await evaluate("document.querySelector('#rc-minute').value='480';document.querySelector('#rc-minute').dispatchEvent(new Event('change',{bubbles:true}))");
+ assert.ok(await evaluate(quantity('surfaceC','interval'))>await evaluate(quantity('surfaceC','latePulse')));checks.push('later timing sign reversal remains visible without selecting a winner');
+ await evaluate("document.querySelector('#rc-minute').value='137.25';document.querySelector('#rc-minute').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#rc-range').focus()");
+ assert.equal(await evaluate("document.querySelector('#rc-at').dataset.minute"),'137.25');
+ for(const type of ['keyDown','keyUp'])await send('Input.dispatchKeyEvent',{type,key:'ArrowLeft',code:'ArrowLeft',windowsVirtualKeyCode:37});
+ assert.equal(await evaluate("document.activeElement.id"),'rc-range');assert.ok(Number(await evaluate("document.querySelector('#rc-at').dataset.minute"))<137.25);
+ await evaluate("document.querySelector('#rc-side').value='proposal';document.querySelector('#rc-side').dispatchEvent(new Event('change',{bubbles:true}))");assert.match(await evaluate("document.querySelector('#rc-at').textContent"),/Proposed place/);checks.push('arbitrary exact time, original-place switch and native keyboard inspection');
+ await evaluate("document.querySelector('#rc-clock').value='<img src=x onerror=alert(1)> literal authored event-start clock';document.querySelector('#rc-clock').dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('#rc-form').requestSubmit()");await wait(state+"==='computed'");assert.equal(await evaluate("document.querySelectorAll('#rc-results img').length"),0);assert.match(await evaluate("document.querySelector('#rc-results').textContent"),/literal authored event-start clock/);checks.push('retained clock source is rendered literally');
+ const before=await evaluate(quantity('surfaceC','interval'));await evaluate("document.querySelector('#ec-latent').value='2300000';document.querySelector('#ec-latent').dispatchEvent(new Event('input',{bubbles:true}))");
+ assert.equal(await evaluate(quantity('surfaceC','interval')),before);assert.equal(await evaluate("document.querySelector('#rc-use').disabled"),true);assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),active);checks.push('parent edits preserve independently retained timing source and active site');
+ await capture('desktop');await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await capture('narrow');assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'));checks.push('desktop and390px consumer without horizontal page overflow');
+ await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:evidence});await evaluate("document.querySelector('#rc-save').click()");
+ for(let i=0;i<100;i++){if(readdirSync(evidence).includes('experimental-earth-recharge-cooling-v1.json'))break;await delay(50);}
+ savedPath=evidence+'/experimental-earth-recharge-cooling-v1.json';const saved=JSON.parse(readFileSync(savedPath,'utf8'));
+ assert.deepEqual(Object.keys(saved).sort(),['project','schema','study']);assert.deepEqual(Object.keys(saved.study).sort(),['clockSource','cooling','schema']);assert.equal(saved.study.cooling.latentHeatJkg,2450000);checks.push('real source-only download retains original water, exposure, demand and clock');
+ return checks;
+});
+const second=await course('fresh',async({evaluate,wait,open})=>{
+ const checks=[],active=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ await open(savedPath);await wait(state+"==='reopened'");near(await evaluate(quantity('surfaceC','interval')),30.37334189346585);assert.equal(await evaluate("document.querySelector('#ec-form').hidden"),true);assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),active);checks.push('fresh-profile real file recomputation leaves parent and active site original');
+ const bad=JSON.parse(readFileSync(savedPath,'utf8'));bad.result={surfaceC:0};const badPath=evidence+'/forged.json';writeFileSync(badPath,JSON.stringify(bad));await open(badPath);await wait(state+"==='refused'");assert.equal(await evaluate("document.querySelector('#rc-save').disabled"),true);assert.equal(await evaluate("document.querySelector('#rc-results').children.length"),0);checks.push('forged saved conclusions refuse without stale executable result');
+ await open(savedPath);await wait(state+"==='reopened'");
+ const raw=readFileSync(savedPath,'utf8');await evaluate("window.__rcOld=File.prototype.arrayBuffer;File.prototype.arrayBuffer=function(){return new Promise(resolve=>window.__rcFinish=()=>resolve(new TextEncoder().encode("+JSON.stringify(raw)+").buffer))}");
+ await open(savedPath);await wait("typeof window.__rcFinish==='function'");
+ await evaluate("document.querySelector('#rc-clock').value='A newer explicit clock draft';document.querySelector('#rc-clock').dispatchEvent(new Event('input',{bubbles:true}));window.__rcFinish();File.prototype.arrayBuffer=window.__rcOld");await delay(100);
+ assert.equal(await evaluate(state),'draft');assert.equal(await evaluate("document.querySelector('#rc-clock').value"),'A newer explicit clock draft');assert.equal(await evaluate("document.querySelector('#rc-results').children.length"),0);checks.push('new clock declaration cancels delayed original-file read');
+ return checks;
+});
+const report={status:'PASS',first,second,evidence};writeFileSync(evidence+'/receipt.json',JSON.stringify(report,null,2));console.log(JSON.stringify({status:'PASS',checks:first.value?.checks?.length+second.value?.checks?.length,evidence}));

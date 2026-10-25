@@ -53,18 +53,18 @@ function profile(cooling,side,original,kind,durationMinutes,eventMinutes){
  const initial={surfaceC:surface.initialC,subsurfaceC:lower.initialC,availableMm:initialAvailableMm,...Object.fromEntries(accountKeys.map(k=>[k,0]))};
  const heatEnds=[];let elapsed=0;for(const row of cooling.heatColumn.heatStudy.schedule){elapsed+=row.minutes;heatEnds.push(elapsed);}
  const boundaries=[...new Set([0,eventMinutes,durationMinutes,...heatEnds,...original.intervals.map(row=>row.endMinute)])].sort((a,b)=>a-b);
- let state={...initial};const segments=[];
+ let state={...initial},beforePulse=null;const segments=[];
  for(let i=1;i<boundaries.length;i++){
   const startMinute=boundaries[i-1],endMinute=boundaries[i];
-  if(kind==='latePulse'&&startMinute===eventMinutes)state=pulse(state,original.rechargeMm,capacityMm);
+  if(kind==='latePulse'&&startMinute===eventMinutes){beforePulse={...state};state=pulse(state,original.rechargeMm,capacityMm);}
   const forcingIndex=heatEnds.findIndex(end=>startMinute<end);
   const rain=kind==='interval'?original.intervals.find(row=>startMinute>=row.startMinute&&startMinute<row.endMinute):null;
   const rechargeMmPerDay=rain?rain.rechargeMm/((rain.endMinute-rain.startMinute)/1440):0;
   segments.push({startMinute,endMinute,forcingIndex,rechargeMmPerDay,initial:{...state}});
   state=coupled(cooling,side,capacityMm,forcingIndex,rechargeMmPerDay,state,(endMinute-startMinute)*60);
  }
- if(kind==='latePulse'&&durationMinutes===eventMinutes)state=pulse(state,original.rechargeMm,capacityMm);
- return {kind,capacityMm,stressThresholdMm,initialAvailableMm,initial,segments,final:state};
+ if(kind==='latePulse'&&durationMinutes===eventMinutes){beforePulse={...state};state=pulse(state,original.rechargeMm,capacityMm);}
+ return {kind,capacityMm,stressThresholdMm,initialAvailableMm,initial,segments,beforePulse,final:state};
 }
 function account(cooling,side,profile,state,minute){
  const surface=cooling.heatColumn.heatStudy[side],lower=cooling.heatColumn.lowerLayers[side];

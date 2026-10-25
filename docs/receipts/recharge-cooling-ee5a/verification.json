@@ -1,0 +1,52 @@
+{
+  "issue": 199,
+  "base": "b016ed361834e338e499eca071c96022aa7679cb",
+  "coreReviewedCommit": "d92053c09f8049a7c71d96614dd86035b9e915fe",
+  "native": {
+    "passed": 720,
+    "failed": 0,
+    "skipped": 0,
+    "supplyBranchParity": 2700,
+    "maintainedWaterComparisons": 1080
+  },
+  "independentReviews": [
+    {
+      "reviewer": "hamon-ee5a530c-20261024/second_ground",
+      "scope": "nonnegative rising/falling exponential loss, integrated thermal response",
+      "matrixCases": 480,
+      "matrixAdmitted": 476,
+      "domainRefusals": 4,
+      "maxTemperatureOrMeanDifferenceC": 2.824e-9,
+      "decimalModalCases": 100,
+      "maxDecimalModalRelativeError": 1.681e-13,
+      "decimalEnergyCases": 160,
+      "maxDecimalEnergyRelativeError": 1.121e-15,
+      "blockingDefect": false
+    },
+    {
+      "reviewer": "hamon-ee5a530c-20261024/mechanism",
+      "scope": "native supply regimes, original recharge timing, pulse/clock/water/heat/source contract",
+      "nativeGroups": 8,
+      "fractionalBoundaryComparisons": 528,
+      "maximumRelativeDifference": 6.34e-16,
+      "sourceInputUnchanged": true,
+      "blockingDefect": false
+    }
+  ],
+  "browser": {
+    "version": "Chrome/156.0.8078.47",
+    "sandboxAdmitted": true,
+    "newReceivingGroups": 12,
+    "oldCoolingGroups": 13,
+    "oldReadingGroups": 13,
+    "actualSourceDownloadAndFreshProfileReopen": true,
+    "desktopAnd390px": true
+  },
+  "limits": [
+    "Authored conditional effective-surface and root-water controls; not field cooling or biological validation",
+    "Original native infiltration is uniform within each accepted interval",
+    "Thermal event-start association is an explicit source declaration, not inferred synchronization",
+    "Floating-point engineering response; not certified error bounds",
+    "Held outlet issue24 remains outside this work"
+  ]
+}
