@@ -1,3 +1,4 @@
+import {mountDrainingEvent} from './draining-event-panel.js';
 import {SURFACES} from './core.js';
 import {DRAINING_HYPOTHESES_SCHEMA, compareDrainingHypotheses,
   serializeDrainingEvidence, parseDrainingEvidence, makeDrainingEvidenceExample} from './draining-layer-evidence.js';
@@ -190,5 +191,6 @@ export function mountDrainingEvidence({host, getProject, getLayer}) {
     } catch (error) {if (token === generation) status(error.message, 'refused');}
     finally {if (token === generation) $('run').disabled = false;}
   };
+  mountDrainingEvent({host: panel, getFirst: () => ({project: source(), study: readStudy()})});
   refresh(); return {refresh};
 }

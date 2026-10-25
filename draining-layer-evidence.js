@@ -56,7 +56,7 @@ function summarize(result) {
       drainedLiters: layer.drainedLiters, balanceErrorLiters: layer.balanceErrorLiters}};
 }
 
-function consequences(candidates) {
+export function drainingConsequences(candidates) {
   return {count: candidates.length, ids: candidates.map(c => c.hypothesis.id),
     metrics: Object.fromEntries(metrics.map(key => [key, candidates.length ? {
       minimum: Math.min(...candidates.map(c => c.change[key])),
@@ -77,7 +77,7 @@ export function compareDrainingHypotheses(project, study) {
   const counts = {calibration: calibration.length, challenge: challenge.length,
     ignored: readings.length - calibration.length - challenge.length, affectedCells};
   const empty = {candidates: [], compatibleIds: [], survivingIds: [],
-    effects: {all: consequences([]), calibration: consequences([]), surviving: consequences([])}};
+    effects: {all: drainingConsequences([]), calibration: drainingConsequences([]), surviving: drainingConsequences([])}};
   if (!affectedCells) return {status: 'surface-absent', counts, cellSteps, study: structuredClone(study), ...empty};
   const candidates = study.hypotheses.map(hypothesis => {
     const layer = hypothesisLayer(study, hypothesis), runs = {};
@@ -95,7 +95,7 @@ export function compareDrainingHypotheses(project, study) {
     survivors.length === 1 ? 'one-survivor' : 'ambiguous';
   return {status, counts, cellSteps, study: structuredClone(study), candidates,
     compatibleIds: compatible.map(c => c.hypothesis.id), survivingIds: survivors.map(c => c.hypothesis.id),
-    effects: {all: consequences(candidates), calibration: consequences(compatible), surviving: consequences(survivors)}};
+    effects: {all: drainingConsequences(candidates), calibration: drainingConsequences(compatible), surviving: drainingConsequences(survivors)}};
 }
 
 export function serializeDrainingEvidence(project, study) {
