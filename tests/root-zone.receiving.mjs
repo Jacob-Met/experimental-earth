@@ -19,18 +19,36 @@ const result=await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/
  await evaluate("document.querySelector('#rz-example').click();document.querySelector('#rz-form').requestSubmit()");
  await wait(state+"==='computed'");
  assert.equal(await evaluate("document.querySelectorAll('#rz-table').length"),0);
- assert.equal(await evaluate("document.querySelectorAll('#rz-results tbody tr').length"),10);
- const initial=await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-results tbody tr')].map(r=>[r.dataset.quantity,[...r.querySelectorAll('td')].map(e=>Number(e.dataset.value))]))");
+ assert.equal(await evaluate("document.querySelectorAll('#rz-summary tbody tr').length"),10);
+ const initial=await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-summary tbody tr')].map(r=>[r.dataset.quantity,[...r.querySelectorAll('td')].map(e=>Number(e.dataset.value))]))");
  assert.ok(initial.rechargeMm[1]>initial.rechargeMm[0]);assert.ok(initial.availableMm[1]>initial.availableMm[0]);
  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original);
+ assert.equal(await evaluate("document.querySelectorAll('#rz-factor-matrix button').length"),4);
+ assert.equal(await evaluate("document.querySelector('#rz-factor-case').dataset.day"),'14');
+ const factorValues=await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-factor-matrix button')].map(b=>[b.dataset.case,Number(b.dataset.value)]))");
+ assert.ok(Math.abs(factorValues.rechargeOnly-3.719224984985697)<1e-9);
+ assert.ok(Math.abs(Number(await evaluate("document.querySelector('#rz-factor-effects [data-effect=interaction] td').dataset.value"))-21.95270888194327)<1e-9);
+ await evaluate("document.querySelector('#rz-factor-matrix [data-case=rechargeOnly]').focus()");
+ assert.equal(await evaluate("document.activeElement.dataset.case"),'rechargeOnly');
+ for(const type of ['keyDown','keyUp'])await send('Input.dispatchKeyEvent',{type,key:'Enter',code:'Enter',windowsVirtualKeyCode:13,...(type==='keyDown'?{text:'\r',unmodifiedText:'\r'}:{})});
+ assert.equal(await evaluate("document.querySelector('#rz-factor-case').dataset.case"),'rechargeOnly');
+ assert.ok(Number(await evaluate("document.querySelector('#rz-factor-account [data-quantity=drainageMm] td').dataset.value"))>38);
+ await evaluate("document.querySelector('#rz-factor-metric').value='suppliedMm';document.querySelector('#rz-factor-metric').dispatchEvent(new Event('change',{bubbles:true}))");
+ assert.ok(Number(await evaluate("document.querySelector('#rz-factor-effects [data-effect=storeOnly] td').dataset.value"))<0);
+ await evaluate("document.querySelector('#rz-factor-metric').value='availableMm';document.querySelector('#rz-factor-metric').dispatchEvent(new Event('change',{bubbles:true}))");
  await evaluate("document.querySelector('#rz-day-range').focus()");
- for(const type of ['keyDown','keyUp'])await send('Input.dispatchKeyEvent',{type,key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
+ for(const type of ['keyDown','keyUp'])await send('Input.dispatchKeyEvent',{type,key:'ArrowLeft',code:'ArrowLeft',windowsVirtualKeyCode:37});
  assert.ok(Number(await evaluate("document.querySelector('#rz-day-number').value"))>0);
+ assert.ok(Number(await evaluate("document.querySelector('#rz-day-number').value"))<14);
  assert.equal(await evaluate("document.activeElement.id"),'rz-day-range');
  await evaluate("document.querySelector('#rz-day-number').value='8';document.querySelector('#rz-day-number').dispatchEvent(new Event('change',{bubbles:true}))");
  assert.match(await evaluate("document.querySelector('#rz-at-day').textContent"),/Day 8/);
  const inspect=await evaluate("[...document.querySelectorAll('#rz-at-day [data-side]')].map(e=>Number(e.dataset.available))");
  assert.ok(inspect.every(Number.isFinite));
+ assert.equal(await evaluate("document.querySelector('#rz-factor-case').dataset.day"),'8');
+ const factorDay8=await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-factor-account tbody tr')].map(r=>[r.dataset.quantity,Number(r.querySelector('td').dataset.value)]))");
+ assert.ok(factorDay8.availableMm>factorValues.rechargeOnly);
+ assert.ok(Math.abs(factorDay8.initialAvailableMm+factorDay8.rechargeMm-factorDay8.drainageMm-factorDay8.suppliedMm-factorDay8.availableMm)<1e-10);
  // Observe the actual generated download Blob without replacing its serialization path.
  await evaluate("window.__rootDownloads=[];window.__createRootURL=URL.createObjectURL;URL.createObjectURL=b=>{window.__rootDownloads.push(b);return window.__createRootURL(b)}");
  await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:runDirectory});
@@ -45,27 +63,27 @@ const result=await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/
  const open=async text=>{await evaluate(`{const dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(text)}],'root-zone.json',{type:'application/json'}));const input=document.querySelector('#rz-open');input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));}`);};
  await open(saved);await wait(state+"==='reopened'");
  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),changed);
- const reopened=await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-results tbody tr')].map(r=>[r.dataset.quantity,[...r.querySelectorAll('td')].map(e=>Number(e.dataset.value))]))");
- assert.deepEqual(reopened,initial);assert.match(await evaluate("document.querySelector('#rz-place').textContent"),/Reopened original/);
+ const reopened=await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-summary tbody tr')].map(r=>[r.dataset.quantity,[...r.querySelectorAll('td')].map(e=>Number(e.dataset.value))]))");
+ assert.deepEqual(reopened,initial);assert.deepEqual(await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-factor-matrix button')].map(b=>[b.dataset.case,Number(b.dataset.value)]))"),factorValues);assert.match(await evaluate("document.querySelector('#rz-place').textContent"),/Reopened original/);
  await open(JSON.stringify({...bundle,result:{availableMm:900}}));await wait(state+"==='refused'");
- assert.deepEqual(await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-results tbody tr')].map(r=>[r.dataset.quantity,[...r.querySelectorAll('td')].map(e=>Number(e.dataset.value))]))"),initial);
+ assert.deepEqual(await evaluate("Object.fromEntries([...document.querySelectorAll('#rz-summary tbody tr')].map(r=>[r.dataset.quantity,[...r.querySelectorAll('td')].map(e=>Number(e.dataset.value))]))"),initial);
  assert.equal(await evaluate("document.querySelector('#rz-save').disabled"),false);
  await evaluate("document.querySelector('#rz-existing-source').value='<img src=x onerror=alert(1)> literal source';document.querySelector('#rz-existing-source').dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('#rz-form').requestSubmit()");
  await wait(state+"==='computed'");assert.equal(await evaluate("document.querySelectorAll('#rz-results img').length"),0);
  assert.match(await evaluate("document.querySelector('#rz-results').textContent"),/<img src=x/);
- async function capture(name){
-  const clip=await evaluate("(async()=>{const p=document.querySelector('#rz-results');p.scrollIntoView({behavior:'instant',block:'start'});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const b=p.getBoundingClientRect();return{x:b.x+scrollX,y:b.y+scrollY,width:b.width,height:b.height,scale:1}})()");
+ async function capture(name,selector='#rz-results'){
+  const clip=await evaluate(`(async()=>{const p=document.querySelector(${JSON.stringify(selector)});p.scrollIntoView({behavior:'instant',block:'start'});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const b=p.getBoundingClientRect();return{x:b.x+scrollX,y:b.y+scrollY,width:b.width,height:b.height,scale:1}})()`);
   writeFileSync(runDirectory+'/'+name+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip})).data,'base64'));
  }
  const desktop=await evaluate('({viewport:innerWidth,scroll:document.documentElement.scrollWidth})');assert.ok(desktop.scroll<=desktop.viewport+1,JSON.stringify(desktop));
- await capture('root-zone-desktop');
+ await capture('root-zone-desktop');await capture('root-zone-factors-desktop','#rz-factors');
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
- await capture('root-zone-mobile');
+ await capture('root-zone-mobile');await capture('root-zone-factors-mobile','#rz-factors');
  const dims=await evaluate("({viewport:innerWidth,scroll:document.documentElement.scrollWidth,panel:document.querySelector('#root-zone').getBoundingClientRect().width})");
  assert.ok(dims.scroll<=dims.viewport+1,JSON.stringify(dims));
  await evaluate("document.querySelector('#rz-current').click();document.querySelector('#rz-form').requestSubmit()");
  await wait(state+"==='computed'");
- const recharge=await evaluate("[...document.querySelectorAll('#rz-results [data-quantity=rechargeMm] td')].map(e=>Number(e.dataset.value))");
+ const recharge=await evaluate("[...document.querySelectorAll('#rz-summary [data-quantity=rechargeMm] td')].map(e=>Number(e.dataset.value))");
  assert.deepEqual(recharge,[0,0]);assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),changed);
  // A new draft cancels an already started asynchronous file read.
  await evaluate(`window.__rootArrayBuffer=File.prototype.arrayBuffer;File.prototype.arrayBuffer=function(){return new Promise(resolve=>{window.__finishRootRead=()=>resolve(new TextEncoder().encode(${JSON.stringify(saved)}).buffer)})}`);
@@ -74,6 +92,7 @@ const result=await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/
  await delay(100);assert.equal(await evaluate(state),'draft');assert.equal(await evaluate("document.querySelector('#rz-proposal-rootDepthM').value"),'.7');
  assert.equal(await evaluate("document.querySelector('#rz-results').children.length"),0);
  assert.deepEqual(exceptions,[]);
- return {checks:['blank attributed declarations before explicit example','original model infiltration into distinct rooted stores','complete water-account table','native keyboard day inspection','actual source-only Blob download','changed site invalidates output','original-site reopen recomputes while active site stays unchanged','forged conclusion refused without replacing accepted comparison','literal source rendered without markup execution','desktop and narrow-screen result capture','return to changed source recomputes zero recharge','newer draft cancels delayed file read'],initial,dimensions:dims,runDirectory};
+ return {checks:['four conditional cases preserve original recharge and whole-store declarations','nonadditive end-storage interaction','keyboard case selection and selected water account','store-only supplied-transpiration counterexample','exact shared-day factor inspection with water conservation','source-only file recomputes all four cases','blank attributed declarations before explicit example','original model infiltration into distinct rooted stores','complete water-account table','native keyboard day inspection','actual source-only Blob download','changed site invalidates output','original-site reopen recomputes while active site stays unchanged','forged conclusion refused without replacing accepted comparison','literal source rendered without markup execution','desktop and narrow-screen result capture','return to changed source recomputes zero recharge','newer draft cancels delayed file read'],initial,dimensions:dims,runDirectory};
 });
 console.log(JSON.stringify({status:'PASS',...result},null,2));
+

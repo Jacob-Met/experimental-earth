@@ -1,5 +1,7 @@
-import {compareRootZone, serializeRootZoneInvestigation, parseRootZoneInvestigation, checkRootZoneFileBytes, ROOT_ZONE_MEANING} from './root-zone-study.js';
+import {serializeRootZoneInvestigation, parseRootZoneInvestigation, checkRootZoneFileBytes, ROOT_ZONE_MEANING} from './root-zone-study.js';
 import {rootZoneAtDay} from './root-zone.js';
+import {compareRootZoneFactors} from './root-zone-factors.js';
+import {mountRootZoneFactors} from './root-zone-factors-panel.js';
 const node=(tag,text='')=>{const e=document.createElement(tag);e.textContent=text;return e;};
 const svg=(tag,attrs={})=>{const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,String(v));return e;};
 const fmt=n=>n!==0 && (Math.abs(n)<0.0001 || Math.abs(n)>=1e7) ? Number(n).toExponential(3) : Number(n).toLocaleString('en-US',{maximumSignificantDigits:5});
@@ -26,10 +28,10 @@ export function mountRootZone({getProject}) {
  document.querySelector('.observations').before(panel);
  const $=id=>panel.querySelector('#rz-'+id);
  $('meaning').textContent=ROOT_ZONE_MEANING;
- let opened=null,accepted=null,generation=0,busy=false,key='';
+ let opened=null,accepted=null,generation=0,busy=false,key='',factorInspector=null;
  const source=()=>opened??getProject();
  function setStatus(text,state){$('status').textContent=text;$('status').dataset.state=state;}
- function invalidate(message){generation++;busy=false;accepted=null;$('results').replaceChildren();$('save').disabled=true;$('run').disabled=false;setStatus(message,'draft');}
+ function invalidate(message){generation++;busy=false;accepted=null;factorInspector=null;$('results').replaceChildren();$('save').disabled=true;$('run').disabled=false;setStatus(message,'draft');}
  function numbers(id){const s=$(id).value;if(!s.trim())throw Error('Enter every declared property and interval');const n=Number(s);if(!Number.isFinite(n))throw Error('Enter finite numeric declarations');return n;}
  function addInterval(row={}){
   const box=node('fieldset');box.className='rz-interval';
@@ -70,9 +72,10 @@ export function mountRootZone({getProject}) {
   const host=$('at-day');host.replaceChildren(node('h4','Day '+fmt(day)+' after the modeled event'));
   for(const side of sides){const row=rootZoneAtDay(r[side],day),p=node('p',(side==='existing'?'Existing':'Proposed')+': '+fmt(row.availableMm)+' mm available; '+fmt(row.suppliedMm)+' mm supplied transpiration; '+fmt(row.unmetMm)+' mm unmet demand.');
    p.dataset.side=side;p.dataset.available=String(row.availableMm);host.append(p);}
+  factorInspector?.(day);
  }
  function draw(){
-  const {project:p,report:r}=accepted,host=$('results');host.replaceChildren();
+  const {project:p,report:r}=accepted,host=$('results');factorInspector=null;host.replaceChildren();
   host.append(node('h3',name(p,r.cellIndex)+' · '+fmt(r.existing.totalDays)+' dry days'));
   host.append(node('p','Recharge uses the paired site maps’ default constant surface infiltration capacities over the complete '+fmt(p.weather.durationMinutes)+'-minute event. It does not adopt a separately investigated soil hypothesis.'));
   const figure=node('figure'),chart=svg('svg',{viewBox:'0 0 700 300',role:'img','aria-label':'Available rooted-soil water in millimetres over dry days, existing solid amber and proposed dashed green; dotted lines show each demand-reduction threshold'});
@@ -94,18 +97,19 @@ export function mountRootZone({getProject}) {
   $('day-number').max=$('day-range').max=String(duration);$('day-range').step=String(duration/1000);
   $('day-range').oninput=()=>inspect(Number($('day-range').value));
   $('day-number').onchange=()=>{const v=Number($('day-number').value);if($('day-number').value.trim()&&Number.isFinite(v)&&v>=0&&v<=duration)inspect(v);};
-  const table=node('table');table.className='rz-table';const caption=node('caption','Whole dry-period water account · millimetres over the original '+fmt(r.cellAreaM2)+' m² cell');
+  const table=node('table');table.id='rz-summary';table.className='rz-table';const caption=node('caption','Whole dry-period water account · millimetres over the original '+fmt(r.cellAreaM2)+' m² cell');
   const head=node('thead'),hr=node('tr');for(const title of ['Quantity','Existing','Proposed']){const th=node('th',title);th.scope='col';hr.append(th);}head.append(hr);table.append(caption,head);
   const body=node('tbody');
   for(const [key,label]of [['capacityMm','Declared available capacity'],['initialAvailableMm','Available before recharge'],['rechargeMm','Modeled event infiltration'],['retainedRechargeMm','Recharge retained in store'],['drainageMm','Immediate excess drainage'],['suppliedMm','Supplied transpiration'],['unmetMm','Unmet transpiration demand'],['availableMm','Available at dry-period end'],['demandLimitedDays','Days with reduced demand supply'],['balanceErrorMm','Water-account residual · mm']]){
    const tr=node('tr');tr.dataset.quantity=key;const th=node('th',label);th.scope='row';tr.append(th);for(const side of sides){const td=node('td',fmt(r[side][key]));td.dataset.side=side;td.dataset.value=String(r[side][key]);tr.append(td);}body.append(tr);
   }table.append(body);host.append(table);
+  factorInspector=mountRootZoneFactors(host,r);
   const detail=node('details');detail.append(node('summary','Original source, assumptions and each dry interval'));
   detail.append(node('p','Association: '+r.study.associationSource),node('p','Original storm: '+p.weather.rainMmHr+' mm/hour for '+p.weather.stormMinutes+' minutes; modeled for '+p.weather.durationMinutes+' minutes at '+p.weather.stepMinutes+'-minute calculation intervals.'));
   for(const side of sides){detail.append(node('h4',side==='existing'?'Existing':'Proposed'),node('p','Cell: '+r[side].originalCell.surface+'; '+r[side].originalCell.provenance),
    node('p','Rooted store: '+r.study[side].source),node('p','Original model infiltration: '+fmt(r[side].originalBudget.absorbedLiters)+' litres / '+fmt(r.cellAreaM2)+' m². First demand-limited instant: '+(r[side].firstLimitedDay===null?'none in this declared dry period':'day '+fmt(r[side].firstLimitedDay))+'.'));
    for(const row of r[side].intervals)detail.append(node('p','Day '+fmt(row.startDay)+'–'+fmt(row.endDay)+': demand '+fmt(row.forcing.potentialTranspirationMmPerDay)+' mm/day; supplied '+fmt(row.suppliedMm)+' mm; remaining '+fmt(row.availableMm)+' mm. '+row.forcing.source));
-  }host.append(detail);inspect(0);
+  }host.append(detail);inspect(duration);
  }
  function install(project,study,report){accepted={project,study,report};draw();$('save').disabled=false;}
  $('form').addEventListener('input',()=>invalidate('Draft changed. Compare again before saving.'));
@@ -122,7 +126,7 @@ export function mountRootZone({getProject}) {
   event.preventDefault();let p,study;
   try{p=structuredClone(source());study=readStudy();}catch(e){setStatus(e.message,'refused');return;}
   const token=++generation;busy=true;$('run').disabled=true;$('save').disabled=true;setStatus('Computing original infiltration and both rooted stores…','pending');
-  setTimeout(()=>{if(token!==generation)return;try{const report=compareRootZone(p,study);install(p,study,report);setStatus('Both stores compared from the original inputs. No site or soil hypothesis was adopted.','computed');}
+  setTimeout(()=>{if(token!==generation)return;try{const report=compareRootZoneFactors(p,study);install(p,study,report);setStatus('Both stores compared from the original inputs. No site or soil hypothesis was adopted.','computed');}
    catch(e){accepted=null;$('results').replaceChildren();setStatus(e.message,'refused');}
    finally{if(token===generation){busy=false;$('run').disabled=false;$('save').disabled=!accepted;}}},10);
  };
@@ -131,7 +135,7 @@ export function mountRootZone({getProject}) {
   const file=$('open').files?.[0];if(!file)return;const token=++generation;busy=true;$('run').disabled=true;$('save').disabled=true;setStatus('Checking original investigation…','opening');
   try{checkRootZoneFileBytes(file.size);const bytes=await file.arrayBuffer();if(token!==generation)return;
    const original=parseRootZoneInvestigation(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
-   const report=compareRootZone(original.project,original.study);if(token!==generation)return;
+   const report=compareRootZoneFactors(original.project,original.study);if(token!==generation)return;
    opened=original.project;key=JSON.stringify(opened);
    $('cell').replaceChildren(...opened.existing.map((_,i)=>{const o=node('option',name(opened,i));o.value=String(i);return o;}));
    fill(original.study);install(opened,original.study,report);refresh();setStatus('Recomputed from the file’s original site and declarations. Active site unchanged.','reopened');
@@ -140,3 +144,4 @@ export function mountRootZone({getProject}) {
  };
  addInterval();refresh();return {refresh};
 }
+
