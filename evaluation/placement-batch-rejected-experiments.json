@@ -1,0 +1,286 @@
+{
+  "purpose": "Retain negative performance evidence; these core prototypes are not integrated. All later batch receipts use the original core.",
+  "experiments": [
+    {
+      "candidate": "v2",
+      "coreSha256": "59a8a3fe7b461d2871ddee68925052f2d3fbb29a86b4fb7515ec408ff6e22b8f",
+      "decision": "rejected; original core retained",
+      "environment": {
+        "node": "v24.22.1",
+        "platform": "linux",
+        "arch": "x64",
+        "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+        "cpuCount": 9,
+        "load": [
+          5.99,
+          4.73,
+          3.21
+        ]
+      },
+      "method": "five alternating fresh process pairs; first use recorded separately; four further warmups; fixed repeated full consumers and output hashes checked",
+      "workloads": [
+        {
+          "name": "courtyard",
+          "baselineMedianMs": 1.0383432200000002,
+          "candidateMedianMs": 1.5403940400000002,
+          "speedup": 0.6740763681479838,
+          "baselineSamplesMs": [
+            0.7855156999999999,
+            1.0383432200000002,
+            1.1056690800000002,
+            0.9282034200000001,
+            1.23756489
+          ],
+          "candidateSamplesMs": [
+            1.18346805,
+            2.9078152999999998,
+            1.36548677,
+            1.5403940400000002,
+            1.69435617
+          ]
+        },
+        {
+          "name": "wide-crest-grid",
+          "baselineMedianMs": 2.5393487999999995,
+          "candidateMedianMs": 2.5552116799999993,
+          "speedup": 0.9937919507318471,
+          "baselineSamplesMs": [
+            4.3503124,
+            2.33948712,
+            2.43607166,
+            2.5393487999999995,
+            2.93328084
+          ],
+          "candidateSamplesMs": [
+            2.9701561400000016,
+            2.5552116799999993,
+            2.4312497800000004,
+            2.6092066999999997,
+            2.2796617200000004
+          ]
+        },
+        {
+          "name": "traced-wet-storage",
+          "baselineMedianMs": 8.153709333333333,
+          "candidateMedianMs": 5.850332733333334,
+          "speedup": 1.3937171960965729,
+          "baselineSamplesMs": [
+            8.153709333333333,
+            5.619460566666667,
+            7.1159045999999995,
+            12.307248666666668,
+            8.278661099999999
+          ],
+          "candidateSamplesMs": [
+            5.850332733333334,
+            6.426450700000001,
+            5.593373566666666,
+            7.682570266666667,
+            5.667953133333333
+          ]
+        },
+        {
+          "name": "infiltration",
+          "baselineMedianMs": 2.2937943666666665,
+          "candidateMedianMs": 2.15305335,
+          "speedup": 1.0653681046345955,
+          "baselineSamplesMs": [
+            1.8191122666666668,
+            1.6192066333333333,
+            2.3242789333333334,
+            3.8900369833333333,
+            2.2937943666666665
+          ],
+          "candidateSamplesMs": [
+            2.15305335,
+            1.8726373999999997,
+            1.9927587333333334,
+            2.6301531,
+            2.5848716499999997
+          ]
+        },
+        {
+          "name": "79-layout-placement",
+          "baselineMedianMs": 200.48739999999998,
+          "candidateMedianMs": 136.04099600000004,
+          "speedup": 1.4737278165767025,
+          "baselineSamplesMs": [
+            339.3712123333333,
+            184.455145,
+            200.48739999999998,
+            220.62757066666668,
+            177.153201
+          ],
+          "candidateSamplesMs": [
+            123.76322866666669,
+            129.12444666666667,
+            141.34669899999997,
+            140.30625100000006,
+            136.04099600000004
+          ]
+        },
+        {
+          "name": "observation-selection",
+          "baselineMedianMs": 38.2101495,
+          "candidateMedianMs": 35.006058700000004,
+          "speedup": 1.0915296071305507,
+          "baselineSamplesMs": [
+            53.751067,
+            39.250274,
+            38.2101495,
+            37.3339912,
+            37.5904054
+          ],
+          "candidateSamplesMs": [
+            42.88745279999999,
+            35.006058700000004,
+            29.3443641,
+            47.375255800000005,
+            30.488841899999994
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "v3",
+      "coreSha256": "31f861adb27643c78442596350e4d1455c69358a51d52ba0802f636c15b60cd9",
+      "decision": "rejected; original core retained",
+      "environment": {
+        "node": "v24.22.1",
+        "platform": "linux",
+        "arch": "x64",
+        "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+        "cpuCount": 9,
+        "load": [
+          7.13,
+          5.11,
+          3.52
+        ]
+      },
+      "method": "five alternating fresh process pairs; first use recorded separately; four further warmups; fixed repeated full consumers and output hashes checked",
+      "workloads": [
+        {
+          "name": "courtyard",
+          "baselineMedianMs": 0.8900014500000001,
+          "candidateMedianMs": 1.5610633900000002,
+          "speedup": 0.570125118365629,
+          "baselineSamplesMs": [
+            1.1559459600000002,
+            0.93464293,
+            0.88674038,
+            0.7892056400000002,
+            0.8900014500000001
+          ],
+          "candidateSamplesMs": [
+            1.7866492500000002,
+            5.62158769,
+            1.3870480600000001,
+            1.5610633900000002,
+            1.5093347599999998
+          ]
+        },
+        {
+          "name": "wide-crest-grid",
+          "baselineMedianMs": 2.9983497999999997,
+          "candidateMedianMs": 3.70362272,
+          "speedup": 0.8095721477807545,
+          "baselineSamplesMs": [
+            2.3811153799999993,
+            3.2947207199999995,
+            2.9983497999999997,
+            2.1230239800000006,
+            3.0566770399999994
+          ],
+          "candidateSamplesMs": [
+            3.9606874399999996,
+            3.70362272,
+            3.0439399000000003,
+            3.13736816,
+            3.9343202399999995
+          ]
+        },
+        {
+          "name": "traced-wet-storage",
+          "baselineMedianMs": 7.649421066666667,
+          "candidateMedianMs": 5.032178766666667,
+          "speedup": 1.520101216859923,
+          "baselineSamplesMs": [
+            14.319875000000001,
+            7.617362999999999,
+            7.649421066666667,
+            8.439288133333333,
+            7.5047594
+          ],
+          "candidateSamplesMs": [
+            4.6727825,
+            5.032178766666667,
+            5.996046699999999,
+            8.321742599999999,
+            4.509612466666667
+          ]
+        },
+        {
+          "name": "infiltration",
+          "baselineMedianMs": 2.0470814166666664,
+          "candidateMedianMs": 2.8984916666666667,
+          "speedup": 0.7062574787461293,
+          "baselineSamplesMs": [
+            8.47709005,
+            2.0348179666666666,
+            2.111056533333333,
+            2.0470814166666664,
+            1.8061658333333332
+          ],
+          "candidateSamplesMs": [
+            3.1599346333333336,
+            2.6864923833333334,
+            2.9948300333333338,
+            2.6450563,
+            2.8984916666666667
+          ]
+        },
+        {
+          "name": "79-layout-placement",
+          "baselineMedianMs": 287.9079633333334,
+          "candidateMedianMs": 181.5701126666667,
+          "speedup": 1.58565723788411,
+          "baselineSamplesMs": [
+            180.94805566666665,
+            215.49358800000005,
+            290.34405999999996,
+            287.9079633333334,
+            310.8059243333333
+          ],
+          "candidateSamplesMs": [
+            147.2325823333333,
+            197.52844100000002,
+            214.65279166666664,
+            181.5701126666667,
+            151.86471266666663
+          ]
+        },
+        {
+          "name": "observation-selection",
+          "baselineMedianMs": 49.510206800000006,
+          "candidateMedianMs": 49.97132419999999,
+          "speedup": 0.9907723598007038,
+          "baselineSamplesMs": [
+            41.352210899999996,
+            39.9482252,
+            49.510206800000006,
+            58.143846700000005,
+            53.79885069999999
+          ],
+          "candidateSamplesMs": [
+            36.4734603,
+            45.03821979999999,
+            51.05191709999999,
+            49.97132419999999,
+            60.01421960000001
+          ]
+        }
+      ]
+    }
+  ],
+  "baselineCommit": "6fe0bb439ba48906f72e4b0e00adc8d9e6f4fd5b"
+}

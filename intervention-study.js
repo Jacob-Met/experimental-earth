@@ -10,6 +10,52 @@ export const INTERVENTION_METRICS = Object.freeze({
   maxDepthMm: { label: 'Maximum cell depth', unit: 'mm' },
 });
 const EPS = 1e-8;
+
+// Only ordinary data can be keyed without invoking accessors or custom toJSON.
+// Unusual programmatic inputs keep the uncached path and its existing behavior.
+function sourceKey(value) {
+  const ancestors = new Set();
+  let remaining = 20000;
+  function plain(v, depth) {
+    if (--remaining < 0 || depth > 16) return false;
+    if (v === null || typeof v !== 'object') return ['string', 'number', 'boolean', 'undefined'].includes(typeof v) || v === null;
+    if (ancestors.has(v) || ![Object.prototype, Array.prototype, null].includes(Object.getPrototypeOf(v))) return false;
+    ancestors.add(v);
+    const okay = Reflect.ownKeys(v).every(key => {
+      const d = Object.getOwnPropertyDescriptor(v, key);
+      return typeof key === 'string' && d && 'value' in d &&
+        (d.enumerable || (Array.isArray(v) && key === 'length')) && plain(d.value, depth + 1);
+    });
+    ancestors.delete(v);
+    return okay;
+  }
+  try { return plain(value, 0) ? JSON.stringify(value) : null; }
+  catch { return null; }
+}
+
+/** Reuse existing-site runs within one finite proposal comparison, never across
+ * users or saved workspaces. Results stay private; changed source clears them. */
+export function createInterventionBatch() {
+  let signature = null;
+  const runs = new Map();
+  function prepare(project) {
+    const key = sourceKey([project.existing, project.width, project.height, project.weather]);
+    if (key === null) return runRain;
+    if (key !== signature) { runs.clear(); signature = key; }
+    return (cells, width, height, weather, options) => {
+      const optionKey = JSON.stringify(options);
+      if (runs.has(optionKey)) return runs.get(optionKey);
+      const result = runRain(cells, width, height, weather, options);
+      // A study admits at most nine rates; keep memory bounded even if a caller
+      // reuses this local evaluator for successive, different rate declarations.
+      if (runs.size === 9) runs.delete(runs.keys().next().value);
+      runs.set(optionKey, result);
+      return result;
+    };
+  }
+  return (project, options = {}) => compareInterventionWithSource(project, options, prepare);
+}
+
 export function summarizeEffects(values) {
   const min = Math.min(...values), max = Math.max(...values);
   return { min, max, direction: min < -EPS && max > EPS ? 'reverses' :
@@ -18,7 +64,10 @@ export function summarizeEffects(values) {
 }
 /** Paired finite hypotheses, not probabilities. Same rate transfers to every
  * cell of the chosen surface in BOTH scenarios; other surfaces keep defaults. */
-export function compareIntervention(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null } = {}) {
+export function compareIntervention(project, options = {}) {
+  return compareInterventionWithSource(project, options);
+}
+function compareInterventionWithSource(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null } = {}, prepareExisting = null) {
   validateProject(project); validateStudy(study);
   exposureRequest=validateExposureRequest(project.proposal.length,exposureRequest);
   if (!['all', 'calibration', 'surviving'].includes(subset)) throw Error('Unknown hypothesis subset');
@@ -35,9 +84,10 @@ export function compareIntervention(project, { study = project.infiltrationStudy
   if (!rates.length) return { status: 'no-compatible-rates', candidates: [], metrics: {}, cells: [], subset };
   const affected = Object.fromEntries(['existing', 'proposal'].map(target => [target, project[target].filter(c => c.surface === study.surface).length]));
   if (!affected.existing && !affected.proposal && !allowAbsentSurface) return { status: 'surface-absent', candidates: [], metrics: {}, cells: [], subset };
+  const runExisting = prepareExisting ? prepareExisting(project) : runRain;
   const candidates = rates.map(rateMmHr => {
     const options = { surfaceInfiltrationOverride: { surface: study.surface, rateMmHr } };
-    const existing = runRain(project.existing, project.width, project.height, project.weather, options);
+    const existing = runExisting(project.existing, project.width, project.height, project.weather, options);
     const proposal = runRain(project.proposal, project.width, project.height, project.weather, options);
     const metrics = Object.fromEntries(Object.keys(INTERVENTION_METRICS).map(key => [key, { existing: existing[key], proposal: proposal[key], delta: proposal[key] - existing[key] }]));
     return { rateMmHr, metrics, ...(exposureRequest?{pondingExposure:{thresholdMm:exposureRequest.thresholdMm,existing:selectPondingExposure(existing,exposureRequest),proposal:selectPondingExposure(proposal,exposureRequest)}}:{}), peakDeltaMm: proposal.peakDepthMm.map((depth, i) => depth - existing.peakDepthMm[i]),

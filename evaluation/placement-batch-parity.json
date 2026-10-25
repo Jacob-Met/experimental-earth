@@ -1,0 +1,154 @@
+{
+  "status": "pass",
+  "method": "exact full-output and input-immutability comparison",
+  "baselineSourceSha256": {
+    "core.js": "c2e9c5fc91ba1f40457fd2d90ffdb3b509abafd01d09f6bf08997e219a7aedf8",
+    "intervention-study.js": "704a5af460b94f46cb9f6ec3a34e824ec00ebf533ff7458644dcb303211016f8",
+    "placement-search.js": "785982fb8bcbc8e2bcc24c6f1e23f9e72b0da58af6ac53a645f5c331a6c453f5"
+  },
+  "candidateSourceSha256": {
+    "core.js": "c2e9c5fc91ba1f40457fd2d90ffdb3b509abafd01d09f6bf08997e219a7aedf8",
+    "intervention-study.js": "ee6d1b39df1e28562c7c7205c97196999afcd60ebd1e084aba9cb6b52a4a247b",
+    "placement-search.js": "39dfb0f27175e2d7f3583baf1670eb4e4f78d67bc7fd21ba7cc83dd6dc34cd3d"
+  },
+  "cases": [
+    {
+      "name": "courtyard-79-layouts",
+      "inputSha256": "863120dfc1e375284aa66ec66b055abe33e3bf50e155554f5765b94911e24baf",
+      "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+      "status": "compared",
+      "layouts": 79
+    },
+    {
+      "name": "courtyard-duration-11-layouts",
+      "inputSha256": "66dbf2f1595e5b9761da62704fb7489404d268c98f4491597e4e9cc62cc30b3e",
+      "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+      "status": "compared",
+      "layouts": 11
+    },
+    {
+      "name": "authored-seed-1",
+      "inputSha256": "e433780ba05a8b809f2ac9b2a08cf7dc5a8f0f0b99337924e4f5245ea1a4db41",
+      "outputSha256": "c05cdd94c2e80ee09848920fc86f23228be66d3f41fb63ebcebea104641f4916",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-2",
+      "inputSha256": "b6984bb68ef9f7d7e3d66ab0863174882ae5d7aa77e46cdb0b03223ba587d79c",
+      "outputSha256": "a01aeecfc5f93a297be062f8daeb4e18928d5926e27c57526b42cbd5f8508ab5",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-3",
+      "inputSha256": "2e1a5ea2b9d154f2a7912369ee5ec94d97d1ae771fc47d39150cf22305296c36",
+      "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+      "status": "compared",
+      "layouts": 6
+    },
+    {
+      "name": "authored-seed-4",
+      "inputSha256": "5954f52a44a36cb390892464c0539f0e0b336cdc502bc97a49233183fcfdebea",
+      "outputSha256": "a2ce68a20ae8707ea640efcec96c0e7c43bf94063d7d0c518ce212b522c9607c",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-5",
+      "inputSha256": "8e1d2bf75713446919537df74ac56c534df009e081ed39620b0b48a05529cb98",
+      "outputSha256": "c64ecf5aa6c38e0a37d3b8b63614917a1e7d26113cee6c3913a54723f46551c9",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-6",
+      "inputSha256": "28a7190deacf5ebd6437a3d351dc2c3f9d4b20f6c6503de41d36659c035e8819",
+      "outputSha256": "df2c30fd37454462941826b3b9275e9e71f4ea07a7b53f56bba57ace3de62265",
+      "status": "compared",
+      "layouts": 6
+    },
+    {
+      "name": "authored-seed-7",
+      "inputSha256": "8a9a8d13aa5abc3dfeebc2a8ee485e6a48b00b05c317d67c87c09aa29b781470",
+      "outputSha256": "ebc37555d4df091c8d56b429171a92b78993924527f5dd8c45f18a53d5f89246",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-8",
+      "inputSha256": "79e474eda89c897833d32b02162e06964a5d128c8ecac090d49e4c7fcdcf881b",
+      "outputSha256": "72e2e431871d94eb765072517882bc79524b608f7230579c3e8e7e141745631b",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-9",
+      "inputSha256": "c225d17fc7863284231edadfd4175840b5a8518b8cbb45e690d02736d776a6c0",
+      "outputSha256": "c418e6174cdcdc0ef53cd32474c40f8a437e77d28725843d101306548ac5e71f",
+      "status": "compared",
+      "layouts": 6
+    },
+    {
+      "name": "authored-seed-10",
+      "inputSha256": "fe9cb35f60f6fd2554ee726e582a3ac2b822e4488aca8a62a1934def66e64cf1",
+      "outputSha256": "4c3534fde4fda7fd2980bb45dce4b96b25c32f56380512b671b7d8a448ed2176",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-11",
+      "inputSha256": "3bf31b4ef2536038eaee869d4230d9ce4175c4e25e069b4560aeb24cc9189848",
+      "outputSha256": "fd5abbdd89d2f5c1f683159baf1afd24997bb2dcde8ed888d2a8ce05c3f963c8",
+      "status": "compared",
+      "layouts": 16
+    },
+    {
+      "name": "authored-seed-12",
+      "inputSha256": "f2468d9f461ed48966d509bf3c4ea3fb7897fa024aa26f3137d33c11f3419941",
+      "outputSha256": "03a6ef94c9f5ed8f62ec4d129692b58324e4f192785d5d71915fa421fd6ba4ac",
+      "status": "compared",
+      "layouts": 6
+    },
+    {
+      "name": "calibration",
+      "inputSha256": "7b9c1c1fe13bb0a363ee116b6e790a63a73197d5cb57c3afea9f1136df63dec9",
+      "outputSha256": "9d36bc18e033f9cf10c9597e7f7a8c14e51184db42c05740194772561e472f7b",
+      "status": "compared",
+      "layouts": 7
+    },
+    {
+      "name": "surviving",
+      "inputSha256": "27fe20c0af2830ecd4c8c221c9b169aa31eb31005f9602cf1c394c45476e0e8a",
+      "outputSha256": "ac344f9b4bff757cd77c00730847c6160eb59fcf810622d1fb825d372bdc3fa8",
+      "status": "compared",
+      "layouts": 7
+    },
+    {
+      "name": "rejected-challenge",
+      "inputSha256": "682901e9a111debcedc12b9e2ad7a0bf17e90098957befbca89a0f766fdcef59",
+      "outputSha256": "5ab3bf61bcb627b63cdf3a30cbc9b0647404b2ef72e9e6a88242107df9292b6b",
+      "status": "no-compatible-rates",
+      "layouts": 0
+    },
+    {
+      "name": "absent-calibration",
+      "inputSha256": "d2e6a8ce06aaf0168a6207cb37db28b1fc2f41112c2cae0d9944143ce6cc37ca",
+      "outputSha256": "c5c0835c3215325b8140f69d3f9312cca3262e28d5ec6402b0cc4c292319024f",
+      "status": "need-calibration",
+      "layouts": 0
+    },
+    {
+      "name": "duration-resolution",
+      "status": "compared",
+      "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820"
+    }
+  ],
+  "negativeControls": [
+    "altered status rejected",
+    "changed source changes full plans",
+    "incompatible evidence returns no layouts",
+    "missing evidence stays unsupported"
+  ],
+  "baselineCommit": "3a56627d99c72cf7434540f605c807ed6c5bd386"
+}
