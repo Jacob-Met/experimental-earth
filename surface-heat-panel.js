@@ -1,4 +1,5 @@
 import { mountLongwaveHeat } from './longwave-heat-panel.js';
+import { mountChangingHeatExchange } from './changing-heat-exchange-panel.js';
 import { prepareSurfaceHeatStudy, compareSurfaceHeat, inspectSurfaceHeat } from './surface-heat.js';
 import { surfaceHeatContext } from './surface-heat-contract.js';
 import { parseHeatSchedule, formatHeatSchedule } from './surface-heat-table.js';
@@ -29,6 +30,7 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
     <button id="heat-run" class="primary" type="button">Compare saved layers</button><p id="heat-status" role="status"></p><div id="heat-results"></div>`;
   document.querySelector('.observations').before(panel);
   const longwavePanel = mountLongwaveHeat({getProject, host: panel});
+  const changingExchangePanel = mountChangingHeatExchange({getProject, host: panel});
   const $ = id => panel.querySelector('#' + id);
   let signature = '', lastProject = null, generation = 0, report = null, dirty = false;
   function invalidate(message, state = 'not-compared') {
@@ -148,6 +150,7 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
   });
   function refresh() {
     longwavePanel.refresh();
+    changingExchangePanel.refresh();
     const p = getProject(), next = JSON.stringify(p); if (next === signature && p === lastProject) return;
     signature = next; lastProject = p; dirty = false; invalidate('Compare the retained declaration after any site change.');
     $('heat-cell').replaceChildren();
@@ -156,4 +159,5 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
   }
   return { refresh };
 }
+
 

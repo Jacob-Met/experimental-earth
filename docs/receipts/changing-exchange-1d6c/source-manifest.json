@@ -1,0 +1,92 @@
+{
+  "schema": "earth.changing-exchange-source-manifest/v1",
+  "parent": "aeec6a16c0912f99e7361c76992c2481288d0224",
+  "scope": "Complete declared changing-exchange histories, original role-preserving temperature evidence, paired final consequences and isolated raw replay",
+  "verification": {
+    "native": "5/5 focused, 0 fail/skip/cancel, 15.473075ms",
+    "browser": "9/9 actual checks, 2.3282562s, real downloaded source and fresh-page reopen",
+    "visual": "Lead inspected desktop/narrow input and consequence PNGs; no overflow",
+    "independent_review": "AFTERIMAGE no blocker",
+    "limitations": "Authored controlled model checks, not field validation; not a full repository suite"
+  },
+  "files": [
+    {
+      "path": "changing-heat-exchange.js",
+      "bytes": 7448,
+      "gitsha": "6356568fb78020de43328e4049e89b26612f9540",
+      "sha256": "bc80102ce554c011593c442435883d0275e5d3a979832c107f41d6be76512307"
+    },
+    {
+      "path": "changing-heat-exchange-panel.js",
+      "bytes": 7950,
+      "gitsha": "51f17488cff8fdc7eb11227f9b04d600af91ad8c",
+      "sha256": "12431ac8ebc05b436cac043a4520d62032f920391d88f5a02ef404cca452f00c"
+    },
+    {
+      "path": "changing-heat-exchange-table.js",
+      "bytes": 1791,
+      "gitsha": "097dca1ff439344e889ae13e63a28ae23619b0f7",
+      "sha256": "51c2deeef5b29f1a40d0d0b2faae12bc9d49828fa5c5d26ab3a0faf69992276b"
+    },
+    {
+      "path": "surface-heat-panel.js",
+      "bytes": 14010,
+      "gitsha": "7bf6f84e73eaa9cccd9baeb43b03a6a0eac1cd0b",
+      "sha256": "01583a1e12c4db7ef214b773d505647d845b82c9be9f56a08ffbc7d4836f6708"
+    },
+    {
+      "path": "tests/changing-heat-exchange.test.mjs",
+      "bytes": 5467,
+      "gitsha": "561b8a063bf1fb94fb7e43825e39c4630741b98e",
+      "sha256": "73af7365e62e9b3437e08ae5682315a3e0e7d0b41085bddbc4536e80521cfaa0"
+    },
+    {
+      "path": "tests/changing-heat-exchange.receiving.mjs",
+      "bytes": 7005,
+      "gitsha": "4bbedf9fafda208cb89155ca9003562ea059e7f4",
+      "sha256": "7144eab0bf8e2a113a8582a06d1ee302bd49c678db7f9e633c1fe4f9f2ee0fd7"
+    },
+    {
+      "path": "docs/CHANGING_HEAT_EXCHANGE.md",
+      "bytes": 6025,
+      "gitsha": "b251ccb817fae34509fc03dc667a67d50255afb8",
+      "sha256": "831e5296a2b501b7d7bd9af181e1258e7aeb1d766e25a04a1bcf61ab7287d996"
+    },
+    {
+      "path": "docs/receipts/changing-exchange-1d6c/browser.json",
+      "bytes": 13157,
+      "gitsha": "db4b7b7298e99cb19a8d6931edc2e1106c59c7ff",
+      "sha256": "86281e4ce8bd468fe1f03fc3099d17e36ad5d40c0ed7637dd94457a11faa5a20"
+    },
+    {
+      "path": "docs/receipts/changing-exchange-1d6c/native.json",
+      "bytes": 915,
+      "gitsha": "2230841d28989a4c51f9de56735543004d9f89d2",
+      "sha256": "365f4b368c474b351656cbc33933214d5c9b46ed76f16ef8b5059941fb357fb7"
+    },
+    {
+      "path": "docs/receipts/changing-exchange-1d6c/desktop.png",
+      "bytes": 205310,
+      "gitsha": "d3bcddf25145ccf5cbf8b6e913136e0912db54d9",
+      "sha256": "90efc2a5cfadcead456d7e1f3a964c417a9e5cf4cdf4332019781deb89f4a519"
+    },
+    {
+      "path": "docs/receipts/changing-exchange-1d6c/narrow.png",
+      "bytes": 85500,
+      "gitsha": "0c2ac04cff198fbc0fdc5510d9dae3bc348b7747",
+      "sha256": "22f7a7fbf5ab1a6e8fa2b1dcdcbbf19a7f1f44ad13ffcb4bf26f05c1b2b822ed"
+    },
+    {
+      "path": "docs/receipts/changing-exchange-1d6c/desktop-results.png",
+      "bytes": 220316,
+      "gitsha": "10c8bb4688376f1ea75bf4a23c2c1128ef4a176d",
+      "sha256": "1e2a6ccba3aa725f9042cfed6f55e8c18e41b49d875b180760a0e6f6397cb70c"
+    },
+    {
+      "path": "docs/receipts/changing-exchange-1d6c/narrow-results.png",
+      "bytes": 79161,
+      "gitsha": "6dd3bdac2019c3e3bcd6d9c6195beb24d91d6f5d",
+      "sha256": "8c45cda53d8a305ea71394809fa4a6d04f5e09f7c64e875fcef4fc0f48e035f1"
+    }
+  ]
+}
