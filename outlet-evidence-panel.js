@@ -1,3 +1,4 @@
+import { compareOutletResolution } from './outlet-evidence-resolution.js';
 import { validateProject } from './core.js';
 import { appendOutletReading, compareOutletEvidence } from './outlet-evidence.js';
 import { outletContext, OUTLET_UNITS } from './outlet-evidence-contract.js';
@@ -24,6 +25,7 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
     <label class="input-label">Outlet coefficients to compare <span class="unit">per hour</span><input id="outlet-rates" type="text" maxlength="150" value="0, 0.38, 1.2"></label>
     <p class="mini-note">Enter 2–9 distinct coefficients from 0 to 10. These describe the simplified model's edge sink, not a measured drain capacity. Compare uses current numerical step size; it never changes the site's outlet setting.</p>
     <button id="outlet-compare" type="button" class="primary">Compare collected-volume evidence</button>
+    <button id="outlet-resolution" type="button">Check finer collection calculation intervals</button><div id="outlet-resolution-results" aria-live="polite"></div>
     <p id="outlet-status" role="status" aria-live="polite"></p><div id="outlet-results"></div>
     <p class="mini-note">Volumes and source attribution are supplied by you. A stated ± band is an acceptance tolerance. Calibration RMSE orders candidates; held-aside readings never change that order. Assigning that role does not establish independent or prospective collection; using a result to choose candidates makes it part of fitting. Overlapping collection intervals are correlated. Snapshot interpolation and omitted drainage physics can cause mismatch; passing these comparisons does not establish physical calibration.</p>`;
   document.querySelector('.observations').before(panel);
@@ -34,7 +36,7 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
   }
   function save(next) { validateProject(next); replaceProject(next); }
   function invalidate() {
-    find('outlet-results').replaceChildren(); status('not-compared', 'Compare the saved readings with the current candidate coefficients.');
+    find('outlet-resolution-results').replaceChildren(); find('outlet-results').replaceChildren(); status('not-compared', 'Compare the saved readings with the current candidate coefficients.');
   }
   function refresh() {
     const project = getProject(), record = project.outletEvidence;
@@ -125,7 +127,36 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
         }
         host.append(card);
       }
-    } catch (error) { find('outlet-results').replaceChildren(); status('error', error.message); notice(error.message); }
+    } catch (error) { find('outlet-resolution-results').replaceChildren(); find('outlet-results').replaceChildren(); status('error', error.message); notice(error.message); }
+  });
+  find('outlet-resolution').addEventListener('click', () => {
+    const host = find('outlet-resolution-results'); host.replaceChildren();
+    try {
+      const project = getProject();
+      const chosenRates = rates();
+      const report = compareOutletResolution(project, chosenRates);
+      const next = structuredClone(project); next.outletEvidence.ratesPerHour = chosenRates; save(next);
+      const messages = { 'minimum-step': 'Already at the one-minute minimum; no finer calculation was run.',
+        'context-changed': 'Original collection context differs from the current site or event. No calculations run.',
+        'need-calibration': 'Assign original calibration evidence before checking explanation stability.',
+        'work-limit': 'The complete interval comparison exceeds the interactive work budget. No calculations run.' };
+      if (report.status !== 'computed') { host.append(node('p', messages[report.status])); return; }
+      host.append(node('p', report.changedSets.length ? `Candidate comparison sets change with calculation interval: ${report.changedSets.join(', ')}.` : 'Candidate comparison sets agree across these intervals; predictions may still change.'));
+      host.append(node('p', 'This finite sensitivity check does not establish convergence or field accuracy. Original collection times, sources and bands remain unchanged; no numerical setting is adopted.'));
+      for (const result of report.reports) {
+        const section = node('details', '');
+        section.append(node('summary', `Calculation interval ${result.stepMinutes} min`));
+        section.append(node('p', `Calibration-compatible: ${result.compatibleRatesPerHour.join(', ') || 'none'}. Surviving held-aside evidence: ${result.survivingRatesPerHour.join(', ') || 'none'}. Closest calibration: ${result.closestCalibrationRatesPerHour.join(', ') || 'none'}.`));
+        for (const candidate of result.candidates) {
+          section.append(node('h3', `${candidate.ratePerHour} per hour`));
+          for (const role of ['calibration', 'challenge']) for (const error of candidate[role].errors) {
+            const reading = project.outletEvidence.readings[error.index];
+            section.append(node('p', `${role}: ${reading.startMinute}–${reading.endMinute} min · ${reading.source} · original ${reading.volume} ± ${reading.uncertainty} ${reading.unit}; modeled ${number(error.volumeLiters)} L; observed minus modeled ${number(error.residualLiters)} L · ${error.withinBand ? 'within' : 'outside'} band. Start bracket ${error.start.beforeMinute}–${error.start.afterMinute} min (${error.start.method}); end bracket ${error.end.beforeMinute}–${error.end.afterMinute} min (${error.end.method}).`));
+          }
+        }
+        host.append(section);
+      }
+    } catch (error) { host.append(node('p', error.message)); }
   });
   function prepareReading(question) {
     const project=getProject(),record=project.outletEvidence;

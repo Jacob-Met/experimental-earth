@@ -135,3 +135,16 @@
 #solar-occlusion { min-width:0; overflow-wrap:anywhere; }
 
 #suggest:disabled{opacity:.55;cursor:not-allowed}
+
+/* Keep original collection evidence and every interval residual readable on narrow layouts. */
+#outlet-evidence-panel{min-width:0;overflow-wrap:anywhere}
+#outlet-evidence-panel .input-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+#outlet-evidence-panel .observation>div{min-width:0}
+#outlet-evidence-panel button{max-width:100%;white-space:normal}
+#outlet-resolution-results,#outlet-resolution-results details{min-width:0}
+
+/* The workspace is one column; no sibling may enlarge its implicit min-content track. */
+.workspace{grid-template-columns:minmax(0,1fr)}
+
+/* Preserve complete CSV column examples without widening the shared workspace. */
+#heat-observations .mini-note code{overflow-wrap:anywhere;white-space:normal}
