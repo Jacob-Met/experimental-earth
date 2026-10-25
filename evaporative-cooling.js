@@ -45,6 +45,7 @@ function coupledInterval(surface, lower, root, capacityMm, latentJmm, forcing, d
   const durations = fullSeconds > 0 && fullSeconds < seconds ? [fullSeconds,seconds-fullSeconds] : [seconds];
   let state = {...initial};
   const totals = {inputJm2:0,exchangeOutJm2:0,transferDownJm2:0,surfaceLossJm2:0,suppliedMm:0,potentialMm:0};
+  let surfaceMeanC=0,subsurfaceMeanC=0,totalWeight=0;
   for (let i=0;i<durations.length;i++) {
     const dt=durations[i], full = perSecond > 0 && ((i===0 && fullSeconds >= dt) || threshold===0 && state.availableMm>0);
     const limited = !full && threshold>0 && state.availableMm>0 && perSecond>0;
@@ -52,11 +53,13 @@ function coupledInterval(surface, lower, root, capacityMm, latentJmm, forcing, d
     const initialFlux = perSecond * (full ? 1 : limited ? Math.min(1,state.availableMm/threshold) : 0) * latentJmm;
     const water = advanceRootZoneDry({availableMm:state.availableMm,capacityMm,depletionFraction:root.depletionFraction,demandMmPerDay:demand,days:dt/86400});
     const heat = advanceHeatColumnWithLoss(surface,lower,forcing,state,dt,{initialWm2:initialFlux,decayPerSecond:rate});
+    const weight=seconds===0?1:dt/seconds;
+    surfaceMeanC+=weight*heat.surfaceMeanC;subsurfaceMeanC+=weight*heat.subsurfaceMeanC;totalWeight+=weight;
     for (const key of ['inputJm2','exchangeOutJm2','transferDownJm2','surfaceLossJm2']) totals[key]+=heat[key];
     totals.suppliedMm+=water.suppliedMm;totals.potentialMm+=water.potentialMm;
     state={surfaceC:heat.surfaceC,subsurfaceC:heat.subsurfaceC,availableMm:water.availableMm};
   }
-  return {...state,...totals};
+  return {...state,...totals,surfaceMeanC:surfaceMeanC/totalWeight,subsurfaceMeanC:subsurfaceMeanC/totalWeight};
 }
 
 function initialStore(root, rechargeMm) {
@@ -101,6 +104,17 @@ export function inspectCooling(result, minute) {
 }
 
 export function compareCooling(project,study) {
+  const result=prepareCooling(project,study);
+  const endpoints=[0];for(const row of study.heatColumn.heatStudy.schedule)endpoints.push(endpoints.at(-1)+row.minutes);
+  const times=[...new Set([...endpoints,...Array.from({length:Math.ceil(result.durationMinutes)},(_,i)=>i)])].sort((a,b)=>a-b);
+  result.trajectory=times.map(t=>inspectCooling(result,t));
+  result.final=result.trajectory.at(-1);
+  return result;
+}
+
+/** Prepare original recharge once for investigations sharing the same water
+ * declaration. Derived thermal variants do not rerun or refit the rain. */
+export function prepareCooling(project,study) {
   const {cellIndex,cellSteps}=validateCoolingStudy(project,study), budget=compareLocalWaterBudget(project);
   if(budget.status!=='computed')throw Error('Original rain infiltration was not computed');
   const cellAreaM2=project.weather.cellSizeM**2;
@@ -108,11 +122,39 @@ export function compareCooling(project,study) {
     originalBudget:structuredClone(budget[side].cells[cellIndex])}]));
   const endpoints=[0];for(const row of study.heatColumn.heatStudy.schedule)endpoints.push(endpoints.at(-1)+row.minutes);
   const durationMinutes=endpoints.at(-1);
-  const times=[...new Set([...endpoints,...Array.from({length:Math.ceil(durationMinutes)},(_,i)=>i)])].sort((a,b)=>a-b);
-  const result={schema:'experimental-earth-cooling-result/1',study:structuredClone(study),cellIndex,cellAreaM2,cellSteps,initial,durationMinutes,meaning:COOLING_MEANING};
-  result.trajectory=times.map(t=>inspectCooling(result,t));
-  result.final=result.trajectory.at(-1);
-  return result;
+  return {schema:'experimental-earth-cooling-result/1',study:structuredClone(study),cellIndex,cellAreaM2,cellSteps,initial,durationMinutes,meaning:COOLING_MEANING};
+}
+
+function averageTarget(result,side,fromMinute,minute) {
+  const study=result.study,heat=study.heatColumn,surface=heat.heatStudy[side],lower=heat.lowerLayers[side],root=study.roots[side];
+  let state=targetAt(study,side,result.initial[side],fromMinute),elapsed=0;
+  let surfaceMeanC=0,subsurfaceMeanC=0,totalWeight=0,segments=0;
+  for(let i=0;i<heat.heatStudy.schedule.length;i++) {
+    const forcing=heat.heatStudy.schedule[i],end=elapsed+forcing.minutes;
+    const from=Math.max(fromMinute,elapsed),to=Math.min(minute,end);elapsed=end;
+    if(!(to>from))continue;
+    const step=coupledInterval(surface,lower,root,result.initial[side].capacityMm,
+      study.latentHeatJkg*study.surfaceLatentFraction[side],forcing,study.demands[i].potentialTranspirationMmPerDay,state,(to-from)*60);
+    const weight=(to-from)/(minute-fromMinute);
+    surfaceMeanC+=weight*step.surfaceMeanC;subsurfaceMeanC+=weight*step.subsurfaceMeanC;totalWeight+=weight;segments++;
+    state=step;
+  }
+  if(!(totalWeight>0)||![surfaceMeanC,subsurfaceMeanC,totalWeight].every(Number.isFinite))throw Error('Cooling averaging window could not be completely evaluated');
+  return {fromMinute,minute,durationMinutes:minute-fromMinute,segments,surfaceMeanC:surfaceMeanC/totalWeight,subsurfaceMeanC:subsurfaceMeanC/totalWeight};
+}
+
+/** Exact selected-time and direct-window operators from the maintained coupled
+ * response. Means weight analytic segment means, never subtract nearly equal
+ * cumulative integrals or interpolate the displayed minute samples. */
+export function evaluateCoolingTarget(result,side,minutes=[],windows=[]) {
+  if(result?.schema!=='experimental-earth-cooling-result/1'||!sides.includes(side))throw Error('Use a computed cooling source and selected place');
+  const duration=result.durationMinutes;
+  if(!Array.isArray(minutes)||!Array.isArray(windows)||minutes.length+2*windows.length>2000||
+    Array.from(minutes).some(t=>!finite(t,0,duration))||Array.from(windows).some(w=>!w||!finite(w.fromMinute,0,duration)||!finite(w.minute,0,duration)||!(w.minute>w.fromMinute)))
+    throw Error('Request finite times and nonempty windows within the cooling exposure and 2000-endpoint work limit');
+  const endpoints=[0];for(const row of result.study.heatColumn.heatStudy.schedule)endpoints.push(endpoints.at(-1)+row.minutes);
+  const times=[...new Set([...endpoints,...minutes,...windows.flatMap(w=>[w.fromMinute,w.minute])])].sort((a,b)=>a-b);
+  return {trajectory:times.map(t=>targetAt(result.study,side,result.initial[side],t)),averages:windows.map(w=>averageTarget(result,side,w.fromMinute,w.minute))};
 }
 
 export function serializeCooling(project,study) {

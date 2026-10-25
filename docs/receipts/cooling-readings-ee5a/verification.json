@@ -1,0 +1,109 @@
+{
+  "schema": "experimental-earth-cooling-reading-verification/1",
+  "baseCommit": "35068ceb63c23d5e146e7f891a98fd4166439106",
+  "nodeVersion": "v22.23.4",
+  "native": {
+    "command": "node --test tests/*.test.mjs",
+    "passed": 707,
+    "failed": 0,
+    "skipped": 0,
+    "log": "/tmp/hamon-ee5a-earth-fraction-native.log"
+  },
+  "focused": {
+    "command": "node tests/cooling-fraction-evidence.test.mjs",
+    "passed": 8,
+    "failed": 0,
+    "independentReview": "Retained second_ground worker reviewed affinity, interval inversion/intersection, direct-window means and source binding; independently reran8groups."
+  },
+  "browser": {
+    "command": "COOLING_FRACTION_RECEIPT_DIR=/tmp/hamon-ee5a-earth-fraction-current-receipt node tests/cooling-fraction.receiving.mjs",
+    "first": {
+      "checks": [
+        "explicit original cooling adoption",
+        "authored fraction interval control",
+        "exact-time and native keyboard prediction inspector",
+        "held-aside rejection leaves calibration unchanged",
+        "later cooling edits preserve retained original readings",
+        "active site unchanged",
+        "desktop and narrow receiving",
+        "actual source-only download"
+      ],
+      "dimensions": {
+        "width": 390,
+        "scroll": 390
+      }
+    },
+    "fresh": {
+      "checks": [
+        "fresh-profile actual file recomputation",
+        "original active cooling/site preserved",
+        "forged result refused without discarding accepted result",
+        "actual interval-mean form with literal source",
+        "new draft cancels delayed file read"
+      ]
+    },
+    "expectedRanges": [
+      [
+        0.38904527161834684,
+        0.4109547283816528
+      ],
+      [
+        0.38904527161834684,
+        0.4109547283816528
+      ]
+    ],
+    "sandbox": [
+      {
+        "admitted": true,
+        "browser": "Chrome/156.0.8078.47",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "completedAt": "2026-10-25T02:39:56.252Z"
+      },
+      {
+        "admitted": true,
+        "browser": "Chrome/156.0.8078.47",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "completedAt": "2026-10-25T02:39:57.374Z"
+      }
+    ]
+  },
+  "sourceSha256": {
+    "evaporative-cooling.js": "f1522a3621aac9aef3b5e43ba4c8356acff73dd5e92e9dead132c376d34e4a4b",
+    "surface-temperature-readings.js": "3e85d2c748edb8e512b046144f2441a157d1e3d79afb6661658c109a53184bb2",
+    "heat-column-evidence-contract.js": "c7ac8f5ffa32164b452738a7802b2b6c6c4a5f880c9af75aabe154e6da2d5aec",
+    "cooling-fraction-evidence.js": "b7011a8a2b445d1c545bfec28b94304ff663a8596089b5cd4fbf70124169ccc7",
+    "cooling-fraction-panel.js": "ee68e02d4652e748891fb269fb30828de60b83b35b4ef226ec3d24a205fcff36",
+    "evaporative-cooling-panel.js": "4712f66efba60f4510f5af1ba4720d3340c6c255f8727f9ce270c80ef7eef8d8",
+    "evaporative-cooling.css": "c713d4dff19d5845c018215c81ed293e472b6242b5ba074bef1db006c915ed1c",
+    "tests/cooling-fraction-evidence.test.mjs": "bab26ae8b6e989b3e0bf29d3fd91027d53e1fccf6fbf64f8db6a9651f1cca034",
+    "tests/cooling-fraction.receiving.mjs": "762df419d4e387af2b246b6005e4056c39c2de4ffd61ae5cd74e92ab22719c17"
+  },
+  "visualSha256": {
+    "desktop": "225a95261d3b91666130d77d343d5966ba4005cda1dcfd6ddde4f272459a9322",
+    "narrow": "9a76e53206abaa684b1338e11a0ee1052961c94c482b07f1de50f3afc53bba9d"
+  },
+  "visualReview": "Root inspected the narrow actual consumer image; both columns/cards, exact-time inspector and original reading/constraint text were legible with no horizontal overflow.",
+  "resolvedEarlierFailure": "An initial Simpson oracle failed across an unsplit forcing discontinuity. The oracle was corrected to split at known stress/forcing boundaries; direct analytic means and partition controls were unchanged and all8groups passed. No failed product check was ignored.",
+  "limits": [
+    "Conditional fixed-model fraction; no unique physical cause, field calibration, parameter adoption or deployment.",
+    "Engineering arithmetic guard is not certified numerical/physical uncertainty.",
+    "Saved inputs retain sources; derived conclusions are refused at top level.",
+    "Raw process profiles/logs/screenshots stay outside repository."
+  ]
+}

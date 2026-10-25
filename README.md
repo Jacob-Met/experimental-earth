@@ -313,3 +313,8 @@ save/reopen support an independent investigation without adopting a changed site
 This is depth-only grid connectivity; walls, slopes, movement, physical access
 and safety are not assessed. See [Ponding connections](docs/PONDING_CONNECTIVITY.md)
 for the algorithm, authored detour example, source custody and limits.
+
+
+### Test the cooling association with original surface readings
+
+After comparing a retained-rain cooling source, explicitly retain it for a surface-reading investigation. Original instantaneous or complete interval-mean bands constrain one constant surface latent fraction while water, demand, materials and heat exposure remain fixed. Calibration and held-aside intersections stay separate; no fraction is selected or adopted. Inspect exact-time temperature ranges and save/reopen the original source. See [Cooling readings](docs/COOLING_READINGS.md) for the model, authored separating/nonseparating controls and qualification.
