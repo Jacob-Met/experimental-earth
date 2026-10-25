@@ -1,3 +1,4 @@
+import { comparePlacementTradeoffs } from './placement-tradeoffs.js';
 import {comparePlacementResolution} from './placement-resolution.js';
 import { comparePlacements, adoptPlacement, placementSignature, PLACEMENT_METRICS } from './placement-search.js';
 import { SURFACES } from './core.js';
@@ -24,6 +25,11 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     <label class="input-label">Maximum additional wet minutes at every target<input id="placement-duration-limit" type="number" min="-720" max="720" step="any" value="0"></label>
     <label class="input-label">Declared threshold and goal basis<input id="placement-duration-basis" type="text" maxlength="500"></label>
     <p class="mini-note">Negative requests a reduction from the current proposal, for every retained rate. Counts cover only the modeled event, with linear interpolation between saved solver snapshots. Still-wet endpoints remain visible; this is not total drawdown time or a safety/access threshold.</p></fieldset>
+    <fieldset style="min-width:0"><legend>Optional cost and environmental tradeoffs</legend>
+    <label><input id="placement-tradeoff-enabled" type="checkbox"> Compare cost and multiple objectives together</label>
+    <div id="placement-tradeoff-inputs" hidden><p class="mini-note">Declare additive costs for the selected cell edits. The unchanged proposal costs zero. Shared setup costs, discounts and maintenance costs are omitted unless included in your declaration.</p>
+    <div class="input-pair"><label class="input-label">Common cost unit<input id="placement-cost-unit" maxlength="40" placeholder="For example USD or work hours"></label><label class="input-label">Maximum total cost<input id="placement-budget" type="number" min="0" max="1000000000000" step="any"></label></div>
+    <label class="input-label">Cost source or explicit assumption<input id="placement-cost-basis" maxlength="240"></label><fieldset id="placement-tradeoff-metrics" style="min-width:0"><legend>Environmental objectives (smaller additional change is better)</legend></fieldset><div id="placement-cell-costs"></div></div></fieldset>
     <p id="placement-study" class="mini-note"></p>
     <div class="obs-actions"><button id="placement-sealed" type="button">Select proposed sealed cells</button><button id="placement-clear" type="button">Clear selection</button></div>
     <p id="placement-selection" class="mini-note"></p><div id="placement-grid" class="placement-grid" aria-label="Eligible proposal cells"></div>
@@ -36,6 +42,43 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
   for(const [key,m] of Object.entries(PLACEMENT_METRICS)){const o=node('option',`${m.label} (${m.unit})`);o.value=key;$('placement-objective').append(o);}
   let eligible=new Set(),generation=0,lastSource='',report=null;
   const name=(p,i)=>`${String.fromCharCode(65+i%p.width)}${Math.floor(i/p.width)+1}`;
+  const declaredCosts=new Map();
+  for(const [key,m] of Object.entries(PLACEMENT_METRICS)){
+    const label=node('label',m.label+' ('+m.unit+') '),input=document.createElement('input');
+    input.type='checkbox';input.value=key;input.checked=['exitLiters','maxDepthMm'].includes(key);
+    label.prepend(input);label.style.display='block';$('placement-tradeoff-metrics').append(label);input.addEventListener('change',()=>invalidate());
+  }
+  function drawCostInputs(p){
+    const host=$('placement-cell-costs');host.replaceChildren();
+    for(const cellIndex of [...eligible].sort((a,b)=>a-b)){
+      const label=node('label',name(p,cellIndex)+' edit cost','input-label'),input=document.createElement('input');
+      input.type='number';input.min='0';input.max='1000000000000';input.step='any';input.dataset.costCell=String(cellIndex);input.value=declaredCosts.get(cellIndex)??'';
+      input.addEventListener('input',()=>{declaredCosts.set(cellIndex,input.value);invalidate();});label.append(input);host.append(label);
+    }
+  }
+  function readTradeoffs(){
+    if(!$('placement-tradeoff-enabled').checked)return null;
+    const budget=$('placement-budget').value.trim();if(!budget)throw Error('Declare an explicit cost budget');
+    return {metrics:[...$('placement-tradeoff-metrics').querySelectorAll('input:checked')].map(e=>e.value),costUnit:$('placement-cost-unit').value,budget:Number(budget),cellCosts:[...eligible].map(cellIndex=>{
+      const value=declaredCosts.get(cellIndex)?.trim();if(!value)throw Error('Declare the edit cost for every eligible cell');return {cellIndex,cost:Number(value),source:$('placement-cost-basis').value};
+    })};
+  }
+  function showTradeoffs(current,p,host){
+    const trade=current.tradeoffs;if(!trade)return;
+    const section=node('section','');section.id='placement-tradeoff-results';section.dataset.frontierCount=String(trade.frontier.length);
+    section.append(node('h3','Cost and environmental tradeoffs'),node('p',trade.semantics),node('p',trade.frontier.length+' nondominated layouts; '+trade.feasibleCount+' meet budget and local targets. Budget: '+number(trade.declaration.budget)+' '+trade.declaration.costUnit+'. '+(trade.frontier.length?'No single winner is chosen.':'No feasible layout; no fallback is selected.')),node('p','A layout is dominated only when another feasible layout is no worse on every selected coordinate and strictly better on at least one. Equal vectors remain alternatives. This uses computed numbers without a dominance tolerance; tiny numerical differences are not established physical differences.'));
+    const table=node('table','','placement-table'),head=node('tr','');
+    for(const label of ['Edits','Cost ('+trade.declaration.costUnit+')',...trade.declaration.metrics.map(key=>'Worst additional '+PLACEMENT_METRICS[key].label+' ('+PLACEMENT_METRICS[key].unit+')'),'Tradeoff status','Inspect'])head.append(node('th',label));
+    const thead=node('thead','');thead.append(head);table.append(thead);const body=node('tbody','');
+    const ordered=[...trade.plans].sort((a,b)=>Number(trade.frontier.includes(b.index))-Number(trade.frontier.includes(a.index))||a.index-b.index);
+    for(const plan of ordered){
+      const row=node('tr','');row.dataset.cells=plan.cells.join(',');
+      const classification=plan.rejection==='declared-targets'?'Outside local targets':plan.rejection==='declared-budget'?'Over budget':trade.frontier.includes(plan.index)?'Nondominated':'Dominated';row.dataset.tradeoffStatus=classification;
+      row.append(node('td',plan.cells.map(i=>name(p,i)).join(' + ')||'No change'));for(const coordinate of plan.coordinates)row.append(node('td',number(coordinate)));row.append(node('td',classification));
+      const cell=node('td',''),button=node('button','Inspect');button.type='button';button.addEventListener('click',()=>inspect(current.plans[plan.index],p,current));cell.append(button);row.append(cell);body.append(row);
+    }
+    table.append(body);const wrap=node('div','','placement-table-wrap');wrap.append(table);section.append(wrap);host.append(section);
+  }
   function invalidate(message='Compare again after changing inputs.') {
     generation++;report=null;$('placement-results').replaceChildren();$('placement-status').dataset.state='not-compared';$('placement-status').textContent=message;
   }
@@ -54,6 +97,7 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     }
     const n=eligible.size,count=Number($('placement-count').value),variants=1+n+(count===2?n*(n-1)/2:0);
     $('placement-selection').textContent=`${n}/12 eligible cells; ${variants} variants including the unchanged proposal. Selection does not paint or edit the project.`;
+    drawCostInputs(p);
     const study=p.infiltrationStudy??DEFAULT_STUDY;
     $('placement-study').textContent=`Saved ${study.surface} rates: ${study.ratesMmHr.join(', ')} mm/h. Evidence scenario: ${study.target}. Support is evaluated once on this unchanged source, never refitted to a hypothetical layout.`;
   }
@@ -112,9 +156,11 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
         for(const w of check.witnesses)targets.append(node('p',`${w.rateMmHr} mm/h hypothesis: ${number(w.changeMm)} mm change — ${w.meets?'meets target':'exceeds target by '+number(w.excessMm)+' mm'}.`));
       }appendDurationChecks(targets,plan.durationTargets.checks,p);detail.append(targets);
     }
+    const costPlan=current.tradeoffs?.plans.find(row=>row.cells.join(',')===plan.cells.join(','));
+    if(costPlan)detail.append(node('p','Declared edit cost: '+number(costPlan.cost)+' '+current.tradeoffs.declaration.costUnit+'. '+(costPlan.feasible?'Within budget and local targets.':'Outside declared budget or local targets.')));
     if(plan.cells.length){
-      const adopt=node('button','Apply these hypothetical surface edits','primary');adopt.type='button';adopt.id='placement-adopt';adopt.disabled=current.adoptionBlockedByProposalEvidence||!plan.meetsAllTargets;
-      adopt.addEventListener('click',()=>{try{const next=adoptPlacement(getProject(),current.query,plan.cells,current.sourceSignature);replaceProject(next);notice('Hypothetical proposal edits applied; retained source readings were not changed.');}catch(error){notice(error.message);invalidate(error.message);}});
+      const adopt=node('button','Apply these hypothetical surface edits','primary');adopt.type='button';adopt.id='placement-adopt';adopt.disabled=current.adoptionBlockedByProposalEvidence||!plan.meetsAllTargets||(costPlan&&!costPlan.feasible);
+      adopt.addEventListener('click',()=>{try{if(report!==current)throw Error('Inputs changed; compare placements again.');if(costPlan&&!costPlan.feasible)throw Error('This layout does not meet the declared budget and targets');const next=adoptPlacement(getProject(),current.query,plan.cells,current.sourceSignature);replaceProject(next);notice('Hypothetical proposal edits applied; retained source readings were not changed.');}catch(error){notice(error.message);invalidate(error.message);}});
       detail.append(adopt);
       if(current.adoptionBlockedByProposalEvidence)detail.append(node('p','This workspace has observations assigned to the proposal. Keep those readings with their observed geometry; this alternative remains inspectable but cannot replace that observed proposal.','mini-note'));
     }
@@ -151,11 +197,12 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     $('placement-status').textContent=`Compared ${current.variantCount} variants × ${current.ratesMmHr.length} fixed hypotheses. ${current.qualifyingCount} meet every local target; ${current.best.length} share the lowest worst additional change among those placements. ${current.qualifyingCount?'':'No qualifying placement; no fallback is selected.'}`;
     host.append(node('p',`${current.semantics} Ranking objective: ${metric.label}. Negative means less; the unchanged proposal is always included.`));
     if(!current.sourceAffected.existing&&!current.sourceAffected.proposal)host.append(node('p',`The unchanged source contains no ${current.query.study.surface} cells. These capacities are declared hypotheses; source observations have not constrained them. The original result is identical across these rates. They affect a variant only where ${current.query.study.surface} is present.`, 'placement-absent-note'));
+    showTradeoffs(current,p,host);
     const table=node('table','','placement-table'),thead=node('thead',''),tr=node('tr','');for(const t of ['Edited cells',`Worst additional ${metric.label} (${metric.unit})`,'Local targets','Inspect'])tr.append(node('th',t));thead.append(tr);table.append(thead);
     const body=node('tbody','');for(const plan of current.plans){const row=node('tr','');row.dataset.cells=plan.cells.join(',');const best=current.best.some(c=>c.join(',')===plan.cells.join(','));row.append(node('td',(plan.cells.map(i=>name(p,i)).join(' + ')||'No change')+(best?' · best for this objective':'')),node('td',number(plan.score)),node('td',plan.meetsAllTargets?'Meets all':'Does not meet'));const action=node('td',''),b=node('button','Inspect');b.type='button';b.addEventListener('click',()=>inspect(plan,p,current));action.append(b);row.append(action);body.append(row);}table.append(body);
     const details=node('details','');details.append(node('summary',`Inspect all ${current.plans.length} enumerated placements`));const wrap=node('div','','placement-table-wrap');wrap.append(table);details.append(wrap);host.append(details);
     const calculation=node('details','');calculation.append(node('summary','Calculation details'),node('p',`Numerical tie guard: ${current.tieGuard} ${metric.unit}. Conservative work estimate: ${current.workDetail.modelCellSteps.toLocaleString()} model cell-steps + ${current.workDetail.exposureCellSegments.toLocaleString()} exposure cell-segments = ${current.cellStepUpperBound.toLocaleString()} total. This tolerance groups near-equal numerical scores; it is not a physical uncertainty interval.`));host.append(calculation);
-    const detail=node('div','','placement-detail');detail.id='placement-detail';host.append(detail);inspect(current.plans.find(p=>p.meetsAllTargets)??current.plans[0],p,current);
+    const detail=node('div','','placement-detail');detail.id='placement-detail';host.append(detail);inspect(current.tradeoffs?.frontier.length?current.plans[current.tradeoffs.frontier[0]]:current.plans.find(p=>p.meetsAllTargets)??current.plans[0],p,current);
     const finer=node('button','Check finer calculation intervals');finer.id='placement-resolution-run';finer.type='button';
     const sensitivity=node('section','');sensitivity.id='placement-resolution-results';sensitivity.setAttribute('aria-live','polite');host.append(finer,sensitivity);
     finer.addEventListener('click',()=>{
@@ -168,12 +215,14 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
   }
   for(const id of ['placement-surface','placement-count','placement-objective','placement-subset'])$(id).addEventListener('change',()=>{invalidate();drawEligibility();});
   for(const id of ['placement-target-cells','placement-target-limit','placement-target-basis','placement-duration-cells','placement-duration-threshold','placement-duration-limit','placement-duration-basis'])$(id).addEventListener('input',()=>invalidate());
+  $('placement-tradeoff-enabled').addEventListener('change',()=>{$('placement-tradeoff-inputs').hidden=!$('placement-tradeoff-enabled').checked;invalidate();});
+  for(const id of ['placement-cost-unit','placement-budget','placement-cost-basis'])$(id).addEventListener('input',()=>invalidate());
   $('placement-clear').addEventListener('click',()=>{eligible.clear();invalidate();drawEligibility();});
   $('placement-sealed').addEventListener('click',()=>{const cells=getProject().proposal.flatMap((c,i)=>c.surface==='sealed'&&c.surface!==$('placement-surface').value?[i]:[]);if(cells.length>12){notice('More than 12 sealed cells: choose an explicit smaller eligible set.');return;}eligible=new Set(cells);invalidate();drawEligibility();});
   $('placement-run').addEventListener('click',()=>{
-    const p=structuredClone(getProject());let targets,durationGoal;try{targets=readTargets(p);durationGoal=readDurationGoal(p);}catch(error){invalidate(error.message);notice(error.message);return;}const query={targets,durationGoal,eligibleCells:[...eligible],maxEdits:Number($('placement-count').value),surface:$('placement-surface').value,metric:$('placement-objective').value,subset:$('placement-subset').value};
+    const p=structuredClone(getProject());let targets,durationGoal,tradeoffs;try{targets=readTargets(p);durationGoal=readDurationGoal(p);tradeoffs=readTradeoffs();}catch(error){invalidate(error.message);notice(error.message);return;}const query={targets,durationGoal,eligibleCells:[...eligible],maxEdits:Number($('placement-count').value),surface:$('placement-surface').value,metric:$('placement-objective').value,subset:$('placement-subset').value};
     const request=++generation;$('placement-run').disabled=true;
-    setTimeout(()=>{try{if(request!==generation)return;const next=comparePlacements(p,query);if(request!==generation||placementSignature(getProject())!==next.sourceSignature)return;report=next;show(report,p);}catch(error){invalidate(error.message);$('placement-status').dataset.state='error';notice(error.message);}finally{$('placement-run').disabled=false;}},20);
+    setTimeout(()=>{try{if(request!==generation)return;const next=tradeoffs?comparePlacementTradeoffs(p,query,tradeoffs):comparePlacements(p,query);if(request!==generation||placementSignature(getProject())!==next.sourceSignature)return;report=next;show(report,p);}catch(error){invalidate(error.message);$('placement-status').dataset.state='error';notice(error.message);}finally{$('placement-run').disabled=false;}},20);
   });
   function refresh(){const source=placementSignature(getProject());if(source!==lastSource){lastSource=source;invalidate('Source changed; compare the current eligible set again.');}drawEligibility();}
   return {refresh};
