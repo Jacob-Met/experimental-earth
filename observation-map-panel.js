@@ -1,3 +1,4 @@
+import {mountLocalizedInfiltration} from './localized-infiltration-panel.js';
 import {mountObservedStorage} from './observed-storage-panel.js';
 import { renderObservationConsistency } from './observation-consistency-panel.js';
 import { mapObservations } from './observation-map.js';
@@ -15,6 +16,7 @@ export function mountObservationMap({ getProject, getResults, selectCell }) {
   const scenario = host.querySelector('#evidence-map-scenario');
   const role = host.querySelector('#evidence-map-role');
   const storage=mountObservedStorage({host,getProject,getResults,getScenario:()=>scenario.value,getRole:()=>role.value});
+  const localized=mountLocalizedInfiltration({host,getProject});
   const format = n => Number(n).toLocaleString('en-US', { maximumSignificantDigits: 6 });
   const node = (tag, text, cls) => { const el = document.createElement(tag); el.textContent = text; if (cls) el.className = cls; return el; };
   function refresh() {
@@ -51,6 +53,7 @@ export function mountObservationMap({ getProject, getResults, selectCell }) {
     }
     detail.append(renderObservationConsistency(project, report.target, project.selectedIndex ?? 0));
     storage.refresh();
+    localized.refresh();
   }
   scenario.addEventListener('change', refresh); role.addEventListener('change', refresh);
   return { refresh };

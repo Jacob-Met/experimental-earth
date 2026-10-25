@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {makeExample} from '../core.js';
+export async function receiveLocalizedInfiltration({evaluate,send,delay,report}){
+ const p=makeExample();p.width=p.height=2;p.selectedIndex=0;p.existing=Array.from({length:4},()=>({elevationM:0,surface:'sealed',provenance:'authored browser control'}));p.proposal=structuredClone(p.existing);p.weather={...p.weather,rainMmHr:61,stormMinutes:10,durationMinutes:10,stepMinutes:5,mobilityPerHour:0,boundaryExitPerHour:0,cellSizeM:1};
+ const row=(cellIndex,minute,depthMm,use)=>({cellIndex,minute,depthMm,use,uncertaintyMm:0,source:'Analytic authored control <not field data>',scenario:'existing'});
+ p.observations=[row(0,5,2.5,'calibration'),row(1,5,5,'calibration'),row(0,10,5,'challenge'),row(2,10,10,'challenge')];
+ const upload=async(selector,data)=>evaluate(`(async()=>{const input=document.querySelector(${JSON.stringify(selector)}),dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(JSON.stringify(data))}],'localized-control.json',{type:'application/json'}));input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,200));})()`);
+ const text=()=>evaluate("document.querySelector('#localized-results').textContent");
+ const state=()=>evaluate("document.querySelector('#localized-status').dataset.state");
+ const set=async(id,value)=>evaluate(`{const e=document.querySelector(${JSON.stringify('#'+id)});e.value=${JSON.stringify(value)};e.dispatchEvent(new Event('input',{bubbles:true}));}`);
+ const run=async()=>{await evaluate("document.querySelector('#localized-run').click()");await delay(100);};
+ await upload('#import',p);await set('localized-rates','1,8.5,31');await run();assert.equal(await state(),'error');
+ await set('localized-basis','Declared single-cell spatial alternative');await run();assert.equal(await state(),'one-survivor');
+ assert.equal(await evaluate("document.querySelectorAll('#localized-results details').length"),6);assert.equal(await evaluate("document.querySelector('#localized-results details').dataset.candidateId"),'localized:31');assert.match(await text(),/Original|original/);assert.match(await text(),/<not field data>/);
+ assert.ok((await evaluate("document.querySelector('[data-candidate-id=\"uniform:8.5\"]').textContent")).includes('nominal whole-site capacity 34 L/h'));
+ assert.ok((await evaluate("document.querySelector('[data-candidate-id=\"localized:31\"]').textContent")).includes('nominal whole-site capacity 34 L/h'));
+ const current=JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));assert.deepEqual(current.observations,p.observations);assert.deepEqual(current.existing,p.existing);
+ report.push('actual solver exposes one localized survivor and every rejected uniform alternative; original source and geometry remain unchanged');
+ await set('localized-cell','B2');await run();assert.equal(await state(),'calibration-rejected');await set('localized-cell','A1');
+ const rejected=structuredClone(p);rejected.observations[2].depthMm=6;await upload('#import',rejected);await run();assert.equal(await state(),'challenged');assert.match(await text(),/localized 31 mm\/h · calibration: within every band · held aside: outside/);
+ await upload('#import',p);await run();assert.equal(await state(),'one-survivor');
+ report.push('wrong declared cell rejects calibration; changed held-aside reading challenges without changing the supported local explanation');
+ const exported=await evaluate(`(async()=>{let blob;const create=URL.createObjectURL,click=HTMLAnchorElement.prototype.click;URL.createObjectURL=b=>{blob=b;return create.call(URL,b)};HTMLAnchorElement.prototype.click=function(){};try{document.querySelector('#localized-export').click();return await blob.text();}finally{URL.createObjectURL=create;HTMLAnchorElement.prototype.click=click;}})()`);
+ const receipt=JSON.parse(exported);assert.deepEqual(Object.keys(receipt).sort(),['kind','materialDefaultsMmHr','project','query']);assert.deepEqual(receipt.project.observations,p.observations);
+ await upload('#import',rejected);const before=await evaluate("localStorage.getItem('experimental-earth-site-v1')");await upload('#localized-import',receipt);assert.equal(await state(),'one-survivor');assert.match(await evaluate("document.querySelector('#localized-status').textContent"),/Isolated reopened source/);assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),before);
+ await upload('#localized-import',{...receipt,report:{status:'one-survivor'}});assert.equal(await state(),'error');assert.equal(await evaluate("document.querySelector('#localized-export').disabled"),true);
+ report.push('original-input download and isolated reopen recompute without changing the working source; imported derived success is refused');
+ await evaluate(`{const input=document.querySelector('#localized-import'),dt=new DataTransfer(),file=new File([${JSON.stringify(exported)}],'delayed.json',{type:'application/json'});Object.defineProperty(file,'text',{value:()=>new Promise(resolve=>{window.finishLocalizedRead=()=>resolve(${JSON.stringify(exported)})})});dt.items.add(file);input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));}`);
+ await set('localized-basis','Newer declaration');await evaluate("window.finishLocalizedRead()");await delay(50);assert.equal(await state(),'not-compared');assert.equal(await evaluate("document.querySelectorAll('#localized-results details').length"),0);
+ const dry=structuredClone(p);dry.weather.rainMmHr=0;dry.observations.forEach(r=>r.depthMm=0);await upload('#import',dry);await run();assert.equal(await state(),'ambiguous');
+ await upload('#import',p);await run();await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'),true);await evaluate("document.querySelector('#localized-run').focus()");await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await delay(100);assert.equal(await state(),'one-survivor');
+ await evaluate("document.querySelector('[data-candidate-id=\"uniform:8.5\"]').open=true;document.querySelector('[data-candidate-id=\"localized:31\"]').open=true");assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'),true);
+ report.push('delayed replay cannot overwrite newer declaration; dry ambiguity retained; keyboard and390px receiving contained');
+}
