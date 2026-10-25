@@ -1,3 +1,4 @@
+import {mountObservedStorageChange} from './observed-storage-change-panel.js';
 import {observedStorage} from './observed-storage.js';
 
 export function mountObservedStorage({host,getProject,getResults,getScenario,getRole}) {
@@ -10,6 +11,7 @@ export function mountObservedStorage({host,getProject,getResults,getScenario,get
     <div id="storage-result" role="status" aria-live="polite"></div>
     <p class="mini-note">This conditional inventory does not verify cell representativeness, event identity, measurement truth or independence. An aggregate overlap can hide opposing local errors. Inspect the individual readings above; overlap does not calibrate or validate the model. The declaration is an unsaved query; original readings remain in project export.</p>`;
   host.append(section);
+  const change=mountObservedStorageChange({host,getProject,getResults,getScenario,getRole});
   const minute=section.querySelector('#storage-minute'),basis=section.querySelector('#storage-basis'),output=section.querySelector('#storage-result');
   const node=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
   const fmt=n=>Number(n).toLocaleString('en-US',{maximumSignificantDigits:7});
@@ -40,6 +42,7 @@ export function mountObservedStorage({host,getProject,getResults,getScenario,get
     } catch(error){output.dataset.state='error';output.textContent=error.message;}
   }
   function refresh(){
+    change.refresh();
     const old=minute.value,p=getProject(),times=[...new Set(p.observations.filter(r=>r.scenario===getScenario()&&(getRole()==='all'||(r.use??'unassigned')===getRole())).map(r=>r.minute))].sort((a,b)=>a-b);
     minute.replaceChildren();
     for(const t of times){const option=node('option',`${fmt(t)} min`);option.value=String(t);minute.append(option);}
@@ -50,3 +53,4 @@ export function mountObservedStorage({host,getProject,getResults,getScenario,get
   minute.addEventListener('change',()=>{requested=false;render();});basis.addEventListener('input',()=>{requested=false;render();});
   return {refresh};
 }
+
