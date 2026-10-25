@@ -1,0 +1,57 @@
+{
+  "issue": 181,
+  "base": "31cb2a209c88d34174d6783844d6c750526f0fcd",
+  "baseTree": "fe9825b36d1d2a517af254f3404d630dd0097c4d",
+  "runtimeRevision": 1,
+  "status": "qualified prepublication candidate; merge not yet claimed",
+  "native": {
+    "tests": 647,
+    "pass": 647,
+    "fail": 0,
+    "skip": 0,
+    "tap": "native-composed-v1.tap.gz"
+  },
+  "browser": {
+    "currentSharedGroups": 11,
+    "currentResult": "shared-browser-composed-v1.json",
+    "retainedSingleGroups": 10,
+    "retainedJointGroups": 10,
+    "retainedCoursesBase": "137163d0190359b6f3871f1128b82c40ac72de9c"
+  },
+  "source": "source-manifest.json",
+  "actualRuntimeIdentities": "composed-v1-identities.json",
+  "localVerificationSnapshot": "dfd8bfe662e5b4dab6aa36b25f6406572aa69d69",
+  "snapshotMeaning": "Initial frozen-source local execution snapshot only; current canonical composition is base plus owned overlay and composed identities",
+  "actualImport": {
+    "csv": "imported-footprint.csv",
+    "rows": 48,
+    "originalProject": "original-project.json",
+    "sha256": "ea8b6ecf1c3f0f799ae0c84faecd878e69b193d985ffc0ca4b245f54b3ccdae5"
+  },
+  "pixels": {
+    "desktop": "desktop.png",
+    "mobile390": "mobile.png",
+    "inspection": "Contributor and integrator inspected actual captures; all offsets and differences unbroken, selected paired quantities readable.",
+    "capturedBase": "137163d0190359b6f3871f1128b82c40ac72de9c",
+    "currentLayoutAssertions": "shared-browser-composed-v1.json; same owned runtime bytes"
+  },
+  "sandbox": "sandbox.json (actual Chrome namespace/seccomp admission; generic session sandbox field remains not-assessed)",
+  "review": [
+    "independent-core-review.json",
+    "independent-consumer-review.json"
+  ],
+  "limits": [
+    "Explicit shared-error declaration, not inferred correlation/probability or datum conversion",
+    "Original inputs and authored changes retained; fixed crests/unselected terrain do not move",
+    "Finite samples are not continuous bounds or physical calibration; wet-column references do not certify varied terrain"
+  ],
+  "composition": 1,
+  "priorReceiving": {
+    "base": "137163d0190359b6f3871f1128b82c40ac72de9c",
+    "nativePass": 640,
+    "retainedSingleGroups": 10,
+    "retainedJointGroups": 10,
+    "sharedGroups": 11
+  },
+  "localVerificationSnapshotBase": "137163d0190359b6f3871f1128b82c40ac72de9c"
+}

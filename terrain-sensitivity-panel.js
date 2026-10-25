@@ -1,3 +1,4 @@
+import { mountSharedGround } from './terrain-shared-ground-panel.js';
 import { compareJointTerrainSensitivity } from './terrain-joint-sensitivity.js';
 import { renderJointTerrain } from './terrain-joint-view.js';
 import { compareTerrainSensitivity } from './terrain-sensitivity.js';
@@ -54,7 +55,7 @@ export function mountTerrainSensitivity({ getProject }) {
       const option = document.createElement('option'); option.value = String(i); option.textContent = name(i, p.width); $('cell').append(option);
     }
     if ([...$('cell').options].some(o => o.value === old)) $('cell').value = old;
-    source();
+    source(); shared.refresh();
   }
   $('second').addEventListener('change', secondSource);
   $('joint').addEventListener('change', secondSource);
@@ -93,5 +94,6 @@ export function mountTerrainSensitivity({ getProject }) {
       }
     } catch (error) { clear(`Comparison refused: ${error.message}`); }
   });
+  const shared = mountSharedGround({ host, getProject });
   return { refresh };
 }

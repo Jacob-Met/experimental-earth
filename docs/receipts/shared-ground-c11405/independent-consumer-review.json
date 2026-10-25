@@ -1,0 +1,18 @@
+{
+  "reviewer": "hamon-c11405/mechanism",
+  "scope": "Independent source and isolated DOM/event controls; no actual browser/pixel claim",
+  "checks": [
+    "Every explicit supplied cell including index0 reaches core without trimming",
+    "Width/basis edits invalidate results and changed basis revokes transfer confirmation",
+    "Changed project/source refuses stale submission, clears all footprint/basis/transfer rather than trimming members",
+    "Selected common-offset row persists across metric changes",
+    "Literal source/basis cannot create executable DOM; small signed differences remain visible",
+    "Full selected source and fixed-reference ledgers rendered"
+  ],
+  "hashes": {
+    "terrain-shared-ground-panel.js": "f35353927f341d9c827e60411afcc76e357c75335706a757664435d86ddba70b",
+    "terrain-shared-ground-view.js": "b44f9bb0f6a9a700862d398f809434599315c32f0ccc685ba6213fbae5b6a21d",
+    "terrain-sensitivity-panel.js": "949acdb28f94bfe6e930b66f207fa0d6a89cc918cbf37ff4a984a249be96b22d"
+  },
+  "conclusion": "No blocking source/query/selection finding"
+}
