@@ -1,0 +1,30 @@
+{
+  "issue": 172,
+  "base": "06fbcdab513e8f53e32eca21a0413bcd3c2cd7f8",
+  "runtimeRevision": 4,
+  "composition": 1,
+  "status": "qualified prepublication candidate; merge not yet claimed",
+  "native": {
+    "tests": 614,
+    "pass": 614,
+    "fail": 0,
+    "skip": 0,
+    "tap": "native-composed-v1.tap.gz"
+  },
+  "browser": {
+    "retainedSingleGroups": 10,
+    "jointGroups": 10,
+    "final": "joint-browser-composed-v1.json"
+  },
+  "pixels": {
+    "desktop": "joint-browser-composed-v1/joint-desktop.png",
+    "mobile390": "joint-browser-composed-v1/joint-mobile.png",
+    "inspection": "All nine numbers intact; selected positive corner and paired quantities readable; page stays within viewport. Original wrapped-number capture preserved in initial-joint-pixels."
+  },
+  "sourceIdentities": "composed-v1-identities.json",
+  "limitations": [
+    "Finite declared hypotheses, not continuous extrema or physically qualified joint error distribution",
+    "Wet-column references do not certify varied-ground model accuracy",
+    "No survey reassociation, fitted observations or hypothetical plan adoption"
+  ]
+}

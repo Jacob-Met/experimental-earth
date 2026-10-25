@@ -1,0 +1,35 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "starting",
+  "startedAt": "2026-10-25T00:45:33.171Z",
+  "executable": "/opt/google/chrome/chrome",
+  "runDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1",
+  "profileDirectory": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/profile",
+  "stdoutFile": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/stdout.bin",
+  "stderrFile": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/stderr.bin",
+  "receiptFile": "/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": false,
+    "directChildExited": false,
+    "scope": "launched-direct-child-only"
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/tmp/hamon-c11405-earth-172/joint-browser-composed-v1/profile",
+    "about:blank"
+  ],
+  "pid": 28851
+}

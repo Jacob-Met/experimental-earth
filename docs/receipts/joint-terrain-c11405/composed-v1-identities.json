@@ -1,0 +1,39 @@
+{
+  "base": "06fbcdab513e8f53e32eca21a0413bcd3c2cd7f8",
+  "baseTree": "931a3c3bf7da23ae3f6bc5587bedc453c336e664",
+  "ownedRuntime": [
+    "terrain-sensitivity-engine.js",
+    "terrain-sensitivity.js",
+    "terrain-joint-sensitivity.js",
+    "terrain-joint-view.js",
+    "terrain-sensitivity-panel.js",
+    "tests/terrain-joint-sensitivity.test.mjs",
+    "tests/terrain-joint.receiving.mjs"
+  ],
+  "files": {
+    "README.md": "449c0d5e29a0c27e9d4585511071e76eefbe1cce9fcf77e8a244b9153d5df05e",
+    "app.js": "20e4460545fab016f2457e3939a26f1320c330503d8678e7b248463edefab928",
+    "docs/ROOT_ZONE.md": "89bd114723be9ab7e9f92efba4ee33e11b8fcb4ef9de33c1d15cd564a3c96d08",
+    "docs/SHADE_HEAT.md": "48b57abcdfbcbcb4117837e387f6e8ad7bdb39676ba220e92d12d838ef22fd5e",
+    "root-zone-panel.js": "f0e827cb2c34f92bfd3a26eebea68ff9e6836c8b9815fb88a650e5f5e568654b",
+    "root-zone-study.js": "872b2c7ed22287872d31e5184b7fdc137b96e3f33fc546a7d020caa4f402708d",
+    "root-zone.css": "869cb21391689ec042171dfa4800d5274529384f3ac2b377d5703429631c1309",
+    "root-zone.js": "f939d128581a4950379fe2612f137aacc0cc261d28c334e0020c58cf9ca0493c",
+    "shade-heat-panel.js": "848704165196355cf411dc242d7349f1b50c2416ed041da033b50a4769462367",
+    "shade-heat.js": "812e667101bdd74596819b86518cf2ef367cd0d40483ed6ae83034b2b28454a0",
+    "terrain-joint-sensitivity.js": "004a85213cc5df5435067e33cf35405035df7c7188ca4d0b42f9380cc69a129b",
+    "terrain-joint-view.js": "397b5e5489bfbd69f6d86cc56adf65d7a70d2bf713865d8680e6358a86c4e2ed",
+    "terrain-sensitivity-engine.js": "f72f317e84e8e859eb9822ac40416aa746183a398b3dcf2e4d1a1d3f0bc9dbc3",
+    "terrain-sensitivity-panel.js": "f233aea9753dd712edb0de12d08c36c5fa39a3ba8f408fd7fc5271265e48e267",
+    "terrain-sensitivity.js": "2ccb83469473ae10e42b0452f2002be3c6baf706a9435c7b846e307beb22cec6",
+    "tests/root-zone.receiving.mjs": "6456165ce6ee603ce69e98d92d3b9567ace39acb09a6bb6dd9d713b4427c1765",
+    "tests/root-zone.test.mjs": "955a9f0f06405c9cc3217e848668a5f634c456ee8e0b976966407f3f597a0a44",
+    "tests/shade-heat-weather.browser.mjs": "e643363cf41e3de5859200649121f69b887377786820c771ce1cab4938312762",
+    "tests/shade-heat-weather.test.mjs": "94a94541f21d2c827557dc067fe77bd5deeabfd737294a3bacea47902f3a47b6",
+    "tests/terrain-joint-sensitivity.test.mjs": "3c34df5e557fe25b871976f641a57d8f76ce640622835a751ad487404b2ce011",
+    "tests/terrain-joint.receiving.mjs": "fdb8d1d2d4a7cfbe6166c66e60b8749129bfeeca475a90a31018b21f7bc554cb",
+    "tests/weather-power-fixture.mjs": "a30648a67fedd54fd00c52c07d451aab0aada577d182537762499dad5770a7b2",
+    "tests/weather-power.test.mjs": "cf7cbcd3d0ed81670c78f1b11a4ec08c210c629b9f1b95e2dc4e67818cd0dcfb",
+    "weather-power.js": "e45d06ea689607433c6964b706bdf6aa2f3a442fd00c95ed63b2c505ddca0933"
+  }
+}

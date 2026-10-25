@@ -1,0 +1,15 @@
+✔ joint corner reverses an effect absent from both densely sampled isolated axes (69.747452ms)
+✔ every complete combination equals direct runs, including all local depths and mass balance (17.135138ms)
+✔ central slices retain single-axis parity; supplied axis order cannot alter the report (30.914045ms)
+✔ both authored changes and source custody survive all combinations (12.088671ms)
+✔ complete family budget refuses rather than silently reducing requested samples (109.889411ms)
+✔ distinct supplied axes, common datum, explicit transfer and compatible proposal are required (1.905395ms)
+✔ mixed units preserve normalized hypotheses; unchanged plans retain zero effects (29.789885ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 281.363765

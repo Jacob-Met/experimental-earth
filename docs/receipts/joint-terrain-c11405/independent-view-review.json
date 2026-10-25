@@ -1,0 +1,16 @@
+{
+  "reviewer": "hamon-c11405/mechanism",
+  "scope": "Source lifecycle review and independent isolated DOM renderer controls; no actual browser/pixel claim",
+  "hashes": {
+    "terrain-joint-view.js": "46f10af54a526086e2008542587cb4b1c3cc325795b62568b8cb434d19a4f4a5",
+    "terrain-sensitivity-panel.js": "f233aea9753dd712edb0de12d08c36c5fa39a3ba8f408fd7fc5271265e48e267"
+  },
+  "checks": [
+    "Nine combinations preserve row/column indexing",
+    "Center selection then corner change",
+    "Metric changes preserve selected combination and update table",
+    "Source provenance remains literal text, no executable elements",
+    "Small nonzero metric remains visible"
+  ],
+  "conclusion": "No remaining source/selection/renderer blocker; original getProject fingerprint and declaration invalidation preserved"
+}
