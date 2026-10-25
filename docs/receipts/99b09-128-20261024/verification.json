@@ -1,0 +1,39 @@
+{
+  "repo": "experimental-earth",
+  "issue": 128,
+  "base": "97c9afaad29a7e4a27e86d6b5e7e198aa3e40cf1",
+  "files": [
+    "complementary-depth-plan.js",
+    "complementary-infiltration.js",
+    "complementary-depth-panel.js",
+    "infiltration-panel.js",
+    "tests/complementary-depth-plan.test.mjs",
+    "tests/complementary-infiltration.test.mjs",
+    "tests/complementary-depth.browser.mjs",
+    "docs/COMPLEMENTARY_READINGS.md"
+  ],
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "tests": 463,
+    "pass": 463,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "groups": 5,
+    "path": "/tmp/earth-complementary-A6T4Ij",
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/complementary-depth.browser.mjs"
+  },
+  "reviewer": "Direct team worker skill_translator; independent core review, focused controls and 150 uncompressed greedy oracle cases, no blocking finding",
+  "limits": "Finite greedy pair coverage, not a global optimum, physical soil identification, probability or field measurement. Held-aside measured depth values do not select the plan; preparing a reading never fabricates one.",
+  "receiver": "Linux 6.12.94+ x86_64; Node 22.23.4; installed Chrome 156.0.8078.47 with sandbox admitted",
+  "sandbox": "Direct /opt/google/chrome/chrome: namespace, PID/network and seccomp active",
+  "screens": [
+    "desktop.png",
+    "narrow.png"
+  ],
+  "pixel_review": "Lead inspected actual desktop and narrow consumer screenshots",
+  "transfer_failures": [
+    "Convenience launcher injected --no-sandbox and was refused; direct installed browser passed with explicit sandbox admission."
+  ]
+}

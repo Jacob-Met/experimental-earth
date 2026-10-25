@@ -4,6 +4,7 @@ import { DEFAULT_STUDY, validateStudy } from './study-contract.js';
 import { compareInfiltration } from './infiltration-study.js';
 import { chooseInfiltrationQuestion } from './infiltration-question.js';
 import { mountResolutionPanel } from './infiltration-resolution-panel.js';
+import { mountComplementaryDepthPanel } from './complementary-depth-panel.js';
 
 const $ = id => document.getElementById(id);
 const number = n => n === null ? '—' : n.toLocaleString('en-US', {
@@ -53,9 +54,11 @@ export function evidenceControls(reading, changed) {
 export function mountInfiltrationPanel({ getProject, changed, notice, prepareReading }) {
   const button = $('compare-infiltration');
   const resolution = mountResolutionPanel({ getProject, notice });
+  const complementary = mountComplementaryDepthPanel({ getProject, prepareReading, notice });
   let question = null;
   function clearQuestion() {
     resolution.clear();
+    complementary.clear();
     question = null;
     $('find-infiltration-reading').disabled = true;
     $('prepare-infiltration-reading').hidden = true;
@@ -154,4 +157,5 @@ export function mountInfiltrationPanel({ getProject, changed, notice, prepareRea
   });
   return { refresh };
 }
+
 
