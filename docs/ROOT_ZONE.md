@@ -133,3 +133,7 @@ The authored example at D4 ends with 0.851340877, 3.719224985, 4.359645135 and 2
 The matrix supports available water, supplied transpiration, unmet demand, immediate drainage and demand-limited days. Select any case to inspect its complete original water account and rooted-store source. The existing day controls evaluate all four exact histories at the selected day; plotted interpolation is not used. At every day, initial water + recharge = immediate drainage + supplied transpiration + remaining available water, apart from floating-point roundoff. The corresponding interactions in drainage, supplied transpiration and remaining water sum to zero because initial-water and recharge changes enter separately.
 
 The investigation file remains the same input-only format. Reopening recomputes both original infiltration budgets and all four dry histories; derived cases and interactions are not accepted from a file. Changing an input invalidates the entire comparison.
+
+## During-event recharge timing
+
+The optional timing comparison follows the original accepted infiltration intervals with separately attributed event transpiration, then reuses the same dry course. The matched end-pulse control receives identical event demand. See [ROOT_ZONE_TIMING.md](ROOT_ZONE_TIMING.md) for source custody, the uniform-within-interval assumption, input-only replay and the initially dry surface requirement. The original pulse profile and its file format remain available.
