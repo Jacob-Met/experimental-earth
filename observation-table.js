@@ -1,9 +1,10 @@
+import {stationMap} from './observation-stations.js';
 import { observationMinute, timestampMillis } from './observation-clock.js';
 import { records } from './csv-records.js';
 import { validateProject } from './core.js';
 import { DEPTH_UNITS, decimalValue } from './observation-units.js';
 
-const REQUIRED = ['cell', 'depth', 'uncertainty', 'unit', 'source'];
+const REQUIRED = [ 'depth', 'uncertainty', 'unit', 'source'];
 const OPTIONAL = ['scenario', 'use'];
 const owns = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 
@@ -14,7 +15,7 @@ export function appendObservations(project, readings) {
   const originKey = reading => reading.tableSource ? JSON.stringify([
     reading.tableSource.fileName, reading.tableSource.line, reading.tableSource.unit,
     reading.tableSource.depthValue, reading.tableSource.uncertaintyValue,
-    reading.cellIndex, reading.minute, reading.source,
+    reading.tableSource.stationMapping ? ['station',reading.tableSource.stationMapping.station] : reading.cellIndex, reading.minute, reading.source,
     ...(reading.tableSource.timestamp === undefined ? [] : [
       timestampMillis(reading.tableSource.timestamp), timestampMillis(reading.tableSource.eventStart),
     ]),
@@ -36,25 +37,33 @@ export function commitObservationPreview(project, preview) {
   return appendObservations(project, preview.readings);
 }
 
-export function previewObservationTable(text, project, fileName = 'observations.csv') {
+export function previewObservationTable(text, project, fileName = 'observations.csv', mapping = undefined) {
   validateProject(project);
   if (typeof fileName !== 'string' || !fileName.trim() || fileName.length > 160) throw new Error('Supply a table filename of 1–160 characters');
   const rows = records(text);
   if (!rows.length) throw new Error('The observation table is empty');
   const headers = rows.shift().fields.map(h => h.trim().toLowerCase());
   if (new Set(headers).size !== headers.length) throw new Error('Duplicate observation table header');
+  const station = headers.includes('station');
+  if (station === headers.includes('cell')) throw new Error('Supply exactly one location column: cell or station');
+  const locations = station ? stationMap(mapping,project) : null;
+  if (!station && mapping !== undefined) throw new Error('A station map requires a station table; remove it for cell tables');
+  const locationHeader = station ? 'station' : 'cell';
   const clock = headers.includes('timestamp') || headers.includes('event_start');
   const timeHeaders = clock ? ['timestamp', 'event_start'] : ['minute'];
   if (timeHeaders.some(h => !headers.includes(h)) || (clock && headers.includes('minute'))) throw new Error('Use either minute or both timestamp and event_start clock columns');
   if (REQUIRED.some(h => !headers.includes(h))) throw new Error(`Required columns: ${REQUIRED.join(', ')}`);
-  if (headers.some(h => !REQUIRED.includes(h) && !OPTIONAL.includes(h) && !timeHeaders.includes(h))) throw new Error('Unknown column; optional columns are scenario and use');
+  if (headers.some(h => !REQUIRED.includes(h) && !OPTIONAL.includes(h) && !timeHeaders.includes(h) && h !== locationHeader)) throw new Error('Unknown column; optional columns are scenario and use');
   if (!rows.length) throw new Error('The table contains a header but no observations');
   if (project.observations.length + rows.length > 100) throw new Error('Import would exceed the notebook limit of 100 observations');
   const readings = rows.map(row => {
     try {
       if (row.fields.length !== headers.length) throw new Error('column count does not match the header');
       const data = Object.fromEntries(headers.map((key, i) => [key, row.fields[i].trim()]));
-      const match = /^([A-Z])([1-9]\d*)$/i.exec(data.cell);
+      const stationMapping = station ? locations.get(data.station) : undefined;
+      if (station && !stationMapping) throw new Error('Unmapped station: ' + data.station);
+      const cellLabel = station ? stationMapping.cell : data.cell;
+      const match = /^([A-Z])([1-9]\d*)$/i.exec(cellLabel);
       const x = match ? match[1].toUpperCase().charCodeAt(0) - 65 : -1;
       const y = match ? Number(match[2]) - 1 : -1;
       if (x < 0 || x >= project.width || y < 0 || y >= project.height) throw new Error('cell is outside the current grid');
@@ -67,7 +76,7 @@ export function previewObservationTable(text, project, fileName = 'observations.
         uncertaintyMm: decimalValue(data.uncertainty, 'uncertainty') * DEPTH_UNITS[unit],
         source: data.source,
         scenario: data.scenario || 'unassigned', use: data.use || 'unassigned',
-        tableSource: { fileName, line: row.line, unit, depthValue: data.depth, uncertaintyValue: data.uncertainty, ...(clock ? {timestamp: data.timestamp, eventStart: data.event_start} : {}) },
+        tableSource: { fileName, line: row.line, unit, depthValue: data.depth, uncertaintyValue: data.uncertainty, ...(station ? {stationMapping: structuredClone(stationMapping), stationValue: row.fields[headers.indexOf('station')]} : {}), ...(clock ? {timestamp: data.timestamp, eventStart: data.event_start} : {}) },
       };
       validateProject({ ...project, observations: [reading] });
       return reading;

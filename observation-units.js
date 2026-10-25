@@ -1,3 +1,4 @@
+import {validateStationOrigin} from './observation-stations.js';
 import { observationMinute } from './observation-clock.js';
 export const DEPTH_UNITS = Object.freeze({ mm: 1, cm: 10, in: 25.4 });
 const owns = (o, key) => Object.prototype.hasOwnProperty.call(o, key);
@@ -12,9 +13,10 @@ export function decimalValue(text, name) {
   return value;
 }
 
-export function validateObservationOrigin(reading) {
+export function validateObservationOrigin(reading, project) {
   if (reading.tableSource === undefined) return;
   const source = reading.tableSource;
+  validateStationOrigin(reading,project);
   if (!source || typeof source.fileName !== 'string' || !source.fileName.trim() || source.fileName.length > 160 ||
       !Number.isInteger(source.line) || source.line < 2 || source.line > 128000 ||
       typeof source.unit !== 'string' || !owns(DEPTH_UNITS, source.unit)) {
