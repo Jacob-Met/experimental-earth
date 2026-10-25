@@ -1,0 +1,72 @@
+{
+  "sourceBase": "655b842d1f00afbc78ffd4ab7f84691fe0a6485e",
+  "native": {
+    "runtime": "Node22.23.4",
+    "command": "node --test --test-concurrency=2 tests/temperature-table*.test.mjs tests/heat-column*.test.mjs",
+    "passed": 53,
+    "failed": 0
+  },
+  "browser": {
+    "status": "PASS",
+    "checks": [
+      "Real F/K file previews every original row; keyboard replacement changes only draft; saved input screens five original alternatives to one",
+      "Actual downloaded project reopens after storage clearing and reload; original lexical values/roles/sources survive and comparison recomputes",
+      "Duplicate final row and invalid UTF8 refuse atomically; no prefix/draft/source adoption (comparison is conservatively retired)",
+      "Preview retires on draft edit or project replacement; delayed stale file completion cannot restore it",
+      "Unfamiliar changed challenge file rejects all calibration survivors without altering original hypotheses",
+      "Original interval-mean file reaches the full-window operator and visible mean band",
+      "Narrow preview fits viewport; actual desktop/narrow screenshots retained; no application exceptions"
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-25T23:51:20.447Z",
+      "completedAt": "2026-10-25T23:51:20.563Z",
+      "durationMs": 115.91030900000004,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "B76E3EBBDD421601B984C3C1C4AE2E83",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "AA9167536AE6001C52F62A5C1D886C3D"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": []
+  },
+  "qualification": "Authored original-file acquisition through the maintained thermal-evidence consumer, with source-only save/reopen and failure controls. No measured thermal-model validation or deployment claim."
+}

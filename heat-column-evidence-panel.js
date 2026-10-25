@@ -1,3 +1,4 @@
+import {previewTemperatureTable} from './temperature-table.js';
 import {prepareHeatColumnEvidence,compareHeatColumnEvidence,authoredHeatColumnEvidenceExample} from './heat-column-evidence.js';
 const node=(tag,text='')=>{const e=document.createElement(tag);e.textContent=text;return e;};
 const svg=(tag,attrs={})=>{const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,String(v));return e;};
@@ -10,13 +11,15 @@ export function mountHeatColumnEvidence({getProject,replaceProject,notice}){
  panel.innerHTML=`<span class="eyebrow">HEAT / OBSERVED SURFACE, HIDDEN STORE</span><h2>Which hidden heat stores still explain the surface?</h2><p>Compare explicit lower-store alternatives against sourced surface-temperature bands. Calibration screens the original alternatives; challenge readings can reject them without refitting. Initial lower temperature, surface properties and exposure stay fixed.</p>
  <form id="column-evidence-form"><label class="input-label">Observed place<select id="column-evidence-target"><option value="existing">Existing place</option><option value="proposal">Proposed place</option></select></label><label class="input-label">How these readings belong to this place and exposure<textarea id="column-evidence-association" rows="3" maxlength="600" required></textarea></label>
  <h3>Declared lower-store alternatives</h3><p class="mini-note">Keep 2–12 alternatives. Capacity and conductance are declarations, not inferred measurements.</p><div id="column-hypotheses"></div><button id="column-hypothesis-add" type="button">Add alternative</button>
- <h3>Surface-temperature readings</h3><p class="mini-note">Elapsed minutes from the saved exposure; distinct reading times or averaging windows, up to 100. Choose an instantaneous reading or a mean over a stated interval. Half-widths are supplied bands, not confidence levels. A challenge label does not authenticate independent acquisition.</p><div id="column-readings"></div><button id="column-reading-add" type="button">Add surface reading</button>
+ <h3>Surface-temperature readings</h3><p class="mini-note">Elapsed minutes from the saved exposure; distinct reading times or averaging windows, up to 100. Choose an instantaneous reading or a mean over a stated interval. Half-widths are supplied bands, not confidence levels. A challenge label does not authenticate independent acquisition.</p><details id="column-temperature-import"><summary>Import original temperature CSV</summary><p class="mini-note">Columns: <code>minute,from_minute,aggregation,temperature,half_width,unit,use,source</code>. Use elapsed minutes, <code>instant</code> with an empty start or <code>interval-mean</code> with its start. Units must be C, F or K; bands use the same unit. Roles must be calibration or challenge. Original fields, file name and line stay in each editable source. No measurement independence is inferred.</p><label class="input-label">Original temperature file<input id="column-temperature-file" type="file" accept=".csv,text/csv"></label><p id="column-temperature-status" role="status">Choose a file to preview all conversions.</p><ol id="column-temperature-preview" tabindex="0" aria-label="Original temperature conversion preview"></ol><button id="column-temperature-apply" type="button" disabled>Replace draft readings with preview</button></details><div id="column-readings"></div><button id="column-reading-add" type="button">Add surface reading</button>
  <div class="obs-actions"><button id="column-evidence-save" type="submit">Save surface evidence</button><button id="column-evidence-example" type="button">Fill authored ambiguity draft</button><button id="column-evidence-clear" type="button">Clear retained column evidence</button></div></form>
  <button id="column-evidence-run" type="button" class="primary">Compare saved alternatives</button><p id="column-evidence-status" role="status"></p><div id="column-evidence-results"></div>`;
  document.getElementById('heat-column').after(panel);const $=id=>panel.querySelector('#'+id);
+ let temperaturePreview=null;
  let signature='',projectIdentity=null,generation=0,dirty=false,report=null,accepted=null,selected=0,timeIndex=0;
  function invalidate(text,state='not-compared'){generation++;report=null;accepted=null;$('column-evidence-results').replaceChildren();$('column-evidence-status').textContent=text;$('column-evidence-status').dataset.state=state;}
- function changed(){dirty=true;$('column-evidence-run').disabled=true;invalidate('Draft changed. Save the evidence before comparing.');}
+ function clearTemperaturePreview(){temperaturePreview=null;$('column-temperature-apply').disabled=true;$('column-temperature-preview').replaceChildren();$('column-temperature-status').textContent='Choose a file to preview all conversions.';}
+ function changed(){clearTemperaturePreview();dirty=true;$('column-evidence-run').disabled=true;invalidate('Draft changed. Save the evidence before comparing.');}
  function field(card,key,title,value,{min,max,kind='number',choices,limit}={}){
   const label=node('label',title);label.className='input-label';const e=node(choices?'select':kind==='textarea'?'textarea':'input');e.dataset.field=key;
   if(choices)for(const v of choices){const o=node('option',v);o.value=v;e.append(o);}else if(kind==='textarea'){e.rows=2;e.maxLength=limit??600;}else{e.type=kind;if(kind==='number'){e.step='any';if(min!==undefined)e.min=min;if(max!==undefined)e.max=max;}if(limit)e.maxLength=limit;}
@@ -48,6 +51,32 @@ export function mountHeatColumnEvidence({getProject,replaceProject,notice}){
   if(current.heatColumnEvidence&&current.heatColumnEvidence.target!==input.target)throw Error('Clear the retained evidence before associating a different place.');
   const next=structuredClone(current);next.heatColumnEvidence=prepareHeatColumnEvidence(current,input);compareHeatColumnEvidence(next);replaceProject(next);dirty=false;$('column-evidence-run').disabled=false;invalidate('Evidence saved with its original column and exposure. Compare to inspect every alternative.');
  }catch(error){notice(error.message);invalidate(error.message,'refused');}};
+ $('column-temperature-file').addEventListener('change',async event=>{
+  const file=event.target.files?.[0];if(!file)return;
+  changed();const request=generation,project=getProject(),snapshot=JSON.stringify(project);
+  try{
+   if(file.size>128000)throw Error('Temperature file exceeds the 128 KB limit');
+   const text=new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer());
+   if(request!==generation||project!==getProject()||snapshot!==JSON.stringify(getProject()))return;
+   const duration=project.heatColumnStudy?.heatStudy.schedule.reduce((sum,row)=>sum+row.minutes,0);
+   const preview=previewTemperatureTable(text,duration,file.name);
+   temperaturePreview={preview,project,snapshot};
+   for(const [i,r]of preview.readings.entries()){
+    const original=preview.originals[i];
+    $('column-temperature-preview').append(node('li','Line '+original.line+' · '+(r.aggregation==='interval-mean'?'mean '+r.fromMinute+'–'+r.minute:'instant '+r.minute)+' min · '+original.temperature+' ± '+original.half_width+' '+original.unit+' → '+display(r.temperatureC)+' ± '+display(r.halfWidthC)+' °C · '+r.use+' · '+original.source));
+   }
+   $('column-temperature-status').textContent=preview.readings.length+' original rows ready. Applying replaces only draft readings; save before comparison. Retained evidence is unchanged.';
+   $('column-temperature-apply').disabled=false;
+  }catch(error){if(request===generation){clearTemperaturePreview();$('column-temperature-status').textContent='Import refused: '+error.message+'. Existing readings are unchanged.';}}
+  finally{event.target.value='';}
+ });
+ $('column-temperature-apply').onclick=()=>{
+  const pending=temperaturePreview;if(!pending)return;
+  if(pending.project!==getProject()||pending.snapshot!==JSON.stringify(getProject())){clearTemperaturePreview();notice('The workspace changed. Preview the original file again.');return;}
+  const readings=pending.preview.readings;
+  $('column-readings').replaceChildren();for(const r of readings)addCard('reading',r);changed();
+  $('column-temperature-status').textContent=readings.length+' converted original rows placed in the editable draft. Save surface evidence to compare.';
+ };
  function chart(field,title){
   const width=Math.max(320,Math.min(760,$('column-evidence-results').clientWidth||760)),left=54,right=width-18,top=20,bottom=210,H=report.durationMinutes;
   const values=report.candidates.flatMap(c=>c.trajectory.map(r=>r[field]));if(field==='surfaceC')for(const r of accepted.readings)values.push(r.temperatureC-r.halfWidthC,r.temperatureC+r.halfWidthC);
@@ -85,6 +114,7 @@ export function mountHeatColumnEvidence({getProject,replaceProject,notice}){
  function inspect(){const c=report.candidates[selected],r=c.trajectory[timeIndex],host=$('column-evidence-inspect');host.dataset.minute=r.minute;host.dataset.surfaceC=r.surfaceC;host.dataset.subsurfaceC=r.subsurfaceC;host.replaceChildren(node('h3',c.label+' · '+display(r.minute)+' min'),node('p','Surface '+display(r.surfaceC)+' °C · hidden lower store '+display(r.subsurfaceC)+' °C. These are calculated states under the retained declaration.'));for(const plot of panel.querySelectorAll('.column-evidence-chart')){const m=JSON.parse(plot.dataset.mapping),point=plot.querySelector('.column-time-marker');if(point){point.setAttribute('cx',m.left+(m.right-m.left)*r.minute/m.H);point.setAttribute('cy',m.bottom-(m.bottom-m.top)*(r[plot.dataset.field]-m.low+m.pad)/m.span);}}}
  $('column-evidence-run').onclick=()=>{if(dirty)return;const project=structuredClone(getProject()),request=++generation;$('column-evidence-run').disabled=true;setTimeout(()=>{try{if(request!==generation)return;const next=compareHeatColumnEvidence(project);if(request!==generation||JSON.stringify(project)!==JSON.stringify(getProject()))return;$('column-evidence-status').dataset.state=next.status;$('column-evidence-status').textContent=messages[next.status]??next.status;report=next;accepted=project.heatColumnEvidence;timeIndex=0;$('column-evidence-results').replaceChildren();draw();}catch(e){notice(e.message);invalidate(e.message,'refused');$('column-evidence-run').disabled=dirty;}finally{if(request===generation)$('column-evidence-run').disabled=dirty;}},20);};
  window.addEventListener('resize',()=>{if(report)draw();});
- function refresh(){const p=getProject(),next=JSON.stringify(p);if(p===projectIdentity&&next===signature)return;projectIdentity=p;signature=next;dirty=false;selected=0;timeIndex=0;fill(p.heatColumnEvidence);invalidate('Compare the saved surface evidence against its retained hidden-store alternatives.');$('column-evidence-run').disabled=false;}
+ function refresh(){const p=getProject(),next=JSON.stringify(p);if(p===projectIdentity&&next===signature)return;projectIdentity=p;signature=next;clearTemperaturePreview();dirty=false;selected=0;timeIndex=0;fill(p.heatColumnEvidence);invalidate('Compare the saved surface evidence against its retained hidden-store alternatives.');$('column-evidence-run').disabled=false;}
  return{refresh};
 }
+
