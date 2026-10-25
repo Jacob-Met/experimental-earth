@@ -1,0 +1,75 @@
+{
+  "schema": "hamon.common-clock.receiving/v1",
+  "base": "31cb2a209c88d34174d6783844d6c750526f0fcd",
+  "native": {
+    "tests": 654,
+    "passed": 654,
+    "failed": 0,
+    "skipped": 0
+  },
+  "environment": {
+    "os": "Ubuntu",
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47"
+  },
+  "commands": [
+    "node --test --test-concurrency=2 tests/*.test.mjs",
+    "CHROME_BIN=/opt/google/chrome/chrome RUN_DIRECTORY=/tmp/earth-e794-common-clock-current-receiving node tests/common-clock-feasibility.browser.mjs"
+  ],
+  "browser": {
+    "behaviorGroups": 5,
+    "sandbox": "Namespace; PID/network namespaces; Seccomp-BPF with TSYNC",
+    "desktopWidth": 1440,
+    "narrowWidth": 390
+  },
+  "runtime": [
+    {
+      "path": "clock-offset-intervals.js",
+      "sha": "b535e549375deb05e91d07f38a84669815982071"
+    },
+    {
+      "path": "common-clock-feasibility.js",
+      "sha": "262c83098eb267aa49c8ff125909d03581759cec"
+    },
+    {
+      "path": "common-clock-receipt.js",
+      "sha": "87f5d8c2e862ea9e80cb15c52389ad452415a188"
+    },
+    {
+      "path": "common-clock-panel.js",
+      "sha": "ec31a953f45ea971a0e917535c96d8b78f33e29e"
+    },
+    {
+      "path": "clock-panel.js",
+      "sha": "1161bdfc6d5f4b8850781b9d0bcc69b1cf295698"
+    },
+    {
+      "path": "tests/common-clock-feasibility.test.mjs",
+      "sha": "faec5559af39144e867b38aa9995f5f79351c7dc"
+    },
+    {
+      "path": "tests/common-clock-feasibility.browser.mjs",
+      "sha": "2b54d285c28a2314a0198089d8e5120c99295a96"
+    }
+  ],
+  "input": {
+    "kind": "authored closed 2x2 turf, original assigned readings and retained solver trajectories",
+    "fixtureBrowserGitBlob": "2b54d285c28a2314a0198089d8e5120c99295a96",
+    "rainMmHr": 30,
+    "stormMinutes": 60,
+    "ratesMmHr": [
+      3,
+      9,
+      22
+    ]
+  },
+  "independentReview": {
+    "disconnectedBands": 4,
+    "preservedGapMinutes": 9.094947017729282e-13,
+    "negativeOffsetSingletons": true,
+    "heldAsideValuesAndTimesLeaveCalibrationUnchanged": true,
+    "sourceUnchanged": true,
+    "forgedAdoptedOffsetRefused": true
+  },
+  "limits": "Continuous sets are computed under retained piecewise-linear solver trajectories and explicit depth guard. No source-clock authentication, interval probability, refit or adoption; original-minute calibration ordering remains fixed."
+}
