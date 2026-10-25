@@ -1,3 +1,4 @@
+import { createInfiltrationStorage } from './infiltration-storage.js';
 import {validateSolarStudy} from './solar-occlusion-contract.js';
 import {validateSurfaceHeatStudy} from './surface-heat-contract.js';
 import {validateHeatEvidence} from './surface-heat-evidence-contract.js';
@@ -107,6 +108,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     if (override !== undefined || surfaceOverride !== undefined) throw new Error('Choose one infiltration model or override');
   }
   const cumulativeInfiltration = wettingFront ? Array(n).fill(0) : null;
+  const receivingStore = createInfiltrationStorage(cells, cellArea, options?.infiltrationStorage, SURFACES);
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
     throw new Error('Water-budget tracing must be explicitly enabled or disabled');
   }
@@ -167,8 +169,11 @@ export function runRain(cells, width, height, weather, options = {}) {
           hours: Math.max(0, dtHours - rainyHours), conductivityMmHr: wettingFront.conductivityMmHr,
           capillaryDriveMm: wettingFront.capillaryDriveMm });
         absorb = Math.min(water[i], wet.infiltratedMm + dry.infiltratedMm);
-        cumulativeInfiltration[i] += absorb;
       } else absorb = Math.min(water[i], rate * dtHours);
+      // A filled receiving store leaves refused water in the same surface state,
+      // before routing and before any budget or passive provenance is recorded.
+      if (receivingStore) absorb = receivingStore.accept(i, absorb);
+      if (wettingFront?.surface === cells[i].surface) cumulativeInfiltration[i] += absorb;
       tracer?.absorb(i, absorb, water[i]);
       origins?.absorb(i, absorb, water[i]);
       water[i] -= absorb;
@@ -249,6 +254,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     maxDepthMm: Math.max(...peak), peakDepthMm: peak, finalDepthMm: water.slice(), snapshots,
     peakPondingLiters: Math.max(...snapshots.map(s => s.storedLiters)),
     cellsOver10Mm: peak.filter(d => d >= 10).length,
+    ...(receivingStore ? { infiltrationStorage: receivingStore.finish() } : {}),
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
     ...(origins ? { rainOrigins: origins.finish(water, snapshots) } : {}),
     ...(wettingFront ? { wettingFront: { surface: wettingFront.surface,

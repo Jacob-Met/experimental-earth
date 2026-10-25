@@ -1,0 +1,28 @@
+#infiltration-storage .is-actions { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; }
+#infiltration-storage textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .65rem; border: 1px solid #cbded6; border-radius: 8px; resize: vertical; }
+#infiltration-storage .is-table-scroll { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+#infiltration-storage table { border-collapse: collapse; width: 100%; min-width: 540px; font-size: .84rem; }
+#infiltration-storage caption { text-align: left; font-weight: 600; padding-bottom: .6rem; }
+#infiltration-storage th, #infiltration-storage td { text-align: right; padding: .6rem; border-bottom: 1px solid #d9e4df; }
+#infiltration-storage th:first-child { text-align: left; }
+#infiltration-storage figure { margin: 1.25rem 0; }
+#infiltration-storage svg { display: block; width: 100%; height: auto; }
+#infiltration-storage svg text { font-size: 12px; fill: #324d48; }
+#infiltration-storage figcaption { font-size: .82rem; line-height: 1.5; }
+#infiltration-storage .is-maps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+#infiltration-storage .is-grid { display: grid; gap: 3px; overflow: auto; max-width: 100%; }
+#infiltration-storage .is-grid button { padding: .35rem .1rem; min-width: 0; font-size: .72rem; color: #143c43; border-radius: 3px; }
+#infiltration-storage .is-grid button[aria-pressed="true"] { outline: 2px solid #173e46; outline-offset: -2px; }
+#infiltration-storage #is-cell-account { font-size: .87rem; line-height: 1.6; }
+#infiltration-storage [data-state="refused"] { color: #8b381b; }
+@media (max-width: 600px) {
+  #infiltration-storage .is-maps { grid-template-columns: 1fr; }
+  #infiltration-storage .is-actions > * { max-width: 100%; }
+  #infiltration-storage table { min-width: 0; }
+  #infiltration-storage thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  #infiltration-storage tbody, #infiltration-storage tr { display: block; }
+  #infiltration-storage tbody tr { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: .9rem; border: 1px solid #d9e4df; border-radius: 6px; }
+  #infiltration-storage tbody th { display: block; grid-column: 1 / -1; background: #f0f5f1; }
+  #infiltration-storage td { display: block; text-align: left; }
+  #infiltration-storage td::before { content: attr(data-label); display: block; font-size: .72rem; color: #496660; margin-bottom: .3rem; }
+}
