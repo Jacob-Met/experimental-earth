@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "maintained offset comparison supplies original source to question consumer",
+    "missing acquisition and continued-sensor declarations cannot report a question",
+    "actual source yields65min full-band separation without adopting a value or changing evidence",
+    "real downloaded file contains complete original source and question declarations only",
+    "out-of-range complete prediction bands refuse without clipping or false selected question",
+    "already associated original coordinate is not proposed as a new reading",
+    "editing while queued computation runs retires stale output and download",
+    "fresh-module File reopen recomputes complete question independently of active project",
+    "390px source and question remain within panel width",
+    "no uncaught browser exceptions after Runtime event admission"
+  ]
+}
