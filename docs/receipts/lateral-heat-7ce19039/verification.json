@@ -1,0 +1,103 @@
+{
+  "schema": "hamon.receiving/v1",
+  "issue": 265,
+  "owner": "hamon-7ce19039-20261025",
+  "sourceBase": "4eb9b65c129d796f1fccb626048fbbd98ee3ea1a",
+  "source": [
+    {
+      "path": "lateral-heat.js",
+      "sha256": "5f072490aaddf8d54116fa4142807abdc5570323b4a7318b835e260456d3b56e",
+      "gitBlob": "fd0242215ecc3f3d90785535ccca812b448be39e"
+    },
+    {
+      "path": "lateral-heat-panel.js",
+      "sha256": "419b54e37602d09f8f65436096ff13eb1d445f9f11bab7ca3552af49261feda3",
+      "gitBlob": "df4ae140ebafd0b780d7a9d36ae5aad6df86a2c0"
+    },
+    {
+      "path": "app.js",
+      "sha256": "ef6292ec93a6db93015190e89452f080483d5da485932f46cdb139bda6eb70fc",
+      "gitBlob": "d46daabde7101bd9f7957166e6a10545b1c395b2"
+    },
+    {
+      "path": "tests/lateral-heat.test.mjs",
+      "sha256": "d6c7184c25a27e62f09ca4c1ee5187272fe894c5f70996c2be9a07268068d568",
+      "gitBlob": "ee31e3983d7ebadd6aa52540be36dfd36f6576db"
+    },
+    {
+      "path": "tests/lateral-heat.course.mjs",
+      "sha256": "63ad373770f34380fc7c7a069d25249583c048a0639f670c0db70373e993daeb",
+      "gitBlob": "7b1debba9ff1c0844237cc83b4f9d05aefc5b9c2"
+    },
+    {
+      "path": "docs/LATERAL_HEAT.md",
+      "sha256": "a9092e467e63904d84e0558c320b8e51f6b0fb418197347ea307c0a21fba8c6e",
+      "gitBlob": "9b08aa928b761bf2019aa7dbe13ba3ac909c108d"
+    },
+    {
+      "path": "tests/reference/lateral_heat_matrix.py",
+      "sha256": "03a644ef9fb70c28b5c9bf077ab7d0baad5a83b66ab0d2f679e252267e37cd2b",
+      "gitBlob": "5fc7bdb9ded9a2d966287eb7fd1da111248d8a18"
+    },
+    {
+      "path": "tests/fixtures/lateral-heat-matrix.json",
+      "sha256": "8a94fd1065b221c7007e7f674a45eff02326ad135198323d77d3b039deb2172b",
+      "gitBlob": "cc7a0cc055ff7ccb0071da7abdae0a77d650b54b"
+    }
+  ],
+  "environment": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47",
+    "host": "authorized Ubuntu runtime",
+    "browserSandbox": "Maintained Chromium owner verified active namespace and seccomp sandbox"
+  },
+  "native": {
+    "base": "2fa5cff6f02a753ba2b52695f2648be36dc5485e",
+    "command": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "tests": 964,
+    "pass": 964,
+    "fail": 0,
+    "skip": 0,
+    "seconds": 22.551821521978127
+  },
+  "latestComposition": {
+    "base": "4eb9b65c129d796f1fccb626048fbbd98ee3ea1a",
+    "tests": 18,
+    "pass": 18,
+    "fail": 0,
+    "seconds": 0.8989304580027238,
+    "command": "node --test --test-concurrency=1 tests/lateral-heat.test.mjs tests/decision-depth-pair.test.mjs tests/paired-series.test.mjs tests/proposal-factorial.test.mjs"
+  },
+  "consumer": {
+    "browserGroups": 6,
+    "seconds": 6.232619702001102,
+    "trustedKeyboardAndSubmit": true,
+    "rawDownloadBytes": 15792,
+    "rawFileReopen": true,
+    "workspaceUnchanged": true,
+    "blankCapacityClearsSuccess": true,
+    "wrongCellSourceRefuses": true,
+    "changedMetricSourceCannotSilentlyRebind": true,
+    "narrowTableKeyboardScroll": true
+  },
+  "independentNumerics": {
+    "generator": "tests/reference/lateral_heat_matrix.py",
+    "fixtures": "tests/fixtures/lateral-heat-matrix.json",
+    "areasM2": [
+      0.0625,
+      0.25,
+      4,
+      10000
+    ],
+    "equalAreaWithinPair": true,
+    "maximumRefinedTemperatureDifferenceC": 0.0005949,
+    "comparison": "Independent augmented-matrix exponential; convergence differences are not certified global error bounds",
+    "stiffCounterexample": "Old coarse runs falsely agreed while differing by about0.46C; rate-aware refinement reduced independent analytic error to0.000020031C."
+  },
+  "review": {
+    "peer": "AFTERIMAGE reviewed physical units/balances and identified subnormal-capacity failure before qualification. EARTH independently challenged stiff splitting and matrix controls; root received native/browser consumer and reviewed composed app.",
+    "visual": "Actual desktop and390px declared-input/result views inspected. Numeric/source controls replace the initial JSON-only draft. Full result columns remain accessible through keyboard-scrolled table.",
+    "firstRemainingDesignFlaw": "Long investigations still require substantial vertical scrolling; source-basis fields remain visually plain within the maintained page."
+  },
+  "scope": "Declared two-cell model and authored numerical controls; no field-temperature forecast, comfort prediction, calibrated materials or physical validation."
+}
