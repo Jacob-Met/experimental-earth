@@ -1,0 +1,446 @@
+{
+  "status": "pass",
+  "method": "five alternating fresh process pairs; first use separate; four more warmups; fixed full comparisons; all output hashes identical",
+  "baselineSourceSha256": {
+    "core.js": "c2e9c5fc91ba1f40457fd2d90ffdb3b509abafd01d09f6bf08997e219a7aedf8",
+    "intervention-study.js": "704a5af460b94f46cb9f6ec3a34e824ec00ebf533ff7458644dcb303211016f8",
+    "placement-search.js": "785982fb8bcbc8e2bcc24c6f1e23f9e72b0da58af6ac53a645f5c331a6c453f5"
+  },
+  "candidateSourceSha256": {
+    "core.js": "c2e9c5fc91ba1f40457fd2d90ffdb3b509abafd01d09f6bf08997e219a7aedf8",
+    "intervention-study.js": "ee6d1b39df1e28562c7c7205c97196999afcd60ebd1e084aba9cb6b52a4a247b",
+    "placement-search.js": "39dfb0f27175e2d7f3583baf1670eb4e4f78d67bc7fd21ba7cc83dd6dc34cd3d"
+  },
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "cpuCount": 9,
+    "load": [
+      5.25,
+      6.26,
+      4.8
+    ]
+  },
+  "memoryMeaning": "Peak RSS includes imports and warmups in each fresh process; it is not isolated retained-cache memory.",
+  "rows": [
+    {
+      "name": "79-layout-placement",
+      "baselineMedianMs": 187.27142940000005,
+      "candidateMedianMs": 121.10959979999998,
+      "speedup": 1.5462971532335958,
+      "baselineFirstUseMedianMs": 319.590464,
+      "candidateFirstUseMedianMs": 228.55983400000002,
+      "samples": {
+        "baseline": [
+          {
+            "firstUseMs": 333.94266400000004,
+            "wallMs": 187.27142940000005,
+            "cpuMs": 191.5594,
+            "processMaxRssKiB": 121036,
+            "heapUsedBytes": 26703064,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 450.44398,
+            "wallMs": 186.49479699999998,
+            "cpuMs": 190.3162,
+            "processMaxRssKiB": 124908,
+            "heapUsedBytes": 26721160,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 284.35440500000004,
+            "wallMs": 190.14966880000003,
+            "cpuMs": 194.43540000000002,
+            "processMaxRssKiB": 125440,
+            "heapUsedBytes": 26806808,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 298.536051,
+            "wallMs": 179.64170019999997,
+            "cpuMs": 183.9734,
+            "processMaxRssKiB": 121964,
+            "heapUsedBytes": 10042680,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 319.590464,
+            "wallMs": 200.32225960000005,
+            "cpuMs": 194.8786,
+            "processMaxRssKiB": 125552,
+            "heapUsedBytes": 26798384,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          }
+        ],
+        "candidate": [
+          {
+            "firstUseMs": 203.272766,
+            "wallMs": 118.11871119999998,
+            "cpuMs": 115.2524,
+            "processMaxRssKiB": 93708,
+            "heapUsedBytes": 12571928,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 208.471513,
+            "wallMs": 134.223634,
+            "cpuMs": 140.8244,
+            "processMaxRssKiB": 88940,
+            "heapUsedBytes": 12821608,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 228.55983400000002,
+            "wallMs": 182.64604100000003,
+            "cpuMs": 186.5606,
+            "processMaxRssKiB": 90804,
+            "heapUsedBytes": 12542528,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 268.700461,
+            "wallMs": 121.10959979999998,
+            "cpuMs": 126.2224,
+            "processMaxRssKiB": 93812,
+            "heapUsedBytes": 12558952,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          },
+          {
+            "firstUseMs": 243.286273,
+            "wallMs": 112.314222,
+            "cpuMs": 118.1286,
+            "processMaxRssKiB": 94020,
+            "heapUsedBytes": 12435208,
+            "outputSha256": "6eb3f2b39557867de85ffa84cfa895e18ffa440f666ab746785e541842b280bf",
+            "repeats": 5
+          }
+        ]
+      }
+    },
+    {
+      "name": "11-layout-duration",
+      "baselineMedianMs": 40.5524737,
+      "candidateMedianMs": 22.767661499999996,
+      "speedup": 1.7811435618893054,
+      "baselineFirstUseMedianMs": 115.177657,
+      "candidateFirstUseMedianMs": 113.315496,
+      "samples": {
+        "baseline": [
+          {
+            "firstUseMs": 117.044919,
+            "wallMs": 35.18515479999999,
+            "cpuMs": 36.7431,
+            "processMaxRssKiB": 70628,
+            "heapUsedBytes": 15254184,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 127.60547099999998,
+            "wallMs": 41.21734240000001,
+            "cpuMs": 43.566500000000005,
+            "processMaxRssKiB": 68092,
+            "heapUsedBytes": 15523560,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 115.177657,
+            "wallMs": 40.5524737,
+            "cpuMs": 40.5646,
+            "processMaxRssKiB": 74132,
+            "heapUsedBytes": 12740592,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 105.16231,
+            "wallMs": 34.7950897,
+            "cpuMs": 40.2199,
+            "processMaxRssKiB": 90312,
+            "heapUsedBytes": 21265696,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 113.888125,
+            "wallMs": 46.7203292,
+            "cpuMs": 62.432100000000005,
+            "processMaxRssKiB": 90372,
+            "heapUsedBytes": 20336216,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          }
+        ],
+        "candidate": [
+          {
+            "firstUseMs": 84.85185200000001,
+            "wallMs": 22.601818499999997,
+            "cpuMs": 24.663800000000002,
+            "processMaxRssKiB": 71596,
+            "heapUsedBytes": 16466544,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 231.836248,
+            "wallMs": 22.411107200000004,
+            "cpuMs": 24.1028,
+            "processMaxRssKiB": 70588,
+            "heapUsedBytes": 15769536,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 107.25304899999999,
+            "wallMs": 23.505500099999995,
+            "cpuMs": 25.7044,
+            "processMaxRssKiB": 66716,
+            "heapUsedBytes": 15012024,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 114.730267,
+            "wallMs": 29.452530099999997,
+            "cpuMs": 33.965199999999996,
+            "processMaxRssKiB": 74272,
+            "heapUsedBytes": 15037864,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          },
+          {
+            "firstUseMs": 113.315496,
+            "wallMs": 22.767661499999996,
+            "cpuMs": 25.289099999999998,
+            "processMaxRssKiB": 70424,
+            "heapUsedBytes": 15011784,
+            "outputSha256": "22568ae8e1434d76c1bcfc1ab2fd0af4666587efc62c0b38720a744b573ea9ff",
+            "repeats": 10
+          }
+        ]
+      }
+    },
+    {
+      "name": "6-layout-small",
+      "baselineMedianMs": 5.574380799999999,
+      "candidateMedianMs": 4.581309200000001,
+      "speedup": 1.2167658973989353,
+      "baselineFirstUseMedianMs": 52.26777800000001,
+      "candidateFirstUseMedianMs": 39.414085000000014,
+      "samples": {
+        "baseline": [
+          {
+            "firstUseMs": 39.285945,
+            "wallMs": 5.5507366000000005,
+            "cpuMs": 6.1251999999999995,
+            "processMaxRssKiB": 72088,
+            "heapUsedBytes": 16031336,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 52.26777800000001,
+            "wallMs": 6.26250242,
+            "cpuMs": 6.8415,
+            "processMaxRssKiB": 77948,
+            "heapUsedBytes": 16178200,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 61.49377100000001,
+            "wallMs": 5.574380799999999,
+            "cpuMs": 6.32644,
+            "processMaxRssKiB": 77700,
+            "heapUsedBytes": 16054488,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 54.757076,
+            "wallMs": 6.236818699999999,
+            "cpuMs": 8.62074,
+            "processMaxRssKiB": 72356,
+            "heapUsedBytes": 17229216,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 51.622264,
+            "wallMs": 5.506444,
+            "cpuMs": 6.098680000000001,
+            "processMaxRssKiB": 74348,
+            "heapUsedBytes": 11754520,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          }
+        ],
+        "candidate": [
+          {
+            "firstUseMs": 48.41605799999999,
+            "wallMs": 4.581309200000001,
+            "cpuMs": 5.95894,
+            "processMaxRssKiB": 75440,
+            "heapUsedBytes": 11348824,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 58.80446400000001,
+            "wallMs": 4.73939854,
+            "cpuMs": 5.136,
+            "processMaxRssKiB": 74892,
+            "heapUsedBytes": 15476032,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 36.647062000000005,
+            "wallMs": 4.44908994,
+            "cpuMs": 5.97344,
+            "processMaxRssKiB": 70724,
+            "heapUsedBytes": 15525216,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 33.480183999999994,
+            "wallMs": 3.9685785999999994,
+            "cpuMs": 4.6215399999999995,
+            "processMaxRssKiB": 76012,
+            "heapUsedBytes": 15405400,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          },
+          {
+            "firstUseMs": 39.414085000000014,
+            "wallMs": 4.665933400000001,
+            "cpuMs": 5.40922,
+            "processMaxRssKiB": 73676,
+            "heapUsedBytes": 12367456,
+            "outputSha256": "884802b52026b79037c6eab93351953caa49032ce66434584a6d7336455c34f0",
+            "repeats": 50
+          }
+        ]
+      }
+    },
+    {
+      "name": "duration-resolution",
+      "baselineMedianMs": 205.98869333333337,
+      "candidateMedianMs": 150.93730433333334,
+      "speedup": 1.3647301721940344,
+      "baselineFirstUseMedianMs": 536.586048,
+      "candidateFirstUseMedianMs": 294.248377,
+      "samples": {
+        "baseline": [
+          {
+            "firstUseMs": 626.620521,
+            "wallMs": 267.7325176666666,
+            "cpuMs": 282.06,
+            "processMaxRssKiB": 236320,
+            "heapUsedBytes": 67394504,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 393.435799,
+            "wallMs": 259.40106599999996,
+            "cpuMs": 271.23333333333335,
+            "processMaxRssKiB": 130976,
+            "heapUsedBytes": 16375592,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 661.603402,
+            "wallMs": 205.98869333333337,
+            "cpuMs": 218.0103333333333,
+            "processMaxRssKiB": 129136,
+            "heapUsedBytes": 16049776,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 536.586048,
+            "wallMs": 205.766437,
+            "cpuMs": 219.33766666666668,
+            "processMaxRssKiB": 130684,
+            "heapUsedBytes": 16300416,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 422.35545,
+            "wallMs": 194.5869676666667,
+            "cpuMs": 211.37466666666668,
+            "processMaxRssKiB": 130612,
+            "heapUsedBytes": 15925224,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          }
+        ],
+        "candidate": [
+          {
+            "firstUseMs": 278.95991100000003,
+            "wallMs": 132.67628966666666,
+            "cpuMs": 141.26733333333334,
+            "processMaxRssKiB": 98500,
+            "heapUsedBytes": 18968408,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 294.248377,
+            "wallMs": 131.63653833333333,
+            "cpuMs": 140.35033333333334,
+            "processMaxRssKiB": 125656,
+            "heapUsedBytes": 34932936,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 301.982267,
+            "wallMs": 184.70535200000003,
+            "cpuMs": 168.03133333333332,
+            "processMaxRssKiB": 130212,
+            "heapUsedBytes": 35645320,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 302.818191,
+            "wallMs": 167.44935733333332,
+            "cpuMs": 175.39133333333334,
+            "processMaxRssKiB": 125832,
+            "heapUsedBytes": 18133632,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          },
+          {
+            "firstUseMs": 291.54557,
+            "wallMs": 150.93730433333334,
+            "cpuMs": 157.58,
+            "processMaxRssKiB": 128808,
+            "heapUsedBytes": 35317992,
+            "outputSha256": "ace9e10312718c34eee5c5a0f6a3a88aa0f391e97080309d3ed35de760f48820",
+            "repeats": 3
+          }
+        ]
+      }
+    }
+  ],
+  "baselineCommit": "3a56627d99c72cf7434540f605c807ed6c5bd386"
+}

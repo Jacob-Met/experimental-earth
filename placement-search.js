@@ -1,7 +1,7 @@
 import {validateDurationGoal,assessDurationGoal} from './placement-duration.js';
 import { validatePlacementTargets, assessPlacementTargets } from './placement-constraints.js';
 import { validateProject, SURFACES } from './core.js';
-import { compareIntervention, summarizeEffects } from './intervention-study.js';
+import { createInterventionBatch, summarizeEffects } from './intervention-study.js';
 import { validateStudy, DEFAULT_STUDY } from './study-contract.js';
 
 export const PLACEMENT_METRICS = Object.freeze({
@@ -76,14 +76,15 @@ function evaluatePlacements(project, input, fixedRates=null) {
   const exposureRequest=query.durationGoal?{thresholdMm:query.durationGoal.thresholdMm,cellIndices:query.durationGoal.cellIndices}:null;
   if(work>PLACEMENT_WORK_LIMIT)throw Error('Placement comparison exceeds 3 million estimated model/exposure work units; reduce eligible cells, duration, grid or hypothesis count');
   const subset=fixedRates?'all':query.subset;
-  const original=compareIntervention(project,{study:query.study,subset,allowAbsentSurface:subset==='all',exposureRequest});
+  const compareVariant=createInterventionBatch();
+  const original=compareVariant(project,{study:query.study,subset,allowAbsentSurface:subset==='all',exposureRequest});
   const context={query,sourceSignature:placementSignature(project),variantCount:choices.length,
     cellStepUpperBound:work,workDetail,evidenceTarget:query.study.target,supportMode:fixedRates?'fixed-original-support':'original-source-filter'};
   if(original.status!=='compared')return {...context,status:original.status,plans:[],best:[]};
   const rates=fixedRates??original.candidates.map(c=>c.rateMmHr),reference=new Map(original.candidates.map(c=>[c.rateMmHr,c]));
   const plans=choices.map(cells=>{
     // Do not refit original observations against hypothetical edited geometry.
-    const computed=cells.length?compareIntervention(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true,exposureRequest}):original;
+    const computed=cells.length?compareVariant(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true,exposureRequest}):original;
     if(computed.status!=='compared')throw Error('Not every declared variant can be evaluated by the maintained intervention comparison; choose another eligible set or studied surface');
     const candidates=computed.candidates.filter(c=>rates.includes(c.rateMmHr)).map(c=>{
       const base=reference.get(c.rateMmHr);

@@ -1,0 +1,23 @@
+{
+  "baselineCommit": "3a56627d99c72cf7434540f605c807ed6c5bd386",
+  "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+  "node": "v24.22.1",
+  "exitCode": 0,
+  "summary": [
+    "\u2139 tests 926",
+    "\u2139 suites 0",
+    "\u2139 pass 926",
+    "\u2139 fail 0",
+    "\u2139 cancelled 0",
+    "\u2139 skipped 0",
+    "\u2139 todo 0",
+    "\u2139 duration_ms 33271.63143"
+  ],
+  "logSha256": "a3cf7c21450a2ba2dcb7016d82da3defffc06c2d9d2c1071da96a6e93b3000a7",
+  "sourceSha256": {
+    "core.js": "c2e9c5fc91ba1f40457fd2d90ffdb3b509abafd01d09f6bf08997e219a7aedf8",
+    "intervention-study.js": "ee6d1b39df1e28562c7c7205c97196999afcd60ebd1e084aba9cb6b52a4a247b",
+    "placement-search.js": "39dfb0f27175e2d7f3583baf1670eb4e4f78d67bc7fd21ba7cc83dd6dc34cd3d",
+    "tests/intervention-batch.test.mjs": "970eab38e061eb2bdaa306fe3082ec8eb71a354503e7e9ecc99b7cc47d500703"
+  }
+}
