@@ -1,0 +1,61 @@
+{
+  "issue": 159,
+  "upstreamBase": "91329f8a4e33a2cf7abd8f33904802bca924f5f3",
+  "upstreamBaseTree": "79d1c0d0d4b69bc77091f6aa744f6150c78cfbc6",
+  "runtimeLocalSnapshotCommit": "8e8d73d0c8cf0fb62f0149cdde3539427a06ba49",
+  "runtimeRevisionMeaning": "Local source-snapshot Git commit for the receiver, NOT an upstream GitHub commit. The code hashes and upstream base identify the composed candidate; receipt files were added after execution.",
+  "native": {
+    "runtime": "Node 22.23.4 / Ubuntu",
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "total": 570,
+    "pass": 570,
+    "fail": 0,
+    "skip": 0,
+    "durationMs": 6118.5,
+    "recordedBy": "hamon-551724dc-20261024/root brokered receiver",
+    "focusedQuestionTests": 12
+  },
+  "browser": {
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/heat-column-question.browser.mjs",
+    "receipt": "browser.json",
+    "sandboxAdmission": "value.sandbox.admitted=true; separate from generic session launcher sandbox field",
+    "pageExceptions": [],
+    "checks": [
+      "Source import and literal source text",
+      "Saved project unchanged",
+      "Changed precision clears results and wide bands preserve no signal",
+      "Actual Enter key activates pair disclosure",
+      "390px viewport fits without overflow",
+      "Reload independently recomputes"
+    ],
+    "visualReview": "Root inspected desktop/narrow captures in the prior same-feature-UI receiving run. Current same browser course also captures both sizes; screenshots are not bundled here."
+  },
+  "review": {
+    "receipt": "review.json",
+    "scope": "Independent core/panel/source-custody review on prior composition. Core and panel hashes unchanged; current composition preserves merged shade/average owners and adds two upstream operator compatibility controls."
+  },
+  "independentNumerics": {
+    "method": "SciPy augmented affine matrix exponentials over 60-minute pulse and 72-minute dark interval",
+    "candidateCount": 5,
+    "maximumAbsoluteDifferenceC": 7.105427357601002e-14,
+    "meaning": "Authored model control, not acquired environmental evidence"
+  },
+  "finiteGridControl": {
+    "native141SamplesMinute": 132,
+    "browser121SamplesMinute": 133,
+    "note": "Distinct declared grids may select distinct sampled times; no continuous optimum claimed."
+  },
+  "scopeSha256": {
+    "app.js": "3f7d321a15a8c3ce841c76a69e64a4a6488b29eefd247f963b7d030e2a6dd433",
+    "README.md": "c0bf332fbf8997a5b11167d4b4286a1cd256c7debb11a1b5a5948c9ecf09f6f8",
+    "heat-column-question.js": "805cb9532ba532483b0fcf4fd680aaed71b6fb7f5139e9f819901c8d2644f5c4",
+    "heat-column-question-panel.js": "9a3ba05348f30cbc74cdc3be8064db5b60e6fdb0b88909bfa00c8d22e6a36a6d",
+    "tests/heat-column-question.test.mjs": "737db54068cb1244269f32be8296074277d879b784c5a805a813e2931f6c7edf",
+    "tests/heat-column-question.browser.mjs": "106c123e9ec3d538297966cf1f6f685eea0e65c4e7eee84e1a32a125a64db362",
+    "docs/HEAT_COLUMN_QUESTION.md": "3865fece7a8a8ae338c4449a879101a1c9c974a1dca4c45ff765305041b896a5"
+  },
+  "limits": [
+    "No physical calibration, unique material identification, measurement acquisition or sensor deployment claimed",
+    "Local container process-capture routes failed maintained CLI checks; the unmodified tests passed on the Ubuntu receiver"
+  ]
+}

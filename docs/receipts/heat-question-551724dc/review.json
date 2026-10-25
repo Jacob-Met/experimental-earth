@@ -1,0 +1,18 @@
+{
+  "reviewer": "hamon-551724dc-20261024/root",
+  "result": "No blocking defect found in scoped mathematical/source-custody review; actual browser receiving pending",
+  "checks": [
+    "Maintained calibration comparison selects hypotheses using calibration rows alone; challenge values excluded",
+    "Existing instantaneous and interval supports excluded from prospective times",
+    "Declared finite grid; disjoint bands use positive gap with explicit engineering allowance",
+    "Pair-count, minimum guarded gap, earliest-time tie order",
+    "Project remains unchanged; all source labels textContent; refresh clears stale result",
+    "Independent analytic and enumerated finite-grid controls inspected"
+  ],
+  "sha256": {
+    "earth/heat-column-question.js": "805cb9532ba532483b0fcf4fd680aaed71b6fb7f5139e9f819901c8d2644f5c4",
+    "earth/heat-column-question-panel.js": "9a3ba05348f30cbc74cdc3be8064db5b60e6fdb0b88909bfa00c8d22e6a36a6d",
+    "earth/tests/heat-column-question.test.mjs": "e6737a9027762c9fb7928329a4247e77e9565ff1ae7b727a65343212c3456823",
+    "earth/app.js": "274091d99a91b03c7122462ca03ea2e7502b4888ef9e813f245e6e66801b7d99"
+  }
+}
