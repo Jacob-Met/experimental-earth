@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "path": "complete CSV→preview→apply existing→copy source plan→explicit B1 lowering→5sample sensitivity→portable JSON→reopen→identical recomputation",
+  "source": {
+    "kind": "supplied-elevation-table/1",
+    "fileName": "supplied-control.csv",
+    "line": 2,
+    "datum": "Authored local zero",
+    "source": "Authored imported table control",
+    "unit": "m",
+    "elevationValue": 0.095,
+    "uncertaintyValue": 0.05,
+    "cellSizeM": 2
+  },
+  "effects": [
+    {
+      "offsetM": -0.05,
+      "deltaLiters": -6.12919550459992
+    },
+    {
+      "offsetM": -0.025,
+      "deltaLiters": -2.659669315523388
+    },
+    {
+      "offsetM": 0,
+      "deltaLiters": -1.5093844903258287
+    },
+    {
+      "offsetM": 0.025,
+      "deltaLiters": 0.09875758056296036
+    },
+    {
+      "offsetM": 0.05,
+      "deltaLiters": -3.3124273237845046
+    }
+  ],
+  "limits": "Authored computational input, not acquired measurements or a browser course"
+}

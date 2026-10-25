@@ -1,0 +1,96 @@
+{
+  "issue": 157,
+  "owner": "hamon-c11405-20261024/experimental_earth",
+  "base": "c97797d4c78134bf54d27647c3a3f6621c533af6",
+  "sourceManifest": "source-manifest.json",
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "passed": 574,
+    "failed": 0,
+    "skipped": 0,
+    "runtime": "Qualified isolated Linux receiver, Node 22; root-executed source receiving",
+    "result": "native-current3-result.json",
+    "scope": "Full native suite on canonical c97797d4 source composed with exact candidate paths",
+    "rawLog": "native-current3.tap.gz"
+  },
+  "browser": {
+    "command": "CHROME_BIN=/opt/google/chrome/chrome BROWSER_RUN_DIRECTORY=<isolated-run> node tests/terrain-sensitivity.receiving.mjs",
+    "currentCompletedReceipt": "browser.json",
+    "checks": 10,
+    "sandbox": "sandbox.json",
+    "note": "Current-main composition passed all ten behavior groups using bounded stable layout settlement, strict heading/button visibility and active sandbox admission. Three actual desktop/narrow images retained.",
+    "result": "browser-current3-result.json",
+    "runDirectory": "/tmp/hamon-c11405-earth-157/browser-current3",
+    "images": [
+      "interior-five-mobile.png",
+      "mobile-current2.png",
+      "desktop-current2.png"
+    ],
+    "currentScreenshotIdentities": "screenshot-identities-current3.json",
+    "imageQualification": "desktop-current2.png and mobile-current2.png are visually inspected prior-composition captures, named explicitly. Retained interior-five-mobile.png matches the final current3 capture SHA256 exactly. Current3 generated all three captures and retains their exact identities separately; its actual behavior/layout receiving passed strict settled-panel and control visibility assertions."
+  },
+  "review": {
+    "file": "independent-review.json",
+    "scope": "Independent mechanism/input/source-lifecycle and 3/5/9/17 nested-sample controls; no blocking finding. One later panel-only note-color change."
+  },
+  "sourcePathReceiving": {
+    "script": "import-receiving.mjs",
+    "receipt": "terrain-import-receiving.json",
+    "inputs": [
+      "imported-control.csv",
+      "imported-project.json"
+    ],
+    "scope": "Authored complete CSV through maintained importer and portable-project reopen; no field measurement claim"
+  },
+  "contrast": {
+    "foregroundBefore": "#74898c",
+    "foregroundAfter": "#56717a",
+    "background": "#ffffff",
+    "ratioBefore": 3.6844982955913683,
+    "ratioAfter": 5.19960829861748,
+    "change": "Only this panel mini-notes reuse existing --muted variable"
+  },
+  "limitations": [
+    "Finite samples only, not interval extrema or joint uncertainty propagation",
+    "Declared common ground perturbation preserves authored intervention height delta; not a verified physical relationship",
+    "Default conceptual rain model; no fitted observations, field accuracy, safety or automatic adoption",
+    "Base and current head must be reconciled before publication and merged source received afterward"
+  ],
+  "integration": {
+    "state": "qualified candidate awaiting normal publication/merge",
+    "remaining": "Root normal publication/merge and merged-source receiving"
+  },
+  "originalReceivingBase": "072ee3ae7ce703a2290eab6817db754783a686d4",
+  "composition": {
+    "state": "qualified current3 composition",
+    "source": "93dbcd598159161d2b9bcf5ff11f48ba96f46522",
+    "upstreamDeltaFiles": 15,
+    "changes": "Preserved all upstream shade/heat and reading-method additions. Only additive terrain mount and README section composed into shared files.",
+    "native": {
+      "passed": 574,
+      "failed": 0,
+      "skipped": 0,
+      "rawLog": "native-current3.tap.gz",
+      "result": "native-current3-result.json"
+    },
+    "incomingShadeHeatBrowser": {
+      "status": "passed",
+      "result": "shade-composed-result.json",
+      "log": "shade-composed.log"
+    },
+    "terrainBrowser": "passed ten groups",
+    "localSnapshotCommitFile": "current3-snapshot-commit.txt",
+    "layoutReceivingCorrection": {
+      "failureLog": "initial-composed-position-failure.log",
+      "observedPanelTopPx": -40.21875,
+      "diagnosis": "A one-shot scroll followed viewport change and dynamically mounted styles before stable document geometry. Strict position check caught the displaced capture.",
+      "fix": "Receiver waits fonts/styles and repeatedly corrects measured panel position, requiring \u00b11px stability over two successive samples plus full heading/button viewport visibility. Product source unchanged.",
+      "result": "Receiver revision6 passed on composed, current2 and final current3 source; exact current3 receipts retained."
+    },
+    "previousNativeBase": "93dbcd598159161d2b9bcf5ff11f48ba96f46522",
+    "latestSource": "c97797d4c78134bf54d27647c3a3f6621c533af6",
+    "latestReceiving": "574 native pass, zero failures/skips; terrain browser ten groups pass",
+    "preservedIncomingThermalIntervalTextFiles": 21,
+    "previousQualifiedBase": "91329f8a4e33a2cf7abd8f33904802bca924f5f3"
+  }
+}
