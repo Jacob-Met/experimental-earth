@@ -1,3 +1,5 @@
+import {compareReceivingEvidenceComponents} from './component-receiving-evidence.js';
+import {parseDrainingEvidence, serializeDrainingEvidence, DRAINING_EVIDENCE_SCHEMA} from './draining-layer-evidence.js';
 import { compareReceivingComponents } from './component-receiving-layer.js';
 import { parseDrainingLayer, serializeDrainingLayer, checkDrainingFileBytes, DRAINING_MEANING } from './draining-layer-study.js';
 import { DEFAULT_STUDY } from './study-contract.js';
@@ -18,8 +20,8 @@ export function mountProposalComponents({ getProject }) {
     </select></label>
     <p data-component-partition-help></p>
     <fieldset data-component-receiving hidden><legend>Compare receiving assumptions from an original investigation</legend>
-      <p>Open the original JSON saved by the draining receiving-layer investigation. Its own plans, storm and layer are compared here without replacing the active site. Only default capacities or all declared rates are supported. Switching to another proposal partition closes this original source.</p>
-      <label>Original receiving-layer investigation<input type="file" accept=".json,application/json" data-component-receiving-file></label>
+      <p>Open original JSON saved by the draining receiving-layer or receiving-evidence investigation. Its own plans, storm and layer are compared here without replacing the active site. A single declared layer admits default capacities or all declared rates. A receiving-evidence file admits its own offered, calibration-compatible or surviving receiving explanations. Switching to another proposal partition closes this original source.</p>
+      <label>Original receiving investigation<input type="file" accept=".json,application/json" data-component-receiving-file></label>
       <p data-component-receiving-source>No receiving investigation open; using the active site and unlimited receiving.</p>
       <button type="button" data-component-receiving-save disabled>Save original receiving investigation</button>
       <button type="button" data-component-receiving-clear disabled>Return to active site</button>
@@ -56,8 +58,13 @@ export function mountProposalComponents({ getProject }) {
   function sourceProject() { return receivingSource?.project ?? getProject(); }
   function describeReceiving() {
     const item = receivingSource;
+    const evidence = !!item?.study;
+    mode.querySelector('[value="default"]').disabled = evidence;
+    mode.querySelector('[value="all"]').textContent = evidence ? 'All offered receiving explanations' : 'All saved infiltration hypotheses';
+    mode.querySelector('[value="calibration"]').textContent = evidence ? 'Original calibration-compatible receiving explanations' : 'Calibration-compatible hypotheses';
+    mode.querySelector('[value="surviving"]').textContent = evidence ? 'Original calibration and held-aside surviving receiving explanations' : 'Calibration and held-aside compatible hypotheses';
     panel.querySelector('[data-component-receiving-source]').textContent = item
-      ? `Original source: ${item.project.title}; ${item.project.width} × ${item.project.height} cells. ${item.layer.surface}: capacity ${item.layer.capacityMm} mm, initially ${item.layer.initialStoredMm} mm, drainage ${item.layer.drainagePerHour} /hour. Declaration: ${item.layer.source}. Active site remains separate.`
+      ? item.study ? `Original receiving evidence: ${item.project.title}; ${item.project.width} × ${item.project.height} cells; ${item.study.hypotheses.length} offered ${item.study.surface} receiving explanations, observed scenario ${item.study.target}. Support is computed only on that unchanged original source. Active site remains separate.` : `Original source: ${item.project.title}; ${item.project.width} × ${item.project.height} cells. ${item.layer.surface}: capacity ${item.layer.capacityMm} mm, initially ${item.layer.initialStoredMm} mm, drainage ${item.layer.drainagePerHour} /hour. Declaration: ${item.layer.source}. Active site remains separate.`
       : 'No receiving investigation open; using the active site and unlimited receiving.';
     receivingSave.disabled = receivingClear.disabled = !item;
   }
@@ -66,17 +73,18 @@ export function mountProposalComponents({ getProject }) {
     if (!file) return;
     try {
       checkDrainingFileBytes(file.size);
-      const parsed = parseDrainingLayer(await file.text());
+      const content = await file.text();
+      const parsed = JSON.parse(content)?.schema === DRAINING_EVIDENCE_SCHEMA ? parseDrainingEvidence(content) : parseDrainingLayer(content);
       if (generation !== receivingGeneration) return;
-      receivingSource = parsed; fingerprint = undefined; refresh(); describeReceiving();
-      status.textContent = 'Original receiving investigation opened. Choose default capacities or all declared rates, then compare both receiving assumptions.';
+      receivingSource = parsed; if (parsed.study) mode.value = 'all'; fingerprint = undefined; refresh(); describeReceiving();
+      status.textContent = parsed.study ? 'Original receiving evidence opened. Choose all offered or original-supported explanations, then propagate them through all eight worlds.' : 'Original receiving investigation opened. Choose default capacities or all declared rates, then compare both receiving assumptions.';
     } catch (error) { if (generation === receivingGeneration) { invalidate(); status.textContent = `Original investigation not opened: ${error.message}. Previous source retained.`; } }
     finally { if (generation === receivingGeneration) receivingFile.value = ''; }
   });
   receivingClear.addEventListener('click', () => { ++receivingGeneration; receivingSource = null; fingerprint = undefined; describeReceiving(); refresh(); });
   receivingSave.addEventListener('click', () => {
     if (!receivingSource) return;
-    const url = URL.createObjectURL(new Blob([serializeDrainingLayer(receivingSource.project, receivingSource.layer)], {type:'application/json'}));
+    const url = URL.createObjectURL(new Blob([receivingSource.study ? serializeDrainingEvidence(receivingSource.project, receivingSource.study) : serializeDrainingLayer(receivingSource.project, receivingSource.layer)], {type:'application/json'}));
     const link = document.createElement('a'); link.href = url; link.download = 'original-component-receiving-investigation.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
   const fmt = n => Number(n).toLocaleString('en-US', { maximumFractionDigits: 3 });
@@ -91,7 +99,7 @@ export function mountProposalComponents({ getProject }) {
     const project = sourceProject(), propertyPartition = partition.value !== 'cells';
     const threeFactors = partition.value === 'three-factors';
     panel.querySelector('[data-component-receiving]').hidden = !threeFactors;
-    run.textContent = threeFactors ? receivingSource ? 'Compare sixteen combinations' : 'Compare eight combinations' : 'Compare four combinations';
+    run.textContent = threeFactors ? receivingSource ? receivingSource.study ? 'Compare receiving explanations' : 'Compare sixteen combinations' : 'Compare eight combinations' : 'Compare four combinations';
     panel.querySelector('[data-component-intro]').textContent = threeFactors ? 'Compare all eight combinations under the same storm and see how each pair interaction changes when the third change is present.' : 'Compare the existing site, A only, B only and the full proposal under the same storm.';
     list.closest('fieldset').hidden = propertyPartition;
     panel.querySelector('[data-cell-explanation]').hidden = propertyPartition;
@@ -122,7 +130,7 @@ export function mountProposalComponents({ getProject }) {
     if (fingerprint === next) return;
     fingerprint = next;
     const study = project.infiltrationStudy ?? { target: 'existing', surface: 'turf', ratesMmHr: [3, 9, 22] };
-    panel.querySelector('[data-component-study]').textContent = receivingSource ? `Original study declarations: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h. All offered rates are compared; evidence-compatible subsets from the unlimited model are not transferred.` : `Current study hypotheses: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h; evidence scenario ${study.target}. Rates are selected from the unchanged observed source before constructing hypothetical combinations. Each rate is applied consistently to matching surfaces in all compared cases; other surfaces retain defaults.`;
+    panel.querySelector('[data-component-study]').textContent = receivingSource?.study ? 'Receiving evidence uses its original storage, initial-water and drainage alternatives at default surface capacities. Infiltration-rate evidence is not combined with this study.' : receivingSource ? `Original study declarations: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h. All offered rates are compared; evidence-compatible subsets from the unlimited model are not transferred.` : `Current study hypotheses: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h; evidence scenario ${study.target}. Rates are selected from the unchanged observed source before constructing hypothetical combinations. Each rate is applied consistently to matching surfaces in all compared cases; other surfaces retain defaults.`;
     invalidate();
     list.replaceChildren();
     const edits = componentEditIndices(project);
@@ -141,9 +149,11 @@ export function mountProposalComponents({ getProject }) {
     updatePartitionControls();
   }
   function renderThreeFactors(project) {
-    const receiving = receivingSource ? compareReceivingComponents(project, receivingSource.layer, {study: mode.value === 'default' ? null : project.infiltrationStudy ?? DEFAULT_STUDY, subset: mode.value === 'default' ? 'all' : mode.value}) : null;
+    const supported = receivingSource?.study ? compareReceivingEvidenceComponents(project, receivingSource.study, {subset: mode.value === 'default' ? 'all' : mode.value}) : null;
+    if (supported && supported.status !== 'compared') { output.replaceChildren(); const reasons = {'surface-absent':'The receiving surface is absent from the original observed scenario; these readings cannot support its receiving explanation.','need-calibration':'Assign original calibration readings before selecting supported receiving explanations.','need-challenge':'Assign original held-aside readings before selecting surviving receiving explanations.','no-supported-explanations':'No receiving explanations satisfy the requested original evidence. No offered-family fallback was substituted.'}; status.textContent = reasons[supported.status]; return; }
+    const receiving = receivingSource?.layer ? compareReceivingComponents(project, receivingSource.layer, {study: mode.value === 'default' ? null : project.infiltrationStudy ?? DEFAULT_STUDY, subset: mode.value === 'default' ? 'all' : mode.value}) : null;
     if (receiving && receiving.status !== 'compared') { output.replaceChildren(); status.textContent = receiving.status === 'layer-surface-absent' ? 'The declared receiving surface is absent from both original plans.' : 'The declared rate surface is absent from both original plans.'; return; }
-    const hypothesis = receiving ? null : mode.value === 'default' ? null : compareThreeFactorHypotheses(project, { subset: mode.value });
+    const hypothesis = receiving || supported ? null : mode.value === 'default' ? null : compareThreeFactorHypotheses(project, { subset: mode.value });
     if (hypothesis && hypothesis.status !== 'compared') {
       const reasons = { 'need-calibration': 'Assign calibration readings before filtering hypotheses.',
         'need-challenge': 'Assign held-aside readings before requesting survivors.',
@@ -152,7 +162,7 @@ export function mountProposalComponents({ getProject }) {
         'surface-absent-in-observed-source': 'The selected surface is absent from the observed source scenario.' };
       output.replaceChildren(); status.textContent = reasons[hypothesis.status]; return;
     }
-    const candidates = receiving ? receiving.candidates.map(c => ({...c, result: c.draining})) : hypothesis?.candidates ?? [{ result: compareThreeFactors(project) }];
+    const candidates = supported ? supported.candidates : receiving ? receiving.candidates.map(c => ({...c, result: c.draining})) : hypothesis?.candidates ?? [{ result: compareThreeFactors(project) }];
     let receivingKind = 'draining';
     const names = ['Existing', 'S only', 'G only', 'S + G', 'E only', 'S + E', 'G + E', 'Full S + G + E'];
     function table(headers, rows, label) {
@@ -168,14 +178,22 @@ export function mountProposalComponents({ getProject }) {
       output.replaceChildren();
       output.append(text('h3', 'Surface, elevation and edge interactions'));
       output.append(text('p', 'S = proposed surfaces; G = proposed elevations; E = proposed internal edges. A world includes only the listed proposed factors. Original source plans and evidence remain unchanged.'));
-      if (hypothesis || (receiving && candidates[0].rateMmHr !== null)) {
-        const label = text('label', 'Inspect all eight combinations for rate '), picker = document.createElement('select'); picker.dataset.componentRate = '';
-        candidates.forEach((candidate, i) => { const option = text('option', `${candidate.rateMmHr} mm/h`); option.value = String(i); picker.append(option); });
+      if (supported || hypothesis || (receiving && candidates[0].rateMmHr !== null)) {
+        const label = text('label', supported ? 'Inspect all eight combinations for receiving explanation ' : 'Inspect all eight combinations for rate '), picker = document.createElement('select'); picker.dataset.componentRate = '';
+        candidates.forEach((candidate, i) => { const option = text('option', supported ? `${candidate.hypothesis.id}: ${candidate.hypothesis.label}` : `${candidate.rateMmHr} mm/h`); option.value = String(i); picker.append(option); });
         picker.value = String(index); picker.addEventListener('change', () => { draw(Number(picker.value)); output.querySelector('[data-component-rate]').focus({ preventScroll: true }); });
         label.append(picker); output.append(label);
-        const detail = document.createElement('details'); detail.append(text('summary', receiving ? 'Every declared rate’s finite-layer three-way term' : 'Every retained rate’s three-way term'));
-        for (const candidate of candidates) for (const metric of candidate.result.metrics) detail.append(text('p', `${candidate.rateMmHr} mm/h — ${metric.label}: ${signed(metric.effects[7])} ${metric.unit}.`));
+        const detail = document.createElement('details'); detail.append(text('summary', supported ? 'Every retained receiving explanation’s three-way term' : receiving ? 'Every declared rate’s finite-layer three-way term' : 'Every retained rate’s three-way term'));
+        for (const candidate of candidates) for (const metric of candidate.result.metrics) detail.append(text('p', `${supported ? candidate.hypothesis.id : `${candidate.rateMmHr} mm/h`} — ${metric.label}: ${signed(metric.effects[7])} ${metric.unit}.`));
         output.append(detail);
+      }
+      if (supported) {
+        output.append(text('p', DRAINING_MEANING));
+        output.append(text('p', 'Original calibration and held-aside support is evaluated once on the original observed scenario. No hypothetical world refits that support. All offered explanations remain below, including rejected alternatives; no parameter or layout is adopted.'));
+        const state = evidence => evidence.compatible === true ? 'Compatible' : evidence.compatible === false ? 'Contradicted' : 'No readings';
+        table(['Offered explanation', 'Capacity (mm)', 'Initial water (mm)', 'Drainage (/hour)', 'Calibration', 'Held-aside'], supported.inference.candidates.map(c => [c.hypothesis.id,fmt(c.hypothesis.capacityMm),fmt(c.hypothesis.initialStoredMm),fmt(c.hypothesis.drainagePerHour),state(c.calibration),state(c.challenge)]), 'All original receiving explanations and source support');
+        const h = candidates[index].hypothesis;
+        output.append(text('p', `Selected original declaration ${h.id}: ${h.label}. Capacity ${h.capacityMm} mm; initial water ${h.initialStoredMm} mm; drainage ${h.drainagePerHour} /hour. Source: ${h.source}`));
       }
       if (receiving) {
         output.append(text('p', DRAINING_MEANING));
@@ -197,7 +215,7 @@ export function mountProposalComponents({ getProject }) {
       table(['Quantity / pair', 'Third factor', 'Without third', 'With third', 'Difference'], result.metrics.flatMap(m => m.conditionalPairs.map(p => [`${m.label} (${m.unit}): ${label[p.a]} × ${label[p.b]}`, label[p.third], signed(p.without), signed(p.with), signed(p.with - p.without)])), 'Pair interactions with and without the third change');
       output.append(text('p', 'A maximum can change its location or time between worlds. Its interaction does not by itself establish water exchange. Signs depend on the chosen quantity and offered rate; no rate is adopted and finite alternatives are not confidence intervals. Source-project export/reopen preserves the original plans; select this mode again to recompute.'));
       const residual = Math.max(...candidates.flatMap(c => receiving ? [...c.unlimited.balances,...c.draining.balances].map(Math.abs) : c.result.balances.map(Math.abs)));
-      status.textContent = `${candidates.length} set(s) of ${receiving ? 'sixteen' : 'eight'} combinations computed; ${(receiving?.estimatedCellSteps ?? hypothesis?.estimatedCellSteps ?? result.estimatedCellSteps).toLocaleString()} estimated cell-steps. Largest absolute water-balance residual ${residual.toExponential(2)} L. Original plans and observations unchanged.`;
+      status.textContent = `${candidates.length} set(s) of ${receiving ? 'sixteen' : 'eight'} combinations computed; ${(supported?.estimatedCellSteps ?? receiving?.estimatedCellSteps ?? hypothesis?.estimatedCellSteps ?? result.estimatedCellSteps).toLocaleString()} estimated cell-steps. Largest absolute water-balance residual ${residual.toExponential(2)} L. Original plans and observations unchanged.`;
     }
     draw();
   }
