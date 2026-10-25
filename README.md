@@ -337,3 +337,7 @@ The evidence map can also bound simultaneous standing-water volume from original
 ### Challenge one-sided bounds with another storm
 
 After comparing original one-sided depth evidence and proposal consequences, open **Do these rates transfer to another observed storm?** in the same source panel. Load a separately declared event with held-aside bounds to challenge the unchanged offered rates and inspect how the original proposal's consequences narrow or remain unresolved. Save/reopen retains both original projects and the exact study; current source remains unchanged. [Original-source transfer, receiving and limits](docs/THRESHOLD_EVENT_TRANSFER.md).
+
+## When a shallow receiving layer fills
+
+**What changes when the ground has no more room?** compares the same original site and storm with an explicitly finite, closed receiving layer. Water that cannot enter stays in the maintained surface-flow calculation, where it can pond, move to another cell or leave the boundary. Inspect the paired consequences and original-cell water accounts, then save/reopen the original inputs without adopting a changed site. The fictional shallow-bed example shows why a fast infiltration rate alone does not establish enough receiving space. See [Closed receiving capacity](docs/INFILTRATION_STORAGE.md) for the model, its no-drainage boundary, source declarations and verification.
