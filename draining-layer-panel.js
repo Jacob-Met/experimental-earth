@@ -1,4 +1,5 @@
 import {SURFACES} from './core.js';
+import {mountDrainingEvidence} from './draining-evidence-panel.js';
 import {DRAINING_LAYER_SCHEMA} from './draining-infiltration.js';
 import {compareDrainingLayer, serializeDrainingLayer, parseDrainingLayer,
   checkDrainingFileBytes, makeDrainingExample, DRAINING_MEANING} from './draining-layer-study.js';
@@ -55,6 +56,7 @@ export function mountDrainingLayer({getProject}) {
     if (next !== key) {key = next; invalidate('Declare the receiving layer, then compare.');}
     $('place').textContent = (opened ? 'Separate original site: ' : 'Current site: ') +
       p.title + ' · ' + p.width + ' × ' + p.height + ' cells. Working site unchanged.';
+    evidence.refresh();
   }
   function readLayer() {
     for (const id of ['capacity', 'initial', 'drainage']) if (!$(id).value.trim())
@@ -210,5 +212,6 @@ export function mountDrainingLayer({getProject}) {
     } catch (error) {if (token === generation) status(error.message, 'refused');}
     finally {if (token === generation) {$('run').disabled = false; $('open').value = '';}}
   };
+  const evidence = mountDrainingEvidence({host: panel, getProject: source, getLayer: readLayer});
   refresh(); return {refresh};
 }

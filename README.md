@@ -362,3 +362,7 @@ working site. The local layer handles filling and emptying transitions while
 the existing horizontal routing retains its numerical limits. See
 [Draining receiving layers](docs/DRAINING_LAYER.md) for equations, source custody,
 the fictional 124 L versus 46.25 L standing-water control and qualification limits.
+
+### Challenge receiving explanations with original readings
+
+Within the draining-layer investigation, offer distinct storage/initial-water/drainage combinations and compare them with original notebook point readings. Calibration admits hypotheses; held-aside readings can contradict them without refitting or hiding rejected alternatives. Inspect paired consequences over the explicitly supported finite set, then save/reopen the complete original investigation. [Receiving-evidence workflow and limits](docs/DRAINING_EVIDENCE.md) includes an authored case where identical early depths separate later.
