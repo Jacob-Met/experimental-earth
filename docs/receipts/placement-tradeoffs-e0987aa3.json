@@ -1,0 +1,305 @@
+{
+  "upstream": "0d254e6423017d3e60ec30e2a842a2650bb875b6",
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "passed": 794,
+    "failed": 0
+  },
+  "browser": {
+    "passed": true,
+    "report": [
+      "Actual model retains two cost/environment alternatives",
+      "All seven layouts remain visible",
+      "Four over-budget layouts remain inspectable",
+      "Over-budget inspected layout cannot be adopted",
+      "Feasible nonzero layout can be explicitly adopted",
+      "Changing budget retires the old comparison",
+      "Detached stale adoption cannot change source project",
+      "Zero budget retains only unchanged proposal",
+      "Narrow viewport contains comparison without page overflow",
+      "Actual app adopts only requested edit and preserves original source",
+      "Adopted source project survives reload"
+    ],
+    "exceptions": [],
+    "error": null,
+    "sandboxAdmitted": true,
+    "browser": "Chrome/156.0.8078.47",
+    "executable": "/opt/google/chrome/chrome"
+  },
+  "courtyard": {
+    "eligibleCells": [
+      18,
+      19,
+      20,
+      21,
+      26,
+      27,
+      28,
+      29,
+      34,
+      35,
+      36,
+      37
+    ],
+    "variantCount": 79,
+    "rates": [
+      0.2,
+      1,
+      4
+    ],
+    "scalarBest": [
+      [
+        27,
+        36
+      ]
+    ],
+    "feasible": 50,
+    "frontier": [
+      {
+        "cells": [
+          27,
+          36
+        ],
+        "vector": [
+          5,
+          -593.8587984225078,
+          -63.159160871924314,
+          -0.7805205412994383
+        ]
+      },
+      {
+        "cells": [
+          28,
+          35
+        ],
+        "vector": [
+          5,
+          -591.6284779444832,
+          -64.37180395371865,
+          -1.2145769449988677
+        ]
+      },
+      {
+        "cells": [
+          29,
+          35
+        ],
+        "vector": [
+          6,
+          -580.1058254123486,
+          -63.370369113154084,
+          -1.2513874302352832
+        ]
+      },
+      {
+        "cells": [
+          26,
+          36
+        ],
+        "vector": [
+          4,
+          -579.3117774572033,
+          -63.136380155643565,
+          -0.5426458619428018
+        ]
+      },
+      {
+        "cells": [
+          28,
+          36
+        ],
+        "vector": [
+          6,
+          -574.7437149112352,
+          -65.83963127652419,
+          -1.0549560257975656
+        ]
+      },
+      {
+        "cells": [
+          20,
+          35
+        ],
+        "vector": [
+          2,
+          -572.9889215319436,
+          -58.40993281048941,
+          -0.5950955202063994
+        ]
+      },
+      {
+        "cells": [
+          27,
+          35
+        ],
+        "vector": [
+          4,
+          -569.4163653568862,
+          -67.32399971161567,
+          -0.3462144575050843
+        ]
+      },
+      {
+        "cells": [
+          20,
+          36
+        ],
+        "vector": [
+          3,
+          -569.0970608176481,
+          -58.62857035181128,
+          -0.8696342810863698
+        ]
+      },
+      {
+        "cells": [
+          35,
+          37
+        ],
+        "vector": [
+          4,
+          -555.422646234173,
+          -101.27203800826305,
+          -0.9657221587702267
+        ]
+      },
+      {
+        "cells": [
+          26,
+          35
+        ],
+        "vector": [
+          3,
+          -554.3368039430243,
+          -69.40114528314894,
+          -0.10833977814844786
+        ]
+      },
+      {
+        "cells": [
+          35,
+          36
+        ],
+        "vector": [
+          3,
+          -549.4805846597856,
+          -101.26577952975958,
+          -0.595216132062447
+        ]
+      },
+      {
+        "cells": [
+          21,
+          35
+        ],
+        "vector": [
+          3,
+          -544.2419957403536,
+          -59.55610649537698,
+          -1.2320314133871406
+        ]
+      },
+      {
+        "cells": [
+          21,
+          27
+        ],
+        "vector": [
+          5,
+          -529.6013528114431,
+          -28.849918707761617,
+          -1.436691626615044
+        ]
+      },
+      {
+        "cells": [
+          21,
+          26
+        ],
+        "vector": [
+          4,
+          -520.4610931753896,
+          -30.422741859288863,
+          -1.36476683079065
+        ]
+      },
+      {
+        "cells": [
+          36,
+          37
+        ],
+        "vector": [
+          5,
+          -503.42627588148434,
+          -102.47012436535783,
+          -0.7977268207361803
+        ]
+      },
+      {
+        "cells": [
+          34,
+          35
+        ],
+        "vector": [
+          6,
+          -495.01246542162016,
+          -106.30584641992368,
+          -0.08898525244369893
+        ]
+      },
+      {
+        "cells": [
+          35
+        ],
+        "vector": [
+          1,
+          -307.5994112365438,
+          -45.035041931458636,
+          -0.08045502413404648
+        ]
+      },
+      {
+        "cells": [
+          20
+        ],
+        "vector": [
+          1,
+          -281.23309202583914,
+          -12.29063450183321,
+          -0.514640496072353
+        ]
+      },
+      {
+        "cells": [
+          21
+        ],
+        "vector": [
+          2,
+          -246.1342615344647,
+          -13.724222857749737,
+          -0.7172703054587473
+        ]
+      },
+      {
+        "cells": [],
+        "vector": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "overBudget": 29,
+    "zeroBudgetFrontier": 1
+  },
+  "source_sha256": {
+    "placement-tradeoffs.js": "4e8c01327915ee675b5391ee2299ef6103bf918028f63dce37a3a0f7d2e6e586",
+    "placement-panel.js": "77a3b4dffb089fdf0f2ef317b3cf3e350b4b54b784b6fe9d6e40fd4ee4f11964",
+    "tests/placement-tradeoffs.test.mjs": "b0ef24482a5dfe61c931534dc74c366b866f172d32540b7032e699b03fd82d88",
+    "tests/placement-tradeoffs.browser.mjs": "bbd1e1cd00e03c9771bf75db2d40e82f5be1f5c4faffc052933954b71ecc18e1",
+    "evaluation/placement-tradeoffs.mjs": "34a0d464f2d8294951f4e1e25f4fd6562a669f7c7718f8a794a19bd283e4bf6d",
+    "docs/PLACEMENT_TRADEOFFS.md": "ebf4d9e75ae67c6a155972971c928454b4805638b38b503ade85e4fb85535422"
+  },
+  "scope": "Authored model and actual local browser receiving; no hosted deployment or field validation."
+}

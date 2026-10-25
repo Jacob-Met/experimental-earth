@@ -1,0 +1,42 @@
+import {withBrowserSession} from './support/browser-session.mjs';
+import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {resolve,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const output=process.env.PLACEMENT_RECEIPT_DIR?resolve(process.env.PLACEMENT_RECEIPT_DIR):await mkdtemp(join(tmpdir(),'earth-placement-tradeoffs-'));await mkdir(output,{recursive:true});
+const report=[],delay=ms=>new Promise(r=>setTimeout(r,ms));
+await withBrowserSession({root,chromeBin:process.env.CHROME_BIN,runDirectory:join(output,'browser-session')},async session=>{
+ const {evaluate,send,exceptions}=session;
+ const expect=async(expression,label)=>{if(!await evaluate(expression))throw Error(label);report.push(label);};
+ const wait=async expression=>{for(let i=0;i<100;i++){if(await evaluate(expression))return;await delay(50);}throw Error('Timed out: '+expression);};
+ const run=async()=>{await evaluate("document.querySelector('#placement-run').click()");await wait("!!document.querySelector('#placement-tradeoff-results')");};
+ let failure=null;
+ try{
+  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});await wait("!!document.querySelector('#placement-search')");
+  await evaluate(`(async()=>{const {makeExample}=await import('./core.js');const p=makeExample();p.width=p.height=2;p.selectedIndex=0;p.observations=[];p.existing=Array.from({length:4},()=>({surface:'sealed',elevationM:0,provenance:'Authored browser control, not field evidence'}));p.proposal=structuredClone(p.existing);p.weather={...p.weather,rainMmHr:61,stormMinutes:10,durationMinutes:10,stepMinutes:5,mobilityPerHour:0,boundaryExitPerHour:0,cellSizeM:1};p.infiltrationStudy={target:'existing',surface:'sealed',ratesMmHr:[.2,1,4]};localStorage.setItem('experimental-earth-site-v1',JSON.stringify(p));return true;})()`);
+  await send('Page.reload');await delay(100);await wait("document.querySelectorAll('#placement-grid button').length===4");
+  await evaluate(`(()=>{for(const i of [0,1,2])document.querySelector('#placement-grid [data-cell-index="'+i+'"]').click();document.querySelector('#placement-tradeoff-enabled').click();const fill=(s,v)=>{const e=document.querySelector(s);e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));};fill('#placement-cost-unit','authored units');fill('#placement-budget','25');fill('#placement-cost-basis','Authored additive control, not a quote');for(const i of [0,1,2])fill('[data-cost-cell="'+i+'"]',String(10*(i+1)));const metric=document.querySelector('#placement-tradeoff-metrics input[value="unabsorbedLiters"]');if(!metric.checked)metric.click();return true;})()`);
+  await run();
+  await expect("document.querySelector('#placement-tradeoff-results').dataset.frontierCount==='2'","Actual model retains two cost/environment alternatives");
+  await expect("document.querySelectorAll('#placement-tradeoff-results tbody tr').length===7","All seven layouts remain visible");
+  await expect("document.querySelectorAll('#placement-tradeoff-results [data-tradeoff-status=\"Over budget\"]').length===4","Four over-budget layouts remain inspectable");
+  await evaluate("document.querySelector('#placement-tradeoff-results [data-tradeoff-status=\"Over budget\"] button').click()");await expect("document.querySelector('#placement-adopt').disabled","Over-budget inspected layout cannot be adopted");
+  await evaluate("document.querySelector('#placement-tradeoff-results tr[data-cells=\"0\"] button').click()");await expect("!document.querySelector('#placement-adopt').disabled","Feasible nonzero layout can be explicitly adopted");
+  await evaluate(`(()=>{window.oldPlacementAdopt=document.querySelector('#placement-adopt');const e=document.querySelector('#placement-budget');e.value='0';e.dispatchEvent(new Event('input',{bubbles:true}));return true;})()`);
+  await expect("!document.querySelector('#placement-tradeoff-results')","Changing budget retires the old comparison");await evaluate("window.oldPlacementAdopt.click()");
+  await expect("JSON.parse(localStorage.getItem('experimental-earth-site-v1')).proposal.every(c=>c.surface==='sealed')","Detached stale adoption cannot change source project");
+  await run();await expect("document.querySelector('#placement-tradeoff-results').dataset.frontierCount==='1'","Zero budget retains only unchanged proposal");
+  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await evaluate("document.querySelector('#placement-tradeoff-results').scrollIntoView({behavior:'instant',block:'start'})");await delay(100);
+  await expect("document.documentElement.scrollWidth<=document.documentElement.clientWidth+1","Narrow viewport contains comparison without page overflow");
+  const shot=await send('Page.captureScreenshot',{format:'png'});await writeFile(join(output,'tradeoffs-390.png'),Buffer.from(shot.data,'base64'));
+  await evaluate(`(()=>{const e=document.querySelector('#placement-budget');e.value='25';e.dispatchEvent(new Event('input',{bubbles:true}));return true;})()`);
+  await run();await evaluate("document.querySelector('#placement-tradeoff-results tr[data-cells=\"0\"] button').click();document.querySelector('#placement-adopt').click()");
+  await expect("(()=>{const p=JSON.parse(localStorage.getItem('experimental-earth-site-v1'));return p.proposal[0].surface==='garden'&&p.proposal.slice(1).every(c=>c.surface==='sealed')&&p.existing.every(c=>c.surface==='sealed')&&p.observations.length===0})()","Actual app adopts only requested edit and preserves original source");
+  await send('Page.reload');await delay(100);await wait("document.querySelectorAll('#placement-grid button').length===4");
+  await expect("JSON.parse(localStorage.getItem('experimental-earth-site-v1')).proposal[0].surface==='garden'","Adopted source project survives reload");
+ }catch(error){failure=error;}
+ await writeFile(join(output,'receipt.json'),JSON.stringify({passed:!failure&&!exceptions.length,report,exceptions,error:failure?.message??null,sandboxAdmitted:session.sandbox.admitted,browser:session.sandbox.browser.product,executable:process.env.CHROME_BIN},null,2));
+ if(failure)throw failure;if(exceptions.length)throw Error('Browser exceptions: '+JSON.stringify(exceptions));
+});
+console.log(JSON.stringify({output,checks:report.length}));
