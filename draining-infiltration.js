@@ -57,9 +57,13 @@ export function advanceDrainingLayer({surfaceMm, storedMm, capacityMm,
     const emptyAt = rate > rainMmHr ? surfaceMm / (rate - rainMmHr) : Infinity;
     let fillAt = Infinity;
     if (!full && rate > drainagePerHour * capacityMm) {
-      fillAt = drainagePerHour === 0 ? (capacityMm - storedMm) / rate :
-        Math.log1p(drainagePerHour * (capacityMm - storedMm) /
-          (rate - drainagePerHour * capacityMm)) / drainagePerHour;
+      const gap = capacityMm - storedMm;
+      const excess = rate - drainagePerHour * capacityMm;
+      const z = drainagePerHour * gap / excess;
+      // log1p(z)/k loses the entire fill time when k*gap underflows.
+      // This equivalent form has the correct zero-drain limit even for an
+      // admitted subnormal positive k; an event snap cannot invent storage.
+      fillAt = (gap / excess) * (z === 0 ? 1 : Math.log1p(z) / z);
     }
     const dt = Math.min(remaining, emptyAt, fillAt);
     const f = factors(drainagePerHour * dt);

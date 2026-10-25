@@ -63,6 +63,21 @@ test('tiny positive drainage survives cancellation and zero duration preserves t
   assert.equal(zero.infiltratedMm, 0); assert.equal(zero.drainedMm, 0);
 });
 
+test('subnormal drainage cannot fill a receiver without transferring surface water', () => {
+  for (const drainagePerHour of [Number.MIN_VALUE, 1e-323, 1e-320, 1e-310, 1e-300]) {
+    const input = {...base, surfaceMm: 1, storedMm: 0, capacityMm: 0.1,
+      infiltrationMmHr: 1, drainagePerHour, rainMmHr: 0, hours: 1};
+    const result = advanceDrainingLayer(input);
+    near(result.surfaceMm, 0.9); near(result.storedMm, 0.1);
+    near(result.infiltratedMm, 0.1); near(result.receiverBalanceErrorMm, 0);
+    near(result.surfaceBalanceErrorMm, 0);
+    const beforeFilling = advanceDrainingLayer({...input, hours: 0.05});
+    near(beforeFilling.storedMm, 0.05); near(beforeFilling.infiltratedMm, 0.05);
+    near(beforeFilling.surfaceMm, 0.95);
+    assert.equal(beforeFilling.limited, false);
+  }
+});
+
 let seed = 252;
 const random = () => ((seed = (1664525 * seed + 1013904223) >>> 0) / 2 ** 32);
 function generated() {
