@@ -1,4 +1,5 @@
 import { advanceSurfaceHeat } from './surface-heat.js';
+import { exponentialSurfaceLoss } from './heat-exponential-loss.js';
 
 // Exact-real propagator for two declared, internally uniform heat stores.
 // Computation is floating point; these are not certified interval bounds.
@@ -53,15 +54,16 @@ function spectrum(surface, lower, interval, initial) {
   const a = (h + g) / c1, d = g / c2, k = g / (scale[0] * scale[1]);
   const gap = Math.hypot(a - d, 2 * k), fast = (a + d + gap) / 2;
   const slow = fast === 0 ? 0 : (h / c1) * (g / c2) / fast;
-  let projected = [0, 0];
+  let projected = [0, 0], projection = [0, 0];
   if (gap > 0) {
     let p11, p22;
     if (a >= d) { p11 = (2 * k / gap) * (k / (gap + a - d)); p22 = 1 - p11; }
     else { p22 = (2 * k / gap) * (k / (gap + d - a)); p11 = 1 - p22; }
     const p12 = k / gap;
+    projection = [p11, p12];
     projected = [p11 * u[0] + p12 * u[1], p12 * u[0] + p22 * u[1]];
   }
-  return { c1, c2, h, g, q, v, scale, u, projected, slow, fast };
+  return { c1, c2, h, g, q, v, scale, u, projected, projection, slow, fast };
 }
 
 function stationary(s, seconds) {
@@ -80,8 +82,24 @@ function stationary(s, seconds) {
  * positive internal transfer enters the subsurface. No bottom flux is modeled.
  */
 export function advanceHeatColumn(surface, lower, interval, initial, seconds) {
+  return advanceColumn(surface, lower, interval, initial, seconds, null);
+}
+
+/** Same maintained propagator with a nonnegative, exponentially declining
+ * surface heat loss. Water/latent-energy assumptions belong to its caller.
+ * Interior extrema are not searched for the additional exponential mode.
+ */
+export function advanceHeatColumnWithLoss(surface, lower, interval, initial, seconds, loss) {
+  if (!loss || !finite(loss.initialWm2, 0, 5000) || !finite(loss.decayPerSecond, 0, 1e100)) {
+    throw Error('Surface loss needs finite initial flux 0–5000 W/m² and nonnegative decay');
+  }
+  if (loss.initialWm2 === 0) return {...advanceHeatColumn(surface, lower, interval, initial, seconds), surfaceLossJm2: 0};
+  return advanceColumn(surface, lower, interval, initial, seconds, loss);
+}
+
+function advanceColumn(surface, lower, interval, initial, seconds, loss) {
   validate(surface, lower, interval, initial, seconds);
-  if (lower.conductanceWm2K === 0) {
+  if (lower.conductanceWm2K === 0 && !loss) {
     const one = advanceSurfaceHeat(surface, interval, initial.surfaceC, seconds);
     const rate = surface.exchangeWm2K / surface.capacityJm2K;
     const velocity = (surface.absorptivity * interval.incidentWm2 -
@@ -102,6 +120,14 @@ export function advanceHeatColumn(surface, lower, interval, initial, seconds) {
   // Compute the mean change directly. Dividing a cumulative integral difference
   // would lose short windows; dividing by ambient exchange would fail at h=0.
   const meanChange = s.u.map((u, i) => seconds * (f.psi * u + diff.psi * s.projected[i]) / s.scale[i]);
+  let surfaceLossJm2 = 0;
+  if (loss) {
+    const response = exponentialSurfaceLoss(s, loss.initialWm2, loss.decayPerSecond, seconds);
+    for (let i = 0; i < 2; i++) {
+      delta[i] += response.delta[i]; integral[i] += response.integral[i]; meanChange[i] += response.mean[i];
+    }
+    surfaceLossJm2 = response.lossJm2;
+  }
   const surfaceMeanC = initial.surfaceC + meanChange[0], subsurfaceMeanC = initial.subsurfaceC + meanChange[1];
   const surfaceC = initial.surfaceC + delta[0], subsurfaceC = initial.subsurfaceC + delta[1];
   const inputJm2 = s.q * seconds;
@@ -117,8 +143,9 @@ export function advanceHeatColumn(surface, lower, interval, initial, seconds) {
     surfaceMeanC, subsurfaceMeanC,
     surfaceDegreeSeconds: initial.surfaceC * seconds + integral[0],
     subsurfaceDegreeSeconds: initial.subsurfaceC * seconds + integral[1],
-    subsurfaceStoredJm2, totalStoredJm2, balanceResidualJm2: inputJm2 - exchangeOutJm2 - totalStoredJm2,
-    surfaceBalanceResidualJm2: inputJm2 - exchangeOutJm2 - transferDownJm2 - surfaceStoredJm2,
+    subsurfaceStoredJm2, totalStoredJm2, balanceResidualJm2: inputJm2 - surfaceLossJm2 - exchangeOutJm2 - totalStoredJm2,
+    surfaceBalanceResidualJm2: inputJm2 - surfaceLossJm2 - exchangeOutJm2 - transferDownJm2 - surfaceStoredJm2,
     subsurfaceBalanceResidualJm2: transferDownJm2 - subsurfaceStoredJm2,
-    stationarySeconds: stationary(s, seconds) };
+    stationarySeconds: loss ? {surface: [], subsurface: []} : stationary(s, seconds),
+    ...(loss ? {surfaceLossJm2} : {}) };
 }
