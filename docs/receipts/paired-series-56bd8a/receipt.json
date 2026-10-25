@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "structured original pairs produce compatible pre gap and full post contrast",
+    "original pre conflict names witnesses and withholds later contrasts",
+    "download retains conflicting original rows without derived verdict",
+    "source-only reopening recomputes conflict preserving active site",
+    "inclusive original gap contact is retained as boundary",
+    "blank original bound cannot become zero or retain result",
+    "late reopen cannot replace newer source draft",
+    "desktop390px source and witness panel fit"
+  ],
+  "browser": "156.0.8078.47",
+  "base": "2c65d230259846fadad2d2856454e688576da4dd",
+  "independentReview": "SECOND GROUND no blocker; core/custody/late-read admission reviewed",
+  "native": [
+    "node tests/measured-change.test.mjs:4pass",
+    "node tests/paired-series.test.mjs: authored controls,100independent feasibility enumerations,64pair bound/contact/nonmutation pass"
+  ],
+  "retainedFourReadingBrowser": "5groups pass"
+}
