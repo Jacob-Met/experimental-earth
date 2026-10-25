@@ -1,0 +1,146 @@
+{
+  "absoluteEqualsRelative": true,
+  "sourceClockPreserved": true,
+  "heldAsideMutationOnlyChangesChallenge": true,
+  "study": {
+    "target": "existing",
+    "surface": "sealed",
+    "ratesMmHr": [
+      1,
+      9,
+      22
+    ]
+  },
+  "status": "calibration-rejected",
+  "counts": {
+    "calibration": 1,
+    "challenge": 1,
+    "ignored": 0,
+    "affectedCells": 12
+  },
+  "candidates": [
+    {
+      "rateMmHr": 1,
+      "calibration": {
+        "count": 1,
+        "rmseMm": 6.845831301530863,
+        "compatible": false,
+        "withinCount": 0,
+        "errors": [
+          {
+            "index": 0,
+            "depthMm": 3.1541686984691366,
+            "beforeMinute": 15,
+            "afterMinute": 20,
+            "method": "linear interpolation",
+            "residualMm": 6.845831301530863,
+            "withinBand": false
+          }
+        ]
+      },
+      "challenge": {
+        "count": 1,
+        "rmseMm": 9.408077783568991,
+        "compatible": false,
+        "withinCount": 0,
+        "errors": [
+          {
+            "index": 1,
+            "depthMm": 10.591922216431009,
+            "beforeMinute": 45,
+            "afterMinute": 45,
+            "method": "snapshot",
+            "residualMm": 9.408077783568991,
+            "withinBand": false
+          }
+        ]
+      },
+      "absorbedLiters": 3527.9278894933095,
+      "exitLiters": 1947.9100973024197,
+      "storedLiters": 1436.1620132043154,
+      "massErrorLiters": -4.4565240386873484e-11
+    },
+    {
+      "rateMmHr": 9,
+      "calibration": {
+        "count": 1,
+        "rmseMm": 6.845832507163579,
+        "compatible": false,
+        "withinCount": 0,
+        "errors": [
+          {
+            "index": 0,
+            "depthMm": 3.1541674928364207,
+            "beforeMinute": 15,
+            "afterMinute": 20,
+            "method": "linear interpolation",
+            "residualMm": 6.845832507163579,
+            "withinBand": false
+          }
+        ]
+      },
+      "challenge": {
+        "count": 1,
+        "rmseMm": 9.55718271062031,
+        "compatible": false,
+        "withinCount": 0,
+        "errors": [
+          {
+            "index": 1,
+            "depthMm": 10.44281728937969,
+            "beforeMinute": 45,
+            "afterMinute": 45,
+            "method": "snapshot",
+            "residualMm": 9.55718271062031,
+            "withinBand": false
+          }
+        ]
+      },
+      "absorbedLiters": 4881.701894394464,
+      "exitLiters": 1827.8468774320236,
+      "storedLiters": 202.4512281735134,
+      "massErrorLiters": -1.0231815394945443e-12
+    },
+    {
+      "rateMmHr": 22,
+      "calibration": {
+        "count": 1,
+        "rmseMm": 6.845834466316743,
+        "compatible": false,
+        "withinCount": 0,
+        "errors": [
+          {
+            "index": 0,
+            "depthMm": 3.154165533683257,
+            "beforeMinute": 15,
+            "afterMinute": 20,
+            "method": "linear interpolation",
+            "residualMm": 6.845834466316743,
+            "withinBand": false
+          }
+        ]
+      },
+      "challenge": {
+        "count": 1,
+        "rmseMm": 9.799478217078704,
+        "compatible": false,
+        "withinCount": 0,
+        "errors": [
+          {
+            "index": 1,
+            "depthMm": 10.200521782921296,
+            "beforeMinute": 45,
+            "afterMinute": 45,
+            "method": "snapshot",
+            "residualMm": 9.799478217078704,
+            "withinBand": false
+          }
+        ]
+      },
+      "absorbedLiters": 5296.009809744578,
+      "exitLiters": 1615.9901902554168,
+      "storedLiters": 0,
+      "massErrorLiters": 5.229594535194337e-12
+    }
+  ]
+}

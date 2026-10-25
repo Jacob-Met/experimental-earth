@@ -1,3 +1,4 @@
+import { observationMinute } from './observation-clock.js';
 export const DEPTH_UNITS = Object.freeze({ mm: 1, cm: 10, in: 25.4 });
 const owns = (o, key) => Object.prototype.hasOwnProperty.call(o, key);
 
@@ -18,6 +19,10 @@ export function validateObservationOrigin(reading) {
       !Number.isInteger(source.line) || source.line < 2 || source.line > 128000 ||
       typeof source.unit !== 'string' || !owns(DEPTH_UNITS, source.unit)) {
     throw new Error('Invalid observation table source');
+  }
+  if (source.timestamp !== undefined || source.eventStart !== undefined) {
+    const minute = observationMinute(source.timestamp, source.eventStart);
+    if (minute !== reading.minute) throw new Error('Observation minute does not match its retained clock conversion');
   }
   for (const [key, actual] of [['depthValue', reading.depthMm], ['uncertaintyValue', reading.uncertaintyMm]]) {
     const expected = decimalValue(source[key], key) * DEPTH_UNITS[source.unit];
