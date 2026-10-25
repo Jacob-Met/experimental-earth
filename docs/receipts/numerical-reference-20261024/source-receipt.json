@@ -1,0 +1,61 @@
+{
+  "sourceTree": "9982d98d26a4fa727d57047df2bc9c15647d15ae",
+  "sourceClosure": "18 exact Git blobs; source-manifest.json",
+  "authoritativeSourceRole": "maintained incumbent and input validators",
+  "status": "archival rejected research; no production adoption",
+  "frozenPayloadSha256": "91e2705e075340490ad11ac4fe922fb7ea54e65d107e6b5755b4f58ab767dc56",
+  "command": "node reproduce.mjs /absolute/path/to/pinned/experimental-earth",
+  "fullCasesPerMethod": 1152,
+  "stepsMinutes": [
+    5,
+    2.5,
+    1.25,
+    1,
+    0.5,
+    0.25
+  ],
+  "fineReferenceMinutes": 0.0625,
+  "fullSSPSelectedCases": 22,
+  "equalWorkSignDisagreements": [
+    {
+      "fullSSPStep": 5,
+      "explicitStep": 2.5,
+      "fullSSP": 13,
+      "explicit": 4
+    },
+    {
+      "fullSSPStep": 2.5,
+      "explicitStep": 1.25,
+      "fullSSP": 3,
+      "explicit": 3
+    },
+    {
+      "fullSSPStep": 1,
+      "explicitStep": 0.5,
+      "fullSSP": 2,
+      "explicit": 1
+    }
+  ],
+  "adaptive": {
+    "cases": 22,
+    "signDisagreements": 1,
+    "equalStageExplicitDisagreements": 0,
+    "meanAbsoluteReferenceDifferenceLiters": 0.2435790482654622,
+    "equalStageExplicitMeanAbsoluteReferenceDifferenceLiters": 0.04153978548013852,
+    "unresolved": 0
+  },
+  "verification": "Full four-method course and separate verify.mjs passed; all three paired-case-guarded comparisons rerun; adaptive course completed. Archive wrapper quick reproduction separately received.",
+  "limits": [
+    "selected stress cases",
+    "reference not certified truth",
+    "authored model controls, not field measurements",
+    "runtime not deterministic"
+  ],
+  "archive": {
+    "path": "docs/receipts/numerical-reference-20261024/rejected-methods-reproduction.zip",
+    "bytes": 26182,
+    "gitBlobSha1": "d59bcfac674261bc8c94e3eae3db782e49d43830",
+    "sha256": "365e4c1b59085fb45dbf1698cc4902338f5785132cef707fb0e56f820fbd4d63",
+    "entries": 26
+  }
+}
