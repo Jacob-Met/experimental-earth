@@ -1,0 +1,107 @@
+{
+  "schema": "experimental-earth-cooling-verification/1",
+  "owner": "hamon-ee5a530c-20261024/root",
+  "sourceParent": "511f13018ae27a76f2d9abe314544ef6baa9140a",
+  "native": {
+    "tests": 690,
+    "pass": 690,
+    "fail": 0,
+    "skip": 0,
+    "command": "npm test",
+    "log_sha256": "08e3e645dbe7255c9d10f7075749606b3ef7f1419c469dea1bd4bbe2f8304771"
+  },
+  "environment": {
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47",
+    "deviceId": "7bbde96a-7dad-438e-a035-cc2626ef02a5",
+    "os": "Linux x64"
+  },
+  "browser": {
+    "status": "PASS",
+    "groups": [
+      "blank current-source entry",
+      "isolated authored example",
+      "exact arbitrary-time accounting",
+      "native keyboard inspection",
+      "zero-fraction causal control",
+      "active source remains unchanged",
+      "actual browser download",
+      "desktop and narrow captures",
+      "fresh-profile actual-file reopen recomputes identical results",
+      "fresh active project preserved",
+      "saved conclusion refused without losing accepted result",
+      "sources rendered as literal text",
+      "new draft cancels delayed file read"
+    ],
+    "dimensions": {
+      "width": 390,
+      "scroll": 390
+    },
+    "firstSandbox": {
+      "admitted": true,
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3"
+    },
+    "freshSandbox": {
+      "admitted": true,
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3"
+    }
+  },
+  "independentOracle": {
+    "status": "PASS",
+    "independent_method": "SciPy augmented matrix exponential",
+    "cases": 108,
+    "max_absolute_errors": {
+      "surfaceC": 5.009326287108706e-13,
+      "subsurfaceC": 5.080380560684716e-13,
+      "exchangeOutJm2": 1.6970443539321423e-7,
+      "transferDownJm2": 4.28641214966774e-7,
+      "surfaceLossJm2": 1.0826624929904938e-8
+    }
+  },
+  "independentReview": {
+    "reviewer": "hamon-ee5a530c-20261024/second_ground",
+    "kind": "source and mathematical review; no independent test rerun",
+    "result": "No blocking issue found",
+    "scope": [
+      "convolution endpoint and time integral, equal/zero rates",
+      "capacity scaling and projection signs",
+      "surface/total energy loss accounting",
+      "full-demand/stressed/empty water phases",
+      "mm-to-kg/m2 latent conversion",
+      "original heat and lower-layer identity"
+    ]
+  },
+  "sourceSha256": {
+    "app.js": "ea7797dfa3f3bbb85cc80e4bf3c9946f004e6e1e0c454bc84687ec84c333e41d",
+    "heat-column-step.js": "36710a3a0307f9f57988a3de5c43e5fd4843a857974168dbc76e6d6f04380db2",
+    "heat-exponential-loss.js": "850a57fb5629ff9160a7b5a3339f61daa76aab84a0edb8c675204de0e0278294",
+    "evaporative-cooling.js": "0310ae65bc2def0689579dfcd53893e62449cb0e9f024c682dc58d09271fa7f3",
+    "evaporative-cooling-example.js": "645a9d9a9592b073bd2a147b1576c6648c10de26171053fee05d93ba61012beb",
+    "evaporative-cooling-panel.js": "844580273d724bc0ee2b1642cba9b4250ec7db435d90254556d7eb14e654bd7a",
+    "evaporative-cooling.css": "85bd00ca78dcfeeff5845796e24d4779f47f1a69ca6c9a4f93ba75bbc7bdac75",
+    "tests/evaporative-cooling.test.mjs": "1efa0b1f9b7582826ac7d0e3489f9311cd57c322f462c5a808137c27a2fcd31a",
+    "tests/evaporative-cooling.receiving.mjs": "f5a4bcf29f525328ed8c654262e83ed9427ee52990f5a776abf992e2dcecafd1"
+  },
+  "capturesSha256": {
+    "desktop.png": "1b20e7ad821069e84965a5c983497492b4d1eeca0d53d7609570b42ad9de1eae",
+    "narrow.png": "3512d58f8022c395213c72e6c29f1591e9363217cdd7e3b803025d33b7db3b99"
+  },
+  "retainedFailures": [
+    "Initial scratch snapshot omitted some baseline evaluation/example inputs; restored before full-suite receiving.",
+    "Local Node24 child-process CLI tests did not qualify; the actual Linux Node22 source composition passed690/690 after initializing its isolated source snapshot repository for the maintained CLI provenance requirement.",
+    "First visual inspection found undersized mobile axes and overlong near-zero residuals. Responsive plots and scientific notation fixed both; full browser course repeated successfully."
+  ],
+  "limits": [
+    "Authored model demonstration, not field/crop/comfort validation",
+    "Whole-event infiltration pulse precedes exposure",
+    "No inferred potential demand or temperature/humidity feedback",
+    "No Nebius/model deployment or physical intervention"
+  ],
+  "retention": {
+    "browserDirectory": "/tmp/hamon-ee5a-earth-cooling-composed",
+    "nativeLog": "/tmp/hamon-ee5a-earth-native-composed.log",
+    "note": "Raw browser profiles, logs and screenshots are retained in the isolated receiving workspace and are not committed, per maintained browser guidance."
+  }
+}

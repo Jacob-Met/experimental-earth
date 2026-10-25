@@ -290,3 +290,15 @@ The surveyed-ground sensitivity panel compares low, central and high values for 
 ## Water retained for roots after a modeled storm
 
 The **How long does water remain available to roots?** panel carries each source cell’s modeled infiltration into an attributed rooted-soil store and follows the same declared dry-period transpiration demand in both places. Inspect retained recharge, excess drainage, supplied and unmet demand, and the original-source water account through time. Save and reopen the complete input-only investigation without replacing the active site. This is an explicitly simplified plant-water model, with no inferred soil or crop properties and no field or irrigation qualification. See [the root-zone model, workflow and controls](docs/ROOT_ZONE.md).
+
+## Retained rain and conditional evaporative cooling
+
+**Can retained rain sustain a cooler surface?** now connects modeled rain
+infiltration, attributed rooted-water stores and the saved two-store heat
+exposure. Declare plant transpiration demand and the fraction of latent energy
+taken from the effective thermal surface, then inspect water use and cooling
+together. The analytic response follows water stress without averaging its
+changing heat loss over a chosen step. Save and reopen the complete original
+investigation separately from the active site. An isolated fictional courtyard
+demonstrates the mechanism. See [evaporative cooling](docs/EVAPORATIVE_COOLING.md)
+for the workflow, equations, sources, verification and physical limits.
