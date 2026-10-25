@@ -4,7 +4,20 @@
 export const EXACT_PAIR_WORK_LIMIT = 1_000_000;
 const popcount = n => { n -= (n >>> 1) & 0x55555555; n = (n & 0x33333333) + ((n >>> 2) & 0x33333333); return (((n + (n >>> 4)) & 0x0f0f0f0f) * 0x01010101) >>> 24; };
 
-export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, recorded = [], strategy = 'greedy' } = {}) {
+export function validateDepthAvailability(raw, cellCount = 576, durationMinutes = 720) {
+  if (raw === undefined) return undefined;
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw) || Object.keys(raw).some(k => !['cellIndices', 'startMinute', 'endMinute', 'basis'].includes(k))) throw Error('Declare an offered cell and time scope');
+  const { cellIndices, startMinute, endMinute, basis } = raw;
+  if (!Array.isArray(cellIndices) || cellIndices.length > cellCount ||
+      Array.from({ length: cellIndices.length }, (_, i) => !Object.hasOwn(cellIndices, i)).some(Boolean) ||
+      new Set(cellIndices).size !== cellIndices.length || cellIndices.some(i => !Number.isInteger(i) || i < 0 || i >= cellCount)) throw Error('Offer distinct original cells inside the source grid');
+  if (!Number.isFinite(startMinute) || !Number.isFinite(endMinute) || startMinute < 0 || endMinute < startMinute || endMinute > durationMinutes) throw Error('Offer an ordered time window inside the original event');
+  if (typeof basis !== 'string' || !basis.trim() || basis.length > 500) throw Error('Explain the offered acquisition scope within 500 characters');
+  return { cellIndices: [...cellIndices].sort((a, b) => a - b), startMinute, endMinute, basis: basis.trim() };
+}
+
+export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, recorded = [], strategy = 'greedy', availability } = {}) {
+  availability = validateDepthAvailability(availability);
   if (!['greedy', 'exact-pair'].includes(strategy) || (strategy === 'exact-pair' && maxReadings !== 2)) throw Error('Exact pair planning requires a two-reading budget');
   if (!Number.isFinite(uncertaintyMm) || uncertaintyMm < 0 || uncertaintyMm > 1000 ||
       !Number.isInteger(maxReadings) || maxReadings < 1 || maxReadings > 3) {
@@ -26,17 +39,20 @@ export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, 
       }
     });
   }
+  availability = validateDepthAvailability(availability, count, snapshots.at(-1).minute);
+  const offeredCells = availability ? new Set(availability.cellIndices) : null;
   const pairs = [];
   for (let first = 0; first < runs.length; first++) for (let second = first + 1; second < runs.length; second++) pairs.push({ first, second });
   const key = (cell, minute) => `${cell}:${Math.round(minute * 1e7)}`;
   const occupied = new Set(recorded.map(row => key(row.cellIndex, row.minute)));
   const questions = [], covered = new Set();
-  let evaluatedCount = 0, excludedCount = 0;
+  let evaluatedCount = 0, excludedCount = 0, unavailableCount = 0;
   // Keep only one best coordinate for each separation pattern. This preserves
   // the exact greedy score while bounding repeated scans on long trajectories.
   const patterns = new Map();
   for (let step = 1; step < snapshots.length; step++) for (let cellIndex = 0; cellIndex < count; cellIndex++) {
     const minute = snapshots[step].minute;
+    if (availability && (!offeredCells.has(cellIndex) || minute < availability.startMinute || minute > availability.endMinute)) { unavailableCount++; continue; }
     if (occupied.has(key(cellIndex, minute))) { excludedCount++; continue; }
     evaluatedCount++;
     const depthsMm = runs.map(run => run.snapshots[step].depthsMm[cellIndex]);
@@ -89,8 +105,8 @@ export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, 
     questions.push({ ...best, newlySeparatedPairs: newPairs, cumulativePairCount: covered.size });
   }
   const unresolvedPairs = pairs.flatMap((pair, index) => covered.has(index) ? [] : [{ ...pair, index }]);
-  return { status: !evaluatedCount ? 'all-recorded' : !questions.length ? 'indistinguishable' : 'planned',
+  return { status: availability && !evaluatedCount && !excludedCount ? 'unavailable' : !evaluatedCount ? 'all-recorded' : !questions.length ? 'indistinguishable' : 'planned',
     uncertaintyMm, maxReadings, questions, pairs, unresolvedPairs, evaluatedCount, excludedCount,
     separatedPairCount: covered.size, distinctPatterns: patterns.size,
-    complete: unresolvedPairs.length === 0, ...(exact ? { exact } : {}) };
+    complete: unresolvedPairs.length === 0, ...(exact ? { exact } : {}), ...(availability ? { availability, unavailableCount, offeredCount: evaluatedCount + excludedCount } : {}) };
 }

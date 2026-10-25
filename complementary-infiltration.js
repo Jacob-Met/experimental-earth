@@ -1,7 +1,7 @@
 import { validateProject, runRain } from './core.js';
 import { validateStudy } from './study-contract.js';
 import { compareInfiltration } from './infiltration-study.js';
-import { planComplementaryDepths } from './complementary-depth-plan.js';
+import { planComplementaryDepths, validateDepthAvailability } from './complementary-depth-plan.js';
 
 export const COMPLEMENTARY_WORK_LIMIT = 1_000_000;
 
@@ -9,6 +9,7 @@ export const COMPLEMENTARY_WORK_LIMIT = 1_000_000;
 export function planInfiltrationReadings(project, options, study = project.infiltrationStudy) {
   validateProject(project);
   validateStudy(study);
+  validateDepthAvailability(options?.availability, project.width * project.height, project.weather.durationMinutes);
   // Validate planning controls before paying for any solver run.
   planComplementaryDepths([], options);
   const cellSteps = 2 * study.ratesMmHr.length * project.width * project.height *

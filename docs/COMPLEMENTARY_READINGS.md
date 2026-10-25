@@ -49,3 +49,29 @@ measurement travel or cost, continuous time, information gain, or identification
 Source edits and query edits retire the plan. Reopening original project inputs
 requires recomputation; no saved result is trusted. Original calibration selects
 the candidate population; held-aside measured values cannot select the questions.
+
+## Offer only the readings you intend to consider
+
+Enable **Use only explicitly offered cells and times**, enter original cell
+labels, an earliest/latest event minute and a reason for the scope. A blank
+latest time uses the original event end; a blank offered-cell list offers no
+cells. Unchecked keeps the complete original candidate grid. The scope applies
+to both greedy and exact methods before equivalent separation patterns are
+compressed. Original cell IDs, native snapshot times and predictions are retained;
+no interpolation, physical access inference, travel-time scheduling or measurement
+is introduced. Time-zero remains outside the inherited prospective grid.
+
+The same authored nine-rate example still distinguishes 34/36 pairs if only the
+first three rows are offered, but chooses F2 at 50 minutes instead of F6 at 40.
+Restricting those rows to minutes 40–80 gives F2 at 50 and C1 at 80, distinguishing
+32/36 pairs. This evaluates 216 offered native points, leaves 2,088 other points
+unavailable, and considers 1,275 exact singleton/pair plans over 50 patterns.
+Unavailable points are not recorded observations or evidence of indistinguishability.
+A scope containing no native points is explicitly distinct from a scope whose
+points are all already recorded and from offered points that carry no separating
+signal. No fallback question outside the scope is returned.
+
+The scope is an ephemeral investigation query, as are the existing planning
+controls. Editing its declarations retires the result. Original project exports
+remain unchanged; after reopening original source, enter the desired scope and
+recompute. A declared scope/basis is not verified acquisition feasibility.
