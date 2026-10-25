@@ -1,3 +1,4 @@
+import { mountLongwaveHeat } from './longwave-heat-panel.js';
 import { prepareSurfaceHeatStudy, compareSurfaceHeat, inspectSurfaceHeat } from './surface-heat.js';
 import { surfaceHeatContext } from './surface-heat-contract.js';
 import { parseHeatSchedule, formatHeatSchedule } from './surface-heat-table.js';
@@ -27,6 +28,7 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
     <p class="heat-assumptions">This experiment assumes uniform layer temperature and constant properties, with linear exchange to a supplied thermal reservoir. Nonlinear radiation, evaporation, internal gradients and heat transport between cells are omitted. It does not predict human comfort or infer properties from the site's surface labels.</p>
     <button id="heat-run" class="primary" type="button">Compare saved layers</button><p id="heat-status" role="status"></p><div id="heat-results"></div>`;
   document.querySelector('.observations').before(panel);
+  const longwavePanel = mountLongwaveHeat({getProject, host: panel});
   const $ = id => panel.querySelector('#' + id);
   let signature = '', lastProject = null, generation = 0, report = null, dirty = false;
   function invalidate(message, state = 'not-compared') {
@@ -45,7 +47,7 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
     }
     $('heat-schedule').value = study ? formatHeatSchedule(study.schedule) : 'minutes,incident_w_m2,reservoir_c,source\n';
   }
-  for (const input of panel.querySelectorAll('form input, form textarea, form select')) input.addEventListener('input', draftChanged);
+  for (const input of panel.querySelectorAll('#heat-form input, #heat-form textarea, #heat-form select')) input.addEventListener('input', draftChanged);
   $('heat-example').addEventListener('click', () => {
     fill({ cellIndex: getProject().surfaceHeatStudy?.cellIndex ?? getProject().selectedIndex ?? 0,
       existing: { absorptivity: .85, capacityJm2K: 40000, exchangeWm2K: 12, initialC: 25, source: 'Fictional thin layer; illustrative constants, not a measured material' },
@@ -145,6 +147,7 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
     }, 20);
   });
   function refresh() {
+    longwavePanel.refresh();
     const p = getProject(), next = JSON.stringify(p); if (next === signature && p === lastProject) return;
     signature = next; lastProject = p; dirty = false; invalidate('Compare the retained declaration after any site change.');
     $('heat-cell').replaceChildren();
@@ -153,3 +156,4 @@ export function mountSurfaceHeat({ getProject, replaceProject, notice }) {
   }
   return { refresh };
 }
+
