@@ -16,7 +16,7 @@ export function assessDurationGoal(candidates,goal) {
    const current=candidate.exposure?.current.find(x=>x.cellIndex===cellIndex),proposed=candidate.exposure?.proposed.find(x=>x.cellIndex===cellIndex);
    if(!current||!proposed||!Number.isFinite(current.minutesAbove)||!Number.isFinite(proposed.minutesAbove))throw Error('Missing maintained exposure for a retained hypothesis');
    const minutesChange=proposed.minutesAbove-current.minutesAbove;
-   return {rateMmHr:candidate.rateMmHr,current,proposed,minutesChange,excessMinutes:minutesChange-goal.maxAdditionalMinutes,meets:minutesChange<=goal.maxAdditionalMinutes};
+   return {...(candidate.hypothesis?{hypothesis:structuredClone(candidate.hypothesis)}:{rateMmHr:candidate.rateMmHr}),current,proposed,minutesChange,excessMinutes:minutesChange-goal.maxAdditionalMinutes,meets:minutesChange<=goal.maxAdditionalMinutes};
   });
   return {cellIndex,thresholdMm:goal.thresholdMm,maxAdditionalMinutes:goal.maxAdditionalMinutes,basis:goal.basis,worstChangeMinutes:Math.max(...witnesses.map(w=>w.minutesChange)),meets:witnesses.every(w=>w.meets),witnesses};
  });
