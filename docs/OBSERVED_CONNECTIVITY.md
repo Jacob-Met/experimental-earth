@@ -109,3 +109,37 @@ keyboard comparison, a real maintained notebook-form entry, source download and
 fresh file reopen, literal attribution, visible desktop/narrow outputs,
 missing-bridge/cut/conflict/contact results and stale/pending-read behavior. A
 successful software course does not establish physical measurement validity.
+
+## Inspect the threshold range
+
+The result also recomputes the smallest connection threshold possible under the
+original bands and, when finite, the smallest threshold supported for every
+completion of those bands. The lower endpoint uses every measured common lower
+bound and zero for unmeasured cells. The upper endpoint is the minimax connection
+across measured common upper bounds; if every offered path needs an unmeasured
+cell, no finite upper endpoint is reported. Unknown upper depths are never
+replaced by the notebook's numeric input ceiling. Supplied upper bands above
+1,000 mm remain visible.
+
+Both endpoints are attained by the corresponding all-lower/all-upper assignments
+when finite, because a connection's minimax depth is monotone in every cell.
+The lower and upper witnesses can be different paths. Below the possible endpoint
+the bands exclude a connection; at or above a finite supported endpoint they
+support one; intermediate thresholds remain unresolved. These are tight bounds
+under only the supplied marginal bands, not probabilities, physical access or
+measurement verification. Unrepresented correlations can narrow the possibilities.
+Repeated-band conflict, numerical contact and disconnected footprints withhold
+this range. Saved investigations retain only original inputs and recompute the
+endpoints on reopening.
+
+Run `node --test tests/observed-connection-range.test.mjs tests/observed-connectivity.test.mjs`.
+Independent simple-path enumeration checks all 729 small-grid band ledgers and
+their agreement with the maintained threshold classification, including equality.
+A separate control enumerates all 64 endpoint completions of six finite bands.
+Further controls include unknown upper bounds, original bands exceeding 1,000 mm,
+endpoints, detours, conflicts, event isolation and raw replay.
+The maintained `tests/observed-connectivity.browser.mjs` course checks visible
+endpoints, no finite upper-bound results, source-only reopening and retirement
+after source edits. Actual browser qualification must be executed before reporting
+success; authored controls remain distinct from field acquisition.
+

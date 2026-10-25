@@ -1,0 +1,110 @@
+{
+  "format": "experimental-earth.observed-range-receipt/v1",
+  "baseline": "b47f034bc7237e222b24aba94e071ef1e2452218",
+  "host": "1ce57a80-331d-495e-8d13-fefb4dfb10ad",
+  "node": "v22.23.4",
+  "native": {
+    "command": "node --test tests/observed-connection-range.test.mjs tests/observed-connectivity.test.mjs",
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "controls": [
+      "729 independently enumerated simple-path band ledgers",
+      "threshold equality at1/3/8/10mm compared to maintained ledger",
+      "64finite endpoint completions",
+      "unknown upper bounds and supplied bands above1000mm",
+      "source conflict, numerical contact, exact time/scenario, source-only replay"
+    ]
+  },
+  "browser": {
+    "command": "CHROME_BIN=/usr/bin/google-chrome-stable node tests/observed-connectivity.browser.mjs",
+    "groups": [
+      "original-band tight threshold endpoints and unknown upper-bound refusal",
+      "original project-file keyboard band path",
+      "maintained notebook form adds attributed held-aside reading",
+      "exact original source Blob and fresh File reopen",
+      "scenario exclusion with no simulation fill-in",
+      "visible desktop/narrow output and literal source text",
+      "missing bridge and attributed high cut",
+      "conflicting and malformed original bands",
+      "source/query invalidation and pending-read race"
+    ],
+    "exceptions": [],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-25T07:27:19.878Z",
+      "completedAt": "2026-10-25T07:27:20.004Z",
+      "durationMs": 126.156272,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "25EFD31F26ED3A3272DAF22CC6749511",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "F1A63CF26869CB0B521643EC4FB5123A"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "version": "Chrome/156.0.8078.47",
+    "runDirectory": "/tmp/earth-observed-connection-e7424e54-a32d-4cb0-b9fa-adfa93cc01d6",
+    "directChildExited": true
+  },
+  "reviewResolution": "Peer review found8-significant-digit endpoint display could overstate a guarantee. Endpoints now use exact String values; actual browser control rejects4mm and supports4.00000001mm against that exact source band.",
+  "scope": "Supplied original depth bands and grid connectivity only; no acquired measurement, water simulation, probabilities or physical-access claim.",
+  "source": {
+    "observed-connectivity-panel.js": {
+      "sha256": "0e8495137a246aba8e0387a3269f3a98edb2b5bcb23ff3a927b3fcb3a2680070",
+      "gitBlob": "da3d4bf7268cba56139c310a24bbf86a849e6784"
+    },
+    "observed-connection-range.js": {
+      "sha256": "6a30d8d00475bb6652e97a4917d12a2a61fb6c270f5e3c85487cca185d0e6b14",
+      "gitBlob": "59e32e90bca0f25f948a1feae254a623981bf3da"
+    },
+    "tests/observed-connection-range.test.mjs": {
+      "sha256": "df82a68be1dda835b99050360b879d6763c008668477ac0e6294ffa9419dcac9",
+      "gitBlob": "3b96cb1d1ba3f8f57cac398ed4d42e9aa5ce89c9"
+    },
+    "tests/observed-connectivity.browser.mjs": {
+      "sha256": "99f69355430bbde842a37548cfbe2d59d6758008af057ad8b8b574b76e779cc4",
+      "gitBlob": "15a756639a730c2cbf4b820a175b5b40c03c4bf4"
+    },
+    "docs/OBSERVED_CONNECTIVITY.md": {
+      "sha256": "68bfdcce05adc2952a703730218d458f1289c1cb5f9921b451a67307a2dc4875",
+      "gitBlob": "1f6c8cc0432e11dc5202dadafc9ce40ba7e71930"
+    }
+  }
+}
