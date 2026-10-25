@@ -1,4 +1,5 @@
 import {inspectObservedConnectivity,exportObservedConnection,reopenObservedConnection} from './observed-connectivity.js';
+import {inspectObservedConnectionRange} from './observed-connection-range.js';
 import {parseConnectivityCells} from './ponding-connectivity.js';
 import {checkProjectFileBytes} from './project-portability.js';
 
@@ -16,7 +17,7 @@ export function mountObservedConnectivity({getProject}){
  <p class="mini-note">Bands are supplied tolerances, not verified truth or probabilities. This assumes the same declared scenario, time and grid cell refer to the same event and location. Roles remain visible; no calibration or held-out score is computed.</p>
  <p id="observed-connection-error" role="alert"></p><p id="observed-connection-source"></p>
  <div id="observed-connection-results" hidden><h3 id="observed-connection-status" aria-live="polite"></h3><p id="observed-connection-witness" style="overflow-wrap:anywhere"></p><p id="observed-connection-unknown" style="overflow-wrap:anywhere"></p>
- <details><summary>Inspect every offered cell and original source</summary><div id="observed-connection-ledger"></div></details>
+ <p id="observed-connection-range" style="overflow-wrap:anywhere"></p><details><summary>Inspect every offered cell and original source</summary><div id="observed-connection-ledger"></div></details>
  <button id="observed-connection-export" class="subtle" type="button">Download original notebook and question</button></div>
  <label class="input-label">Reopen an evidence connection investigation<input id="observed-connection-import" type="file" accept=".json,application/json"></label>
  <p class="mini-note">This establishes only a conditional depth-band relation on a grid. It does not establish walkability, physical access, safety, travel time or permission to intervene. Reopening uses an isolated original project and never replaces the working site.</p>`;
@@ -31,6 +32,12 @@ export function mountObservedConnectivity({getProject}){
   $('observed-connection-status').textContent=statuses[next.status];
   $('observed-connection-witness').textContent=next.status==='band-supported'?`Every cell on this path has a common upper band at or below ${number(next.query.thresholdMm)} mm: ${next.path.map(i=>label(i,project)).join(' → ')}.`:next.status==='unresolved'?`This merely possible path still depends on unresolved cells: ${next.path.map(i=>label(i,project)).join(' → ')}.`:next.status==='band-excluded'?`Every offered connection meets at least one of these above-threshold cells: ${next.boundary.map(i=>label(i,project)).join(', ')}. Each has a common lower band strictly above ${number(next.query.thresholdMm)} mm.`:['conflicting-bands','roundoff-contact'].includes(next.status)?'Inspect the original repeated-band diagnostic below. No reading was removed or corrected.':'Even an entirely dry offered footprint has no edge-adjacent connection between these endpoints.';
   $('observed-connection-unknown').textContent=next.status==='unresolved'?`Unresolved cells on that possible path: ${next.unresolvedIndices.map(i=>label(i,project)+' ('+(next.cells[i].status==='unmeasured'?'unmeasured':'band spans threshold')+')').join(', ')}. This is not a ranked measurement recommendation.`:'';
+  const range=inspectObservedConnectionRange(project,next.query);
+  $('observed-connection-range').textContent=range.possibleThresholdMm===null
+   ? 'Threshold range withheld: resolve the source-band or footprint condition above first.'
+   : `Across all depths consistent with only these original bands, the smallest connection threshold can be as low as ${String(range.possibleThresholdMm)} mm. `+(range.supportedThresholdMm===null
+    ? 'No finite threshold is supported for every completion: every offered path needs at least one unmeasured cell. No maximum depth is assigned to those cells.'
+    : `A threshold of ${String(range.supportedThresholdMm)} mm supports a connection for every such completion. This endpoint is attained by the supplied upper bands. Supported witness: ${range.supportedPath.map(i=>label(i,project)).join(' → ')}.`)+` Lower-band witness: ${range.possiblePath.map(i=>label(i,project)).join(' → ')}. These are tight bounds under the supplied bands alone, not probabilities, verified measurements or physical access. Correlations not supplied here may narrow the range.`;
   const ledger=$('observed-connection-ledger');ledger.replaceChildren();
   for(const i of next.query.allowedIndices){const cell=next.cells[i],section=document.createElement('div');section.style.cssText='border-top:1px solid #dce5df;padding:10px 0;overflow-wrap:anywhere';const title=document.createElement('strong');title.textContent=label(i,project)+': '+cell.status.replaceAll('-',' ')+(cell.lowerMm!==null&&cell.lowerMm!==undefined?` · common band [${number(cell.lowerMm)}, ${number(cell.upperMm)}] mm`:'');section.append(title);
    if(cell.conflict){const p=document.createElement('p');p.textContent=`Repeated-band ${cell.conflict.status}; reported gap ${String(cell.conflict.gapMm)} mm, separate numerical guard ${String(cell.conflict.numericalGuardMm)} mm. Original reading indices ${cell.conflict.readings.map(r=>r.index+1).join(', ')}.`;section.append(p);}
@@ -46,3 +53,4 @@ export function mountObservedConnectivity({getProject}){
  $('observed-connection-import').addEventListener('change',async()=>{const token=++serial,file=$('observed-connection-import').files[0],original=JSON.stringify(getProject());if(!file)return;clear();try{checkProjectFileBytes(file.size);const text=await file.text();if(token!==serial||original!==JSON.stringify(getProject()))return;const reopened=reopenObservedConnection(text);display(reopened.project,reopened.report,'Reopened isolated original notebook');setForm(reopened.project,reopened.report.query);}catch(error){if(token===serial)$('observed-connection-error').textContent=error.message;}finally{if(token===serial)$('observed-connection-import').value='';}});
  return {refresh(){serial++;if(report&&context!==JSON.stringify(getProject()))clear('Working notebook or site changed. Inspect again or reopen the original investigation.');}};
 }
+
