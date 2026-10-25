@@ -1,0 +1,57 @@
+import {fixture} from './component-receiving-evidence-fixture.mjs';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+import { randomUUID } from 'node:crypto';
+import { writeFileSync } from 'node:fs';
+import { setTimeout as delay } from 'node:timers/promises';
+import { withBrowserSession } from './support/browser-session.mjs';
+import { requireChromiumSandbox } from './support/chromium-sandbox.mjs';
+const root = fileURLToPath(new URL('../', import.meta.url));
+const result = await withBrowserSession({root, chromeBin:process.env.CHROME_BIN ?? '/opt/google/chrome/chrome',
+  runDirectory:process.env.BROWSER_RUN_DIRECTORY ?? `/tmp/earth-factors-${randomUUID()}`},
+async ({send,evaluate,baseUrl,exceptions,runDirectory}) => {
+  const sandbox = await requireChromiumSandbox({send});
+  assert.equal(sandbox.admitted,true);
+  assert.equal(sandbox.observation.rows.layer1,'Namespace');
+  for (const protection of ['pid','network','seccomp','adequate']) assert.equal(sandbox.observation.checks[protection],true);
+  writeFileSync(`${runDirectory}/proposal-factorial-sandbox.json`,JSON.stringify(sandbox,null,2));
+  await send('Runtime.enable'); await send('Page.enable');
+  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+  await send('Page.navigate',{url:baseUrl});
+  for(let i=0;i<40;i++){await delay(100);if(await evaluate("!!document.querySelector('[data-component-partition]')"))break;}
+  const results = "document.querySelector('[data-component-results]')";
+  const status = "document.querySelector('[data-component-status]').textContent";
+  const run = () => evaluate("document.querySelector('[data-component-run]').click()");
+  const key = async (name,code) => {for(const type of ['keyDown','keyUp'])await send('Input.dispatchKeyEvent',{type,key:name,code:name,windowsVirtualKeyCode:code});};
+  const choose = async (selector,value) => evaluate(`{const e=document.querySelector(${JSON.stringify(selector)});e.value=${JSON.stringify(value)};e.dispatchEvent(new Event('change',{bubbles:true}));}`);
+  const input=fixture(),original={schema:'experimental-earth-draining-evidence/1',...input};
+  const saved=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+  await choose('[data-component-partition]','three-factors');
+  const upload=async(value)=>{await evaluate(`(async()=>{const dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(JSON.stringify(value))}],'original-evidence.json',{type:'application/json'}));const input=document.querySelector('[data-component-receiving-file]');input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,100));})()`);};
+  await upload(original);await run();assert.match(await evaluate(status),/4 set\(s\) of eight/);
+  assert.equal(await evaluate("document.querySelector('[data-component-mode]').value"),'all');
+  assert.equal(await evaluate("document.querySelector('[data-component-mode] [value=default]').disabled"),true);
+  assert.equal(await evaluate(`${results}.querySelectorAll('table').length`),4);
+  await choose('[data-component-mode]','surviving');await run();assert.match(await evaluate(status),/2 set\(s\) of eight/);
+  assert.equal(await evaluate(`${results}.querySelector('table').querySelectorAll('tbody tr').length`),4);
+  assert.match(await evaluate(`${results}.textContent`),/h1.*−?0.094|h1.*-0.094/);
+  assert.match(await evaluate(`${results}.textContent`),/h2.*\+0.081/);
+  assert.match(await evaluate(`${results}.textContent`),/\+5.604/);
+  await evaluate("document.querySelector('[data-component-rate]').focus()");await key('ArrowDown',40);
+  assert.equal(await evaluate("document.activeElement.matches('[data-component-rate]')"),true);assert.match(await evaluate(`${results}.textContent`),/-6.568/);
+  assert.match(await evaluate(`${results}.textContent`),/Selected original declaration h2/);
+  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),saved);
+  const exported=await evaluate(`(async()=>{let blob;const old=URL.createObjectURL;URL.createObjectURL=value=>{blob=value;return old(value)};document.querySelector('[data-component-receiving-save]').click();URL.createObjectURL=old;return JSON.parse(await blob.text());})()`);assert.deepEqual(exported,original);
+  const rejected=structuredClone(original);rejected.project.observations[1].depthMm=900;await upload(rejected);await choose('[data-component-mode]','surviving');await run();assert.match(await evaluate(status),/No receiving explanations/);assert.equal(await evaluate(`${results}.children.length`),0);
+  await choose('[data-component-mode]','all');await run();assert.match(await evaluate(status),/4 set/);
+  const missing=structuredClone(original);missing.project.observations=[];await upload(missing);await choose('[data-component-mode]','calibration');await run();assert.match(await evaluate(status),/Assign original calibration/);
+  await upload(exported);await choose('[data-component-mode]','surviving');await run();
+  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  const dimensions=await evaluate("({width:innerWidth,scrollWidth:document.documentElement.scrollWidth})");assert.equal(dimensions.scrollWidth,dimensions.width);
+  await evaluate("document.querySelector('[data-component-results]').scrollIntoView({behavior:'instant',block:'start'})");await delay(650);const shot=await send('Page.captureScreenshot',{format:'png'});writeFileSync(`${runDirectory}/supported-mobile.png`,Buffer.from(shot.data,'base64'));
+  await evaluate("document.querySelector('[data-component-results] table').scrollIntoView({behavior:'instant',block:'start'})");await delay(100);const tableShot=await send('Page.captureScreenshot',{format:'png'});writeFileSync(`${runDirectory}/supported-table-mobile.png`,Buffer.from(tableShot.data,'base64'));
+  await evaluate("document.querySelector('[data-component-receiving-clear]').click()");assert.equal(await evaluate("document.querySelector('[data-component-mode] [value=default]').disabled"),false);
+  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),saved);assert.deepEqual(exceptions,[]);
+  return {checks:['original model-specific file opens separately','all offered explanations retained','original-supported pair retains opposing consequences','all rejected alternatives visible','hypothesis keyboard focus and declaration match','source-only export/reopen','contradicted held-aside refuses without fallback','missing calibration refuses','390px layout','retirement restores existing mode'],dimensions};
+});
+console.log(JSON.stringify({status:'PASS',...result},null,2));
