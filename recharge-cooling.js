@@ -134,13 +134,15 @@ export function evaluateRechargeCoolingTarget(result,side,kind,minutes=[],window
  if(result?.schema!=='experimental-earth-recharge-cooling-result/1'||!sides.includes(side)||!kinds.includes(kind))throw Error('Use a computed recharge timing and selected place/course');
  const duration=result.durationMinutes;
  if(!Array.isArray(minutes)||!Array.isArray(windows)||minutes.length+2*windows.length>2000||
-  Array.from(minutes).some(t=>!finite(t,0,duration))||Array.from(windows).some(w=>!w||!finite(w.fromMinute,0,duration)||!finite(w.minute,0,duration)||!(w.minute>w.fromMinute)))
-  throw Error('Request finite times and nonempty windows within the recharge exposure and2000endpoint work limit');
+  Array.from(minutes).some(t=>!finite(t,0,duration))||Array.from(windows).some(w=>!w||!finite(w.fromMinute,0,duration)||!finite(w.minute,0,duration)||!(w.minute>w.fromMinute)||!((w.minute-w.fromMinute)/1440>=2**-1022)))
+  throw Error('Request finite times and nonempty, numerically resolvable windows within the recharge exposure and2000endpoint work limit');
  const times=[...new Set([0,duration,...minutes,...windows.flatMap(w=>[w.fromMinute,w.minute])])].sort((a,b)=>a-b),p=result[side][kind];
  const averages=windows.map(window=>{
   let surfaceMeanC=0,subsurfaceMeanC=0,totalWeight=0,segments=0;
   for(const row of p.segments){
    const from=Math.max(window.fromMinute,row.startMinute),to=Math.min(window.minute,row.endMinute);if(!(to>from))continue;
+   // Subnormal days lose relative duration on the seconds→days→seconds round trip.
+   if(!((to-from)/1440>=2**-1022))throw Error('This clipped averaging interval is too short for the retained time scale');
    const initial=at(result,side,kind,from);
    const step=coupled(result.study.cooling,side,p.capacityMm,row.forcingIndex,row.rechargeMmPerDay,initial,(to-from)*60,true);
    const weight=(to-from)/(window.minute-window.fromMinute);surfaceMeanC+=step.surfaceMeanC*weight;subsurfaceMeanC+=step.subsurfaceMeanC*weight;totalWeight+=weight;segments++;
