@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "checks": [
+    "keyboard comparison keeps individual support and empty shared intersection with literal original sources",
+    "keyboard conflict explanation retains original roles and explicit removal witnesses across offered rates",
+    "approximate previews retain verbatim full bounds and keyboard-accessible exact witnesses",
+    "input-only replay independently recomputes conflict witnesses without adopting original site",
+    "stale file cannot repaint after source reset",
+    "rising and falling support stays disconnected in actual consumer",
+    "desktop and narrow expanded interval/source views have no horizontal overflow"
+  ],
+  "dimensions": [
+    {
+      "inner": 1440,
+      "scroll": 1425
+    },
+    {
+      "inner": 390,
+      "scroll": 390
+    }
+  ],
+  "sandboxAdmission": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T01:46:45.005Z",
+    "completedAt": "2026-10-25T01:46:45.097Z",
+    "durationMs": 91.15018500000002,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "E7F605373153EDE80FAA664931BA123A",
+      "type": "page",
+      "title": "Sandbox Status",
+      "url": "",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "D09204EFEBC09E9A0E3CE8CEB211E990"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T01:46:44.684Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/earth-e794-clock-conflict-display-receiving",
+    "profileDirectory": "/tmp/earth-e794-clock-conflict-display-receiving/profile",
+    "stdoutFile": "/tmp/earth-e794-clock-conflict-display-receiving/stdout.bin",
+    "stderrFile": "/tmp/earth-e794-clock-conflict-display-receiving/stderr.bin",
+    "receiptFile": "/tmp/earth-e794-clock-conflict-display-receiving/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/earth-e794-clock-conflict-display-receiving/profile",
+      "about:blank"
+    ],
+    "pid": 41200,
+    "cdpUrl": "http://127.0.0.1:38793",
+    "browserWebSocketUrl": "ws://127.0.0.1:38793/devtools/browser/ed9f131c-58e5-4183-87d0-5346b7ca4a81",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T01:46:44.871Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/earth-e794-clock-conflict-display-receiving/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/earth-e794-clock-conflict-display-receiving/stderr.bin",
+      "bytes": 5314,
+      "sha256": "d0c87852010f5eb602444ac27bfa8db36b903434f6afae880ee02e810133f9d8"
+    },
+    "finishedAt": "2026-10-25T01:46:47.357Z"
+  }
+}

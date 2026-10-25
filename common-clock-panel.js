@@ -1,3 +1,4 @@
+import {mountClockConflictExplanation} from './common-clock-conflict-panel.js';
 import {buildCommonClockReceipt,serializeCommonClockReceipt,parseCommonClockReceipt,checkCommonClockBytes} from './common-clock-receipt.js';
 const el=(tag,text)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;return node;};
 const intervals=rows=>rows===null?'not supplied':rows.length?rows.map(([a,b])=>a===b?`{${a}}`:`[${a}, ${b}]`).join(' ∪ '):'none';
@@ -13,6 +14,7 @@ function show(container,{receipt,comparison},reopened=false){
   for(const [label,bands]of [['Calibration-compatible offsets',c.calibrationOffsets],['Held-aside-compatible offsets',c.challengeOffsets],['Common surviving offsets',c.survivingOffsets]]){const line=el('p',`${label}: ${intervals(bands)} minutes.`);line.style.overflowWrap='anywhere';section.append(line);}
   const list=el('ol');for(const row of c.readings){const r=row.reading,li=el('li');li.style.overflowWrap='anywhere';li.append(el('p',`Source #${row.index+1}; cell ${r.cellIndex+1}; ${r.scenario}, ${r.use}. Original minute ${r.minute}; depth ${r.depthMm} ± ${r.uncertaintyMm} mm. Source: ${r.source}`));li.append(el('p',`Event-admitted offset domain: ${intervals(row.admittedOffsetDomain?[row.admittedOffsetDomain]:[])}. Depth-compatible offsets: ${intervals(row.offsetIntervals)} minutes. ${row.status==='outside-modeled-window'?'No declared offset puts this reading inside the modeled event.':'Numerical depth guard: '+row.guardMm.toPrecision(3)+' mm.'}`));list.append(li);}section.append(list);container.append(section);
  }
+ mountClockConflictExplanation(container,comparison);
  container.append(el('p',comparison.meaning));container.append(el('p','Input files contain the complete original project. Source statements are declarations, not authenticated measurements; review before sharing. No clock offset, material rate or corrected reading is adopted.'));
 }
 export function mountCommonClockPanel({getProject,notice}){
