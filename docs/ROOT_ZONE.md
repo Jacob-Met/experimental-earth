@@ -111,3 +111,25 @@ These are repeatable outputs of the declared model, not observed environmental
 benefits. The two changes in source infiltration and rooted capacity are
 combined in this first comparison; a separate controlled decomposition is
 needed to attribute their contributions.
+
+
+## Separate recharge and rooted-store changes
+
+The comparison also evaluates four conditional combinations using the same two original event budgets and the same dry schedule. It never runs a new hypothetical site map:
+
+| Case | Original modeled recharge | Complete rooted-store declaration |
+| --- | --- | --- |
+| Existing | Existing cell | Existing store |
+| Recharge change alone | Proposed cell | Existing store |
+| Rooted-store change alone | Existing cell | Proposed store |
+| Both changes | Proposed cell | Proposed store |
+
+A rooted-store change carries its field-capacity/wilting fractions, root depth, initial available water, depletion fraction and attributed source together. Calling this a capacity-only effect would be incorrect unless the other declared values were held fixed. Crossed cases are numerical comparisons; the underlying landscape may couple infiltration and root-zone properties, so independently crossing them need not describe a realizable physical intervention.
+
+For any displayed quantity q, the isolated recharge change is q(recharge alone) − q(existing), the isolated store change is q(store alone) − q(existing), and the combined change is q(both) − q(existing). Interaction is the combined change minus the two isolated changes. It can be positive or negative and is reported in the original units. It is not a fitted causal contribution, allocation of benefit, probability or proof that either change alone is preferable.
+
+The authored example at D4 ends with 0.851340877, 3.719224985, 4.359645135 and 29.180238125 mm available in the four cases, respectively. The resulting interaction is 21.952708882 mm. Applying the proposed recharge to the existing 45 mm-capacity store drains 38.763413481 mm immediately. Applying the existing recharge to the proposed 108 mm-capacity store supplies less transpiration than the existing store: the unchanged 10 mm initial water occupies a smaller fraction of capacity, and the declared demand-reduction threshold is higher. The combined result therefore cannot be inferred by adding the isolated results. These are authored model controls, not measured field outcomes.
+
+The matrix supports available water, supplied transpiration, unmet demand, immediate drainage and demand-limited days. Select any case to inspect its complete original water account and rooted-store source. The existing day controls evaluate all four exact histories at the selected day; plotted interpolation is not used. At every day, initial water + recharge = immediate drainage + supplied transpiration + remaining available water, apart from floating-point roundoff. The corresponding interactions in drainage, supplied transpiration and remaining water sum to zero because initial-water and recharge changes enter separately.
+
+The investigation file remains the same input-only format. Reopening recomputes both original infiltration budgets and all four dry histories; derived cases and interactions are not accepted from a file. Changing an input invalidates the entire comparison.

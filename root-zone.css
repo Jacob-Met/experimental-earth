@@ -14,3 +14,12 @@
 @media(max-width:650px){#root-zone .rz-pair{grid-template-columns:minmax(0,1fr)}#root-zone .rz-table{font-size:12px}#root-zone th,#root-zone td{padding:9px 4px}#root-zone .rz-interval{grid-template-columns:minmax(0,1fr)}}
 
 @media(max-width:650px){#root-zone #rz-chart text{font-size:23px}}
+
+
+#root-zone .rz-factors{border-top:2px solid #b3cdbf;margin-top:24px;padding-top:12px}
+#root-zone .rz-factor-matrix th:first-child{width:34%}#root-zone .rz-factor-matrix td{width:33%}
+#root-zone .rz-factor-matrix button{width:100%;font-variant-numeric:tabular-nums;padding:11px 4px;font-weight:650}
+#root-zone .rz-factor-matrix button[aria-pressed=true]{background:#174e43;color:#fff;box-shadow:inset 0 0 0 2px #174e43}
+#root-zone .rz-factor-matrix button:focus-visible{outline:3px solid #d57d20;outline-offset:3px}
+#root-zone #rz-factor-case{padding:14px;background:#f2f6f0;border-radius:12px}
+#root-zone #rz-factor-case p{font-size:13px}#root-zone #rz-factor-case h4{margin-top:0}
