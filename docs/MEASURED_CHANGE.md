@@ -1,8 +1,9 @@
 # Original measured-change comparison
 
 The main Rain Lab includes **Did the measured change differ from another place?**.
-Use the fictional comparison button to inspect the JSON input format, then supply
-four original bounded observations: treated/comparison places before/after.
+Use the labeled controls to supply four original bounded observations:
+treated/comparison places before/after. The fictional comparison fills an authored
+example; original JSON investigation downloads from the first version still reopen.
 All four measure the same declared quantity in exactly the same units. Before
 and after are explicit valid UTC timestamps, shared by the two places.
 
@@ -46,3 +47,5 @@ Independent SECOND GROUND review found no blocker; its requested floating-point
 endpoint wording is included. These are authored software controls, not field
 validation. Run `node tests/measured-change.browser.mjs` with PLAYWRIGHT_MODULE,
 BROWSER_EXECUTABLE_PATH and BROWSER_ARTIFACT_DIR pointing to approved local tools.
+
+Repeated earlier pairs can now challenge a constant between-place gap. See [paired series](PAIRED_SERIES.md) for its conditional hypothesis, original-source intake and limits.
