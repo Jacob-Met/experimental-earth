@@ -1,3 +1,4 @@
+import {mountObservedConnectivity} from './observed-connectivity-panel.js';
 import {compare,validateProject} from './core.js';
 import {comparePondingConnections,parseConnectivityCells,validateConnectivityQuestion} from './ponding-connectivity.js';
 import {checkProjectFileBytes} from './project-portability.js';
@@ -30,5 +31,6 @@ export function mountPondingConnectivity({getProject,getResults}) {
   $('connection-time').addEventListener('change',draw);
   $('connection-export').addEventListener('click',()=>{try{if(!study)throw new Error('Compare a connection first.');const text=JSON.stringify({schema:'experimental-earth-connection/1',project:source,question:study.question},null,2);checkProjectFileBytes(new TextEncoder().encode(text).length);const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='earth-connection-investigation.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){$('connection-error').textContent=e.message;}});
   $('connection-import').addEventListener('change',async()=>{const token=++serial,file=$('connection-import').files[0],original=JSON.stringify(getProject());if(!file)return;clear();try{checkProjectFileBytes(file.size);const text=await file.text();if(token!==serial||original!==JSON.stringify(getProject()))return;checkProjectFileBytes(new TextEncoder().encode(text).length);const input=JSON.parse(text);if(input?.schema!=='experimental-earth-connection/1')throw new Error('Unsupported connection investigation.');const p=validateProject(input.project),q=validateConnectivityQuestion(input.question,p.width,p.height);receive(p,q,compare(p),'Reopened isolated original site');$('connection-start').value=label(q.startIndex,p);$('connection-end').value=label(q.endIndex,p);$('connection-footprint').value=q.allowedIndices.map(i=>label(i,p)).join(' ');}catch(e){if(token===serial)$('connection-error').textContent=e.message;}finally{if(token===serial)$('connection-import').value='';}});
-  return {refresh(){serial++;if(study&&context!==JSON.stringify(getProject()))clear('Working site changed. Compare again or reopen the original investigation.');}};
+  const observedPanel=mountObservedConnectivity({getProject});
+  return {refresh(){observedPanel.refresh();serial++;if(study&&context!==JSON.stringify(getProject()))clear('Working site changed. Compare again or reopen the original investigation.');}};
 }
