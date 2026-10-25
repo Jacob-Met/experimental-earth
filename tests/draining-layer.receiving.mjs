@@ -112,10 +112,14 @@ await withBrowserSession({root, chromeBin: process.env.CHROME_BIN ?? '/opt/googl
   report.push('source text stays inert and actual current-site edits retire the current-source result');
 
   await evaluate("document.getElementById('dl-example').click()"); await run();
-  await evaluate("document.getElementById('draining-layer').scrollIntoView()");
+  await evaluate("document.getElementById('draining-layer').scrollIntoView({behavior:'instant',block:'start'})");
+  assert.ok(await evaluate("(()=>{const r=document.getElementById('draining-layer').getBoundingClientRect();return r.top>=-1 && r.top<20})()"), 'desktop capture must show the actual draining-layer section');
   await writeFile(runDirectory + '/desktop.png', Buffer.from((await send('Page.captureScreenshot', {format: 'png'})).data, 'base64'));
+  await evaluate("document.getElementById('dl-results').scrollIntoView({behavior:'instant',block:'start'})");
+  await writeFile(runDirectory + '/desktop-results.png', Buffer.from((await send('Page.captureScreenshot', {format: 'png'})).data, 'base64'));
   await send('Emulation.setDeviceMetricsOverride', {width: 390, height: 844, deviceScaleFactor: 1, mobile: true});
-  await evaluate("document.getElementById('dl-results').scrollIntoView()");
+  await evaluate("document.getElementById('dl-results').scrollIntoView({behavior:'instant',block:'start'})");
+  assert.ok(await evaluate("(()=>{const r=document.getElementById('dl-results').getBoundingClientRect();return r.top>=-1 && r.top<20})()"), 'mobile capture must show the actual result');
   assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth + 1'), true);
   assert.equal(await evaluate("(()=>{let e=document.querySelector('#dl-results .dl-table');return e.scrollWidth>e.clientWidth})()"), true);
   await writeFile(runDirectory + '/mobile.png', Buffer.from((await send('Page.captureScreenshot', {format: 'png'})).data, 'base64'));
