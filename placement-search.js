@@ -3,6 +3,7 @@ import { validatePlacementTargets, assessPlacementTargets } from './placement-co
 import { validateProject, SURFACES } from './core.js';
 import { createInterventionBatch, summarizeEffects } from './intervention-study.js';
 import { validateStudy, DEFAULT_STUDY } from './study-contract.js';
+import { validateDrainingLayer } from './draining-infiltration.js';
 
 export const PLACEMENT_METRICS = Object.freeze({
   unabsorbedLiters: {label:'Water not absorbed',unit:'L'},
@@ -28,8 +29,13 @@ export function validatePlacementQuery(project, query) {
   if (!['all','calibration','surviving'].includes(query.subset)) throw Error('Choose a supported evidence subset');
   const study = query.study ?? project.infiltrationStudy ?? DEFAULT_STUDY;
   validateStudy(study);
+  const drainingLayer = query.drainingLayer ?? null;
+  if (drainingLayer !== null) {
+    validateDrainingLayer(drainingLayer, SURFACES);
+    if (query.subset !== 'all') throw Error('A declared receiving layer requires all declared rates; unlimited-receiver evidence cannot filter this model');
+  }
   return {eligibleCells:[...query.eligibleCells].sort((a,b)=>a-b),maxEdits:query.maxEdits,
-    surface:query.surface,metric:query.metric,subset:query.subset,study:structuredClone(study),targets:validatePlacementTargets(project,query.targets),durationGoal:validateDurationGoal(project,query.durationGoal)};
+    surface:query.surface,metric:query.metric,subset:query.subset,study:structuredClone(study),targets:validatePlacementTargets(project,query.targets),durationGoal:validateDurationGoal(project,query.durationGoal),...(drainingLayer ? {drainingLayer:structuredClone(drainingLayer)} : {})};
 }
 
 export function estimatePlacementWork(project,query,stepsMinutes=[project.weather.stepMinutes]) {
@@ -77,18 +83,18 @@ function evaluatePlacements(project, input, fixedRates=null) {
   if(work>PLACEMENT_WORK_LIMIT)throw Error('Placement comparison exceeds 3 million estimated model/exposure work units; reduce eligible cells, duration, grid or hypothesis count');
   const subset=fixedRates?'all':query.subset;
   const compareVariant=createInterventionBatch();
-  const original=compareVariant(project,{study:query.study,subset,allowAbsentSurface:subset==='all',exposureRequest});
+  const original=compareVariant(project,{study:query.study,subset,allowAbsentSurface:subset==='all',exposureRequest,drainingLayer:query.drainingLayer});
   const context={query,sourceSignature:placementSignature(project),variantCount:choices.length,
     cellStepUpperBound:work,workDetail,evidenceTarget:query.study.target,supportMode:fixedRates?'fixed-original-support':'original-source-filter'};
   if(original.status!=='compared')return {...context,status:original.status,plans:[],best:[]};
   const rates=fixedRates??original.candidates.map(c=>c.rateMmHr),reference=new Map(original.candidates.map(c=>[c.rateMmHr,c]));
   const plans=choices.map(cells=>{
     // Do not refit original observations against hypothetical edited geometry.
-    const computed=cells.length?compareVariant(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true,exposureRequest}):original;
+    const computed=cells.length?compareVariant(edited(project,query,cells),{study:query.study,subset:'all',allowAbsentSurface:true,exposureRequest,drainingLayer:query.drainingLayer}):original;
     if(computed.status!=='compared')throw Error('Not every declared variant can be evaluated by the maintained intervention comparison; choose another eligible set or studied surface');
     const candidates=computed.candidates.filter(c=>rates.includes(c.rateMmHr)).map(c=>{
       const base=reference.get(c.rateMmHr);
-      return {rateMmHr:c.rateMmHr,...(exposureRequest?{exposure:{current:base.pondingExposure.proposal,proposed:c.pondingExposure.proposal}}:{}),metrics:Object.fromEntries(Object.keys(PLACEMENT_METRICS).map(key=>
+      return {rateMmHr:c.rateMmHr,...(c.drainingLayer?{drainingLayer:{current:structuredClone(base.drainingLayer.proposal),proposed:structuredClone(c.drainingLayer.proposal)}}:{}),...(exposureRequest?{exposure:{current:base.pondingExposure.proposal,proposed:c.pondingExposure.proposal}}:{}),metrics:Object.fromEntries(Object.keys(PLACEMENT_METRICS).map(key=>
         [key,{current:value(base,key),proposed:value(c,key),delta:value(c,key)-value(base,key)}])),
         peakDeltaMm:c.peakDeltaMm.map((depth,i)=>depth-base.peakDeltaMm[i]),massErrorLiters:structuredClone(c.massErrorLiters)};
     });
@@ -103,7 +109,7 @@ function evaluatePlacements(project, input, fixedRates=null) {
   const minimum=qualifying[0]?.score,tieGuard=minimum===undefined?0:1e-8*Math.max(1,Math.abs(minimum));
   return {...context,status:'compared',ratesMmHr:rates,sourceAffected:structuredClone(original.affected),plans,best:qualifying.filter(p=>Math.abs(p.score-minimum)<=tieGuard).map(p=>p.cells),tieGuard,qualifyingCount:qualifying.length,
     adoptionBlockedByProposalEvidence:project.observations.some(o=>o.scenario==='proposal'),
-    semantics:'Worst additional change from the current proposal across the fixed hypotheses from the unchanged source study. This is a finite comparison over declared eligible cells, not a field recommendation or an optimum outside this set.'};
+    semantics:query.drainingLayer?'Worst additional change from the current proposal across every declared rate with the same explicit finite draining receiver. Original observations have not calibrated these receiving assumptions. This is a finite conceptual comparison, not a field recommendation or an optimum outside this set.':'Worst additional change from the current proposal across the fixed hypotheses from the unchanged source study. This is a finite comparison over declared eligible cells, not a field recommendation or an optimum outside this set.'};
 }
 
 /** Explicit hypothetical adoption, with no evidence reassignment or deletion. */
