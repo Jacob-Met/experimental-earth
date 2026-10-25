@@ -1,3 +1,6 @@
+import { compareReceivingComponents } from './component-receiving-layer.js';
+import { parseDrainingLayer, serializeDrainingLayer, checkDrainingFileBytes, DRAINING_MEANING } from './draining-layer-study.js';
+import { DEFAULT_STUDY } from './study-contract.js';
 import { compareThreeFactors, compareThreeFactorHypotheses } from './proposal-factorial.js';
 import { componentEditIndices, edgeGroundEdits, compareEdgesGround, surfaceElevationEdits, compareProposalComponents, compareSurfaceElevation, compareComponentHypotheses } from './proposal-components.js';
 
@@ -14,6 +17,13 @@ export function mountProposalComponents({ getProject }) {
       <option value="three-factors">Surface, elevation and internal edges separately</option>
     </select></label>
     <p data-component-partition-help></p>
+    <fieldset data-component-receiving hidden><legend>Compare receiving assumptions from an original investigation</legend>
+      <p>Open the original JSON saved by the draining receiving-layer investigation. Its own plans, storm and layer are compared here without replacing the active site. Only default capacities or all declared rates are supported. Switching to another proposal partition closes this original source.</p>
+      <label>Original receiving-layer investigation<input type="file" accept=".json,application/json" data-component-receiving-file></label>
+      <p data-component-receiving-source>No receiving investigation open; using the active site and unlimited receiving.</p>
+      <button type="button" data-component-receiving-save disabled>Save original receiving investigation</button>
+      <button type="button" data-component-receiving-clear disabled>Return to active site</button>
+    </fieldset>
     <p data-cell-explanation>Each selected cell carries all its authored changes together, including its canonical east/south internal edges.
     An edge shared with a neighboring cell belongs to its west/north cell. This experiment separates
     modeled effects; it does not establish real-world causality or recommend construction.</p>
@@ -37,9 +47,38 @@ export function mountProposalComponents({ getProject }) {
   const mode = panel.querySelector('[data-component-mode]');
   const partition = panel.querySelector('[data-component-partition]');
   mode.addEventListener('change', () => { invalidate(); updatePartitionControls(); });
-  partition.addEventListener('change', () => { invalidate(); updatePartitionControls(); });
+  partition.addEventListener('change', () => { if (partition.value !== 'three-factors') { ++receivingGeneration; receivingSource = null; fingerprint = undefined; describeReceiving(); refresh(); } invalidate(); updatePartitionControls(); });
   const selected = new Set();
-  let fingerprint;
+  let fingerprint, receivingSource = null, receivingGeneration = 0;
+  const receivingFile = panel.querySelector('[data-component-receiving-file]');
+  const receivingSave = panel.querySelector('[data-component-receiving-save]');
+  const receivingClear = panel.querySelector('[data-component-receiving-clear]');
+  function sourceProject() { return receivingSource?.project ?? getProject(); }
+  function describeReceiving() {
+    const item = receivingSource;
+    panel.querySelector('[data-component-receiving-source]').textContent = item
+      ? `Original source: ${item.project.title}; ${item.project.width} × ${item.project.height} cells. ${item.layer.surface}: capacity ${item.layer.capacityMm} mm, initially ${item.layer.initialStoredMm} mm, drainage ${item.layer.drainagePerHour} /hour. Declaration: ${item.layer.source}. Active site remains separate.`
+      : 'No receiving investigation open; using the active site and unlimited receiving.';
+    receivingSave.disabled = receivingClear.disabled = !item;
+  }
+  receivingFile.addEventListener('change', async () => {
+    const generation = ++receivingGeneration, file = receivingFile.files[0];
+    if (!file) return;
+    try {
+      checkDrainingFileBytes(file.size);
+      const parsed = parseDrainingLayer(await file.text());
+      if (generation !== receivingGeneration) return;
+      receivingSource = parsed; fingerprint = undefined; refresh(); describeReceiving();
+      status.textContent = 'Original receiving investigation opened. Choose default capacities or all declared rates, then compare both receiving assumptions.';
+    } catch (error) { if (generation === receivingGeneration) { invalidate(); status.textContent = `Original investigation not opened: ${error.message}. Previous source retained.`; } }
+    finally { if (generation === receivingGeneration) receivingFile.value = ''; }
+  });
+  receivingClear.addEventListener('click', () => { ++receivingGeneration; receivingSource = null; fingerprint = undefined; describeReceiving(); refresh(); });
+  receivingSave.addEventListener('click', () => {
+    if (!receivingSource) return;
+    const url = URL.createObjectURL(new Blob([serializeDrainingLayer(receivingSource.project, receivingSource.layer)], {type:'application/json'}));
+    const link = document.createElement('a'); link.href = url; link.download = 'original-component-receiving-investigation.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
   const fmt = n => Number(n).toLocaleString('en-US', { maximumFractionDigits: 3 });
   const signed = n => `${n > 0 ? '+' : ''}${fmt(n)}`;
   const cellName = (i, width) => `${String.fromCharCode(65 + i % width)}${Math.floor(i / width) + 1}`;
@@ -49,9 +88,10 @@ export function mountProposalComponents({ getProject }) {
     status.textContent = partition.value === 'three-factors' ? 'Compare all eight combinations of surface, elevation and internal edges.' : partition.value === 'cells' ? 'Choose at least one edited cell for A and leave at least one for B, then compare.' : partition.value === 'edges-ground' ? 'Compare proposed internal edges as A and proposed surfaces/elevations as B.' : 'Compare all proposed surface edits as A and all proposed elevation edits as B. The two factors can share cells.';
   }
   function updatePartitionControls() {
-    const project = getProject(), propertyPartition = partition.value !== 'cells';
+    const project = sourceProject(), propertyPartition = partition.value !== 'cells';
     const threeFactors = partition.value === 'three-factors';
-    run.textContent = threeFactors ? 'Compare eight combinations' : 'Compare four combinations';
+    panel.querySelector('[data-component-receiving]').hidden = !threeFactors;
+    run.textContent = threeFactors ? receivingSource ? 'Compare sixteen combinations' : 'Compare eight combinations' : 'Compare four combinations';
     panel.querySelector('[data-component-intro]').textContent = threeFactors ? 'Compare all eight combinations under the same storm and see how each pair interaction changes when the third change is present.' : 'Compare the existing site, A only, B only and the full proposal under the same storm.';
     list.closest('fieldset').hidden = propertyPartition;
     panel.querySelector('[data-cell-explanation]').hidden = propertyPartition;
@@ -77,12 +117,12 @@ export function mountProposalComponents({ getProject }) {
     }
   }
   function refresh() {
-    const project = getProject();
+    const project = sourceProject();
     const next = JSON.stringify(project);
     if (fingerprint === next) return;
     fingerprint = next;
     const study = project.infiltrationStudy ?? { target: 'existing', surface: 'turf', ratesMmHr: [3, 9, 22] };
-    panel.querySelector('[data-component-study]').textContent = `Current study hypotheses: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h; evidence scenario ${study.target}. Rates are selected from the unchanged observed source before constructing hypothetical combinations. Each rate is applied consistently to matching surfaces in all compared cases; other surfaces retain defaults.`;
+    panel.querySelector('[data-component-study]').textContent = receivingSource ? `Original study declarations: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h. All offered rates are compared; evidence-compatible subsets from the unlimited model are not transferred.` : `Current study hypotheses: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h; evidence scenario ${study.target}. Rates are selected from the unchanged observed source before constructing hypothetical combinations. Each rate is applied consistently to matching surfaces in all compared cases; other surfaces retain defaults.`;
     invalidate();
     list.replaceChildren();
     const edits = componentEditIndices(project);
@@ -101,7 +141,9 @@ export function mountProposalComponents({ getProject }) {
     updatePartitionControls();
   }
   function renderThreeFactors(project) {
-    const hypothesis = mode.value === 'default' ? null : compareThreeFactorHypotheses(project, { subset: mode.value });
+    const receiving = receivingSource ? compareReceivingComponents(project, receivingSource.layer, {study: mode.value === 'default' ? null : project.infiltrationStudy ?? DEFAULT_STUDY, subset: mode.value === 'default' ? 'all' : mode.value}) : null;
+    if (receiving && receiving.status !== 'compared') { output.replaceChildren(); status.textContent = receiving.status === 'layer-surface-absent' ? 'The declared receiving surface is absent from both original plans.' : 'The declared rate surface is absent from both original plans.'; return; }
+    const hypothesis = receiving ? null : mode.value === 'default' ? null : compareThreeFactorHypotheses(project, { subset: mode.value });
     if (hypothesis && hypothesis.status !== 'compared') {
       const reasons = { 'need-calibration': 'Assign calibration readings before filtering hypotheses.',
         'need-challenge': 'Assign held-aside readings before requesting survivors.',
@@ -110,7 +152,8 @@ export function mountProposalComponents({ getProject }) {
         'surface-absent-in-observed-source': 'The selected surface is absent from the observed source scenario.' };
       output.replaceChildren(); status.textContent = reasons[hypothesis.status]; return;
     }
-    const candidates = hypothesis?.candidates ?? [{ result: compareThreeFactors(project) }];
+    const candidates = receiving ? receiving.candidates.map(c => ({...c, result: c.draining})) : hypothesis?.candidates ?? [{ result: compareThreeFactors(project) }];
+    let receivingKind = 'draining';
     const names = ['Existing', 'S only', 'G only', 'S + G', 'E only', 'S + E', 'G + E', 'Full S + G + E'];
     function table(headers, rows, label) {
       const wrap = document.createElement('div'); wrap.className = 'component-table-wrap'; wrap.tabIndex = 0;
@@ -125,16 +168,24 @@ export function mountProposalComponents({ getProject }) {
       output.replaceChildren();
       output.append(text('h3', 'Surface, elevation and edge interactions'));
       output.append(text('p', 'S = proposed surfaces; G = proposed elevations; E = proposed internal edges. A world includes only the listed proposed factors. Original source plans and evidence remain unchanged.'));
-      if (hypothesis) {
+      if (hypothesis || (receiving && candidates[0].rateMmHr !== null)) {
         const label = text('label', 'Inspect all eight combinations for rate '), picker = document.createElement('select'); picker.dataset.componentRate = '';
         candidates.forEach((candidate, i) => { const option = text('option', `${candidate.rateMmHr} mm/h`); option.value = String(i); picker.append(option); });
         picker.value = String(index); picker.addEventListener('change', () => { draw(Number(picker.value)); output.querySelector('[data-component-rate]').focus({ preventScroll: true }); });
         label.append(picker); output.append(label);
-        const detail = document.createElement('details'); detail.append(text('summary', 'Every retained rate’s three-way term'));
+        const detail = document.createElement('details'); detail.append(text('summary', receiving ? 'Every declared rate’s finite-layer three-way term' : 'Every retained rate’s three-way term'));
         for (const candidate of candidates) for (const metric of candidate.result.metrics) detail.append(text('p', `${candidate.rateMmHr} mm/h — ${metric.label}: ${signed(metric.effects[7])} ${metric.unit}.`));
         output.append(detail);
       }
-      const result = candidates[index].result;
+      if (receiving) {
+        output.append(text('p', DRAINING_MEANING));
+        output.append(text('p', 'Both receiving assumptions use the same original plans and storm. Every declared rate is an offered alternative; no unlimited-model evidence filter is transferred and no result is adopted.'));
+        const label = text('label', 'Inspect eight worlds under receiving assumption '), picker = document.createElement('select'); picker.dataset.componentReceiver = '';
+        for (const [value, name] of [['draining','Original finite draining layer'],['unlimited','Unlimited receiving baseline']]) { const option = text('option', name); option.value = value; picker.append(option); }
+        picker.value = receivingKind; picker.addEventListener('change', () => { receivingKind = picker.value; draw(index); output.querySelector('[data-component-receiver]').focus({preventScroll:true}); }); label.append(picker); output.append(label);
+        table(['Quantity', 'Unlimited full change', 'Finite full change', 'Difference', 'Unlimited three-way', 'Finite three-way', 'Difference'], candidates[index].changes.map(m => [`${m.label} (${m.unit})`, ...[m.unlimitedFullEffect,m.drainingFullEffect,m.fullEffectDifference,m.unlimitedThreeWay,m.drainingThreeWay,m.threeWayDifference].map(signed)]), 'Same intervention under two receiving assumptions');
+      }
+      const result = receiving ? candidates[index][receivingKind] : candidates[index].result;
       output.append(text('p', 'On a narrow screen, scroll each table sideways to inspect every combination and contrast.'));
       output.append(text('h4', 'Every modeled world'));
       table(['Quantity', ...names], result.metrics.map(m => [`${m.label} (${m.unit})`, ...m.values.map(fmt)]), 'Eight modeled combinations; scroll horizontally');
@@ -145,14 +196,14 @@ export function mountProposalComponents({ getProject }) {
       const label = { 1: 'S', 2: 'G', 4: 'E' };
       table(['Quantity / pair', 'Third factor', 'Without third', 'With third', 'Difference'], result.metrics.flatMap(m => m.conditionalPairs.map(p => [`${m.label} (${m.unit}): ${label[p.a]} × ${label[p.b]}`, label[p.third], signed(p.without), signed(p.with), signed(p.with - p.without)])), 'Pair interactions with and without the third change');
       output.append(text('p', 'A maximum can change its location or time between worlds. Its interaction does not by itself establish water exchange. Signs depend on the chosen quantity and offered rate; no rate is adopted and finite alternatives are not confidence intervals. Source-project export/reopen preserves the original plans; select this mode again to recompute.'));
-      const residual = Math.max(...candidates.flatMap(c => c.result.balances.map(Math.abs)));
-      status.textContent = `${candidates.length} set(s) of eight combinations computed; ${(hypothesis?.estimatedCellSteps ?? result.estimatedCellSteps).toLocaleString()} estimated cell-steps. Largest absolute water-balance residual ${residual.toExponential(2)} L. Original plans and observations unchanged.`;
+      const residual = Math.max(...candidates.flatMap(c => receiving ? [...c.unlimited.balances,...c.draining.balances].map(Math.abs) : c.result.balances.map(Math.abs)));
+      status.textContent = `${candidates.length} set(s) of ${receiving ? 'sixteen' : 'eight'} combinations computed; ${(receiving?.estimatedCellSteps ?? hypothesis?.estimatedCellSteps ?? result.estimatedCellSteps).toLocaleString()} estimated cell-steps. Largest absolute water-balance residual ${residual.toExponential(2)} L. Original plans and observations unchanged.`;
     }
     draw();
   }
   run.addEventListener('click', () => {
     try {
-      const project = getProject();
+      const project = sourceProject();
       if (partition.value === 'three-factors') { renderThreeFactors(project); return; }
       const propertyPartition = partition.value !== 'cells';
       const hypothesis = mode.value === 'default' ? null : compareComponentHypotheses(project, [...selected], { subset: mode.value, partition: partition.value });
