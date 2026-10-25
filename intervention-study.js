@@ -1,5 +1,6 @@
 import {validateExposureRequest,selectPondingExposure} from './ponding-exposure-request.js';
-import { runRain, validateProject } from './core.js';
+import { runRain, validateProject, SURFACES } from './core.js';
+import { validateDrainingLayer } from './draining-infiltration.js';
 import { compareInfiltration } from './infiltration-study.js';
 import { DEFAULT_STUDY, validateStudy } from './study-contract.js';
 
@@ -43,7 +44,8 @@ export function createInterventionBatch() {
     if (key === null) return runRain;
     if (key !== signature) { runs.clear(); signature = key; }
     return (cells, width, height, weather, options) => {
-      const optionKey = JSON.stringify(options);
+      const optionKey = sourceKey(options);
+      if (optionKey === null) return runRain(cells, width, height, weather, options);
       if (runs.has(optionKey)) return runs.get(optionKey);
       const result = runRain(cells, width, height, weather, options);
       // A study admits at most nine rates; keep memory bounded even if a caller
@@ -67,12 +69,16 @@ export function summarizeEffects(values) {
 export function compareIntervention(project, options = {}) {
   return compareInterventionWithSource(project, options);
 }
-function compareInterventionWithSource(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null } = {}, prepareExisting = null) {
+function compareInterventionWithSource(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null, drainingLayer = null } = {}, prepareExisting = null) {
   validateProject(project); validateStudy(study);
   exposureRequest=validateExposureRequest(project.proposal.length,exposureRequest);
   if (!['all', 'calibration', 'surviving'].includes(subset)) throw Error('Unknown hypothesis subset');
   if (typeof allowAbsentSurface !== 'boolean') throw Error('Absent-surface evaluation must be an explicit boolean');
   if (allowAbsentSurface && subset !== 'all') throw Error('Absent-surface evaluation cannot filter evidence');
+  if (drainingLayer !== null) {
+    validateDrainingLayer(drainingLayer, SURFACES);
+    if (subset !== 'all') throw Error('A declared receiving layer requires all declared rates; unlimited-receiver evidence cannot filter this model');
+  }
   // Three simulations per candidate at most, including evidence comparison,
   // plus two full-grid retained-snapshot exposure passes when requested.
   const work = study.ratesMmHr.length * (exposureRequest ? 5 : 3) * project.width * project.height * Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
@@ -86,15 +92,16 @@ function compareInterventionWithSource(project, { study = project.infiltrationSt
   if (!affected.existing && !affected.proposal && !allowAbsentSurface) return { status: 'surface-absent', candidates: [], metrics: {}, cells: [], subset };
   const runExisting = prepareExisting ? prepareExisting(project) : runRain;
   const candidates = rates.map(rateMmHr => {
-    const options = { surfaceInfiltrationOverride: { surface: study.surface, rateMmHr } };
+    const options = { surfaceInfiltrationOverride: { surface: study.surface, rateMmHr }, ...(drainingLayer ? {drainingLayer} : {}) };
     const existing = runExisting(project.existing, project.width, project.height, project.weather, options);
     const proposal = runRain(project.proposal, project.width, project.height, project.weather, options);
     const metrics = Object.fromEntries(Object.keys(INTERVENTION_METRICS).map(key => [key, { existing: existing[key], proposal: proposal[key], delta: proposal[key] - existing[key] }]));
-    return { rateMmHr, metrics, ...(exposureRequest?{pondingExposure:{thresholdMm:exposureRequest.thresholdMm,existing:selectPondingExposure(existing,exposureRequest),proposal:selectPondingExposure(proposal,exposureRequest)}}:{}), peakDeltaMm: proposal.peakDepthMm.map((depth, i) => depth - existing.peakDepthMm[i]),
+    const receiver = result => Object.fromEntries(['affectedCellCount','initialLiters','retainedLiters','drainedLiters','infiltratedLiters','balanceErrorLiters'].map(key => [key, result.drainingLayer[key]]));
+    return { rateMmHr, metrics, ...(drainingLayer ? {drainingLayer:{existing:receiver(existing),proposal:receiver(proposal)}} : {}), ...(exposureRequest?{pondingExposure:{thresholdMm:exposureRequest.thresholdMm,existing:selectPondingExposure(existing,exposureRequest),proposal:selectPondingExposure(proposal,exposureRequest)}}:{}), peakDeltaMm: proposal.peakDepthMm.map((depth, i) => depth - existing.peakDepthMm[i]),
       massErrorLiters: { existing: existing.massErrorLiters, proposal: proposal.massErrorLiters } };
   });
   const metrics = Object.fromEntries(Object.keys(INTERVENTION_METRICS).map(key => [key, summarizeEffects(candidates.map(c => c.metrics[key].delta))]));
   const cells = project.existing.map((_, cellIndex) => ({ cellIndex, ...summarizeEffects(candidates.map(c => c.peakDeltaMm[cellIndex])) }))
     .filter(c => c.max > EPS).sort((a, b) => b.max - a.max || a.cellIndex - b.cellIndex);
-  return { status: 'compared', subset, surface: study.surface, evidenceTarget: study.target, affected, candidates, metrics, cells, cellStepUpperBound: work };
+  return { status: 'compared', subset, surface: study.surface, evidenceTarget: study.target, affected, candidates, metrics, cells, cellStepUpperBound: work, ...(drainingLayer ? {drainingLayer:structuredClone(drainingLayer)} : {}) };
 }
