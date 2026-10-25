@@ -1,0 +1,93 @@
+{
+  "schema": "earth.common-clock-conflict-receiving/v1",
+  "testedBase": "879db03cd8600cf1d4f0f0fffd40bf48b174caa7",
+  "runtimeGitBlobs": {
+    "common-clock-conflict.js": "164971c2a2119fa5ba229a17cc3468b15dfa764f",
+    "common-clock-conflict-panel.js": "7dd2a224954c4b501a30846078849536b3d435a4",
+    "common-clock-panel.js": "3754cbeeb3dddbc23420299a06c0e39bf49faf95",
+    "tests/common-clock-conflict.test.mjs": "9002c78afaef9f1ce8d1dc2a70f4ce3b7c2725e1",
+    "tests/common-clock-conflict.browser.mjs": "a5a0ec23b35081f209b2f7df1f666d719b4e9fc9"
+  },
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "passed": 672,
+    "failed": 0,
+    "skipped": 0
+  },
+  "actualBrowser": {
+    "command": "CHROME_BIN=/opt/google/chrome/chrome RUN_DIRECTORY=<fresh> node tests/common-clock-conflict.browser.mjs",
+    "passedGroups": 7,
+    "sandboxAdmission": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-25T01:46:45.005Z",
+      "completedAt": "2026-10-25T01:46:45.097Z",
+      "durationMs": 91.15018500000002,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "E7F605373153EDE80FAA664931BA123A",
+        "type": "page",
+        "title": "Sandbox Status",
+        "url": "",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "D09204EFEBC09E9A0E3CE8CEB211E990"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "rawReceipt": "browser.json"
+  },
+  "independentReview": {
+    "allOfferedRates": true,
+    "disconnectedThreeWayAllPairsCompatible": true,
+    "booleanMembershipCases": 100,
+    "conflictsVerified": 43,
+    "returnedDomainAliasesFixedAndRechecked": 2,
+    "heldAsideCalibrationIsolation": true
+  },
+  "experience": {
+    "viewports": [
+      1440,
+      390
+    ],
+    "visuallyInspected": true,
+    "previews": "four significant digits marked approximately; verbatim exact numeric details accessible by keyboard",
+    "tinyGapDisplayControl": 1e-12
+  },
+  "limits": [
+    "One irreducible conflict subset, not necessarily smallest or unique.",
+    "Removal witnesses concern the remaining conflict subset, not a corrected full ledger or permission to discard readings.",
+    "No source authenticity, clock calibration, hydraulic truth or physical causal attribution follows."
+  ]
+}
