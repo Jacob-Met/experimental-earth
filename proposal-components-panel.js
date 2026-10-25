@@ -1,3 +1,4 @@
+import { compareThreeFactors, compareThreeFactorHypotheses } from './proposal-factorial.js';
 import { componentEditIndices, edgeGroundEdits, compareEdgesGround, surfaceElevationEdits, compareProposalComponents, compareSurfaceElevation, compareComponentHypotheses } from './proposal-components.js';
 
 export function mountProposalComponents({ getProject }) {
@@ -5,11 +6,12 @@ export function mountProposalComponents({ getProject }) {
   panel.className = 'panel';
   panel.id = 'proposal-components';
   panel.innerHTML = `<h2>Which parts of the proposal work together?</h2>
-    <p>Compare the existing site, A only, B only and the full proposal under the same storm.</p>
+    <p data-component-intro>Compare the existing site, A only, B only and the full proposal under the same storm.</p>
     <label>Separate the proposal by<select data-component-partition>
       <option value="cells">Groups of edited cells</option>
       <option value="surface-elevation">Surface versus elevation edits</option>
       <option value="edges-ground">Internal edges versus surface and elevation edits</option>
+      <option value="three-factors">Surface, elevation and internal edges separately</option>
     </select></label>
     <p data-component-partition-help></p>
     <p data-cell-explanation>Each selected cell carries all its authored changes together, including its canonical east/south internal edges.
@@ -44,16 +46,23 @@ export function mountProposalComponents({ getProject }) {
   const text = (tag, value) => { const el = document.createElement(tag); el.textContent = value; return el; };
   function invalidate() {
     output.replaceChildren();
-    status.textContent = partition.value === 'cells' ? 'Choose at least one edited cell for A and leave at least one for B, then compare.' : partition.value === 'edges-ground' ? 'Compare proposed internal edges as A and proposed surfaces/elevations as B.' : 'Compare all proposed surface edits as A and all proposed elevation edits as B. The two factors can share cells.';
+    status.textContent = partition.value === 'three-factors' ? 'Compare all eight combinations of surface, elevation and internal edges.' : partition.value === 'cells' ? 'Choose at least one edited cell for A and leave at least one for B, then compare.' : partition.value === 'edges-ground' ? 'Compare proposed internal edges as A and proposed surfaces/elevations as B.' : 'Compare all proposed surface edits as A and all proposed elevation edits as B. The two factors can share cells.';
   }
   function updatePartitionControls() {
     const project = getProject(), propertyPartition = partition.value !== 'cells';
+    const threeFactors = partition.value === 'three-factors';
+    run.textContent = threeFactors ? 'Compare eight combinations' : 'Compare four combinations';
+    panel.querySelector('[data-component-intro]').textContent = threeFactors ? 'Compare all eight combinations under the same storm and see how each pair interaction changes when the third change is present.' : 'Compare the existing site, A only, B only and the full proposal under the same storm.';
     list.closest('fieldset').hidden = propertyPartition;
     panel.querySelector('[data-cell-explanation]').hidden = propertyPartition;
     panel.querySelector('[data-component-partition-help]').textContent = propertyPartition
-      ? partition.value === 'edges-ground' ? 'A changes only canonical internal edges; B changes surfaces and elevations. Edge labels name the west/north owner cell. Ground and survey records travel together; absolute crest elevations remain in the declared datum. These are modeled combinations, not observed interventions.' : 'A changes only surfaces; B changes only elevations. Both can affect the same cell, and together they reproduce the full proposal. Internal walls and crests must remain unchanged between the source plans. This is a rain-model comparison; solar declarations are not evaluated here.'
+      ? threeFactors ? 'S changes surfaces, G changes elevations and E changes canonical internal edges. Ground heights and survey records remain together; crest elevations retain the source datum. All eight combinations are hypothetical model worlds.' : partition.value === 'edges-ground' ? 'A changes only canonical internal edges; B changes surfaces and elevations. Edge labels name the west/north owner cell. Ground and survey records travel together; absolute crest elevations remain in the declared datum. These are modeled combinations, not observed interventions.' : 'A changes only surfaces; B changes only elevations. Both can affect the same cell, and together they reproduce the full proposal. Internal walls and crests must remain unchanged between the source plans. This is a rain-model comparison; solar declarations are not evaluated here.'
       : 'Choose some edited cells as A. All remaining edits become B; each cell carries all its changes together.';
-    if (partition.value === 'edges-ground') {
+    if (threeFactors) {
+      const ground = surfaceElevationEdits(project), edge = edgeGroundEdits(project);
+      run.disabled = !ground.surfaceIndices.length || !ground.elevationIndices.length || !edge.edgeIndices.length;
+      if (run.disabled) status.textContent = 'Add a surface edit, an elevation edit and an internal-edge edit. They may share a cell.';
+    } else if (partition.value === 'edges-ground') {
       const edits = edgeGroundEdits(project);
       run.disabled = !edits.edgeIndices.length || !edits.groundIndices.length;
       if (run.disabled) status.textContent = 'Add both an internal edge change and a surface or elevation change.';
@@ -73,7 +82,7 @@ export function mountProposalComponents({ getProject }) {
     if (fingerprint === next) return;
     fingerprint = next;
     const study = project.infiltrationStudy ?? { target: 'existing', surface: 'turf', ratesMmHr: [3, 9, 22] };
-    panel.querySelector('[data-component-study]').textContent = `Current study hypotheses: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h; evidence scenario ${study.target}. Rates are selected from the unchanged observed source before the four combinations. Each rate is applied consistently to matching surfaces in all four cases; other surfaces retain defaults.`;
+    panel.querySelector('[data-component-study]').textContent = `Current study hypotheses: ${study.surface} at ${study.ratesMmHr.join(', ')} mm/h; evidence scenario ${study.target}. Rates are selected from the unchanged observed source before constructing hypothetical combinations. Each rate is applied consistently to matching surfaces in all compared cases; other surfaces retain defaults.`;
     invalidate();
     list.replaceChildren();
     const edits = componentEditIndices(project);
@@ -91,9 +100,60 @@ export function mountProposalComponents({ getProject }) {
     }
     updatePartitionControls();
   }
+  function renderThreeFactors(project) {
+    const hypothesis = mode.value === 'default' ? null : compareThreeFactorHypotheses(project, { subset: mode.value });
+    if (hypothesis && hypothesis.status !== 'compared') {
+      const reasons = { 'need-calibration': 'Assign calibration readings before filtering hypotheses.',
+        'need-challenge': 'Assign held-aside readings before requesting survivors.',
+        'no-compatible-rates': 'No hypotheses satisfy the requested evidence bands. No replacement fit was substituted.',
+        'surface-absent': 'The selected surface is absent from both scenarios.',
+        'surface-absent-in-observed-source': 'The selected surface is absent from the observed source scenario.' };
+      output.replaceChildren(); status.textContent = reasons[hypothesis.status]; return;
+    }
+    const candidates = hypothesis?.candidates ?? [{ result: compareThreeFactors(project) }];
+    const names = ['Existing', 'S only', 'G only', 'S + G', 'E only', 'S + E', 'G + E', 'Full S + G + E'];
+    function table(headers, rows, label) {
+      const wrap = document.createElement('div'); wrap.className = 'component-table-wrap'; wrap.tabIndex = 0;
+      wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', label);
+      const element = document.createElement('table'), head = document.createElement('thead'), hr = document.createElement('tr');
+      for (const value of headers) hr.append(text('th', value)); head.append(hr); element.append(head);
+      const body = document.createElement('tbody');
+      for (const values of rows) { const row = document.createElement('tr'); values.forEach((value, i) => row.append(text(i ? 'td' : 'th', value))); body.append(row); }
+      element.append(body); wrap.append(element); output.append(wrap);
+    }
+    function draw(index = 0) {
+      output.replaceChildren();
+      output.append(text('h3', 'Surface, elevation and edge interactions'));
+      output.append(text('p', 'S = proposed surfaces; G = proposed elevations; E = proposed internal edges. A world includes only the listed proposed factors. Original source plans and evidence remain unchanged.'));
+      if (hypothesis) {
+        const label = text('label', 'Inspect all eight combinations for rate '), picker = document.createElement('select'); picker.dataset.componentRate = '';
+        candidates.forEach((candidate, i) => { const option = text('option', `${candidate.rateMmHr} mm/h`); option.value = String(i); picker.append(option); });
+        picker.value = String(index); picker.addEventListener('change', () => { draw(Number(picker.value)); output.querySelector('[data-component-rate]').focus({ preventScroll: true }); });
+        label.append(picker); output.append(label);
+        const detail = document.createElement('details'); detail.append(text('summary', 'Every retained rate’s three-way term'));
+        for (const candidate of candidates) for (const metric of candidate.result.metrics) detail.append(text('p', `${candidate.rateMmHr} mm/h — ${metric.label}: ${signed(metric.effects[7])} ${metric.unit}.`));
+        output.append(detail);
+      }
+      const result = candidates[index].result;
+      output.append(text('p', 'On a narrow screen, scroll each table sideways to inspect every combination and contrast.'));
+      output.append(text('h4', 'Every modeled world'));
+      table(['Quantity', ...names], result.metrics.map(m => [`${m.label} (${m.unit})`, ...m.values.map(fmt)]), 'Eight modeled combinations; scroll horizontally');
+      output.append(text('h4', 'Terms relative to the existing site'));
+      output.append(text('p', 'The three single terms, three pair terms and three-way term sum to the full change. Each pair term here uses the existing setting of the third factor. The three-way term is the change in any pair interaction when its third factor is added. These are signed model contrasts, not measured causal effects.'));
+      table(['Quantity', 'S', 'G', 'S × G', 'E', 'S × E', 'G × E', 'S × G × E', 'Full change'], result.metrics.map(m => [`${m.label} (${m.unit})`, ...m.effects.slice(1).map(signed), signed(m.values[7] - m.values[0])]), 'Factor terms and full change; scroll horizontally');
+      output.append(text('h4', 'Does each pair depend on the third change?'));
+      const label = { 1: 'S', 2: 'G', 4: 'E' };
+      table(['Quantity / pair', 'Third factor', 'Without third', 'With third', 'Difference'], result.metrics.flatMap(m => m.conditionalPairs.map(p => [`${m.label} (${m.unit}): ${label[p.a]} × ${label[p.b]}`, label[p.third], signed(p.without), signed(p.with), signed(p.with - p.without)])), 'Pair interactions with and without the third change');
+      output.append(text('p', 'A maximum can change its location or time between worlds. Its interaction does not by itself establish water exchange. Signs depend on the chosen quantity and offered rate; no rate is adopted and finite alternatives are not confidence intervals. Source-project export/reopen preserves the original plans; select this mode again to recompute.'));
+      const residual = Math.max(...candidates.flatMap(c => c.result.balances.map(Math.abs)));
+      status.textContent = `${candidates.length} set(s) of eight combinations computed; ${(hypothesis?.estimatedCellSteps ?? result.estimatedCellSteps).toLocaleString()} estimated cell-steps. Largest absolute water-balance residual ${residual.toExponential(2)} L. Original plans and observations unchanged.`;
+    }
+    draw();
+  }
   run.addEventListener('click', () => {
     try {
       const project = getProject();
+      if (partition.value === 'three-factors') { renderThreeFactors(project); return; }
       const propertyPartition = partition.value !== 'cells';
       const hypothesis = mode.value === 'default' ? null : compareComponentHypotheses(project, [...selected], { subset: mode.value, partition: partition.value });
       if (hypothesis && hypothesis.status !== 'compared') {
