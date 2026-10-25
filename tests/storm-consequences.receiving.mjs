@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {makeExample} from '../core.js';
+import {prepareThresholdEvidence} from '../threshold-evidence.js';
+import {prepareThresholdTransfer} from '../threshold-event-transfer.js';
+export async function receiveStormConsequences({evaluate,send,delay,report}){
+ const a=makeExample();a.width=a.height=2;a.selectedIndex=0;a.existing=Array.from({length:4},()=>({surface:'turf',elevationM:0,provenance:'Authored storm-sign receiver'}));a.proposal=structuredClone(a.existing);a.proposal[0].surface='garden';a.proposal[1].surface='sealed';
+ Object.assign(a.weather,{rainMmHr:30,stormMinutes:60,durationMinutes:60,stepMinutes:5,mobilityPerHour:0,boundaryExitPerHour:0,cellSizeM:1});a.infiltrationStudy={target:'existing',surface:'turf',ratesMmHr:[10,24,28]};
+ const row={cellIndex:0,minute:60,relation:'at-least',thresholdMm:15,uncertaintyMm:0,source:'Authored bound, not field acquisition',use:'calibration'};
+ a.thresholdEvidence=prepareThresholdEvidence(a,'existing','high-storm',[row]);
+ const b=structuredClone(a);b.weather.rainMmHr=6;b.thresholdEvidence=prepareThresholdEvidence(b,'existing','low-storm',[{...row,relation:'at-most',thresholdMm:0,use:'challenge'}]);
+ const bundle=prepareThresholdTransfer(a,b,{independence:'Separately declared authored storms'}).bundle;
+ const load=async value=>evaluate(`(async()=>{const e=document.querySelector('#threshold-event-reopen'),dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(JSON.stringify(value))}],'two-original-storms.json',{type:'application/json'}));e.files=dt.files;e.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,200));})()`);
+ const state=()=>evaluate("document.querySelector('#storm-consequence-status').dataset.state");
+ const text=()=>evaluate("document.querySelector('#storm-consequence-results').textContent");
+ const run=()=>evaluate("document.querySelector('#storm-consequence-run').click()");
+ const original=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ await load(bundle);assert.equal(await state(),'not-compared');await run();assert.equal(await state(),'compared');
+ assert.ok((await text()).includes('-5.000 to -5.000 L'));assert.ok((await text()).includes('5.000 to 5.000 L'));assert.ok((await text()).includes('Same-rate direction reversal at 10 mm/h'));
+ assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original);
+ report.push('original two-event reopen requires an explicit child action and computes same-rate -5/+5 L reversal without changing active source');
+ await evaluate("(()=>{const e=document.querySelector('#threshold-event-basis');e.value='Declaration changed';e.dispatchEvent(new Event('input',{bubbles:true}));})()");
+ assert.equal(await evaluate("document.querySelector('#storm-consequences')===null"),true);
+ await load(bundle);assert.equal(await state(),'not-compared');
+ await send('Page.reload',{ignoreCache:true});await delay(350);await load(bundle);assert.equal(await state(),'not-compared');await run();assert.equal(await state(),'compared');
+ report.push('declaration changes retire the child; fresh original-source reopen recomputes instead of restoring a saved verdict');
+ const mismatched=structuredClone(bundle);mismatched.challengeProject.proposal[1].surface='turf';await load(mismatched);await run();assert.equal(await state(),'refused');assert.equal(await text(),'');
+ report.push('a second source with a different proposal refuses comparison rather than copying the first plan');
+ await load(bundle);await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await send('Page.bringToFront');
+ assert.equal(await evaluate("(()=>{const b=document.querySelector('#storm-consequence-run');for(let p=b.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;b.scrollIntoView({block:'center',behavior:'instant'});b.focus({preventScroll:true});return document.activeElement===b})()"),true);
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13});await delay(50);
+ assert.equal(await state(),'compared');assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
+ report.push('390px native keyboard action exposes per-storm ranges and same-rate reversal without horizontal overflow');
+}
