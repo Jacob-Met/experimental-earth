@@ -302,3 +302,14 @@ changing heat loss over a chosen step. Save and reopen the complete original
 investigation separately from the active site. An isolated fictional courtyard
 demonstrates the mechanism. See [evaporative cooling](docs/EVAPORATIVE_COOLING.md)
 for the workflow, equations, sources, verification and physical limits.
+
+## Discover a different same-time ponding connection
+
+**Can a different connection avoid deeper ponding?** compares two endpoints
+within an explicitly offered cell footprint at every original modeled time.
+It finds the minimum achievable maximum depth, then shows a shortest witness
+among equal-depth connections. The full existing/proposal course and raw-input
+save/reopen support an independent investigation without adopting a changed site.
+This is depth-only grid connectivity; walls, slopes, movement, physical access
+and safety are not assessed. See [Ponding connections](docs/PONDING_CONNECTIVITY.md)
+for the algorithm, authored detour example, source custody and limits.

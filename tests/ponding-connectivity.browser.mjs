@@ -1,0 +1,39 @@
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {writeFile} from 'node:fs/promises';
+import {randomUUID} from 'node:crypto';
+import {setTimeout as delay} from 'node:timers/promises';
+import {withBrowserSession} from './support/browser-session.mjs';
+const result=await withBrowserSession({root:fileURLToPath(new URL('../',import.meta.url)),chromeBin:process.env.CHROME_BIN??'/usr/local/bin/google-chrome',runDirectory:process.env.BROWSER_RUN_DIRECTORY??`/tmp/earth-connectivity-${randomUUID()}`},async({send,evaluate,baseUrl,exceptions,runDirectory})=>{
+ await send('Runtime.enable');await send('Page.enable');await send('Page.navigate',{url:baseUrl});
+ for(let i=0;i<60;i++){await delay(100);if(await evaluate("!!document.querySelector('#connection-form')"))break;}
+ const read=id=>evaluate(`document.getElementById(${JSON.stringify(id)}).textContent`);
+ const original=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ await evaluate("document.querySelector('#connection-form button').focus()");
+ assert.equal(await evaluate("document.activeElement===document.querySelector('#connection-form button')"),true);
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+ assert.equal(await read('connection-error'),'');assert.equal(await evaluate("document.querySelectorAll('#connection-course tr').length"),49);
+ const at15=()=>evaluate("document.querySelector('#connection-time').value='3';document.querySelector('#connection-time').dispatchEvent(new Event('change'))");
+ await at15();assert.match(await read('connection-paths'),/8\.1485546 mm/);assert.match(await read('connection-paths'),/A2 → A1 → B1 → C1 → D1 → D2/);
+ assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original);
+ await evaluate("window.__connectionBlobs=[];window.__connectionCreate=URL.createObjectURL;URL.createObjectURL=blob=>{window.__connectionBlobs.push(blob);return window.__connectionCreate(blob)};document.querySelector('#connection-export').click()");
+ const raw=await evaluate("window.__connectionBlobs.at(-1).text()");const packet=JSON.parse(raw);assert.equal(packet.schema,'experimental-earth-connection/1');assert.deepEqual(packet.project,JSON.parse(original));assert.equal('rows' in packet,false);await writeFile(runDirectory+'/connection-investigation.json',raw);
+ const input=async text=>evaluate(`(async()=>{const dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(text)}],'connection.json',{type:'application/json'}));const i=document.querySelector('#connection-import');i.files=dt.files;i.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,100));})()`);
+ await evaluate("document.querySelector('#connection-footprint').value='A2 B2 C2 D2';document.querySelector('#connection-footprint').dispatchEvent(new Event('input'))");assert.equal(await evaluate("document.querySelector('#connection-controls').hidden"),true);
+ await evaluate("document.querySelector('#connection-form').requestSubmit()");await at15();assert.match(await read('connection-paths'),/10\.652361 mm/);
+ await evaluate("document.querySelector('#connection-footprint').value='A2 D2';document.querySelector('#connection-form').requestSubmit()");assert.match(await read('connection-paths'),/disconnected/);
+ await evaluate("document.querySelector('#connection-footprint').value='A2 A2 D2';document.querySelector('#connection-form').requestSubmit()");assert.match(await read('connection-error'),/once/);assert.equal(await evaluate("document.querySelector('#connection-controls').hidden"),true);
+ await send('Page.reload',{ignoreCache:true});await delay(300);await input(raw);assert.match(await read('connection-source'),/Reopened isolated original site/);assert.equal(await read('connection-error'),'');assert.equal(await evaluate("document.querySelectorAll('#connection-course tr').length"),49);
+ await at15();assert.match(await read('connection-paths'),/8\.1485546 mm/);assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original);
+ for(const [width,height,name] of [[1440,1000,'desktop'],[390,844,'narrow']]){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<500});await evaluate("document.querySelector('#ponding-connectivity').scrollIntoView({behavior:'instant'});");await delay(100);const sizes=await evaluate("({page:document.documentElement.scrollWidth,width:innerWidth})");assert.ok(sizes.page<=width+1,JSON.stringify(sizes));const image=await send('Page.captureScreenshot',{format:'png'});await writeFile(runDirectory+'/'+name+'.png',Buffer.from(image.data,'base64'));
+  await evaluate("document.querySelector('#connection-controls details').open=true;document.querySelector('#connection-paths').scrollIntoView({behavior:'instant'});");await delay(100);
+  const output=await evaluate("(()=>{const p=document.querySelector('#connection-paths').getBoundingClientRect();const rows=[...document.querySelectorAll('#connection-course tr')].slice(0,4).map(e=>{const r=e.getBoundingClientRect();return {top:r.top,bottom:r.bottom}});return {path:{top:p.top,bottom:p.bottom,left:p.left,right:p.right},rows,width:innerWidth,height:innerHeight,page:document.documentElement.scrollWidth}})()");
+  assert.ok(output.path.top>=-1&&output.path.bottom<=height&&output.path.left>=0&&output.path.right<=width+1,JSON.stringify(output));assert.ok(output.rows.every(r=>r.top>=0&&r.bottom<=height),JSON.stringify(output));assert.ok(output.page<=width+1,JSON.stringify(output));
+  const numericCells=await evaluate("[...document.querySelectorAll('#connection-course td[title]')].map(e=>({width:e.clientWidth,scroll:e.scrollWidth,whiteSpace:getComputedStyle(e).whiteSpace}))");assert.ok(numericCells.every(c=>c.whiteSpace==='nowrap'&&c.scroll<=c.width+1),JSON.stringify(numericCells.filter(c=>c.scroll>c.width+1)));
+  const resultImage=await send('Page.captureScreenshot',{format:'png'});await writeFile(runDirectory+'/'+name+'-results.png',Buffer.from(resultImage.data,'base64'));await evaluate("document.querySelector('#connection-controls details').open=false");} 
+ const bad=structuredClone(packet);bad.project.weather.rainMmHr=-1;await input(JSON.stringify(bad));assert.match(await read('connection-error'),/Weather/);assert.equal(await evaluate("document.querySelector('#connection-controls').hidden"),true);
+ await input(raw);await evaluate("document.querySelector('#rain').value='20';document.querySelector('#rain').dispatchEvent(new Event('change'))");assert.equal(await evaluate("document.querySelector('#connection-controls').hidden"),true);assert.match(await read('connection-source'),/Working site changed/);
+ await evaluate(`(()=>{const dt=new DataTransfer();dt.items.add(new File(['{}'],'pending.json'));const i=document.querySelector('#connection-import');i.files=dt.files;i.files[0].text=()=>new Promise(r=>window.__finishConnectionRead=r);i.dispatchEvent(new Event('change'));document.querySelector('#connection-start').value='B2';document.querySelector('#connection-start').dispatchEvent(new Event('input'));window.__finishConnectionRead(${JSON.stringify(raw)});})()`);await delay(100);assert.equal(await evaluate("document.querySelector('#connection-controls').hidden"),true);assert.equal(await evaluate("document.querySelector('#connection-start').value"),'B2');
+ assert.deepEqual(exceptions,[]);return {runDirectory,groups:['keyboard native-time course','minimax witness and source nonmutation','raw Blob download and fresh File reopen','restricted/disconnected footprint','invalid source clears result','desktop/narrow layout','site invalidation','pending read race'],exceptions};
+});
+console.log(JSON.stringify({status:'PASS',...result},null,2));
