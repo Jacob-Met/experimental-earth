@@ -1,0 +1,65 @@
+{
+  "schema": "experimental-earth-draining-events-receiving/1",
+  "passed": 9,
+  "checks": [
+    "four original hypotheses, two first-event fits and one independently challenged survivor with analytic source prediction and no site adoption",
+    "actual complete source-only download and fresh390px reopen preserve original hypotheses, roles and declarations",
+    "changing only second-event depth changes survival without refitting original calibration",
+    "a passing second event cannot revive first-event held-aside rejection; all rows and empty consequence groups remain",
+    "freezing current original evidence and matching one-event challenge retains independent snapshots when parent declarations change",
+    "changed hypothesis basis refuses challenge import without substituting hypotheses or losing original event snapshots",
+    "cached conclusions and malformed UTF8 refuse with accepted original snapshots intact and old report retired",
+    "reference edits retire delayed source files and immediately reset picker for same-file retry",
+    "actual frozen-source controls and complete result rows received at desktop and390px without overflow or runtime exceptions"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T18:25:47.486Z",
+    "completedAt": "2026-10-25T18:25:47.590Z",
+    "durationMs": 103.14452500000002,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "119144087949CEB737D482A4A2E6808C",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "89B01271A213532390C63462C617436B"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "runDirectory": "/tmp/hamon-882f7ea7-earth/events/browser"
+}
