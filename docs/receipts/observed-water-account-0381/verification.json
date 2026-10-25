@@ -1,0 +1,167 @@
+{
+  "baseCommit": "949c0ff87abdc8254ea76629506ede8455ec80e7",
+  "sourceFiles": {
+    "observed-water-account.js": {
+      "sha256": "518345798cdd7e0cb55886e9af88ce620f96afbc41d568b9fa89ae3b251d9fa8",
+      "gitBlob": "ab9a091e89b7ad3eb51e85be2dae7d04ac607ae0"
+    },
+    "observed-water-account-panel.js": {
+      "sha256": "4bb579ec184e1babcb2ba290c673d8fc79d4fee47c4e2efaa8a1812cab3a0839",
+      "gitBlob": "4c6183a420139d6738f9b7c6ba3325d5657bd6e4"
+    },
+    "observed-connectivity-panel.js": {
+      "sha256": "cd006e3daee84647b31bc3fee3017524c0545c03e123e0db0102b84645c53a62",
+      "gitBlob": "9b68f470fb947385d45ed48fcd1fb668e3543642"
+    },
+    "tests/observed-water-account.test.mjs": {
+      "sha256": "a8960dcee66636987e027b427b4ca761e57b384ee7f16c85816ffb98f63d33dd",
+      "gitBlob": "42c0a0057365545d3bb5f44e16c04f914575fae4"
+    },
+    "tests/observed-water-account.browser.mjs": {
+      "sha256": "fcd76c16336c47e8aa25e1f370fda1458f5657c1ead96db0464be1e4e9b8414d",
+      "gitBlob": "61116e50464e592b676e648629c00aebcfd08fdc"
+    },
+    "docs/OBSERVED_WATER_ACCOUNT.md": {
+      "sha256": "e70fb0af6907dbe26c607384f6c92a9a4bef0e6c7e857d9327138997d6012a07",
+      "gitBlob": "60abd14af3e658e6238bb6ab7c234e26ecbb5d74"
+    }
+  },
+  "native": {
+    "command": "node --test tests/observed-water-account.test.mjs tests/observed-connection-range.test.mjs tests/observed-connectivity.test.mjs",
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "status": "PASS",
+    "value": {
+      "runDirectory": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea",
+      "groups": [
+        "original project and keyboard sourced account",
+        "literal complete endpoint ledger and nonmutation",
+        "raw input download and isolated fresh reopen",
+        "readable full-width source forms and strict desktop/narrow account visibility",
+        "negative residual and incomplete endpoint refusal",
+        "contradictory or unsourced evidence refusal",
+        "source edit and pending-read retirement"
+      ],
+      "exceptions": []
+    },
+    "receipt": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-25T08:02:44.581Z",
+      "executable": "/opt/google/chrome/google-chrome",
+      "runDirectory": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea",
+      "profileDirectory": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/profile",
+      "stdoutFile": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/stdout.bin",
+      "stderrFile": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/stderr.bin",
+      "receiptFile": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 120000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/profile",
+        "about:blank"
+      ],
+      "pid": 353104,
+      "cdpUrl": "http://127.0.0.1:35597",
+      "browserWebSocketUrl": "ws://127.0.0.1:35597/devtools/browser/59dcb764-911e-473e-9549-df21522d5efe",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-25T08:02:44.834Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+      "stdout": {
+        "path": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/tmp/earth-water-account-8be3f865-dde5-4584-8852-73a86f6864ea/stderr.bin",
+        "bytes": 5241,
+        "sha256": "3fe010f26c744aebfab8155c4f99cf877618753cb241ba0ad190d2d967ca5180"
+      },
+      "finishedAt": "2026-10-25T08:02:47.416Z"
+    }
+  },
+  "sandboxAssessment": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T08:02:44.871Z",
+    "completedAt": "2026-10-25T08:02:44.972Z",
+    "durationMs": 101.29149099999995,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "6BE917E62A1CA384EAFCBFD35124AF8B",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "E8658AA1ECADDF2B707A86B6DD9EFF81"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "inputScope": "Authored source notebook controls; no field measurements or hydraulic model fit",
+  "limitations": [
+    "Supplied coverage and association declarations are not independently validated.",
+    "A positive residual is not uniquely infiltration.",
+    "The notebook limit allows at most 50 completely measured cells at two endpoints."
+  ],
+  "currentIntegration": "Refreshed8 current root modules for observed storage, threshold interventions and placement tradeoffs; all account/native dependency code unchanged.",
+  "visualReview": "Root inspected the actual current-main narrow full-width source form and account result; the course also asserts desktop visibility and readable controls."
+}

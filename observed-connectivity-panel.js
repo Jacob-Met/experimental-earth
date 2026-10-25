@@ -1,3 +1,4 @@
+import {mountObservedWaterAccount} from './observed-water-account-panel.js';
 import {inspectObservedConnectivity,exportObservedConnection,reopenObservedConnection} from './observed-connectivity.js';
 import {inspectObservedConnectionRange} from './observed-connection-range.js';
 import {parseConnectivityCells} from './ponding-connectivity.js';
@@ -51,6 +52,7 @@ export function mountObservedConnectivity({getProject}){
  $('observed-connection-form').addEventListener('input',()=>{serial++;clear('Question changed. Inspect again to recompute from original readings.');});
  $('observed-connection-export').addEventListener('click',()=>{try{if(!report)throw Error('Inspect a notebook question first.');const text=exportObservedConnection(source,report.query),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='earth-observed-connection.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){$('observed-connection-error').textContent=error.message;}});
  $('observed-connection-import').addEventListener('change',async()=>{const token=++serial,file=$('observed-connection-import').files[0],original=JSON.stringify(getProject());if(!file)return;clear();try{checkProjectFileBytes(file.size);const text=await file.text();if(token!==serial||original!==JSON.stringify(getProject()))return;const reopened=reopenObservedConnection(text);display(reopened.project,reopened.report,'Reopened isolated original notebook');setForm(reopened.project,reopened.report.query);}catch(error){if(token===serial)$('observed-connection-error').textContent=error.message;}finally{if(token===serial)$('observed-connection-import').value='';}});
- return {refresh(){serial++;if(report&&context!==JSON.stringify(getProject()))clear('Working notebook or site changed. Inspect again or reopen the original investigation.');}};
+ const accountPanel=mountObservedWaterAccount({getProject});
+ return {refresh(){accountPanel.refresh();serial++;if(report&&context!==JSON.stringify(getProject()))clear('Working notebook or site changed. Inspect again or reopen the original investigation.');}};
 }
 
