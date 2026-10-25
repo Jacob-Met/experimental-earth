@@ -15,3 +15,37 @@ On the maintained authored courtyard, set rain to 12 mm/h and turf candidates to
 The combined calibration and question simulations are admitted conservatively before execution against one million estimated cell-steps. At most nine candidates and three questions are supported. Equal separation patterns keep their earliest coordinate, reducing repeated scanning without changing the defined greedy choice.
 
 Run `node --test --test-isolation=none tests/complementary*.test.mjs` for independent synthetic coverage and actual maintained-solver controls. Run `CHROME_BIN=/path/to/chrome node tests/complementary-depth.browser.mjs` for source import, actual paired questions, keyboard notebook preparation, changed-input invalidation, reload and narrow layout. Browser execution must pass maintained sandbox admission.
+
+## Jointly choose at most two readings
+
+Choose **Best joint plan of at most two readings** in Planning method to compare
+all singleton and unordered pairs of distinct separation patterns. The default
+remains the original greedy one-to-three-reading method. The joint method
+maximizes the number of hypothesis pairs having disjoint prospective bands at
+at least one chosen coordinate. Equal coverage prefers fewer readings, then the
+earlier ordered time/cell tuple. No weak differences are summed, no observations
+are assumed statistically independent, and no rates are adopted.
+
+Coordinates with exactly the same separated-pair set are equivalent for this
+objective. Keeping their earliest coordinate preserves the optimum and tie rule;
+it does not discard any separation pattern or shortlist locations. Two 32-bit
+words retain all 36 possible pairs for nine hypotheses. The complete singleton
+plus pair count must fit one million evaluations before enumeration begins.
+An oversized family is explicitly refused; no partial search is called optimal.
+This bound is separate from the existing complete trajectory and solver budgets.
+
+On the authored courtyard, with existing turf rates
+0, 1, 3, 6, 9, 15, 22, 40 and 60 mm/h, rain 24 mm/h and prospective tolerance
+±2 mm, the greedy two-reading plan distinguishes 33/36 pairs. Joint selection
+chooses F6 at 40 minutes and C2 at 120 minutes and distinguishes 34/36, examining
+8,128 singleton/pair plans over 127 distinct patterns. Two pairs remain unresolved.
+This is a software model experiment, not acquired environmental evidence.
+The original four-rate, 12 mm/h example showed no coverage gain across eight
+examined tolerances: the extra search is not automatically useful.
+
+The optimum is conditional on this finite offered grid, model family, common
+prospective tolerance and objective. It does not optimize physical access,
+measurement travel or cost, continuous time, information gain, or identification.
+Source edits and query edits retire the plan. Reopening original project inputs
+requires recomputation; no saved result is trusted. Original calibration selects
+the candidate population; held-aside measured values cannot select the questions.
