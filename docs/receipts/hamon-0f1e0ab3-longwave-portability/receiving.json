@@ -1,0 +1,79 @@
+{
+  "repository": "Jacob-Met/experimental-earth",
+  "base": "c0b15a667db8d4685eff6175bc538c2722a212a6",
+  "date": "2026-10-25T18:08:31.403943+00:00",
+  "scope": "Source and actual isolated maintained consumer; no deployment or physical-source accuracy claim.",
+  "files": {
+    "longwave-portability.js": "9f4576f3f35626f98b7cdaaa755f31c89d78072b9ac006c73b21e6ab5cb86464",
+    "longwave-heat-panel.js": "c288dc6fed826a9a25f5c24c94bbecfd7bbbeb65099cbca809bcd3f834f95406",
+    "tests/longwave-portability-fixture.mjs": "a7f6ba79447652d80abd0a2c796507ffc6421dd57ad45bc21d205efb05ca88ec",
+    "tests/longwave-portability.test.mjs": "4f574e4a3b1e36c62809e43f44b235669296697cd5117f3b742c394ac5ef182c",
+    "tests/longwave-portability.browser.mjs": "383c51dc2e8c5f71da3349d9f6fbfa5523740713b5f980205eeaac60a7d27ce0",
+    "docs/LONGWAVE_PORTABILITY.md": "278bdcf2363605fccb9a8e138d13d72fffe319265f3f5fb1b21c674ffd6404f4"
+  },
+  "native": "# tests 985\n# pass 985\n# fail 0\n# skipped 0\n# duration_ms 8995.35009\n",
+  "browser": {
+    "status": "PASS",
+    "checks": [
+      "Actual valid143471-byte multibyte source download reopens after reload with unchanged original fields and computed result",
+      "Malformed and oversized files refuse without erasing the accepted table or original download",
+      "A comparison whose original linear baseline cannot be displayed refuses before replacing accepted source or output",
+      "Delayed read cannot overwrite a newer draft; reselecting the same actual original file reliably restores its accepted result",
+      "Maintained narrow-screen result remains usable after original-source recovery without browser exceptions"
+    ],
+    "exportedBytes": 143471,
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-25T18:01:55.326Z",
+      "completedAt": "2026-10-25T18:01:55.414Z",
+      "durationMs": 88.65608400000002,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "0D50A0C2B11EB2484606908307753AA9",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "7127492E77D85109DA8985C3DBD4DF9C"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": []
+  },
+  "independentReview": "Other direct workers reviewed the current native contracts and negative controls; root inspected actual desktop/narrow output.",
+  "localReceivingGitSnapshot": "c853d5e56f64f514e8622929fad6014f1f41f97a",
+  "gitProvenance": "The archive initially lacked .git, causing the existing CLI provenance gate to refuse. The recorded local snapshot honestly describes this received composition; it is not an upstream commit."
+}
