@@ -1,0 +1,310 @@
+{
+  "baseCommit": "c4f69310cf57c1154aa27c4e3abbb24b3d780651",
+  "baselineFiles": 218,
+  "sourceFiles": {
+    "observed-water-partial-account.js": {
+      "sha256": "911ce45ad39ba1f663ee264794bbee818ebefc231e1712ca9c407e06d3d09378",
+      "gitBlob": "f87264b2b6abc00cd3a7683ffee82a9272e8f1fb"
+    },
+    "tests/observed-water-partial-account.test.mjs": {
+      "sha256": "c2271430997b81e9feb784fecad4ac52f9e3c4e0eed0616bdc3c03cfd703a918",
+      "gitBlob": "c0355ea7c2757caf1b0853c5314529b4ffa8cef1"
+    },
+    "tests/observed-water-partial-account.browser.mjs": {
+      "sha256": "2d22eacdffb7cca9b0333c6e60504cc00a2fd9ef538f375354554449c7531d6b",
+      "gitBlob": "e01e3c1b17db149ce081d9b78366ee181f4772a8"
+    },
+    "docs/OBSERVED_WATER_BOUNDS.md": {
+      "sha256": "956b1f66e2349f08c25459dc05c8dee38dc0a4a186ebcc16ce93b6b0ee06a938",
+      "gitBlob": "44c0054aa71497536f45dec9b5d1d45b944ba68d"
+    },
+    "observed-water-account-panel.js": {
+      "sha256": "0ce8a1aa7fe91a07c1e80c673fba304af221a318d112056d9da452801a4d36a2",
+      "gitBlob": "c62a37181f27a2773a167090d8d46b783a8ecef2"
+    }
+  },
+  "runs": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/observed-water-partial-account.test.mjs",
+        "tests/observed-water-account.test.mjs",
+        "tests/observed-connectivity.test.mjs",
+        "tests/observed-connection-range.test.mjs"
+      ],
+      "exitCode": 0,
+      "output": "TAP version 13\n# Subtest: all 729 band ledgers agree with independent complete path endpoints\nok 1 - all 729 band ledgers agree with independent complete path endpoints\n  ---\n  duration_ms: 184.611182\n  type: 'test'\n  ...\n# Subtest: unknown upper depths never become the notebook numeric maximum\nok 2 - unknown upper depths never become the notebook numeric maximum\n  ---\n  duration_ms: 0.526016\n  type: 'test'\n  ...\n# Subtest: endpoint bands matter, and unmeasured detours need not prevent a supported path\nok 3 - endpoint bands matter, and unmeasured detours need not prevent a supported path\n  ---\n  duration_ms: 0.578241\n  type: 'test'\n  ...\n# Subtest: conflict, numerical contact and disconnected topology withhold bounds\nok 4 - conflict, numerical contact and disconnected topology withhold bounds\n  ---\n  duration_ms: 0.408656\n  type: 'test'\n  ...\n# Subtest: original source replay, exact association and model independence\nok 5 - original source replay, exact association and model independence\n  ---\n  duration_ms: 0.947391\n  type: 'test'\n  ...\n# Subtest: all 64 finite endpoint completions attain the independently computed range\nok 6 - all 64 finite endpoint completions attain the independently computed range\n  ---\n  duration_ms: 0.803355\n  type: 'test'\n  ...\n# Subtest: all 729 ternary 3x2 ledgers match 4096 independently enumerated unknown completions\nok 7 - all 729 ternary 3x2 ledgers match 4096 independently enumerated unknown completions\n  ---\n  duration_ms: 83.58682\n  type: 'test'\n  ...\n# Subtest: actual notebook-source detour, missing bridge and attributed cut retain original indices\nok 8 - actual notebook-source detour, missing bridge and attributed cut retain original indices\n  ---\n  duration_ms: 0.843197\n  type: 'test'\n  ...\n# Subtest: exact time and scenario isolation never use interpolated or differently assigned values\nok 9 - exact time and scenario isolation never use interpolated or differently assigned values\n  ---\n  duration_ms: 0.23317\n  type: 'test'\n  ...\n# Subtest: repeated bands retain roles and sources, including contradictions and roundoff contact\nok 10 - repeated bands retain roles and sources, including contradictions and roundoff contact\n  ---\n  duration_ms: 0.459275\n  type: 'test'\n  ...\n# Subtest: threshold contacts, straddling bands and geometric exclusions are distinct\nok 11 - threshold contacts, straddling bands and geometric exclusions are distinct\n  ---\n  duration_ms: 0.416964\n  type: 'test'\n  ...\n# Subtest: model/weather edits do not fill missing observations or change evidence logic\nok 12 - model/weather edits do not fill missing observations or change evidence logic\n  ---\n  duration_ms: 0.442499\n  type: 'test'\n  ...\n# Subtest: raw source-only transfer recomputes and ignores forged conclusions\nok 13 - raw source-only transfer recomputes and ignores forged conclusions\n  ---\n  duration_ms: 0.602817\n  type: 'test'\n  ...\n# Subtest: bounded queries and shared component helper reject malformed source\nok 14 - bounded queries and shared component helper reject malformed source\n  ---\n  duration_ms: 4.214634\n  type: 'test'\n  ...\n# Subtest: two-metre cells scale rainfall and nonzero storage while collected litres stay original\nok 15 - two-metre cells scale rainfall and nonzero storage while collected litres stay original\n  ---\n  duration_ms: 3.654141\n  type: 'test'\n  ...\n# Subtest: original interval account retains source units and signed residual without fitting\nok 16 - original interval account retains source units and signed residual without fitting\n  ---\n  duration_ms: 0.822363\n  type: 'test'\n  ...\n# Subtest: 1024 independent original endpoint assignments attain returned account extrema\nok 17 - 1024 independent original endpoint assignments attain returned account extrema\n  ---\n  duration_ms: 1.888026\n  type: 'test'\n  ...\n# Subtest: unit-equivalent original quantities retain same account and original units\nok 18 - unit-equivalent original quantities retain same account and original units\n  ---\n  duration_ms: 0.640474\n  type: 'test'\n  ...\n# Subtest: missing or wrong event endpoint never becomes dry or interpolated\nok 19 - missing or wrong event endpoint never becomes dry or interpolated\n  ---\n  duration_ms: 0.612312\n  type: 'test'\n  ...\n# Subtest: repeated bands intersect without losing source roles; conflicts and contact withhold\nok 20 - repeated bands intersect without losing source roles; conflicts and contact withhold\n  ---\n  duration_ms: 0.691567\n  type: 'test'\n  ...\n# Subtest: zero-containing residual is unresolved, never clamped into inferred infiltration\nok 21 - zero-containing residual is unresolved, never clamped into inferred infiltration\n  ---\n  duration_ms: 0.427356\n  type: 'test'\n  ...\n# Subtest: source-only transfer recomputes and stale collection/unsourced assumptions refuse\nok 22 - source-only transfer recomputes and stale collection/unsourced assumptions refuse\n  ---\n  duration_ms: 1.342709\n  type: 'test'\n  ...\n# Subtest: explicit sourced at-most observation closes a missing final bound without a point value\nok 23 - explicit sourced at-most observation closes a missing final bound without a point value\n  ---\n  duration_ms: 4.050953\n  type: 'test'\n  ...\n# Subtest: paired original one-sided bounds reproduce complete numeric account with no fabricated readings\nok 24 - paired original one-sided bounds reproduce complete numeric account with no fabricated readings\n  ---\n  duration_ms: 1.154287\n  type: 'test'\n  ...\n# Subtest: a lower-only original bound remains unbounded above\nok 25 - a lower-only original bound remains unbounded above\n  ---\n  duration_ms: 0.522765\n  type: 'test'\n  ...\n# Subtest: threshold association is explicit, source-bound and exact-time\nok 26 - threshold association is explicit, source-bound and exact-time\n  ---\n  duration_ms: 1.779366\n  type: 'test'\n  ...\n# Subtest: cross-modality contradictions and numerical contact withhold all residuals\nok 27 - cross-modality contradictions and numerical contact withhold all residuals\n  ---\n  duration_ms: 0.717181\n  type: 'test'\n  ...\n# Subtest: complete source agrees exactly with strict account without changing its default\nok 28 - complete source agrees exactly with strict account without changing its default\n  ---\n  duration_ms: 0.473388\n  type: 'test'\n  ...\n# Subtest: missing initial reading retains a positive lower residual without a finite upper bound\nok 29 - missing initial reading retains a positive lower residual without a finite upper bound\n  ---\n  duration_ms: 0.478436\n  type: 'test'\n  ...\n# Subtest: missing final reading can preserve a wholly negative upper residual\nok 30 - missing final reading can preserve a wholly negative upper residual\n  ---\n  duration_ms: 0.409612\n  type: 'test'\n  ...\n# Subtest: unknown cells at both endpoints leave both directions unbounded\nok 31 - unknown cells at both endpoints leave both directions unbounded\n  ---\n  duration_ms: 0.602519\n  type: 'test'\n  ...\n# Subtest: independent finite completions attain the lower bound and grow without a fixed notebook ceiling\nok 32 - independent finite completions attain the lower bound and grow without a fixed notebook ceiling\n  ---\n  duration_ms: 2.407143\n  type: 'test'\n  ...\n# Subtest: partial coverage cannot rescue contradictory or numerical-contact sources\nok 33 - partial coverage cannot rescue contradictory or numerical-contact sources\n  ---\n  duration_ms: 0.710275\n  type: 'test'\n  ...\n# Subtest: versioned explicit intent survives original-source replay and old reader refuses\nok 34 - versioned explicit intent survives original-source replay and old reader refuses\n  ---\n  duration_ms: 1.310112\n  type: 'test'\n  ...\n1..34\n# tests 34\n# suites 0\n# pass 34\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 241.989464\n"
+    },
+    {
+      "command": [
+        "node",
+        "tests/observed-water-partial-account.browser.mjs"
+      ],
+      "exitCode": 0,
+      "browser": {
+        "status": "PASS",
+        "value": {
+          "runDirectory": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d",
+          "groups": [
+            "complete mode remains default and refuses missing numeric endpoint",
+            "unassociated threshold remains excluded and missing storage unbounded",
+            "explicit original one-sided association constrains residual without numeric invention",
+            "strict desktop/narrow source form and result visibility",
+            "versioned original inputs download and isolated fresh reopen",
+            "contradiction stale context and implicit intent refuse",
+            "source edit retires reopened result"
+          ],
+          "exceptions": []
+        },
+        "receipt": {
+          "schema": "hamon.chromium-session.v1",
+          "status": "course-completed",
+          "startedAt": "2026-10-25T08:30:27.619Z",
+          "executable": "/opt/google/chrome/google-chrome",
+          "runDirectory": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d",
+          "profileDirectory": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/profile",
+          "stdoutFile": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/stdout.bin",
+          "stderrFile": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/stderr.bin",
+          "receiptFile": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/session.json",
+          "sandbox": "not-assessed",
+          "limits": {
+            "startupMs": 15000,
+            "shutdownMs": 3000,
+            "courseMs": 120000
+          },
+          "cleanup": {
+            "attempted": true,
+            "directChildExited": true,
+            "scope": "launched-direct-child-only",
+            "signals": [
+              "SIGTERM"
+            ]
+          },
+          "argv": [
+            "--headless=new",
+            "--enable-automation",
+            "--allow-chrome-scheme-url",
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--remote-debugging-address=127.0.0.1",
+            "--remote-debugging-port=0",
+            "--user-data-dir=/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/profile",
+            "about:blank"
+          ],
+          "pid": 356139,
+          "cdpUrl": "http://127.0.0.1:36007",
+          "browserWebSocketUrl": "ws://127.0.0.1:36007/devtools/browser/741832fb-ab28-47ff-addf-98f635c5edbe",
+          "browserVersion": "Chrome/156.0.8078.47",
+          "readyAt": "2026-10-25T08:30:27.802Z",
+          "exit": {
+            "code": 0,
+            "signal": null
+          },
+          "logsComplete": true,
+          "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+          "stdout": {
+            "path": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/stdout.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "path": "/tmp/earth-water-partial-account-d9c7342e-07bf-449a-885c-7cb7e145380d/stderr.bin",
+            "bytes": 5241,
+            "sha256": "9c4de308628627ea3237ba9b23200c8a14957b426409ac355c40cc2766d67df8"
+          },
+          "finishedAt": "2026-10-25T08:30:29.946Z"
+        }
+      },
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-25T08:30:27.841Z",
+        "completedAt": "2026-10-25T08:30:27.939Z",
+        "durationMs": 97.77752099999998,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "543790D9DDA0D586675621B26AB5979A",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "014EB30588BCC9E4C7F6D6BBCEE8A674"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      }
+    },
+    {
+      "command": [
+        "node",
+        "tests/observed-water-account.browser.mjs"
+      ],
+      "exitCode": 0,
+      "browser": {
+        "status": "PASS",
+        "value": {
+          "runDirectory": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c",
+          "groups": [
+            "original project and keyboard sourced account",
+            "literal complete endpoint ledger and nonmutation",
+            "raw input download and isolated fresh reopen",
+            "readable full-width source forms and strict desktop/narrow account visibility",
+            "negative residual and incomplete endpoint refusal",
+            "contradictory or unsourced evidence refusal",
+            "source edit and pending-read retirement"
+          ],
+          "exceptions": []
+        },
+        "receipt": {
+          "schema": "hamon.chromium-session.v1",
+          "status": "course-completed",
+          "startedAt": "2026-10-25T08:30:32.986Z",
+          "executable": "/opt/google/chrome/google-chrome",
+          "runDirectory": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c",
+          "profileDirectory": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/profile",
+          "stdoutFile": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/stdout.bin",
+          "stderrFile": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/stderr.bin",
+          "receiptFile": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/session.json",
+          "sandbox": "not-assessed",
+          "limits": {
+            "startupMs": 15000,
+            "shutdownMs": 3000,
+            "courseMs": 120000
+          },
+          "cleanup": {
+            "attempted": true,
+            "directChildExited": true,
+            "scope": "launched-direct-child-only",
+            "signals": [
+              "SIGTERM"
+            ]
+          },
+          "argv": [
+            "--headless=new",
+            "--enable-automation",
+            "--allow-chrome-scheme-url",
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-background-networking",
+            "--remote-debugging-address=127.0.0.1",
+            "--remote-debugging-port=0",
+            "--user-data-dir=/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/profile",
+            "about:blank"
+          ],
+          "pid": 356360,
+          "cdpUrl": "http://127.0.0.1:36211",
+          "browserWebSocketUrl": "ws://127.0.0.1:36211/devtools/browser/a9d31380-278b-4174-8534-c9069b2a35e7",
+          "browserVersion": "Chrome/156.0.8078.47",
+          "readyAt": "2026-10-25T08:30:33.145Z",
+          "exit": {
+            "code": 0,
+            "signal": null
+          },
+          "logsComplete": true,
+          "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+          "stdout": {
+            "path": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/stdout.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "path": "/tmp/earth-water-account-53eac47e-e6dd-460e-b7af-b4991886039c/stderr.bin",
+            "bytes": 5241,
+            "sha256": "b20459a80f025fbbdf0affd7030e521112acfd242006b293a7b1b959bf3d38fe"
+          },
+          "finishedAt": "2026-10-25T08:30:35.680Z"
+        }
+      },
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-25T08:30:33.176Z",
+        "completedAt": "2026-10-25T08:30:33.277Z",
+        "durationMs": 101.67560300000002,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "A767F33826A4DE2102FF31D29B7CBEE9",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "D1FEB3FFDD6670CBB43BC19446A46ED9"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      }
+    }
+  ],
+  "scope": "Original-source partial water account under explicit coverage/event/clock declarations; null bounds remain unbounded, not zero.",
+  "independentReview": "Microverse core and Wildside panel/replay source reviews found no blocker. Exact executed source hashes recorded above.",
+  "limitations": [
+    "Authored control; no field measurement qualification.",
+    "A point depth does not independently establish a cell mean.",
+    "Declarations do not verify event identity, entire boundary collection, rainfall completeness or causal infiltration.",
+    "Conflicting source bands and numerical contact withhold conclusions; the strict v1 default remains."
+  ]
+}
