@@ -1,0 +1,64 @@
+{
+  "format": "experimental-earth-decision-depth-pair-browser/v1",
+  "sourceBase": "52e3b843ddbb9dff78b5b31640c54044639acbbe",
+  "overlaySha256": "9028b8eb329cf0150d7b40023a285e0a4fe64f99a2d44aeb204648da774e990d",
+  "environment": {
+    "os": "Linux",
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47",
+    "browserSandboxDisabled": false
+  },
+  "observed": {
+    "checks": [
+      "actual mounted 14\u219215/18",
+      "original download",
+      "isolated file reopen",
+      "disabled foreign preparation",
+      "source preserved",
+      "settled desktop/narrow panel screenshots and no horizontal overflow",
+      "edit retires",
+      "no page errors"
+    ]
+  },
+  "benefit": {
+    "oppositeEffectPairs": 18,
+    "bestSingletonSeparates": 14,
+    "bestPairSeparates": 15,
+    "remaining": 3
+  },
+  "screenshots": {
+    "desktop": "desktop.png",
+    "narrow": "narrow.png",
+    "inspected": true,
+    "horizontalOverflow": false,
+    "sourceBase": "52e3b843ddbb9dff78b5b31640c54044639acbbe"
+  },
+  "limits": [
+    "Authored numerical model; not field measurements or a guarantee",
+    "No complete decision resolution: three opposite-effect pairs remain",
+    "First two download-course failures came from a global same-label selector; scoped actual file download and reopen passed. Earlier unsettled screenshot did not qualify the new panel."
+  ],
+  "currentRerun": {
+    "sourceBase": "2fa5cff6f02a753ba2b52695f2648be36dc5485e",
+    "reportedBy": "lead executing actual remote runtime",
+    "browserResult": "Earth decision pair browser receiving passed",
+    "checks": [
+      "actual mounted 14\u219215/18",
+      "original download",
+      "isolated file reopen",
+      "disabled foreign preparation",
+      "source preserved",
+      "settled desktop/narrow panel screenshots and no horizontal overflow",
+      "edit retires",
+      "no page errors"
+    ],
+    "native": {
+      "tests": 52,
+      "passed": 52,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 470.0467,
+      "scope": "six focused native test files; not complete repository suite"
+    }
+  }
+}

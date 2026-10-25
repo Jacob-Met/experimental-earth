@@ -1,0 +1,31 @@
+{
+  "base": "2fa5cff6f02a753ba2b52695f2648be36dc5485e",
+  "files": {
+    "complementary-depth-plan.js": "abd914930e217179bbada182d39bd40d97947064a6caec5be70b4bc3f45e3241",
+    "decision-depth-pair.js": "2adbdf18f672dfbea5bb7659e43966a6dd7e392148f0a136ad90d1ccfe95a506",
+    "decision-depth-pair-panel.js": "0a307d402cb544ca2fa8845e466279bc15c51654469fc8ad2c3c32aa1fd8d84b",
+    "decision-question-panel.js": "859bfb7035fa9eb32f790084a2d786791b426e00f31b20652e86bcce74d43148",
+    "tests/decision-depth-pair.test.mjs": "f5af50eb13c19b65421eba08d1aae5783d81866aac44e24046f095f198a069f0",
+    "docs/DECISION_DEPTH_PAIR.md": "f9988add9a29153c34851ca447512c75700c72baae9b4b3f1db241d0f9445cea",
+    "tests/decision-depth-pair.receiving.mjs": "94a6710ee02ebd37eb2948b761236398aae4b2009057a650719a2fda2c2a621f"
+  },
+  "browser_receipt": "browser.json records actual eight-check current-base rerun and preserves52e3b843 screenshot origin.",
+  "native": "Lead current-base remote:52/52 tests pass,0fail,0skip,470.0467ms across six focused files; not full suite",
+  "previous_browser_base": "3a56627d99c72cf7434540f605c807ed6c5bd386",
+  "runtime_updates": {
+    "intervention-study.js": "deb93a8a7bbb7782f97f7c09bb5f60a066722f1883e3fb80ce092574ee555ed9",
+    "longwave-heat-panel.js": "2abe4faf19b3796c1116e2e175f5cf719b7b18147c95d126cb190da3f3a46b57",
+    "longwave-heat.js": "745e3b4c7b09f6ff4c66e9091a126fb297ffd466a84e1ddf0a56c524a3471a95",
+    "placement-search.js": "d3bb7a28f2399c85758cd194097425811ad4067fdfab397eaa2a4d00bcf967bf",
+    "proposal-components-panel.js": "8f467bcc3be441655f8ce9785a59b73cb95fee106f9f62e1cc297945ef359ebc",
+    "proposal-components.js": "62f5ae054b91c6b7ae6626c4d1addd335ef79a0b8300fdbabe992edead474295",
+    "surface-heat-panel.js": "a3f81ea5a55fb31ea632ea84116d9e68afe65d8a3a14b0ae7d4c8249f2599ff9"
+  },
+  "artifacts": {
+    "docs/receipts/decision-depth-pair-1d6c/desktop.png": "c9ac9bdd2d4b4efcb7bbcd198ad307c9bba9b3f61038b0c217c1f1e7a4859161",
+    "docs/receipts/decision-depth-pair-1d6c/narrow.png": "2da2f4154931d1314b4495778d020c62215452928548139de7a05fb5e7e5a874",
+    "docs/receipts/decision-depth-pair-1d6c/browser.json": "0726298967d751bbc7b517dbf20d22eec0928d3ff64056a30da5952cc65ec4b4"
+  },
+  "runtime_updates_base": "52e3b843ddbb9dff78b5b31640c54044639acbbe",
+  "current_runtime_overlay_sha256": "ab8b2a8e1a6c5b71ba0e5e5de61d815a9d3510efb8ac4ea107209e37fd72ce21"
+}
