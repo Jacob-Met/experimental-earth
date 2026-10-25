@@ -329,3 +329,7 @@ Every original source and role remains inspectable; no simulated depth fills the
 gaps. Download and reopen the original inputs independently without replacing the
 working site. See [Observed-band connectivity](docs/OBSERVED_CONNECTIVITY.md) for
 the conditional logic, source assumptions and physical-access limits.
+
+### Original standing-water inventory
+
+The evidence map can also bound simultaneous standing-water volume from original depth bands under an explicit cell-representativeness assumption. Missing cells leave the whole-site upper bound unknown; contradictory bands refuse aggregation. See [Observed storage](docs/OBSERVED_STORAGE.md).
