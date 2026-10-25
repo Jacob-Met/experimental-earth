@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {mkdtemp,writeFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {makeExample} from '../core.js';
+import {withBrowserSession} from './support/browser-session.mjs';
+const output=await mkdtemp(join(tmpdir(),'earth-exact-depth-'));
+const project=makeExample();project.weather.rainMmHr=24;project.infiltrationStudy={target:'existing',surface:'turf',ratesMmHr:[0,1,3,6,9,15,22,40,60]};
+project.observations=[{cellIndex:0,minute:0,depthMm:0,uncertaintyMm:0,source:'Authored common-start control, not field evidence',scenario:'existing',use:'calibration'}];
+const checks=[];
+await withBrowserSession({root:new URL('../',import.meta.url).pathname,chromeBin:process.env.CHROME_BIN,runDirectory:join(output,'session')},async s=>{
+ const wait=async expression=>{for(let i=0;i<100;i++){if(await s.evaluate(expression))return;await new Promise(r=>setTimeout(r,30));}throw Error(expression);};
+ await wait("!!document.querySelector('#complementary-strategy')");
+ await s.evaluate(`(()=>{const i=document.querySelector('#import'),dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(JSON.stringify(project))}],'source.json',{type:'application/json'}));i.files=dt.files;i.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+ await wait("document.querySelector('#study-rates').value==='0, 1, 3, 6, 9, 15, 22, 40, 60'");
+ const saved=await s.evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ await s.evaluate("document.querySelector('#complementary-depth-plan').open=true;document.querySelector('#complementary-tolerance').value='2';document.querySelector('#complementary-depth-plan form').requestSubmit()");
+ assert.ok((await s.evaluate("document.querySelector('#complementary-results').textContent")).includes('33 of 36'));
+ await s.evaluate("(()=>{const e=document.querySelector('#complementary-strategy');e.value='exact-pair';e.dispatchEvent(new Event('change',{bubbles:true}));})()");
+ assert.equal(await s.evaluate("document.querySelector('#complementary-results').textContent"),'');
+ assert.equal(await s.evaluate("document.querySelector('#complementary-budget').disabled"),true);
+ await s.evaluate("document.querySelector('#complementary-depth-plan form').requestSubmit()");
+ const text=await s.evaluate("document.querySelector('#complementary-results').textContent");
+ assert.ok(text.includes('34 of 36'));assert.ok(text.includes('F6 at 40'));assert.ok(text.includes('C2 at 120'));assert.ok(text.includes('8128 singleton/pair'));assert.ok(text.includes('Still unresolved'));
+ assert.equal(await s.evaluate("localStorage.getItem('experimental-earth-site-v1')"),saved);checks.push('original source greedy33 versus exact34 with complete finite work and unresolved alternatives');
+ await s.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ assert.equal(await s.evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
+ await s.evaluate("document.querySelector('#complementary-strategy').focus()");assert.equal(await s.evaluate('document.activeElement.id'),'complementary-strategy');
+ for(const [name,width,height] of [['desktop',1440,1000],['narrow',390,844]]){
+  await s.send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<500});
+  const clip=await s.evaluate("(()=>{const r=document.querySelector('#complementary-depth-plan').getBoundingClientRect();return{x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height,scale:1}})()");
+  const png=await s.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip});await writeFile(join(output,name+'.png'),Buffer.from(png.data,'base64'));
+ }
+ checks.push('desktop/narrow exact-plan inspection and keyboard method control');
+ await s.evaluate("(()=>{const e=document.querySelector('#complementary-tolerance');e.value='3';e.dispatchEvent(new Event('input',{bubbles:true}));})()");assert.equal(await s.evaluate("document.querySelector('#complementary-results').textContent"),'');
+ await s.send('Page.reload');await wait("!!document.querySelector('#complementary-strategy')");assert.equal(await s.evaluate("document.querySelector('#complementary-strategy').value"),'greedy');assert.equal(await s.evaluate("localStorage.getItem('experimental-earth-site-v1')"),saved);
+ await s.evaluate("document.querySelector('#complementary-tolerance').value='2';const e=document.querySelector('#complementary-strategy');e.value='exact-pair';e.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#complementary-depth-plan form').requestSubmit()");assert.ok((await s.evaluate("document.querySelector('#complementary-results').textContent")).includes('34 of 36'));
+ checks.push('changed query retires plan; original-source reload recomputes exact result');
+ assert.deepEqual(s.exceptions,[]);await writeFile(join(output,'receipt.json'),JSON.stringify({checks,sandboxAdmitted:s.sandbox.admitted,exceptions:s.exceptions}));
+});console.log(JSON.stringify({output,checks}));

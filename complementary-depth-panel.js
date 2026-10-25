@@ -19,8 +19,14 @@ export function mountComplementaryDepthPanel({ getProject, prepareReading, notic
   const budgetLabel = node('label', 'Maximum readings '), budget = node('select'); budget.id = 'complementary-budget';
   for (const value of [1, 2, 3]) { const option = node('option', String(value)); option.value = String(value); budget.append(option); }
   budget.value = '2'; budgetLabel.append(budget);
+  const strategyLabel = node('label', 'Planning method '), strategy = node('select'); strategy.id = 'complementary-strategy';
+  for (const [value, label] of [['greedy', 'Greedy complementary readings'], ['exact-pair', 'Best joint plan of at most two readings']]) {
+    const option = node('option', label); option.value = value; strategy.append(option);
+  }
+  strategyLabel.append(strategy);
+  strategy.addEventListener('change', () => { budget.disabled = strategy.value === 'exact-pair'; if (budget.disabled) budget.value = '2'; });
   const submit = node('button', 'Plan complementary readings'); submit.type = 'submit';
-  form.append(toleranceLabel, budgetLabel, submit);
+  form.append(toleranceLabel, strategyLabel, budgetLabel, submit);
   const output = node('div'); output.id = 'complementary-results'; output.setAttribute('aria-live', 'polite');
   host.append(form, output);
   document.getElementById('infiltration-question').after(host);
@@ -33,7 +39,7 @@ export function mountComplementaryDepthPanel({ getProject, prepareReading, notic
     try {
       const project = getProject();
       if (!tolerance.value.trim()) throw Error('Supply a prospective depth tolerance');
-      const report = planInfiltrationReadings(project, { uncertaintyMm: Number(tolerance.value), maxReadings: Number(budget.value) });
+      const report = planInfiltrationReadings(project, { uncertaintyMm: Number(tolerance.value), maxReadings: Number(budget.value), strategy: strategy.value });
       signature = JSON.stringify(project);
       const ratePair = pair => `${number(report.ratesMmHr[pair.first])} / ${number(report.ratesMmHr[pair.second])} mm/h`;
       if (report.status === 'insufficient-alternatives') output.append(node('p', 'At least two calibration-compatible rates are needed. No reading plan was invented.'));
@@ -54,7 +60,9 @@ export function mountComplementaryDepthPanel({ getProject, prepareReading, notic
         }
         output.append(node('p', report.unresolvedPairs.length ? `Still unresolved within this plan: ${report.unresolvedPairs.map(ratePair).join('; ')}. They remain alternatives; no candidate was removed.` : 'Every pair has disjoint predicted bands at at least one proposed point under the declared precision.'));
       }
-      output.append(node('p', 'This greedy plan adds the most previously unresolved pairs at each step; ties use earliest time then cell. It is not a global optimum, probability, or assurance that a measurement will identify the physical soil. Solver time-step and model error remain outside the supplied tolerance. Held-aside values never choose the plan. Preparing a reading does not acquire one; supply its actual value and source.'));
+      if (report.exact) output.append(node('p', `Exact finite coverage optimum among plans of at most two readings: ${report.exact.evaluatedPlans} singleton/pair plans over ${report.exact.candidatePatterns} distinct separation patterns. Equal patterns retain their earliest coordinate; coverage ties prefer fewer readings, then earliest ordered times and cells. This does not optimize travel, cost, or physical feasibility.`));
+      else if (strategy.value === 'greedy') output.append(node('p', 'This greedy plan adds the most previously unresolved pairs at each step; ties use earliest time then cell. It is not a global optimum.'));
+      output.append(node('p', 'Neither method provides probabilities or assurance that measurements identify the physical soil. Solver time-step and model error remain outside the supplied tolerance. Held-aside values never choose the plan. Preparing a reading does not acquire one; supply its actual value and source.'));
     } catch (error) { notice(error.message); output.append(node('p', error.message)); }
   });
   return { clear };
