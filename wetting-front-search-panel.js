@@ -1,3 +1,4 @@
+import {mountSoilSearchResolution} from './wetting-front-search-resolution-panel.js';
 import {SURFACES} from './core.js';
 import {searchSoilParameters,soilSearchSelection,serializeSoilSearch,parseSoilSearch,SOIL_SEARCH_FILE_LIMIT} from './wetting-front-search.js';
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
@@ -51,6 +52,7 @@ export function mountSoilSearch({host,getProject,setDraft}) {
     for(const row of report.candidates){const d=node('details');d.append(node('summary',`K ${fmt(row.conductivityMmHr)}, A ${fmt(row.capillaryDriveMm)}`));
       for(const role of ['calibration','challenge'])for(const error of row[role].errors){const reading=project.observations[error.index];d.append(node('p',`${role}: cell ${reading.cellIndex}, minute ${reading.minute}; original ${reading.depthMm} ± ${reading.uncertaintyMm} mm; predicted ${error.depthMm} mm; observed − predicted ${error.residualMm} mm; ${error.withinBand?'inside':'outside'} band. ${error.method==='snapshot'?'Saved model time':`Interpolated ${error.beforeMinute}–${error.afterMinute} min`}. Source: ${reading.source}`));}evidence.append(d);
     }results.append(evidence);
+    mountSoilSearchResolution({container:results,project,query,isCurrent:()=>retained?.report===report&&retained.working===JSON.stringify(getProject())});
   }
   form.addEventListener('input',()=>clear('Search inputs changed. Search again.'));
   form.addEventListener('submit',event=>{event.preventDefault();clear('Searching declared pairs…');const epoch=generation,signature=JSON.stringify(getProject());setTimeout(()=>{if(epoch!==generation)return;try{if(signature!==JSON.stringify(getProject()))throw Error('Source changed; search again');const p=structuredClone(getProject()),q=read();show(p,q,searchSoilParameters(p,q));}catch(e){status.textContent='Search refused: '+e.message;}},0);});

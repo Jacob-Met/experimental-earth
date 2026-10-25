@@ -1,0 +1,31 @@
+{
+  "base": "7fabc9e5a9c6f001c148bc03cba0705a0a155933",
+  "native": {
+    "command": "node --test --test-concurrency=2",
+    "node": "v22.23.4",
+    "passed": 745,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 8620.178564,
+    "logTail": "  duration_ms: 17.087216\n  type: 'test'\n  ...\n1..745\n# tests 745\n# suites 0\n# pass 745\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 8620.178564"
+  },
+  "browser": {
+    "groups": 3,
+    "seconds": 5.44,
+    "sandboxAdmitted": true
+  },
+  "proof": "The identical nine-pair source grid has no calibration-compatible pair at 5 or 2.5 minutes but retains K10/A20 at 1.25 minutes. Original source download/reopen, keyboard actions and weather invalidation passed; 390 px layout inspected.",
+  "limits": [
+    "Finite calculation-interval sensitivity does not establish convergence or physical accuracy.",
+    "Held-aside readings never select compatible or closest calibration pairs.",
+    "Per-run and aggregate capacity are checked before solver work; no numerical setting or parameter is adopted."
+  ],
+  "sourceSha256": {
+    "wetting-front-search-resolution.js": "b355dccbf5d24fb13b529deaa796eb09ef96954ffe3349da59631f8ff663a23a",
+    "wetting-front-search-resolution-panel.js": "2829774a77de8a9fff3c68b3ad7ddf62e86dc19345a75234752e869aed53412c",
+    "wetting-front-search-panel.js": "507eac181b21aeb56b65e5e134cb9e2607ef4c4b25b1d9c1a358540d5293ea85",
+    "tests/wetting-front-search-resolution.test.mjs": "858f8a308e62ce77556757a7a7b55ecbf49ed55cfa9b35716f72524dfe1a713e",
+    "tests/wetting-front-search-resolution.browser.mjs": "8a16509b94040f4a7cc61c9a030cadcc7f3df6783059d43c73cf65e9af3ceab8",
+    "docs/SOIL_SEARCH_RESOLUTION.md": "e2b02ce149666c2111d88b7102c79e21eed24b55e15c7b99993cf48d42ea5a67"
+  }
+}
