@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "checks": [
+    "same-browser chrome://sandbox reports Namespace, PID, network, seccomp and TSYNC active",
+    "keyboard comparison finds interior peak, preserves original source and renders literal descriptions",
+    "actual downloadable blob contains original project and sourced windows only",
+    "real file reopening recomputes independently without adopting its site",
+    "late file read cannot repaint results after workspace reset",
+    "expanded 1440px desktop source and extrema captured without viewport overflow",
+    "expanded narrow-screen source and extrema remain within viewport"
+  ],
+  "dimensions": {
+    "inner": 390,
+    "scroll": 390
+  },
+  "desktopDimensions": {
+    "inner": 1440,
+    "scroll": 1425
+  },
+  "sandboxAdmission": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T00:47:39.519Z",
+    "completedAt": "2026-10-25T00:47:39.656Z",
+    "durationMs": 137.339135,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "465F8E78165634479DEFA4C5436D934C",
+      "type": "page",
+      "title": "Sandbox Status",
+      "url": "",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "722AFB7E419CEC4FA84B4941508361CF"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T00:47:39.234Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/earth-e794-reading-windows-receiving-v6",
+    "profileDirectory": "/tmp/earth-e794-reading-windows-receiving-v6/profile",
+    "stdoutFile": "/tmp/earth-e794-reading-windows-receiving-v6/stdout.bin",
+    "stderrFile": "/tmp/earth-e794-reading-windows-receiving-v6/stderr.bin",
+    "receiptFile": "/tmp/earth-e794-reading-windows-receiving-v6/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/earth-e794-reading-windows-receiving-v6/profile",
+      "about:blank"
+    ],
+    "pid": 25022,
+    "cdpUrl": "http://127.0.0.1:33499",
+    "browserWebSocketUrl": "ws://127.0.0.1:33499/devtools/browser/6ee62ed4-d41d-4702-912c-e0ceabdc5af5",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T00:47:39.381Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/earth-e794-reading-windows-receiving-v6/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/earth-e794-reading-windows-receiving-v6/stderr.bin",
+      "bytes": 5314,
+      "sha256": "54c8883b9cd06f60c3e171fcd7c5003ee3b57f445c853c7600e552ef09601dff"
+    },
+    "finishedAt": "2026-10-25T00:47:41.330Z"
+  }
+}

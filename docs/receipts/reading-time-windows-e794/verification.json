@@ -1,0 +1,81 @@
+{
+  "schema": "hamon.reading-time-windows.receiving/v1",
+  "base": "1c808888f18b8156f594c49abde216f086cd9a2b",
+  "environment": {
+    "os": "Ubuntu",
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47"
+  },
+  "commands": [
+    "node --test --test-concurrency=2 tests/*.test.mjs",
+    "CHROME_BIN=/opt/google/chrome/chrome RUN_DIRECTORY=/tmp/earth-e794-reading-windows-receiving-v6 node tests/reading-time-windows.browser.mjs"
+  ],
+  "native": {
+    "tests": 630,
+    "passed": 630,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "status": "PASS",
+    "groups": 7,
+    "actualSandbox": "Namespace; PID/network namespaces; Seccomp-BPF with TSYNC",
+    "desktopWidth": 1440,
+    "narrowWidth": 390
+  },
+  "fixture": {
+    "kind": "authored closed 2x2 grid",
+    "browserScriptGitBlob": "71fed2cfd873cc0b2ad662c7eb3b53f64b9227d3",
+    "rainMmHr": 30,
+    "stormMinutes": 60,
+    "durationMinutes": 180,
+    "ratesMmHr": [
+      3,
+      9,
+      22
+    ],
+    "observation": {
+      "minute": 60,
+      "depthMm": 21,
+      "uncertaintyMm": 0.01
+    },
+    "windowMinutes": [
+      30,
+      90
+    ]
+  },
+  "runtime": [
+    {
+      "path": "reading-time-windows.js",
+      "sha": "d19788c5b58a358d001cdc78dd41c8da1da99c9d"
+    },
+    {
+      "path": "reading-time-window-receipt.js",
+      "sha": "db1e74bd7dcdf0410059cbb1bdddf6dda5e08aef"
+    },
+    {
+      "path": "reading-time-window-panel.js",
+      "sha": "a9a559a66a499e6a6c05f13bdee4f4e7a9325b18"
+    },
+    {
+      "path": "clock-panel.js",
+      "sha": "11143ed36102506b71ecc0414f669d9872fcc47c"
+    },
+    {
+      "path": "tests/reading-time-windows.test.mjs",
+      "sha": "443b94f69c3795ae936d661e32af7419c46b5ee1"
+    },
+    {
+      "path": "tests/reading-time-windows.browser.mjs",
+      "sha": "71fed2cfd873cc0b2ad662c7eb3b53f64b9227d3"
+    }
+  ],
+  "independentReview": [
+    "Interior peak defeats endpoint-only comparison",
+    "Collinear snapshot insertion preserves range",
+    "Window widening respects all/some/none quantifiers",
+    "Original source and nominal calibration ordering remain unchanged",
+    "Forged saved verdict refused"
+  ],
+  "qualification": "Source labels and time windows are declarations. Independent times do not establish one common clock or acquisition ordering; no field validation."
+}

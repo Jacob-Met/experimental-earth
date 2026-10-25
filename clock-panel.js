@@ -1,3 +1,4 @@
+import {mountReadingTimeWindowPanel} from './reading-time-window-panel.js';
 import {DEFAULT_STUDY} from './study-contract.js';
 import {
  buildClockReceipt,parseClockReceipt,serializeClockReceipt,
@@ -178,5 +179,6 @@ export function mountClockPanel({getProject,notice}){
    if(startedRevision===revision&&serial===importSerial){replay.textContent='Diagnostic refused: '+error.message;notice(error.message);}
   }finally{if(serial===importSerial)importInput.value='';}
  });
- return {refresh};
+ const readingWindows=mountReadingTimeWindowPanel({getProject,notice});
+ return {refresh:()=>{refresh();readingWindows.refresh();}};
 }
