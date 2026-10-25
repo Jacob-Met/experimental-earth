@@ -2,7 +2,7 @@
 
 This consumer connects the already retained surface-temperature evidence to an
 accepted longwave investigation. It preserves original layer hypotheses, reading
-values, uncertainty bands, sources and calibration/challenge roles. The observed
+values, uncertainty bands, sources and calibration/challenge roles. In the original version-1 mode, the observed
 layer's explicitly declared emissivity and the original radiative schedule apply
 to every candidate. The user must separately source the assumption that every
 candidate's linear coefficient excludes longwave radiation. A declaration for
@@ -106,3 +106,66 @@ was unchanged by this receiver correction. Independent review reproduced the
 original role-coupling failure and verified its separate-course correction.
 Exact published/merged-source receiving on the newer composed main is recorded
 on issue #270 and its pull request.
+
+
+
+## Explicit coefficient families (source version 2)
+
+The evidence consumer can now retain a separate, sourced longwave emissivity for
+each original layer hypothesis. It does not invent new material labels or alter
+the original hypotheses, readings, forcing or roles. Enable the explicit family
+mode and complete every original alternative's emissivity and source. No value or
+source is prefilled. If the original hypotheses change, even with the same labels,
+the fields are retired and must be declared again.
+
+Version 2 requires exactly one unique, known original label for each emissivity
+record, a finite value from zero through one, and a nonempty source of at most
+600 characters. Records bind by original label, not their supplied array position.
+The original hypothesis order is preserved. Version 1 continues its fixed-emissivity
+behavior; supplying separate family declarations under version 1 refuses rather
+than silently ignoring them. Canonical download strips result-like fields from
+both versions and fresh reopening recomputes every conditional comparison.
+
+This addresses a concrete ambiguity: A has absorption .4, capacity 40000,
+linear exchange 10 and emissivity .45; B doubles all four coefficients. Under
+the same original forcing they have identical entire temperature trajectories.
+Their predicted absorbed inputs for 60 minutes at 600 W/m² are nevertheless
+864000 and 1728000 J/m². A separately authored absorbed-energy band of
+860000 ± 10000 J/m² distinguishes those offered families. A third candidate
+that changes only capacity fails temperature calibration while passing that
+energy challenge; the challenge does not rescue its earlier rejection.
+
+This is not general material identification. A wide energy band retains both
+scale alternatives. Dark forcing gives zero absorbed input for both, providing
+no scale information. Different capacity, linear exchange and emissivity can also
+share the same heated equilibrium temperature AND absorbed input: emissivity .3,
+capacity 40000 and exchange approximately 8.37693 versus emissivity .7,
+capacity 80000 and exchange approximately 3.54616 both remain at 45 °C during
+the authored heating interval and absorb 864000 J/m². Their original cooling
+responses differ later. All these are declared finite-model controls; no field
+acquisition or physical parameter identification is established.
+
+Absorbed input must be an independently supported quantity with its own source
+and band. Incident energy is not absorbed input and the maintained evidence
+contract refuses that quantity substitution. A source note does not authenticate
+a measurement or establish statistical independence. The executor preserves the
+original calibration/challenge separation and the same role-isolated two-setting
+courses and aggregate transactional budget. Emissivity values used for each family
+also feed that family's actual work admission; no fixed-emissivity estimate is
+substituted for it.
+
+Additional receiving:
+
+- `node tests/longwave-family.test.mjs` checks family discrimination, calibration
+  non-rescue, wide/dark/equilibrium ambiguity, explicit source completeness,
+  quantity refusal, original-order label binding and canonical replay.
+- `node tests/longwave-family.browser.mjs` exercises actual complete authoring,
+  source-only download/fresh native reopening, forged and incomplete files,
+  the three ambiguity controls, cooling challenge, narrow/keyboard inspection
+  and retirement after a hypothesis changes without changing its label.
+
+## Executed family receiving (October 25, 2026)
+
+The six-file candidate on merged evidence source `c0b15a667db8d4685eff6175bc538c2722a212a6` passed all 986 native tests under Node 22.23.4. Sandboxed Chrome 156 passed all seven new family-browser groups and all six prior version-1 evidence-browser groups. The actual consumer authored every family source, retained failed calibration despite a passing challenge, recomputed source-only downloads after fresh reopening, refused incomplete/forged inputs, preserved wide-band, dark-forcing and equilibrium ambiguities, and retired declarations when original hypotheses changed. Desktop and 390px output were visually inspected.
+
+Two independent reviewers compared family candidates against the maintained fixed-emissivity solver: 72 candidate comparisons across 24 unfamiliar courses/targets plus 24 legacy reports and reversed-label/input-isolation controls, and a separate 12-candidate/four-legacy course. These establish software parity and the declared finite-model distinctions; they do not establish physical parameter identification. Newer concurrent place and source-portability changes are preserved during composition. Exact published/merged-source receiving is recorded on issue #281 and its pull request.
