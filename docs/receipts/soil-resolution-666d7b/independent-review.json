@@ -1,0 +1,37 @@
+{
+  "reviewer": "/root/optimizer",
+  "scope": "Earth #205 finite numerical-resolution continuation",
+  "verdict": "No material blocker found",
+  "hashes": {
+    "wetting-front-search-resolution.js": "b355dccbf5d24fb13b529deaa796eb09ef96954ffe3349da59631f8ff663a23a",
+    "wetting-front-search-resolution-panel.js": "2829774a77de8a9fff3c68b3ad7ddf62e86dc19345a75234752e869aed53412c",
+    "wetting-front-search-panel.js": "507eac181b21aeb56b65e5e134cb9e2607ef4c4b25b1d9c1a358540d5293ea85",
+    "wetting-front-search.js": "ebf28f5b297862ad1b8a586d160fa679cbaacc6fca7c8e5d9d71a2b19e0f06e6",
+    "tests/wetting-front-search-resolution.test.mjs": "858f8a308e62ce77556757a7a7b55ecbf49ed55cfa9b35716f72524dfe1a713e",
+    "tests/wetting-front-search-resolution.browser.mjs": "8a16509b94040f4a7cc61c9a030cadcc7f3df6783059d43c73cf65e9af3ceab8"
+  },
+  "focusedTests": {
+    "command": "node earth-205/tests/wetting-front-search-resolution.test.mjs",
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 604.66034
+  },
+  "independentControls": [
+    "Instrumented solver throws on entry; individual finer-run budget refusal returns without entering solver",
+    "Instrumented aggregate budget refusal returns without entering solver",
+    "Instrumented minimum-step returns without entering solver"
+  ],
+  "sourceReview": [
+    "Identical full K/A Cartesian population and original project except calculation step for every run",
+    "Compatible and tolerance-aware closest sets derive only from calibration errors; challenge reading bands remain separately reported",
+    "Distinct steps use one-minute lower bound and Set deduplication",
+    "Per-run 1000000 and aggregate 2000000 cell-step preflight precedes map of solver requests",
+    "Form changes and workspace refresh retire results; source identity checked before and after deferred comparison",
+    "Reopened original source remains distinct from working site; input-only download retained; replay has no adoption selection"
+  ],
+  "limits": [
+    "Browser receiving is owned by root and was not repeated",
+    "Finite calculation-interval sensitivity does not prove convergence or physical accuracy"
+  ]
+}
