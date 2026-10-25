@@ -1,0 +1,13 @@
+{
+  "consumer": "full maintained app with explicit station mapping importer",
+  "stationMappingPreview": true,
+  "mappingEditRetiresPreview": true,
+  "keyboardAppend": true,
+  "invalidCalendarRefused": true,
+  "priorNotebookPreserved": true,
+  "desktopAnd390Preview": true,
+  "noHorizontalOverflow": true,
+  "pageErrors": [],
+  "externalRequests": [],
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
+}
