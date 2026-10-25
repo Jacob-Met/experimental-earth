@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "report": [
+    "site winner fails full-family duration goal; all original-rate intervals and wet modeled-end flags retained, adoption disabled",
+    "unchanged source and fixed original support: -50min stable, -50.75min qualification changes at finer intervals; editing removes stale result",
+    "impossible duration goal has no fallback winner; narrow screen exposes inspectable censored intervals and focusable threshold input"
+  ],
+  "exceptions": [],
+  "sandboxAdmitted": true,
+  "sandboxPath": "/tmp/hamon-a08b-earth-duration-browser-final/browser-session/sandbox.json",
+  "browser": "Chrome/156.0.8078.47",
+  "failure": null
+}

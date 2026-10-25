@@ -1,3 +1,4 @@
+import {validateExposureRequest,selectPondingExposure} from './ponding-exposure-request.js';
 import { runRain, validateProject } from './core.js';
 import { compareInfiltration } from './infiltration-study.js';
 import { DEFAULT_STUDY, validateStudy } from './study-contract.js';
@@ -17,14 +18,16 @@ export function summarizeEffects(values) {
 }
 /** Paired finite hypotheses, not probabilities. Same rate transfers to every
  * cell of the chosen surface in BOTH scenarios; other surfaces keep defaults. */
-export function compareIntervention(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false } = {}) {
+export function compareIntervention(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null } = {}) {
   validateProject(project); validateStudy(study);
+  exposureRequest=validateExposureRequest(project.proposal.length,exposureRequest);
   if (!['all', 'calibration', 'surviving'].includes(subset)) throw Error('Unknown hypothesis subset');
   if (typeof allowAbsentSurface !== 'boolean') throw Error('Absent-surface evaluation must be an explicit boolean');
   if (allowAbsentSurface && subset !== 'all') throw Error('Absent-surface evaluation cannot filter evidence');
-  // Three simulations per candidate at most, including evidence comparison.
-  const work = study.ratesMmHr.length * 3 * project.width * project.height * Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
-  if (work > 3000000) throw Error('This comparison exceeds the 3 million cell-step budget. Reduce grid, duration or candidate count.');
+  // Three simulations per candidate at most, including evidence comparison,
+  // plus two full-grid retained-snapshot exposure passes when requested.
+  const work = study.ratesMmHr.length * (exposureRequest ? 5 : 3) * project.width * project.height * Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
+  if (work > 3000000) throw Error('This comparison exceeds the 3 million combined model/exposure work budget. Reduce grid, duration or candidate count.');
   const evidence = subset === 'all' ? null : compareInfiltration(project, study);
   if (subset !== 'all' && !evidence.counts.calibration) return { status: 'need-calibration', candidates: [], metrics: {}, cells: [], subset };
   if (subset === 'surviving' && !evidence.counts.challenge) return { status: 'need-challenge', candidates: [], metrics: {}, cells: [], subset };
@@ -37,7 +40,7 @@ export function compareIntervention(project, { study = project.infiltrationStudy
     const existing = runRain(project.existing, project.width, project.height, project.weather, options);
     const proposal = runRain(project.proposal, project.width, project.height, project.weather, options);
     const metrics = Object.fromEntries(Object.keys(INTERVENTION_METRICS).map(key => [key, { existing: existing[key], proposal: proposal[key], delta: proposal[key] - existing[key] }]));
-    return { rateMmHr, metrics, peakDeltaMm: proposal.peakDepthMm.map((depth, i) => depth - existing.peakDepthMm[i]),
+    return { rateMmHr, metrics, ...(exposureRequest?{pondingExposure:{thresholdMm:exposureRequest.thresholdMm,existing:selectPondingExposure(existing,exposureRequest),proposal:selectPondingExposure(proposal,exposureRequest)}}:{}), peakDeltaMm: proposal.peakDepthMm.map((depth, i) => depth - existing.peakDepthMm[i]),
       massErrorLiters: { existing: existing.massErrorLiters, proposal: proposal.massErrorLiters } };
   });
   const metrics = Object.fromEntries(Object.keys(INTERVENTION_METRICS).map(key => [key, summarizeEffects(candidates.map(c => c.metrics[key].delta))]));

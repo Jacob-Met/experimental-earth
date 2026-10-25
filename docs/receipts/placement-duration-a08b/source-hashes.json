@@ -1,0 +1,81 @@
+{
+  "schema": "earth.placement-duration-source-receipt/v1",
+  "capturedAtUtc": "2026-10-24T22:08:34.954859+00:00",
+  "baseCommit": "a6222dd0a0c0ca523d0bf2ab949cd6edc2afb878",
+  "baseTree": "fcd6bfdbfd9c66e7ce8cf0085e26665da8f90962",
+  "sources": {
+    "ponding-exposure-request.js": {
+      "sha256": "cf88f97e275827e3e491555318eb5f668e166ec9e8bd187b0d41739970048218",
+      "bytes": 1355
+    },
+    "placement-duration.js": {
+      "sha256": "d324cb456ad6eca7a9ff46d57971797c9c4b7ac10c13e429e69213522b35497d",
+      "bytes": 2059
+    },
+    "intervention-study.js": {
+      "sha256": "704a5af460b94f46cb9f6ec3a34e824ec00ebf533ff7458644dcb303211016f8",
+      "bytes": 4628
+    },
+    "placement-search.js": {
+      "sha256": "785982fb8bcbc8e2bcc24c6f1e23f9e72b0da58af6ac53a645f5c331a6c453f5",
+      "bytes": 10088
+    },
+    "placement-resolution.js": {
+      "sha256": "60d1e3fa09c034b6917ee3254c0d9f6356acc1aa92e146814bb3f5d235a7f191",
+      "bytes": 2728
+    },
+    "placement-panel.js": {
+      "sha256": "6e31f9e62359f8a46eaa9d4b3c1120a4c86fe625ca5836578268fc5c0711a2e1",
+      "bytes": 23538
+    },
+    "tests/placement-duration.test.mjs": {
+      "sha256": "a6d5d2b3c4d0ee00a8d51fb2a11690e40a1f72da0cfd93799098ea6ab30d0a80",
+      "bytes": 6628
+    },
+    "tests/placement-duration.receiving.mjs": {
+      "sha256": "4a6e6101c6022239ee152c4eb63b97c53fa194ffee8f5c830207146661167ef0",
+      "bytes": 4132
+    },
+    "tests/placement-duration.browser.mjs": {
+      "sha256": "760e4f7cce0759b5547daf37d8169e0d4959f4223848c3dc37f14e11ff9e5ca6",
+      "bytes": 2064
+    },
+    "docs/PLACEMENT_DURATION.md": {
+      "sha256": "1f39c90c1127fb04d67bca61c037fb7d5ab0681f98727f743564a05189964e10",
+      "bytes": 4230
+    }
+  },
+  "artifacts": {
+    "browser-receipt.json": {
+      "sha256": "9e5b5089f25144e3400628bef1b67965c373381b61a234a5bb9b9205ae9e16fb",
+      "bytes": 657
+    },
+    "sandbox.json": {
+      "sha256": "6e3dedbcd3b84f571bec20b50db759702c317890f6e4ddc0d39504f324f02f24",
+      "bytes": 1729
+    },
+    "native.log": {
+      "sha256": "50ebd645551dd89c6018fca7351598e35ac19e8b2a9cace153fa4bdb457ee3b2",
+      "bytes": 111685
+    },
+    "desktop.png": {
+      "sha256": "8f8e53c6b61e9700511c93ef045b5187fe63d838c183665fd5c7bfd985aa7c2d",
+      "bytes": 389496
+    },
+    "mobile.png": {
+      "sha256": "bfe52b0c298569223b210fd0330aaebf036b48dbc3caea45c5aed994d9676e7b",
+      "bytes": 385281
+    }
+  },
+  "screenshots": {
+    "desktop.png": {
+      "width": 1112,
+      "height": 3057
+    },
+    "mobile.png": {
+      "width": 366,
+      "height": 4353
+    }
+  },
+  "scope": "Hashes of supplied received checkout and actual artifact bytes; staging does not rerun receiving."
+}
