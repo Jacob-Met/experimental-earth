@@ -1,0 +1,31 @@
+{
+  "base": "65c00576e0648eadcf8cc90eeb7f3818369df6ea",
+  "runtime": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47"
+  },
+  "native": {
+    "command": "node --test tests/core.test.mjs tests/infiltration.test.mjs tests/infiltration-question.test.mjs tests/depth-offset-evidence.test.mjs",
+    "passed": 49,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Core, infiltration, question-planner regressions and10new offset tests; not the full repository suite."
+  },
+  "independentAnalyticMembershipComparisons": 4920,
+  "browser": {
+    "groups": 8,
+    "sandboxAdmitted": true,
+    "downloadedFilesystemBytesComparedWithBlob": true,
+    "freshModuleReopen": true,
+    "activeProjectUnchanged": true,
+    "contradictoryChallengeRetainsCalibration": true,
+    "narrowPanelWidth": 390
+  },
+  "review": "Independent Microverse worker reviewed interval algebra, original-source and context binding, complete-rate preservation, calibration/challenge separation and budget before model execution; no blockers. Root inspected actual desktop and390px panel captures.",
+  "limitations": [
+    "Authored analytic control, not field validation",
+    "Finite offered rates and one declared shared additive offset",
+    "Strict numeric closed interval endpoints, no physical uncertainty certification"
+  ],
+  "deployment": false
+}
