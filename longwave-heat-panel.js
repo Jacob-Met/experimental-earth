@@ -2,6 +2,7 @@ import { mountLongwaveHeatEvidence } from './longwave-heat-evidence-panel.js';
 import { inspectSurfaceHeat } from './surface-heat.js';
 import { compareLongwaveHeat, canonicalLongwaveHeat, LONGWAVE_HEAT_SCHEMA } from './longwave-heat.js';
 import { surfaceHeatContext } from './surface-heat-contract.js';
+import { serializeLongwaveHeat, parseLongwaveHeat, LONGWAVE_FILE_MAX_BYTES } from './longwave-portability.js';
 const el = (tag, text='') => {const n=document.createElement(tag);n.textContent=text;return n;};
 const fmt = n => Number(n).toLocaleString('en-US',{maximumFractionDigits:3});
 const targets=['existing','proposal'];
@@ -19,12 +20,13 @@ export function mountLongwaveHeat({getProject, host}) {
  function clear(message){evidencePanel.refresh();generation++;source=null;$('longwave-results').replaceChildren();$('longwave-download').disabled=true;$('longwave-status').textContent=message;}
  panel.querySelector('form').addEventListener('input',()=>clear('Draft changed; compare again.'));
  function draw(input,result,reopened=false){
-  evidencePanel.refresh();source=canonicalLongwaveHeat(input);$('longwave-download').disabled=false;const out=$('longwave-results');out.replaceChildren();
+  const nextSource=canonicalLongwaveHeat(input);serializeLongwaveHeat(nextSource);
+  const baseline=inspectSurfaceHeat(nextSource.heatStudy,result.durationMinutes),context=JSON.parse(nextSource.heatStudy.contextJson);
+  evidencePanel.refresh();source=nextSource;$('longwave-download').disabled=false;const out=$('longwave-results');out.replaceChildren();
   $('longwave-status').textContent=(reopened?'Recomputed original file; it has not replaced the current project. ':'Compared saved layers. ')+`${result.durationMinutes} minutes; ${result.integrationAttempts} bounded integration attempts.`;
   const chart=document.createElementNS('http://www.w3.org/2000/svg','svg');chart.id='longwave-chart';chart.setAttribute('viewBox','0 0 700 250');chart.setAttribute('role','img');chart.setAttribute('aria-label','Layer temperature with nonlinear radiation; orange existing, green proposal');chart.style.width='100%';
   const low=Math.min(...targets.map(k=>result[k].minimumC))-1,high=Math.max(...targets.map(k=>result[k].maximumC))+1;
   for(const k of targets){const path=document.createElementNS(chart.namespaceURI,'path');path.setAttribute('d',result[k].trajectory.map((r,i)=>`${i?'L':'M'}${30+650*r.minute/result.durationMinutes},${220-200*(r.temperatureC-low)/(high-low)}`).join(' '));path.setAttribute('fill','none');path.setAttribute('stroke',k==='existing'?'#b56b3b':'#167c69');path.setAttribute('stroke-width','3');chart.append(path);}
-  const baseline=inspectSurfaceHeat(input.heatStudy,result.durationMinutes);
   out.append(el('p',`At the final time, adding declared radiation changes the existing layer by ${fmt(result.existing.final.temperatureC-baseline.existing.temperatureC)} °C and the proposed layer by ${fmt(result.proposal.final.temperatureC-baseline.proposal.temperatureC)} °C relative to the retained linear-only equation.`));
   out.append(chart,el('p',`Elapsed time: 0–${fmt(result.durationMinutes)} min. Temperature: ${fmt(low)}–${fmt(high)} °C. Orange: existing; green: proposal.`));
   const wrap=el('div');wrap.id='longwave-table-scroll';wrap.style.overflowX='auto';wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','Layer energy comparison; scroll horizontally for all columns');const table=el('table');table.id='longwave-table';table.style.tableLayout='auto';table.style.minWidth='48rem';
@@ -36,16 +38,27 @@ export function mountLongwaveHeat({getProject, host}) {
   out.append(el('p','Outgoing energies are signed: a negative value is heat received from the surroundings. The same shortwave exposure drives both layers. Temperatures and energies are conditional calculations, not observations.'));
   const controls=el('label','Inspect elapsed minute');controls.className='input-label';const slider=el('input');slider.id='longwave-minute';slider.type='range';slider.min='0';slider.max=String(result.existing.trajectory.length-1);slider.step='1';slider.value=slider.max;controls.append(slider);const reading=el('p');reading.id='longwave-reading';const inspect=()=>{const i=Number(slider.value);reading.textContent=`${fmt(result.existing.trajectory[i].minute)} min: existing ${fmt(result.existing.trajectory[i].temperatureC)} °C; proposal ${fmt(result.proposal.trajectory[i].temperatureC)} °C.`;};slider.addEventListener('input',inspect);inspect();out.append(controls,reading);
   const details=el('details');details.append(el('summary','Original place, declarations and accounting'));
-  const context=JSON.parse(input.heatStudy.contextJson);details.append(el('p',`Retained original grid: ${context.width} × ${context.height}, cell ${input.heatStudy.cellIndex}, ${context.cellSizeM} m cells. Source: ${context.source}`));
+  details.append(el('p',`Retained original grid: ${context.width} × ${context.height}, cell ${input.heatStudy.cellIndex}, ${context.cellSizeM} m cells. Source: ${context.source}`));
   for(const k of targets)details.append(el('p',`${k} layer: ${input.heatStudy[k].source}; longwave emissivity ${input[k].emissivity}: ${input[k].source}`));
   input.heatStudy.schedule.forEach((r,i)=>details.append(el('p',`Interval ${i+1}: ${r.minutes} min, ${r.incidentWm2} W/m² incident, ${r.reservoirC} °C linear reservoir; ${r.source}. Radiative surroundings ${input.radiationSchedule[i].skyC} °C: ${input.radiationSchedule[i].source}`)));
   const residual=Math.max(...targets.flatMap(k=>result[k].trajectory.map(r=>Math.abs(r.balanceResidualJm2))));details.append(el('p',`Maximum arithmetic energy residual ${residual.toExponential(3)} J/m². Local step-doubling temperature tolerance is 10⁻⁸ °C; this is not a global accuracy or physical uncertainty bound.`));out.append(details,el('p',result.semantics));
  }
  $('longwave-form').addEventListener('submit',event=>{event.preventDefault();clear('Calculating…');try{const p=getProject(),study=p.surfaceHeatStudy;if(!study)throw Error('Save a layer heat declaration above first.');if(study.contextJson!==surfaceHeatContext(p,study.cellIndex))throw Error('The saved heat declaration belongs to a changed place; restore its source before comparing.');if(!$('longwave-basis').checked)throw Error('Declare the linear-exchange basis first.');const input={schema:LONGWAVE_HEAT_SCHEMA,exchangeBasis:'excludes-longwave',heatStudy:structuredClone(study),radiationSchedule:study.schedule.map(()=>({skyC:Number($('longwave-sky').value),source:$('longwave-source').value}))};for(const k of targets)input[k]={emissivity:Number($('longwave-'+k).value),source:$('longwave-'+k+'-source').value};draw(input,compareLongwaveHeat(input));}catch(e){clear(e.message);}});
- $('longwave-download').addEventListener('click',()=>{if(!source)return;const blob=new Blob([JSON.stringify(source,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='longwave-heat-investigation.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
- $('longwave-upload').addEventListener('change',async()=>{clear('Reading original investigation…');const token=generation,file=$('longwave-upload').files[0];try{if(!file||file.size>120000)throw Error('Choose an original JSON investigation no larger than 120000 bytes.');const bytes=await file.arrayBuffer();if(token!==generation)return;const input=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));const result=compareLongwaveHeat(input);if(token===generation)draw(input,result,true);}catch(e){if(token===generation)clear(e.message);}finally{$('longwave-upload').value='';}});
+ $('longwave-download').addEventListener('click',()=>{if(!source)return;const blob=new Blob([serializeLongwaveHeat(source)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='longwave-heat-investigation.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+ $('longwave-upload').addEventListener('change',async()=>{
+  const file=$('longwave-upload').files[0],token=++generation;
+  // Capture the original File before clearing selection so the same source
+  // can be reopened again, including while an older read is pending.
+  $('longwave-upload').value='';if(!file)return;
+  $('longwave-status').textContent='Reading original investigation; accepted result retained…';
+  try{
+   if(file.size>LONGWAVE_FILE_MAX_BYTES)throw Error('Choose an original JSON investigation no larger than 320 KiB.');
+   const bytes=await file.arrayBuffer();if(token!==generation)return;
+   const input=parseLongwaveHeat(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
+   const result=compareLongwaveHeat(input);if(token===generation)draw(input,result,true);
+  }catch(e){if(token===generation)$('longwave-status').textContent=e.message+(source?' The last accepted investigation is unchanged.':'');}
+ });
  const evidencePanel=mountLongwaveHeatEvidence({getProject,getInvestigation:()=>source,host:panel});
  function refresh(){const next=JSON.stringify(getProject());if(next!==signature){signature=next;clear('Use the saved heat declaration, or reopen an original investigation.');}}
  return {refresh};
 }
-
