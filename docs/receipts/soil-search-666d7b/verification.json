@@ -1,0 +1,60 @@
+{
+  "format": "experimental-earth-soil-search-verification/v1",
+  "upstreamBase": "4f144d007f75a6e6fb45de98e0e1f11d3cb62166",
+  "sourceSha256": {
+    "wetting-front-search.js": "ebf28f5b297862ad1b8a586d160fa679cbaacc6fca7c8e5d9d71a2b19e0f06e6",
+    "wetting-front-search-panel.js": "44ffeed5f7ef011ba643924a7d07b08de8bfd801fab25239bbd5dee82a6f6f44",
+    "wetting-front-panel.js": "5e6a99bf5eec4d0caff6ae35e55ac8bc358729c2611d19f1e412c433dee102d4",
+    "tests/wetting-front-search.test.mjs": "0f5dd6714f04e95857afb7b4c94b61d285b47ec1acfe6cb11236242d88d7f7e8",
+    "tests/wetting-front-search.browser.mjs": "aaa64174067ed45f3d9e92cfaded1273073197e3122890580aae1dff9035e59a",
+    "docs/SOIL_PARAMETER_SEARCH.md": "85f9b6fe9e0b9b8996685e27f6fb6e27bf1c967b4a07ee157063cce3af9c42fd"
+  },
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "node": "v22.23.4",
+    "tests": 738,
+    "passed": 738,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 7814.141663,
+    "scope": "Full fresh upstream composition plus finite-search candidate. Final panel/table formatting revision followed this run; numerical core and native tests unchanged, final actual browser rerun passed.",
+    "sourceMaterialization": "Pinned Git blobs, with an explicitly local receiving Git snapshot for an inherited CLI test requiring git rev-parse. Earlier missing evaluation/example/NOAA files were supplied; the local snapshot is not represented as an upstream commit."
+  },
+  "focused": {
+    "groups": 10,
+    "scope": "Analytical inverse, every grid pair against maintained solver, endpoint ambiguity, dry/nonidentifiable, held-aside isolation, refusals, explicit selection, replay and aggregate bounds."
+  },
+  "browser": {
+    "groups": 4,
+    "browser": "Chrome/156.0.8078.47",
+    "sandboxAdmitted": true,
+    "sourceMutation": false,
+    "keyboard": "Actual visible keyboard search/select/prepare/comparison/download, native file reopen, ArrowRight local table scrolling.",
+    "layout": {
+      "width": 390,
+      "scroll": 390
+    },
+    "tableLayout": {
+      "region": 332,
+      "table": 880,
+      "scroll": 880,
+      "focusable": 0,
+      "columns": [
+        125.703125,
+        125.703125,
+        125.703125,
+        125.703125,
+        125.703125,
+        125.703125,
+        125.78125
+      ]
+    }
+  },
+  "review": "Independent optimizer review accepted numerical/holdout/replay contract and separately proved final panel was only scientific-format and table-layout additions. Lead inspected actual desktop/mobile source/search views.",
+  "limits": [
+    "Finite grid agreement is not a continuous inverse solution, unique soil property or field accuracy.",
+    "Held-aside readings are reported and cannot rank or select calibration alternatives.",
+    "Explicit selection copies tested hypotheses into a comparison draft; it does not adopt materials.",
+    "Reopened saved searches are independent of the working source and cannot prepare its draft."
+  ]
+}

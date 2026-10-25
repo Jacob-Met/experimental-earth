@@ -1,0 +1,35 @@
+{
+  "reviewer": "hamon-666d7b-20261024/optimizer",
+  "disposition": "accept within declared finite-grid source/replay scope",
+  "material_blockers": [],
+  "reviewed_sha256": {
+    "earth-worker/wetting-front-search.js": "ebf28f5b297862ad1b8a586d160fa679cbaacc6fca7c8e5d9d71a2b19e0f06e6",
+    "earth-worker/wetting-front-search-panel.js": "c0454741b69c1cbedc6d7ce1b7961ebcace82309ce03c3c36c1d255c118d2d84",
+    "earth-worker/tests/wetting-front-search.test.mjs": "0f5dd6714f04e95857afb7b4c94b61d285b47ec1acfe6cb11236242d88d7f7e8",
+    "earth-worker/tests/wetting-front-search.browser.mjs": "7c89b08d49b30915c373924ffe189467336447c83f18102df75a447928284135"
+  },
+  "executed": {
+    "command": "node --test earth-worker/tests/wetting-front-search.test.mjs",
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "independent_controls": [
+      "Four challenge-only and other-scenario value perturbations preserve complete calibration ranking and compatible IDs.",
+      "Original project remains byte-identical.",
+      "Changed saved-input calibration and query recompute different results.",
+      "Injected derived closestIds in an input bundle is refused.",
+      "Duplicate and string candidate IDs are refused by explicit selection."
+    ]
+  },
+  "source_review": [
+    "Grid axes contain distinct representable values; one-million aggregate cell-step bound precedes solving.",
+    "Calibration alone sorts and selects compatible pairs; challenge remains visible separately.",
+    "Live source or search-input refresh retires results; save and draft transfer check source identity.",
+    "Imported input-only search recomputes original source, disables candidate adoption, and leaves the working project unchanged.",
+    "Selection transfers hypotheses into the maintained comparison draft, not material parameter adoption."
+  ],
+  "limits": [
+    "Browser was not rerun; browser harness and panel paths were reviewed.",
+    "No continuous inverse solution or field-validity claim."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "reviewer": "hamon-666d7b-20261024/optimizer",
+  "disposition": "accept display-only follow-up",
+  "panel_sha256": "44ffeed5f7ef011ba643924a7d07b08de8bfd801fab25239bbd5dee82a6f6f44",
+  "browser_sha256": "aaa64174067ed45f3d9e92cfaded1273073197e3122890580aae1dff9035e59a",
+  "proof": "Removing only scientific-format option and local table accessibility/width/wrapping styles restores exact previously reviewed panel SHA256 c0454741b69c1cbedc6d7ce1b7961ebcace82309ce03c3c36c1d255c118d2d84. Core SHA unchanged ebf28f5b297862ad1b8a586d160fa679cbaacc6fca7c8e5d9d71a2b19e0f06e6.",
+  "scope": "No ranking, replay, source-custody or selection logic change. Browser assertions inspect100px+column widths, local ArrowRight scroll and no page overflow.",
+  "limits": "Source review only; no additional broad or browser test rerun."
+}

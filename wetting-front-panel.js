@@ -1,3 +1,4 @@
+import {mountSoilSearch} from './wetting-front-search-panel.js';
 import { SURFACES, validateProject } from './core.js';
 import { DEFAULT_WETTING_FRONT_STUDY } from './wetting-front-contract.js';
 import { compareWettingFront, serializeWettingFrontInvestigation,
@@ -110,7 +111,9 @@ export function mountWettingFrontPanel({ getProject, replaceProject, prepareRead
         `Explanation ${index + 1}, ${input.dataset.parameter === 'conductivityMmHr' ? 'conductivity in millimeters per hour' : 'capillary drive in millimeters'}`));
     });
   }
+  let soilSearch;
   function refresh() {
+    soilSearch?.refresh();
     clear('Choose soil explanations and compare. Use a site map to choose the cell shown in the depth curve.');
     const study = getProject().wettingFrontStudy ?? DEFAULT_WETTING_FRONT_STUDY;
     $('target').value = study.target; $('surface').value = study.surface; $('basis').value = study.basis;
@@ -263,6 +266,11 @@ export function mountWettingFrontPanel({ getProject, replaceProject, prepareRead
     } catch (error) { if (epoch === generation) $('replay').textContent = 'Investigation refused: ' + error.message; }
     finally { if (epoch === generation) event.target.value = ''; }
   });
+  soilSearch = mountSoilSearch({host, getProject, setDraft(study) {
+    clear('Search pairs copied to draft. Compare the declared explanations.');
+    $('target').value = study.target; $('surface').value = study.surface; $('basis').value = study.basis;
+    $('hypotheses').replaceChildren(); study.hypotheses.forEach(addHypothesis); updateButtons();
+  }});
   refresh();
   return { refresh };
 }
