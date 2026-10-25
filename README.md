@@ -341,3 +341,8 @@ After comparing original one-sided depth evidence and proposal consequences, ope
 ## When a shallow receiving layer fills
 
 **What changes when the ground has no more room?** compares the same original site and storm with an explicitly finite, closed receiving layer. Water that cannot enter stays in the maintained surface-flow calculation, where it can pond, move to another cell or leave the boundary. Inspect the paired consequences and original-cell water accounts, then save/reopen the original inputs without adopting a changed site. The fictional shallow-bed example shows why a fast infiltration rate alone does not establish enough receiving space. See [Closed receiving capacity](docs/INFILTRATION_STORAGE.md) for the model, its no-drainage boundary, source declarations and verification.
+
+
+### The same proposal under both original storms
+
+After reopening or completing a two-event threshold investigation, choose **Compare the plan in both source storms**. Both original files must declare the same existing and proposed physical plans. Every surviving soil rate is carried unchanged through both storms, and each event keeps its original forcing and modeled horizon. The view reports per-event effects and same-rate direction reversals separately from uncertainty across rates. The existing source-only investigation replays the calculation. See [the storm consequence guide](docs/STORM_CONSEQUENCES.md).

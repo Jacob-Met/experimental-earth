@@ -1,3 +1,4 @@
+import {createStormConsequencePanel} from './storm-consequences-panel.js';
 import {parsePortableProject,MAX_PROJECT_FILE_BYTES} from './project-portability.js';
 import {prepareThresholdTransfer,parseThresholdTransfer,serializeThresholdTransfer,MAX_THRESHOLD_TRANSFER_BYTES} from './threshold-event-transfer.js';
 import {INTERVENTION_METRICS} from './intervention-study.js';
@@ -31,6 +32,7 @@ export function mountThresholdEvents(parent,{getProject,notice}){
   host.append(node('h4','After the separate storm'),node('p','Rates still supported: '+r.survivingRatesMmHr.join(', ')+' mm/h. Consequences below use the original first storm and its original two plans.'));
   for(const [key,m] of Object.entries(r.metrics))host.append(node('p',INTERVENTION_METRICS[key].label+': '+m.min.toFixed(3)+' to '+m.max.toFixed(3)+' '+INTERVENTION_METRICS[key].unit+' ('+m.direction+').'));
   host.append(node('p',r.limitation));
+  host.append(createStormConsequencePanel(bundle));
  }
  async function read(event,limit,accept){
   const file=event.target.files?.[0];if(!file)return;const ticket=++generation,before=JSON.stringify(getProject());$('threshold-event-status').textContent='Reading '+file.name+'; previously accepted source remains unchanged until this read finishes.';
