@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "maintained app keyboard compare original four intervals",
+    "download retains originals not verdict",
+    "reopen recomputes original context and preserves active workspace",
+    "bad input retires result and disables save",
+    "desktop and390px panel fit"
+  ],
+  "browser": "156.0.8078.47",
+  "base": "330ad1555260eeb239acae87e5a7000df2c1f6b1",
+  "baselineVerification": "All219 reconstructed baseline files match Git blob hashes; app is explicit composed patch",
+  "native": {
+    "command": "node tests/measured-change.test.mjs",
+    "groups": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "independentReview": "SECOND GROUND: no blocking defect; floating-point endpoint wording included"
+}
