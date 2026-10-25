@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "checks": [
+    "Keyboard inverse search retains all four pairs and two equal-endpoint explanations without source mutation",
+    "Explicit selection enters maintained paired comparison; only study inputs persist, and source refresh invalidates search",
+    "Actual source download and file reopen recompute original ambiguity independently of working source",
+    "Narrow viewport preserves readable 100px-plus columns with keyboard local scrolling, scientific tiny RMSE and no page overflow; edits retire replay and disable saving"
+  ],
+  "layout": {
+    "width": 390,
+    "scroll": 390
+  },
+  "tableLayout": {
+    "region": 332,
+    "table": 880,
+    "scroll": 880,
+    "focusable": 0,
+    "columns": [
+      125.703125,
+      125.703125,
+      125.703125,
+      125.703125,
+      125.703125,
+      125.703125,
+      125.78125
+    ]
+  },
+  "runDirectory": "/tmp/hamon-666d7b-earth-browser-v3",
+  "browser": "Chrome/156.0.8078.47",
+  "sandboxAdmitted": true
+}
