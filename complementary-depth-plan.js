@@ -16,7 +16,7 @@ export function validateDepthAvailability(raw, cellCount = 576, durationMinutes 
   return { cellIndices: [...cellIndices].sort((a, b) => a - b), startMinute, endMinute, basis: basis.trim() };
 }
 
-export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, recorded = [], strategy = 'greedy', availability } = {}) {
+export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, recorded = [], strategy = 'greedy', availability, pairIndices } = {}) {
   availability = validateDepthAvailability(availability);
   if (!['greedy', 'exact-pair'].includes(strategy) || (strategy === 'exact-pair' && maxReadings !== 2)) throw Error('Exact pair planning requires a two-reading budget');
   if (!Number.isFinite(uncertaintyMm) || uncertaintyMm < 0 || uncertaintyMm > 1000 ||
@@ -43,6 +43,10 @@ export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, 
   const offeredCells = availability ? new Set(availability.cellIndices) : null;
   const pairs = [];
   for (let first = 0; first < runs.length; first++) for (let second = first + 1; second < runs.length; second++) pairs.push({ first, second });
+  if (pairIndices !== undefined) {
+    if (!Array.isArray(pairIndices) || Array.from({length:pairIndices.length},(_,i)=>!Object.hasOwn(pairIndices,i)).some(Boolean) || new Set(pairIndices).size !== pairIndices.length || pairIndices.some(i => !Number.isInteger(i) || i < 0 || i >= pairs.length)) throw Error('Choose distinct supported hypothesis-pair indices');
+    const selected = pairIndices.map(i => pairs[i]); pairs.splice(0, pairs.length, ...selected);
+  }
   const key = (cell, minute) => `${cell}:${Math.round(minute * 1e7)}`;
   const occupied = new Set(recorded.map(row => key(row.cellIndex, row.minute)));
   const questions = [], covered = new Set();
@@ -110,3 +114,4 @@ export function planComplementaryDepths(runs, { uncertaintyMm, maxReadings = 2, 
     separatedPairCount: covered.size, distinctPatterns: patterns.size,
     complete: unresolvedPairs.length === 0, ...(exact ? { exact } : {}), ...(availability ? { availability, unavailableCount, offeredCount: evaluatedCount + excludedCount } : {}) };
 }
+

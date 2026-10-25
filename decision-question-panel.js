@@ -1,4 +1,5 @@
 import { mountDecisionObservationPanel } from './decision-observation-panel.js';
+import { mountDecisionDepthPairPanel } from './decision-depth-pair-panel.js';
 import { chooseDecisionQuestion } from './decision-question.js';
 import { INTERVENTION_METRICS } from './intervention-study.js';
 const number=n=>Number(n.toPrecision(5)).toLocaleString('en-US',{maximumSignificantDigits:5});
@@ -9,7 +10,8 @@ export function mountDecisionQuestionPanel({ host, getProject, notice, prepareRe
   for(const [key,value] of Object.entries(INTERVENTION_METRICS)){const option=document.createElement('option');option.value=key;option.textContent=value.label;find('decision-metric').append(option);}
   const measurementPanel = mountDecisionObservationPanel({ host:panel, getProject, notice, prepareReading, prepareCollection,
     getSettings:()=>({metric:find('decision-metric').value,depthToleranceMm:Number(find('decision-tolerance').value)}) });
-  function refresh(){measurementPanel.refresh();question=null;find('prepare-decision-reading').hidden=true;find('decision-predictions').replaceChildren();find('decision-status').dataset.state='not-compared';find('decision-status').textContent='Find a question for the current site and saved candidates.';}
+  const pairPanel=mountDecisionDepthPairPanel({host:panel,getProject,notice,prepareReading,getSettings:()=>({metric:find('decision-metric').value,uncertaintyMm:find('decision-tolerance').value.trim()?Number(find('decision-tolerance').value):NaN})});
+  function refresh(){pairPanel.refresh();measurementPanel.refresh();question=null;find('prepare-decision-reading').hidden=true;find('decision-predictions').replaceChildren();find('decision-status').dataset.state='not-compared';find('decision-status').textContent='Find a question for the current site and saved candidates.';}
   find('decision-metric').addEventListener('change',refresh);find('decision-tolerance').addEventListener('input',refresh);
   find('find-decision-reading').addEventListener('click',()=>{
     refresh();
@@ -31,3 +33,4 @@ export function mountDecisionQuestionPanel({ host, getProject, notice, prepareRe
   find('prepare-decision-reading').addEventListener('click',()=>{if(question)prepareReading(question);});
   return {refresh};
 }
+
