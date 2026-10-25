@@ -1,4 +1,5 @@
 import { createInfiltrationStorage } from './infiltration-storage.js';
+import { createDrainingLayer } from './draining-infiltration.js';
 import {validateSolarStudy} from './solar-occlusion-contract.js';
 import {validateSurfaceHeatStudy} from './surface-heat-contract.js';
 import {validateHeatEvidence} from './surface-heat-evidence-contract.js';
@@ -109,6 +110,10 @@ export function runRain(cells, width, height, weather, options = {}) {
   }
   const cumulativeInfiltration = wettingFront ? Array(n).fill(0) : null;
   const receivingStore = createInfiltrationStorage(cells, cellArea, options?.infiltrationStorage, SURFACES);
+  const drainingLayer = createDrainingLayer(cells, cellArea, options?.drainingLayer, SURFACES);
+  if (drainingLayer && (receivingStore || wettingFront !== undefined)) {
+    throw new Error('Choose the draining layer separately from a closed store or wetting-front model');
+  }
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
     throw new Error('Water-budget tracing must be explicitly enabled or disabled');
   }
@@ -158,7 +163,11 @@ export function runRain(cells, width, height, weather, options = {}) {
       const rate = override?.cellIndex === i ? override.rateMmHr :
         surfaceOverride?.surface === cells[i].surface ? surfaceOverride.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
       let absorb;
-      if (wettingFront?.surface === cells[i].surface) {
+      if (drainingLayer?.applies(i)) {
+        const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
+        absorb = Math.min(water[i], drainingLayer.advance(i, initialSurfaceMm, rate,
+          weather.rainMmHr, rainyHours, Math.max(0, dtHours - rainyHours)));
+      } else if (wettingFront?.surface === cells[i].surface) {
         const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
         const wet = advanceWettingFront({ cumulativeMm: cumulativeInfiltration[i],
           surfaceWaterMm: initialSurfaceMm, rainMmHr: weather.rainMmHr,
@@ -245,6 +254,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     const minute = Math.min(weather.durationMinutes, start + dtMinutes);
     tracer?.endStep(minute);
     origins?.endStep();
+    drainingLayer?.endStep(minute);
     snapshots.push({ minute, depthsMm: water.slice(), storedLiters: water.reduce((a, b) => a + b, 0) * cellArea, absorbedLiters, exitLiters });
   }
   const storedLiters = water.reduce((a, b) => a + b, 0) * cellArea;
@@ -255,6 +265,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     peakPondingLiters: Math.max(...snapshots.map(s => s.storedLiters)),
     cellsOver10Mm: peak.filter(d => d >= 10).length,
     ...(receivingStore ? { infiltrationStorage: receivingStore.finish() } : {}),
+    ...(drainingLayer ? { drainingLayer: drainingLayer.finish() } : {}),
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
     ...(origins ? { rainOrigins: origins.finish(water, snapshots) } : {}),
     ...(wettingFront ? { wettingFront: { surface: wettingFront.surface,

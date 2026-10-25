@@ -350,3 +350,15 @@ After comparing original one-sided depth evidence and proposal consequences, ope
 ### The same proposal under both original storms
 
 After reopening or completing a two-event threshold investigation, choose **Compare the plan in both source storms**. Both original files must declare the same existing and proposed physical plans. Every surviving soil rate is carried unchanged through both storms, and each event keeps its original forcing and modeled horizon. The view reports per-event effects and same-rate direction reversals separately from uncertainty across rates. The existing source-only investigation replays the calculation. See [the storm consequence guide](docs/STORM_CONSEQUENCES.md).
+
+## When drainage frees receiving space
+
+**Can drainage keep receiving space available?** adds a declared draining layer
+to the same original surface-water calculation. Compare unlimited receiving,
+the same layer kept closed, and continuous drainage while water enters. Inspect
+surface ponding, initial below-ground water, retained storage and drainage
+separately; save and reopen the original investigation without replacing the
+working site. The local layer handles filling and emptying transitions while
+the existing horizontal routing retains its numerical limits. See
+[Draining receiving layers](docs/DRAINING_LAYER.md) for equations, source custody,
+the fictional 124 L versus 46.25 L standing-water control and qualification limits.
