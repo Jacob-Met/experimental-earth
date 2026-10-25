@@ -1,3 +1,4 @@
+import {mountDepthOffsetQuestionPanel} from './depth-offset-question-panel.js';
 import {DEFAULT_STUDY} from './study-contract.js';
 import {prepareDepthOffset,depthOffsetReceipt,parseDepthOffsetReceipt} from './depth-offset-evidence.js';
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
@@ -9,9 +10,10 @@ export function mountDepthOffsetPanel({getProject,notice}){
  document.getElementById('infiltration-form').closest('section').after(panel);
  const find=id=>panel.querySelector('#depth-offset-'+id);
  let current=null,generation=0;
- function clear(message='Inputs changed; compare again.') {generation++;current=null;find('save').disabled=true;find('results').replaceChildren();find('status').dataset.state='not-compared';find('status').textContent=message;}
+ const questions=mountDepthOffsetQuestionPanel({anchor:panel,notice,onReopen:()=>{generation++;current=null;find('results').replaceChildren();find('save').disabled=true;find('status').dataset.state='not-compared';find('status').textContent='An independent original question is reopened below. Active project unchanged.';}});
+ function clear(message='Inputs changed; compare again.') {generation++;current=null;questions.clear();find('save').disabled=true;find('results').replaceChildren();find('status').dataset.state='not-compared';find('status').textContent=message;}
  function render(received,reopened=false){
-  current=received;const {input,report:r}=received,host=find('results');host.replaceChildren();find('status').dataset.state=r.status;
+  current=received;const {input,report:r}=received,host=find('results');if(r.candidates.length)questions.setSource(input);else questions.clear();host.replaceChildren();find('status').dataset.state=r.status;
   const messages={'context-changed':'The model context changed. Reassociate the original readings.','reading-changed':'An associated original row changed. Review and reassociate it.','work-limit':'The complete hypothesis calculation exceeds one million cell-steps; nothing was fitted.','surface-absent':'The studied surface is absent from the observed place.','need-calibration':'No selected calibration reading: no rate is supported.','calibration-rejected':'No offered rate and shared offset meet every calibration band.','challenged':'Held-aside readings contradict every calibration-compatible shared offset.','needs-challenge':'Calibration-compatible offsets remain; no selected held-aside reading challenges them.','one-survivor':'One offered rate has a shared offset compatible with both roles. Other untested explanations may exist.','ambiguous':'Several offered rates retain shared offsets; these readings do not distinguish them.'};
   find('status').textContent=(reopened?'Recomputed the reopened original source; active project unchanged. ':'')+(messages[r.status]??r.status);
   find('save').disabled=!r.candidates.length;
@@ -42,3 +44,4 @@ export function mountDepthOffsetPanel({getProject,notice}){
  find('open').addEventListener('change',async()=>{const file=find('open').files?.[0];if(!file)return;clear();const request=generation;try{if(file.size>4*1024*1024)throw Error('Investigation exceeds 4 MiB.');const text=await file.text();if(request!==generation)return;const received=parseDepthOffsetReceipt(text);if(request===generation)render(received,true);}catch(error){if(request===generation){clear(error.message);find('status').dataset.state='error';notice(error.message);}}finally{find('open').value='';}});
  refresh();return {refresh};
 }
+
