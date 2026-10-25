@@ -31,6 +31,27 @@ function neighbors(i,width,count) {
   return [i-width, i%width ? i-1 : -1, i%width<width-1 ? i+1 : -1, i+width].filter(j=>j>=0 && j<count);
 }
 
+function thresholdReachability(depths,width,question,thresholdMm) {
+  const allowed=new Set(question.allowedIndices),queue=[],prev=new Map(),boundary=new Set();
+  if(depths[question.startIndex]>thresholdMm)boundary.add(question.startIndex);
+  else {queue.push(question.startIndex);prev.set(question.startIndex,-1);}
+  for(const i of queue)for(const j of neighbors(i,width,depths.length))if(allowed.has(j)){
+    if(depths[j]>thresholdMm)boundary.add(j);
+    else if(!prev.has(j)){prev.set(j,i);queue.push(j);}
+  }
+  return {reachable:queue,boundary:[...boundary].sort((a,b)=>a-b),prev};
+}
+function validateDepths(depths,width,height) {
+  if(!Array.isArray(depths)||depths.length!==width*height||Array.from(depths).some(d=>!Number.isFinite(d)||d<0))throw new Error('Finite nonnegative depth for every site cell is required.');
+}
+/** Complete source component and its excluded cell boundary at one threshold. */
+export function pondingConnectionBoundary(depths,width,height,question,thresholdMm) {
+  const q=validateConnectivityQuestion(question,width,height);validateDepths(depths,width,height);
+  if(!Number.isFinite(thresholdMm)||thresholdMm<0)throw new Error('A finite nonnegative threshold is required.');
+  const {reachable,boundary}=thresholdReachability(depths,width,q,thresholdMm);
+  return {reachable,boundary};
+}
+
 function search(depths,width,question) {
   const n=depths.length, allowed=new Set(question.allowedIndices);
   const distance=Array(n).fill(Infinity), visited=new Set();
@@ -47,15 +68,14 @@ function search(depths,width,question) {
   if(!Number.isFinite(bottleneckMm))return {connected:false,bottleneckMm:null,path:[]};
   // Minimax predecessors alone need not give a shortest minimax path. A second
   // BFS at the optimal threshold establishes that separate tie objective.
-  const queue=[question.startIndex],prev=new Map([[question.startIndex,-1]]);
-  for(const i of queue){if(i===question.endIndex)break;for(const j of neighbors(i,width,n))if(allowed.has(j)&&!prev.has(j)&&depths[j]<=bottleneckMm){prev.set(j,i);queue.push(j);}}
+  const {prev}=thresholdReachability(depths,width,question,bottleneckMm);
   const path=[];for(let i=question.endIndex;i!==-1;i=prev.get(i))path.push(i);path.reverse();
   return {connected:true,bottleneckMm,path};
 }
 
 export function minimumPondingConnection(depths,width,height,question) {
   const q=validateConnectivityQuestion(question,width,height);
-  if(!Array.isArray(depths)||depths.length!==width*height||Array.from(depths).some(d=>!Number.isFinite(d)||d<0))throw new Error('Finite nonnegative depth for every site cell is required.');
+  validateDepths(depths,width,height);
   return search(depths,width,q);
 }
 

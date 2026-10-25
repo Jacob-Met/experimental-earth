@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "value": {
+    "runDirectory": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt",
+    "groups": [
+      "original project-file keyboard band path",
+      "maintained notebook form adds attributed held-aside reading",
+      "exact original source Blob and fresh File reopen",
+      "scenario exclusion with no simulation fill-in",
+      "visible desktop/narrow output and literal source text",
+      "missing bridge and attributed high cut",
+      "conflicting and malformed original bands",
+      "source/query invalidation and pending-read race"
+    ],
+    "exceptions": []
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T02:58:06.927Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt",
+    "profileDirectory": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt/profile",
+    "stdoutFile": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt/stdout.bin",
+    "stderrFile": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt/stderr.bin",
+    "receiptFile": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-8db6c36/earth-evidence-composed-receipt/profile",
+      "about:blank"
+    ],
+    "pid": 308759,
+    "cdpUrl": "http://127.0.0.1:41617",
+    "browserWebSocketUrl": "ws://127.0.0.1:41617/devtools/browser/6d571db7-e196-4fef-bb75-c4914ee0544e",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T02:58:07.100Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-8db6c36/earth-evidence-composed-receipt/stderr.bin",
+      "bytes": 5370,
+      "sha256": "63e79fa95b6261d5a38a675dbb257ecd6a562a64731fbfed316bf07dbdb874f2"
+    },
+    "finishedAt": "2026-10-25T02:58:09.622Z"
+  }
+}
