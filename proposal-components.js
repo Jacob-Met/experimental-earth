@@ -51,6 +51,27 @@ export function compareSurfaceElevation(project) {
   return componentExperiment(project, undefined, {}, 'surface-elevation');
 }
 
+/** Separate canonical edge declarations from surface and ground changes. */
+export function edgeGroundEdits(project) {
+  validateProject(project);
+  return {
+    edgeIndices: project.existing.flatMap((cell, i) => sameInternalBarriers([cell], [project.proposal[i]]) ? [] : [i]),
+    groundIndices: project.existing.flatMap((cell, i) => cell.surface !== project.proposal[i].surface || cell.elevationM !== project.proposal[i].elevationM ? [i] : []),
+  };
+}
+
+export function compareEdgesGround(project) {
+  return componentExperiment(project, undefined, {}, 'edges-ground');
+}
+
+function withEdges(cell, edgeSource) {
+  const result = structuredClone(cell);
+  delete result.internalBarriers;
+  if (edgeSource.internalBarriers !== undefined) result.internalBarriers = structuredClone(edgeSource.internalBarriers);
+  result.provenance = 'Derived edge/ground combination; retained source plans contain original declarations';
+  return result;
+}
+
 function validatePartition(project, selectedIndices) {
   const edited = componentEditIndices(project);
   if (!Array.isArray(selectedIndices) || !selectedIndices.length ||
@@ -65,6 +86,17 @@ function validatePartition(project, selectedIndices) {
 }
 
 function experimentPlan(project, selectedIndices, partition) {
+  if (partition === 'edges-ground') {
+    const edits = edgeGroundEdits(project);
+    if (!edits.edgeIndices.length || !edits.groundIndices.length) throw Error('Add both an internal edge change and a surface or elevation change to separate these factors.');
+    return { selectedIndices: edits.edgeIndices, remainingIndices: edits.groundIndices,
+      scenarios: {
+        existing: project.existing,
+        selected: project.existing.map((cell, i) => withEdges(cell, project.proposal[i])),
+        remaining: project.proposal.map((cell, i) => withEdges(cell, project.existing[i])),
+        full: project.proposal,
+      } };
+  }
   if (partition === 'surface-elevation') {
     const edits = surfaceElevationEdits(project);
     if (edits.barriersChanged) throw Error('Surface/elevation separation requires unchanged internal edge conditions. Changed walls or crests need the cell-group experiment.');
@@ -107,7 +139,7 @@ function componentExperiment(project, selectedIndices, options = {}, partition =
   return {
     selectedIndices: plan.selectedIndices,
     remainingIndices: plan.remainingIndices,
-    ...(partition === 'surface-elevation' ? { partition } : {}),
+    ...(partition !== 'cells' ? { partition } : {}),
     estimatedCellSteps,
     metrics: COMPONENT_METRICS.map(metric => ({ ...metric,
       ...values(run => run[metric.key]) })),
@@ -145,3 +177,4 @@ export function compareComponentHypotheses(project, selectedIndices,
     interactions: COMPONENT_METRICS.map((metric, i) => ({ ...metric,
       ...summarizeEffects(candidates.map(c => c.result.metrics[i].interaction)) })) };
 }
+
