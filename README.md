@@ -333,3 +333,7 @@ the conditional logic, source assumptions and physical-access limits.
 ### Original standing-water inventory
 
 The evidence map can also bound simultaneous standing-water volume from original depth bands under an explicit cell-representativeness assumption. Missing cells leave the whole-site upper bound unknown; contradictory bands refuse aggregation. See [Observed storage](docs/OBSERVED_STORAGE.md).
+
+### Challenge one-sided bounds with another storm
+
+After comparing original one-sided depth evidence and proposal consequences, open **Do these rates transfer to another observed storm?** in the same source panel. Load a separately declared event with held-aside bounds to challenge the unchanged offered rates and inspect how the original proposal's consequences narrow or remain unresolved. Save/reopen retains both original projects and the exact study; current source remains unchanged. [Original-source transfer, receiving and limits](docs/THRESHOLD_EVENT_TRANSFER.md).
