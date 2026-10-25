@@ -1,0 +1,26 @@
+#draining-layer { min-width: 0; }
+#draining-layer .dl-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin: 1rem 0; }
+#draining-layer .dl-actions .input-label { flex: 1 1 15rem; margin: 0; }
+#draining-layer input, #draining-layer select, #draining-layer textarea { max-width: 100%; min-width: 0; }
+#draining-layer .dl-table { overflow-x: auto; max-width: 100%; margin: 1.2rem 0; }
+#draining-layer table { border-collapse: collapse; min-width: 820px; width: 100%; font-size: 0.85rem; }
+#draining-layer caption { text-align: left; margin-bottom: 0.65rem; font-weight: 650; }
+#draining-layer th, #draining-layer td { padding: 0.65rem; border-bottom: 1px solid #d6e1de; text-align: right; }
+#draining-layer th:first-child { text-align: left; }
+#draining-layer thead { background: #edf4f1; }
+#draining-layer .dl-consequence { padding: 0.9rem 1rem; background: #edf7f3; border-left: 3px solid #16856d; }
+#draining-layer .dl-accounts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+#draining-layer .dl-accounts section { padding: 0.8rem 1rem; background: #f4f7f6; border-radius: 0.5rem; }
+#draining-layer .dl-accounts h4 { margin-top: 0; }
+#draining-layer figure { margin: 1rem 0; }
+#draining-layer svg { display: block; width: 100%; height: auto; }
+#draining-layer svg text { font-size: 12px; fill: #29483f; }
+#draining-layer figcaption { font-size: 0.85rem; color: #49665e; }
+#draining-layer p { overflow-wrap: anywhere; }
+#dl-cell-account { padding: 0.8rem 1rem; border: 1px solid #d6e1de; border-radius: 0.5rem; margin: 0.8rem 0; }
+#dl-status[data-state="refused"] { color: #963f27; }
+#dl-status[data-state="computed"], #dl-status[data-state="reopened"] { color: #17644e; }
+@media (max-width: 600px) {
+  #draining-layer .dl-accounts, #draining-layer .input-pair { grid-template-columns: minmax(0, 1fr); }
+  #draining-layer .dl-actions > button { flex: 1 1 13rem; }
+}
