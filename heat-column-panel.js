@@ -1,3 +1,4 @@
+import { mountBottomHeat } from './bottom-heat-panel.js';
 import { prepareHeatColumnStudy, compareHeatColumn, inspectHeatColumn } from './heat-column.js';
 
 const node = (tag, text = '') => { const e = document.createElement(tag); e.textContent = text; return e; };
@@ -21,6 +22,7 @@ export function mountHeatColumn({ getProject, replaceProject, notice }) {
     <p class="mini-note">Absorbed heat enters the surface. The two stores exchange heat through the declared conductance; the lower boundary is insulated. Moisture, lateral conduction and nonlinear radiation are not included.</p>
     <button id="column-run" class="primary" type="button">Compare saved heat stores</button><p id="column-status" role="status"></p><div id="column-results"></div>`;
   document.querySelector('#surface-heat').after(panel);
+  const bottomPanel = mountBottomHeat({ getProject, notice });
   const $ = id => panel.querySelector('#' + id);
   let signature = '', generation = 0, dirty = false, report = null, accepted = null, selected = 'existing', minute = null;
   function invalidate(message, state = 'not-compared') {
@@ -150,6 +152,7 @@ export function mountHeatColumn({ getProject, replaceProject, notice }) {
   });
   window.addEventListener('resize', () => { if (report) draw(); });
   function refresh() {
+    bottomPanel.refresh();
     const project = getProject(), next = JSON.stringify(project); if (next === signature) return;
     signature = next; dirty = false; minute = null; fill(project.heatColumnStudy);
     invalidate('Compare the retained two-layer declaration after a place or exposure change.'); $('column-run').disabled = false;

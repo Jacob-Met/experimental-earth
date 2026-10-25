@@ -42,18 +42,20 @@ function validate(surface, lower, interval, initial, seconds) {
   }
 }
 
-function spectrum(surface, lower, interval, initial) {
+function spectrum(surface, lower, interval, initial, bottom = null) {
   const c1 = surface.capacityJm2K, c2 = lower.capacityJm2K;
   const h = surface.exchangeWm2K, g = lower.conductanceWm2K;
+  const b = bottom?.conductanceWm2K ?? 0;
   const q = surface.absorptivity * interval.incidentWm2;
   const v = [(q - h * (initial.surfaceC - interval.reservoirC) - g * (initial.surfaceC - initial.subsurfaceC)) / c1,
-    g * (initial.surfaceC - initial.subsurfaceC) / c2];
+    bottom ? (g * (initial.surfaceC - initial.subsurfaceC) - b * (initial.subsurfaceC - bottom.reservoirC)) / c2 : g * (initial.surfaceC - initial.subsurfaceC) / c2];
   const scale = [Math.sqrt(c1), Math.sqrt(c2)], u = v.map((x, i) => x * scale[i]);
   // Capacity scaling makes the decay matrix symmetric. Its orthogonal
   // projection avoids a poorly scaled nonsymmetric eigenvector basis.
-  const a = (h + g) / c1, d = g / c2, k = g / (scale[0] * scale[1]);
+  const a = (h + g) / c1, d = bottom ? (g + b) / c2 : g / c2, k = g / (scale[0] * scale[1]);
   const gap = Math.hypot(a - d, 2 * k), fast = (a + d + gap) / 2;
-  const slow = fast === 0 ? 0 : (h / c1) * (g / c2) / fast;
+  const slow = fast === 0 ? 0 : !bottom ? (h / c1) * (g / c2) / fast :
+    ((h / c1) * (g / c2) + (h / c1) * (b / c2) + (g / c1) * (b / c2)) / fast;
   let projected = [0, 0], projection = [0, 0];
   if (gap > 0) {
     let p11, p22;
@@ -63,7 +65,7 @@ function spectrum(surface, lower, interval, initial) {
     projection = [p11, p12];
     projected = [p11 * u[0] + p12 * u[1], p12 * u[0] + p22 * u[1]];
   }
-  return { c1, c2, h, g, q, v, scale, u, projected, projection, slow, fast };
+  return { c1, c2, h, g, b, q, v, scale, u, projected, projection, slow, fast };
 }
 
 function stationary(s, seconds) {
@@ -110,9 +112,9 @@ export function advanceHeatColumnWithDrivenLoss(surface,lower,interval,initial,s
   return advanceColumn(surface,lower,interval,initial,seconds,loss);
 }
 
-function advanceColumn(surface, lower, interval, initial, seconds, loss) {
+function advanceColumn(surface, lower, interval, initial, seconds, loss, bottom = null) {
   validate(surface, lower, interval, initial, seconds);
-  if (lower.conductanceWm2K === 0 && !loss) {
+  if (lower.conductanceWm2K === 0 && !loss && !bottom) {
     const one = advanceSurfaceHeat(surface, interval, initial.surfaceC, seconds);
     const rate = surface.exchangeWm2K / surface.capacityJm2K;
     const velocity = (surface.absorptivity * interval.incidentWm2 -
@@ -126,7 +128,7 @@ function advanceColumn(surface, lower, interval, initial, seconds, loss) {
       balanceResidualJm2: one.balanceResidualJm2, surfaceBalanceResidualJm2: one.balanceResidualJm2,
       subsurfaceBalanceResidualJm2: 0, stationarySeconds: { surface: [], subsurface: [] } };
   }
-  const s = spectrum(surface, lower, interval, initial);
+  const s = spectrum(surface, lower, interval, initial, bottom);
   const f = factors(s.fast * seconds), diff = differences(s.slow * seconds, s.fast * seconds);
   const delta = s.u.map((u, i) => seconds * (f.phi * u + diff.phi * s.projected[i]) / s.scale[i]);
   const integral = s.u.map((u, i) => seconds * seconds * (f.psi * u + diff.psi * s.projected[i]) / s.scale[i]);
@@ -147,9 +149,10 @@ function advanceColumn(surface, lower, interval, initial, seconds, loss) {
   const inputJm2 = s.q * seconds;
   const exchangeOutJm2 = s.h * ((initial.surfaceC - interval.reservoirC) * seconds + integral[0]);
   const transferDownJm2 = s.g * ((initial.surfaceC - initial.subsurfaceC) * seconds + integral[0] - integral[1]);
+  const bottomOutJm2 = bottom ? s.b * ((initial.subsurfaceC - bottom.reservoirC) * seconds + integral[1]) : 0;
   const surfaceStoredJm2 = s.c1 * (surfaceC - initial.surfaceC), subsurfaceStoredJm2 = s.c2 * (subsurfaceC - initial.subsurfaceC);
   const totalStoredJm2 = surfaceStoredJm2 + subsurfaceStoredJm2;
-  if (![surfaceC, subsurfaceC, surfaceMeanC, subsurfaceMeanC, inputJm2, exchangeOutJm2, transferDownJm2, totalStoredJm2].every(Number.isFinite) ||
+  if (![surfaceC, subsurfaceC, surfaceMeanC, subsurfaceMeanC, inputJm2, exchangeOutJm2, transferDownJm2, bottomOutJm2, totalStoredJm2].every(Number.isFinite) ||
       surfaceC < -100 || surfaceC > 500 || subsurfaceC < -100 || subsurfaceC > 500) {
     throw Error('Predicted two-layer temperature leaves the supported −100–500 °C range; revise the declaration');
   }
@@ -157,9 +160,22 @@ function advanceColumn(surface, lower, interval, initial, seconds, loss) {
     surfaceMeanC, subsurfaceMeanC,
     surfaceDegreeSeconds: initial.surfaceC * seconds + integral[0],
     subsurfaceDegreeSeconds: initial.subsurfaceC * seconds + integral[1],
-    subsurfaceStoredJm2, totalStoredJm2, balanceResidualJm2: inputJm2 - surfaceLossJm2 - exchangeOutJm2 - totalStoredJm2,
+    subsurfaceStoredJm2, totalStoredJm2, balanceResidualJm2: bottom ? inputJm2 - surfaceLossJm2 - exchangeOutJm2 - bottomOutJm2 - totalStoredJm2 : inputJm2 - surfaceLossJm2 - exchangeOutJm2 - totalStoredJm2,
     surfaceBalanceResidualJm2: inputJm2 - surfaceLossJm2 - exchangeOutJm2 - transferDownJm2 - surfaceStoredJm2,
-    subsurfaceBalanceResidualJm2: transferDownJm2 - subsurfaceStoredJm2,
+    subsurfaceBalanceResidualJm2: bottom ? transferDownJm2 - bottomOutJm2 - subsurfaceStoredJm2 : transferDownJm2 - subsurfaceStoredJm2,
     stationarySeconds: loss ? {surface: [], subsurface: []} : stationary(s, seconds),
+    ...(bottom ? {bottomOutJm2} : {}),
     ...(loss ? {surfaceLossJm2} : {}) };
+}
+
+/** Explicit constant deep reservoir. Positive bottom exchange leaves the lower
+ * store. Existing callers and cooling-loss APIs retain their insulated model. */
+export function advanceHeatColumnWithBottom(surface, lower, interval, initial, seconds, bottom) {
+  if (!bottom || !finite(bottom.conductanceWm2K, 0, 1000) || !finite(bottom.reservoirC, -100, 200)) {
+    throw Error('Bottom exchange needs conductance 0–1000 W/(m²·K) and reservoir −100–200 °C');
+  }
+  if (bottom.conductanceWm2K === 0) return {
+    ...advanceHeatColumn(surface, lower, interval, initial, seconds), bottomOutJm2: 0
+  };
+  return advanceColumn(surface, lower, interval, initial, seconds, null, bottom);
 }

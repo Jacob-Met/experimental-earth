@@ -1,0 +1,92 @@
+{
+  "schema": "experimental-earth-bottom-heat-receiving/v1",
+  "baseCommit": "fdc7afec5d4e1d5edb6157b1504544737ed11c01",
+  "native": {
+    "command": "node --test tests/*.test.mjs",
+    "node": "22.23.4",
+    "counts": {
+      "tests": 896,
+      "pass": 896,
+      "fail": 0,
+      "skipped": 0
+    },
+    "logSha256": "dec6c57914befc7204c883807ad5e0efa4ad18006becd36235fc4e28c90f8d65"
+  },
+  "reference": {
+    "method": "Independent 80-digit Decimal augmented 5x5 matrix exponential, norm scaling/Taylor/squaring",
+    "cases": 12,
+    "quantitiesPerCase": 16,
+    "authoredBeforeCandidateReceiving": true,
+    "independentRegeneration": "HamonLang reviewer regenerated all 12 cases and expected strings; semantic JSON equality",
+    "temperatureErrorMaxC": 7.105427357601002e-15,
+    "qualification": "Authored mathematical regression controls; not certified enclosures or physical measurements"
+  },
+  "browser": {
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/bottom-heat.browser.mjs",
+    "groups": 6,
+    "sandboxAdmitted": true,
+    "desktopAnd390px": true,
+    "checks": "Original source comparison, signed energy, dirty restore, actual download/fresh-page reopen, malformed replacement retention, stale import refusal, ignored forged derived output, keyboard time inspection"
+  },
+  "receivingCorrections": [
+    "The initial full-suite projection omitted existing evaluation modules; exact Git blobs were restored.",
+    "An existing CLI requires git metadata; the received projection was recorded as local snapshot c3f1c147deda0b7f0fc71c1afa9e98de99a5674a. This local snapshot is not the GitHub base commit.",
+    "Initial direct Node receiving exposed only a signed-zero assertion; test comparison corrected without changing the propagator.",
+    "Initial Chrome wrapper failed the unchanged strict sandbox guard; the direct binary passed.",
+    "Narrow graph ticks and user-facing ledger formatting improved after actual visual inspection; screenshot framing corrected after viewport resize.",
+    "Late current-main depth-offset question work was received by exact Git blobs and preserved; the combined suite and browser course passed again."
+  ],
+  "independentReview": "HamonLang worker reviewed numerical equations/source custody; later independently regenerated oracle fixture and reviewed all added tests/docs. Root executed native/browser and visually inspected actual plots.",
+  "sourceFiles": {
+    "heat-column-step.js": {
+      "sha256": "6610fac303a322cff472ccfa5661d9a68623340c9a791521cc99035573b31b07",
+      "gitBlob": "82abe51b076ec8a36ea846ffe8b2d399a34c7c8c"
+    },
+    "heat-column-panel.js": {
+      "sha256": "cc3578a9462eecc8677ae3a100410ad54d5b48b274e36794a96b1acec9ce80d7",
+      "gitBlob": "07530bd293a15285a480054c189d15f4432c1204"
+    },
+    "bottom-heat-study.js": {
+      "sha256": "2562aa686398b630cffebca29e6957b2a6dce769cf25848fec1503229f61ed7f",
+      "gitBlob": "016dc2d9cdbb591d39ec1a99bf919a54bc360ed2"
+    },
+    "bottom-heat-panel.js": {
+      "sha256": "1224eb49d35b9ea3113f9cb240a1f36e1b6247c9becdeee79fd3f6faa189166f",
+      "gitBlob": "4ef523e80a140674825b3080ba453c7963ff26d1"
+    },
+    "tests/bottom-heat.test.mjs": {
+      "sha256": "628dfa6de0f035460d6775b26e4f3c7d1bae861de2ed9383c695e95469d2a05f",
+      "gitBlob": "88fc4586eb36e9778658d03f7b4859616fa205d5"
+    },
+    "tests/bottom-heat.browser.mjs": {
+      "sha256": "5461eb58fbedffe6071b7ddba96a6457e2be08fbdc0f0f6f9e943139272aeb98",
+      "gitBlob": "e6193ff42b820748b671820e54a2014eb38d7b8d"
+    },
+    "docs/BOTTOM_HEAT.md": {
+      "sha256": "5c15f3a628d09103eb598c00e4db0a143d1200c8ea341415a3757b0b2fb08ef7",
+      "gitBlob": "566e22c030191462d7b6247a2b6543ca543830bc"
+    },
+    "README.md": {
+      "sha256": "cc4334a950e8e5bf892ee565f6aa808ab43c799647a435d5fca68744cc85b31b",
+      "gitBlob": "ee71b1798bb54571fb35d19696614f6a60a5faac"
+    },
+    "evaluation/bottom-heat-reference.py": {
+      "sha256": "6acb055eec6a1579a08fb2ed224a480af658e989d45bdd6542628af8a3afd0d3",
+      "gitBlob": "3c3a50377cbcc39e7b44ffba79b54494b110c7dc"
+    },
+    "tests/fixtures/bottom-heat-reference.json": {
+      "sha256": "ab4fb6e98e1ee66efba7d6c3bee280a85a03dcd7caabafe1a2258359b6969903",
+      "gitBlob": "6521af58e4c65ee266fc341db420d16962fd788c"
+    },
+    "tests/bottom-heat-reference.test.mjs": {
+      "sha256": "08784e69b866af4a5f69240b7b954395e8e21b63247559e4e172f4d9b3ccbc70",
+      "gitBlob": "978fa0b41e41addbc7736ec90f95fd185c920d9a"
+    }
+  },
+  "limitations": [
+    "Constant declared reservoir, not a resolved or measured soil profile.",
+    "No inference of physical parameters or field validation.",
+    "Binary64 results and selected numerical controls are not universal error bounds."
+  ],
+  "precedingComposition": "5bbab44a1aace7a3e5b05204ed0fdc5d2b0e77bc"
+}

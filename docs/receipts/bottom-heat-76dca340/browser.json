@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Native original source, independent pulse and signed bottom ledger with literal source custody",
+    "Dirty draft is hidden and accepted original inputs can be restored without source reassociation",
+    "Actual download and fresh-page native reopen recompute; malformed replacement retains accepted inputs and result",
+    "Out-of-order old file completion cannot replace or clear a newer draft; accepted source restores",
+    "Forged derived fields cannot replace recomputed original response",
+    "Actual narrow/desktop plot and keyboard time receiving"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T09:08:58.639Z",
+    "completedAt": "2026-10-25T09:08:58.733Z",
+    "durationMs": 94.02893499999999,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "AF07923700745F975B32914F1362B4F0",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "46460A3CF0BE6510EEF5E294E99E5B4B"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T09:08:58.449Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6",
+    "profileDirectory": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/profile",
+    "stdoutFile": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/stdout.bin",
+    "stderrFile": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/stderr.bin",
+    "receiptFile": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/profile",
+      "about:blank"
+    ],
+    "pid": 27213,
+    "cdpUrl": "http://127.0.0.1:33493",
+    "browserWebSocketUrl": "ws://127.0.0.1:33493/devtools/browser/513840ff-87b5-48d8-a353-718d419733ca",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T09:08:58.605Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-76dca340-earth/source/.browser-run-bottom-heat-b58ee00c-2d7d-4da9-bb3d-704f157558f6/stderr.bin",
+      "bytes": 5314,
+      "sha256": "a358e2b25d46b15106349ee95212f49db13b8aa2bc65ecfeff780853ff1b5f5a"
+    },
+    "finishedAt": "2026-10-25T09:09:03.779Z"
+  }
+}
