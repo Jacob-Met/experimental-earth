@@ -1,0 +1,1547 @@
+{
+  "schema": "experimental-earth-site/1",
+  "title": "Example courtyard · fictional",
+  "width": 8,
+  "height": 6,
+  "weather": {
+    "rainMmHr": 36,
+    "stormMinutes": 60,
+    "durationMinutes": 240,
+    "stepMinutes": 5,
+    "cellSizeM": 2,
+    "mobilityPerHour": 0.5,
+    "boundaryExitPerHour": 0.38
+  },
+  "existing": [
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 2,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.095,
+        "uncertaintyValue": 0.05,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 3,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.095,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 4,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 5,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 6,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 7,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 8,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.095,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.107,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 9,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.107,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 10,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.086,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 11,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.086,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 12,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 13,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 14,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 15,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 16,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.086,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.098,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 17,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.098,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 18,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.077,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 19,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.077,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 20,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 21,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 22,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 23,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 24,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.077,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.089,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 25,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.089,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 26,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.068,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 27,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.068,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 28,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 29,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 30,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 31,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 32,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.068,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.08,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 33,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.08,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 34,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.059,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 35,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.059,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 36,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 37,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 38,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 39,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 40,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.059,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.071,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 41,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.071,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 42,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.05,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 43,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.05,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 44,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 45,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 46,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 47,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 48,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.05,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.062,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 49,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.062,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    }
+  ],
+  "proposal": [
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 2,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.095,
+        "uncertaintyValue": 0.05,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.07,
+      "surface": "turf",
+      "provenance": "Authored imported table control"
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 4,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 5,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 6,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.06,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 7,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.06,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.095,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 8,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.095,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.107,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 9,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.107,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 10,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.086,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 11,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.086,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 12,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 13,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 14,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.051,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 15,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.051,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.086,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 16,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.086,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.098,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 17,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.098,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 18,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.077,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 19,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.077,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 20,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 21,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 22,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.042,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 23,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.042,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.077,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 24,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.077,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.089,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 25,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.089,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 26,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.068,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 27,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.068,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 28,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 29,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 30,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.033,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 31,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.033,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.068,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 32,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.068,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.08,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 33,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.08,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 34,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.059,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 35,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.059,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 36,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 37,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 38,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.024,
+      "surface": "sealed",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 39,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.024,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.059,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 40,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.059,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.071,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 41,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.071,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 42,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.05,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 43,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.05,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 44,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 45,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 46,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.015,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 47,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.015,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.05,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 48,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.05,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    },
+    {
+      "elevationM": 0.062,
+      "surface": "turf",
+      "provenance": "Authored imported table control",
+      "terrainSource": {
+        "kind": "supplied-elevation-table/1",
+        "fileName": "supplied-control.csv",
+        "line": 49,
+        "datum": "Authored local zero",
+        "source": "Authored imported table control",
+        "unit": "m",
+        "elevationValue": 0.062,
+        "uncertaintyValue": 0,
+        "cellSizeM": 2
+      }
+    }
+  ],
+  "observations": [],
+  "selectedIndex": 27,
+  "source": "Illustrative geometry and rates; no site measurements"
+}

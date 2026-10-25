@@ -1,0 +1,19 @@
+{
+  "base": "c97797d4c78134bf54d27647c3a3f6621c533af6",
+  "issue": 157,
+  "files": {
+    "app.js": "1979291fed182162cdef18e8afe92f9ff780e59a00e0ba47813b493c070b88fe",
+    "terrain-sensitivity.js": "a0376ebe0dbe4865b2e226bb72bb2f54149a3da4af54988877e2c361d3b9629e",
+    "terrain-sensitivity-panel.js": "2ec1988f656298cac79ad063e64550f1e6aa79ef7fa775aa0a918162857df379",
+    "tests/terrain-sensitivity.test.mjs": "738782061404d93b4e0a0d571bf31a708ca7ad7607396e544760c6938ce6f38c",
+    "tests/terrain-sensitivity.receiving.mjs": "10faa24887931f7d5e56765b4391d301ee565cbf019e4d23418624efc3e4b18c",
+    "docs/TERRAIN_SENSITIVITY.md": "8cf9fd9e77799806588884df17db2858354b49e7d4742bc841375f20132cf960",
+    "README.md": "cf0c17748118ab80bbaaf507a70811d2cc899390bd16e42256f09f7119d0adcb"
+  },
+  "version": 2,
+  "receiverRevision": 6,
+  "visualRevision": 5,
+  "originalBase": "072ee3ae7ce703a2290eab6817db754783a686d4",
+  "compositionRevision": 3,
+  "previousCompositionBase": "91329f8a4e33a2cf7abd8f33904802bca924f5f3"
+}

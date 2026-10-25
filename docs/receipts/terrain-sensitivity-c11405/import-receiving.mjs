@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {makeExample} from '../../../core.js';
+import {previewTerrainTable,applyTerrainPreview} from '../../../terrain-import.js';
+import {serializePortableProject,parsePortableProject} from '../../../project-portability.js';
+import {compareTerrainSensitivity} from '../../../terrain-sensitivity.js';
+const original=makeExample();
+const csv='cell,elevation,uncertainty,unit,source\n'+original.existing.map((c,i)=>`${String.fromCharCode(65+i%8)}${Math.floor(i/8)+1},${c.elevationM},${i===0?.05:0},m,Authored imported table control`).join('\n');
+const preview=previewTerrainTable(csv,original,{fileName:'supplied-control.csv',datum:'Authored local zero',cellSizeM:original.weather.cellSizeM});
+const p=applyTerrainPreview(original,preview,'existing');p.proposal=structuredClone(p.existing);p.proposal[1].elevationM-=.025;delete p.proposal[1].terrainSource;
+const saved=serializePortableProject(p);const controls={cellIndex:0,transferConfirmed:true,sampleCount:5};const report=compareTerrainSensitivity(p,controls);assert.equal(report.metrics.peakPondingLiters.direction,'reverses');assert.equal(report.source.fileName,'supplied-control.csv');assert.equal(report.source.line,2);assert.equal(report.source.unit,'m');
+const reopened=parsePortableProject(saved);assert.deepEqual(compareTerrainSensitivity(reopened,controls),report);assert.equal(serializePortableProject(p),saved);
+console.log(JSON.stringify({status:'PASS',path:'complete CSV→preview→apply existing→copy source plan→explicit B1 lowering→5sample sensitivity→portable JSON→reopen→identical recomputation',source:report.source,effects:report.candidates.map(c=>({offsetM:c.offsetM,deltaLiters:c.metrics.peakPondingLiters.delta})),limits:'Authored computational input, not acquired measurements or a browser course'},null,2));

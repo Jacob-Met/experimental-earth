@@ -1,0 +1,14 @@
+{
+  "interior-five-mobile.png": {
+    "sha256": "2b34597a37da36b73ddc5a30d99608e3158f1d6051b2139904c53e2781e79761",
+    "bytes": 80408
+  },
+  "mobile.png": {
+    "sha256": "7c6d0acd36bd20199f816cdcaeb96dce67d357ce1e1419484ae3afb61635ae8b",
+    "bytes": 80707
+  },
+  "desktop.png": {
+    "sha256": "fe1f8b93d4e9d351d6db6d8da9d7f6d4fd7cd52b28a01c33bbed42d8e6cd369b",
+    "bytes": 232325
+  }
+}

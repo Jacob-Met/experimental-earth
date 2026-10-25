@@ -1,0 +1,19 @@
+{
+  "reviewer": "hamon-c11405-20261024/skill_translator",
+  "finding": "No blocking v2 delta finding",
+  "scope": "Independent source/lifecycle review and nested-sample/budget/raw-source native controls; not a browser rerun",
+  "sourceSHA256": {
+    "terrain-sensitivity.js": "a0376ebe0dbe4865b2e226bb72bb2f54149a3da4af54988877e2c361d3b9629e",
+    "terrain-sensitivity-panel.js": "e491da8ac974c60ea17b9981c8d5d6cc529bb20e892a766786b030cecea025bd",
+    "tests/terrain-sensitivity.test.mjs": "738782061404d93b4e0a0d571bf31a708ca7ad7607396e544760c6938ce6f38c"
+  },
+  "checks": [
+    "Default and explicit3 outputs exactly match",
+    "5/9/17 retain every original3 candidate exactly",
+    "Work count scales with2N, guard precedes all solves",
+    "Unsupported sample counts refuse",
+    "Original project remains byte-identical",
+    "Panel count changes clear output before recomputation; source fingerprint still resets confirmation",
+    "Even17samples explicitly disclaim a continuous sign/envelope guarantee"
+  ]
+}

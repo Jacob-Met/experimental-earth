@@ -278,3 +278,7 @@ half-width; inspect the proposed time, every predicted band and every unresolved
 pair. Challenge values never select the question, and no observed value or source
 is fabricated. See [the prospective heat-reading question](docs/HEAT_COLUMN_QUESTION.md)
 for its finite-grid selection, original-source custody and limits.
+
+## Challenge a supplied ground-height uncertainty
+
+The surveyed-ground sensitivity panel compares low, central and high values for one supplied existing-site elevation while preserving the authored proposal height change under an explicit shared-error assumption. Inspect paired water quantities and local depth changes; a sign reversal exposes dependence on the selected ground uncertainty. Explicitly request 5, 9 or 17 equally spaced samples to investigate interior reversals that the initial three can miss. No offered sample count bounds the continuous interval. Original survey records and saved plans stay unchanged. See [the experiment, source rules and authored reversal](docs/TERRAIN_SENSITIVITY.md).
