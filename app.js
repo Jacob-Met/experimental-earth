@@ -72,7 +72,7 @@ function applyBrush(target, index) {
   if (brush !== 'inspect') {
     const cell = project[target][index];
     if (['sealed','turf','garden'].includes(brush)) cell.surface = brush;
-    else if (brush==='raise'||brush==='lower') { delete cell.terrainSource; cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3)); }
+    else if (brush==='raise'||brush==='lower') { delete cell.terrainSource; delete cell.rasterSource; cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3)); }
     cell.provenance = 'manually edited hypothetical assumption';
   }
   rerun();
@@ -128,6 +128,8 @@ function observations() {
   $('selection').innerHTML=`<div><strong>Selected ${nameCell(n)}</strong> · existing: ${SURFACES[base.surface].label}, ${numeric(base.elevationM)} m</div><div>proposed: ${SURFACES[plan.surface].label}, ${numeric(plan.elevationM)} m</div>`;
   $('terrain-origin').textContent = ['existing', 'proposal'].map(target => {
     const origin = project[target][n].terrainSource;
+    const raster = project[target][n].rasterSource;
+    if (raster) return `${target}: ${raster.fileName}, original row ${raster.row}, column ${raster.column} (line ${raster.line}); ${raster.originalValue} ${raster.verticalUnit}; source center (${raster.x}, ${raster.y}) ${raster.horizontalUnit}, ${raster.coordinateReference}; ${raster.datum}; ${raster.source}. Measurement uncertainty is not supplied.`;
     return origin ? `${target}: ${origin.fileName}, line ${origin.line}; ${origin.elevationValue} ± ${origin.uncertaintyValue} ${origin.unit}; datum ${origin.datum}; ${origin.source}. Supplied uncertainty is retained, not propagated by the solver.` : `${target}: ${project[target][n].provenance}`;
   }).join(' | ');
   const suggested=chooseNextObservation(project,results);
