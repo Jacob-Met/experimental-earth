@@ -1,3 +1,4 @@
+import { previewOutletTable, commitOutletTablePreview } from './outlet-table.js';
 import { compareOutletResolution } from './outlet-evidence-resolution.js';
 import { validateProject } from './core.js';
 import { appendOutletReading, compareOutletEvidence } from './outlet-evidence.js';
@@ -21,6 +22,12 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
       <div class="input-pair"><label class="input-label">Reading source / method<input id="outlet-source" maxlength="300" required placeholder="Collection record and measurement method"></label><label class="input-label">Evidence role<select id="outlet-use"><option value="unassigned">Notebook only</option><option value="calibration">Calibration</option><option value="challenge">Held aside</option></select></label></div>
       <button type="submit" class="primary">Retain collected volume</button>
     </form></details>
+    <details id="outlet-table-entry"><summary>Import original collection CSV</summary>
+      <p class="mini-note">Use the observed scenario, event and complete-boundary arrangement above. Columns: start_minute, end_minute, volume, uncertainty, unit, source; optional use is calibration, challenge or unassigned. Missing use stays notebook-only. Units are L, mL or m3. Times are original event-relative minutes.</p>
+      <label class="input-label">Original collection file<input id="outlet-table-file" type="file" accept=".csv,text/csv"></label>
+      <button id="outlet-table-preview" type="button">Preview collection CSV</button><button id="outlet-table-commit" type="button" disabled>Add all previewed collections</button>
+      <p id="outlet-table-status" role="status"></p><div id="outlet-table-results"></div>
+    </details>
     <p id="outlet-context" class="mini-note"></p><div id="outlet-readings" class="history"></div>
     <label class="input-label">Outlet coefficients to compare <span class="unit">per hour</span><input id="outlet-rates" type="text" maxlength="150" value="0, 0.38, 1.2"></label>
     <p class="mini-note">Enter 2–9 distinct coefficients from 0 to 10. These describe the simplified model's edge sink, not a measured drain capacity. Compare uses current numerical step size; it never changes the site's outlet setting.</p>
@@ -31,11 +38,15 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
   document.querySelector('.observations').before(panel);
   const find = id => panel.querySelector(`#${id}`);
   const rates = () => find('outlet-rates').value.split(',').map(value => value.trim() === '' ? NaN : Number(value));
+  let tablePreview=null, tableRevision=0;
+  const collectionSettings=()=>({target:find('outlet-target').value,eventRef:find('outlet-event').value.trim(),collectionSource:find('outlet-collection').value.trim(),coverage:find('outlet-coverage').checked?'all-modeled-edges':'partial',ratesPerHour:rates()});
+  function invalidateTable(){tablePreview=null;tableRevision++;find('outlet-table-commit').disabled=true;find('outlet-table-results').replaceChildren();find('outlet-table-status').textContent='Preview the complete original file before adding its readings.';}
   function status(state, message) {
     find('outlet-status').dataset.state = state; find('outlet-status').textContent = message;
   }
   function save(next) { validateProject(next); replaceProject(next); }
   function invalidate() {
+    invalidateTable();
     find('outlet-resolution-results').replaceChildren(); find('outlet-results').replaceChildren(); status('not-compared', 'Compare the saved readings with the current candidate coefficients.');
   }
   function refresh() {
@@ -61,6 +72,7 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
       const info = node('div', '');
       info.append(node('strong', `${reading.startMinute}–${reading.endMinute} min · ${number(reading.volume)} ± ${number(reading.uncertainty)} ${reading.unit}`));
       info.append(node('small', `${reading.source} · ${number(reading.volume * OUTLET_UNITS[reading.unit])} L converted`));
+      if(reading.tableSource)info.append(node('small', `Original file ${reading.tableSource.fileName}, line ${reading.tableSource.line}: ${reading.tableSource.startMinuteValue}–${reading.tableSource.endMinuteValue} min; ${reading.tableSource.volumeValue} ± ${reading.tableSource.uncertaintyValue} ${reading.tableSource.unit}. Original role ${reading.tableSource.useValue.trim()||'unassigned'}; current role may be revised.`));
       const label = node('label', 'Evidence role '); const select = node('select', '');
       select.setAttribute('aria-label', `Evidence role for collection ${index + 1}`);
       for (const [value, text] of [['unassigned', 'Notebook only'], ['calibration', 'Calibration'], ['challenge', 'Held aside']]) {
@@ -79,6 +91,24 @@ export function mountOutletEvidence({ getProject, replaceProject, notice }) {
       row.append(info, remove); host.append(row);
     }
   }
+  for(const id of ['outlet-target','outlet-event','outlet-collection','outlet-coverage','outlet-table-file'])find(id).addEventListener('input',invalidateTable);
+  find('outlet-table-preview').addEventListener('click',async()=>{
+    invalidateTable();const token=tableRevision,file=find('outlet-table-file').files[0],project=structuredClone(getProject()),settings=collectionSettings();
+    try{
+      if(!file)throw Error('Choose an original CSV file.');
+      if(file.size>128000)throw Error('Collection table exceeds 128000 UTF-8 bytes.');
+      const text=await file.text();if(token!==tableRevision)return;
+      const preview=previewOutletTable(text,project,settings,file.name);
+      if(JSON.stringify(getProject())!==JSON.stringify(project)||JSON.stringify(collectionSettings())!==JSON.stringify(settings))throw Error('Inputs changed; preview again.');
+      tablePreview=preview;const host=find('outlet-table-results');
+      for(const row of preview.readings)host.append(node('p', `Line ${row.tableSource.line}: ${row.startMinute}–${row.endMinute} min · ${row.volume} ± ${row.uncertainty} ${row.unit} · ${row.source} · ${row.use}`));
+      find('outlet-table-commit').disabled=false;find('outlet-table-status').textContent=`${preview.readings.length} original collections previewed; no readings added yet.`;
+    }catch(error){if(token===tableRevision)find('outlet-table-status').textContent=error.message;}
+  });
+  find('outlet-table-commit').addEventListener('click',()=>{
+    try{const count=tablePreview?.readings.length??0;const next=commitOutletTablePreview(getProject(),collectionSettings(),tablePreview);save(next);find('outlet-table-status').textContent=`${count} original collections added together. File, physical lines, quantities, units and original roles retained.`;notice('Original collection table retained.');}
+    catch(error){invalidateTable();find('outlet-table-status').textContent=error.message;}
+  });
   find('outlet-rates').addEventListener('input', invalidate);
   find('outlet-reading-form').addEventListener('submit', event => {
     event.preventDefault();
