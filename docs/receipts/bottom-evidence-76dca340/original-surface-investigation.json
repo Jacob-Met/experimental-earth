@@ -1,0 +1,140 @@
+{
+  "schema": "experimental-earth-bottom-evidence/1",
+  "quantity": "surface-temperature",
+  "original": {
+    "schema": "experimental-earth-bottom-heat/1",
+    "heatColumnStudy": {
+      "schema": "experimental-earth-heat-column/1",
+      "model": "two-uniform-stores-forced-surface-linear-exchange",
+      "heatStudy": {
+        "schema": "experimental-earth-surface-heat/1",
+        "model": "uniform-layer-forced-linear-exchange",
+        "cellIndex": 0,
+        "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+        "existing": {
+          "absorptivity": 0.8,
+          "capacityJm2K": 20000,
+          "exchangeWm2K": 10,
+          "initialC": 20,
+          "source": "Authored fixed source"
+        },
+        "proposal": {
+          "absorptivity": 0.8,
+          "capacityJm2K": 20000,
+          "exchangeWm2K": 10,
+          "initialC": 20,
+          "source": "Authored fixed source"
+        },
+        "schedule": [
+          {
+            "minutes": 60,
+            "incidentWm2": 700,
+            "reservoirC": 20,
+            "source": "Authored pulse"
+          },
+          {
+            "minutes": 360,
+            "incidentWm2": 0,
+            "reservoirC": 20,
+            "source": "Authored dark interval"
+          }
+        ]
+      },
+      "lowerLayers": {
+        "existing": {
+          "capacityJm2K": 80000,
+          "conductanceWm2K": 20,
+          "initialC": 20,
+          "source": "Authored lower store"
+        },
+        "proposal": {
+          "capacityJm2K": 80000,
+          "conductanceWm2K": 20,
+          "initialC": 20,
+          "source": "Authored lower store"
+        }
+      }
+    },
+    "bottoms": {
+      "existing": {
+        "conductanceWm2K": 10,
+        "reservoirC": 20,
+        "source": "Original authored boundary"
+      },
+      "proposal": {
+        "conductanceWm2K": 10,
+        "reservoirC": 20,
+        "source": "Original authored boundary"
+      }
+    }
+  },
+  "target": "existing",
+  "associationSource": "Authored fixed-source surface association; not acquired measurements",
+  "hypotheses": [
+    {
+      "label": "b0",
+      "conductanceWm2K": 0,
+      "reservoirRangeC": [
+        -20,
+        60
+      ],
+      "source": "<img src=x onerror=window.__bottomEvidenceInjected=1> Authored alternative"
+    },
+    {
+      "label": "b5",
+      "conductanceWm2K": 5,
+      "reservoirRangeC": [
+        -20,
+        60
+      ],
+      "source": "<img src=x onerror=window.__bottomEvidenceInjected=1> Authored alternative"
+    },
+    {
+      "label": "b10",
+      "conductanceWm2K": 10,
+      "reservoirRangeC": [
+        -20,
+        60
+      ],
+      "source": "<img src=x onerror=window.__bottomEvidenceInjected=1> Authored alternative"
+    },
+    {
+      "label": "b20",
+      "conductanceWm2K": 20,
+      "reservoirRangeC": [
+        -20,
+        60
+      ],
+      "source": "<img src=x onerror=window.__bottomEvidenceInjected=1> Authored alternative"
+    },
+    {
+      "label": "b50",
+      "conductanceWm2K": 50,
+      "reservoirRangeC": [
+        -20,
+        60
+      ],
+      "source": "<img src=x onerror=window.__bottomEvidenceInjected=1> Authored alternative"
+    }
+  ],
+  "readings": [
+    {
+      "minute": 60,
+      "temperatureC": 37.26099807977096,
+      "halfWidthC": 0.05,
+      "use": "calibration",
+      "source": "Frozen independent authored RK4 control; no field acquisition",
+      "aggregation": "interval-mean",
+      "fromMinute": 0
+    },
+    {
+      "minute": 420,
+      "temperatureC": 20.24339897746524,
+      "halfWidthC": 0.05,
+      "use": "challenge",
+      "source": "Frozen independent authored RK4 control; no field acquisition",
+      "aggregation": "interval-mean",
+      "fromMinute": 360
+    }
+  ]
+}

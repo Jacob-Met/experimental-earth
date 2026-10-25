@@ -1,0 +1,71 @@
+{
+  "schema": "earth-bottom-evidence-receiving/v1",
+  "baseCommit": "6c2b01b6332884f255618125285f7f500885b22f",
+  "sourceFiles": {
+    "bottom-heat-study.js": {
+      "sha256": "e78f1d68a09fd5d826ba53dba17a96213e4fce139fac938e894d5f321a531086",
+      "git_blob": "364f35751c14ee54e452de98430b6a6d5234fdd8"
+    },
+    "cooling-fraction-evidence.js": {
+      "sha256": "af86ce4506d8f00fd383738ec276d2bbef43d8ef63a96394bf62a70db3652cd1",
+      "git_blob": "c1f0acda8a514912d2bd07fead0478c926f9f2d3"
+    },
+    "bottom-heat-evidence.js": {
+      "sha256": "7232c43d01582415befefbb2b6b925e3c15a14738b6314b67d6b57e823ba06b4",
+      "git_blob": "78ddaf95743878adbd0f8f6b616614e94b9ca521"
+    },
+    "bottom-heat-evidence-panel.js": {
+      "sha256": "b26ad00d0e7453f37997a9c396c0313c3ebadf3ed34bea19c50e28ab4a29eba5",
+      "git_blob": "e5f34b9be1fcf27c8355d28fc20f6f030d2ddaca"
+    },
+    "bottom-heat-panel.js": {
+      "sha256": "a895deec2baaa733dbfb0140b433c085c923452b022ab20f2df2d6a70a4af34b",
+      "git_blob": "d7c5ad63db51d6425b070082702440894f10e43e"
+    },
+    "tests/bottom-heat-evidence.test.mjs": {
+      "sha256": "e78aa81dcb4b95395cab0ca880630d6e0ddad06db915f3fb6b7e5b47fc4b7173",
+      "git_blob": "053abb5931aeb31608c91edcf640b3d3102e6033"
+    },
+    "tests/bottom-heat-evidence.browser.mjs": {
+      "sha256": "e7a89450ca53e1e87bc1e8cc0de183ea382112a82e2d29bf5052e31986a95274",
+      "git_blob": "32969b180fe33d0e891b568bd66ab0856faf79d2"
+    },
+    "docs/BOTTOM_HEAT_EVIDENCE.md": {
+      "sha256": "6651bc72a61a2e95fc043649404f53283e2ac60681a2d9b9e52b33ee55379532",
+      "git_blob": "dc82e2f988ca1950db051c3ce38f1186a2f1a206"
+    },
+    "tests/bottom-heat-evidence-rk4.py": {
+      "sha256": "c743b8522488ddbd9c7346ebd8812d1678c9f3dde5b6ab965e1d16b673eb3821",
+      "git_blob": "62e47451a8b8072d1384492b23632ac8967ddc21"
+    }
+  },
+  "native": {
+    "tests": 904,
+    "pass": 904,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browserGroups": [
+    "Actual accepted-source handoff and original point-band forms retain confounding, then separate offered conductances with held-aside evidence",
+    "Original source is independent of parent drafts; dirty evidence hides results and restores accepted readings",
+    "True means use complete intervals; interpreting the same first-hour value as an endpoint fails the held-aside intersection",
+    "Actual original-input download/fresh reopen and malformed replacement retain sources, means, roles and accepted results",
+    "Late old file completion cannot replace a newer draft or invent a successful comparison",
+    "Desktop/narrow continuous-interval chart and source records fit the actual viewport without page exceptions"
+  ],
+  "sandboxAdmitted": true,
+  "highPrecisionReference": {
+    "status": "PASS",
+    "comparisons": 96,
+    "declaredAbsoluteToleranceC": 3e-10,
+    "maximumAbsoluteErrorC": 1.4210854715202004e-14,
+    "referenceSha256": "d44632ec32a572ea9d5f4cff951ceea0e3ed9be9ff42dc365d100f6f64178b80"
+  },
+  "review": "Independent HamonLang review of all nine files and baseline cooling diff. Root received and executed code, reviewed true-mean logic, authored independent 80-digit global matrix reference and inspected actual desktop/390px screenshots. Exact guard-boundary contact was corrected and rereviewed before final tests.",
+  "localRevisionMetadata": "20aa3b1cbefddc3b20b77202445ddaecdf5069d8 is a task-local receiving snapshot required by existing CLI tests; it is not the upstream baseline.",
+  "limitations": [
+    "Authored numerical controls, not acquired temperature measurements or physical parameter identification.",
+    "Arithmetic allowances are engineering estimates, not certified error bounds or statistical confidence.",
+    "Only explicitly offered conductances and declared continuous reservoir ranges are compared; no parameter is adopted."
+  ]
+}
