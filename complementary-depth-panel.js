@@ -25,8 +25,27 @@ export function mountComplementaryDepthPanel({ getProject, prepareReading, notic
   }
   strategyLabel.append(strategy);
   strategy.addEventListener('change', () => { budget.disabled = strategy.value === 'exact-pair'; if (budget.disabled) budget.value = '2'; });
+  const scope = node('fieldset'); scope.append(node('legend', 'Optional offered acquisition scope'));
+  const scopedLabel = node('label', 'Use only explicitly offered cells and times '), scoped = node('input'); scoped.type = 'checkbox'; scoped.id = 'complementary-scoped'; scopedLabel.append(scoped);
+  const cellsLabel = node('label', 'Offered original cells (C2, F6; blank offers none) '), cells = node('input'); cells.id = 'complementary-cells'; cells.maxLength = 3000; cellsLabel.append(cells);
+  const startLabel = node('label', 'Earliest event minute '), start = node('input'); start.id = 'complementary-start'; start.type = 'number'; start.min = '0'; start.step = 'any'; start.value = '0'; startLabel.append(start);
+  const endLabel = node('label', 'Latest event minute (blank uses original event end) '), end = node('input'); end.id = 'complementary-end'; end.type = 'number'; end.min = '0'; end.step = 'any'; endLabel.append(end);
+  const basisLabel = node('label', 'Reason these cells and times are offered '), basis = node('input'); basis.id = 'complementary-scope-basis'; basis.maxLength = 500; basisLabel.append(basis);
+  scope.append(scopedLabel, cellsLabel, startLabel, endLabel, basisLabel, node('p', 'This is your declared acquisition availability, not verified physical access. Original native solver times only; unavailable points are not treated as recorded or indistinguishable.'));
+  const readAvailability = project => {
+    if (!scoped.checked) return undefined;
+    if (!start.value.trim()) throw Error('Declare an earliest offered event minute');
+    const cellIndices = cells.value.trim() ? cells.value.split(',').map(raw => {
+      const match = /^([A-X])([1-9][0-9]?)$/.exec(raw.trim().toUpperCase());
+      if (!match) throw Error('Offer original grid labels such as C2, F6');
+      const col = match[1].charCodeAt(0) - 65, row = Number(match[2]) - 1;
+      if (col >= project.width || row >= project.height) throw Error('An offered cell is outside the original grid');
+      return row * project.width + col;
+    }) : [];
+    return { cellIndices, startMinute: Number(start.value), endMinute: end.value.trim() ? Number(end.value) : project.weather.durationMinutes, basis: basis.value };
+  };
   const submit = node('button', 'Plan complementary readings'); submit.type = 'submit';
-  form.append(toleranceLabel, strategyLabel, budgetLabel, submit);
+  form.append(toleranceLabel, strategyLabel, budgetLabel, scope, submit);
   const output = node('div'); output.id = 'complementary-results'; output.setAttribute('aria-live', 'polite');
   host.append(form, output);
   document.getElementById('infiltration-question').after(host);
@@ -39,12 +58,14 @@ export function mountComplementaryDepthPanel({ getProject, prepareReading, notic
     try {
       const project = getProject();
       if (!tolerance.value.trim()) throw Error('Supply a prospective depth tolerance');
-      const report = planInfiltrationReadings(project, { uncertaintyMm: Number(tolerance.value), maxReadings: Number(budget.value), strategy: strategy.value });
+      const report = planInfiltrationReadings(project, { uncertaintyMm: Number(tolerance.value), maxReadings: Number(budget.value), strategy: strategy.value, availability: readAvailability(project) });
       signature = JSON.stringify(project);
       const ratePair = pair => `${number(report.ratesMmHr[pair.first])} / ${number(report.ratesMmHr[pair.second])} mm/h`;
       if (report.status === 'insufficient-alternatives') output.append(node('p', 'At least two calibration-compatible rates are needed. No reading plan was invented.'));
       else {
         output.append(node('p', `${report.separatedPairCount} of ${report.pairs.length} candidate pairs distinguished by ${report.questions.length} proposed readings at ±${number(report.uncertaintyMm)} mm. ${report.evaluatedCount} unrecorded solver points inspected; ${report.excludedCount} recorded points excluded.`));
+        if (report.availability) output.append(node('p', `Declared offered scope: ${report.availability.cellIndices.length} original cells from ${number(report.availability.startMinute)} to ${number(report.availability.endMinute)} min. ${report.offeredCount} native points offered; ${report.unavailableCount} other points unavailable. Basis: ${report.availability.basis}`));
+        if (report.status === 'unavailable') output.append(node('p', 'No original native solver point is offered. This does not establish that the alternatives are indistinguishable.'));
         for (const [index, question] of report.questions.entries()) {
           const article = node('article');
           const cell = `${String.fromCharCode(65 + question.cellIndex % project.width)}${Math.floor(question.cellIndex / project.width) + 1}`;
