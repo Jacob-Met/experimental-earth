@@ -28,6 +28,52 @@ three-metre opaque column lies east of the selected ground point, with identical
 materials in both scenarios. Its weather, coordinates and geometry are labeled
 assumptions. Exploring it never replaces the working site.
 
+## Receive original hourly weather
+
+**Use NASA POWER hourly JSON** receives one complete UTC day without an online
+request from the workbench. Obtain a point response in JSON with the parameters
+`ALLSKY_SFC_SW_DNI`, `ALLSKY_SFC_SW_DIFF` and `T2M`, `start` equal to `end`, and
+`time-standard=UTC`. The [POWER hourly API documentation](https://power.larc.nasa.gov/docs/services/api/temporal/hourly/)
+explains the point request and source resolution. Its default local solar time is
+not UTC; the receiver refuses an LST file. NASA's [time convention](https://power.larc.nasa.gov/docs/faqs/other/)
+defines a timestamp as the start of the entire hour.
+
+After selecting the original site or isolated example, import that JSON, inspect
+its point and UTC day, confirm the grid bearing and its source, then compare. The
+point, start/end and 60-minute intervals stay attached to the original data. Each
+hour supplies a separate direct-normal input, diffuse-horizontal input and ambient
+reservoir temperature. The time inspector shows the original source key and values.
+**Use constant weather** removes that attachment, retires the result and restores
+explicit constant inputs. Changing sites does not manufacture new weather data.
+
+The supported hourly response units are **Wh/m^2** for each radiation quantity and
+**C** for T2M. Radiation energy is divided by the original one-hour duration to
+obtain average W/m²; the numerical equality is not a relabeling of equal units.
+T2M is used as the ambient reservoir. It is not a measured surface or lower-store
+temperature, and the initial stores still come from the declared thermal model.
+
+The full 24-record course is admitted before simulation. All three parameters must
+have exactly the same start-of-hour keys for the declared calendar day. Missing or
+fill-valued hours, strings in place of numbers, wrong units, impossible dates,
+unsupported coordinates and values, multi-day files, invalid UTF-8 and files over
+256 KiB are refused without truncation, imputation or clamping. A failed import
+preserves the prior accepted investigation. The original JSON text, including its
+header and additional metadata, stays in the input-only download.
+
+Source point data retains its original spatial resolution. Uploaded metadata is a
+source declaration, not authentication or a local field measurement. The model
+projects hourly mean DNI using the midpoint sun angle and obstruction; it does not
+integrate continuous sunlight or reproduce observed horizontal direct energy.
+Diffuse sky-view changes remain outside the model. A weather record does not
+validate the invented geometry, material assumptions or predicted temperatures.
+
+An internal source-receiving experiment used the public POWER response for
+2025-06-21 at 51.5°N, 0.1°W with the invented courtyard. Its hourly existing-surface
+model peak was 58.8526°C; replacing those records with daily arithmetic means gave
+39.5867°C. This demonstrates sensitivity to temporal forcing, not physical accuracy.
+The maintained offline test fixture is explicitly authored and is not distributed
+as a weather observation.
+
 ## The calculation
 
 For a horizontal plane, unblocked direct-normal irradiance projects as
@@ -82,7 +128,9 @@ the maintained two-store model.
 ## Source and lifecycle
 
 The complete original project, model identifiers and normalized input declaration
-are retained in `experimental-earth/shade-heat-inputs/1`. The outer envelope rejects
+are retained in `experimental-earth/shade-heat-inputs/1` for constant declarations or
+`experimental-earth/shade-heat-inputs/2` for original hourly weather. Both reopen through
+the same maintained consumer; v2 also pins the hourly receiver identifier. The outer envelope rejects
 unknown fields, including forged derived reports. Model identifiers must match.
 Portable-project admission preserves the original site's own validation and byte
 limit; the complete coupled input file is limited to 5 MiB.
@@ -112,3 +160,12 @@ The original complete course is refused before partial output if its conservativ
 all-cell ray-work estimate exceeds 16 million checks. This first integration reuses
 the maintained 24-interval heat contract. No new solver, observation fitter,
 provider runtime, deployment or physical intervention is introduced.
+
+`node --test tests/weather-power.test.mjs tests/shade-heat-weather.test.mjs`
+exercises complete source/clock/unit receiving, missing data, changed hourly
+ambient forcing, independent first-order recurrence at every hour, location/day
+binding, and original v1/v2 replay. `node tests/shade-heat-weather.browser.mjs`
+receives actual files through the application, downloads and reopens the complete
+source, rejects LST and invalid UTF-8 transactionally, supersedes late reads,
+reselects the same file, returns to constant mode and inspects the narrow layout.
+The original shade-and-heat browser course continues to exercise v1 receiving.

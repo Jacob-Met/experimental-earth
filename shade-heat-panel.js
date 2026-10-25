@@ -1,3 +1,4 @@
+import { parsePowerHourly, checkPowerHourlyBytes, POWER_HOURLY_FORMAT } from './weather-power.js';
 import { prepareShadeHeatInvestigation, serializeShadeHeatInvestigation,
   parseShadeHeatInvestigation, checkShadeHeatBytes } from './shade-heat.js';
 import { makeShadeHeatExample } from './shade-heat-example.js';
@@ -26,21 +27,30 @@ export function mountShadeHeat({ getProject, notice }) {
     <p>Connect the mapped columns and ground to the saved surface and lower heat stores. Follow the temperature response as the sun moves, then inspect which shade assumptions drive it.</p>
     <div class="obs-actions"><button id="shade-current" type="button">Use saved site declarations</button><button id="shade-example" type="button">Explore authored shade example</button><label class="shade-file">Reopen an investigation<input id="shade-import" type="file" accept=".json,application/json"></label></div>
     <p id="shade-basis" class="mini-note"></p>
-    <details id="shade-settings"><summary>Location, dated exposure and declared weather</summary><form id="shade-form"><div class="shade-fields">${[...pathFields, ...weatherFields].map(([key, label, type]) => `<label class="input-label">${label}<input id="shade-${key}" type="${type}" ${type === 'number' ? 'step="any"' : 'maxlength="400"'} required></label>`).join('')}</div><button id="shade-run" type="submit" class="primary">Compare shade and heat</button></form></details>
+    <details id="shade-settings"><summary>Location, dated exposure and declared weather</summary><form id="shade-form"><div class="obs-actions"><label class="shade-file">Use NASA POWER hourly JSON<input id="shade-weather-import" type="file" accept=".json,application/json"></label><button id="shade-weather-clear" type="button" hidden>Use constant weather</button></div><p id="shade-weather-basis" class="mini-note">Use declared constant weather below, or import one complete UTC day of POWER direct-normal, diffuse-horizontal and two-metre temperature records.</p><div class="shade-fields">${[...pathFields, ...weatherFields].map(([key, label, type]) => `<label class="input-label">${label}<input id="shade-${key}" type="${type}" ${type === 'number' ? 'step="any"' : 'maxlength="400"'} required></label>`).join('')}</div><button id="shade-run" type="submit" class="primary">Compare shade and heat</button></form></details>
     <p class="mini-note">Direct beam is projected onto horizontal ground. The declared diffuse input stays the same under shade; sky-view changes and reflected light are not included. Temperature also depends on each saved material declaration.</p>
     <p id="shade-status" role="status"></p><div id="shade-results"></div>
     <button id="shade-export" type="button" disabled>Download original site + investigation inputs</button>
     <p class="mini-note">The download includes the declared geographic location and original site. Reopening recomputes the comparison without replacing the working site.</p>`;
   document.querySelector('#heat-column').after(panel);
   const $ = id => panel.querySelector('#' + id);
-  let source = null, sourceMode = '', signature = '', generation = 0, accepted = null, selectedIndex = 0, store = 'surfaceC';
+  let source = null, sourceMode = '', signature = '', generation = 0, accepted = null, selectedIndex = 0, store = 'surfaceC', hourlyWeather = null;
 
   function state(message, kind = 'not-compared') { $('shade-status').textContent = message; $('shade-status').dataset.state = kind; }
   function invalidate(message) {
     generation++; accepted = null; $('shade-results').replaceChildren(); $('shade-export').disabled = true;
     $('shade-run').disabled = !source; state(message);
   }
+  function weatherMode() {
+    const locked = ['latitudeDeg', 'longitudeDeg', 'startUtc', 'endUtc', 'stepMinutes', ...weatherFields.map(([key]) => key)];
+    for (const key of locked) $('shade-' + key).disabled = Boolean(hourlyWeather);
+    $('shade-weather-clear').hidden = !hourlyWeather;
+    $('shade-weather-basis').textContent = hourlyWeather
+      ? 'Original hourly JSON attached. Its point, UTC day and one-hour intervals are retained; grid orientation and all site/material assumptions remain yours. Radiation energy in Wh/m² is divided by one hour for mean W/m². T2M supplies the ambient reservoir.'
+      : 'Use declared constant weather below, or import one complete UTC day of POWER direct-normal, diffuse-horizontal and two-metre temperature records.';
+  }
   function fill(declaration) {
+    hourlyWeather = declaration?.weather ? { ...declaration.weather } : null; weatherMode();
     for (const [key] of pathFields) $('shade-' + key).value = declaration?.path?.[key] ?? '';
     for (const [key] of weatherFields) $('shade-' + key).value = declaration?.[key] ?? '';
   }
@@ -51,6 +61,7 @@ export function mountShadeHeat({ getProject, notice }) {
       if (!raw.trim()) throw Error('Enter each dated exposure field and source');
       declaration.path[key] = type === 'number' ? Number(raw) : raw;
     }
+    if (hourlyWeather) { declaration.weather = { ...hourlyWeather }; return declaration; }
     for (const [key, , type] of weatherFields) {
       const raw = $('shade-' + key).value;
       if (!raw.trim()) throw Error('Enter each weather field and its source');
@@ -83,7 +94,26 @@ export function mountShadeHeat({ getProject, notice }) {
     } catch (error) { invalidate(error.message); state(error.message, 'refused'); }
   }
   $('shade-form').addEventListener('submit', run);
-  for (const el of panel.querySelectorAll('form input')) el.addEventListener('input', () => invalidate('Inputs changed. Compare again to inspect the new assumptions.'));
+  for (const el of panel.querySelectorAll('form input:not([type=file])')) el.addEventListener('input', () => invalidate('Inputs changed. Compare again to inspect the new assumptions.'));
+  $('shade-weather-clear').addEventListener('click', () => {
+    hourlyWeather = null; weatherMode(); invalidate('Hourly weather detached. Declare constant irradiance, reservoir and their source before comparing.');
+  });
+  $('shade-weather-import').addEventListener('change', async () => {
+    const file = $('shade-weather-import').files?.[0]; if (!file) return; $('shade-weather-import').value = '';
+    const request = ++generation;
+    try {
+      checkPowerHourlyBytes(file.size);
+      const bytes = await file.arrayBuffer(); if (request !== generation) return;
+      const rawText = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
+      const weather = parsePowerHourly(rawText); if (request !== generation) return;
+      for (const key of ['latitudeDeg', 'longitudeDeg', 'startUtc', 'endUtc', 'stepMinutes']) $('shade-' + key).value = weather[key];
+      $('shade-locationSource').value = 'Point declared in uploaded NASA POWER hourly JSON; original source resolution, not a surveyed site location';
+      hourlyWeather = { format: POWER_HOURLY_FORMAT, rawText }; weatherMode();
+      invalidate('Hourly weather attached. Confirm the source site and grid bearing, then compare.');
+      $('shade-settings').open = true;
+    } catch (error) { if (request === generation) { state('Weather file refused: ' + error.message + '. The prior investigation is retained.', 'weather-refused'); notice(error.message); } }
+    finally { if (request === generation) $('shade-run').disabled = !source; }
+  });
   $('shade-current').addEventListener('click', () => {
     source = structuredClone(getProject()); sourceMode = 'Snapshot of the working site';
     invalidate('Original site selected. Enter a dated exposure, irradiance and their sources.'); basis(); $('shade-settings').open = true;
@@ -127,6 +157,7 @@ export function mountShadeHeat({ getProject, notice }) {
     host.append(cards, node('p', 'Proposal minus existing at this time: ' + range(row.difference[store]) + ' °C. Includes declared material changes as well as mapped shade.'));
     const interval = report.intervals.find(r => row.minute >= r.fromMinute && row.minute < r.toMinute) ?? report.intervals.at(-1);
     host.append(node('p', `Forcing interval ${display(interval.fromMinute)}–${display(interval.toMinute)} min · sun sampled at ${interval.sampleUtc.replace('.000Z', 'Z')}.`));
+    if (report.declaration.weather) host.append(node('p', `Original weather hour ${interval.weather.sourceKey}: direct-normal ${display(interval.weather.original.ALLSKY_SFC_SW_DNI)} Wh/m²; diffuse-horizontal ${display(interval.weather.original.ALLSKY_SFC_SW_DIFF)} Wh/m² over one hour; ambient ${display(interval.weather.reservoirC)} °C.`));
     for (const target of ['existing', 'proposal']) {
       const ray = interval[target]; host.append(node('p', `${target}: ${ray.status}; incident ${range([ray.irradiance.lower, ray.irradiance.upper])} W/m².` +
         (ray.witness ? ` Mapped witness cell ${ray.witness.cellIndex + 1}: ${ray.witness.source}` : '')));
@@ -180,7 +211,11 @@ export function mountShadeHeat({ getProject, notice }) {
     slider.addEventListener('input', () => { selectedIndex = Number(slider.value); inspect(); }); inspect();
     const sources = node('details'); sources.id = 'shade-sources'; sources.append(node('summary', 'Original declarations, mapped intervals and model limits'));
     const { project, declaration } = accepted.investigation;
-    sources.append(node('p', project.source), node('p', declaration.path.locationSource), node('p', declaration.path.orientationSource), node('p', declaration.weatherSource));
+    sources.append(node('p', project.source), node('p', declaration.path.locationSource), node('p', declaration.path.orientationSource));
+    if (declaration.weather) {
+      const weather = report.weatherSource;
+      sources.append(node('p', `Uploaded source declaration: ${weather.title}; ${weather.api.name} ${weather.api.version}; ${weather.sources.join(', ')}. Original complete JSON is retained in the download; file metadata is not proof of origin.`));
+    } else sources.append(node('p', declaration.weatherSource));
     for (const target of ['existing', 'proposal']) sources.append(node('p', target + ' surface: ' + project.heatColumnStudy.heatStudy[target].source), node('p', target + ' lower: ' + project.heatColumnStudy.lowerLayers[target].source));
     for (const row of report.intervals) sources.append(node('p', `${row.sampleUtc}: existing ${row.existing.status}, proposal ${row.proposal.status}; midpoint clock offset ${row.sampleOffsetSeconds} seconds.`));
     sources.append(node('p', report.semantics), node('p', 'Computed peaks include thermal interval boundaries and interior turning points. Changing interval width can change the answer; no temporal convergence or continuous shadow bound is established.'));

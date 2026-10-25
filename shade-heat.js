@@ -1,3 +1,4 @@
+import { parsePowerHourly, POWER_HOURLY_FORMAT } from './weather-power.js';
 import { validateProject } from './core.js';
 import { compareSolarOcclusion } from './solar-occlusion.js';
 import { solarContext } from './solar-occlusion-contract.js';
@@ -12,6 +13,8 @@ export const SHADE_HEAT_MODEL = Object.freeze({
   forcing: 'DHI + mapped-beam-transmission * DNI * max(0, sin(apparent-elevation))',
 });
 export const SHADE_HEAT_KIND = 'experimental-earth/shade-heat-inputs/1';
+export const SHADE_HEAT_HOURLY_KIND = 'experimental-earth/shade-heat-inputs/2';
+export const SHADE_HEAT_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_MODEL, version: 2, weather: POWER_HOURLY_FORMAT });
 export const SHADE_HEAT_LIMITS = Object.freeze({ maxIntervals: 24, maxMinutes: 1440,
   maxRayTests: 16000000, maxFileBytes: 5 * 1024 * 1024 });
 export const SHADE_HEAT_SEMANTICS = 'Each interval holds its midpoint sun position and mapped obstruction constant. '
@@ -30,10 +33,21 @@ const exactKeys = (value, keys) => value !== null && typeof value === 'object' &
   && Object.keys(value).length === keys.length && keys.every(k => Object.hasOwn(value, k));
 
 export function normalizeShadeHeat(input) {
-  if (!exactKeys(input, inputKeys) || !exactKeys(input.path, pathKeys)) {
+  const hourly = exactKeys(input, ['path', 'weather']);
+  if ((!hourly && !exactKeys(input, inputKeys)) || !exactKeys(input.path, pathKeys)) {
     throw Error('Supply only the supported location, UTC, direct/diffuse irradiance, reservoir and source inputs');
   }
   const validated = validateSunPath(input.path);
+  if (hourly) {
+    if (!exactKeys(input.weather, ['format', 'rawText']) || input.weather.format !== POWER_HOURLY_FORMAT) {
+      throw Error('Retain only the supported hourly weather format and original JSON text');
+    }
+    const weather = parsePowerHourly(input.weather.rawText);
+    for (const key of ['latitudeDeg', 'longitudeDeg', 'startUtc', 'endUtc', 'stepMinutes']) {
+      if (validated[key] !== weather[key]) throw Error('The dated exposure must match the original hourly weather location, UTC day and 60-minute interval');
+    }
+    return { path: Object.fromEntries(pathKeys.map(k => [k, validated[k]])), weather: { ...input.weather } };
+  }
   if (!finite(input.directNormalWm2, 0, 2000) || !finite(input.diffuseHorizontalWm2, 0, 2000)
       || input.directNormalWm2 + input.diffuseHorizontalWm2 > 2000
       || !finite(input.reservoirC, -100, 200) || typeof input.weatherSource !== 'string'
@@ -89,12 +103,13 @@ function sourceAdmission(project, input) {
   if (estimatedRayTests > SHADE_HEAT_LIMITS.maxRayTests) {
     throw Error('The complete coupled investigation exceeds the 16 million ray-check budget; use fewer intervals or a smaller source grid');
   }
-  return { declaration, cellIndex, start, end, count, estimatedRayTests };
+  const weather = declaration.weather ? parsePowerHourly(declaration.weather.rawText) : null;
+  return { declaration, weather, cellIndex, start, end, count, estimatedRayTests };
 }
 
 export function compareShadeHeat(project, input) {
   const admitted = sourceAdmission(project, input);
-  const { declaration, cellIndex, start, end, count, estimatedRayTests } = admitted;
+  const { declaration, weather, cellIndex, start, end, count, estimatedRayTests } = admitted;
   const working = structuredClone(project), intervals = [];
   for (let i = 0; i < count; i++) {
     const from = start + i * declaration.path.stepMinutes * 60000;
@@ -114,12 +129,14 @@ export function compareShadeHeat(project, input) {
     }
     const row = { fromMinute: (from - start) / 60000, toMinute: (to - start) / 60000,
       fromUtc: new Date(from).toISOString(), toUtc: new Date(to).toISOString(), sampleUtc: utc,
-      sampleOffsetSeconds: sampleMs / 1000 - (from + to) / 2000, ...position };
+      sampleOffsetSeconds: sampleMs / 1000 - (from + to) / 2000, ...position,
+      weather: weather?.intervals[i] ?? { directNormalWm2: declaration.directNormalWm2,
+        diffuseHorizontalWm2: declaration.diffuseHorizontalWm2, reservoirC: declaration.reservoirC } };
     for (const target of targets) {
       const ray = comparison ? comparison[target][cellIndex] : { cellIndex,
         status: position.elevationDeg <= 0 ? 'below-horizon' : 'low-elevation', witness: null };
       row[target] = { ...ray, irradiance: mappedHorizontalIrradiance(ray.status, position.elevationDeg,
-        declaration.directNormalWm2, declaration.diffuseHorizontalWm2) };
+        row.weather.directNormalWm2, row.weather.diffuseHorizontalWm2) };
     }
     intervals.push(row);
   }
@@ -132,7 +149,7 @@ export function compareShadeHeat(project, input) {
     for (const bound of bounds) {
       const study = structuredClone(project.heatColumnStudy);
       study.heatStudy.schedule = intervals.map(row => ({ minutes: row.toMinute - row.fromMinute,
-        incidentWm2: row[target].irradiance[bound], reservoirC: declaration.reservoirC,
+        incidentWm2: row[target].irradiance[bound], reservoirC: row.weather.reservoirC,
         source: 'Derived ' + bound + ' incident input at ' + row.sampleUtc + '; full weather/geometry basis is retained in shade-heat inputs' }));
       studies[target][bound] = study;
       responses[target][bound] = evaluateHeatColumnTarget(study, target, requested);
@@ -164,8 +181,10 @@ export function compareShadeHeat(project, input) {
     summary[target].final = Object.fromEntries(bounds.map(bound => [bound, responses[target][bound].summary.final]));
     summary[target].ambiguousIntervals = intervals.filter(row => row[target].irradiance.lower !== row[target].irradiance.upper).length;
   }
-  return { status: 'compared', model: SHADE_HEAT_MODEL, declaration, cellIndex,
-    durationMinutes, estimatedRayTests, intervals, trajectory, summary, semantics: SHADE_HEAT_SEMANTICS };
+  return { status: 'compared', model: weather ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL, declaration, cellIndex,
+    weatherSource: weather?.source ?? { declaration: declaration.weatherSource },
+    durationMinutes, estimatedRayTests, intervals, trajectory, summary, semantics: SHADE_HEAT_SEMANTICS
+      + (weather ? ' Hourly weather uses source point data at its original spatial resolution; uploaded metadata does not authenticate the file. Hourly direct-normal energy is divided by its one-hour interval and projected at the midpoint, not integrated against continuous sun. T2M drives the ambient reservoir, not an observed ground temperature.' : '') };
 }
 
 export function checkShadeHeatBytes(bytes) {
@@ -178,7 +197,8 @@ export function prepareShadeHeatInvestigation(project, input) {
   const source = parsePortableProject(serializePortableProject(project));
   const declaration = normalizeShadeHeat(input);
   const report = compareShadeHeat(source, declaration);
-  const investigation = { kind: SHADE_HEAT_KIND, model: { ...SHADE_HEAT_MODEL }, project: source, declaration };
+  const investigation = { kind: declaration.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND,
+    model: { ...report.model }, project: source, declaration };
   checkShadeHeatBytes(new Blob([JSON.stringify(investigation)]).size);
   return { investigation, report };
 }
@@ -195,9 +215,12 @@ export function parseShadeHeatInvestigation(text) {
   checkShadeHeatBytes(new Blob([text]).size);
   let value;
   try { value = JSON.parse(text); } catch { throw Error('Invalid shade and heat input JSON'); }
-  if (!exactKeys(value, ['kind', 'model', 'project', 'declaration']) || value.kind !== SHADE_HEAT_KIND
-      || !exactKeys(value.model, Object.keys(SHADE_HEAT_MODEL))
-      || Object.keys(SHADE_HEAT_MODEL).some(key => value.model[key] !== SHADE_HEAT_MODEL[key])) {
+  const expected = value?.kind === SHADE_HEAT_HOURLY_KIND ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL;
+  if (!exactKeys(value, ['kind', 'model', 'project', 'declaration'])
+      || ![SHADE_HEAT_KIND, SHADE_HEAT_HOURLY_KIND].includes(value.kind)
+      || (value.kind === SHADE_HEAT_HOURLY_KIND) !== Boolean(value.declaration?.weather)
+      || !exactKeys(value.model, Object.keys(expected))
+      || Object.keys(expected).some(key => value.model[key] !== expected[key])) {
     throw Error('Unsupported shade and heat input model or envelope; saved result fields are not accepted');
   }
   return prepareShadeHeatInvestigation(value.project, value.declaration);
