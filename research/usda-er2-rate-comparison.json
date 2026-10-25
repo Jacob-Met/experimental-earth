@@ -1,0 +1,22 @@
+{
+  "kind": "experimental-earth-original-rate-events",
+  "version": 1,
+  "events": [
+    {
+      "source": {
+        "event": "ER2 / natural N / plot 1 / 2013-07-30 / DRY",
+        "source": "USDA DOI 10.15482/USDA.ADC/1358583; U.S. Public Domain. Corrected file43727238 SHA256 6db82e5c484e99f1663e9b0e7259572be97a7c99e12a928db204403b7a23c9d9. Original outlet flow rates in mm/h. Sequential DRY/WET runs differ in antecedent conditions and forcing; source methods describe a pause between runs. No collected volumes or uncertainty bands inferred.",
+        "fileName": "Rainfall simulation (R11272017).csv \u2014 DRY event extract"
+      },
+      "text": "minute,rain_mm_hr,runon_mm_hr,runoff_mm_hr,source_line\n0,74,0,0,2\n6.33,74,0,0,3\n7,74,0,5,4\n9,74,0,8,5\n11,74,0,10,6\n15,74,0,14,7\n20,74,0,14,8\n25,74,0,14,9\n35,74,0,9,10\n40,74,0,9,11\n45,0,0,9,12\n45.67,0,0,4,13\n46.33,0,0,0,14\n"
+    },
+    {
+      "source": {
+        "event": "ER2 / natural N / plot 1 / 2013-07-30 / WET",
+        "source": "USDA DOI 10.15482/USDA.ADC/1358583; U.S. Public Domain. Corrected file43727238 SHA256 6db82e5c484e99f1663e9b0e7259572be97a7c99e12a928db204403b7a23c9d9. Original outlet flow rates in mm/h. Sequential DRY/WET runs differ in antecedent conditions and forcing; source methods describe a pause between runs. No collected volumes or uncertainty bands inferred.",
+        "fileName": "Rainfall simulation (R11272017).csv \u2014 WET event extract"
+      },
+      "text": "minute,rain_mm_hr,runon_mm_hr,runoff_mm_hr,source_line\n0,74,0,0,15\n4.58,74,0,0,16\n6,74,0,6,17\n8,74,0,14,18\n9,74,0,15,19\n10,74,0,17,20\n13,74,0,17,21\n14,74,0,18,22\n17,94,0,20,23\n19,94,0,43,24\n21,94,0,50,25\n22,94,0,53,26\n23,94,0,53,27\n25,94,0,53,28\n30,119,0,53,29\n32,119,0,72,30\n34,119,0,73,31\n35,119,0,73,32\n36,119,0,73,33\n38,119,0,73,34\n42,153,0,73,35\n44,153,0,103,36\n46,153,0,109,37\n47,153,0,109,38\n48,153,0,109,39\n50,153,0,109,40\n52,167,0,109,41\n54,167,0,125,42\n56,167,0,125,43\n58,167,0,125,44\n59.5,167,0,125,45\n61,167,0,125,46\n63,0,0,125,47\n63.5,0,0,84,48\n64,0,0,36,49\n64.5,0,0,14,50\n65,0,0,4,51\n65.5,0,0,0,52\n"
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "source": {
+    "doi": "10.15482/USDA.ADC/1358583",
+    "fileId": 43727238,
+    "sha256": "6db82e5c484e99f1663e9b0e7259572be97a7c99e12a928db204403b7a23c9d9",
+    "license": "U.S. Public Domain",
+    "header": [
+      "Site ID",
+      "Condition",
+      "Plot number",
+      "Year",
+      "Month ",
+      "Day ",
+      "Run",
+      "Time",
+      "Precipitation",
+      "Run-on",
+      "Runoff",
+      "Sediment concentration",
+      "Sediment discharge",
+      "Velocity max",
+      "Velocity mean"
+    ]
+  },
+  "selection": "First complete DRY event in source order with numeric nonnegative observations and numeric zero run-on; no model result used",
+  "event": {
+    "Site ID": "ER2",
+    "Condition": "N",
+    "Plot number": "1",
+    "Year": "2013",
+    "Month": "7",
+    "Day": "30",
+    "Run": "DRY"
+  },
+  "rows": [
+    {
+      "sourceLine": 2,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "0",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "0",
+        "Sediment concentration": "NA",
+        "Sediment discharge": "NA",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 3,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "6.33",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "0",
+        "Sediment concentration": "NA",
+        "Sediment discharge": "NA",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 4,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "7",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "5",
+        "Sediment concentration": "0.42",
+        "Sediment discharge": "0.06",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 5,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "9",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "8",
+        "Sediment concentration": "0.54",
+        "Sediment discharge": "0.15",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 6,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "11",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "10",
+        "Sediment concentration": "0.33",
+        "Sediment discharge": "0.11",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 7,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "15",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "14",
+        "Sediment concentration": "0.4",
+        "Sediment discharge": "0.18",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 8,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "20",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "14",
+        "Sediment concentration": "0.33",
+        "Sediment discharge": "0.15",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 9,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "25",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "14",
+        "Sediment concentration": "0.26",
+        "Sediment discharge": "0.12",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 10,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "35",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "9",
+        "Sediment concentration": "0.11",
+        "Sediment discharge": "0.03",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 11,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "40",
+        "Precipitation": "74",
+        "Run-on": "0",
+        "Runoff": "9",
+        "Sediment concentration": "0.28",
+        "Sediment discharge": "0.08",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 12,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "45",
+        "Precipitation": "0",
+        "Run-on": "0",
+        "Runoff": "9",
+        "Sediment concentration": "0.15",
+        "Sediment discharge": "0.05",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 13,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "45.67",
+        "Precipitation": "0",
+        "Run-on": "0",
+        "Runoff": "4",
+        "Sediment concentration": "0.08",
+        "Sediment discharge": "0.01",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    },
+    {
+      "sourceLine": 14,
+      "raw": {
+        "Site ID": "ER2",
+        "Condition": " N",
+        "Plot number": "1",
+        "Year": "2013",
+        "Month": "7",
+        "Day": "30",
+        "Run": "DRY",
+        "Time": "46.33",
+        "Precipitation": "0",
+        "Run-on": "0",
+        "Runoff": "0",
+        "Sediment concentration": "NA",
+        "Sediment discharge": "NA",
+        "Velocity max": "NA",
+        "Velocity mean": "NA"
+      }
+    }
+  ],
+  "summary": {
+    "count": 13,
+    "firstMinute": "0",
+    "lastMinute": "46.33",
+    "largestGapMinutes": "10",
+    "originalPrecipitationValues": [
+      "0",
+      "74"
+    ]
+  },
+  "notAdmittedAsCollectedVolume": [
+    "Runoff observations are rates in mm/h, not measured collection integrals",
+    "No measurement averaging windows or uncertainty supplied in this table",
+    "No shape, terrain, boundary parameter or volume is inferred"
+  ],
+  "priorRejectedEvents": []
+}
