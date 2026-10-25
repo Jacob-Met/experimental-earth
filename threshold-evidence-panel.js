@@ -1,3 +1,4 @@
+import {mountThresholdEvents} from './threshold-event-panel.js';
 import {mountThresholdIntervention} from './threshold-intervention-panel.js';
 import {prepareThresholdEvidence,compareThresholdEvidence} from './threshold-evidence.js';
 import {thresholdContext} from './threshold-evidence-contract.js';
@@ -37,5 +38,6 @@ export function mountThresholdEvidence({getProject,replaceProject,notice}){
   const host=$('threshold-readings');host.replaceChildren();for(const [i,r] of (p.thresholdEvidence?.readings??[]).entries())host.append(node('p',`${i+1}. Cell ${String.fromCharCode(65+r.cellIndex%p.thresholdEvidence.width)}${Math.floor(r.cellIndex/p.thresholdEvidence.width)+1}, minute ${r.minute}: ${r.relation} ${r.thresholdMm} mm, bound uncertainty ${r.uncertaintyMm} mm, ${r.use}. ${r.source}`));
  }
  const effects=mountThresholdIntervention(panel,{getProject,notice});
- return {refresh(){refresh();effects.refresh();}};
+ const events=mountThresholdEvents(panel,{getProject,notice});
+ return {refresh(){refresh();effects.refresh();events.refresh();}};
 }
