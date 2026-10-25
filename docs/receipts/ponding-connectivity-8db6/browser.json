@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "value": {
+    "runDirectory": "/tmp/hamon-8db6c36/earth-publication-browser",
+    "groups": [
+      "keyboard native-time course",
+      "minimax witness and source nonmutation",
+      "raw Blob download and fresh File reopen",
+      "restricted/disconnected footprint",
+      "invalid source clears result",
+      "desktop/narrow layout",
+      "site invalidation",
+      "pending read race"
+    ],
+    "exceptions": []
+  },
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-25T02:30:43.454Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/tmp/hamon-8db6c36/earth-publication-browser",
+    "profileDirectory": "/tmp/hamon-8db6c36/earth-publication-browser/profile",
+    "stdoutFile": "/tmp/hamon-8db6c36/earth-publication-browser/stdout.bin",
+    "stderrFile": "/tmp/hamon-8db6c36/earth-publication-browser/stderr.bin",
+    "receiptFile": "/tmp/hamon-8db6c36/earth-publication-browser/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-8db6c36/earth-publication-browser/profile",
+      "about:blank"
+    ],
+    "pid": 304044,
+    "cdpUrl": "http://127.0.0.1:46545",
+    "browserWebSocketUrl": "ws://127.0.0.1:46545/devtools/browser/87f3c18d-86ec-4755-987b-ddfde922340c",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-25T02:30:43.637Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-8db6c36/earth-publication-browser/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-8db6c36/earth-publication-browser/stderr.bin",
+      "bytes": 5370,
+      "sha256": "21859bd4ac7e3c353e1e1bd0e6417f36f0d4e69d5308bbf908416d998c397b89"
+    },
+    "finishedAt": "2026-10-25T02:30:45.598Z"
+  }
+}
