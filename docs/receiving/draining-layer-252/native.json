@@ -1,0 +1,15 @@
+{
+  "returncode": 0,
+  "seconds": 10.660498285993526,
+  "sourceCommit": "c54f9923605f38282f5d398c9640cdc8e9b5c46d",
+  "sourceTree": "06c5fef5fa305fa132396c02d15ff25d3483e512",
+  "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+  "log": "native-fixed.log",
+  "runtime": "v22.23.4",
+  "tests": 918,
+  "passed": 918,
+  "failed": 0,
+  "skipped": 0,
+  "host": "Authorized RDC cursor; Linux x86_64; Ubuntu uid 1000",
+  "sourceQualification": "Complete received Git tree equals sourceTree. Local receiving commit metadata differs from the canonical GitHub commit."
+}
