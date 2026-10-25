@@ -3,6 +3,7 @@ import {validateHeatEvidence,heatDeclarationIdentity,HEAT_ENERGY_EVIDENCE_SCHEMA
 import {inspectSurfaceHeat,absorbedSurfaceHeatEnergy} from './surface-heat.js';
 
 export const LONGWAVE_EVIDENCE_SCHEMA='experimental-earth-longwave-evidence/1';
+export const LONGWAVE_FAMILY_SCHEMA='experimental-earth-longwave-evidence/2';
 const SETTINGS=[1e-8,1e-10],WORK_LIMIT=100000;
 const pick=(value,keys)=>Object.fromEntries(keys.map(key=>[key,value[key]]));
 const layerFields=['absorptivity','capacityJm2K','exchangeWm2K','initialC','source'];
@@ -12,7 +13,7 @@ const screen=rows=>({count:rows.length,insideAtBoth:rows.length?rows.every(r=>r.
  linearInsideCount:rows.filter(r=>r.linearWithinBand).length,rows});
 
 export function canonicalLongwaveEvidence(input){
- if(input?.schema!==LONGWAVE_EVIDENCE_SCHEMA||input.hypothesisExchangeBasis!=='excludes-longwave'
+ if(![LONGWAVE_EVIDENCE_SCHEMA,LONGWAVE_FAMILY_SCHEMA].includes(input?.schema)||input.hypothesisExchangeBasis!=='excludes-longwave'
    ||typeof input.exchangeBasisSource!=='string'||!input.exchangeBasisSource.trim()||input.exchangeBasisSource.length>600){
   throw Error('Declare and source that every candidate linear coefficient excludes longwave radiation');
  }
@@ -24,7 +25,21 @@ export function canonicalLongwaveEvidence(input){
   hypotheses:original.hypotheses.map(h=>pick(h,['label',...layerFields])),
   readings:original.readings.map(r=>pick(r,['minute','temperatureC','halfWidthC','use','source']))};
  if(original.schema===HEAT_ENERGY_EVIDENCE_SCHEMA){evidence.energyQuantity='absorbed-input';evidence.energyReadings=original.energyReadings.map(r=>pick(r,['fromMinute','toMinute','energyJm2','halfWidthJm2','use','source']));}
- return {schema:LONGWAVE_EVIDENCE_SCHEMA,radiation,evidence,hypothesisExchangeBasis:'excludes-longwave',exchangeBasisSource:input.exchangeBasisSource};
+ let radiativeHypotheses;
+ if(input.schema===LONGWAVE_EVIDENCE_SCHEMA){
+  if(Object.hasOwn(input,'radiativeHypotheses'))throw Error('Separate emissivity families require source format version 2; they are not silently ignored');
+ }else{
+  const originalFamilies=input.radiativeHypotheses;
+  if(!Array.isArray(originalFamilies)||originalFamilies.length!==evidence.hypotheses.length)throw Error('Supply one sourced emissivity for every original layer hypothesis');
+  const labels=new Set(evidence.hypotheses.map(h=>h.label)),seen=new Set();
+  for(const family of originalFamilies){
+   if(!family||!labels.has(family.label)||seen.has(family.label)||typeof family.emissivity!=='number'||!Number.isFinite(family.emissivity)||family.emissivity<0||family.emissivity>1||typeof family.source!=='string'||!family.source.trim()||family.source.length>600)throw Error('Each original hypothesis needs exactly one matching label, emissivity 0–1 and its source');
+   seen.add(family.label);
+  }
+  // Bind by original label, not supplied array position; retain original order.
+  radiativeHypotheses=evidence.hypotheses.map(h=>pick(originalFamilies.find(f=>f.label===h.label),['label','emissivity','source']));
+ }
+ return {schema:input.schema,radiation,evidence,hypothesisExchangeBasis:'excludes-longwave',exchangeBasisSource:input.exchangeBasisSource,...(radiativeHypotheses?{radiativeHypotheses}:{})};
 }
 
 function band(values,observed,halfWidth){
@@ -36,6 +51,7 @@ function band(values,observed,halfWidth){
  * times. Two settings expose sensitivity, not a rigorous solution enclosure. */
 export function compareLongwaveEvidence(input){
  const accepted=canonicalLongwaveEvidence(input),{radiation,evidence}=accepted;
+ const radiativeFor=hypothesis=>accepted.radiativeHypotheses?.find(f=>f.label===hypothesis.label)??radiation[evidence.target];
  const roles=['calibration','challenge'].map(role=>({role,samples:evidence.readings.filter(r=>r.use===role).map(r=>r.minute)})).filter(group=>group.samples.length);
  // Even an energy-only inquiry admits the complete conditional trajectory.
  if(!roles.length)roles.push({role:'unobserved',samples:[]});
@@ -43,7 +59,7 @@ export function compareLongwaveEvidence(input){
  for(let offset=0;offset<evidence.hypotheses.length;offset+=2){
   const hypotheses=evidence.hypotheses.slice(offset,offset+2),investigation=structuredClone(radiation);
   investigation.heatStudy.existing=hypotheses[0];investigation.heatStudy.proposal=hypotheses[1]??hypotheses[0];
-  investigation.existing=structuredClone(radiation[evidence.target]);investigation.proposal=structuredClone(radiation[evidence.target]);
+  investigation.existing=pick(radiativeFor(hypotheses[0]),['emissivity','source']);investigation.proposal=pick(radiativeFor(hypotheses[1]??hypotheses[0]),['emissivity','source']);
   pairs.push({hypotheses,investigation});
  }
  // Includes the duplicate final layer when an odd candidate count is paired.
@@ -81,11 +97,11 @@ export function compareLongwaveEvidence(input){
      linearWithinBand:Math.abs(residualJm2)<=reading.halfWidthJm2+arithmeticGuardJm2};
    });
    const all=[...rows,...energies];
-   candidates.push({label:hypothesis.label,calibration:screen(all.filter(r=>r.reading.use==='calibration')),
+   candidates.push({label:hypothesis.label,radiative:pick(radiativeFor(hypothesis),['emissivity','source']),calibration:screen(all.filter(r=>r.reading.use==='calibration')),
     challenge:screen(all.filter(r=>r.reading.use==='challenge')),rows,energyRows:energies});
   });
  }
- return {schema:LONGWAVE_EVIDENCE_SCHEMA,source:accepted,candidates,work:{attempts,minimumAttempts,limit:WORK_LIMIT,roleCourses:roles.map(r=>r.role)},settings:[...SETTINGS],
+ return {schema:accepted.schema,source:accepted,candidates,work:{attempts,minimumAttempts,limit:WORK_LIMIT,roleCourses:roles.map(r=>r.role)},settings:[...SETTINGS],
   semantics:'Band comparisons at two local integration settings, not a global numerical enclosure or proof of physical adequacy. Original calibration and held-aside roles remain separate; no refit, ranking or parameter adoption. Absorbed input is unchanged by adding outgoing radiation.'};
 }
 export function serializeLongwaveEvidence(input){return JSON.stringify(canonicalLongwaveEvidence(input),null,2);}
