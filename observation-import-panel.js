@@ -27,7 +27,7 @@ export function mountObservationImport({ getProject, replaceProject, notice }) {
       for (const reading of preview.readings) {
         const row = document.createElement('li');
         const cell = `${String.fromCharCode(65 + reading.cellIndex % project.width)}${Math.floor(reading.cellIndex / project.width) + 1}`;
-        row.textContent = `Line ${reading.tableSource.line} · ${cell}, ${reading.minute} min · ${number(reading.depthMm)} ± ${number(reading.uncertaintyMm)} mm (supplied ${reading.tableSource.depthValue} ± ${reading.tableSource.uncertaintyValue} ${reading.tableSource.unit}) · ${reading.scenario}, ${reading.use === 'challenge' ? 'held aside' : reading.use === 'unassigned' ? 'notebook only' : reading.use} · ${reading.source}`;
+        row.textContent = `Line ${reading.tableSource.line} · ${cell}, ${reading.minute} min · ${number(reading.depthMm)} ± ${number(reading.uncertaintyMm)} mm (supplied ${reading.tableSource.depthValue} ± ${reading.tableSource.uncertaintyValue} ${reading.tableSource.unit}) · ${reading.scenario}, ${reading.use === 'challenge' ? 'held aside' : reading.use === 'unassigned' ? 'notebook only' : reading.use} · ${reading.source}${reading.tableSource.timestamp ? ` · original ${reading.tableSource.timestamp}; declared event start ${reading.tableSource.eventStart} (clock synchronization not verified)` : ''}`;
         list.append(row);
       }
       $('append-observation-table').disabled = false;
