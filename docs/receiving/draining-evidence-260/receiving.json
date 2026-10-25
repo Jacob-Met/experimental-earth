@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "0299ca93c06accb4154d821ee1c3acb96dd7e3f0",
+  "sourceTree": "248a3bea8db77501706f7982939c44a11cae314e",
+  "completeSourceTreeMatched": true,
+  "canonicalHeadMatched": true,
+  "checks": [
+    {
+      "name": "evidence-composed-native",
+      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+      "returncode": 0,
+      "seconds": 10.642880188999698
+    },
+    {
+      "name": "evidence-composed-browser",
+      "command": "node tests/draining-evidence.receiving.mjs",
+      "returncode": 0,
+      "seconds": 5.078643532993738
+    },
+    {
+      "name": "evidence-composed-retained",
+      "command": "node tests/draining-layer.receiving.mjs",
+      "returncode": 0,
+      "seconds": 4.98067251300381
+    }
+  ],
+  "runtime": "Node22.23.4 / Linux x86_64 / Chrome156.0.8078.47",
+  "nativePassed": 961,
+  "nativeFailed": 0,
+  "nativeSkipped": 0,
+  "evidenceBrowserGroups": 8,
+  "retainedDrainageBrowserGroups": 9,
+  "review": "Independent MICROVERSE core review and seven focused groups; root actual source/desktop/mobile receiving",
+  "priorEnvironmentFailure": "The first reconstructed archive lacked HEAD, causing one provenance CLI refusal. Exact canonical commit metadata was restored without product code changes; all938 original-composition native tests then passed. Current961-test composition also passed.",
+  "visualReview": "Actual desktop declarations, desktop results and390px results inspected. Browser finding of cramped source textarea corrected and rerun.",
+  "limits": [
+    "Finite explicitly offered hypotheses only; not continuous parameter confidence regions",
+    "Authored conditional arithmetic, not measured material or field calibration",
+    "No automatic hypothesis adoption or site replacement",
+    "No installation or deployment claim"
+  ]
+}

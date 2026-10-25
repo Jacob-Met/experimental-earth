@@ -1,0 +1,16 @@
+# Receiving-layer evidence investigation
+
+Qualified production `0299ca93c06accb4154d821ee1c3acb96dd7e3f0`, complete tree `248a3bea8db77501706f7982939c44a11cae314e`. This composes current observation-clock, measured-change and longwave main `2fa5cff6f02a753ba2b52695f2648be36dc5485e`. Evidence-only publication follows this source.
+
+## Capability and independent control
+The maintained receiving-layer panel accepts2–12 distinct explicit (capacity, initial store, drainage rate) explanations and compares each with the original notebook's calibration and held-aside readings. The same declared receiving explanation is used in the paired existing/proposed consequences. Calibration-compatible and challenge-surviving populations stay separate, and every offered row remains visible. Original roles, rounding guards and interpolation come from the maintained evidence evaluator; held-aside values do not fit or select the calibration family.
+
+An independently derived isolated-bed control gives equal early surface depth for C=5mm,k=1/hour and closed storage C=5+19*ln(24/19)=9.438682172448598mm. Both yield H(60min)=26.561317827551402mm. After rain stops, their H(180min) values differ by10mm. The full four-offer control retains two calibration-compatible explanations and one later survivor. Changing only the held-aside depth changes the surviving explanation without changing calibration membership or per-hypothesis paired consequences. Contradicting every compatible offer leaves no surviving consequence envelope; no fallback adopts an unsupported offer.
+
+## Executed receiving
+Exact full source tree and canonical HEAD matched before receiving. Node22.23.4: `node --test --test-concurrency=2 tests/*.test.mjs` passed961 tests, zero failures/skips. Actual sandboxed Chrome156 ran eight new evidence groups and nine retained drainage groups. The course exercises actual source-only download/fresh reopen, challenge-only changes, no-survivor behavior, malformed saved conclusions, edits retiring delayed file work, and active-source retirement. Actual desktop declaration/results and390px result captures were inspected; a cramped source field was widened and received again. No document overflow or runtime exception was reported.
+
+Independent MICROVERSE reviewed the core and ran seven focused groups without a blocker. The earlier reconstructed archive lacked Git HEAD, so a provenance CLI test refused while937 others passed. Restoring the exact published commit object resolved that environment failure; the original composition then passed938 before the later main composition added23 tests. No product behavior was changed to bypass that refusal.
+
+## Bounds and meaning
+Strict raw source/study schemas, a5MiB admission limit and a1,000,000 cell-step aggregate bound apply before simulations. No calibration readings, no challenge readings, an absent studied surface and all-rejected offers remain explicit states. This is a finite declared hypothesis comparison, not a search over every possible parameter value or a calibrated uncertainty interval. The control is authored, not a physical drainage measurement. The working site is not replaced, and no hypothesis is automatically adopted. Tests and merged source do not establish deployment.
