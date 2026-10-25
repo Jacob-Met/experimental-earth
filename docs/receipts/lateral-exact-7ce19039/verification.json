@@ -1,0 +1,85 @@
+{
+  "schema": "experimental-earth.lateral-exact.receiving/v1",
+  "issue": 291,
+  "owner": "hamon-7ce19039-20261025",
+  "sourceBase": "aeec6a16c0912f99e7361c76992c2481288d0224",
+  "source": [
+    {
+      "path": "heat-column-step.js",
+      "sha256": "063339bb146435d19915d9f08db2e4ece18ee8e488ac763feb6649291a50b889",
+      "gitBlob": "2f359e4fb25538b4e342c9c35a0b9a1116a47f38"
+    },
+    {
+      "path": "lateral-heat.js",
+      "sha256": "d294627ffc55b7b98630aae3e7d93bbc0720f1cdeeb929b38c22fff0e58eb8b3",
+      "gitBlob": "b521b68f5cb604b12cc58b018caedccd14b07128"
+    },
+    {
+      "path": "lateral-heat-panel.js",
+      "sha256": "bdaaf6955114b3b0175ff1ef935c607e57b0436bcb7bc83082766e8502277f26",
+      "gitBlob": "166bdee222a269692b09b1983c36e0e3f8120e5f"
+    },
+    {
+      "path": "docs/LATERAL_HEAT.md",
+      "sha256": "f08c2b588f8214aa655f37245d4704dd9da78dc30b088eb768301621353d9029",
+      "gitBlob": "095e445119479a773411eb311f87db65f323ff14"
+    },
+    {
+      "path": "tests/lateral-heat-exact.test.mjs",
+      "sha256": "dc50ba874c45f4b733a5cf55c029d4e4f05b035b434427a6cb304235de9d500f",
+      "gitBlob": "4726bec1196367540e4bee069855740021607cc7"
+    },
+    {
+      "path": "tests/lateral-heat.course.mjs",
+      "sha256": "090296555fd2b392171c92ab26a3436a1723a19cef91066b178599d205972dcb",
+      "gitBlob": "ba7128d0802244c21db9ca8151dcb0eae88a0b5f"
+    }
+  ],
+  "environment": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47",
+    "host": "owned Ubuntu RDC runtime",
+    "sandbox": "Actual Chrome namespace/seccomp sandbox through maintained browser session"
+  },
+  "native": {
+    "command": "node --test tests/heat-column.test.mjs tests/heat-column-average.test.mjs tests/bottom-heat.test.mjs tests/bottom-heat-reference.test.mjs tests/heat-driven-loss.test.mjs tests/evaporative-cooling.test.mjs tests/recharge-cooling.test.mjs tests/lateral-heat.test.mjs tests/lateral-heat-exact.test.mjs",
+    "passed": 71,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 1.044844857
+  },
+  "browser": {
+    "command": "LEGACY_LATERAL_BUNDLE=/tmp/hamon-7ce19039-earth-merged-browser/downloads/experimental-earth-lateral-heat.json BROWSER_RUN_DIRECTORY=/tmp/hamon-7ce19039-earth-exact-browser node tests/lateral-heat.course.mjs",
+    "wholeNativeAndBrowserSeconds": 7.5,
+    "receipt": {
+      "status": "PASS",
+      "checks": [
+        "Real keyboard comparison receives analytic two-store results, both cells, isolated control and neighbor extrema",
+        "Blank required heat capacity cannot preserve a successful result or export",
+        "Actual download bytes and native file reopen recompute same effect without workspace mutation",
+        "Retained original v1 download recomputes analytically and preserves physical inputs plus original split setting in a new actual download",
+        "390px controls stay bounded and actual keyboard scrolling reaches the final result columns",
+        "Wrong-cell source refuses without changing workspace",
+        "Metric-source change invalidates and cannot silently rebind the original exposure",
+        "Previously split-budget-refused stiff hour receives independent-reference temperatures and an interior neighbor peak through the actual original-file consumer",
+        "Unknown analytic-method input cannot retain or publish a successful result"
+      ],
+      "scope": "Authored coupled-model software receiving; no physical temperature validation",
+      "originalInputBytes": 15812
+    }
+  },
+  "independent": {
+    "reference": "Maintained tests reuse independently generated augmented-matrix exponential fixtures; additional stiff-hour SciPy comparison.",
+    "stiffHourMaxTemperatureDifferenceC": 1.27e-12,
+    "stiffHourFinalFirstC": 19.07283562841235,
+    "stiffHourFinalNeighborC": 19.289878015850164,
+    "interiorNeighborPeakC": 20.006513037253782,
+    "interiorPeakSeconds": 0.363002818963699,
+    "legacy": "Old public column wrappers and their admission bounds are preserved. The split lateral API remains an explicit baseline."
+  },
+  "review": {
+    "peer": "afterimage_core source review plus independent semigroup/store-swap controls; no blocker",
+    "root": "Inspected two-input forcing, capacity scaling, signed energy accounting, stationary candidates and public-wrapper admission; actual desktop stiff-hour and390px result screenshots inspected."
+  },
+  "scope": "Piecewise-constant, two internally uniform declared cells with constant linear exchange. Floating-point analytic propagation and stationary candidates, not certified numerical bounds, nonlinear radiation/evaporation, physical field validation or an acquisition."
+}

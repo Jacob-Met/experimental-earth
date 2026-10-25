@@ -1,3 +1,4 @@
+import {advanceCoupledHeatLayers} from './heat-column-step.js';
 import { advanceSurfaceHeat } from './surface-heat.js';
 import { validateProject } from './core.js';
 import { validateSurfaceHeatStudy, surfaceHeatContext } from './surface-heat-contract.js';
@@ -140,4 +141,56 @@ export function compareLateralHeat(project, study, maxStepSeconds = 30) {
     durationMinutes: study.heatStudy.schedule.reduce((n,r)=>n+r.minutes,0), results,
     proposalMinusExistingC: results.proposal.refined.final.temperaturesC.map((v,i)=>v-results.existing.refined.final.temperaturesC[i]),
     semantics: 'Two equal-area, internally uniform adjacent cells; declared constant lateral conductance and common exposure. One unchanged neighbor in both plans. Schedule-boundary samples are not extrema. Symmetric split integration; half-step differences are sensitivity, not an error bound. No field calibration, comfort or safety prediction.'};
+}
+
+
+/** Reuse the maintained analytic two-store propagator for each forcing interval.
+ * Retain boundary states and every interior stationary candidate, including a
+ * temporary neighbor peak that a final-only comparison would conceal.
+ */
+function exactCourse(study, target, conductanceWK) {
+  const layers=[study.heatStudy[target],study.neighbor];
+  const areaM2=JSON.parse(study.heatStudy.contextJson).cellSizeM**2;
+  const capacities=layers.map(layer=>layer.capacityJm2K*areaM2);
+  let state={firstC:layers[0].initialC,secondC:layers[1].initialC},elapsed=0;
+  let inputJ=[0,0],exchangeOutJ=[0,0],transferJ=0;
+  const trajectory=[];
+  function sample(minute, step, kind) {
+    const temperaturesC=step?[step.firstC,step.secondC]:[state.firstC,state.secondC];
+    const inputs=step?[inputJ[0]+step.firstInputJm2*areaM2,inputJ[1]+step.secondInputJm2*areaM2]:[...inputJ];
+    const exchanges=step?[exchangeOutJ[0]+step.firstExchangeOutJm2*areaM2,exchangeOutJ[1]+step.secondExchangeOutJm2*areaM2]:[...exchangeOutJ];
+    const transferred=transferJ+(step?step.transferJm2*areaM2:0);
+    const storedJ=temperaturesC.map((t,i)=>capacities[i]*(t-layers[i].initialC));
+    const residualJ=storedJ.map((stored,i)=>inputs[i]-exchanges[i]+(i?transferred:-transferred)-stored);
+    return {minute,kind,temperaturesC,inputJ:inputs,exchangeOutJ:exchanges,transferJ:transferred,storedJ,residualJ,
+      totalResidualJ:inputs[0]+inputs[1]-exchanges[0]-exchanges[1]-storedJ[0]-storedJ[1]};
+  }
+  trajectory.push(sample(0,null,'initial'));
+  for(const forcing of study.heatStudy.schedule){
+    const seconds=forcing.minutes*60;
+    const calculate=time=>advanceCoupledHeatLayers(layers[0],layers[1],forcing,state,time,conductanceWK/areaM2);
+    const end=calculate(seconds);
+    const stationary=[...new Set([...end.stationarySeconds.first,...end.stationarySeconds.second])].sort((a,b)=>a-b);
+    for(const time of stationary)trajectory.push(sample(elapsed+time/60,calculate(time),'interior stationary candidate'));
+    const boundary=sample(elapsed+forcing.minutes,end,'exposure boundary');trajectory.push(boundary);
+    state={firstC:end.firstC,secondC:end.secondC};elapsed+=forcing.minutes;
+    inputJ=boundary.inputJ;exchangeOutJ=boundary.exchangeOutJ;transferJ=boundary.transferJ;
+  }
+  const extrema=[0,1].map(i=>{
+    const maximum=trajectory.reduce((a,b)=>a.temperaturesC[i]>=b.temperaturesC[i]?a:b);
+    const minimum=trajectory.reduce((a,b)=>a.temperaturesC[i]<=b.temperaturesC[i]?a:b);
+    return {maximumC:maximum.temperaturesC[i],maximumMinute:maximum.minute,minimumC:minimum.temperaturesC[i],minimumMinute:minimum.minute};
+  });
+  return {target,areaM2,trajectory,final:trajectory.at(-1),extrema};
+}
+
+export function compareLateralHeatExact(project,study) {
+  validateProject(project);validateLateralHeatStudy(study);
+  if(!lateralHeatCurrent(project,study))return {status:'context-changed'};
+  const results=Object.fromEntries(targets.map(target=>[target,{
+    exact:exactCourse(study,target,study.conductanceWK),isolated:exactCourse(study,target,0)}]));
+  return {status:'compared',method:'two-forced-stores-spectral/1',results,
+    durationMinutes:study.heatStudy.schedule.reduce((sum,row)=>sum+row.minutes,0),
+    proposalMinusExistingC:results.proposal.exact.final.temperaturesC.map((value,i)=>value-results.existing.exact.final.temperaturesC[i]),
+    semantics:'Two equal-area internally uniform adjacent stores; declared constant lateral conductance and common incident exposure. Analytic integration reuses the maintained heat-column propagator with independent absorption and ambient exchange at both stores. Boundary and stationary-candidate extrema are floating-point model results, not certified bounds or field-temperature validation.'};
 }
