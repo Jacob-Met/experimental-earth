@@ -11,9 +11,9 @@
     "schema": "hamon-chromium-sandbox/v1",
     "qualification": "Linux Chromium status in the supplied isolated CDP page",
     "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
-    "startedAt": "2026-10-26T06:26:10.857Z",
-    "completedAt": "2026-10-26T06:26:10.974Z",
-    "durationMs": 116.69456500000001,
+    "startedAt": "2026-10-26T06:40:17.094Z",
+    "completedAt": "2026-10-26T06:40:17.218Z",
+    "durationMs": 124.04167000000001,
     "admitted": true,
     "browser": {
       "protocolVersion": "1.3",
@@ -23,13 +23,13 @@
       "jsVersion": "15.6.75.19"
     },
     "target": {
-      "targetId": "326ED7396DA7088AD5A720D3767B7A03",
+      "targetId": "2123C1D72FF617378EA345DF2EB2CDDB",
       "type": "page",
       "title": "about:blank",
       "url": "about:blank",
       "attached": true,
       "canAccessOpener": false,
-      "browserContextId": "731365FCD95B9D09AF22B2A335FE23DD"
+      "browserContextId": "1A947094B180B6B309C0299A8DF22AC8"
     },
     "url": "chrome://sandbox/",
     "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
