@@ -66,7 +66,7 @@ function harness(){
   accepted:vm.runInContext('accepted?.schema',context),
   report:el('results').children.slice(),disabled:el('download').disabled,
   summary:el('result-status').textContent,summaryState:el('result-status').dataset.state});
- return {el,seed,choose,state,resume:()=>slowResume?.(),getSlow:()=>slowResume,
+ return {el,seed,choose,state,resume:()=>{const fn=slowResume;slowResume=null;fn?.()},getSlow:()=>slowResume,
   changeUrl:()=>el('source-url').handlers.input()};
 }
 
