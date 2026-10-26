@@ -1,4 +1,5 @@
 import {mountPairedTrends} from './paired-trends-panel.js';
+import {mountPairedTrendRegion} from './paired-trend-region-panel.js';
 import {comparePairedSeries} from './paired-series.js';
 import {changeExample} from './measured-change.js';
 import {serializePortableProject,parsePortableProject,checkProjectFileBytes} from './project-portability.js';
@@ -6,8 +7,8 @@ const HEADER=['quantity','unit','treatedPlace','comparisonPlace','association','
 export function mountPairedSeries({host,getProject,getAccepted}){
  const box=document.createElement('details');box.id='paired-series';box.innerHTML=`<summary>Do earlier paired readings support a constant place difference?</summary><p>Compare at least two original pairs before a separately declared intervention and one after it. A constant treated-minus-comparison gap is a conditional hypothesis; compatible earlier intervals do not establish parallel trends or causality.</p><button type="button" id="ps-example">Inspect fictional repeated readings</button><button type="button" id="ps-prepare">Start from the four accepted readings</button><button type="button" id="ps-context">Use current workspace context</button><p id="ps-source"></p><div id="ps-header"></div><div id="ps-rows"></div><button type="button" id="ps-add-pre">Add original pre pair</button><button type="button" id="ps-add-post">Add original post pair</button><button type="button" id="ps-run">Challenge the constant gap</button><button type="button" id="ps-save" disabled>Download original paired series</button><label>Reopen original paired series<input id="ps-open" type="file" accept=".json,application/json"></label><div id="ps-result" role="status" aria-live="polite"></div><p>Intervals combine independently permitted values; shared error is not inferred. Arithmetic endpoints are floating-point values, not certified outward-rounded bounds. The guard distinguishes robust contradiction from numerical contact only. No gap is fitted or adopted, and later values never select the earlier feasible gap. Original inputs remain local; download may include private site/source details.</p>`;host.append(box);
  const q=id=>box.querySelector('#ps-'+id);let rows=[],sourceProject=null,accepted=null,revision=0;const fields=new Map();
- let trends=null;
- const retire=()=>{trends?.refresh();revision++;accepted=null;q('save').disabled=true;q('result').textContent='Inputs changed. Challenge again.';};
+ let trends=null,trendRegion=null;
+ const retire=()=>{trends?.refresh();trendRegion?.refresh();revision++;accepted=null;q('save').disabled=true;q('result').textContent='Inputs changed. Challenge again.';};
  function control(parent,title,key,type='text',value=''){
   const label=document.createElement('label');label.className='input-label';label.textContent=title;
   const input=document.createElement(key.includes('source')||['association','parallelChange'].includes(key)?'textarea':'input');if(input.tagName==='INPUT')input.type=type;else input.rows=3;input.style.width='100%';input.style.boxSizing='border-box';input.dataset.field=key;input.value=value;if(type==='number')input.step='any';else input.maxLength=1000;input.addEventListener('input',retire);label.append(input);parent.append(label);return input;
@@ -26,5 +27,6 @@ export function mountPairedSeries({host,getProject,getAccepted}){
  q('run').onclick=()=>{retire();try{const input=read();checkProjectFileBytes(new Blob([JSON.stringify(input)]).size);sourceProject??=JSON.parse(serializePortableProject(getProject()));context();show(input,sourceProject);}catch(e){q('result').textContent=e.message;}};
  q('save').onclick=()=>{try{if(!accepted)throw Error('Challenge first');const json=JSON.stringify(accepted,null,2);checkProjectFileBytes(new Blob([json]).size);const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='experimental-earth-paired-series.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){q('result').textContent=e.message;}};
  q('open').onchange=async event=>{const file=event.target.files?.[0];if(!file)return;retire();const serial=revision;try{checkProjectFileBytes(file.size);const b=JSON.parse(await file.text());if(serial!==revision)return;if(b.schema!=='experimental-earth-paired-series-bundle/1')throw Error('Unsupported paired-series bundle');const project=parsePortableProject(JSON.stringify(b.project));comparePairedSeries(b.input);write(b.input,project);show(b.input,project);}catch(e){if(serial===revision)q('result').textContent=e.message;}finally{event.target.value='';}};
- trends=mountPairedTrends({host:box,getAccepted:()=>accepted});context();return {refresh:retire};
+ trends=mountPairedTrends({host:box,getAccepted:()=>accepted});trendRegion=mountPairedTrendRegion({host:box,getAccepted:()=>accepted});context();return {refresh:retire};
 }
+
