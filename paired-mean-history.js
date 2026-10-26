@@ -8,22 +8,24 @@ const span=values=>{let lo=values[0],hi=lo;for(const v of values){if(cmp(v,lo)<0
 const exactKeys=(x,keys)=>x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).sort().join(',')===[...keys].sort().join(',');
 const text=(x,name)=>{if(typeof x!=='string'||!x.trim()||x.length>1000)throw Error('Declare '+name+' in 1–1000 characters');};
 function timestamp(x){if(typeof x!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(x)||!Number.isFinite(Date.parse(x))||new Date(x).toISOString().replace('.000Z','Z')!==x)throw Error('Retain exact canonical UTC support boundaries');return Date.parse(x);}
-export function validatePairedMeanHistory(x){
- if(!exactKeys(x,['schema','quantity','unit','treatedPlace','comparisonPlace','association','boundary','boundaryBasis','comparisonOperator','pairs'])||x.schema!==PAIRED_MEAN_SCHEMA)throw Error('Supply an original paired interval-mean history');
- for(const key of ['quantity','unit','treatedPlace','comparisonPlace','association','boundaryBasis'])text(x[key],key);
+export function validatePairedMeanHistory(x){return validateOriginalMeanHistory(x,{partitioned:true});}
+/** Shared original-record admission; unpartitioned records never acquire authored roles. */
+export function validateOriginalMeanHistory(x,{partitioned=true}={}){
+ if(!exactKeys(x,['schema','quantity','unit','treatedPlace','comparisonPlace','association','comparisonOperator','pairs',...(partitioned?['boundary','boundaryBasis']:['modelBasis'])])||x.schema!==(partitioned?PAIRED_MEAN_SCHEMA:'experimental-earth-unpartitioned-means/1'))throw Error('Supply an original paired interval-mean history');
+ for(const key of ['quantity','unit','treatedPlace','comparisonPlace','association',partitioned?'boundaryBasis':'modelBasis'])text(x[key],key);
  if(x.treatedPlace.trim()===x.comparisonPlace.trim())throw Error('Declare distinct source places or channels');
- const phase=timestamp(x.boundary);
+ const phase=partitioned?timestamp(x.boundary):null;
  if(!exactKeys(x.comparisonOperator,['kind','basis'])||x.comparisonOperator.kind!=='uniform-time-mean')throw Error('Explicitly declare the uniform-time mean comparison operator; source weighting is not inferred');
  text(x.comparisonOperator.basis,'uniform-time comparison assumption');
  if(!Array.isArray(x.pairs)||x.pairs.length>64)throw Error('Retain at most 64 original mean pairs');
  let pre=0,post=0;const seen=new Set();
  for(const p of x.pairs){
-  if(!exactKeys(p,['role','treated','comparison'])||!['pre','post'].includes(p.role))throw Error('Retain each original mean pair and its declared phase');
+  if(!exactKeys(p,[...(partitioned?['role']:[]),'treated','comparison'])||(partitioned&&!['pre','post'].includes(p.role)))throw Error('Retain each original mean pair and its declared phase');
   for(const name of ['treated','comparison']){
    const r=p[name];
    if(!exactKeys(r,['from','to','value','halfWidth','bandSource','source','sourceAggregation','unit','place']))throw Error('Retain the original mean value, full support, band and aggregation source');
    const start=timestamp(r.from),end=timestamp(r.to);if(start>=end)throw Error('Original mean windows need positive duration');
-   if(p.role==='pre'?end>phase:start<phase)throw Error('Every complete mean window must lie on its declared side of the phase boundary');
+   if(partitioned&&(p.role==='pre'?end>phase:start<phase))throw Error('Every complete mean window must lie on its declared side of the phase boundary');
    if(!Number.isFinite(r.value)||Math.abs(r.value)>1e12||!Number.isFinite(r.halfWidth)||r.halfWidth<0||r.halfWidth>1e12)throw Error('Declare finite original means and nonnegative comparison half-widths');
    if(r.unit!==x.unit||r.place!==x[name+'Place'])throw Error('Retain matching original units and declared channel association');
    text(r.bandSource,'comparison band source');text(r.source,'original mean source');
@@ -34,10 +36,11 @@ export function validatePairedMeanHistory(x){
   const key=p.treated.from+'/'+p.treated.to;if(seen.has(key))throw Error('Original mean windows must be distinct');seen.add(key);
   if(p.role==='pre')pre++;else post++;
  }
- if(pre<2||post<1)throw Error('Retain at least two earlier mean pairs and one later pair');
+ if(partitioned&&(pre<2||post<1))throw Error('Retain at least two earlier mean pairs and one later pair');
+ if(!partitioned&&x.pairs.length<2)throw Error('Retain at least two original mean pairs');
  return x;
 }
-function period(pairs,role,clipWork){
+export function inferMeanPeriodConstraints(pairs,role,clipWork){
  const selected=pairs.map((p,index)=>({...p,index})).filter(p=>p.role===role),start=Math.min(...selected.map(p=>Date.parse(p.treated.from))),end=Math.max(...selected.map(p=>Date.parse(p.treated.to)));
  const origin=new Date(start).toISOString().replace('.000Z','Z');
  const rows=selected.map(p=>{
@@ -74,10 +77,10 @@ export function inferPairedMeanHistory(input,{maxPairChecks=1953,maxConstraintCh
  const pre=source.pairs.filter(p=>p.role==='pre').length,post=source.pairs.length-pre,pairChecks=pre*(pre-1)/2+post*(post-1)/2;
  if(pairChecks>maxPairChecks)throw Error('Complete original mean-pair work exceeds declared bound');
  const work={pairChecks,maxPairChecks,constraintChecks:0,maxConstraintChecks,vertexPairs:0,maxVertexPairs,hullChecks:0,maxHullChecks},clipWork={count:0,limit:maxConstraintChecks};
- const earlier=period(source.pairs,'pre',clipWork),common={source,earlier,later:null,intervention:source.boundary,vertices:[],jump:null,slopeChange:null,zeroSlopeChange:null,onset:null,operatorQualification:'Uniform-time means are an explicit model comparison. Unknown original sample weights remain unknown; matched windows do not establish matched weighting or statistical independence.'};
+ const earlier=inferMeanPeriodConstraints(source.pairs,'pre',clipWork),common={source,earlier,later:null,intervention:source.boundary,vertices:[],jump:null,slopeChange:null,zeroSlopeChange:null,onset:null,operatorQualification:'Uniform-time means are an explicit model comparison. Unknown original sample weights remain unknown; matched windows do not establish matched weighting or statistical independence.'};
  work.constraintChecks=clipWork.count;
  if(!earlier.vertices.length)return{...common,status:earlier.status==='incompatible'?'earlier-incompatible':'earlier-operator-unbounded',work};
- const later=period(source.pairs,'post',clipWork);work.constraintChecks=clipWork.count;
+ const later=inferMeanPeriodConstraints(source.pairs,'post',clipWork);work.constraintChecks=clipWork.count;
  if(!later.vertices.length)return{...common,later,status:later.status==='incompatible'?'later-incompatible':'insufficient-later-operator-support',work};
  const response={...common,later,...projectAffineHistoryResponse(earlier,later,source.boundary,work,clipWork)};
  const{response:omitted,...onset}=projectContinuousTrendOnset(response,{maxRootEvaluations});

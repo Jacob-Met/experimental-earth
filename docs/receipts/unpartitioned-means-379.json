@@ -1,0 +1,113 @@
+{
+  "schema": "experimental-earth.unpartitioned-means-receipt/v1",
+  "base": "b86bc83b4770c18580241028e2630204599faa20",
+  "candidateSourceBlobs": [
+    {
+      "path": "paired-mean-history.js",
+      "bytes": 9450,
+      "sha256": "86c02be108e34a93cf5e51f55d3bf5d3c71765fbb3f325e2b86490ed48737721",
+      "gitBlob": "a76c848e4efef1e5ec42fe47554fb04d5c05f523"
+    },
+    {
+      "path": "noaa-paired-means.js",
+      "bytes": 5990,
+      "sha256": "23080cfcad52ef40bec29dff822046cd3e203bb57626d50a0b4934c2e1adca3f",
+      "gitBlob": "07f89464c606591af1cc016db70db3d7454bee39"
+    },
+    {
+      "path": "paired-mean-history-panel.js",
+      "bytes": 14821,
+      "sha256": "54c6c3a8f29f05a09be71a3e1b45b458246214443c6372d556a1f153126eb870",
+      "gitBlob": "98988a366713d247453ceb507c09c6abf5e66681"
+    },
+    {
+      "path": "unpartitioned-mean-history.js",
+      "bytes": 4574,
+      "sha256": "09a05f6d5c78e49e5809c6332adeae699450492775c1d502e77ef70e4be70d75",
+      "gitBlob": "2d1c240a70e6ca2fe99caba4e258ec2d15a47458"
+    },
+    {
+      "path": "unpartitioned-mean-panel.js",
+      "bytes": 7102,
+      "sha256": "4601fa907918a3a9b3b3e04521ac63439ea0a7608e07560e3360dfdd9dff9d99",
+      "gitBlob": "657c49c94147a588b6783d4a826dcd4bd09e9984"
+    },
+    {
+      "path": "tests/unpartitioned-mean-fixture.mjs",
+      "bytes": 1971,
+      "sha256": "978d09c6e8a9ae755ab903d470588c474d87754b275a6a0f3c0e361a285d5438",
+      "gitBlob": "9efc8729f1e312c791dd2b3c251158a51cec9f7e"
+    },
+    {
+      "path": "tests/unpartitioned-mean-history.test.mjs",
+      "bytes": 7275,
+      "sha256": "09e55e3dd24932a97ce2969536fcf3479faa9c7e17fbaffa6acfd67f1a6376ad",
+      "gitBlob": "b83080bd501c2791ced8e326180d0b3028f242d7"
+    },
+    {
+      "path": "tests/unpartitioned-mean-history.browser.mjs",
+      "bytes": 8089,
+      "sha256": "aa7b9de1267ecc9a4d1c9a6bb91544cef84a3a6b0c2d00da2cb7a579c9136dfe",
+      "gitBlob": "482e6ddb26c2b167c94b2cfdd1dfe75eeafefe52"
+    },
+    {
+      "path": "docs/UNPARTITIONED_MEANS.md",
+      "bytes": 5261,
+      "sha256": "80aedf4ad9be024ea73a3fe6912f4f03c46d359583864a8b5ec7ef1526933944",
+      "gitBlob": "64bfef3fd49494f24f68459b72781680fcf5ba62"
+    }
+  ],
+  "originalNOAASha256": "247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac",
+  "receiving": {
+    "verifiedSourceBlobs": 406,
+    "nativeGroups": 26,
+    "parentMeanBrowserChecks": 8,
+    "unpartitionedBrowserChecks": 8,
+    "liveChromiumSandbox": "positive",
+    "visualWidths": [
+      1280,
+      390
+    ],
+    "passed": true
+  },
+  "sourceControls": [
+    "all admissible gaps retained, including insufficient and incompatible periods",
+    "unchanged all-row affine alternative retained",
+    "no window split, source row discarded, phase chosen, alternative ranked or causal adoption",
+    "declared uniform-time weights remain conditional and distinct from source acquisition weights",
+    "parent and child source retirement; original bytes and all declarations replay atomically; stale async replay suppressed"
+  ],
+  "independentReview": {
+    "wildside": "Common affine 7+2t addition to the treated history preserves complete joint-response/onset results.",
+    "workshop": "Six overlapping windows retain three admissible cuts; sole supported central gap 4..6 gives onset5, with order invariance and exact21-versus20 work admission."
+  },
+  "originalCourse": {
+    "rows": 9,
+    "allSupportCuts": 8,
+    "rankSufficientCuts": 6,
+    "narrowerSurfaceBandsC": [
+      0,
+      0.5,
+      1
+    ],
+    "narrowerResult": "No supported two-period affine-gap alternative",
+    "authoredSurfaceBandC": 2,
+    "airBandC": 0,
+    "supportedAfterRows": [
+      4,
+      5,
+      6
+    ],
+    "continuousNonzeroAfterRows": [
+      5,
+      6
+    ],
+    "bandQualification": "Authored comparison bands, not source uncertainty."
+  },
+  "limitations": [
+    "at most one change between full supports",
+    "not changes inside observation windows",
+    "uniform-time affine-gap model only",
+    "no selected change time or causal explanation"
+  ]
+}
