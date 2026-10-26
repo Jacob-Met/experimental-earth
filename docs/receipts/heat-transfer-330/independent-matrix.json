@@ -1,0 +1,35 @@
+{
+  "method": "Independent augmented matrix exponential with explicit temperature integrals across35minute forcing transition",
+  "rows": [
+    {
+      "capacityJm2K": 60000,
+      "conductanceWm2K": 27.510121852810165,
+      "instant15C": 34.62475757792193,
+      "mean30to45C": 31.463054952285585
+    },
+    {
+      "capacityJm2K": 80000,
+      "conductanceWm2K": 20,
+      "instant15C": 34.68300177529785,
+      "mean30to45C": 30.704771782103844
+    },
+    {
+      "capacityJm2K": 120000,
+      "conductanceWm2K": 16.295174716022963,
+      "instant15C": 34.80452164293739,
+      "mean30to45C": 30.16673606192061
+    },
+    {
+      "capacityJm2K": 240000,
+      "conductanceWm2K": 14.009639299457522,
+      "instant15C": 34.924019294801745,
+      "mean30to45C": 29.761351031018584
+    },
+    {
+      "capacityJm2K": 500000,
+      "conductanceWm2K": 13.122086618787623,
+      "instant15C": 34.98156670388678,
+      "mean30to45C": 29.586258362782473
+    }
+  ]
+}

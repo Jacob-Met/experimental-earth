@@ -1,0 +1,71 @@
+{
+  "scope": "Frozen finite hidden-store family challenged on a separately declared exposure; authored computational controls, not physical validation",
+  "baseCommit": "a1487e98c228703758543ed74023e9dac6f72b9c",
+  "baseTree": "522872c462b3ee314e7e2dd31d1e7b77764e95bf",
+  "sourceBlobs": {
+    "app.js": "220c47cd3c1a633bf59ec1a1bc7e6a73a39148bd",
+    "heat-column-transfer.js": "37c500f8e28d5c55f9d3ee6013e7fa4e8bc64d3c",
+    "heat-column-transfer-panel.js": "7c5cbbac9b85e964432780a2375b1eaf89bd9f0b",
+    "heat-column-transfer.css": "eea884f5d5ad6a5308f0978c4daf73082db2f873",
+    "tests/heat-column-transfer-fixture.mjs": "c6075080f16726ce9b93ce83034bf95b72c32bda",
+    "tests/heat-column-transfer.test.mjs": "680d32c9c30bbc84e096e45eccfa20c01e9bc66e",
+    "tests/heat-column-transfer.browser.mjs": "da7ae809841db824761aef0cb3f4614d0fd99714",
+    "docs/HEAT_COLUMN_TRANSFER.md": "3dfeb3a4773523e46e71ea24cb9182994875a5df",
+    "evaluation/heat-column-transfer-reference.py": "58bdc470fbe1cfe710a9a1470ecbadb67323d0ff",
+    "docs/receipts/heat-transfer-330/independent-matrix.json": "067409110ae58c834ba301742c22ef14c51f1359"
+  },
+  "native": {
+    "status": "PASS",
+    "newGroups": 8,
+    "existingEvidenceGroups": 7,
+    "failures": 0,
+    "skips": 0,
+    "upstreamSearchGroups": 8,
+    "totalGroups": 23
+  },
+  "independentReference": {
+    "method": "SciPy augmented5x5 matrix exponentials with explicit temperature integrals",
+    "predictions": 10,
+    "maximumAbsoluteErrorC": 4.121147867408581e-13,
+    "meanWindowMinutes": [
+      30,
+      45
+    ],
+    "forcingBoundaryMinute": 35
+  },
+  "browser": {
+    "status": "PASS",
+    "groups": 9,
+    "exceptions": [],
+    "executedBy": "Team root on qualified RDC host",
+    "runDirectory": "/tmp/earth-transfer-330-74b2b9ab/receiving-current-a1487",
+    "scope": "Maintained app, trusted keyboard, all original candidates, actual download/reopen, desktop/390px inputs/results, broad/contradictory/role/injection controls, delayed replacement and failed-read custody",
+    "previousFunctionalGroups": 7,
+    "runtimeSeconds": 6.11,
+    "baseCommit": "a1487e98c228703758543ed74023e9dac6f72b9c"
+  },
+  "visualReview": "PASS: team root inspected all four current-composition desktop and 390px images; source controls and complete alternative cards render correctly",
+  "publishedRevisionReceiving": "Pending normal integration and exact published-source check",
+  "review": {
+    "independentReviewer": "WORLDLAW direct worker in team hamon-74b2b9ab-20261025",
+    "initialFinding": "Async replacement could reuse a retired source; publication held",
+    "resolution": "Immediately retire replaced input; independent per-input tickets and pending guard; failed reads remain missing; bundle replacement retires all sources",
+    "followupSourceReview": "No remaining blocker"
+  },
+  "retainedFailedAttempts": [
+    {
+      "directory": "/tmp/earth-transfer-330-74b2b9ab/receiving-first",
+      "reason": "Functional seven groups passed; screenshots showed rainfall grid, not accepted for transfer visual review"
+    },
+    {
+      "directory": "/tmp/earth-transfer-330-74b2b9ab/receiving-custody",
+      "reason": "Strict screenshot-position guard failed before custody checks; no visual proof claimed"
+    }
+  ],
+  "previousRevisedBrowser": {
+    "status": "PASS",
+    "groups": 9,
+    "runtimeSeconds": 6.3,
+    "runDirectory": "/tmp/earth-transfer-330-74b2b9ab/receiving-stable-views"
+  }
+}
