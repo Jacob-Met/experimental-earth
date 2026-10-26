@@ -1,3 +1,4 @@
+import {mountReceivingProposals} from './receiving-proposal-panel.js';
 import {mountDrainingEvent} from './draining-event-panel.js';
 import {SURFACES} from './core.js';
 import {DRAINING_HYPOTHESES_SCHEMA, compareDrainingHypotheses,
@@ -40,11 +41,11 @@ export function mountDrainingEvidence({host, getProject, getLayer}) {
   const $ = id => panel.querySelector('#de-' + id);
   for (const [id, s] of Object.entries(SURFACES)) {const option = node('option', s.label); option.value = id; $('surface').append(option);}
   $('surface').value = 'garden';
-  let opened = null, accepted = null, generation = 0, key = '', nextId = 1;
+  let opened = null, accepted = null, generation = 0, key = '', nextId = 1, proposalPanel = null;
   const source = () => opened ?? getProject();
   const status = (text, state) => {$('status').textContent = text; $('status').dataset.state = state;};
   function invalidate(message = 'Original assumptions changed. Compare again.') {
-    generation++; accepted = null; $('results').replaceChildren(); $('save').disabled = true;
+    proposalPanel?.clear(); generation++; accepted = null; $('results').replaceChildren(); $('save').disabled = true;
     $('run').disabled = false; status(message, 'draft');
   }
   function refresh() {
@@ -218,6 +219,17 @@ export function mountDrainingEvidence({host, getProject, getLayer}) {
     } catch (error) {if (token === generation) status(error.message, 'refused');}
     finally {if (token === generation) $('run').disabled = false;}
   };
+  proposalPanel = mountReceivingProposals({host: panel, getSource: source,
+    getSelection: () => ({target: $('target').value, surface: $('surface').value}),
+    onAdd: hypothesis => {
+      if ($('hypotheses').children.length >= 12) throw Error('At most 12 explanations can be retained. Remove one explicitly before adding a proposal.');
+      const duplicate = [...$('hypotheses').children].some(row =>
+        ['capacityMm', 'initialStoredMm', 'drainagePerHour'].every(field =>
+          Number(row.querySelector('[data-field="' + field + '"]').value) === hypothesis[field]));
+      if (duplicate) throw Error('These parameter values are already offered.');
+      let id; do { id = 'h' + nextId++; } while ([...$('hypotheses').children].some(row => row.dataset.hypothesis === id));
+      invalidate(); addRow({...hypothesis, id});
+    }});
   mountDrainingEvent({host: panel, getFirst: () => ({project: source(), study: readStudy()})});
   refresh(); return {refresh};
 }
