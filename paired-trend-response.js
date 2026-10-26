@@ -40,16 +40,19 @@ export function inferPairedTrendResponse(source,{maxPairChecks=1953,maxConstrain
  if(!polygon.length)throw Error('Internal contradiction between later pair and region support');
  later.status=polygon.length<3?'boundary':'compatible';later.baseline=span(polygon.map(p=>p[0]));
  later.vertices=polygon.map(p=>({baseline:bound(p[0]),slope:bound(p[1])}));
- const total=earlier.vertices.length*polygon.length;if(total>maxVertexPairs)throw Error('Complete vertex projection exceeds declared work; no partial response');
- const instant=q(Date.parse(common.intervention)),preOffset=div(sub(instant,q(Date.parse(earlier.origin))),q(86400000)),postOffset=div(sub(instant,origin),q(86400000)),points=[];
+ return{...common,later,...projectAffineHistoryResponse(earlier,later,common.intervention,work,clipWork)};
+}
+
+/** Internal exact projection shared by admitted point and mean observation operators. */
+export function projectAffineHistoryResponse(earlier,later,intervention,work,clipWork){
+ const polygon=later.vertices.map(p=>[unpack(p.baseline),unpack(p.slope)]);
+ const total=earlier.vertices.length*polygon.length;if(total>work.maxVertexPairs)throw Error('Complete vertex projection exceeds declared work; no partial response');
+ const instant=q(Date.parse(intervention)),preOffset=div(sub(instant,q(Date.parse(earlier.origin))),q(86400000)),postOffset=div(sub(instant,q(Date.parse(later.origin))),q(86400000)),points=[];
  for(const a of earlier.vertices)for(const z of polygon){work.vertexPairs++;const ab=unpack(a.baseline),as=unpack(a.slope);points.push([sub(add(z[0],mul(z[1],postOffset)),add(ab,mul(as,preOffset))),sub(z[1],as)]);}
  const joint=hull(points,work);
- // Slice the joint region, not its independent marginal intervals.
  let zero=clip(joint,q(0),q(1),q(0),clipWork);zero=clip(zero,q(0),q(-1),q(0),clipWork);
  work.constraintChecks=clipWork.count;
- return{...common,later,status:'response-compatible',work,
-  jump:span(joint.map(p=>p[0])),slopeChange:span(joint.map(p=>p[1])),
+ return{status:'response-compatible',work,jump:span(joint.map(p=>p[0])),slopeChange:span(joint.map(p=>p[1])),
   vertices:joint.map(p=>({jump:bound(p[0]),slopeChange:bound(p[1])})),
-  zeroSlopeChange:zero.length?{status:'compatible',jump:span(zero.map(p=>p[0]))}:{status:'incompatible',jump:null}
- };
+  zeroSlopeChange:zero.length?{status:'compatible',jump:span(zero.map(p=>p[0]))}:{status:'incompatible',jump:null}};
 }

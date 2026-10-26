@@ -1,3 +1,4 @@
+import {mountPairedMeanHistory} from './paired-mean-history-panel.js';
 import {mountPairedTrends} from './paired-trends-panel.js';
 import {mountPairedTrendRegion} from './paired-trend-region-panel.js';
 import {comparePairedSeries} from './paired-series.js';
@@ -27,6 +28,7 @@ export function mountPairedSeries({host,getProject,getAccepted}){
  q('run').onclick=()=>{retire();try{const input=read();checkProjectFileBytes(new Blob([JSON.stringify(input)]).size);sourceProject??=JSON.parse(serializePortableProject(getProject()));context();show(input,sourceProject);}catch(e){q('result').textContent=e.message;}};
  q('save').onclick=()=>{try{if(!accepted)throw Error('Challenge first');const json=JSON.stringify(accepted,null,2);checkProjectFileBytes(new Blob([json]).size);const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='experimental-earth-paired-series.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){q('result').textContent=e.message;}};
  q('open').onchange=async event=>{const file=event.target.files?.[0];if(!file)return;retire();const serial=revision;try{checkProjectFileBytes(file.size);const b=JSON.parse(await file.text());if(serial!==revision)return;if(b.schema!=='experimental-earth-paired-series-bundle/1')throw Error('Unsupported paired-series bundle');const project=parsePortableProject(JSON.stringify(b.project));comparePairedSeries(b.input);write(b.input,project);show(b.input,project);}catch(e){if(serial===revision)q('result').textContent=e.message;}finally{event.target.value='';}};
- trends=mountPairedTrends({host:box,getAccepted:()=>accepted});trendRegion=mountPairedTrendRegion({host:box,getAccepted:()=>accepted});context();return {refresh:retire};
+ trends=mountPairedTrends({host:box,getAccepted:()=>accepted});trendRegion=mountPairedTrendRegion({host:box,getAccepted:()=>accepted});mountPairedMeanHistory({host:box,getProject});context();return {refresh:retire};
 }
+
 
