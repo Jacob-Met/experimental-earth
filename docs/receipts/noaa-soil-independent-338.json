@@ -1,0 +1,17 @@
+{
+  "scope": "Authored RK4 synthetic channel replacements, not official NOAA observations",
+  "status": "one-survivor",
+  "survivors": [
+    "independent-1"
+  ],
+  "counts": {
+    "calibration": 7,
+    "challenge": 11
+  },
+  "soilDepth": 10,
+  "maximumAnalyticVersusRK4MeanDifference": 7.105427357601002e-14,
+  "adverseStatus": "challenged",
+  "surfaceUnchanged": true,
+  "predictionsUnchanged": true,
+  "replayExact": true
+}

@@ -1,0 +1,120 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Original ASCII acquisition and trusted keyboard action compare both mean channels, retaining all three rejected offered alternatives",
+    "Actual input-only download and fresh replay preserve raw bytes and compare saved declarations independently of an empty main draft",
+    "Missing20cm refuses atomically without substitution or old result; explicit10cm uses its original9.4°C first mean",
+    "Draft edit during comparison and source replacement during saved replay prevent stale completion from installing results",
+    "Saved source identity mismatch refuses before displaying dual-channel evidence",
+    "Desktop and narrow actual comparison remains inspectable without page overflow or application exceptions"
+  ],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-26T01:08:07.799Z",
+    "completedAt": "2026-10-26T01:08:07.887Z",
+    "durationMs": 87.70139199999994,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "1EA0080638ECD679A18E310DDFF247B6",
+      "type": "page",
+      "title": "Experimental Earth — Rain Experiment Lab",
+      "url": "http://127.0.0.1:40805/",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "B36AD5F62A16828F597480D94943C517"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "exceptions": [],
+  "receipt": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-26T01:08:07.393Z",
+    "executable": "/opt/google/chrome/google-chrome",
+    "runDirectory": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641",
+    "profileDirectory": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/profile",
+    "stdoutFile": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/stdout.bin",
+    "stderrFile": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/stderr.bin",
+    "receiptFile": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/profile",
+      "about:blank"
+    ],
+    "pid": 74379,
+    "cdpUrl": "http://127.0.0.1:36485",
+    "browserWebSocketUrl": "ws://127.0.0.1:36485/devtools/browser/20e3867b-6b2c-4a8c-85f7-5612c14cdcc5",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-26T01:08:07.587Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/tmp/hamon-4a1ede0c-earth-soil/.browser-run-noaa-soil-8c7553ec-bf49-4ceb-b699-2b54ce192641/stderr.bin",
+      "bytes": 5185,
+      "sha256": "e06f47f8ea98bb87c3023baa9328d377274dc7a27edbf86e5559a0583e756d84"
+    },
+    "finishedAt": "2026-10-26T01:08:08.955Z"
+  }
+}
