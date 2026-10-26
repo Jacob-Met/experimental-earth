@@ -5,6 +5,9 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {randomUUID} from 'node:crypto';
 import {withBrowserSession} from './support/browser-session.mjs';
+import {makeExample} from '../core.js';
+import {prepareSurfaceHeatStudy} from '../surface-heat.js';
+import {prepareLateralHeatStudy} from '../lateral-heat.js';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const runDirectory=resolve(process.env.BROWSER_RUN_DIRECTORY || `/tmp/earth-lateral-${randomUUID()}`);
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
@@ -35,9 +38,9 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN || '/opt/google/
   await waitFor("document.getElementById('lateral-status').textContent.startsWith('Compared original inputs')");
   assert.deepEqual(await evaluate('window.__lateralKeyboardReceipt'),{keyTrusted:true,submitTrusted:true});
   const initial=await text('lateral-results');
-  assert.match(initial,/Final proposal minus existing/);assert.match(initial,/without lateral exchange/);assert.match(initial,/halving 30 to 15 s/);
+  assert.match(initial,/Final proposal minus existing/);assert.match(initial,/without lateral exchange/);assert.match(await text('lateral-status'),/analytic two-store integration/);assert.match(initial,/Coupled neighbor maximum/);
   const originalWorkspace=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
-  pass('Real keyboard comparison receives both cells, isolated control and refinement');
+  pass('Real keyboard comparison receives analytic two-store results, both cells, isolated control and neighbor extrema');
   await screenshot('lateral-declaration-desktop.png','#lateral-heat',1280,900);
   await screenshot('lateral-desktop.png','#lateral-results',1280,900);
   const downloads=runDirectory+'/downloads';await mkdir(downloads);
@@ -46,7 +49,7 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN || '/opt/google/
   const downloaded=downloads+'/experimental-earth-lateral-heat.json';
   for(let i=0;i<100;i++){try{await access(downloaded);break;}catch{await delay(50);}}
   const bytes=await readFile(downloaded,'utf8'),bundle=JSON.parse(bytes);
-  assert.equal(bundle.schema,'experimental-earth-lateral-bundle/1');assert.ok(bundle.project.surfaceHeatStudy);assert.match(bundle.study.neighbor.source,/Fictional/);
+  assert.equal(bundle.schema,'experimental-earth-lateral-bundle/2');assert.equal(bundle.method,'two-forced-stores-spectral/1');assert.ok(bundle.project.surfaceHeatStudy);assert.match(bundle.study.neighbor.source,/Fictional/);
   await evaluate("document.getElementById('lateral-neighbor-capacityJm2K').value='';document.getElementById('lateral-neighbor-capacityJm2K').dispatchEvent(new Event('input',{bubbles:true}));document.getElementById('lateral-form').requestSubmit()");
   assert.equal(await text('lateral-results'),'');assert.equal(await evaluate("document.getElementById('lateral-export').disabled"),true);
   assert.equal(await evaluate("document.getElementById('lateral-form').checkValidity()"),false);
@@ -62,6 +65,25 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN || '/opt/google/
   assert.equal(reopened.split('Final proposal minus existing:')[1],initial.split('Final proposal minus existing:')[1]);
   assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),originalWorkspace);
   pass('Actual download bytes and native file reopen recompute same effect without workspace mutation');
+  // Prefer a retained original v1 download when the receiving host supplies it.
+  // Otherwise this is explicitly an authored compatibility fixture.
+  const legacy=process.env.LEGACY_LATERAL_BUNDLE?JSON.parse(await readFile(process.env.LEGACY_LATERAL_BUNDLE,'utf8')):{schema:'experimental-earth-lateral-bundle/1',project:bundle.project,study:bundle.study,maxStepSeconds:30};
+  assert.equal(legacy.schema,'experimental-earth-lateral-bundle/1');
+  const legacyPath=process.env.LEGACY_LATERAL_BUNDLE || downloads+'/authored-legacy.json';
+  if(!process.env.LEGACY_LATERAL_BUNDLE)await writeFile(legacyPath,JSON.stringify(legacy));
+  await send('DOM.setFileInputFiles',{nodeId:input.nodeId,files:[legacyPath]});
+  await waitFor("document.getElementById('lateral-status').textContent.includes('original file recorded')");
+  const migratedDownloads=downloads+'/analytic-reopen';await mkdir(migratedDownloads);
+  await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:migratedDownloads});
+  await evaluate("document.getElementById('lateral-export').click()");
+  const migratedPath=migratedDownloads+'/experimental-earth-lateral-heat.json';
+  for(let i=0;i<100;i++){try{await access(migratedPath);break;}catch{await delay(50);}}
+  const migrated=JSON.parse(await readFile(migratedPath,'utf8'));
+  assert.equal(migrated.schema,'experimental-earth-lateral-bundle/2');assert.equal(migrated.originalSplitMaxStepSeconds,legacy.maxStepSeconds);
+  assert.deepEqual(migrated.study,legacy.study);assert.deepEqual(migrated.project,legacy.project);
+  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),originalWorkspace);
+  pass((process.env.LEGACY_LATERAL_BUNDLE?'Retained original v1 download':'Authored v1 compatibility fixture')+' recomputes analytically and preserves physical inputs plus original split setting in a new actual download');
+
   await screenshot('lateral-narrow.png','#lateral-heat',390,844);
   assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'));
   await screenshot('lateral-narrow-results.png','#lateral-results',390,844);
@@ -89,6 +111,28 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN || '/opt/google/
   assert.equal(await text('lateral-results'),'');
   await evaluate("document.getElementById('lateral-form').requestSubmit()");assert.match(await text('lateral-status'),/current place/);
   pass('Metric-source change invalidates and cannot silently rebind the original exposure');
+  const project=makeExample();project.weather.cellSizeM=.25;
+  const first={absorptivity:.3,capacityJm2K:1000,exchangeWm2K:1000,initialC:90,source:'Authored stiff-hour source layer'};
+  project.surfaceHeatStudy=prepareSurfaceHeatStudy(project,{cellIndex:0,existing:first,proposal:first,schedule:[{minutes:60,incidentWm2:2000,reservoirC:15,source:'Authored stiff-hour forcing'}]});
+  const study=prepareLateralHeatStudy(project,{neighborIndex:1,neighbor:{absorptivity:.9,capacityJm2K:1e7,exchangeWm2K:0,initialC:20,source:'Authored stiff-hour neighbor'},conductanceWK:1000,source:'Authored stiff shared edge'});
+  const stiff={schema:'experimental-earth-lateral-bundle/2',method:'two-forced-stores-spectral/1',project,study};
+  const stiffPath=downloads+'/authored-stiff-hour.json';await writeFile(stiffPath,JSON.stringify(stiff));
+  const beforeStiff=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+  await send('DOM.setFileInputFiles',{nodeId:input.nodeId,files:[stiffPath]});
+  await waitFor("document.getElementById('lateral-status').textContent.startsWith('Compared original inputs')");
+  const received=await evaluate("JSON.parse(document.querySelector('#lateral-results details pre').textContent).existing");
+  assert.ok(Math.abs(received.temperaturesC[0]-19.072835628411195)<1e-8);
+  assert.ok(Math.abs(received.temperaturesC[1]-19.2898780158489)<1e-8);
+  assert.match(await text('lateral-results'),/20.0065/);
+  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),beforeStiff);
+  await screenshot('lateral-stiff-hour.png','#lateral-results',1280,900);
+  pass('Previously split-budget-refused stiff hour receives independent-reference temperatures and an interior neighbor peak through the actual original-file consumer');
+  const unsupported={...stiff,method:'unqualified-method'};const unsupportedPath=downloads+'/unsupported-method.json';await writeFile(unsupportedPath,JSON.stringify(unsupported));
+  await send('DOM.setFileInputFiles',{nodeId:input.nodeId,files:[unsupportedPath]});
+  await waitFor("document.getElementById('lateral-status').textContent.includes('Unsupported retained analytic method')");
+  assert.equal(await text('lateral-results'),'');assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),beforeStiff);
+  pass('Unknown analytic-method input cannot retain or publish a successful result');
+
   assert.deepEqual(exceptions,[]);report.status='PASS';report.originalInputBytes=Buffer.byteLength(bytes);
   await writeFile(runDirectory+'/lateral-receipt.json',JSON.stringify(report,null,2));
 });

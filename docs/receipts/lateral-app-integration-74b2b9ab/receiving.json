@@ -1,0 +1,73 @@
+{
+  "scope": "Maintained application integration of declared lateral heat; authored-model software evidence, not physical validation or deployment",
+  "baseCommit": "f647a1a9c67da28d087433fb92f3061823c319cf",
+  "originalFeatureHead": "cf6fa08e7206e9c91168bf0f7df312af5f5d3039",
+  "appBaseBlob": "2bf3ce164c4c4adeca6093409263343546972e4e",
+  "appIntegratedBlob": "ab55a68f2d660eeff7521f0360de8bfbdbc4585c",
+  "change": [
+    "Import mountLateralHeat",
+    "Mount after surface heat panel",
+    "Refresh after surface heat panel while preserving shared observed and newer heat consumers"
+  ],
+  "composition": {
+    "originalFeatureFiles": 10,
+    "originalFeatureOldBlobsMatchBase": true,
+    "verifiedConsumerSourceFiles": 318,
+    "missingStaticRelativeImports": 0
+  },
+  "native": {
+    "status": "PASS",
+    "command": "Run each tests/*heat*.test.mjs and tests/temperature-table*.test.mjs directly with Node",
+    "cases": 181,
+    "files": 21,
+    "failures": 0,
+    "skipped": 0
+  },
+  "actualBrowser": {
+    "status": "PASS",
+    "receiver": "tests/lateral-heat.course.mjs",
+    "receiverBlob": "ba7128d0802244c21db9ca8151dcb0eae88a0b5f",
+    "groups": 9,
+    "executedBy": "Team root on qualified RDC host",
+    "receiptDirectory": "/tmp/earth-311-74b2b9ab/current-lateral-receiving",
+    "legacyInput": "Explicit authored v1 compatibility fallback; not a retained historical download",
+    "checks": [
+      "Trusted keyboard comparison",
+      "Blank required input refusal",
+      "Actual v2 download and native reopen",
+      "Authored v1 recomputation and analytic re-export",
+      "390px keyboard horizontal table access",
+      "Wrong-cell refusal",
+      "Metric-source invalidation",
+      "Stiff-hour reference and interior neighbor maximum",
+      "Unsupported analytic-method refusal"
+    ],
+    "visualReview": "Root inspected desktop and 390px screenshots; no clipping or blocker observed",
+    "executedBase": "80ec1b84bbe2846bd34aaf3206f5dc4add0e7516",
+    "equivalence": "Thermal/app/panel blobs unchanged at f647. Shared runoff-core change received by the separately rerun three-group ordinary-app source-refresh course and181 affected native cases."
+  },
+  "sourceRefreshBrowser": {
+    "status": "PASS",
+    "receiver": "tests/lateral-source-change.course.mjs",
+    "change": "Only harness paths adapted from tested companion location to repository tests/support and module-relative project root",
+    "needsRerun": false,
+    "checks": [
+      "Changed saved exposure clears stale result and download",
+      "Both plans recompute different displayed temperatures",
+      "Clearing saved source disables comparison and download"
+    ],
+    "groups": 3,
+    "exceptions": [],
+    "receiverBlob": "4cb45c2b03a999f46921b6d11037da236d177f8d",
+    "receiptDirectory": "/tmp/earth-311-74b2b9ab/f647-source-refresh",
+    "elapsedSeconds": 3.86,
+    "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1"
+  },
+  "publishedRevisionReceiving": "Pending normal integration and exact published-source rerun",
+  "previousVerifiedBase": "80ec1b84bbe2846bd34aaf3206f5dc4add0e7516",
+  "latestBaseRefresh": {
+    "preservedUpstream": "Rain per-run geometry/rate precomputation and array reuse in core.js; five docs/evaluation files",
+    "browserRerun": "PASS_TARGETED_SOURCE_REFRESH",
+    "reason": "Core runoff comparison executes on app rerun. Thermal source, app and panel blobs remain identical to 80ec; original nine-group thermal receipt remains applicable; rerun three source-refresh groups for changed shared core."
+  }
+}
