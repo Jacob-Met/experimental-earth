@@ -57,6 +57,14 @@ Optional actual-browser receiving: with a locally available Chrome/Chromium and 
 
 **Physical boundaries:** The model is a deliberately simplified finite-volume surface transfer on constant-infiltration cells, with an open edge and no measured calibration. Its arithmetic conserves rainfall within tolerance; it does not quantify actual flood risk, stormwater compliance, soil response or intervention benefit. Real readings can be recorded with method and ± uncertainty, but do not automatically tune the model. Sampling suggestions identify the largest simulated scenario difference, not validated information gain. No external data or inference endpoints are called.
 
+## Find an investigation
+
+Use **Find an investigation** above the site editor to search the existing questions
+and their introductions, or browse all mounted workbenches. Open a result by mouse,
+Tab, or Enter from the search field; a return link brings you back from a distant
+panel. Native links reopen the same investigation without changing project data.
+See [navigation and keyboard use](docs/INVESTIGATION_NAVIGATION.md).
+
 ## Follow rain from part of the site
 
 The **Where does rain from this area end up?** panel traces rain from selected
