@@ -1,3 +1,4 @@
+import {mountUnpartitionedMeans} from './unpartitioned-mean-panel.js';
 import {inferPairedMeanHistory,PAIRED_MEAN_SCHEMA} from './paired-mean-history.js';
 import {receiveNoaaPairedMeans,NOAA_PAIRED_MEAN_SCHEMA} from './noaa-paired-means.js';
 import {serializePortableProject,parsePortableProject} from './project-portability.js';
@@ -22,17 +23,18 @@ export function mountPairedMeanHistory({host,getProject}){
  box.style.overflowWrap='anywhere';box.style.minWidth='0';
  for(const label of box.querySelectorAll('label'))label.style.display='block';
  for(const control of box.querySelectorAll('input,textarea,select')){control.style.minWidth='0';control.style.maxWidth='100%';control.style.boxSizing='border-box';if(control.type==='checkbox'){control.style.width='auto';control.style.display='inline-block';control.style.margin='0 .4em 0 0';}else control.style.width='100%';}
- host.append(box);const q=id=>box.querySelector('#pm-'+id);let revision=0,raw=null,accepted=null;
- const invalidate=()=>{revision++;accepted=null;q('save').disabled=true;q('result').textContent='Source or assumptions changed. Compare again.';};
+ host.append(box);const q=id=>box.querySelector('#pm-'+id);let revision=0,raw=null,accepted=null,partitions=null;
+ const invalidate=()=>{revision++;accepted=null;partitions?.refresh();q('save').disabled=true;q('result').textContent='Source or assumptions changed. Compare again.';};
  for(const node of box.querySelectorAll('input:not([type=file]),textarea,select'))node.addEventListener('input',invalidate);
  const line=t=>{const p=document.createElement('p');p.textContent=t;q('result').append(p);};
  const range=x=>`${Number(x.lower.lower.toPrecision(7))} to ${Number(x.upper.upper.toPrecision(7))}`;
  const noaaFields=['url','first','count','correction','direction','boundary','boundary-basis','association','width-treated','band-treated','width-comparison','band-comparison','uniform','operator-basis'];
  function enableNoaa(enabled){for(const id of noaaFields)q(id).disabled=!enabled;q('run').disabled=!enabled;}
  function restoreSource(input){
-  if(input.schema===NOAA_PAIRED_MEAN_SCHEMA){
+  accepted=null;q('save').disabled=true;q('result').textContent='Displayed original source restored. Compare the declared-boundary model again if needed.';
+  if([NOAA_PAIRED_MEAN_SCHEMA,'experimental-earth-noaa-unpartitioned-means/1'].includes(input.schema)){
    raw={rawText:input.source.rawText,sha256:input.source.sha256};enableNoaa(true);
-   for(const [id,value]of Object.entries({url:input.source.sourceUrl,first:input.selection.firstLine,count:input.selection.count,correction:input.selection.correctionType,direction:input.channels.treated==='SUR_TEMP'?'surface':'air',boundary:input.boundary,'boundary-basis':input.boundaryBasis,association:input.association,'operator-basis':input.comparisonOperator.basis}))q(id).value=String(value);
+   for(const [id,value]of Object.entries({url:input.source.sourceUrl,first:input.selection.firstLine,count:input.selection.count,correction:input.selection.correctionType,direction:input.channels.treated==='SUR_TEMP'?'surface':'air',boundary:input.boundary??'','boundary-basis':input.boundaryBasis??'',association:input.association,'operator-basis':input.comparisonOperator.basis}))q(id).value=String(value);
    for(const name of ['treated','comparison']){q('width-'+name).value=String(input.bands[name].halfWidth);q('band-'+name).value=input.bands[name].source;}q('uniform').checked=true;
    q('source').textContent=`Reopened original NOAA source (${input.source.rawText.length} ASCII bytes), SHA-256 ${input.source.sha256}. Displayed declarations match this accepted investigation.`;
   }else{
@@ -65,11 +67,14 @@ export function mountPairedMeanHistory({host,getProject}){
  q('example').onclick=async()=>{invalidate();const previousSource=q('source').textContent;q('run').disabled=true;q('source').textContent='Reading retained original excerpt…';const serial=revision;try{const res=await fetch('./examples/noaa-tucson-hourly/tucson-hourly-excerpt.txt');if(!res.ok)throw Error('Original retained excerpt unavailable');await readOriginal(await res.arrayBuffer(),serial,EXAMPLE_HASH);if(serial!==revision)return;
   q('url').value=EXAMPLE_URL;q('first').value='1';q('count').value='4';q('correction').value='C';q('direction').value='surface';q('boundary').value='2025-01-01T17:00:00Z';q('boundary-basis').value='Authored descriptive split of this archived course; not a recorded intervention';q('association').value='Original same-station infrared surface minus air means';for(const n of ['treated','comparison']){q('width-'+n).value='0';q('band-'+n).value='Exact printed-value comparison only; not a sensor uncertainty estimate';}q('uniform').checked=false;q('operator-basis').value='Conditional affine uniform-time comparison; actual per-row temporal weights remain unknown';q('result').textContent='Original excerpt loaded. The split and zero comparison half-widths are authored choices. Review them and explicitly confirm the uniform-time model before comparing.';
  }catch(e){if(serial===revision){q('source').textContent='Replacement excerpt unavailable. '+previousSource;q('run').disabled=!raw;q('result').textContent=e.message;}}};
- q('run').onclick=async()=>{invalidate();const serial=revision;try{if(!raw)throw Error('Load an original NOAA file or reopen an original mean investigation');if(!q('uniform').checked)throw Error('Explicitly confirm the uniform-time model; unknown source weights are not inferred');
-  const input={schema:NOAA_PAIRED_MEAN_SCHEMA,source:{...raw,sourceUrl:q('url').value},selection:{firstLine:Number(q('first').value),count:Number(q('count').value),correctionType:q('correction').value},channels:q('direction').value==='surface'?{treated:'SUR_TEMP',comparison:'T_HR_AVG'}:{treated:'T_HR_AVG',comparison:'SUR_TEMP'},boundary:q('boundary').value,boundaryBasis:q('boundary-basis').value,association:q('association').value,comparisonOperator:{kind:'uniform-time-mean',basis:q('operator-basis').value},bands:{}};
-  for(const n of ['treated','comparison']){if(!q('width-'+n).value.trim())throw Error('Declare both comparison half-widths');input.bands[n]={halfWidth:Number(q('width-'+n).value),source:q('band-'+n).value};}await compare(input,JSON.parse(serializePortableProject(getProject())),serial);
- }catch(e){if(serial===revision)q('result').textContent=e.message;}};
+ function readNoaaSource(modelBasis=null){
+  if(!raw)throw Error('Load an original NOAA file or reopen an original mean investigation');if(!q('uniform').checked)throw Error('Explicitly confirm the uniform-time model; unknown source weights are not inferred');
+  const input={schema:modelBasis===null?NOAA_PAIRED_MEAN_SCHEMA:'experimental-earth-noaa-unpartitioned-means/1',source:{...raw,sourceUrl:q('url').value},selection:{firstLine:Number(q('first').value),count:Number(q('count').value),correctionType:q('correction').value},channels:q('direction').value==='surface'?{treated:'SUR_TEMP',comparison:'T_HR_AVG'}:{treated:'T_HR_AVG',comparison:'SUR_TEMP'},...(modelBasis===null?{boundary:q('boundary').value,boundaryBasis:q('boundary-basis').value}:{modelBasis}),association:q('association').value,comparisonOperator:{kind:'uniform-time-mean',basis:q('operator-basis').value},bands:{}};
+  for(const n of ['treated','comparison']){if(!q('width-'+n).value.trim())throw Error('Declare both comparison half-widths');input.bands[n]={halfWidth:Number(q('width-'+n).value),source:q('band-'+n).value};}return input;
+ }
+ q('run').onclick=async()=>{invalidate();const serial=revision;try{await compare(readNoaaSource(),JSON.parse(serializePortableProject(getProject())),serial);}catch(e){if(serial===revision)q('result').textContent=e.message;}};
  q('save').onclick=()=>{if(!accepted)return;const url=URL.createObjectURL(new Blob([JSON.stringify(accepted,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='experimental-earth-paired-means.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  q('open').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;invalidate();const serial=revision;try{if(file.size>8000000)throw Error('Original mean bundle exceeds 8 MB');const b=JSON.parse(await file.text());if(serial!==revision)return;if(!b||b.schema!=='experimental-earth-paired-mean-bundle/1'||Object.keys(b).sort().join(',')!=='input,project,schema'||![PAIRED_MEAN_SCHEMA,NOAA_PAIRED_MEAN_SCHEMA].includes(b.input?.schema))throw Error('Open an original mean bundle, not a derived result');const project=parsePortableProject(JSON.stringify(b.project));await compare(b.input,project,serial,{restore:true});}catch(err){if(serial===revision)q('result').textContent=err.message;}finally{e.target.value='';}};
+ partitions=mountUnpartitionedMeans({host:box,getProject,getSource:readNoaaSource,restoreSource});
  return{refresh:invalidate};
 }
