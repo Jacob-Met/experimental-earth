@@ -1,0 +1,17 @@
+{
+  "base": "560c2a3186899da547df488b000d165dea9bd5c4",
+  "nativeGroups": 29,
+  "browserGroups": 12,
+  "commands": [
+    "node --test tests/paired-trends.test.mjs tests/paired-trend-region.test.mjs tests/paired-trend-continuation.test.mjs tests/paired-trend-shift.test.mjs tests/paired-trend-shift-planning.test.mjs",
+    "node --test tests/heat-column-combined.test.mjs",
+    "node tests/paired-trend-shift-planning.browser.mjs",
+    "node tests/paired-trend-shift.browser.mjs"
+  ],
+  "browser": "Isolated system Chrome with exact positive sandbox admission; 12 browser groups, inspected desktop 1280 and mobile 390.",
+  "independentReview": "Wildside actual-source review; exact time translation, redundant later band and response scaling controls; no blocker. Workshop independent proof review.",
+  "sourcePreservation": "Original-only bundle and complete preceding shift result preserved. Planning is derived.",
+  "scope": "A lower bound on remaining width if additional evidence is later-only and original earlier bands/model stay fixed with nonempty support. Zero floor does not promise identification; possible width reduction is bounded above, not promised.",
+  "pairedNativeGroups": 23,
+  "concurrentThermalNativeGroups": 6
+}
