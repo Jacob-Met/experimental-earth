@@ -1,0 +1,53 @@
+
+> browser-receive
+> node tests/browser.receiving.mjs
+
+{
+  "status": "FAIL",
+  "error": "ChromiumSessionError: Chromium receiving session failed",
+  "cause": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'compare-resolution'\n",
+  "receiptPath": "/home/ubuntu/hamon-work/e225224-20261026/earth-unchanged-maintained-browser/session.json",
+  "cleanup": {
+    "attempted": true,
+    "directChildExited": true,
+    "scope": "launched-direct-child-only",
+    "signals": [
+      "SIGTERM"
+    ]
+  },
+  "checks": [
+    "initial 96 cells, six metrics and two live chart curves",
+    "brush edit, sourced field observation, local-save",
+    "reload durability, scenario reset, portable JSON import",
+    "one-cell infiltration-rate sensitivity, distinct from scenario difference",
+    "sensitivity suggestion and parameter-change recomputation",
+    "390px mobile layout no horizontal overflow",
+    "ponding analytic 2×2 rain control: final10.3mm, above5mm for5.3minutes, identical proposal",
+    "ponding threshold refusal preserves accepted diagnostic; ordinary proposal edit immediately refreshes replay; cell selection works",
+    "ponding imported project survives reload and390px layout; view controls are transient",
+    "legacy readings excluded until explicit scenario/evidence assignment",
+    "actual notebook assignment, analytic candidate comparison and inspectable source residuals",
+    "candidate choices and roles survive reload; stale reports are cleared",
+    "contradictory held-aside import rejects predictions without changing calibration order",
+    "invalid candidate edit is refused without corrupting saved study",
+    "calibration-candidate question prepares location/time/role without painting or inventing observations",
+    "new sourced reading is retained only after explicit form submit, preserving fractional values",
+    "dry indistinguishable event refuses to manufacture a useful measurement",
+    "candidate and evidence controls fit 390px mobile; mobile/desktop images captured",
+    "unit table preview leaves notebook unchanged; explicit append feeds actual candidate comparison",
+    "table source/quantities survive reload and portable project import; repeat evidence refused",
+    "one invalid unit refuses the entire table with its source row; no partial evidence",
+    "project edits invalidate pending import; a fresh preview is required",
+    "actual table preview and unit provenance fit the 390px notebook",
+    "paired analytic browser scenario reveals sign reversal and four local worsening cells",
+    "explicit evidence filter refuses absent calibration without substituting default rate",
+    "actual proposal edit invalidates derived results and reruns identical-plan zero effects without adopting parameters",
+    "intervention panel fits 390px viewport",
+    "actual browser paired step challenge preserves all rates and reveals changing exit consequence without changing saved project",
+    "site edit invalidates numerical-sensitivity report",
+    "browser refuses unsupported finer resolution rather than extrapolating",
+    "numerical-sensitivity panel fits 390px mobile viewport",
+    "resolution band flip: full rate-9 predictions, original source and unchanged saved project"
+  ],
+  "exceptions": []
+}

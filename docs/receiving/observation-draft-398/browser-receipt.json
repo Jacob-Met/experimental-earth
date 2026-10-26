@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Inspecting the same selected cell preserves an unfinished reading",
+    "Arrow focus alone preserves the draft; keyboard selection of B1 retires it visibly and prevents misattributed submission",
+    "Fresh explicit B1 evidence is retained at B1 and reaches the maintained infiltration consumer",
+    "A suggested time change retires a draft even when the selected cell does not change; saved evidence is preserved",
+    "Rejected project replacement preserves the current draft and retained observations",
+    "Accepted project replacement retires an unfinished draft even at the same cell, without modifying saved readings",
+    "Ordinary Export completes a disk download matching the exact project SHA256; fresh-runtime reopen uses those disk bytes and retains B1 attribution",
+    "The 390px cleared-draft explanation remains in a stable unobscured viewport rectangle across four separated observations before capture, without horizontal overflow"
+  ],
+  "source": {
+    "app.js": "25cca2e7f923bf3377bdd47aab486a5caa0da36c487b9d811e0c875c8526d6f3",
+    "index.html": "c5afd93919ff4b40e1e1e9d8ead4dc9da39e2c8f7a287936991b9ff9bbf44dd9",
+    "tests/observation-draft.browser.mjs": "27404089885a656e8281241885f9182c8ac39382785b68dbb693897caffefe7f"
+  },
+  "keyboardProbe": {
+    "afterArrow": {
+      "focusedCell": "1",
+      "selectedIndex": 0
+    },
+    "afterEnter": {
+      "focusedCell": "1",
+      "selectedIndex": 1
+    }
+  },
+  "inference": {
+    "status": "calibration-rejected",
+    "counts": {
+      "calibration": 1,
+      "challenge": 0,
+      "ignored": 0,
+      "affectedCells": 36
+    },
+    "consumerState": "calibration-rejected"
+  },
+  "dimensions": {
+    "inner": 390,
+    "scroll": 390
+  },
+  "statusVisibility": {
+    "top": 391.953125,
+    "bottom": 451.34375,
+    "height": 59.390625,
+    "viewportHeight": 844,
+    "scrollY": 74530,
+    "display": "block",
+    "visibility": "visible",
+    "opacity": 1,
+    "unobscured": true,
+    "text": "Unsaved reading cleared: The selected cell or site changed. Enter the actual reading and source for the current target."
+  },
+  "viewportReceiving": {
+    "scrollAttempts": 1,
+    "stableSamples": 4,
+    "samples": [
+      {
+        "phase": "observed",
+        "top": 391.953125,
+        "bottom": 451.34375,
+        "scrollY": 74530,
+        "unobscured": true,
+        "stableSamples": 1
+      },
+      {
+        "phase": "observed",
+        "top": 391.953125,
+        "bottom": 451.34375,
+        "scrollY": 74530,
+        "unobscured": true,
+        "stableSamples": 2
+      },
+      {
+        "phase": "observed",
+        "top": 391.953125,
+        "bottom": 451.34375,
+        "scrollY": 74530,
+        "unobscured": true,
+        "stableSamples": 3
+      },
+      {
+        "phase": "observed",
+        "top": 391.953125,
+        "bottom": 451.34375,
+        "scrollY": 74530,
+        "unobscured": true,
+        "stableSamples": 4
+      }
+    ]
+  },
+  "download": {
+    "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/experimental-earth-site.json",
+    "sha256": "227c95744002c54f7d94a5ecdd88420cf59041783bf121b7f11dc37bef371117",
+    "bytes": 11562
+  },
+  "exceptions": [],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-26T22:14:46.882Z",
+    "completedAt": "2026-10-26T22:14:46.989Z",
+    "durationMs": 107.212511,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "AFF3E0EEA9F4117918ECEF5B3D2D5981",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "6216B83D740733D038F945BB19C7072F"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "sandboxPath": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/sandbox.json",
+  "session": {
+    "schema": "hamon.chromium-session.v1",
+    "status": "course-completed",
+    "startedAt": "2026-10-26T22:14:46.667Z",
+    "executable": "/opt/google/chrome/chrome",
+    "runDirectory": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser",
+    "profileDirectory": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/profile",
+    "stdoutFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/stdout.bin",
+    "stderrFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/stderr.bin",
+    "receiptFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/session.json",
+    "sandbox": "not-assessed",
+    "limits": {
+      "startupMs": 15000,
+      "shutdownMs": 3000,
+      "courseMs": 120000
+    },
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    "argv": [
+      "--headless=new",
+      "--enable-automation",
+      "--allow-chrome-scheme-url",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-background-networking",
+      "--remote-debugging-address=127.0.0.1",
+      "--remote-debugging-port=0",
+      "--user-data-dir=/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/profile",
+      "about:blank"
+    ],
+    "pid": 685804,
+    "cdpUrl": "http://127.0.0.1:35381",
+    "browserWebSocketUrl": "ws://127.0.0.1:35381/devtools/browser/1febbd58-bec5-4de7-be03-f656657f0a55",
+    "browserVersion": "Chrome/156.0.8078.47",
+    "readyAt": "2026-10-26T22:14:46.828Z",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "logsComplete": true,
+    "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+    "stdout": {
+      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/stderr.bin",
+      "bytes": 5370,
+      "sha256": "5dc05563131dc6472eb909150d262ef3169014d95b5656cdd6ce9664e70ecd8a"
+    },
+    "finishedAt": "2026-10-26T22:14:49.423Z"
+  }
+}
