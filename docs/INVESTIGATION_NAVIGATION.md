@@ -12,7 +12,7 @@ bookmarked and reopened. Closing a containing details element does not remove
 its question; opening a result reveals it.
 
 Entries come from the mounted workbenches. Newly mounted or removed panels and
-changed question headings are reflected in the list. Search reads displayed
+changed question headings, introductions and topics are reflected in the list. Search reads displayed
 question/introductory text; it does not inspect form values, alter project
 evidence, or send a query elsewhere. No physical-model capability is added by
 this navigation.

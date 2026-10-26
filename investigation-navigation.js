@@ -75,7 +75,7 @@ export function mountInvestigationNavigation() {
         anchor.id = uniqueId('investigation-' + slug, anchor);
       }
       return [{id: anchor.id, title, description: compact(paragraph?.textContent),
-        topic: compact(eyebrow?.textContent), anchor, heading}];
+        topic: compact(eyebrow?.textContent), anchor, heading, paragraph, eyebrow}];
     });
   }
 
@@ -86,6 +86,12 @@ export function mountInvestigationNavigation() {
     if (!entry.heading.hasAttribute('tabindex')) entry.heading.tabIndex = -1;
     entry.heading.dataset.investigationHeading = '';
     entry.heading.focus({preventScroll: true});
+  }
+
+  function isCurrentFragment(link) {
+    try {
+      return decodeURIComponent(window.location.hash.slice(1)) === decodeURIComponent(link.hash.slice(1));
+    } catch { return false; }
   }
 
   function followHash() {
@@ -142,8 +148,9 @@ export function mountInvestigationNavigation() {
     queued = false;
     const next = collect();
     const nextSignature = JSON.stringify(next.map(({id, title, description, topic}) => [id, title, description, topic]));
-    if (nextSignature === signature) return;
+    // Keep live element references even when a renderer replaces identical content.
     entries = next;
+    if (nextSignature === signature) return;
     signature = nextSignature;
     render();
     // Resolve a not-yet-mounted deep link without stealing focus on later updates.
@@ -162,6 +169,7 @@ export function mountInvestigationNavigation() {
   input.addEventListener('input', search);
   input.addEventListener('search', search);
   input.addEventListener('keydown', event => {
+    if (event.isComposing) return;
     if (event.key === 'Escape' && input.value) { event.preventDefault(); resetSearch(); }
     if (event.key === 'Enter') {
       const first = list.querySelector('a');
@@ -173,19 +181,33 @@ export function mountInvestigationNavigation() {
     if (event.button !== 0 || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
     const link = event.target.closest('a[data-investigation-id]');
     const entry = entries.find(candidate => candidate.id === link?.dataset.investigationId);
-    if (entry) reveal(entry); // Native anchors retain browser history and new-tab behavior.
+    if (entry) {
+      reveal(entry);
+      // A repeated fragment has no hashchange to restore heading focus after the default action.
+      if (isCurrentFragment(link)) {
+        event.preventDefault();
+        entry.anchor.scrollIntoView({block: 'start', behavior: 'instant'});
+      }
+    } // New fragments and modified clicks retain native history and new-tab behavior.
   });
   returnLink.addEventListener('click', event => {
-    if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey) input.focus({preventScroll: true});
+    if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey) {
+      input.focus({preventScroll: true});
+      if (isCurrentFragment(returnLink)) {
+        event.preventDefault();
+        nav.scrollIntoView({block: 'start', behavior: 'instant'});
+      }
+    }
   });
   window.addEventListener('hashchange', followHash);
 
   const observer = new MutationObserver(records => {
     const relevant = records.some(record => {
       if (record.type === 'attributes') return record.target.matches('section.panel') || record.target.querySelector?.('section.panel');
-      if (entries.some(entry => entry.heading.contains(record.target))) return true;
+      if (entries.some(entry => [entry.heading, entry.paragraph, entry.eyebrow]
+        .some(node => node?.contains(record.target)))) return true;
       return [...record.addedNodes, ...record.removedNodes].some(node => node.nodeType === 1 &&
-        (node.matches('section.panel') || node.querySelector('section.panel')));
+        (node.matches('section.panel,h2,h3,p,.eyebrow') || node.querySelector('section.panel,h2,h3,p,.eyebrow')));
     });
     if (relevant && !queued) { queued = true; queueMicrotask(refresh); }
   });

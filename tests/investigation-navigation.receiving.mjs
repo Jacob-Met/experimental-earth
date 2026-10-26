@@ -37,7 +37,9 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
   checks.push({name:'actual mounted inventory and destinations',count:inventory.count,pageHeight:inventory.height});
   await search('surface warm');
   assert.ok(await evaluate("!!document.querySelector('#investigation-results a[href=\"#surface-heat\"]')"));
-  await evaluate("document.getElementById('investigation-search').focus()");
+  const composing=await evaluate("(()=>{const e=document.getElementById('investigation-search');e.focus();const before=location.hash;e.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',code:'Enter',bubbles:true,isComposing:true}));return{before,after:location.hash,focusStayed:document.activeElement===e};})()");
+  assert.equal(composing.after,composing.before);assert.equal(composing.focusStayed,true);
+  checks.push({name:'IME composition Enter preserves search focus and fragment'});
   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
   await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
   await wait("location.hash==='#surface-heat' && document.activeElement.closest('section.panel')?.id==='surface-heat'",'Enter reaches question and moves keyboard focus');
@@ -45,6 +47,10 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
   await wait("!document.querySelector('.investigation-return').hidden",'return link after navigation');
   await click('.investigation-return');
   await wait("document.activeElement.id==='investigation-search'",'return restores search focus');
+  await evaluate("document.getElementById('surface-heat').scrollIntoView({behavior:'instant'})");
+  await wait("!document.querySelector('.investigation-return').hidden",'return link after manual scroll');
+  await click('.investigation-return');
+  await wait("document.activeElement.id==='investigation-search'",'repeated return fragment preserves search focus');
   await search('zzzz no such investigation');
   assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),0);
   assert.match(await evaluate("document.getElementById('investigation-search-status').textContent"),/No matching/);
@@ -62,7 +68,7 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
   await send('Emulation.setDeviceMetricsOverride',{width:1280,height:900,deviceScaleFactor:1,mobile:false});
 
   // Dynamic tools are discovered from mounted content, including a closed parent.
-  await evaluate(`(()=>{const d=document.createElement('details');d.id='navigation-receiving-details';d.innerHTML='<summary>Receiving-only group</summary><section class="panel" id="navigation-receiving-panel"><h2>Receiving-only alpine soil question</h2><p>Compare retained snow and soil observations.</p><input id="navigation-receiving-input"></section>';document.querySelector('.workspace').append(d);})()`);
+  await evaluate(`(()=>{const d=document.createElement('details');d.id='navigation-receiving-details';d.innerHTML='<summary>Receiving-only group</summary><section class="panel" id="navigation-receiving-panel"><span class="eyebrow">METADATA ALBITE</span><h2>Receiving-only alpine soil question</h2><p>Receiving-only initial introduction.</p><input id="navigation-receiving-input"></section>';document.querySelector('.workspace').append(d);})()`);
   await wait("document.querySelectorAll('#investigation-results a').length>0",'navigation stays ready');
   await search('alpine soil');
   await wait("!!document.querySelector('#investigation-results a[href=\"#navigation-receiving-panel\"]')",'new mounted question');
@@ -73,6 +79,43 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
   assert.equal(await evaluate("document.activeElement.id"),'navigation-receiving-input','index refresh must not steal an active form focus');
   await search('revised alpine');
   assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),1);
+  // A rerender may replace the entire panel while its question and ID stay equal.
+  await evaluate("(()=>{const p=document.getElementById('navigation-receiving-panel');p.replaceWith(p.cloneNode(true));document.getElementById('navigation-receiving-details').open=false;})()");
+  await delay(100);
+  await evaluate("document.getElementById('investigation-search').focus()");
+  await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await wait("document.getElementById('navigation-receiving-details').open && document.activeElement===document.querySelector('#navigation-receiving-panel h2')",'identical replacement has live destination and focus');
+  checks.push({name:'identical panel replacement retains live destination and keyboard focus'});
+  await evaluate("(()=>{const h=document.querySelector('#navigation-receiving-panel h2');h.replaceWith(h.cloneNode(true));})()");
+  await delay(100);
+  await evaluate("document.getElementById('investigation-search').focus()");
+  await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await wait("document.activeElement===document.querySelector('#navigation-receiving-panel h2')",'heading-only replacement and repeated fragment focus');
+  await evaluate("location.hash='#%6eavigation-receiving-panel'");
+  await wait("document.activeElement===document.querySelector('#navigation-receiving-panel h2')",'equivalently encoded fragment reaches heading');
+  const beforeRepeat=await evaluate("({hash:location.hash,length:history.length})");
+  await evaluate("document.getElementById('investigation-search').focus()");
+  await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  assert.equal(await evaluate("document.activeElement===document.querySelector('#navigation-receiving-panel h2')"),true);
+  assert.deepEqual(await evaluate("({hash:location.hash,length:history.length})"),beforeRepeat);
+  checks.push({name:'heading replacement and same-fragment activation focus the live heading'});
+  await evaluate("document.querySelector('#navigation-receiving-panel p').textContent='Receiving-only quartz convection introduction';document.querySelector('#navigation-receiving-panel .eyebrow').textContent='METADATA CORUNDUM'");
+  await delay(100);
+  await search('quartz convection');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),1);
+  await search('receiving-only initial');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),0);
+  await search('corundum');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),1);
+  await search('albite');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),0);
+  await evaluate("(()=>{for(const [selector,text] of [['p','Receiving-only feldspar introduction'],['.eyebrow','METADATA KYANITE']]){const old=document.querySelector('#navigation-receiving-panel '+selector);const node=old.cloneNode(true);node.textContent=text;old.replaceWith(node);}})()");
+  await delay(100);
+  await search('feldspar');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),1);
+  await search('quartz convection');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),0);
+  await search('kyanite');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),1);
+  await search('corundum');assert.equal(await evaluate("document.querySelectorAll('#investigation-results a').length"),0);
+  checks.push({name:'changed and replaced introduction/topic text updates positive and negative search matches'});
+  await search('revised alpine');
   await evaluate("document.getElementById('navigation-receiving-panel').hidden=true");
   await wait("document.querySelectorAll('#investigation-results a').length===0",'hidden tools excluded');
   await evaluate("document.getElementById('navigation-receiving-details').remove()");
