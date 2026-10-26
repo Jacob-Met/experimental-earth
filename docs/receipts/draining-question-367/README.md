@@ -30,3 +30,7 @@ The actual original-file browser upload declares an isolated flat 2×2 site, 36 
 Independent arithmetic gives both early depths as 3 mm rain minus 2 mm intake = 1 mm. At minute 15, 9 mm rain minus the filled stores gives **4 versus 3 mm**. After rain, 36 mm minus those stores gives **31 versus 30 mm**. The maintained product proposes A1 at modeled minute 15, separating the two ±0.1 mm bands.
 
 Changing only the held-aside value from 31 to 30 swaps the surviving explanation and leaves the question identical. Widening calibration uncertainty to ±100 mm withholds a separating question. This is authored numerical receiving of a conditional finite-family question, not measured hydrological accuracy or unique physical identification.
+
+## Concurrent-main refresh
+
+Before merge, maintained main advanced to `fda7d228d5e0b7a9a4d6662e6c8fbcec01f070e4` with an unrelated paired-trend planning change. All five changed source/test paths compose byte-for-byte unchanged. On this complete combination, `npm test` passed **1,232/1,232**, with no skips, and all twelve browser groups passed again. Local receiving commit: `7b4550c627d2830ced834a84b93d51d8ecccbdd0`. Independent source/visual review accepted the five-path change; the latest-main refresh changes no question implementation.
