@@ -109,3 +109,7 @@ no-proposal result and then with band-compatible proposals, real download/fresh
 reopen with method identity, source-preserving draft adoption and ordinary save,
 invalid output/refusal controls and desktop/390px inspection. The earlier browser
 course remains a separate regression of the merged original method.
+
+## Optional combined family
+
+The same consumer can [retain the complete focused family and add complementary sampling](HEAT_COMBINED_BANDS.md), at up to 800 actual evaluations. Every incumbent explanation is preserved. This broadens finite exploration without claiming continuous coverage; original methods remain unchanged.
