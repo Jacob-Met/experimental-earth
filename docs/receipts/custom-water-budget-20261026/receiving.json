@@ -1,0 +1,134 @@
+{
+  "source_base": "4ee5b97f829016ad841afd39206057fbe4f3782a",
+  "issue": "https://github.com/Jacob-Met/experimental-earth/issues/399",
+  "team": "hamon-cdc4174-20261026",
+  "prompt_version": "2026-10-26.6",
+  "date": "2026-10-26",
+  "execution_owner": "node-10dbc406f84a45113b2f175af35500f5",
+  "execution_root": "/home/ubuntu/hamon-work/hamon-cdc4174-earth-20261026",
+  "node": "v22.23.4",
+  "files": {
+    "core.js": {
+      "git_blob": "f3d39e6441ee5d5e960aab88cabb873024702afc",
+      "sha256": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14"
+    },
+    "app.js": {
+      "git_blob": "d4e2ccdc0fbcd3d632fc2688941f75d0ab8025b1",
+      "sha256": "b97a769f4f1bd3da5e4f4cc96e3c9e2e8d827a04bca9631a180c7007ec58dc34"
+    },
+    "index.html": {
+      "git_blob": "f8586508975872305f0990e2bdb965e6ade5f642",
+      "sha256": "97068615c028f2fbca7f7791a903874e91a49e8cddaffa26fe7998086b0af50f"
+    },
+    "local-water-budget.js": {
+      "git_blob": "5874e23b3a2a534d430a67060d66b4478b0d6239",
+      "sha256": "409616b69b210b28d6a77e2d1479a805b1735f8e0994ec4e12899e9e0e095151"
+    },
+    "local-water-budget-panel.js": {
+      "git_blob": "25e595c9463c2687e8a78040795acece1dad4ed5",
+      "sha256": "0b083a964c6213e5599ea0c7b441f4ed72db38d22584a0922248de9b53cb38c7"
+    },
+    "local-water-budget-area.css": {
+      "git_blob": "1c4632031b7f60f48e31e03904c5b1c83e219927",
+      "sha256": "b89f3e6c3f555b1243a539545760ee6aac7298ef7ed33817b977fa5a6af11b0c"
+    },
+    "local-water-budget-study.js": {
+      "git_blob": "f2b0fd1af0c7f4bc72156f6d4bcf3b8a795211ee",
+      "sha256": "cf2c29b6cd35318535a2db469c778512e45484f8da6653352344f99c1a770f88"
+    },
+    "tests/local-water-budget-study.test.mjs": {
+      "git_blob": "17bdad5c5e58db6da9e73966e1d4a28c24a39d7b",
+      "sha256": "1ca02782a1bcccd8a5762aaa4c447f673b435c85ffa3d9c204527905dddfe276"
+    },
+    "tests/custom-water-budget.test.mjs": {
+      "git_blob": "717f1d2ec99b19c416f4d1d5e870e6ed9de28e30",
+      "sha256": "2cc677bd9bb078772ec27e6bb415499bd895228f171a3f36238af06b4bb619bf"
+    },
+    "tests/local-water-budget.receiving.mjs": {
+      "git_blob": "91217a7c6f546ec9eab8fde81dfd9b627465e257",
+      "sha256": "a3d52ffc5c666118adec24760ee35cca4a6f043e42495d44b853925524d9d9a3"
+    },
+    "tests/custom-water-budget.receiving.mjs": {
+      "git_blob": "bbee8b54d3669a6162dd2d340909f07856b4a9ba",
+      "sha256": "c3e8d72700f8891e542fc9ee1d3bbcd986a109a0574162d2653a568dd4ca773b"
+    },
+    "tests/browser.receiving.mjs": {
+      "git_blob": "5295a26b09d09b2e1e92a1b805f9418de91386ba",
+      "sha256": "a375323c1826fd085c2b828207e0f5f431ae63e9b4f4b38599448fdf0023bea2"
+    },
+    "tests/custom-water-budget.browser.mjs": {
+      "git_blob": "8732d121056cced0e01b69a23f95a5a5aed5ee26",
+      "sha256": "a6a2238a146726ddbc7586c8973451ebaf8af624b05e908f1f5f260c832ccdbe"
+    },
+    "docs/CUSTOM_WATER_BUDGET.md": {
+      "git_blob": "0cafc8c1d613473363dc61efba239f087bba418d",
+      "sha256": "ac54129618473c9bdd384e20b6b3177748f4a0ba3f0440ca90469c809486277f"
+    }
+  },
+  "unit": {
+    "command": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "tests": 1305,
+    "passed": 1305,
+    "failed": 0,
+    "test_files": 180,
+    "seconds": 43.01,
+    "operation_id": "hamon-cdc4174-candidate-unit-with-git-001",
+    "local_verification_commit": "1635b05b43587e11c0fd78d67c61ef0d1bef8b5a"
+  },
+  "browser": {
+    "command": "node tests/custom-water-budget.browser.mjs",
+    "chrome_bin": "/opt/google/chrome/chrome",
+    "product": "Chrome/156.0.8078.47",
+    "operation_id": "hamon-cdc4174-custom-browser-003",
+    "scope": "local-and-custom-water-budget",
+    "checks": [
+      "ordinary app entry point mounted both 48-cell grids and the custom-area picker in the maintained sandboxed session",
+      "ordinary Browse investigations link opened the visible water-budget workbench and focused its heading",
+      "local accounting consumer reproduces analytic 15-liter storage reduction per cell",
+      "neighbor/map navigation preserves computed trace and cannot paint the site",
+      "ordinary project reopen and changed rainfall produce fresh accounting without reusing stale results",
+      "coupled courtyard consumer retains incoming water and both directions for four actual neighbors",
+      "edited-area membership is explicit and whole-site crossings cancel while global water losses remain",
+      "regional neighbor navigation returns to a cell; identical plans explicitly have no edited footprint",
+      "computed local-balance table and neighbor controls fit desktop and 390px layouts",
+      "custom area uses the same disconnected cells in both scenarios: native Enter/Space and arrows select A1/B2 without painting under an active raise brush; analytic stored water is 42→12 L",
+      "empty custom area shows no-area with tracing disabled; selecting cells again reuses the current ledger without a new trace",
+      "an ordinary import suspended during File.text is refused after a custom-area edit, preserving the newer saved selection",
+      "ordinary Export creates a portable JSON Blob/download anchor; ordinary Import and reload restore custom scope and membership and recompute the 42→12 L result",
+      "neighbor navigation saves cell scope and retains the authored custom area; weather edits remove stale results and retracing uses the changed rainfall",
+      "390px custom picker and results fit the page; an imported 24-column area scrolls within its picker and keeps native keyboard focus on the far-edge cell after toggling"
+    ],
+    "exceptions": [],
+    "sandbox_admitted": true,
+    "run_directory": "/home/ubuntu/hamon-work/hamon-cdc4174-earth-20261026/browser-custom-003",
+    "cleanup": {
+      "attempted": true,
+      "directChildExited": true,
+      "scope": "launched-direct-child-only",
+      "signals": [
+        "SIGTERM"
+      ]
+    }
+  },
+  "visual_review": {
+    "reviewed_by": "root",
+    "source_run": "browser-custom-001",
+    "product_files_unchanged_for_final_run": true,
+    "observations": [
+      "390px: selected cells, keyboard focus and numerical table readable; no page overflow",
+      "24-column picker: contained horizontal scroll; focused X2 remains visible"
+    ],
+    "images": {
+      "mobile": "edd5d00eedc09e69426997c5f997505b466cfb0212580b1afc804c4069407cee",
+      "wide": "64528d22abc4022f9c4aabb50f84194fc864e661efd758089c628452cc7eb70d"
+    }
+  },
+  "known_full_course_failure": {
+    "candidate_operation": "hamon-cdc4174-candidate-browser-001",
+    "baseline_operation": "hamon-cdc4174-baseline-browser-001",
+    "matched_probe_operation": "hamon-cdc4174-focus-control-001",
+    "finding": "Both baseline and candidate native Tab move from find-infiltration-reading to the legitimate complementary-depth SUMMARY, not immediately to compare-resolution; the full receiver's assumption is stale. Baseline broad run separately stopped earlier on a timing-sensitive imported-row assertion. Broad full browser PASS is not claimed."
+  },
+  "materialization": "All runtime source and tests were verified against upstream Git blob hashes. 123 prior receipt screenshots were omitted from the execution snapshot. Git metadata was initialized as an explicitly local verification snapshot for the existing CLI provenance test; it is not the upstream commit.",
+  "limits": "Authored numerical controls and browser/software behavior, not measured field validation, platform deployment or contest submission."
+}

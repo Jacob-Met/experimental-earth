@@ -65,12 +65,12 @@ export async function receiveLocalWaterBudget({ evaluate, send, delay, report, a
   assert.equal(await evaluate("document.querySelector('#local-budget-scope').value"), 'cell');
   assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellIndex"), neighbor);
   await evaluate("(()=>{const s=document.querySelector('#local-budget-scope');s.value='edited';s.dispatchEvent(new Event('change'));document.querySelector('#copy-existing').click();})()");
-  assert.equal(await evaluate("document.querySelector('#local-budget-status').dataset.state"), 'stale');
-  await evaluate("document.querySelector('#trace-local-budget').click()");
   assert.equal(await evaluate("document.querySelector('#local-budget-status').dataset.state"), 'no-edits');
+  assert.equal(await evaluate("document.querySelector('#trace-local-budget').disabled"), true);
   assert.equal(await evaluate("document.querySelectorAll('#local-budget-results table').length"), 0);
   await evaluate("document.querySelector('#reset').click();document.querySelector('#trace-local-budget').click()");
-  assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellCount"), '6');
+  assert.equal(await evaluate("document.querySelector('#local-budget-scope').value"), 'cell');
+  assert.equal(await evaluate("document.querySelector('#local-budget-results').dataset.cellCount"), '1');
   report.push('regional neighbor navigation returns to a cell; identical plans explicitly have no edited footprint');
 
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
