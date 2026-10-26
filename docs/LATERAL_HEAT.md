@@ -15,7 +15,7 @@ and its source separately. The fictional draft is explicitly an authored
 example. A ground-cell edge does not by itself establish a measured thermal
 connection or its magnitude.
 
-The output shows both cells at every exposure boundary, signed lateral transfer,
+The output shows both cells at every exposure boundary and interior stationary candidate, signed lateral transfer,
 the same models with zero lateral conductance, and proposal-minus-existing final
 temperatures. Expand the cell-energy accounting to inspect incoming energy,
 signed exchange to the ambient reservoir, stored change and each residual.
@@ -30,30 +30,31 @@ absorption A alpha_i I and ambient exchange A h_i (T_i - T_a). The supplied
 edge conductance G produces internal transfer G(T_1 - T_2). That transfer leaves
 one cell and enters the other, so it cancels the total energy balance.
 
-The existing `advanceSurfaceHeat` computes each independent forced step.
-Symmetric splitting applies half of that forcing, an exact passive pair
-exchange, then the remaining forcing half. For the isolated exchange,
+The maintained heat-column spectral propagator integrates the coupled linear
+system analytically over each constant exposure interval. Its new
+`advanceCoupledHeatLayers` entry accepts separate absorbed inputs and ambient
+exchange for both stores; it does not replace the neighbor's absorption with an
+invented reservoir temperature. The existing heat-column, bottom-exchange and
+loss wrappers retain their original arguments, output fields and admission
+limits. Total edge conductance is divided by the declared cell area before
+entering the area-specific kernel.
 
-    reducedCapacity = C1 C2 / (C1 + C2)
-    Q = (T1 - T2) reducedCapacity (1 - exp(-G dt / reducedCapacity))
-    T1_new = T1 - Q / C1
-    T2_new = T2 + Q / C2
+The maintained investigation uses `compareLateralHeatExact`. It reaches each
+exposure boundary directly, with no time-step tuning or split-step work cap.
+It also evaluates every interior stationary candidate from both temperature
+trajectories. The displayed neighbor maximum considers those candidates and
+all boundaries; an asterisk identifies interior candidates in the table. Both
+cells are checked against the model's admitted temperature range at these
+points. Exact here describes the constant-coefficient analytic model solution:
+floating-point evaluation, eigenvalue separation and stationary-time calculations
+are not certified error bounds. A constant trajectory needs no extra interior
+sample to establish its maximum and minimum.
 
-The implementation uses `expm1` and a symmetric ratio form of reduced capacity to preserve
-small transfers. Every forcing boundary is reached exactly; no split straddles
-a forcing change. The input step is a maximum. It is additionally limited so
-that each external decay rate and the pair-exchange decay rate times the step
-is at most 0.25. This prevents two oversized, saturated split steps from giving
-misleadingly similar answers while missing the coupled response. The halved
-comparison uses half that effective step. A preflight work limit refuses stiff,
-long exposures requiring more than 200000 paired steps before any course runs.
-Each complete interval is
-split into equal substeps no larger than it. The reported course uses half the
-effective maximum step, alongside a comparison to that effective step. Maximum
-schedule-boundary temperature disagreement is numerical sensitivity, **not an
-error bound or convergence certification**. Schedule boundaries are samples,
-not a search for interior extrema. The isolated comparison uses the maintained
-exact forced layer response with zero exchange.
+The earlier `compareLateralHeat` split implementation remains available as a
+numerical baseline. It retains its rate-aware step restriction, refinement
+comparison and 200000 paired-step preflight. It is not a fallback for the
+maintained analytic investigation. The zero-conductance comparison uses the
+same two-store analytic model with the internal connection removed.
 
 Each cell's energy residual is input minus ambient exchange minus/plus lateral
 transfer minus stored change. All energies are total joules for the actual
@@ -66,11 +67,19 @@ intervention is outside this first model.
 The declaration retains the complete surface heat study and both original cell
 contexts. A changed cell, metric size, source, layer or exposure invalidates
 comparison. The download contains the original project, raw lateral declaration
-and requested split step, without treating a derived temperature as evidence.
+and the analytic method identifier, without treating a derived temperature as evidence.
 Reopening recomputes against that frozen original project and explicitly labels
 it; it does not replace the working map. **Use current workspace** leaves that
 frozen investigation and returns to the active place. The lateral investigation
 is not included in the ordinary site export; use its dedicated input download.
+
+New downloads use `experimental-earth-lateral-bundle/2` and record method
+`two-forced-stores-spectral/1`. Version 1 original-input files remain readable:
+their physical declarations are explicitly recomputed with the analytic method,
+and their original split-step setting is retained in the next download as
+`originalSplitMaxStepSeconds`. This does not claim byte-identical reproduction
+of the old numerical results. Unknown method identifiers and malformed legacy
+step settings refuse before replacing the current investigation.
 
 ## Qualification and limitations
 
@@ -79,6 +88,17 @@ analytic closed-pair reference, passive equilibration, reverse transfer, zero
 coupling parity with the existing heat consumer, local and total energy balances,
 an unchanged neighbor's response, an independently implemented unsplit RK4
 reference, refinement, area dependence, input custody and work limits.
+
+`node --test tests/lateral-heat-exact.test.mjs` additionally checks all four
+independent matrix-exponential references and energy integrals, old-wrapper
+specialization, independent zero-coupling forced responses, a two-illuminated
+closed pair, a stiff hour previously refused by the split work cap, preserved
+admission/source checks, and semigroup/store-swap identities. The stiff-hour
+control retains a short interior neighbor peak even though its final temperature
+is below its initial temperature. The browser receiving course opens original
+files through the native file input, exports the retained declarations, exercises
+keyboard submission and narrow-screen table navigation, and receives that
+stiff-hour experiment through the maintained interface.
 
 These are authored numerical experiments. They do not establish environmental
 accuracy, actual conductivity, observed spatial temperatures, comfort or safety.
@@ -105,10 +125,10 @@ python3 tests/reference/lateral_heat_matrix.py
 
 The generator prints JSON and does not overwrite the retained oracle. It is an
 optional independent research check; ordinary Node tests need no Python or
-SciPy installation. The native test includes the original temperatures and
-transfer integrals and challenges both splitting resolutions against them.
-Temperature discrepancies are below 0.001 °C for these four authored cases; this
-is qualification of these controls, not a universal accuracy guarantee. The
-large-area case also checks residuals relative to total energy, since a tiny
-temperature rounding difference multiplied by a large heat capacity need not
-produce a universally tiny absolute joule residual.
+SciPy installation. The split baseline tests challenge both splitting resolutions against the
+retained oracle. The analytic tests compare temperatures, signed transfer and
+both ambient-energy integrals directly. The large-area case checks residuals
+relative to total energy, since a tiny temperature rounding difference multiplied
+by a large heat capacity need not produce a universally tiny absolute joule
+residual. These controls qualify the implementation for their declared cases;
+they do not establish a universal floating-point bound or environmental accuracy.
