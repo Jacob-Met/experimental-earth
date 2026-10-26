@@ -28,7 +28,8 @@ import { interpolateDepth } from './infiltration-study.js';
 import { mountInternalBarriers } from './internal-barrier-panel.js';
 import { mountPondingPanel } from './ponding-panel.js';
 import { mountRoutePondingPanel } from './route-ponding-panel.js';
-import { SURFACES, makeExample, validateProject, compare, chooseNextObservation, chooseInfiltrationObservation } from './core.js';
+import { SURFACES, makeExample, validateProject, compare, chooseNextObservation } from './core.js';
+import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
 import { mountInterventionPanel } from './intervention-panel.js';
@@ -51,6 +52,7 @@ let results;
 let toastTimeout;
 let projectRevision = 0;
 let projectImportSerial = 0;
+let infiltrationInquiry;
 
 function notice(message) {
   $('toast').textContent = message;
@@ -63,7 +65,7 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); shadeHeatPanel.refresh(); $('infiltration-reading').textContent='Compare assumed infiltration ranges to find a consequential missing material measurement.'; }
+function rerun() { infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -178,27 +180,11 @@ $('map-view').addEventListener('change',()=>{view=$('map-view').value;draw();});
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
 $('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
-$('suggest-infiltration').addEventListener('click',()=>{
-  const button=$('suggest-infiltration');
-  button.disabled=true;
-  setTimeout(()=>{
-    try{
-      const check=chooseInfiltrationObservation(project,'proposal');
-      if(!check) { notice('Under these storm settings, no evaluated infiltration uncertainty changes the modeled outcome.');return; }
-      project.selectedIndex=check.cellIndex;
-      brush='inspect';
-      for (const el of document.querySelectorAll('[data-brush]')) {
-        const active=el.dataset.brush==='inspect';
-        el.classList.toggle('active',active);
-        el.setAttribute('aria-pressed',String(active));
-      }
-      rerun();
-      $('infiltration-reading').textContent='Check '+nameCell(check.cellIndex)+': the proposed '+SURFACES[check.surface].label.toLowerCase()+' cell was tested from '+check.rangeLowMmHr+'–'+check.rangeHighMmHr+' mm/h assumed infiltration. That single input changes modeled water remaining + exiting by '+numeric(check.impactLiters)+' L. Evaluated '+check.evaluatedCount+'/'+check.totalCount+' cells'+(check.evaluatedCount<check.totalCount?' (heuristic shortlist)':'')+'; these rates are invented example bounds, NOT tested soil properties or statistical confidence limits. A permitted infiltration observation here could help challenge the model. The measured-depth form below is for water depth, not infiltration-rate readings.';
-      // This soil-rate sensitivity must not focus the unrelated water-depth form.
-    }catch(error){notice('Sensitivity unavailable: '+error.message)}
-    finally{button.disabled=false}
-  },20);
-});
+infiltrationInquiry=mountInfiltrationInquiry({getProject:()=>project,selectCell:index=>{
+  project.selectedIndex=index;brush='inspect';
+  for(const el of document.querySelectorAll('[data-brush]')) {const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}
+  rerun();
+}});
 $('observe-form').addEventListener('submit',event=>{
   event.preventDefault();
   const o={cellIndex:project.selectedIndex,minute:Number($('obs-minute').value),depthMm:Number($('obs-depth').value),uncertaintyMm:Number($('obs-uncertainty').value),source:$('obs-source').value.trim(),scenario:$('obs-scenario').value,use:$('obs-use').value};

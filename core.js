@@ -358,11 +358,21 @@ export function chooseNextObservation(project, results) {
  * candidates instead of blocking browser input on 2N full solver runs.
  */
 export function chooseInfiltrationObservation(project, target = 'proposal') {
+  let last;
+  for (const step of infiltrationObservationSteps(project, target, 'shortlist')) last = step;
+  return last?.winner && last.winner.impactLiters > 1e-9
+    ? {...last.winner,evaluatedCount:last.evaluatedCount,totalCount:last.totalCount}
+    : null;
+}
+
+/** Same endpoint experiment and tie rule, with one original cell per yield. */
+export function* infiltrationObservationSteps(project, target = 'proposal', coverage = 'complete') {
   validateProject(project);
   if (target !== 'proposal' && target !== 'existing') throw new Error('Unknown scenario');
+  if (coverage !== 'complete' && coverage !== 'shortlist') throw new Error('Unknown infiltration coverage');
   const cells = project[target], n = cells.length, {width,height,weather} = project;
   const indices = Array.from({length:n},(_,i)=>i);
-  if (n > 96) {
+  if (coverage === 'shortlist' && n > 96) {
     const reference = runRain(cells,width,height,weather);
     const priority = i => {
       const m = SURFACES[cells[i].surface];
@@ -373,6 +383,7 @@ export function chooseInfiltrationObservation(project, target = 'proposal') {
     indices.length = 36;
   }
   let winner = null;
+  let evaluatedCount = 0;
   for(const cellIndex of indices) {
     const surface = cells[cellIndex].surface;
     const m = SURFACES[surface];
@@ -386,10 +397,6 @@ export function chooseInfiltrationObservation(project, target = 'proposal') {
         rangeHighMmHr:m.rangeHighMmHr,impactLiters,
         lowUnabsorbedLiters:lowUnabsorbed,highUnabsorbedLiters:highUnabsorbed};
     }
+    yield {winner,evaluatedCount:++evaluatedCount,totalCount:n,candidateCount:indices.length};
   }
-  // A dry event or a fully absorbing site cannot justify a measurement
-  // based on the tested output; never claim one is informative.
-  return winner && winner.impactLiters > 1e-9
-    ? {...winner,evaluatedCount:indices.length,totalCount:n}
-    : null;
 }
