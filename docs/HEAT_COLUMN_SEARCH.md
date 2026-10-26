@@ -92,3 +92,11 @@ original project import, new inference, all-proposal inspection, actual source-o
 download/reopen, forged-output refusal, changed original evidence, desktop/390px
 rendering, keyboard selection and proposal-to-editable-draft/save/compare. Browser
 screenshots/receipts are execution evidence, not environmental accuracy.
+
+## Complementary original-band mode
+
+The same consumer also offers **Find proposals within original bands**, a separate
+bounded bracket continuation for unequal reading bands. The original
+normalized-residual method and its saved files retain their behavior. See
+[original-band inference](HEAT_COLUMN_BAND_SEARCH.md) for the mechanism, negative
+controls, source-method identity and conditional coverage limits.
