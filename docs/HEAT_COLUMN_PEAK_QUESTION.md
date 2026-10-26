@@ -50,3 +50,8 @@ All values below are authored software/model controls, not acquired physical obs
 - Existing offered-question native and browser courses and the original search/editable-handoff browser course remain regression gates.
 
 Run `node tests/heat-column-peak-range.test.mjs`, `node tests/heat-column-peak-question.test.mjs`, and `node tests/heat-column-question.test.mjs`. The new browser course is `tests/heat-column-peak-question.browser.mjs`; it uses the maintained owned-process sandbox qualification and accepts `CHROME_BIN` and `BROWSER_RUN_DIRECTORY`.
+
+
+## Compare an explicitly available lower sensor
+
+The same complete inferred-family minimax investigation can optionally compare an explicitly available lower-store sensor with its own prospective precision and source association. Legacy surface-only files retain their original interpretation; new dual-channel inputs use method version 2. See [inferred peak channel comparison](HEAT_PEAK_CHANNELS.md) for the workflow, complete-family gain/no-gain controls, source semantics and limitations.
