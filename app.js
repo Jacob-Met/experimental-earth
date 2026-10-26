@@ -16,6 +16,7 @@ import {mountLateralHeat} from './lateral-heat-panel.js';
 import {mountHeatEvidence} from './surface-heat-evidence-panel.js';
 import {mountHeatColumn} from './heat-column-panel.js';
 import {mountHeatColumnEvidence} from './heat-column-evidence-panel.js';
+import {mountHeatColumnTransfer} from './heat-column-transfer-panel.js';
 import { mountStormIntensityPanel } from './storm-intensity-panel.js';
 import { mountWettingFrontPanel } from './wetting-front-panel.js';
 import { mountProposalComponents } from './proposal-components-panel.js';
@@ -294,6 +295,7 @@ const lateralHeatPanel = mountLateralHeat({getProject:()=>project});
 const heatColumnPanel = mountHeatColumn({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 const heatColumnEvidencePanel = mountHeatColumnEvidence({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 const heatColumnSearchPanel = mountHeatColumnSearch({getProject:()=>project,draftAlternative:(h,e)=>heatColumnEvidencePanel.draftAlternative(h,e)});
+mountHeatColumnTransfer({getProject:()=>project});
 const heatColumnQuestionPanel = mountHeatColumnQuestion({getProject:()=>project});
 const sunPathPanel = mountSunPathPanel({getProject:()=>project, notice});
 const wettingFrontPanel = mountWettingFrontPanel({ getProject: () => project,
