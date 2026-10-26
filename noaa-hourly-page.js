@@ -7,7 +7,7 @@ import {checkProjectFileBytes} from './project-portability.js';
 const $=id=>document.getElementById(id),node=(tag,text='')=>{const e=document.createElement(tag);e.textContent=text;return e;};
 const display=value=>Number(value).toLocaleString('en-US',{maximumFractionDigits:5});
 const sampleUrl='https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/2025/CRNH0203-2025-AZ_Tucson_11_W.txt';
-let original=null,accepted=null,generation=0,courseBusy=false,soilPanel=null;
+let original=null,accepted=null,generation=0,courseBusy=false,soilPanel=null,sourceLoadVersion=0;
 $('hypotheses').value=JSON.stringify([60000,80000,160000].map(capacityJm2K=>({label:`Lower capacity ${capacityJm2K} J/(m² K)`,capacityJm2K,conductanceWm2K:20,source:'Offered illustrative capacity with fixed conductance; not fitted to original readings.'})),null,2);
 function retire(message='Draft changed. Compare these original inputs again.'){
  soilPanel?.retire();generation++;accepted=null;$('download').disabled=true;$('results').replaceChildren();$('result-status').textContent=message;$('result-status').dataset.state='not-compared';$('compare').disabled=courseBusy;
@@ -18,28 +18,44 @@ function showSource(){
  $('course-start').textContent=initialInstant()?`The selected course begins at ${initialInstant()}. The point initial temperatures below apply at that instant; they are not inferred from an hourly mean.`:'Select an available original starting row.';
 }
 for(const e of document.querySelectorAll('#investigation-form input,#investigation-form textarea,#investigation-form select'))e.addEventListener('input',()=>{retire();showSource();});
-$('source-url').addEventListener('input',()=>{original=null;coursePicker.reset();retire('Source URL changed. Choose the original file again.');$('source-status').textContent='Choose the original file for this declared URL.';showSource();});
-async function receive(bytes,url,ticket){
- const intake=await receiveHourlyBytes(bytes,{sourceUrl:url});if(ticket!==generation)return false;
- original=intake;$('first-line').value='1';$('hour-count').value=String(Math.min(9,intake.rows.length));$('calibration-count').value=String(Math.min(3,intake.rows.length));
+$('source-url').addEventListener('input',()=>{sourceLoadVersion++;original=null;coursePicker.reset();retire('Source URL changed. Choose the original file again.');$('source-status').textContent='Choose the original file for this declared URL.';showSource();});
+// Only replace an investigation after candidate bytes and source identity pass
+// intake. A later file, archive request, or URL edit invalidates pending work.
+async function adoptSource(intake,ticket,version,{sourceUrl=null,archived=false}={}){
+ if(ticket!==generation||version!==sourceLoadVersion)return false;
+ coursePicker.reset();retire('Original source changed. Compare this course again.');
+ original=intake;if(sourceUrl!==null)$('source-url').value=sourceUrl;
+ $('first-line').value='1';$('hour-count').value=String(Math.min(9,intake.rows.length));$('calibration-count').value=String(Math.min(3,intake.rows.length));
  showSource();await coursePicker.refresh({selectFirst:true});if(original!==intake)return false;
- $('source-status').textContent=`${intake.rows.length} original rows received. Source-only course discovery is complete; inspect availability, exclusions and the explicit model declarations.`;return true;
+ $('source-status').textContent=archived?'Archived nine-row Tucson source received with its exact excerpt digest. Inspect the proposed original course and authored assumptions before comparing.':
+ `${intake.rows.length} original rows received. Source-only course discovery is complete; inspect availability, exclusions and the explicit model declarations.`;
+ return true;
 }
 $('source-file').addEventListener('change',async event=>{
- const file=event.target.files?.[0];if(!file)return;original=null;coursePicker.reset();retire('Reading original source bytes…');$('source-status').textContent='Reading original source bytes…';showSource();const ticket=generation,url=$('source-url').value.trim();
- try{if(file.size>4_000_000)throw Error('Original source exceeds 4,000,000 bytes');await receive(new Uint8Array(await file.arrayBuffer()),url,ticket);}
- catch(error){if(ticket===generation){$('source-status').textContent='Source refused: '+error.message;}}
+ const file=event.target.files?.[0];if(!file)return;
+ const ticket=generation,version=++sourceLoadVersion,url=$('source-url').value.trim();
+ $('source-status').textContent='Checking candidate original source bytes; existing investigation remains available.';
+ try{
+  if(file.size>4_000_000)throw Error('Original source exceeds 4,000,000 bytes');
+  const bytes=new Uint8Array(await file.arrayBuffer());
+  if(ticket!==generation||version!==sourceLoadVersion)return;
+  const intake=await receiveHourlyBytes(bytes,{sourceUrl:url});
+  await adoptSource(intake,ticket,version);
+ }catch(error){if(ticket===generation&&version===sourceLoadVersion)$('source-status').textContent='Source refused; previous investigation preserved: '+error.message;}
  finally{event.target.value='';}
 });
 $('archive-example').onclick=async()=>{
- original=null;coursePicker.reset();retire('Loading archived original source…');$('source-status').textContent='Loading archived original source…';showSource();const ticket=generation;
- try{const response=await fetch('./examples/noaa-tucson-hourly/tucson-hourly-excerpt.txt');if(!response.ok)throw Error('Archived source is unavailable');const bytes=new Uint8Array(await response.arrayBuffer());
+ const ticket=generation,version=++sourceLoadVersion;
+ $('source-status').textContent='Checking archived original source; existing investigation remains available.';
+ try{
+  const response=await fetch('./examples/noaa-tucson-hourly/tucson-hourly-excerpt.txt');
+  if(!response.ok)throw Error('Archived source is unavailable');
+  const bytes=new Uint8Array(await response.arrayBuffer());
+  if(ticket!==generation||version!==sourceLoadVersion)return;
   // This fixed excerpt has a separately documented identity, not the parent-year digest.
   const intake=await receiveHourlyBytes(bytes,{sourceUrl:sampleUrl,expectedSha256:'247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac'});
-  if(ticket!==generation)return;original=intake;$('source-url').value=sampleUrl;$('first-line').value='1';$('hour-count').value='9';$('calibration-count').value='3';
-  showSource();await coursePicker.refresh({selectFirst:true});if(original!==intake)return;
-  $('source-status').textContent='Archived nine-row Tucson source received with its exact excerpt digest. Inspect the proposed original course and authored assumptions before comparing.';
- }catch(error){if(ticket===generation)$('source-status').textContent='Source refused: '+error.message;}
+  await adoptSource(intake,ticket,version,{sourceUrl:sampleUrl,archived:true});
+ }catch(error){if(ticket===generation&&version===sourceLoadVersion)$('source-status').textContent='Source refused; previous investigation preserved: '+error.message;}
 };
 const numeric=id=>{const value=$(id).value.trim();if(!value)throw Error('Fill '+id);const number=Number(value);if(!Number.isFinite(number))throw Error('Use a finite value for '+id);return number;};
 function recipe(){
