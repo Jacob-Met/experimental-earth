@@ -70,6 +70,13 @@
     "ordinary Export creates a portable JSON Blob/download anchor; ordinary Import and reload restore custom scope and membership and recompute the 42→12 L result",
     "neighbor navigation saves cell scope and retains the authored custom area; weather edits remove stale results and retracing uses the changed rainfall",
     "390px custom picker and results fit the page; an imported 24-column area scrolls within its picker and keeps native keyboard focus on the far-edge cell after toggling",
+    "ordinary imported alternating-surface control retains peak/final/surface views; independent native-step depths distinguish local outcomes despite identical whole-site curves",
+    "native range Home/End/arrows and focused previous/next reach exact shared 0/3/6/9/10.3-minute snapshots; drydown is neither peak nor final and endpoint activation is a focused no-op",
+    "time/view navigation makes no storage writes or project changes and preserves notebook/terrain drafts plus the real comparison, notebook, metric and chart nodes",
+    "grid arrows still only move focus in snapshot mode; native Enter applies the active brush, preserves cell focus and invalidates the previously retained comparison",
+    "duration and ordinary project replacement rebind to native snapshots: preserve9, clamp6.6, nearest6 and earlier4 on a 4/8-minute tie",
+    "1280px desktop visibly contains both paired maps and the shared time controls at the exact minute9 analytic drydown; screenshot retained",
+    "390px paired maps and native time controls fit the page with visible range focus; exact minute9 drydown screenshot retained",
     "rain attribution uses the existing source cell, renders both destination grids and preserves model/evidence inputs",
     "retained source timeline reveals the independently established temporary 59.2624 L contribution, initial zero and final zero at matched scenario times",
     "multi-cell source selection persists; ordinary inspection preserves results and changed source inputs require recomputation",
@@ -110,7 +117,7 @@
   "decisionVisuals": [
     {
       "name": "desktop",
-      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/decision-question-desktop.png",
+      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/decision-question-desktop.png",
       "viewport": {
         "width": 1440,
         "height": 1000,
@@ -119,26 +126,26 @@
       "question": "F2 at 70 min in the existing scenario: nearest opposing-pair depth gap 23.078 mm across 3 pairs. The ± tolerance bands of opposing predictions do not overlap. Evaluated 2304 unrecorded points; excluded 0.",
       "predictions": "Less: 1, 10, 20 mm/h. More: 35 mm/h. Equal within numerical tolerance: none.1 mm/h: depth 42.973 mm; proposal minus existing -1,466.1 L edge outflow.10 mm/h: depth 34.406 mm; proposal minus existing -605.6 L edge outflow.20 mm/h: depth 24.716 mm; proposal minus existing -150.27 L edge outflow.35 mm/h: depth 1.638 mm; proposal minus existing 194.9 L edge outflow.",
       "questionRect": {
-        "top": 32.25,
+        "top": 32.046875,
         "left": 354,
         "width": 1030,
         "height": 45,
-        "bottom": 77.25
+        "bottom": 77.046875
       },
       "predictionsRect": {
-        "top": 92.25,
+        "top": 92.046875,
         "left": 354,
         "width": 1030,
         "height": 127.5,
-        "bottom": 219.75
+        "bottom": 219.546875
       },
       "stable": true,
       "frontmost": true,
-      "scrollY": 15206
+      "scrollY": 15242
     },
     {
       "name": "narrow",
-      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/decision-question-narrow.png",
+      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/decision-question-narrow.png",
       "viewport": {
         "width": 390,
         "height": 1000,
@@ -147,60 +154,60 @@
       "question": "F2 at 70 min in the existing scenario: nearest opposing-pair depth gap 23.078 mm across 3 pairs. The ± tolerance bands of opposing predictions do not overlap. Evaluated 2304 unrecorded points; excluded 0.",
       "predictions": "Less: 1, 10, 20 mm/h. More: 35 mm/h. Equal within numerical tolerance: none.1 mm/h: depth 42.973 mm; proposal minus existing -1,466.1 L edge outflow.10 mm/h: depth 34.406 mm; proposal minus existing -605.6 L edge outflow.20 mm/h: depth 24.716 mm; proposal minus existing -150.27 L edge outflow.35 mm/h: depth 1.638 mm; proposal minus existing 194.9 L edge outflow.",
       "questionRect": {
-        "top": 32.265625,
+        "top": 31.65625,
         "left": 46,
         "width": 283,
         "height": 135,
-        "bottom": 167.265625
+        "bottom": 166.65625
       },
       "predictionsRect": {
-        "top": 182.265625,
+        "top": 181.65625,
         "left": 46,
         "width": 283,
         "height": 330,
-        "bottom": 512.265625
+        "bottom": 511.65625
       },
       "stable": true,
       "frontmost": true,
-      "scrollY": 23103
+      "scrollY": 23179
     }
   ],
   "measurementVisuals": [
     {
       "name": "desktop",
-      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/decision-options-desktop.png",
+      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/decision-options-desktop.png",
       "status": "Largest declared band margin: full-boundary collection. A margin above 1 means opposing prediction bands do not overlap; it does not guarantee a real-world decision.",
       "options": "local depth · band margin 5.7694F2, 70 min in the existing scenario. Minimum opposing gap 23.078 mm for ±2 mm tolerance.Inspect modeled predictions1 mm/h → 42.973 mm depth.10 mm/h → 34.406 mm depth.20 mm/h → 24.716 mm depth.35 mm/h → 1.638 mm depth.Prepare depth readingfull-boundary collection · band margin 7.59135–65 min in the existing scenario. Minimum opposing gap 303.64 L for ±20 L tolerance. 43 windows evaluated; 0 overlapping recorded windows excluded.Inspect modeled predictions1 mm/h → 663.54 L (less of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.10 mm/h → 527.46 L (less of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.20 mm/h → 373.43 L (less of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.35 mm/h → 69.787 L (more of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.Prepare collection reading",
       "stable": true,
       "frontmost": true,
-      "top": 23.734375,
-      "bottom": 496.796875,
+      "top": 23.53125,
+      "bottom": 496.59375,
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1425
     },
     {
       "name": "narrow",
-      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/decision-options-narrow.png",
+      "screenshot": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/decision-options-narrow.png",
       "status": "Largest declared band margin: full-boundary collection. A margin above 1 means opposing prediction bands do not overlap; it does not guarantee a real-world decision.",
       "options": "local depth · band margin 5.7694F2, 70 min in the existing scenario. Minimum opposing gap 23.078 mm for ±2 mm tolerance.Inspect modeled predictions1 mm/h → 42.973 mm depth.10 mm/h → 34.406 mm depth.20 mm/h → 24.716 mm depth.35 mm/h → 1.638 mm depth.Prepare depth readingfull-boundary collection · band margin 7.59135–65 min in the existing scenario. Minimum opposing gap 303.64 L for ±20 L tolerance. 43 windows evaluated; 0 overlapping recorded windows excluded.Inspect modeled predictions1 mm/h → 663.54 L (less of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.10 mm/h → 527.46 L (less of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.20 mm/h → 373.43 L (less of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.35 mm/h → 69.787 L (more of the selected proposal outcome). Start: snapshot 35–35 min; end: snapshot 65–65 min.Prepare collection reading",
       "stable": true,
       "frontmost": true,
-      "top": 24.3125,
-      "bottom": 748.1875,
+      "top": 23.703125,
+      "bottom": 747.578125,
       "width": 390,
       "height": 1100,
       "scrollWidth": 375
     }
   ],
-  "completedReloads": 47,
+  "completedReloads": 48,
   "sandbox": {
     "schema": "hamon-chromium-sandbox/v1",
     "qualification": "Linux Chromium status in the supplied isolated CDP page",
     "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
-    "startedAt": "2026-10-26T22:00:29.788Z",
-    "completedAt": "2026-10-26T22:00:29.878Z",
-    "durationMs": 90.42762499999998,
+    "startedAt": "2026-10-26T22:13:32.114Z",
+    "completedAt": "2026-10-26T22:13:32.224Z",
+    "durationMs": 109.53114100000005,
     "admitted": true,
     "browser": {
       "protocolVersion": "1.3",
@@ -210,13 +217,13 @@
       "jsVersion": "15.6.75.19"
     },
     "target": {
-      "targetId": "8B104CBBA56BBBCB67E10EC56CA9BA78",
+      "targetId": "F3FCE497978883250F7B9DD4C566CAE2",
       "type": "page",
       "title": "about:blank",
       "url": "about:blank",
       "attached": true,
       "canAccessOpener": false,
-      "browserContextId": "3687C476EEA39791CBB222C8DC7F0418"
+      "browserContextId": "F996184D106BF4460E8D1C7537BD4BD5"
     },
     "url": "chrome://sandbox/",
     "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
@@ -243,17 +250,17 @@
     },
     "failure": null
   },
-  "sandboxPath": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/sandbox.json",
+  "sandboxPath": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/sandbox.json",
   "session": {
     "schema": "hamon.chromium-session.v1",
     "status": "course-completed",
-    "startedAt": "2026-10-26T22:00:29.611Z",
+    "startedAt": "2026-10-26T22:13:31.909Z",
     "executable": "/opt/google/chrome/chrome",
-    "runDirectory": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser",
-    "profileDirectory": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/profile",
-    "stdoutFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/stdout.bin",
-    "stderrFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/stderr.bin",
-    "receiptFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/session.json",
+    "runDirectory": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser",
+    "profileDirectory": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/profile",
+    "stdoutFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/stdout.bin",
+    "stderrFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/stderr.bin",
+    "receiptFile": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/session.json",
     "sandbox": "not-assessed",
     "limits": {
       "startupMs": 15000,
@@ -277,14 +284,14 @@
       "--disable-background-networking",
       "--remote-debugging-address=127.0.0.1",
       "--remote-debugging-port=0",
-      "--user-data-dir=/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/profile",
+      "--user-data-dir=/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/profile",
       "about:blank"
     ],
-    "pid": 641492,
-    "cdpUrl": "http://127.0.0.1:36153",
-    "browserWebSocketUrl": "ws://127.0.0.1:36153/devtools/browser/67a493ad-d29b-4de8-a93b-0704da3f10ec",
+    "pid": 682950,
+    "cdpUrl": "http://127.0.0.1:39019",
+    "browserWebSocketUrl": "ws://127.0.0.1:39019/devtools/browser/f42ac343-ed9e-4a64-8d86-e4d3cb6e9127",
     "browserVersion": "Chrome/156.0.8078.47",
-    "readyAt": "2026-10-26T22:00:29.759Z",
+    "readyAt": "2026-10-26T22:13:32.083Z",
     "exit": {
       "code": 0,
       "signal": null
@@ -292,15 +299,15 @@
     "logsComplete": true,
     "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
     "stdout": {
-      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/stdout.bin",
+      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/stdout.bin",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "stderr": {
-      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-current-full-browser/stderr.bin",
+      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-full-browser/stderr.bin",
       "bytes": 5420,
-      "sha256": "d70bc554a405f622b50fce3982124fd2d5d5a767dc3b6b878585fc0b380cdbce"
+      "sha256": "6788e090500f7ce2837d332e2ff565ae20ca16322e4a20b3be171b68f26ee9c1"
     },
-    "finishedAt": "2026-10-26T22:01:37.958Z"
+    "finishedAt": "2026-10-26T22:14:43.631Z"
   }
 }

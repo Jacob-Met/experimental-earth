@@ -1,6 +1,6 @@
 # Preserve the target of an unfinished observation
 
-Issue: [#398](https://github.com/Jacob-Met/experimental-earth/issues/398). Current composition base: `fe22a7752cfb4049097aac05a375db1d141ccd68`. Execution owner: `coord4`, through the retained root team's Renpō route.
+Issue: [#398](https://github.com/Jacob-Met/experimental-earth/issues/398). Current main base: `c5ea614862391e447abf930720f0f68b147562eb`. Qualified GitHub test merge for [PR407](https://github.com/Jacob-Met/experimental-earth/pull/407): `c1677cd6319cde2e594cd061c4d8edc973da47b6`, tree `a279e209140df271e85ac6df69757df45d07946d`. Execution owner: `coord4`, through the retained root team's Renpō route.
 
 ## Defect and change
 
@@ -8,32 +8,34 @@ An unfinished A1 depth/source survived ordinary grid selection, while submission
 
 The controller clears **unsaved depth and source** when the selected cell or active project object changes, and when Suggest changes the target cell or minute. A persistent live status explains the retirement. Ordinary same-cell grid inspection, arrow-key focus without selection, and deliberate form edits preserve the draft. Accepted observations are unchanged. Existing observation-map preparation retains its prior explicit clearing behavior; project replacement conservatively clears a draft even at the same cell.
 
-PR401's water-budget callback and stylesheet are preserved. There is no scientific-model or observation-schema change.
+PR401's water-budget callback and stylesheet are preserved. Upstream [PR406](https://github.com/Jacob-Met/experimental-earth/pull/406) adds map-time inspection: its view/range/Previous/Next controls preserve the same project, selected cell and observation-form time, so unfinished readings remain intact. Actual grid selection still reaches the draft-retirement guard. These complementary behaviors were received together, including the upstream map-time course. #398 changes no scientific model or observation schema.
 
 ## Exact qualified source
 
 | File | SHA256 |
 | --- | --- |
-| `app.js` | `a1bfa027d458045f809454c0ba3ae0f64c1a2fbdff2f4cfecb447ce2521c3164` |
-| `index.html` | `ec3d7414adf3d2299c3b1bccff4868a5fd06ef8c5ff033b9d4df43ccec398c68` |
+| `app.js` | `25cca2e7f923bf3377bdd47aab486a5caa0da36c487b9d811e0c875c8526d6f3` |
+| `index.html` | `c5afd93919ff4b40e1e1e9d8ead4dc9da39e2c8f7a287936991b9ff9bbf44dd9` |
 | `tests/observation-draft.browser.mjs` | `27404089885a656e8281241885f9182c8ac39382785b68dbb693897caffefe7f` |
 
-All six upstream PR404 files were received at their exact Git blob identities into the candidate copy. They change browser receiving/documentation, not this production code or the native-test source. The local receiving Git metadata is distinct from the upstream commit. Some historical receipt assets were omitted from the execution copy; runtime assets were checked separately.
+The exact composed tree was received with 1,242 present Git blobs and zero mismatches; 129 historical documentation assets were omitted from the execution copy. Runtime assets were checked through the documented server. The local receiving Git metadata is distinct from the upstream/test-merge identities. The earlier PR404 browser fixes and PR406 map-time implementation are preserved.
 
 ## Current qualification
 
-- **Full maintained browser course: 98/98 passed** on the `fe22a775` composition.
+- **Full maintained browser course: 105/105 passed** on the exact composed test merge, including PR406's map-time receiving.
 - **Focused observation course: 8/8 passed** on the same composition. Both browser sessions admitted the sandbox and reported no runtime exceptions.
-- **Native: 1,305/1,305 passed; maintained launch: 321 exact served JS/CSS/index assets.** These results are retained from the preceding composition, because production and native-test sources are unchanged by the upstream browser/docs-only update. They are not represented as newly rerun native checks.
+- **Fresh native: 1,305/1,305 passed. Fresh maintained launch: 322 exact served JS/CSS/index assets**, including the new map-snapshot stylesheet, through documented `npm run serve`.
 - **Actual consumer:** native keyboard selection retires an A1 draft before it can become B1 evidence. Fresh explicit B1 evidence reaches the displayed B1 calibration residuals. The authored reading returns `calibration-rejected`, a valid negative result rather than a claim of model or field validation.
 - **Portable evidence:** ordinary Export completes a real 11,562-byte disk download. The exact disk bytes reopen after clearing browser storage and reloading the runtime, preserving B1 value, source and role. Download SHA256: `227c95744002c54f7d94a5ecdd88420cf59041783bf121b7f11dc37bef371117`.
-- **Actual pixels and viewport receiving:** the current 390 × 844 screenshot was inspected; selected cell, cleared depth/source and the complete retirement message are visible. The course requires four unobscured rectangles stable across 80 ms-separated observations before capture. Current recorded status bounds are y392.5625–451.953125; document width remains 390. A late out-of-view scroll is corrected before qualification. Current PNG SHA256: `2d1403319ed6e878517d81577e380e61ce0c2b379bb105f149ad9ce57b0d25c4`. Older screenshot hashes are not substituted for it.
+- **Actual pixels and viewport receiving:** the current 390 × 844 screenshot was inspected; selected cell, cleared depth/source and the complete retirement message are visible. The course requires four unobscured rectangles stable across 80 ms-separated observations before capture. Current recorded status bounds are y391.953125–451.34375; document width remains 390. A late out-of-view scroll is corrected before qualification. Current PNG SHA256: `b825f6b22d65122f6cf36a44eeaaa686b4f372a6bab1f90de8eb4dc7ab85361f`. Older screenshot hashes are not substituted for it.
 
 Current receipts: [qualification manifest](qualification.json), [full browser](maintained-browser-receipt.json), [focused browser](browser-receipt.json), [native test tail](native-test-tail.txt), and [current screenshot](observation-draft-mobile.png). Original remote receipt bytes are retained.
 
-The current browser operation is `e225224-earth-current-receiving-01` on `coord4`, terminal exit 0. Its full 98-check result and focused 8-check result supersede the historical browser qualification limit below.
+The current operation is `e225224-earth407-composed-receive-01` on `coord4`, terminal exit 0. Its fresh native/served-asset checks, full 105-check browser result and focused 8-check result qualify the composed tree; both browser sessions admitted the sandbox and reported empty runtime-exception lists.
 
 ## Preserved negative and failed controls
+
+The preceding `fe22a7752cfb4049097aac05a375db1d141ccd68` phase passed 98 full-browser and eight focused checks under `e225224-earth-current-receiving-01`. At that phase, 1,305 native checks and 321 served assets were correctly carried from unchanged production/native-test source. The current composition reran those checks freshly and received the added map-time feature. Earlier phase records remain historical evidence.
 
 The [negative control](baseline-defect.json) used unchanged main `2447048f9022bdbeddbc6e9d60cc3b70538eeca6` with the same pinned receiver and `EARTH_DRAFT_BASELINE=1`. It returned semantic result `BASELINE_DEFECT_CONFIRMED`, with sandbox admission and no runtime exceptions. Exit 0 means successful defect detection, not correct product behavior. Unchanged application pins were:
 

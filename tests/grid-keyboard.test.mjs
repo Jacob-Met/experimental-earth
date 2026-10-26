@@ -39,9 +39,12 @@ test('nonarrow keys never navigate and invalid/source-inconsistent geometry is r
 });
 
 function mountGrid(currentSource = source) {
-  const begin = currentSource.indexOf('function gridInto(target, result) {');
-  const end = currentSource.indexOf('function metric(',begin);
-  assert.ok(begin >= 0 && end > begin, 'exercise actual maintained grid renderer');
+  const declaration = /^function gridInto\([^)]*\)\s*\{/m.exec(currentSource);
+  assert.ok(declaration, 'exercise actual maintained grid renderer');
+  const begin = declaration.index, bodyStart = begin + declaration[0].length;
+  const nextFunction = /^function\s+[\w$]+\s*\(/m.exec(currentSource.slice(bodyStart));
+  assert.ok(nextFunction, 'extract only the renderer before the next top-level function');
+  const end = bodyStart + nextFunction.index;
   const grids = {existing: makeGrid(), proposal: makeGrid()};
   const document = {
     activeElement: null,
@@ -75,7 +78,7 @@ function mountGrid(currentSource = source) {
 }
 
 function makeGrid() {
-  return {style:{gridTemplateColumns:''},buttons:[],
+  return {style:{gridTemplateColumns:''},dataset:{},buttons:[],
     querySelector(selector) {
       const match = selector.match(/^\[data-cell-index="(\d+)"\]$/);
       assert.ok(match,selector);
@@ -143,7 +146,10 @@ test('selecting a focused cell rerenders and restores focus to its new original 
 
 test('visible instructions explain deliberate activation and both map groups are described', () => {
   assert.match(page,/id="grid-keyboard-help"/);
-  assert.match(page,/id="existing-grid"[^>]*aria-describedby="grid-keyboard-help"/);
-  assert.match(page,/id="proposal-grid"[^>]*aria-describedby="grid-keyboard-help"/);
+  for (const id of ['existing-grid', 'proposal-grid']) {
+    const described = page.match(new RegExp(`id="${id}"[^>]*aria-describedby="([^"]*)"`));
+    assert.ok(described, `${id} must have a description`);
+    assert.ok(described[1].split(/\s+/).includes('grid-keyboard-help'), `${id} must retain keyboard instructions`);
+  }
   assert.match(page,/arrows alone do not edit either site/);
 });

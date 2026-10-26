@@ -51,6 +51,7 @@ try { project = validateProject(JSON.parse(localStorage.getItem(storeKey))); }
 catch { project = makeExample(); }
 let brush = 'inspect';
 let view = 'peak';
+let mapSnapshotMinute = 0;
 let results;
 let toastTimeout;
 let projectRevision = 0;
@@ -99,18 +100,23 @@ function applyBrush(target, index) {
   }
   rerun();
 }
-function gridInto(target, result) {
+function gridInto(target, result, snapshotIndex) {
   const el=$(`${target}-grid`);el.style.gridTemplateColumns=`repeat(${project.width},minmax(0,1fr))`;const fragment=document.createDocumentFragment();
+  el.dataset.view = view;
+  if (view === 'snapshot') el.dataset.minute = String(result.snapshots[snapshotIndex].minute);
+  else delete el.dataset.minute;
   for (let index=0;index<project[target].length;index++) {
     const cell=project[target][index];
-    const mm=view==='peak'?result.peakDepthMm[index]:view==='final'?result.finalDepthMm[index]:0;
+    const mm=view==='peak'?result.peakDepthMm[index]:view==='final'?result.finalDepthMm[index]:view==='snapshot'?result.snapshots[snapshotIndex].depthsMm[index]:0;
     const waterAlpha = view==='surface' ? 0 : Math.min(0.66,mm/50*0.65);
     const btn=document.createElement('button'); btn.type='button';btn.className=`cell ${index===project.selectedIndex?'selected':''}`;
-    btn.setAttribute('aria-label',`${target} cell ${nameCell(index)}, ${SURFACES[cell.surface].label}, elevation ${numeric(cell.elevationM)} meters, modeled ${numeric(mm)} millimeters ${view} depth`);
+    const depthContext = view === 'snapshot' ? `depth at ${result.snapshots[snapshotIndex].minute} minutes after event start` : `${view} depth`;
+    btn.setAttribute('aria-label',`${target} cell ${nameCell(index)}, ${SURFACES[cell.surface].label}, elevation ${numeric(cell.elevationM)} meters, modeled ${numeric(mm)} millimeters ${depthContext}`);
     btn.style.background=SURFACES[cell.surface].color;
     btn.style.setProperty('--water-alpha',String(waterAlpha));
     btn.dataset.cellIndex=String(index);
     btn.dataset.grid=target;
+    if (view !== 'surface') btn.dataset.depthMm = String(mm);
     const depthLabel=view==='surface' ? `${Math.round(cell.elevationM*100)} cm` : `${numeric(mm)} mm`;
     btn.innerHTML=`<i class="water"></i><b>${nameCell(index)}</b><span>${depthLabel}</span>`;
     for (const side of ['east', 'south']) if (cell.internalBarriers?.[side]?.closed || typeof cell.internalBarriers?.[side]?.crestElevationM === 'number') {
@@ -138,6 +144,49 @@ function gridInto(target, result) {
     });fragment.appendChild(btn);
   }
   el.replaceChildren(fragment);
+}
+function drawMaps() {
+  const snapshots = results.existing.snapshots;
+  // Preserve the nearest retained time after new results, with earlier ties.
+  // The range selects indexes, so fractional final intervals remain reachable.
+  let snapshotIndex = 0;
+  for (let i = 1; i < snapshots.length; i++) {
+    if (Math.abs(snapshots[i].minute - mapSnapshotMinute) < Math.abs(snapshots[snapshotIndex].minute - mapSnapshotMinute)) snapshotIndex = i;
+  }
+  mapSnapshotMinute = snapshots[snapshotIndex].minute;
+  const time = `${mapSnapshotMinute} minutes after event start`;
+  $('map-snapshot-controls').hidden = view !== 'snapshot';
+  const range = $('map-snapshot-index');
+  range.max = String(snapshots.length - 1); range.value = String(snapshotIndex);
+  range.setAttribute('aria-valuetext', `${time}, snapshot ${snapshotIndex + 1} of ${snapshots.length}`);
+  $('map-snapshot-time').textContent = `${mapSnapshotMinute} min · snapshot ${snapshotIndex + 1} of ${snapshots.length}`;
+  // Keep a focused endpoint control in place; unavailable moves are no-ops.
+  $('map-snapshot-prev').setAttribute('aria-disabled', String(snapshotIndex === 0));
+  $('map-snapshot-next').setAttribute('aria-disabled', String(snapshotIndex === snapshots.length - 1));
+  $('map-view-context').textContent = view === 'snapshot' ?
+    `Both maps show the same retained model snapshot, ${time}. Blue depth shading uses the same scale in both scenarios; no interpolation is applied.` :
+    view === 'peak' ? 'Each cell shows its own modeled peak during the event. These peaks can occur at different times; they are not one simultaneous water map.' :
+    view === 'final' ? `Both maps show final modeled depth at ${snapshots.at(-1).minute} minutes after event start.` :
+    'Both maps show the declared surfaces and elevations; water-depth shading is hidden.';
+  const focused = document.activeElement?.closest('#existing-grid .cell, #proposal-grid .cell');
+  const focusedGrid = focused?.dataset.grid, focusedIndex = focused?.dataset.cellIndex;
+  gridInto('existing', results.existing, snapshotIndex);
+  gridInto('proposal', results.proposal, snapshotIndex);
+  if (focused) {
+    const grid = $(`${focusedGrid}-grid`), destination = grid.querySelector(`[data-cell-index="${focusedIndex}"]`);
+    if (destination) {
+      for (const cell of grid.children) cell.tabIndex = cell === destination ? 0 : -1;
+      destination.focus({ preventScroll: true });
+    }
+  }
+}
+function showMapSnapshot(index) {
+  const snapshots = results.existing.snapshots;
+  const next = Math.max(0, Math.min(snapshots.length - 1, Math.trunc(Number(index)) || 0));
+  if (snapshots[next].minute === mapSnapshotMinute) return;
+  mapSnapshotMinute = snapshots[next].minute;
+  // View-only changes preserve physics, saved state and unfinished readings.
+  drawMaps();
 }
 function metric(title,a,b,unit,desirable='low') {
   const delta=b-a;
@@ -197,7 +246,7 @@ function draw() {
   const a=results.existing,b=results.proposal;
   $('site-area').textContent=`${project.width*project.weather.cellSizeM} × ${project.height*project.weather.cellSizeM} m site`;
   $('storm-total').textContent=`${numeric(a.rainLiters)} L hypothetical rain`;
-  gridInto('existing',a);gridInto('proposal',b);
+  drawMaps();
   $('metrics').innerHTML=metric('Water leaving modeled edges',a.exitLiters,b.exitLiters,'L')+metric('Water infiltrated',a.absorbedLiters,b.absorbedLiters,'L','high')+metric('Peak standing water',a.peakPondingLiters,b.peakPondingLiters,'L')+metric('Final stored water',a.storedLiters,b.storedLiters,'L')+metric('Cells ever ≥ 10 mm',a.cellsOver10Mm,b.cellsOver10Mm,'cells')+metric('Maximum cell water depth',a.maxDepthMm,b.maxDepthMm,'mm');
   $('balance').innerHTML=`<strong>Mass balance (both scenarios)</strong> · rain = infiltrated + edge outflow + water still stored. Rounding residual: existing ${numeric(Math.abs(a.massErrorLiters))} L; proposal ${numeric(Math.abs(b.massErrorLiters))} L. These are accounting checks, not field validation.`;
   chart();observations();
@@ -210,7 +259,10 @@ for(const [id,key] of [['rain','rainMmHr'],['storm','stormMinutes'],['duration',
 }
 $('project-title').addEventListener('change',()=>{const n=$('project-title').value.trim();project.title=n||'Untitled site';rerun();});
 $('brushes').addEventListener('click',event=>{const b=event.target.closest('[data-brush]');if(!b)return;brush=b.dataset.brush;for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush===brush;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}});
-$('map-view').addEventListener('change',()=>{view=$('map-view').value;draw();});
+$('map-view').addEventListener('change',()=>{view=$('map-view').value;drawMaps();});
+$('map-snapshot-index').addEventListener('input',event=>showMapSnapshot(event.target.value));
+$('map-snapshot-prev').addEventListener('click',()=>showMapSnapshot(Number($('map-snapshot-index').value)-1));
+$('map-snapshot-next').addEventListener('click',()=>showMapSnapshot(Number($('map-snapshot-index').value)+1));
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
 $('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;if(s.cellIndex!==project.selectedIndex || s.minute!==Number($('obs-minute').value)) clearObservationDraft('The suggested measurement changed the target cell or time.');project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});

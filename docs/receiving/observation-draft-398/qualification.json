@@ -1,23 +1,156 @@
 {
-  "schema": "experimental-earth.observation-draft-receiving.v2",
+  "schema": "experimental-earth.observation-draft-receiving.v3",
   "issue": 398,
-  "base_commit": "fe22a7752cfb4049097aac05a375db1d141ccd68",
-  "source_verification": {
-    "base": "2447048f9022bdbeddbc6e9d60cc3b70538eeca6",
-    "matched": 1224,
-    "missing_historical_docs": 127,
-    "mismatched": []
-  },
+  "base_commit": "c5ea614862391e447abf930720f0f68b147562eb",
+  "qualified_test_merge": "c1677cd6319cde2e594cd061c4d8edc973da47b6",
+  "qualified_tree": "a279e209140df271e85ac6df69757df45d07946d",
   "execution_owner": "node-10dbc406f84a45113b2f175af35500f5",
-  "operations": {
-    "native_and_serve": "e225224-earth-release-verify-01",
-    "unchanged_main_comparison_and_stable_focused_browser": "e225224-earth-browser-reconcile-01",
-    "current_main_draft_negative": "e225224-earth-current-draft-negative-01",
-    "current_full_and_focused_browser": "e225224-earth-current-receiving-01"
+  "operation_id": "e225224-earth407-composed-receive-01",
+  "source_verification": {
+    "test_merge": "c1677cd6319cde2e594cd061c4d8edc973da47b6",
+    "tree": "a279e209140df271e85ac6df69757df45d07946d",
+    "matched": 1242,
+    "missing_historical_docs": [
+      "docs/CUSTOM_WATER_BUDGET.md",
+      "docs/receipts/99b09-128-20261024/desktop.png",
+      "docs/receipts/99b09-128-20261024/narrow.png",
+      "docs/receipts/absent-material-20261024/desktop.png",
+      "docs/receipts/absent-material-20261024/mobile.png",
+      "docs/receipts/bottom-evidence-76dca340/desktop.png",
+      "docs/receipts/bottom-evidence-76dca340/narrow.png",
+      "docs/receipts/bottom-heat-76dca340/bottom-desktop.png",
+      "docs/receipts/bottom-heat-76dca340/bottom-narrow.png",
+      "docs/receipts/changing-exchange-1d6c/desktop-results.png",
+      "docs/receipts/changing-exchange-1d6c/desktop.png",
+      "docs/receipts/changing-exchange-1d6c/narrow-results.png",
+      "docs/receipts/changing-exchange-1d6c/narrow.png",
+      "docs/receipts/common-clock-conflict-e794/desktop.png",
+      "docs/receipts/common-clock-conflict-e794/narrow.png",
+      "docs/receipts/common-clock-e794/desktop.png",
+      "docs/receipts/common-clock-e794/narrow.png",
+      "docs/receipts/custom-water-budget-20261026/README.md",
+      "docs/receipts/custom-water-budget-20261026/receiving.json",
+      "docs/receipts/custom-water-budget-20261026/wide-picker.png",
+      "docs/receipts/decision-depth-pair-1d6c/desktop.png",
+      "docs/receipts/decision-depth-pair-1d6c/narrow.png",
+      "docs/receipts/depth-offset-3425640f/desktop.png",
+      "docs/receipts/depth-offset-3425640f/narrow.png",
+      "docs/receipts/depth-offset-question-20261025/desktop.png",
+      "docs/receipts/depth-offset-question-20261025/narrow.png",
+      "docs/receipts/depth-threshold-20261024/desktop.png",
+      "docs/receipts/depth-threshold-20261024/mobile.png",
+      "docs/receipts/draining-question-367/question-desktop.png",
+      "docs/receipts/draining-question-367/question-narrow.png",
+      "docs/receipts/hamon-0f1e0ab3-longwave-portability/narrow.png",
+      "docs/receipts/heat-average-question-551724dc/desktop.png",
+      "docs/receipts/heat-average-question-551724dc/narrow.png",
+      "docs/receipts/heat-column-20261024/column-desktop.png",
+      "docs/receipts/heat-column-20261024/column-ledger-narrow.png",
+      "docs/receipts/heat-column-20261024/column-narrow.png",
+      "docs/receipts/heat-column-average-20261024/column-average-desktop.png",
+      "docs/receipts/heat-column-average-20261024/column-average-input-narrow.png",
+      "docs/receipts/heat-column-average-20261024/column-average-narrow.png",
+      "docs/receipts/heat-column-average-20261024/column-average-noaa-desktop.png",
+      "docs/receipts/heat-column-average-20261024/column-average-noaa-narrow.png",
+      "docs/receipts/heat-column-average-20261024/column-average-noaa-sources.png",
+      "docs/receipts/heat-column-evidence-20261024/column-evidence-desktop.png",
+      "docs/receipts/heat-column-evidence-20261024/column-evidence-narrow.png",
+      "docs/receipts/heat-column-evidence-20261024/column-evidence-peaks-narrow.png",
+      "docs/receipts/joint-terrain-c11405/initial-joint-pixels/joint-desktop.png",
+      "docs/receipts/joint-terrain-c11405/initial-joint-pixels/joint-mobile.png",
+      "docs/receipts/joint-terrain-c11405/joint-browser-composed-v1/joint-desktop.png",
+      "docs/receipts/joint-terrain-c11405/joint-browser-composed-v1/joint-mobile.png",
+      "docs/receipts/lateral-exact-7ce19039/narrow.png",
+      "docs/receipts/lateral-exact-7ce19039/stiff-hour.png",
+      "docs/receipts/lateral-heat-7ce19039/declaration-desktop.png",
+      "docs/receipts/lateral-heat-7ce19039/narrow-results.png",
+      "docs/receipts/lateral-heat-7ce19039/narrow.png",
+      "docs/receipts/lateral-heat-7ce19039/results-desktop.png",
+      "docs/receipts/measured-change-56bd8a/panel-1280.png",
+      "docs/receipts/measured-change-56bd8a/panel-390.png",
+      "docs/receipts/observation-clock-4f4650/desktop-preview.png",
+      "docs/receipts/observation-clock-4f4650/full-app.png",
+      "docs/receipts/observation-consistency-20261024/contradictory-mobile.png",
+      "docs/receipts/observation-consistency-20261024/contradictory.png",
+      "docs/receipts/observation-consistency-20261024/desktop.png",
+      "docs/receipts/observation-consistency-20261024/mobile.png",
+      "docs/receipts/observation-map-20261024/desktop.png",
+      "docs/receipts/observation-map-20261024/mobile.png",
+      "docs/receipts/observation-stations-4f4650/desktop.png",
+      "docs/receipts/observation-stations-4f4650/narrow.png",
+      "docs/receipts/observed-range-0381/desktop.png",
+      "docs/receipts/observed-range-0381/narrow.png",
+      "docs/receipts/observed-water-account-0381/narrow-account.png",
+      "docs/receipts/observed-water-account-0381/narrow-form.png",
+      "docs/receipts/observed-water-partial-0381/narrow-account.png",
+      "docs/receipts/observed-water-partial-0381/narrow-source-form.png",
+      "docs/receipts/original-rate-events-b56d209b-narrow.png",
+      "docs/receipts/outlet-resolution-narrow-b56d209b.png",
+      "docs/receipts/outlet-table-b56d209b-narrow.png",
+      "docs/receipts/paired-mean-378/means-1280.png",
+      "docs/receipts/paired-mean-378/means-390.png",
+      "docs/receipts/paired-series-56bd8a/series-1280.png",
+      "docs/receipts/paired-series-56bd8a/series-390.png",
+      "docs/receipts/paired-shift-planning-70fa/shift-planning-1280.png",
+      "docs/receipts/paired-shift-planning-70fa/shift-planning-390.png",
+      "docs/receipts/paired-trend-onset-70fa/onset-1280.png",
+      "docs/receipts/paired-trend-onset-70fa/onset-390.png",
+      "docs/receipts/paired-trend-response-70fa/response-1280.png",
+      "docs/receipts/paired-trend-response-70fa/response-390.png",
+      "docs/receipts/paired-trend-shift-70fa/shift-1280.png",
+      "docs/receipts/paired-trend-shift-70fa/shift-390.png",
+      "docs/receipts/paired-trends-56bd8a/trends-1280.png",
+      "docs/receipts/paired-trends-56bd8a/trends-390.png",
+      "docs/receipts/placement-duration-a08b/desktop.png",
+      "docs/receipts/placement-duration-a08b/mobile.png",
+      "docs/receipts/placement-resolution-20261024/desktop.png",
+      "docs/receipts/placement-resolution-20261024/mobile.png",
+      "docs/receipts/placement-search-20261024/desktop.png",
+      "docs/receipts/placement-search-20261024/mobile.png",
+      "docs/receipts/placement-targets-20261024/desktop.png",
+      "docs/receipts/placement-targets-20261024/mobile.png",
+      "docs/receipts/rain-sensible-4f4650/desktop.png",
+      "docs/receipts/rain-sensible-4f4650/narrow-energy.png",
+      "docs/receipts/rain-sensible-4f4650/narrow.png",
+      "docs/receipts/reading-time-windows-e794/desktop.png",
+      "docs/receipts/reading-time-windows-e794/narrow.png",
+      "docs/receipts/receiving-proposals-374/proposal-desktop.png",
+      "docs/receipts/receiving-proposals-374/proposal-narrow.png",
+      "docs/receipts/shared-ground-c11405/desktop.png",
+      "docs/receipts/shared-ground-c11405/mobile.png",
+      "docs/receipts/shared-observed-e95e/narrow-authored.png",
+      "docs/receipts/solar-occlusion-20261024/desktop.png",
+      "docs/receipts/solar-occlusion-20261024/mobile.png",
+      "docs/receipts/storm-consequences-53ba6b8e/desktop.png",
+      "docs/receipts/storm-consequences-53ba6b8e/mobile.png",
+      "docs/receipts/sustained-connection-e95e7-20261025/desktop.png",
+      "docs/receipts/sustained-connection-e95e7-20261025/narrow.png",
+      "docs/receipts/terrain-sensitivity-c11405/desktop-current2.png",
+      "docs/receipts/terrain-sensitivity-c11405/interior-five-mobile.png",
+      "docs/receipts/terrain-sensitivity-c11405/mobile-current2.png",
+      "docs/receipts/threshold-intervention-53ba6b8e/desktop.png",
+      "docs/receipts/threshold-intervention-53ba6b8e/narrow.png",
+      "docs/receipts/threshold-transfer-53ba6b8e/desktop.png",
+      "docs/receipts/threshold-transfer-53ba6b8e/narrow.png",
+      "docs/receipts/trend-continuation-70fa/continuation-1280.png",
+      "docs/receipts/trend-continuation-70fa/continuation-390.png",
+      "docs/receipts/trend-region-70fa/region-1280.png",
+      "docs/receipts/trend-region-70fa/region-390.png",
+      "docs/receipts/unpartitioned-means-379/desktop.png",
+      "docs/receipts/unpartitioned-means-379/narrow.png",
+      "docs/receipts/rain-map-time-20261026/rain-map-time-desktop-1280.png",
+      "docs/receipts/rain-map-time-20261026/rain-map-time-mobile-390.png"
+    ],
+    "mismatches": [],
+    "source_sha256": {
+      "app.js": "25cca2e7f923bf3377bdd47aab486a5caa0da36c487b9d811e0c875c8526d6f3",
+      "index.html": "c5afd93919ff4b40e1e1e9d8ead4dc9da39e2c8f7a287936991b9ff9bbf44dd9",
+      "tests/observation-draft.browser.mjs": "27404089885a656e8281241885f9182c8ac39382785b68dbb693897caffefe7f"
+    }
   },
   "source": {
-    "app.js": "a1bfa027d458045f809454c0ba3ae0f64c1a2fbdff2f4cfecb447ce2521c3164",
-    "index.html": "ec3d7414adf3d2299c3b1bccff4868a5fd06ef8c5ff033b9d4df43ccec398c68",
+    "app.js": "25cca2e7f923bf3377bdd47aab486a5caa0da36c487b9d811e0c875c8526d6f3",
+    "index.html": "c5afd93919ff4b40e1e1e9d8ead4dc9da39e2c8f7a287936991b9ff9bbf44dd9",
     "tests/observation-draft.browser.mjs": "27404089885a656e8281241885f9182c8ac39382785b68dbb693897caffefe7f"
   },
   "native": {
@@ -29,12 +162,12 @@
     "tests": 1305,
     "passed": 1305,
     "failed": 0,
-    "qualification_base": "2447048f9022bdbeddbc6e9d60cc3b70538eeca6",
-    "scope": "retained qualification; production and native-test sources are unchanged by the six upstream browser/docs changes"
+    "fresh_on_qualified_composition": true
   },
   "maintained_serve": {
     "job": "maintained-serve",
     "exit_code": 0,
+    "exact_assets": 322,
     "command": [
       "npm",
       "run",
@@ -43,95 +176,67 @@
       "--bind",
       "127.0.0.1"
     ],
-    "url": "http://127.0.0.1:8765/",
-    "exact_assets": 321,
-    "scope": "retained qualification; served runtime asset bytes are unchanged by upstream PR404"
+    "url": "http://127.0.0.1:8765/"
+  },
+  "full_browser": {
+    "status": "PASS",
+    "checks": 105,
+    "exceptions": [],
+    "sandbox_admitted": true,
+    "fresh_on_qualified_composition": true
   },
   "focused_browser": {
     "status": "PASS",
     "checks": 8,
-    "download_sha256": "227c95744002c54f7d94a5ecdd88420cf59041783bf121b7f11dc37bef371117",
-    "screenshot_sha256": "2d1403319ed6e878517d81577e380e61ce0c2b379bb105f149ad9ce57b0d25c4",
-    "sandbox_admitted": true,
-    "exceptions": []
-  },
-  "baseline": {
-    "status": "BASELINE_DEFECT_CONFIRMED",
-    "base_source": {
-      "app.js": "b97a769f4f1bd3da5e4f4cc96e3c9e2e8d827a04bca9631a180c7007ec58dc34",
-      "index.html": "97068615c028f2fbca7f7791a903874e91a49e8cddaffa26fe7998086b0af50f",
-      "tests/observation-draft.browser.mjs": "27404089885a656e8281241885f9182c8ac39382785b68dbb693897caffefe7f"
-    },
-    "observed_defect": {
-      "cellIndex": 1,
-      "minute": 30,
-      "depthMm": 12.5,
-      "uncertaintyMm": 0.2,
-      "source": "Original A1 field notebook — authored attribution regression",
-      "scenario": "existing",
-      "use": "calibration"
-    }
-  },
-  "full_maintained_browser": {
-    "status": "PASS",
-    "checks": 98,
-    "exit_code": 0,
-    "sandbox_admitted": true,
     "exceptions": [],
-    "upstream_receiving_repair": "https://github.com/Jacob-Met/experimental-earth/pull/404"
+    "sandbox_admitted": true,
+    "download": {
+      "path": "/home/ubuntu/hamon-work/e225224-20261026/earth-407-draft-browser/experimental-earth-site.json",
+      "sha256": "227c95744002c54f7d94a5ecdd88420cf59041783bf121b7f11dc37bef371117",
+      "bytes": 11562
+    },
+    "status_visibility": {
+      "top": 391.953125,
+      "bottom": 451.34375,
+      "height": 59.390625,
+      "viewportHeight": 844,
+      "scrollY": 74530,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": 1,
+      "unobscured": true,
+      "text": "Unsaved reading cleared: The selected cell or site changed. Enter the actual reading and source for the current target."
+    },
+    "screenshot_sha256": "b825f6b22d65122f6cf36a44eeaaa686b4f372a6bab1f90de8eb4dc7ab85361f",
+    "fresh_on_qualified_composition": true
   },
-  "limits": [
-    "Prior reconstruction matched 1224 present baseline Git blobs with zero mismatches and omitted 127 historical docs; all six later upstream blobs verified exactly for the current composition",
-    "Native and documented-server qualification are retained from identical relevant source bytes; current browser receiving was actually rerun on fe22 composition",
-    "Historical failed browser assertions are retained and resolved by separately owned upstream PR404; no local substitute fix",
-    "Authored observation is attribution-control data; calibration-rejected is a received negative inference result, not accuracy validation"
+  "upstream_work_preserved": [
+    "PR401 custom water-budget",
+    "PR404 maintained browser receiving",
+    "PR406 paired rain-map time controls"
   ],
-  "current_source_composition": {
-    "base": "fe22a7752cfb4049097aac05a375db1d141ccd68",
-    "upstream_changed_blobs_verified": [
-      {
-        "path": "docs/receipts/browser-receiving-20261026/README.md",
-        "git_blob": "d11460099c1f05fe9f09c9fa99c05a9f45b64e8a"
-      },
-      {
-        "path": "docs/receipts/browser-receiving-20261026/receiving.json",
-        "git_blob": "780faa911a271398fd29637496e98ed3f3810665"
-      },
-      {
-        "path": "tests/browser.receiving.mjs",
-        "git_blob": "f58d80c55bdea360fa938c3b84daa0245e4efe39"
-      },
-      {
-        "path": "tests/infiltration-resolution.receiving.mjs",
-        "git_blob": "d2541608da2c9880e32f9e4582a7cea318550533"
-      },
-      {
-        "path": "tests/joint-evidence.receiving.mjs",
-        "git_blob": "5ff3e6f5bd3a7a138b9389640b752c6b544b7b00"
-      },
-      {
-        "path": "tests/outlet-evidence.receiving.mjs",
-        "git_blob": "22520caada4434fade09454b7ddaa7e3933b2af9"
-      }
-    ],
-    "production_candidate_unchanged": true
-  },
-  "historical_failed_gate": {
-    "status": "FAIL",
-    "base_commit": "2447048f9022bdbeddbc6e9d60cc3b70538eeca6",
-    "candidate_exit_code": 1,
-    "unchanged_main_exit_code": 1,
-    "completed_checks": 32,
-    "cause": "obsolete immediate-adjacency assumption; native Tab legitimately reaches the complementary-depth disclosure summary",
-    "resolution": "upstream PR404; issue403 closed as covered by issue402",
-    "prior_logs_preserved": true
+  "historical_controls": {
+    "negative_control_base": "2447048f9022bdbeddbc6e9d60cc3b70538eeca6",
+    "negative_control_status": "BASELINE_DEFECT_CONFIRMED",
+    "prior_244_full_browser_failure": "32 checks then obsolete focus-adjacency assertion, reproduced unchanged",
+    "prior_fe22_receiving": "98 full and 8 focused checks passed",
+    "resolution": "consumed existing-owner PR404; diagnostic issue403 closed as covered by402/404"
   },
   "publication": {
     "owner": "node-2b8c9803b6069b758adef320e07b48ed",
-    "new_operation_id": "e225224-earth398-current-tree-01",
-    "new_base_tree": "fbe4e840d63cc17aa489e5f6da52498591f09062",
+    "pr": 407,
+    "reviewed_prior_head": "4cb2134959cf09522e04bc184f7f9166891405c9",
+    "normal_merge_parent_main": "c5ea614862391e447abf930720f0f68b147562eb",
+    "new_operation_id": "e225224-earth407-compose-tree-01",
+    "runtime_change_after_qualification": false,
     "quarantined_original_operation_id": "e225224-earth398-tree-01",
     "quarantined_expected_tree": "6579608e54dfdfba2e45d7d098c454bc4530a4df",
-    "quarantined_state": "unresolved; superseded immutable unreferenced tree only; no commit or ref update ever requested for it"
-  }
+    "quarantined_state": "unresolved obsolete unreferenced tree; no commit or ref update ever requested for it"
+  },
+  "limits": [
+    "1,242 present Git blobs matched the exact qualified tree; 129 historical documentation files omitted, all runtime and test source present",
+    "Receiving-snapshot local Git metadata is distinct from upstream commit identity",
+    "The following branch-composition update changes only retained receiving documents/image relative to the qualified runtime tree",
+    "Authored observation controls establish attribution and actual consumer receiving, not field-model accuracy; calibration-rejected remains a negative result"
+  ]
 }
