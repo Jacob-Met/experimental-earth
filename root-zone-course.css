@@ -1,0 +1,5 @@
+#rz-course .rz-timing-record{max-height:24rem;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem}
+#root-zone #rz-course .rz-table th:first-child{width:34%}
+#rzc-events input{display:block;width:100%;margin:6px 0 12px}
+#rzc-status{font-weight:600;color:#245649}
+@media(max-width:650px){#root-zone #rz-course svg text{font-size:20px}}

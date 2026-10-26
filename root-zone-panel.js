@@ -1,3 +1,4 @@
+import {mountRootZoneCourse} from './root-zone-course-panel.js';
 import {mountRootZoneTiming} from './root-zone-timing-panel.js';
 import {serializeRootZoneInvestigation, parseRootZoneInvestigation, checkRootZoneFileBytes, ROOT_ZONE_MEANING} from './root-zone-study.js';
 import {rootZoneAtDay} from './root-zone.js';
@@ -144,6 +145,7 @@ export function mountRootZone({getProject}) {
   finally{if(token===generation){busy=false;$('run').disabled=false;$('save').disabled=!accepted;$('open').value='';}}
  };
  timingPanel=mountRootZoneTiming({host:panel,cancelParentPending:()=>{const wasBusy=busy;generation++;busy=false;$('run').disabled=false;$('save').disabled=!accepted;if(wasBusy)setStatus('Pending root-store work retired by a newer timing action.',accepted?'computed':'draft');},getInputs:()=>({project:structuredClone(source()),study:readStudy()}),installInputs:(project,study)=>{opened=project;key=JSON.stringify(project);$('cell').replaceChildren(...opened.existing.map((_,i)=>{const o=node('option',name(opened,i));o.value=String(i);return o;}));fill(study);invalidate('Original rooted-store draft restored from timing investigation. Compare the earlier pulse profile separately.',true);refresh();}});
+ mountRootZoneCourse({host:panel,getProject:()=>structuredClone(source()),getInputs:()=>({project:structuredClone(source()),study:readStudy()})});
  addInterval();refresh();return {refresh};
 }
 
