@@ -133,6 +133,33 @@ export function mountDrainingEvidence({host, getProject, getLayer}) {
       }
       results.append(section);
     }
+    const q = report.question, question = node('section'); question.id = 'de-question';
+    question.append(node('h4', 'A new check of the calibration-compatible explanations'));
+    if (!q || q.status === 'no-supported-pair') {
+      question.append(node('p', 'Fewer than two calibration-compatible explanations remain. No new reading is proposed.'));
+    } else if (q.status === 'unsupported') {
+      question.append(node('p', 'A complete suggestion is unavailable for this family. The original evidence results remain available.'));
+    } else {
+      question.append(node('p', 'Assumes ±' + fmt(q.halfWidthMm) +
+        ' mm, the largest original calibration half-width. Held-aside values do not choose this question.'));
+      if (q.status === 'no-separation') {
+        question.append(node('p', q.plan.status === 'all-recorded' ?
+          'Every modeled cell and time already has a recorded reading.' :
+          'No unrecorded modeled cell and time separates these explanations at this assumed precision.'));
+      } else {
+        const best = q.question;
+        question.append(node('p', 'Modeled event minute ' + fmt(best.minute) + ' · ' + cellName(project, best.cellIndex) +
+          ' separates ' + best.separatedPairs.length + ' of ' + q.pairCount + ' pairs.'));
+        for (const prediction of best.predictions) {
+          question.append(node('p', prediction.id + ': modeled ' + fmt(prediction.depthMm) +
+            ' ± ' + fmt(q.halfWidthMm) + ' mm.'));
+        }
+        if (best.unresolvedPairs.length) question.append(node('p', 'Still unresolved: ' +
+          best.unresolvedPairs.map(pair => pair.join(' / ')).join('; ') + '.'));
+        question.append(node('p', 'An unrecorded point in this original modeled event; it may precede readings already supplied. This is a conditional model question, not an observed reading.'));
+      }
+    }
+    results.append(question);
   }
   function install(project, study, report) {accepted = {project, study, report}; render(); $('save').disabled = false;}
   $('form').addEventListener('input', () => invalidate());

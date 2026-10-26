@@ -1,3 +1,4 @@
+import {chooseDrainingQuestion} from './draining-question.js';
 import {validateProject, runRain, SURFACES} from './core.js';
 import {evaluateReadings} from './infiltration-study.js';
 import {DRAINING_LAYER_SCHEMA, validateDrainingLayer} from './draining-infiltration.js';
@@ -79,12 +80,15 @@ export function compareDrainingHypotheses(project, study) {
   const empty = {candidates: [], compatibleIds: [], survivingIds: [],
     effects: {all: drainingConsequences([]), calibration: drainingConsequences([]), surviving: drainingConsequences([])}};
   if (!affectedCells) return {status: 'surface-absent', counts, cellSteps, study: structuredClone(study), ...empty};
+  const questionRuns = [];
   const candidates = study.hypotheses.map(hypothesis => {
     const layer = hypothesisLayer(study, hypothesis), runs = {};
     for (const side of sides) runs[side] = runRain(project[side], project.width, project.height, project.weather, {drainingLayer: layer});
     const observed = runs[study.target];
+    const calibrationResult = evaluateReadings(observed, calibration);
+    if (calibrationResult.compatible === true) questionRuns.push({id: hypothesis.id, result: observed});
     return {hypothesis: structuredClone(hypothesis),
-      calibration: evaluateReadings(observed, calibration), challenge: evaluateReadings(observed, challenge),
+      calibration: calibrationResult, challenge: evaluateReadings(observed, challenge),
       existing: summarize(runs.existing), proposal: summarize(runs.proposal),
       change: Object.fromEntries(metrics.map(key => [key, runs.proposal[key] - runs.existing[key]]))};
   });
@@ -94,6 +98,8 @@ export function compareDrainingHypotheses(project, study) {
     !challenge.length ? 'needs-challenge' : !survivors.length ? 'challenged' :
     survivors.length === 1 ? 'one-survivor' : 'ambiguous';
   return {status, counts, cellSteps, study: structuredClone(study), candidates,
+    question: chooseDrainingQuestion(questionRuns, Math.max(0, ...calibration.map(({reading}) => reading.uncertaintyMm)),
+      project.observations.filter(reading => reading.scenario === study.target)),
     compatibleIds: compatible.map(c => c.hypothesis.id), survivingIds: survivors.map(c => c.hypothesis.id),
     effects: {all: drainingConsequences(candidates), calibration: drainingConsequences(compatible), surviving: drainingConsequences(survivors)}};
 }
