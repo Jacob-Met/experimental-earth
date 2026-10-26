@@ -1,3 +1,4 @@
+import {challengePairedTrendContinuation} from './paired-trend-continuation.js';
 import {inferPairedTrendRegion,TREND_REGION_SCHEMA} from './paired-trend-region.js';
 import {parsePortableProject,serializePortableProject,checkProjectFileBytes} from './project-portability.js';
 
@@ -10,13 +11,17 @@ export function mountPairedTrendRegion({host,getAccepted}){
  const range=x=>`${fmt(x.lower.lower)} to ${fmt(x.upper.upper)}`;
  function refresh(){revision++;accepted=null;q('save').disabled=true;q('result').textContent='Inputs changed. Infer the region again.';}
  function show(input,project){
-  const r=inferPairedTrendRegion(input);accepted={schema:'experimental-earth-paired-trend-region-bundle/1',project:JSON.parse(serializePortableProject(project)),input:r.source};
+  const joint=challengePairedTrendContinuation(input),r=joint.earlier;accepted={schema:'experimental-earth-paired-trend-region-bundle/1',project:JSON.parse(serializePortableProject(project)),input:r.source};
   q('source').textContent=`Original workspace ${project.title}; ${input.series.quantity} (${input.series.unit}); ${ownSource?'own reopened source':'current accepted paired series'}.`;
   q('result').replaceChildren();line(q('result'),`Earlier linear support: ${r.status}. Original time support ${r.preTimeSupport.join(' to ')}; baseline origin ${r.origin}.`);
   line(q('result'),`Slope bounds, rounded: ${range(r.slope)} ${input.series.unit}/day (86400 seconds). Attaining original pair indices: lower ${r.witnesses.lower.map(i=>i+1).join(', ')}, upper ${r.witnesses.upper.map(i=>i+1).join(', ')}.`);
   if(r.status==='incompatible')line(q('result'),'No linear history satisfies all earlier bands. No later contrast is reported.');
   else{line(q('result'),`Complete joint region has ${r.vertices.length} vertices. Baseline range, rounded: ${range(r.baseline)} ${input.series.unit}. Later envelopes preserve baseline–slope dependence.`);for(const p of r.post)line(q('result'),`Post pair ${p.index+1}, ${p.time}: conditional contrast ${range(p.contrast)} ${input.series.unit} (${p.direction}); ${fmt(p.extrapolationDays.lower)}–${fmt(p.extrapolationDays.upper)} days beyond the last earlier observation.`);}
-  const detail=document.createElement('details'),summary=document.createElement('summary'),pre=document.createElement('pre');summary.textContent='Inspect complete exact region, bounds and original source';pre.textContent=JSON.stringify(r,null,2);pre.style.whiteSpace='pre-wrap';pre.style.overflowWrap='anywhere';detail.append(summary,pre);q('result').append(detail);q('save').disabled=false;
+  line(q('result'),'Do all later original bands fit one unchanged earlier-compatible line?');
+  if(joint.status==='earlier-incompatible')line(q('result'),'The earlier history already rejects the linear hypothesis; a later joint challenge is unavailable.');
+  else if(joint.status==='jointly-incompatible')line(q('result'),`No. The earlier region and original later pairs ${joint.testedPostIndices.map(i=>i+1).join(', ')} have no shared line. Separate zero-overlapping residuals cannot establish joint continuation. This prefix is a contradiction witness, not a minimal subset or a causal diagnosis.`);
+  else line(q('result'),`Yes, conditionally: ${joint.jointVertices.length} ${joint.jointVertices.length===1?'vertex describes':'vertices describe'} the shared continuation support across all ${joint.originalPostIndices.length} original later pairs. The earlier region and each original residual envelope remain unchanged. Compatibility does not establish causality.`);
+  const detail=document.createElement('details'),summary=document.createElement('summary'),pre=document.createElement('pre');summary.textContent='Inspect complete exact region, bounds and original source';pre.textContent=JSON.stringify(joint,null,2);pre.style.whiteSpace='pre-wrap';pre.style.overflowWrap='anywhere';detail.append(summary,pre);q('result').append(detail);q('save').disabled=false;
  }
  q('basis').addEventListener('input',refresh);
  q('current').onclick=()=>{ownSource=null;q('source').textContent='Next inference uses the current accepted paired series above.';refresh();};
