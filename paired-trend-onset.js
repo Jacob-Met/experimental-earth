@@ -7,8 +7,13 @@ const bound=x=>({exact:serial(x),...enclosure(x)});
 export function inferPairedTrendOnset(source,{maxRootEvaluations=512,...responseOptions}={}){
  if(!source||source.schema!==TREND_ONSET_SCHEMA||source.model!=='continuous-change-in-original-gap'||Object.keys(source).sort().join(',')!=='model,response,schema')throw Error('Select continuous trend change in the original observation gap');
  if(!Number.isSafeInteger(maxRootEvaluations)||maxRootEvaluations<1||maxRootEvaluations>512)throw Error('Declare bounded complete onset projection work');
- const response=inferPairedTrendResponse(source.response,responseOptions),original=structuredClone(source);
- const common={source:original,response,gap:null,branches:[],unchangedSupported:false};
+ const response=inferPairedTrendResponse(source.response,responseOptions);
+ return {source:structuredClone(source),...projectContinuousTrendOnset(response,{maxRootEvaluations})};
+}
+/** Internal projection of an admitted exact response with its original full supports. */
+export function projectContinuousTrendOnset(response,{maxRootEvaluations=512}={}){
+ if(!Number.isSafeInteger(maxRootEvaluations)||maxRootEvaluations<1||maxRootEvaluations>512)throw Error('Declare bounded complete onset projection work');
+ const common={response,gap:null,branches:[],unchangedSupported:false};
  if(response.status!=='response-compatible')return{...common,status:'response-unavailable'};
  const start=response.earlier.preTimeSupport[1],end=response.later.timeSupport[0],tau=q(Date.parse(response.intervention));
  const lo=div(sub(q(Date.parse(start)),tau),q(86400000)),hi=div(sub(q(Date.parse(end)),tau),q(86400000));

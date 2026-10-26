@@ -1,0 +1,27 @@
+# Original paired interval means
+
+The paired-reading consumer now has a separate original-mean child. The existing point contracts and NOAA parser are unchanged. Load the retained Tucson excerpt or an original hourly ASCII file, declare the original contiguous rows, surface correction policy, channel direction, phase split, separate comparison bands and their sources. Explicitly confirm the uniform-time **model** operator. The example leaves this confirmation unchecked. Its split and zero comparison bands are authored choices, not an observed intervention or measurement-error estimate.
+
+## Observation operator and source qualification
+
+An original record retains its full `from`/`to` window, reported value, original aggregation basis and weighting (`unknown` or explicitly `uniform-time`). A separate `comparisonOperator` declares the conditional uniform-time model and its basis. Unknown acquisition weights remain unknown. Matching windows are required but do not prove equal sensor weighting or statistical independence.
+
+For an affine line `a + b t`, its uniform-time integral divided by window duration is `a + b (start + end)/2`. The exact rational first moment is an operator coefficient, **not a midpoint point reading**. Binary64 values and canonical UTC boundaries enter rational constraints without rounded midpoint timestamps or float-built bands. Each complete support must stay in its declared phase. The earlier/later regions are independently inferred from all original mean bands; their joint response uses the existing exact projection. The zero slope-change slice retains dependence. Continuous-change inference uses the gap from the last earlier window **end** to the first later window **start**, including a singleton gap. It does not use mean-time coefficients as support endpoints.
+
+Uniform-time is conditional for archived NOAA records. NOAA's [hourly documentation](https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/README.txt) describes preceding-hour temperature averages and sensor aggregation, but does not provide exact per-row temporal weights. The bridge always retains original weighting as `unknown`; it does not reconstruct or claim exact acquisition operators. Other sample-weighted means need their actual weighting/first-moment evidence or an explicitly qualified comparison assumption. This release supports only the declared uniform-time comparison.
+
+## Retained NOAA replay
+
+The unchanged strict hourly parser verifies original ASCII bytes and SHA-256. The bridge reads `SUR_TEMP` and `T_HR_AVG` from one source station file, preserves original lines/lexemes/URL/hash, and refuses missing means, unsuitable surface QC/correction, station changes, noncontiguous intervals, incomplete selections or windows crossing the split. No row is discarded, split, interpolated or reclassified by a guessed point time. Surface versus air is a descriptive source-channel association, not a discovered treatment/control experiment. The native mean contract also admits separately attributed channels when their original windows match.
+
+Retained Tucson excerpt SHA-256: `247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac`. Under the explicitly assumed uniform-time comparison, first four source rows and the authored 2025-01-01 17:00 UTC split yield about 2.15 C jump and 3.3 C/hour slope change. Treating the means as endpoint point readings would instead yield 0.5 C jump. The original supports leave only the singleton 17:00 gap; midpoint substitutes would invent an hour-long observation gap. None of these descriptive comparisons establishes a physical intervention effect.
+
+## Source-only contract and bounds
+
+`experimental-earth-paired-mean-history/1` retains quantity/unit/channel association, phase boundary/basis, comparison operator and original mean pairs. Each reading has value, half-width, band source, source, aggregation, units/place and complete support. `experimental-earth-noaa-paired-mean/1` retains raw source bytes once plus hash/URL, row selection, channels, phase/association, model and band declarations. A portable `experimental-earth-paired-mean-bundle/1` contains only `schema`, original `project`, and original `input`; no derived constraints or outputs. Reopen recomputes without changing the active workspace. Any changed form assumption retires results/downloads and late reads.
+
+At most 64 pairs, 1,953 pair inequalities, 200,000 constraint checks, 4,096 period-vertex pairs, 131,072 hull checks and 512 onset ratios are admitted. Whole-work exhaustion throws without partial inference. Coincident operator coefficients cannot invent a finite slope range; contradictory bands at the same coefficient explicitly reject the period. One later mean yields insufficient later operator support. Work limits extend through shared response/onset projection.
+
+## Verification
+
+Run `node tests/paired-mean-history.test.mjs` and `node tests/paired-mean-oracle.test.mjs`. The latter independently enumerates original 4D integral-constraint vertices using Python Fraction; `EARTH_MEAN_ORACLE` can name a pregenerated JSON oracle. Optional `EARTH_POINT_BASELINE` points to the frozen pre-extraction module directory for exact old-point result parity on 40 courses. Run all existing response/onset tests as regression gates. `tests/paired-mean-history.browser.mjs` receives the ordinary consumer, original bytes, required model declaration, download/reopen, support refusals, late-read retirement and desktop/mobile layout.

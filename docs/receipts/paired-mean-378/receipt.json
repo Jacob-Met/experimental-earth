@@ -1,0 +1,133 @@
+{
+  "schema": "experimental-earth.paired-mean-receiving/v1",
+  "baseCommit": "f7bebf2d10c35ceb5b83c772f6ae6d3378f715b8",
+  "source": [
+    {
+      "path": "paired-mean-history.js",
+      "bytes": 8871,
+      "sha256": "d0a5d9000df930df10ce86787419819465a6bea57d9cebea340354f8cea96d68",
+      "gitBlob": "d885c17da399213b02b348d24a38d10429e91fe0"
+    },
+    {
+      "path": "noaa-paired-means.js",
+      "bytes": 5458,
+      "sha256": "aaca875b3d9d1783b1426cf2c3c5cc3a98bc05b2ebf502dfebe0bedadeb05406",
+      "gitBlob": "125584968d882f7713754920b5fdbd14897364ae"
+    },
+    {
+      "path": "paired-trend-response.js",
+      "bytes": 5760,
+      "sha256": "d9baf9bc78a63ba56eba62c611a56eb19f12732e8451e1d46bae4e47796600a6",
+      "gitBlob": "c152bc91f7896fefddbd7ced705fc74dfc54f6cc"
+    },
+    {
+      "path": "paired-trend-onset.js",
+      "bytes": 3849,
+      "sha256": "4d0c772a5c69fd15d761bac16c1ed865ff1b1bd49545c2076b7e88e14bc1d40b",
+      "gitBlob": "1df2eebbb660f577e3d072cb936ec8c939ed0eb7"
+    },
+    {
+      "path": "paired-mean-history-panel.js",
+      "bytes": 14216,
+      "sha256": "f2ff4e717f371be969b475aceef8ae590040efe5b9fce5985e088206ceac6d7e",
+      "gitBlob": "4886ad2e360ca848b93d6dab6a6566b2859c97eb"
+    },
+    {
+      "path": "paired-series-panel.js",
+      "bytes": 9763,
+      "sha256": "5539d5258d17ca1123da44ce3c65f3c00b9cd6e8b6e4c3b9e10c87766776bb56",
+      "gitBlob": "a9c2a58a3b6f56a6316367fe23b55f9dce16066c"
+    },
+    {
+      "path": "docs/PAIRED_MEAN_HISTORY.md",
+      "bytes": 5503,
+      "sha256": "d5bb4dc9c5321aa93f8d88e634eee2a8db7b3f54cc83bfdfa0cd6fc81287c99d",
+      "gitBlob": "0353d758bfaf7344c597d6dc11dfc0e6ebdcc698"
+    },
+    {
+      "path": "tests/paired-mean-fixture.mjs",
+      "bytes": 1543,
+      "sha256": "7d68a120b940dffd205da46df42820dd1a79a801a8975662f878af4cd356b63c",
+      "gitBlob": "836c5c9d0b414b216687e31aba4a997584a306ed"
+    },
+    {
+      "path": "tests/paired-mean-history.test.mjs",
+      "bytes": 6585,
+      "sha256": "e83ea18444515648ad626633b23f31bf914c7fd80126d296a4dc2f1419fb665d",
+      "gitBlob": "2a9592218a53224c769d9655af862dada6cca92e"
+    },
+    {
+      "path": "tests/paired-mean-oracle.test.mjs",
+      "bytes": 1807,
+      "sha256": "d1f9403e04f4f0b8ee047f99d48d47510ba98ad4e47642be850ff9b831d8bb5f",
+      "gitBlob": "e49fc85bd1eb424fc313cbfc6c54df634fe17d46"
+    },
+    {
+      "path": "tests/paired-mean-oracle.py",
+      "bytes": 1569,
+      "sha256": "293edac94be4ca854b7ce244cdaa92e3c7a8474842c55b5705c4f40640bcb1e6",
+      "gitBlob": "0ea16aa3d0b191b541a087b95120ce88990bdc2f"
+    },
+    {
+      "path": "tests/paired-mean-history.browser.mjs",
+      "bytes": 9083,
+      "sha256": "d9ded8a04b8bb228d44f220f53236e3c3de3c6c9bc544472fd0b45259ed20e91",
+      "gitBlob": "c0c671bb08087b5d4fbf50d3eedfa04649145bd3"
+    }
+  ],
+  "sourceQualification": {
+    "noaaExcerptSha256": "247bd26d2cdc1af26c933af2ced818d00dfbe629e4d1cdfae9a5a81b1b9547ac",
+    "originalSupport": "Full preceding-hour windows remain observations; no midpoint or endpoint source readings are created.",
+    "modelOperator": "Explicit uniform-time mean, unchecked by default in NOAA intake.",
+    "sourceWeights": "Exact per-row NOAA sensor temporal weights remain unknown. Matching supports do not establish matching weights.",
+    "reference": "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/README.txt"
+  },
+  "receiving": {
+    "consumedSourceBlobs": 399,
+    "node": "22.23.4",
+    "nativeTests": 25,
+    "nativeFiles": [
+      "tests/paired-mean-history.test.mjs",
+      "tests/paired-mean-oracle.test.mjs",
+      "tests/paired-trend-response.test.mjs",
+      "tests/paired-trend-onset.test.mjs",
+      "tests/receiving-proposal.test.mjs"
+    ],
+    "meanBrowserChecks": 8,
+    "pointResponseBrowserChecks": 7,
+    "pointOnsetBrowserChecks": 7,
+    "concurrentAdaptiveHeatNativeTests": 7,
+    "concurrentAdaptiveHeatBrowser": true,
+    "concurrentReceivingProposalBrowser": true,
+    "actualBrowser": "Chrome/156.0.8078.47",
+    "sandbox": "Sandbox enabled; live maintained browser-session gate used for concurrent native browser journeys."
+  },
+  "science": {
+    "actualNoaaConditionalJumpC": 2.15,
+    "actualNoaaConditionalSlopeChangeCPerDay": 79.2,
+    "actualSupportGapUTC": [
+      "2025-01-01T17:00:00Z",
+      "2025-01-01T17:00:00Z"
+    ],
+    "continuousChange": "incompatible",
+    "oracle": "30 exact 4D original-integral-plane controls using independent Python Fraction arithmetic; 40 complete old point-history parity controls.",
+    "independentReview": "Workshop unfamiliar unequal-window positive/negative branch and shifted-reference control; Wildside original-source and UI review."
+  },
+  "visibleReceiving": {
+    "viewports": [
+      1280,
+      390
+    ],
+    "screenshots": [
+      "means-1280.png",
+      "means-390.png"
+    ],
+    "fixedFromActualQA": [
+      "Inherited full-width checkbox overflow",
+      "Validated bundle reopening now atomically restores original source bytes and all displayed declarations; native mean inputs disable unrelated NOAA-only rerun."
+    ],
+    "sourceOnlyReplay": true,
+    "activeWorkspacePreserved": true,
+    "lateAndInvalidReadFencing": true
+  }
+}
