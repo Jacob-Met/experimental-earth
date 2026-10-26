@@ -2,6 +2,10 @@
 
 Open `project.json` with the application's project import, then compare its saved surface evidence. The original nine hourly means are compared against model **interval averages**, not endpoint temperatures. All three offered alternatives are rejected by the declared calibration bands. This is an honest example of a simple, uncalibrated model family failing an explicit comparison; no parameters were adjusted to improve the result.
 
+## Original-file browser intake
+
+The maintained [separate station investigation](../../noaa-hourly.html) now receives original hourly files directly, with editable explicit assumptions and source-only download/reopen. Reach it from the workbench two-store heat section. It reuses this original parser and the existing thermal model, preserves this rejected-family baseline, and keeps the site workspace unchanged. See [intake contract and limits](../../docs/NOAA_HOURLY_INTAKE.md).
+
 ## Reproduce
 
 From the repository root:
@@ -37,3 +41,4 @@ Solar and air hourly means are treated as piecewise constant forcing. This does 
 Each comparison half-width is an explicitly supplied **0.5 °C**. It is not NOAA instrument uncertainty, an interpretation of printed decimal resolution, or a statistical confidence interval. The first three rows are labeled calibration and the remaining six challenge. This chronological labeling does not establish independent held-out validation. Good QC and corrected surface status do not authenticate these other assumptions.
 
 The first 60,000 J/(m² K) alternative predicts approximately **20.28448 °C** for the first interval mean, against the observed **4.5 °C**. Its residual is about −15.78448 °C, far beyond the supplied half-width. All alternatives fail calibration; subsequent challenge rows are still inspectable but do not turn this into a validated or identified physical model. Changing the initial-state assumptions could change that outcome and requires a new explicit declaration.
+

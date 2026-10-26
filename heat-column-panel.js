@@ -15,7 +15,7 @@ const fields = [
 export function mountHeatColumn({ getProject, replaceProject, notice }) {
   const sheet = node('link'); sheet.rel = 'stylesheet'; sheet.href = new URL('./heat-column.css', import.meta.url); document.head.append(sheet);
   const panel = node('section'); panel.id = 'heat-column'; panel.className = 'panel study';
-  panel.innerHTML = `<span class="eyebrow">HEAT / TWO DECLARED STORES</span><h2>Can heat keep building below the surface?</h2>
+  panel.innerHTML = `<span class="eyebrow">HEAT / TWO DECLARED STORES</span><h2>Can heat keep building below the surface?</h2><p><a href="noaa-hourly.html" id="noaa-hourly-link">Investigate an original NOAA hourly station file</a> in a separate thermal experiment without changing this site.</p>
     <p>Add a lower heat store to the saved surface exposure. Its temperature can keep rising after the surface starts cooling. The original surface properties stay in place; each store has one uniform temperature, with no resolved depth.</p>
     <p id="column-basis" class="mini-note"></p>
     <form id="column-form"><div class="heat-layers">${targets.map(target => `<fieldset><legend>${target === 'existing' ? 'Existing place' : 'Proposed place'} · lower store</legend>${fields.map(([key, label, min, max]) => `<label class="input-label">${label}<input id="column-${target}-${key}" type="number" min="${min}" max="${max}" step="any" required></label>`).join('')}<label class="input-label">Source or basis for these lower-store values<textarea id="column-${target}-source" maxlength="600" rows="3" required></textarea></label></fieldset>`).join('')}</div>
@@ -163,3 +163,4 @@ export function mountHeatColumn({ getProject, replaceProject, notice }) {
   }
   return { refresh };
 }
+
