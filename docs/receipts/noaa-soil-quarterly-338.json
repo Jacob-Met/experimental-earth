@@ -1,0 +1,1852 @@
+{
+  "schema": "independent-noaa-quarterly-soil-receiving/1",
+  "status": "PASS",
+  "plan": {
+    "starts": [
+      "2025-01-01T00:00:00.000Z",
+      "2025-04-01T00:00:00.000Z",
+      "2025-07-01T00:00:00.000Z",
+      "2025-10-01T00:00:00.000Z"
+    ],
+    "hours": 24,
+    "depthsCm": [
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "correctionType": "C",
+    "calibrationCount": 8,
+    "initialSurfaceC": 20,
+    "initialLowerC": 20,
+    "halfWidthC": 0.5,
+    "rule": "Exact first-day quarterly UTC courses; no date movement, nearest-start substitution, fit search or ranking. Depth eligible only when every selected original depth value is present and supported. All refusals retained."
+  },
+  "hypotheses": [
+    {
+      "label": "Lower capacity 60000 J/(m² K)",
+      "capacityJm2K": 60000,
+      "conductanceWm2K": 20,
+      "source": "Unchanged illustrative capacity/g20 family declared before calendar-course evaluation; not fitted to station observations."
+    },
+    {
+      "label": "Lower capacity 80000 J/(m² K)",
+      "capacityJm2K": 80000,
+      "conductanceWm2K": 20,
+      "source": "Unchanged illustrative capacity/g20 family declared before calendar-course evaluation; not fitted to station observations."
+    },
+    {
+      "label": "Lower capacity 160000 J/(m² K)",
+      "capacityJm2K": 160000,
+      "conductanceWm2K": 20,
+      "source": "Unchanged illustrative capacity/g20 family declared before calendar-course evaluation; not fitted to station observations."
+    }
+  ],
+  "modules": {
+    "noaa-hourly.js": "6df632d6c713f0738bcfb6c28471f37436c9e343384660977162b406480f7c9d",
+    "noaa-hourly-courses.js": "3d7e560af296850d56646fcdedc94e30a1fd6cd3416cbe8001afc17a94f9b917",
+    "noaa-hourly-investigation.js": "d561dedc47690ebce87a6692212a1df78bee7310b69d609e70ae3777c73eb3d2",
+    "noaa-soil-evidence.js": "274ad578d792902b4708940220e83f3b6a5dac714afe5faa2927724cebf0ab4b",
+    "heat-column.js": "448497ace75f85c60ff5a62459b4276f2e29c31936f265d792ded3059a367db6"
+  },
+  "courses": [
+    {
+      "requestedStartUtc": "2025-01-01T00:00:00.000Z",
+      "status": "compared",
+      "depths": [
+        {
+          "depthCm": 5,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 188.8302510000001,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 3
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 0
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 6
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 0
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": -1.7219808600081574,
+                  "rmsResidualC": 1.9643260754001206
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -9.58064014091256,
+                  "rmsResidualC": 15.683231093978911
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": -2.280499232760193,
+                  "rmsResidualC": 2.455158953406716
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -8.102913395932339,
+                  "rmsResidualC": 13.21080796909693
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": -3.5571036209900218,
+                  "rmsResidualC": 3.792846649562309
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -5.075835355911666,
+                  "rmsResidualC": 7.259976985016445
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            19.3,
+            17.4,
+            15.8,
+            14.3,
+            13,
+            12,
+            11.1,
+            10.3,
+            9.6,
+            9.2,
+            8.7,
+            8.3,
+            7.9,
+            7.4,
+            7,
+            7.8,
+            11.1,
+            15.9,
+            20.3,
+            23.6,
+            25.3,
+            25.8,
+            24.6,
+            22
+          ],
+          "replayMs": 203.20902999999998,
+          "recipeBytes": 2148622,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 10,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 198.92118199999993,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 2
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 0
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 4
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": -0.25948086000815707,
+                  "rmsResidualC": 1.2217325794156413
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -10.311890140912558,
+                  "rmsResidualC": 18.37886316491103
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": -0.8179992327601924,
+                  "rmsResidualC": 1.2146047990306734
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -8.834163395932338,
+                  "rmsResidualC": 15.779283583690523
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": -2.0946036209900214,
+                  "rmsResidualC": 2.1802286695593587
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -5.807085355911666,
+                  "rmsResidualC": 9.21537130237394
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            19.1,
+            18.1,
+            17,
+            15.9,
+            14.9,
+            14.1,
+            13.3,
+            12.5,
+            12,
+            11.5,
+            11,
+            10.6,
+            10.1,
+            9.7,
+            9.5,
+            9.4,
+            10.4,
+            12.6,
+            15.4,
+            18.1,
+            20,
+            21.1,
+            21.2,
+            20.2
+          ],
+          "replayMs": 192.87824,
+          "recipeBytes": 2148624,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 20,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 50,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 100,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "maintainedRefusalVerified": true
+        }
+      ],
+      "selection": {
+        "runIndex": 0,
+        "firstLine": 1,
+        "count": 24,
+        "station": "53131",
+        "startUtc": "2025-01-01T00:00:00.000Z",
+        "endUtc": "2025-01-02T00:00:00.000Z"
+      },
+      "selectedRowsSha256": "1d984c5c7a33f9cb9e087ea120c3ecd5f1e3d7519e46da37a6d01ca4ca5f34e1",
+      "surface": {
+        "status": "calibration-rejected",
+        "calibrationLabels": [],
+        "survivingLabels": [],
+        "candidates": [
+          {
+            "label": "Lower capacity 60000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 0
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 80000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 0
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 160000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 0
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          }
+        ]
+      },
+      "surfaceMs": 185.46113599999995,
+      "sameLumpedStoreBandChecks": [
+        {
+          "depthsCm": [
+            5,
+            10
+          ],
+          "halfWidthsC": [
+            0.5,
+            0.5
+          ],
+          "disjointOriginalLines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "maxAbsoluteDifferenceC": 5.5,
+          "meaning": "If both depth means are declared measurements of the same uniform lower temperature, these original bands have no common value. Does not establish physical layer equivalence or infer a new model."
+        }
+      ]
+    },
+    {
+      "requestedStartUtc": "2025-04-01T00:00:00.000Z",
+      "status": "compared",
+      "depths": [
+        {
+          "depthCm": 5,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 195.83528799999976,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 2
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 3
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 8
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 2.4616600690311516,
+                  "rmsResidualC": 3.578701826807594
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -13.932556136044076,
+                  "rmsResidualC": 22.308477245001512
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 2.61696882214293,
+                  "rmsResidualC": 3.8480548615418626
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -11.823905512384599,
+                  "rmsResidualC": 19.313681564395136
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 3.189991767388392,
+                  "rmsResidualC": 4.501750072680219
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -6.488297658372858,
+                  "rmsResidualC": 11.297404454616771
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            30.8,
+            28.2,
+            26.2,
+            25,
+            23.7,
+            22.8,
+            21.7,
+            20.9,
+            20,
+            19.6,
+            19.1,
+            18.6,
+            18,
+            17.8,
+            18.6,
+            20.3,
+            23.2,
+            27.6,
+            31.8,
+            33.6,
+            35.3,
+            34.4,
+            33.1,
+            30.6
+          ],
+          "replayMs": 194.23064599999998,
+          "recipeBytes": 2148625,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 10,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 165.93612200000007,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 1
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 1
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 3.8741600690311526,
+                  "rmsResidualC": 4.305627564648029
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -14.570056136044078,
+                  "rmsResidualC": 24.289272108339112
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 4.029468822142931,
+                  "rmsResidualC": 4.537373902521357
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -12.4614055123846,
+                  "rmsResidualC": 21.205002676822243
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 4.602491767388393,
+                  "rmsResidualC": 5.211448524512142
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -7.125797658372859,
+                  "rmsResidualC": 12.903216458724938
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            30.5,
+            29.1,
+            27.6,
+            26.5,
+            25.6,
+            24.6,
+            23.7,
+            23,
+            22.2,
+            21.6,
+            21.1,
+            20.6,
+            20.1,
+            19.7,
+            19.8,
+            20.5,
+            21.8,
+            24.1,
+            27.2,
+            29.2,
+            31.1,
+            31.7,
+            30.9,
+            29.8
+          ],
+          "replayMs": 195.06907,
+          "recipeBytes": 2148627,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 20,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            2161,
+            2162,
+            2163,
+            2164,
+            2165,
+            2166,
+            2167,
+            2168,
+            2169,
+            2170,
+            2171,
+            2172,
+            2173,
+            2174,
+            2175,
+            2176,
+            2177,
+            2178,
+            2179,
+            2180,
+            2181,
+            2182,
+            2183,
+            2184
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 50,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            2161,
+            2162,
+            2163,
+            2164,
+            2165,
+            2166,
+            2167,
+            2168,
+            2169,
+            2170,
+            2171,
+            2172,
+            2173,
+            2174,
+            2175,
+            2176,
+            2177,
+            2178,
+            2179,
+            2180,
+            2181,
+            2182,
+            2183,
+            2184
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 100,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            2161,
+            2162,
+            2163,
+            2164,
+            2165,
+            2166,
+            2167,
+            2168,
+            2169,
+            2170,
+            2171,
+            2172,
+            2173,
+            2174,
+            2175,
+            2176,
+            2177,
+            2178,
+            2179,
+            2180,
+            2181,
+            2182,
+            2183,
+            2184
+          ],
+          "maintainedRefusalVerified": true
+        }
+      ],
+      "selection": {
+        "runIndex": 0,
+        "firstLine": 2161,
+        "count": 24,
+        "station": "53131",
+        "startUtc": "2025-04-01T00:00:00.000Z",
+        "endUtc": "2025-04-02T00:00:00.000Z"
+      },
+      "selectedRowsSha256": "dfdceff55af1eb5bd7d681895aa74603d64ef7a39f10eb166bd16438abb84751",
+      "surface": {
+        "status": "calibration-rejected",
+        "calibrationLabels": [],
+        "survivingLabels": [],
+        "candidates": [
+          {
+            "label": "Lower capacity 60000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 80000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 160000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          }
+        ]
+      },
+      "surfaceMs": 158.02767599999993,
+      "sameLumpedStoreBandChecks": [
+        {
+          "depthsCm": [
+            5,
+            10
+          ],
+          "halfWidthsC": [
+            0.5,
+            0.5
+          ],
+          "disjointOriginalLines": [
+            2163,
+            2164,
+            2165,
+            2166,
+            2167,
+            2168,
+            2169,
+            2170,
+            2171,
+            2172,
+            2173,
+            2174,
+            2175,
+            2177,
+            2178,
+            2179,
+            2180,
+            2181,
+            2182,
+            2183
+          ],
+          "maxAbsoluteDifferenceC": 4.600000000000001,
+          "meaning": "If both depth means are declared measurements of the same uniform lower temperature, these original bands have no common value. Does not establish physical layer equivalence or infer a new model."
+        }
+      ]
+    },
+    {
+      "requestedStartUtc": "2025-07-01T00:00:00.000Z",
+      "status": "compared",
+      "depths": [
+        {
+          "depthCm": 5,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 182.139729,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 0
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 1
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 6.360361938163906,
+                  "rmsResidualC": 9.645973706872578
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -17.550462145380756,
+                  "rmsResidualC": 26.490129041554002
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 7.799447528679306,
+                  "rmsResidualC": 10.814535572142654
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -14.860600413650033,
+                  "rmsResidualC": 22.954377745711188
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 11.841034628222118,
+                  "rmsResidualC": 13.922203765990753
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -7.01792596964853,
+                  "rmsResidualC": 13.024168628234094
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            49,
+            46,
+            43.8,
+            41.4,
+            39.9,
+            38.5,
+            37.1,
+            35.8,
+            34.9,
+            34.1,
+            33.3,
+            32.7,
+            32.3,
+            32.4,
+            33.7,
+            36.2,
+            40,
+            44.1,
+            47.6,
+            50.7,
+            52.7,
+            53.4,
+            52.3,
+            50.6
+          ],
+          "replayMs": 216.5814660000001,
+          "recipeBytes": 2148625,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 10,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 182.80755699999963,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 0
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 1
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 7.310361938163907,
+                  "rmsResidualC": 9.500223008800846
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -18.57546214538076,
+                  "rmsResidualC": 29.15208532596823
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 8.749447528679308,
+                  "rmsResidualC": 10.760963246509359
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -15.885600413650035,
+                  "rmsResidualC": 25.5594457145563
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 12.79103462822212,
+                  "rmsResidualC": 14.158612418498949
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -8.04292596964853,
+                  "rmsResidualC": 15.49429591510077
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            47.4,
+            45.7,
+            44.3,
+            42.7,
+            41.4,
+            40.3,
+            39.2,
+            38.1,
+            37.4,
+            36.5,
+            35.7,
+            35.2,
+            34.3,
+            34.2,
+            34.4,
+            35.6,
+            37.8,
+            40.3,
+            43.1,
+            45.6,
+            47.8,
+            49.2,
+            49.1,
+            48.4
+          ],
+          "replayMs": 210.912961,
+          "recipeBytes": 2148627,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 20,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            4345,
+            4346,
+            4347,
+            4348,
+            4349,
+            4350,
+            4351,
+            4352,
+            4353,
+            4354,
+            4355,
+            4356,
+            4357,
+            4358,
+            4359,
+            4360,
+            4361,
+            4362,
+            4363,
+            4364,
+            4365,
+            4366,
+            4367,
+            4368
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 50,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            4345,
+            4346,
+            4347,
+            4348,
+            4349,
+            4350,
+            4351,
+            4352,
+            4353,
+            4354,
+            4355,
+            4356,
+            4357,
+            4358,
+            4359,
+            4360,
+            4361,
+            4362,
+            4363,
+            4364,
+            4365,
+            4366,
+            4367,
+            4368
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 100,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            4345,
+            4346,
+            4347,
+            4348,
+            4349,
+            4350,
+            4351,
+            4352,
+            4353,
+            4354,
+            4355,
+            4356,
+            4357,
+            4358,
+            4359,
+            4360,
+            4361,
+            4362,
+            4363,
+            4364,
+            4365,
+            4366,
+            4367,
+            4368
+          ],
+          "maintainedRefusalVerified": true
+        }
+      ],
+      "selection": {
+        "runIndex": 1,
+        "firstLine": 4345,
+        "count": 24,
+        "station": "53131",
+        "startUtc": "2025-07-01T00:00:00.000Z",
+        "endUtc": "2025-07-02T00:00:00.000Z"
+      },
+      "selectedRowsSha256": "0ce550022cd00588eccf6751351ccf0641bdf4f704fe5b3dea2901408ef1df4d",
+      "surface": {
+        "status": "calibration-rejected",
+        "calibrationLabels": [],
+        "survivingLabels": [],
+        "candidates": [
+          {
+            "label": "Lower capacity 60000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 0
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 80000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 160000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          }
+        ]
+      },
+      "surfaceMs": 164.02985500000023,
+      "sameLumpedStoreBandChecks": [
+        {
+          "depthsCm": [
+            5,
+            10
+          ],
+          "halfWidthsC": [
+            0.5,
+            0.5
+          ],
+          "disjointOriginalLines": [
+            4345,
+            4348,
+            4349,
+            4350,
+            4351,
+            4352,
+            4353,
+            4354,
+            4355,
+            4356,
+            4357,
+            4358,
+            4361,
+            4362,
+            4363,
+            4364,
+            4365,
+            4366,
+            4367,
+            4368
+          ],
+          "maxAbsoluteDifferenceC": 5.100000000000001,
+          "meaning": "If both depth means are declared measurements of the same uniform lower temperature, these original bands have no common value. Does not establish physical layer equivalence or infer a new model."
+        }
+      ]
+    },
+    {
+      "requestedStartUtc": "2025-10-01T00:00:00.000Z",
+      "status": "compared",
+      "depths": [
+        {
+          "depthCm": 5,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 246.5662480000001,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 4.293254913036594,
+                  "rmsResidualC": 5.665770819311711
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -15.556101283467571,
+                  "rmsResidualC": 24.020693231874258
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 4.784223645575309,
+                  "rmsResidualC": 6.145834760345137
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -13.1982075944982,
+                  "rmsResidualC": 20.798223835854554
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 6.218422583818453,
+                  "rmsResidualC": 7.354994130876765
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -6.782573816111165,
+                  "rmsResidualC": 11.88362330715729
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            35,
+            32.9,
+            31.3,
+            29.9,
+            28.7,
+            27.6,
+            26.7,
+            25.9,
+            25.4,
+            24.6,
+            23.9,
+            23.4,
+            23,
+            22.5,
+            23,
+            24.9,
+            28.2,
+            32.6,
+            37,
+            39.9,
+            41.4,
+            41.5,
+            40.3,
+            38.2
+          ],
+          "replayMs": 257.8729460000004,
+          "recipeBytes": 2148625,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 10,
+          "status": "compared",
+          "unavailableOriginalLines": [],
+          "compareMs": 235.96385499999997,
+          "joint": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 0
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "compatible": false,
+                  "count": 16,
+                  "withinCount": 1
+                },
+                "challenge": {
+                  "compatible": false,
+                  "count": 32,
+                  "withinCount": 1
+                }
+              }
+            ]
+          },
+          "soil": {
+            "status": "calibration-rejected",
+            "calibrationLabels": [],
+            "survivingLabels": [],
+            "candidates": [
+              {
+                "label": "Lower capacity 60000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 5.430754913036592,
+                  "rmsResidualC": 6.277339306439709
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -16.256101283467572,
+                  "rmsResidualC": 26.079844227743248
+                }
+              },
+              {
+                "label": "Lower capacity 80000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 5.92172364557531,
+                  "rmsResidualC": 6.7804251401635645
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -13.898207594498203,
+                  "rmsResidualC": 22.80795732973812
+                }
+              },
+              {
+                "label": "Lower capacity 160000 J/(m² K)",
+                "calibration": {
+                  "count": 8,
+                  "meanObservedMinusPredictedC": 7.355922583818453,
+                  "rmsResidualC": 8.094032077940154
+                },
+                "challenge": {
+                  "count": 16,
+                  "meanObservedMinusPredictedC": -7.482573816111164,
+                  "rmsResidualC": 13.742887515999803
+                }
+              }
+            ]
+          },
+          "originalMeansC": [
+            34.9,
+            33.6,
+            32.3,
+            31.2,
+            30.1,
+            29.1,
+            28.4,
+            27.5,
+            27,
+            26.4,
+            25.7,
+            25.1,
+            24.8,
+            24.3,
+            24,
+            25,
+            27,
+            29.7,
+            33.1,
+            35.9,
+            37.9,
+            38.3,
+            37.7,
+            36.7
+          ],
+          "replayMs": 231.54585300000053,
+          "recipeBytes": 2148627,
+          "exactReplay": true
+        },
+        {
+          "depthCm": 20,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            6553,
+            6554,
+            6555,
+            6556,
+            6557,
+            6558,
+            6559,
+            6560,
+            6561,
+            6562,
+            6563,
+            6564,
+            6565,
+            6566,
+            6567,
+            6568,
+            6569,
+            6570,
+            6571,
+            6572,
+            6573,
+            6574,
+            6575,
+            6576
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 50,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            6553,
+            6554,
+            6555,
+            6556,
+            6557,
+            6558,
+            6559,
+            6560,
+            6561,
+            6562,
+            6563,
+            6564,
+            6565,
+            6566,
+            6567,
+            6568,
+            6569,
+            6570,
+            6571,
+            6572,
+            6573,
+            6574,
+            6575,
+            6576
+          ],
+          "maintainedRefusalVerified": true
+        },
+        {
+          "depthCm": 100,
+          "status": "source-refused",
+          "unavailableOriginalLines": [
+            6553,
+            6554,
+            6555,
+            6556,
+            6557,
+            6558,
+            6559,
+            6560,
+            6561,
+            6562,
+            6563,
+            6564,
+            6565,
+            6566,
+            6567,
+            6568,
+            6569,
+            6570,
+            6571,
+            6572,
+            6573,
+            6574,
+            6575,
+            6576
+          ],
+          "maintainedRefusalVerified": true
+        }
+      ],
+      "selection": {
+        "runIndex": 1,
+        "firstLine": 6553,
+        "count": 24,
+        "station": "53131",
+        "startUtc": "2025-10-01T00:00:00.000Z",
+        "endUtc": "2025-10-02T00:00:00.000Z"
+      },
+      "selectedRowsSha256": "a3ef1bf8f86650498da520066f5a2998d3318f35daea4d63419886ca9f6a6372",
+      "surface": {
+        "status": "calibration-rejected",
+        "calibrationLabels": [],
+        "survivingLabels": [],
+        "candidates": [
+          {
+            "label": "Lower capacity 60000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 80000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          },
+          {
+            "label": "Lower capacity 160000 J/(m² K)",
+            "calibration": {
+              "compatible": false,
+              "count": 8,
+              "withinCount": 1
+            },
+            "challenge": {
+              "compatible": false,
+              "count": 16,
+              "withinCount": 0
+            }
+          }
+        ]
+      },
+      "surfaceMs": 199.93333799999982,
+      "sameLumpedStoreBandChecks": [
+        {
+          "depthsCm": [
+            5,
+            10
+          ],
+          "halfWidthsC": [
+            0.5,
+            0.5
+          ],
+          "disjointOriginalLines": [
+            6556,
+            6557,
+            6558,
+            6559,
+            6560,
+            6561,
+            6562,
+            6563,
+            6564,
+            6565,
+            6566,
+            6569,
+            6570,
+            6571,
+            6572,
+            6573,
+            6574,
+            6575,
+            6576
+          ],
+          "maxAbsoluteDifferenceC": 4,
+          "meaning": "If both depth means are declared measurements of the same uniform lower temperature, these original bands have no common value. Does not establish physical layer equivalence or infer a new model."
+        }
+      ]
+    }
+  ],
+  "limitations": "Original hourly means, explicit hypothetical20C point initial states, lumped-depth association and±0.5C bands. No inferred uncertainty, independent validation, calibrated soil state, fitted properties or forecast-gain claim.",
+  "source": {
+    "url": "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/2025/CRNH0203-2025-AZ_Tucson_11_W.txt",
+    "sha256": "8a3f9e470c96557cb21a0e1bab0f556630f4c8ec50965666a8f5a32a0677ea75",
+    "bytes": 2137440,
+    "rows": 8760
+  },
+  "coverage": {
+    "requestedCourses": 4,
+    "comparedCourses": 4,
+    "sourceRefused": 0,
+    "modelRefused": 0,
+    "comparedDepthCourses": 8,
+    "depthRefusals": 12
+  },
+  "elapsedMs": 6667.524556,
+  "maxHarnessRssKiB": 425788
+}

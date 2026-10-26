@@ -1,3 +1,4 @@
+import {mountSoilEvidence} from './noaa-soil-panel.js';
 import {mountHourlyCourseProposals} from './noaa-hourly-courses-panel.js';
 import {receiveHourlyBytes,parseHourlyText} from './noaa-hourly.js';
 import {compareHourlyInvestigation,parseHourlyRecipe,serializeHourlyRecipe} from './noaa-hourly-investigation.js';
@@ -5,10 +6,10 @@ import {checkProjectFileBytes} from './project-portability.js';
 const $=id=>document.getElementById(id),node=(tag,text='')=>{const e=document.createElement(tag);e.textContent=text;return e;};
 const display=value=>Number(value).toLocaleString('en-US',{maximumFractionDigits:5});
 const sampleUrl='https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/2025/CRNH0203-2025-AZ_Tucson_11_W.txt';
-let original=null,accepted=null,generation=0,courseBusy=false;
+let original=null,accepted=null,generation=0,courseBusy=false,soilPanel=null;
 $('hypotheses').value=JSON.stringify([60000,80000,160000].map(capacityJm2K=>({label:`Lower capacity ${capacityJm2K} J/(m² K)`,capacityJm2K,conductanceWm2K:20,source:'Offered illustrative capacity with fixed conductance; not fitted to original readings.'})),null,2);
 function retire(message='Draft changed. Compare these original inputs again.'){
- generation++;accepted=null;$('download').disabled=true;$('results').replaceChildren();$('result-status').textContent=message;$('result-status').dataset.state='not-compared';$('compare').disabled=courseBusy;
+ soilPanel?.retire();generation++;accepted=null;$('download').disabled=true;$('results').replaceChildren();$('result-status').textContent=message;$('result-status').dataset.state='not-compared';$('compare').disabled=courseBusy;
 }
 function initialInstant(){const row=original?.rows[Number($('first-line').value)-1];return row?.intervalStartUtc;}
 function showSource(){
@@ -84,3 +85,5 @@ const coursePicker=mountHourlyCourseProposals({host:$('hourly-course-proposals')
  busy:value=>{courseBusy=value;$('compare').disabled=value;}});
 for(const id of ['hour-count','correction'])$(id).addEventListener('input',()=>{void coursePicker.refresh({selectFirst:false});});
 $('first-line').addEventListener('input',()=>coursePicker.selectionChanged());
+
+soilPanel=mountSoilEvidence({host:$('soil-evidence'),getOriginal:()=>{if(courseBusy)throw Error('Wait for original course discovery');return recipe();}});
