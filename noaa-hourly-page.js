@@ -92,10 +92,24 @@ function fill(input){
  const values={'source-url':input.sourceUrl,'first-line':input.selection.firstLine,'hour-count':input.selection.count,correction:input.selection.correctionType,'calibration-count':input.calibrationCount,'initial-surface':input.selection.initialState.surfaceC,'initial-lower':input.selection.initialState.lowerC,'initial-source':input.selection.initialState.assumption,'surface-capacity':input.surface.capacityJm2K,'surface-exchange':input.surface.exchangeWm2K,'surface-absorption':input.surface.absorptivity,'surface-source':input.surface.source,'band-width':input.band.halfWidthC,'band-source':input.band.source,association:input.associationSource,hypotheses:JSON.stringify(input.hypotheses,null,2)};
  for(const [key,value]of Object.entries(values))$(key).value=String(value);$('source-status').textContent='Original source and declarations reopened; all comparisons recomputed.';showSource();void coursePicker.refresh({selectFirst:false});
 }
-$('recipe-file').addEventListener('change',async event=>{const file=event.target.files?.[0];if(!file)return;retire('Checking original investigation inputs…');const ticket=generation;
- try{checkProjectFileBytes(file.size);const input=parseHourlyRecipe(new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer())),result=await compareHourlyInvestigation(input);if(ticket!==generation)return;fill(input);accepted=structuredClone(input);draw(result,input);$('download').disabled=false;}
- catch(error){if(ticket===generation){$('result-status').textContent='Reopening refused: '+error.message;$('result-status').dataset.state='refused';}}
- finally{event.target.value='';}
+$('recipe-file').addEventListener('change',async event=>{
+ const file=event.target.files?.[0];if(!file)return;
+ // Saved receipts replace live evidence only after complete source replay and
+ // model comparison. The same version guards file/archive source selection.
+ const ticket=generation,version=++sourceLoadVersion;
+ $('recipe-status').textContent='Checking saved original inputs; the current investigation remains available.';
+ try{
+  checkProjectFileBytes(file.size);
+  const input=parseHourlyRecipe(new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer()));
+  if(ticket!==generation||version!==sourceLoadVersion)return;
+  const result=await compareHourlyInvestigation(input);
+  if(ticket!==generation||version!==sourceLoadVersion)return;
+  retire('Replacing the investigation with validated saved inputs…');
+  fill(input);accepted=structuredClone(input);draw(result,input);$('download').disabled=false;
+  $('recipe-status').textContent='Saved original investigation reopened. All predictions recomputed from its retained inputs.';
+ }catch(error){
+  if(ticket===generation&&version===sourceLoadVersion)$('recipe-status').textContent='Saved investigation refused; previous work preserved: '+error.message;
+ }finally{event.target.value='';}
 });
 
 const coursePicker=mountHourlyCourseProposals({host:$('hourly-course-proposals'),getSource:()=>original,getHours:()=>Number($('hour-count').value),getPolicy:()=>$('correction').value,getSelection:()=>Number($('first-line').value),
