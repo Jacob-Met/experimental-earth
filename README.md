@@ -223,6 +223,8 @@ The ponding detail also reports **accumulated depth above threshold** in mm·min
 
 Below **Ponding through time**, declare a sequence of different, edge-adjacent grid cells such as D3 E3 F3 and select **Inspect declared route**. The review reuses the replay minute and depth threshold. It identifies the deepest listed cell at that minute and computes the continuous modeled intervals when **all** listed cells are simultaneously at or below the selected threshold. Existing and proposed sites are evaluated under the same weather; their displayed duration difference is arithmetic, not a safety conclusion. The same source snapshot interpolation used by the individual-cell workbench is preserved. The route is a session-only question; project export retains the underlying site, not the unsourced route declaration.
 
+Each scenario also separates **sole-cell** exceedance from time shared by multiple route cells. See [Route blockage through time](docs/ROUTE_BLOCKAGE.md) for duration accounting, a worked example, and interpolation limits.
+
 **Limit:** This does not show a moving person's passage along a path, independently measured depths, physical accessibility, flood safety or environmental calibration. Different arrival times, omitted cells, intra-step peaks and changing ground conditions can invalidate practical assumptions. Use sourced measurements and appropriate expertise for real-site decisions.
 
 ## Compare internal walls and openings

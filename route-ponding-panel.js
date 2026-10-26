@@ -1,5 +1,6 @@
 import {pondingExposure, snapshotDepths} from './ponding-exposure.js';
 import {parseRouteCells, routeThresholdWindows, routeDepthAtMinute} from './route-ponding.js';
+import {routeBlockageAttribution} from './route-blockage.js';
 
 /**
  * Same-time route question over existing solver results. The parent ponding
@@ -30,7 +31,7 @@ export function mountRoutePondingPanel({getProject, getResults}) {
   if(!clock || !limit) throw new Error('Original ponding time and threshold controls are missing.');
   const num=value=>Number(value.toFixed(2)).toLocaleString('en-US');
   const cellName=(i,p)=>String.fromCharCode(65+(i%p.width))+(Math.floor(i/p.width)+1);
-  let declared=null, route=null, windows=null;
+  let declared=null, route=null, windows=null, blockage=null;
   function renderWindows() {
     const target=$('route-ponding-windows');
     target.replaceChildren();
@@ -59,6 +60,54 @@ export function mountRoutePondingPanel({getProject, getResults}) {
         note.textContent='No positive-duration interval meets this same-time threshold.';
         disclosure.append(note);
       }
+      const attribution=blockage[key];
+      const attributionTitle=document.createElement('h3');
+      attributionTitle.textContent='Where the route exceeds the threshold';
+      disclosure.append(attributionTitle);
+      const shared=document.createElement('p');
+      shared.textContent='Multiple route cells exceed together for '+num(attribution.multipleAboveMinutes)+
+        ' modeled min. Sole-cell time plus this shared time accounts for '+num(attribution.aboveMinutes)+
+        ' min with at least one route cell above threshold.';
+      disclosure.append(shared);
+      const wetCells=attribution.cells.filter(cell=>cell.minutesAbove>0);
+      if(wetCells.length) {
+        const table=document.createElement('table');
+        table.id='route-blockage-'+key;
+        table.style.width='100%';table.style.borderCollapse='collapse';
+        table.style.tableLayout='fixed';table.style.fontVariantNumeric='tabular-nums';
+        const caption=document.createElement('caption');caption.style.textAlign='left';
+        caption.textContent='Modeled minutes above '+num(Number(limit.value))+
+          ' mm, ordered by sole-cell duration.';
+        table.append(caption);
+        const head=document.createElement('thead'),header=document.createElement('tr');
+        for(const label of ['Cell','Sole cell above (min)','Above, including overlaps (min)']) {
+          const th=document.createElement('th');th.scope='col';th.textContent=label;
+          th.style.textAlign=label==='Cell'?'left':'right';th.style.padding='6px 4px';
+          th.style.verticalAlign='bottom';if(label==='Cell')th.style.width='16%';header.append(th);
+        }
+        head.append(header);table.append(head);
+        const body=document.createElement('tbody');
+        for(const cell of wetCells) {
+          const row=document.createElement('tr'),name=document.createElement('th');
+          name.scope='row';name.textContent=cellName(cell.cellIndex,getProject());
+          name.style.textAlign='left';name.style.padding='6px 4px';row.append(name);
+          for(const value of [cell.soleAboveMinutes,cell.minutesAbove]) {
+            const td=document.createElement('td');td.textContent=num(value);
+            td.style.textAlign='right';td.style.padding='6px 4px';row.append(td);
+          }
+          body.append(row);
+        }
+        table.append(body);disclosure.append(table);
+      } else {
+        const clear=document.createElement('p');
+        clear.textContent='No listed cell exceeds the threshold for a positive modeled duration.';
+        disclosure.append(clear);
+      }
+      const meaning=document.createElement('p');meaning.className='mini-note';
+      meaning.textContent='Sole-cell minutes mean that exactly one listed cell is above the threshold. '+
+        'Individual above-threshold totals overlap and must not be added. '+
+        'These are interpolated model conditions, not measurements or a forecast of what changing a cell would do.';
+      disclosure.append(meaning);
       if(finding.aboveAtStart || finding.aboveAtEnd) {
         const note=document.createElement('p');
         note.textContent='The route exceeds the threshold at '+
@@ -99,14 +148,22 @@ export function mountRoutePondingPanel({getProject, getResults}) {
         const threshold=Number(limit.value);
         const start=results.existing.snapshots[0].minute;
         const end=results.existing.snapshots.at(-1).minute;
-        const nextWindows={
-          existing:routeThresholdWindows(pondingExposure(results.existing,threshold),next.indices,start,end),
-          proposal:routeThresholdWindows(pondingExposure(results.proposal,threshold),next.indices,start,end)
+        const exposures={
+          existing:pondingExposure(results.existing,threshold),
+          proposal:pondingExposure(results.proposal,threshold)
         };
-        route=next;windows=nextWindows;
+        const nextWindows={
+          existing:routeThresholdWindows(exposures.existing,next.indices,start,end),
+          proposal:routeThresholdWindows(exposures.proposal,next.indices,start,end)
+        };
+        const nextBlockage={
+          existing:routeBlockageAttribution(exposures.existing,next.indices,start,end),
+          proposal:routeBlockageAttribution(exposures.proposal,next.indices,start,end)
+        };
+        route=next;windows=nextWindows;blockage=nextBlockage;
         $('route-ponding-error').textContent='';
       } catch(error) {
-        route=null;windows=null;
+        route=null;windows=null;blockage=null;
         $('route-ponding-error').textContent='Route query cannot be evaluated for this site: '+error.message;
       }
     }
