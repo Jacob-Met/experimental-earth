@@ -253,6 +253,12 @@ const eventChallengePanel = mountEventChallengePanel({ getProject: () => project
 const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading,
   prepareCollection: question => outletEvidencePanel.prepareReading(question) });
 const localWaterBudgetPanel = mountLocalWaterBudget({ getProject: () => project,
+  saveStudy: study => {
+    validateProject({ ...project, localWaterBudgetStudy: study });
+    project.localWaterBudgetStudy = structuredClone(study);
+    projectRevision++;
+    persist();
+  },
   selectCell: cellIndex => {
     brush = 'inspect';
     for (const el of document.querySelectorAll('[data-brush]')) {

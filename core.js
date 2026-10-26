@@ -22,6 +22,7 @@ import { validateOutletEvidence } from './outlet-evidence-contract.js';
 import { validateJointStudy } from './joint-evidence-contract.js';
 import { createRainTracer, validateRainTraceStudy } from './rain-tracer.js';
 import { validateTerrainOrigin } from './terrain-contract.js';
+import { validateLocalWaterBudgetStudy } from './local-water-budget-study.js';
 export const WIDTH = 8;
 export const HEIGHT = 6;
 export const SURFACES = Object.freeze({
@@ -89,6 +90,7 @@ export function validateProject(project) {
   validateJointStudy(project.jointEvidenceStudy);
   validateRainTraceStudy(project.rainTraceStudy, width * height);
   validateRainOriginStudy(project.rainOriginStudy, width * height);
+  validateLocalWaterBudgetStudy(project.localWaterBudgetStudy, width, height);
   validateWettingFrontStudy(project.wettingFrontStudy, SURFACES);
   return project;
 }

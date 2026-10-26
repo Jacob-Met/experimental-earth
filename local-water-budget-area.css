@@ -1,0 +1,104 @@
+/* Inspection-only area selection; the terrain grids keep their own controls. */
+.local-budget {
+  min-width: 0;
+}
+
+.local-budget .local-budget-custom-area {
+  min-inline-size: 0;
+  max-width: 100%;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #b8cbbf;
+  border-radius: 0.75rem;
+}
+
+.local-budget .local-budget-custom-area[hidden] {
+  display: none;
+}
+
+.local-budget .local-budget-custom-area legend {
+  padding: 0 0.4rem;
+  font-weight: 700;
+}
+
+.local-budget .local-budget-area-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.local-budget .local-budget-area-shortcuts button {
+  min-height: 2.75rem;
+  white-space: normal;
+}
+
+.local-budget .local-budget-area-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.3rem;
+  border-radius: 0.35rem;
+  overscroll-behavior-x: contain;
+}
+
+.local-budget .local-budget-area-grid {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  min-width: max-content;
+}
+
+.local-budget .local-budget-area-cell {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.25rem;
+  border: 1px solid #758b80;
+  border-radius: 0.3rem;
+  color: #243c31;
+  background: #f6faf7;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.local-budget .local-budget-area-cell[aria-pressed="true"] {
+  border-color: #174d3d;
+  color: #fff;
+  background: #245d48;
+  box-shadow: inset 0 0 0 2px #fff;
+  font-weight: 800;
+}
+
+.local-budget .local-budget-area-cell:focus-visible {
+  position: relative;
+  outline: 3px solid #bc4c19;
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+.local-budget .local-budget-area-summary {
+  font-weight: 700;
+}
+
+.local-budget .local-budget-area-members {
+  margin-top: 0.75rem;
+}
+
+.local-budget .local-budget-area-members p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .local-budget .local-budget-custom-area {
+    padding: 0.6rem;
+  }
+
+  .local-budget .local-budget-area-shortcuts button {
+    flex: 1 1 8rem;
+  }
+}

@@ -1,5 +1,6 @@
 import { compareLocalWaterBudget, inspectLocalWaterBudget, inspectRegionalWaterBudget,
   localBudgetRegion, localBudgetInputKey } from './local-water-budget.js';
+import { arrowGridIndex } from './grid-keyboard.js';
 
 const number = n => Number(n.toPrecision(6)).toLocaleString('en-US', { maximumSignificantDigits: 6 });
 const signed = n => `${n > 0 ? '+' : ''}${number(n)}`;
@@ -17,12 +18,25 @@ const COMPONENTS = [
   ['storedLiters', 'Remaining at the end', 0],
 ];
 
-export function mountLocalWaterBudget({ getProject, selectCell }) {
+export function mountLocalWaterBudget({ getProject, selectCell, saveStudy }) {
   const panel = document.createElement('section'); panel.className = 'panel study local-budget';
   panel.id = 'local-budget-panel'; panel.setAttribute('aria-labelledby', 'local-budget-title');
   panel.innerHTML = `<div class="section-heading"><div><span class="eyebrow">FOLLOW THE WATER</span><h2 id="local-budget-title">Why does this place get wetter?</h2></div></div>
-    <p>Follow the modeled water arriving, moving onward, soaking in and leaving the site. Compare a cell, the edited footprint or the whole site across the saved existing and proposed plans.</p>
-    <label class="input-label">Area to inspect<select id="local-budget-scope"><option value="cell">Selected cell</option><option value="edited">Directly edited footprint</option><option value="site">Whole site</option></select></label>
+    <p>Follow the modeled water arriving, moving onward, soaking in and leaving the site. Compare a cell, the edited footprint, a custom area or the whole site across the saved existing and proposed plans.</p>
+    <label class="input-label">Area to inspect<select id="local-budget-scope"><option value="cell">Selected cell</option><option value="edited">Directly edited footprint</option><option value="custom">Custom area</option><option value="site">Whole site</option></select></label>
+    <fieldset id="local-budget-custom-area" class="local-budget-custom-area" hidden>
+      <legend>Pick custom area cells</legend>
+      <p id="local-budget-area-help" class="mini-note">Toggle cells to include them in the same area in both scenarios. Use arrow keys to move and Enter or Space to toggle. Highlighted cells are included. This picker changes the inspection area only.</p>
+      <div class="local-budget-area-shortcuts">
+        <button type="button" id="local-budget-use-cell" class="subtle">Use selected cell</button>
+        <button type="button" id="local-budget-use-edits" class="subtle">Use edited footprint</button>
+        <button type="button" id="local-budget-select-all" class="subtle">Select all</button>
+        <button type="button" id="local-budget-clear-area" class="subtle">Clear</button>
+      </div>
+      <div class="local-budget-area-scroll"><div id="local-budget-area-grid" class="local-budget-area-grid" role="group" aria-label="Custom water-budget area cells" aria-describedby="local-budget-area-help"></div></div>
+      <details class="local-budget-area-members"><summary>Custom area membership</summary><p id="local-budget-area-members"></p></details>
+    </fieldset>
+    <p id="local-budget-area-summary" class="local-budget-area-summary" aria-live="polite"></p>
     <button type="button" id="trace-local-budget" class="primary">Trace both scenarios</button>
     <p id="local-budget-status" role="status" aria-live="polite"></p>
     <div id="local-budget-results"></div>
@@ -30,25 +44,102 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
   document.querySelector('section.results').after(panel);
   const find = id => panel.querySelector(`#${id}`);
   let comparison = null, sourceKey = null;
-  const label = i => `${String.fromCharCode(65 + i % comparison.width)}${Math.floor(i / comparison.width) + 1}`;
+  let gridDimensions = '', focusedIndex = getProject().selectedIndex ?? 0;
+  const label = i => `${String.fromCharCode(65 + i % getProject().width)}${Math.floor(i / getProject().width) + 1}`;
+  const study = project => project.localWaterBudgetStudy ?? {
+    schema: 'experimental-earth-local-water-budget/1', scope: 'cell',
+    width: project.width, height: project.height, cellIndices: [],
+  };
+  const scopeName = scope => ({ cell: 'Selected cell', edited: 'Edited footprint',
+    custom: 'Custom area', site: 'Whole site' })[scope];
+
+  function saveSelection(scope, cellIndices = study(getProject()).cellIndices) {
+    const project = getProject();
+    saveStudy({ schema: 'experimental-earth-local-water-budget/1', scope,
+      width: project.width, height: project.height,
+      cellIndices: [...new Set(cellIndices)].sort((a, b) => a - b) });
+    // The app updates getProject synchronously and persists without running a solver.
+    refresh();
+  }
+
+  function updateRovingFocus() {
+    for (const button of find('local-budget-area-grid').children) {
+      button.tabIndex = Number(button.dataset.cellIndex) === focusedIndex ? 0 : -1;
+    }
+  }
+
+  function updateArea(project) {
+    const saved = study(project), count = project.width * project.height;
+    const members = localBudgetRegion(project, saved.scope);
+    const included = new Set(saved.cellIndices), grid = find('local-budget-area-grid');
+    find('local-budget-scope').value = saved.scope;
+    find('local-budget-custom-area').hidden = saved.scope !== 'custom';
+    const dimensions = `${project.width}x${project.height}`;
+    if (gridDimensions !== dimensions) {
+      const restoreFocus = grid.contains(document.activeElement);
+      focusedIndex = Math.max(0, Math.min(focusedIndex, count - 1));
+      const fragment = document.createDocumentFragment();
+      grid.style.gridTemplateColumns = `repeat(${project.width}, minmax(2.75rem, 1fr))`;
+      for (let index = 0; index < count; index++) {
+        const button = node('button', label(index), 'local-budget-area-cell');
+        button.type = 'button'; button.dataset.cellIndex = String(index);
+        button.setAttribute('aria-label', `Cell ${label(index)}`);
+        button.addEventListener('focus', () => { focusedIndex = index; updateRovingFocus(); });
+        button.addEventListener('keydown', event => {
+          const next = arrowGridIndex(index, project.width, count, event.key);
+          if (next === null) return;
+          event.preventDefault();
+          grid.children[next].focus();
+        });
+        // Native buttons supply Enter/Space activation without duplicate key handlers.
+        button.addEventListener('click', () => {
+          focusedIndex = index;
+          const selected = new Set(study(getProject()).cellIndices);
+          if (selected.has(index)) selected.delete(index); else selected.add(index);
+          saveSelection('custom', [...selected]);
+        });
+        fragment.append(button);
+      }
+      grid.replaceChildren(fragment); gridDimensions = dimensions;
+      if (restoreFocus && saved.scope === 'custom') grid.children[focusedIndex].focus();
+    }
+    for (const button of grid.children) {
+      button.setAttribute('aria-pressed', String(included.has(Number(button.dataset.cellIndex))));
+    }
+    updateRovingFocus();
+    find('local-budget-area-members').textContent = saved.cellIndices.length ?
+      [...saved.cellIndices].sort((a, b) => a - b).map(label).join(', ') : 'No cells selected.';
+    const area = members.length * project.weather.cellSizeM ** 2;
+    find('local-budget-area-summary').textContent = `${scopeName(saved.scope)} · ${members.length} ${members.length === 1 ? 'cell' : 'cells'} · ${number(area)} m² modeled area`;
+    find('trace-local-budget').disabled = members.length === 0;
+    return { scope: saved.scope, members };
+  }
+
+  function showNoArea(scope) {
+    const host = find('local-budget-results'); host.replaceChildren();
+    host.dataset.scope = scope; host.dataset.cellCount = '0'; delete host.dataset.cellIndex;
+    find('local-budget-status').dataset.state = scope === 'custom' ? 'no-area' : 'no-edits';
+    find('local-budget-status').textContent = scope === 'custom' ?
+      'No custom area is selected. Choose one or more cells above to inspect their water balance; tracing is unavailable until an area is selected.' :
+      'The two plans have identical elevations, surfaces and internal connectivity. There is no edited footprint to compare; choose a cell, a custom area or the whole site.';
+  }
 
   function render() {
     const project = getProject();
-    const scope = find('local-budget-scope').value;
+    const scope = study(project).scope;
     const members = localBudgetRegion(project, scope);
     const host = find('local-budget-results'); host.replaceChildren();
     host.dataset.scope = scope; host.dataset.cellCount = String(members.length);
     delete host.dataset.cellIndex;
     if (!members.length) {
-      find('local-budget-status').dataset.state = 'no-edits';
-      find('local-budget-status').textContent = 'The two plans have identical elevations, surfaces and internal connectivity. There is no edited footprint to compare; choose a cell or the whole site.';
+      showNoArea(scope);
       return;
     }
     const selected = scope === 'cell' ? inspectLocalWaterBudget(comparison, members[0]) :
       inspectRegionalWaterBudget(comparison, members);
     if (scope === 'cell') host.dataset.cellIndex = String(members[0]);
     const place = scope === 'cell' ? `Cell ${label(members[0])}` :
-      `${scope === 'edited' ? 'Edited footprint' : 'Whole site'} · ${members.length} cells`;
+      `${scopeName(scope)} · ${members.length} ${members.length === 1 ? 'cell' : 'cells'}`;
     find('local-budget-status').dataset.state = 'computed';
     find('local-budget-status').textContent = `${place} · ${comparison.durationMinutes} modeled minutes · all quantities in liters. ${scope === 'cell' ? 'Select another map cell or a neighbor below to follow the flow.' : 'Choose another area above or inspect an outside neighbor below.'}`;
     if (scope !== 'cell') {
@@ -87,7 +178,7 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
     for (const neighbor of selected.neighbors) {
       const card = node('article', '', 'local-budget-neighbor'); card.dataset.neighbor = String(neighbor.cellIndex);
       const button = node('button', `Inspect ${label(neighbor.cellIndex)}`, 'subtle'); button.type = 'button';
-      button.addEventListener('click', () => { find('local-budget-scope').value = 'cell'; selectCell(neighbor.cellIndex); });
+      button.addEventListener('click', () => { selectCell(neighbor.cellIndex); saveSelection('cell'); });
       const destination = scope === 'cell' ? label(selected.cellIndex) : 'area';
       card.append(button,
         node('p', `${label(neighbor.cellIndex)} → ${destination}: ${number(neighbor.existing.incomingLiters)} → ${number(neighbor.proposal.incomingLiters)} L (${signed(neighbor.incomingChangeLiters)}).`),
@@ -97,7 +188,11 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
     host.append(node('p', 'Each line shows existing → proposal and its signed change. Both travel directions are retained, including zero transfers.', 'mini-note'), neighbors);
     if (!selected.neighbors.length) host.append(node('p', 'There are no modeled cells outside this region. Site-boundary exits are still accounted for in the table above.', 'mini-note'));
   }
-  find('local-budget-scope').addEventListener('change', () => { if (comparison) render(); });
+  find('local-budget-scope').addEventListener('change', event => saveSelection(event.target.value));
+  find('local-budget-use-cell').addEventListener('click', () => saveSelection('custom', localBudgetRegion(getProject(), 'cell')));
+  find('local-budget-use-edits').addEventListener('click', () => saveSelection('custom', localBudgetRegion(getProject(), 'edited')));
+  find('local-budget-select-all').addEventListener('click', () => saveSelection('custom', localBudgetRegion(getProject(), 'site')));
+  find('local-budget-clear-area').addEventListener('click', () => saveSelection('custom', []));
   function clear(state, message) {
     comparison = null; sourceKey = null;
     const host = find('local-budget-results'); host.replaceChildren(); delete host.dataset.cellIndex;
@@ -106,14 +201,21 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
     find('local-budget-status').textContent = message;
   }
   function refresh() {
-    if (comparison && sourceKey === localBudgetInputKey(getProject())) render();
-    else clear(comparison ? 'stale' : 'not-computed', comparison ?
+    const project = getProject(), { scope, members } = updateArea(project);
+    const stale = comparison && sourceKey !== localBudgetInputKey(project);
+    if (stale) { comparison = null; sourceKey = null; }
+    // An empty area does not destroy a current ledger or start an expensive trace.
+    if (!members.length) { showNoArea(scope); return; }
+    if (comparison) render();
+    else clear(stale ? 'stale' : 'not-computed', stale ?
       'The site or weather changed. Trace again to inspect the new water balance.' :
       'Trace the current plans, then choose a cell or area to inspect its water balance.');
   }
   find('trace-local-budget').addEventListener('click', () => {
     try {
-      const project = getProject(), result = compareLocalWaterBudget(project);
+      const project = getProject(), { scope, members } = updateArea(project);
+      if (!members.length) { showNoArea(scope); return; }
+      const result = compareLocalWaterBudget(project);
       if (result.status !== 'computed') {
         clear(result.status, `This comparison needs ${result.cellSteps.toLocaleString('en-US')} cell-steps, above the ${result.limit.toLocaleString('en-US')} interactive limit. Reduce the grid or event duration, or choose a coarser interval with its numerical limits in mind.`);
         return;
@@ -121,5 +223,6 @@ export function mountLocalWaterBudget({ getProject, selectCell }) {
       comparison = result; sourceKey = localBudgetInputKey(project); render();
     } catch (error) { clear('error', error.message); }
   });
+  refresh();
   return { refresh };
 }
