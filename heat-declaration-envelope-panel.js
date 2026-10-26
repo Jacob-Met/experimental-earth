@@ -1,0 +1,21 @@
+import {diagnoseHeatDeclaration} from './heat-declaration-envelope.js';
+const n=(tag,text='')=>{const e=document.createElement(tag);e.textContent=text;return e;};
+const exact=x=>x.exact.denominator==='1'?x.exact.numerator:`${x.exact.numerator}/${x.exact.denominator}`;
+// Format from the exact fraction, preserving an outward bound at millidegrees.
+export function formatHeatEnvelopeBound(x,direction){
+ const numerator=BigInt(x.exact.numerator)*1000n,denominator=BigInt(x.exact.denominator);
+ let units=numerator/denominator;
+ if(numerator%denominator!==0n&&((direction<0&&numerator<0n)||(direction>0&&numerator>0n)))units+=direction<0?-1n:1n;
+ const magnitude=units<0n?-units:units,whole=magnitude/1000n,fraction=String(magnitude%1000n).padStart(3,'0').replace(/0+$/,'');
+ return `${units<0n?'-':''}${whole}${fraction?'.'+fraction:''}`;
+}
+export function renderHeatDeclarationEnvelope(evidence){
+ const host=n('section');host.className='heat-declaration-envelope';host.style.overflowWrap='anywhere';host.append(n('h3','Can changing lower-store parameters repair these bands?'));
+ let report;try{report=diagnoseHeatDeclaration(evidence);}catch(error){host.dataset.state='unavailable';host.append(n('p','Necessary-bound diagnosis unavailable: '+error.message));return host;}
+ host.dataset.state=report.status;const fixed=report.fixedDeclarations;host.append(n('p',`Fixed declarations: surface initial ${fixed.surfaceInitialC} °C, lower initial ${fixed.lowerInitialC} °C, surface capacity ${fixed.surfaceCapacityJm2K} J/(m²·K), exchange ${fixed.surfaceExchangeWm2K} W/(m²·K), absorptivity ${fixed.absorptivity}. These inputs were not inferred or changed.`));
+ host.append(n('p',report.calibrationConflicts.length?`${report.calibrationConflicts.length} original calibration bands are outside a necessary model bound. Changing only lower capacity and conductance cannot reconcile these bands while the original surface, initial temperatures and exposure remain fixed.`:report.challengeConflicts.length?`${report.challengeConflicts.length} original challenge bands are outside a necessary model bound. The calibration inputs were not changed or refitted.`:'No necessary-bound conflicts found. This does not establish a feasible explanation or validate the model.'));
+ const first=report.rows.find(r=>r.conflict);if(first)host.append(n('p',`Reading ${first.index+1}, ${first.aggregation==='interval-mean'?`${first.fromMinute}–${first.minute} minute mean`:`minute ${first.minute}`}: original band ${formatHeatEnvelopeBound(first.originalLower,-1)} to ${formatHeatEnvelopeBound(first.originalUpper,1)} °C; necessary model envelope ${formatHeatEnvelopeBound(first.necessaryLower,-1)} to ${formatHeatEnvelopeBound(first.necessaryUpper,1)} °C. Display bounds are rounded outwards to 0.001 °C; exact bounds are below. Exact separation: ${exact(first.separation)} °C. Source: ${first.source}`));
+ const rows=n('details');rows.append(n('summary',`Inspect all ${report.rows.length} original supports and exact bounds`));
+ for(const row of report.rows){const item=n('article');item.append(n('h4',`Reading ${row.index+1} · ${row.use} · ${row.conflict?'necessary conflict':'not excluded by this bound'}`),n('p',`${row.aggregation==='interval-mean'?`${row.fromMinute}–${row.minute} minute mean`:`minute ${row.minute}`}; contributing phases ${row.phaseIndexes.map(i=>i+1).join(', ')||'original initial point'}.`),n('p',`Original band: ${exact(row.originalLower)} to ${exact(row.originalUpper)} °C. Necessary envelope: ${exact(row.necessaryLower)} to ${exact(row.necessaryUpper)} °C.`),n('p','Original source: '+row.source));rows.append(item);}host.append(rows);
+ const phases=n('details');phases.append(n('summary','Inspect original phase bounds and forcing'));for(const p of report.phases)phases.append(n('p',`Phase ${p.index+1}: exact minutes ${exact(p.fromMinute)}–${exact(p.toMinute)}. Lower bound ${exact(p.lower)} °C; upper at start ${exact(p.startUpper)}, at end ${exact(p.endUpper)} °C. ${p.forcingEquilibrium?`Forcing equilibrium ${exact(p.forcingEquilibrium)} °C.`:`Zero exchange: common upper-bound slope ${exact(p.upperSlopeCPerMinute)} °C/min.`} Source: ${p.source}`));host.append(phases,n('p',report.semantics));return host;
+}
