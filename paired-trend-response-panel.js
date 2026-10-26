@@ -1,11 +1,12 @@
+import {mountPairedTrendOnset} from './paired-trend-onset-panel.js';
 import {inferPairedTrendResponse,TREND_RESPONSE_SCHEMA} from './paired-trend-response.js';
 import {parsePortableProject,serializePortableProject,checkProjectFileBytes} from './project-portability.js';
 export function mountPairedTrendResponse({host,getAccepted}){
  const box=document.createElement('details');box.id='paired-trend-response';box.innerHTML=`<summary>Could the later between-place trend have changed?</summary><p>Compare a broader descriptive model: separate earlier and later linear relations. Retain every supported line, then infer the joint gap jump and slope change at the fixed declared intervention instant. Neither quantity identifies an intervention effect. Only the supplied reading bands constrain this comparison; additional shared-error constraints are not supplied.</p><button type="button" id="ptrs-current">Use current accepted earlier history</button><p id="ptrs-source">Infer the original earlier region above, or reopen an original response investigation.</p><button type="button" id="ptrs-run">Compare separate earlier and later lines</button><button type="button" id="ptrs-save" disabled>Download original response investigation</button><label>Reopen original response investigation<input id="ptrs-open" type="file" accept=".json,application/json"></label><div id="ptrs-result" role="status" aria-live="polite"></div><p>The original earlier region stays unchanged. At least two distinct later instants are required for bounded later slope support. No line, response or intervention time is selected or adopted.</p>`;host.append(box);
- const q=id=>box.querySelector('#ptrs-'+id);let ownSource=null,accepted=null,revision=0;
+ const q=id=>box.querySelector('#ptrs-'+id);let ownSource=null,accepted=null,revision=0,onset=null;
  const line=(host,text)=>{const p=document.createElement('p');p.textContent=text;host.append(p);};
  const fmt=x=>Number(x.toPrecision(7)).toString(),range=x=>`${fmt(x.lower.lower)} to ${fmt(x.upper.upper)}`;
- function refresh(){revision++;accepted=null;q('save').disabled=true;q('result').textContent='Source changed. Compare the response model again.';}
+ function refresh(){onset?.refresh();revision++;accepted=null;q('save').disabled=true;q('result').textContent='Source changed. Compare the response model again.';}
  function show(input,project){
   const r=inferPairedTrendResponse(input),series=input.inquiry.series;
   accepted={schema:'experimental-earth-paired-trend-response-bundle/1',project:JSON.parse(serializePortableProject(project)),input:r.source};
@@ -28,5 +29,6 @@ export function mountPairedTrendResponse({host,getAccepted}){
  q('run').onclick=()=>{refresh();try{const source=ownSource||getAccepted();if(!source)throw Error('Infer or reopen the original earlier region first');show({schema:TREND_RESPONSE_SCHEMA,model:'separate-linear-periods',inquiry:source.input},source.project);}catch(e){q('result').textContent=e.message;}};
  q('save').onclick=()=>{try{if(!accepted)throw Error('Compare first');const json=JSON.stringify(accepted,null,2);checkProjectFileBytes(new Blob([json]).size);const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='experimental-earth-paired-trend-response.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){q('result').textContent=e.message;}};
  q('open').onchange=async event=>{const file=event.target.files?.[0];if(!file)return;refresh();const serial=revision;try{checkProjectFileBytes(file.size);const b=JSON.parse(await file.text());if(serial!==revision)return;if(!b||b.schema!=='experimental-earth-paired-trend-response-bundle/1'||Object.keys(b).sort().join(',')!=='input,project,schema')throw Error('Unsupported original response bundle');const project=parsePortableProject(JSON.stringify(b.project));inferPairedTrendResponse(b.input);ownSource={project,input:b.input.inquiry};show(b.input,project);}catch(e){if(serial===revision)q('result').textContent=e.message;}finally{event.target.value='';}};
+ onset=mountPairedTrendOnset({host:box,getAccepted:()=>accepted});
  return {refresh};
 }
