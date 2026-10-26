@@ -1,0 +1,32 @@
+{
+  "base": "5ce87ffd3f17345b77a8004da0fc5e2a78778f40",
+  "consumedSourceBlobs": 371,
+  "changedCandidateFiles": 8,
+  "nativeGroups": 12,
+  "newOnsetNativeGroups": 6,
+  "browserGroups": {
+    "onset": 7,
+    "parentJointResponse": 7
+  },
+  "independentOracle": "40 original-four-dimensional boundary courses using exact Python Fraction; no reuse of projected polygon as oracle",
+  "independentReviews": [
+    "Workshop actual-source review with irregular reference-time shift and sign reversal",
+    "Wildside actual-source review with exact invariance after a common affine baseline 7+3t"
+  ],
+  "controls": [
+    "complete onset interval [1.3,1.7] absolute days for +/-0.1 bands around a continuous day1.5 change",
+    "exact singleton, endpoint and small-slope controls",
+    "origin-only unchanged history distinguished from nonzero slope changes",
+    "both sign branches retained",
+    "unavailable and incompatible histories refuse without inventing times",
+    "source-only download/reopen, stale read and changed-source retirement"
+  ],
+  "visualInspection": {
+    "widths": [
+      1280,
+      390
+    ],
+    "result": "Readable; controls, conditional intervals and unchanged-history distinction retained."
+  },
+  "scope": "Complete continuous piecewise-linear change times inside the original observation gap, including endpoints. No time grid, reassignment of original readings, chosen onset or causal identification."
+}
