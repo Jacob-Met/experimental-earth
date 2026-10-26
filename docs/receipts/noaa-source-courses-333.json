@@ -1,0 +1,250 @@
+{
+  "sourceBase": "982ec2e68c1542bd515070af71640c58486d0081",
+  "initialBaseBlobsVerified": 1143,
+  "native": {
+    "passed": 39,
+    "failed": 0
+  },
+  "browser": {
+    "status": "PASS",
+    "checks": [
+      "Ordinary original-file journey proposes first eligible course without line entry; all four six-hour UTC choices remain available; keyboard selection of line4 changes maintained observed comparison to24.4°C",
+      "Source-only download/fresh reopening recomputes complete choices and preserves explicit selected course rather than resetting to first",
+      "Flagged original row is retained verbatim and never skipped inside a course; first complete9h run proposes line10; duplicated original clocks remain separate and missing half-hours never snap",
+      "Incompatible correction policy retains all18 exclusions with no prior-course fallback or false available status",
+      "Manual line correction during pending automatic discovery is preserved; completion for a replaced source cannot overwrite its newer source-bound course",
+      "Actual desktop/narrow course choices remain inspectable without page overflow or application exceptions"
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-26T00:51:06.383Z",
+      "completedAt": "2026-10-26T00:51:06.479Z",
+      "durationMs": 95.94312999999994,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "17817ABE1CDA7DC8665A45A06E81885D",
+        "type": "page",
+        "title": "Experimental Earth — Rain Experiment Lab",
+        "url": "http://127.0.0.1:34827/",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "E6FCD3380F65A25737590DF3E5360EC1"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": [],
+    "receipt": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-26T00:51:05.990Z",
+      "executable": "/opt/google/chrome/google-chrome",
+      "runDirectory": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31",
+      "profileDirectory": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/profile",
+      "stdoutFile": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/stdout.bin",
+      "stderrFile": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/stderr.bin",
+      "receiptFile": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 120000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/profile",
+        "about:blank"
+      ],
+      "pid": 71532,
+      "cdpUrl": "http://127.0.0.1:35575",
+      "browserWebSocketUrl": "ws://127.0.0.1:35575/devtools/browser/f6cff2f4-2174-42c7-a6a8-00bf5cfe78c3",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-26T00:51:06.167Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+      "stdout": {
+        "path": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-courses-2023f8b1-ea27-4c3e-9ceb-a7ce89aead31/stderr.bin",
+        "bytes": 5185,
+        "sha256": "4a7b3ae0cb7fc1ad350b53bf59b611690520811560f5089506d5c80d5898e2cd"
+      },
+      "finishedAt": "2026-10-26T00:51:07.343Z"
+    }
+  },
+  "previousInvestigationBrowser": {
+    "status": "PASS",
+    "checks": [
+      "Ordinary workbench link opens separate investigation; actual2196-byte original NOAA file produces unchanged three-alternative calibration rejection and observed4.5/predicted20.28448°C first mean",
+      "Actual source-only download retains original bytes/digest/declarations; fresh page reopening recomputes and preserves the independent site workspace",
+      "Changing selection to original suppliedline4 changes first observation to24.4°C and six original hours; old comparison/export retire before recomputation",
+      "Missing/wrong source identity and injected derived answer refuse reopening; no previous result or downloadable answer is reported as success",
+      "Malformed new original file clears prior source instead of falling back; valid-format flagged surface record refuses complete selected course without silently dropping it",
+      "Archived source convenience path is hash-bound; desktop/narrow source/result tables are keyboard inspectable with no page overflow or application exceptions"
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-26T00:51:10.759Z",
+      "completedAt": "2026-10-26T00:51:10.843Z",
+      "durationMs": 83.49175899999994,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "17D2BF48E29E1DBEF011AE2627B7880E",
+        "type": "page",
+        "title": "Experimental Earth — Rain Experiment Lab",
+        "url": "http://127.0.0.1:43913/",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "94081F9310F95019FEA04E109038516F"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": [],
+    "receipt": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-26T00:51:10.375Z",
+      "executable": "/opt/google/chrome/google-chrome",
+      "runDirectory": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135",
+      "profileDirectory": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/profile",
+      "stdoutFile": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/stdout.bin",
+      "stderrFile": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/stderr.bin",
+      "receiptFile": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 120000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/profile",
+        "about:blank"
+      ],
+      "pid": 71803,
+      "cdpUrl": "http://127.0.0.1:36693",
+      "browserWebSocketUrl": "ws://127.0.0.1:36693/devtools/browser/a295f961-b1c0-4801-be68-1203272550b0",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-26T00:51:10.528Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+      "stdout": {
+        "path": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/tmp/hamon-4a1ede0c-earth-courses/.browser-run-noaa-8b3a98b0-00b5-4580-afe5-b461b1e7e135/stderr.bin",
+        "bytes": 5185,
+        "sha256": "827361293c6f608c9e404374018e65d66d320bceafad9106261b5fd19d48b196"
+      },
+      "finishedAt": "2026-10-26T00:51:11.701Z"
+    }
+  },
+  "independentReview": "CHRONOS independently enumerated125 admitted windows over20 source/duration variants; no blocker. Invalid-clock stale choices were cleared before actual receiving. Full-year independent enumeration and real annual browser course are retained separately.",
+  "scope": "Automatic source-valid original hourly windows, not selection by fitted agreement or evidence of physical calibration."
+}
