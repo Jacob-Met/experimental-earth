@@ -1,3 +1,4 @@
+import {arrowGridIndex} from './grid-keyboard.js';
 import {mountHeatColumnSearch} from './heat-column-search-panel.js';
 import {mountSharedObservedConnection} from './observed-shared-connection-panel.js';
 import {mountMeasuredChange} from './measured-change-panel.js';
@@ -102,7 +103,24 @@ function gridInto(target, result) {
       line.setAttribute('aria-hidden', 'true'); btn.append(line);
       btn.setAttribute('aria-label', btn.getAttribute('aria-label') + (typeof cell.internalBarriers?.[side]?.crestElevationM === 'number' ? ', finite crest ' + cell.internalBarriers[side].crestElevationM + ' meters on ' + side + ' edge' : ', closed ' + side + ' edge'));
     }
-    btn.addEventListener('click',()=>applyBrush(target,index));fragment.appendChild(btn);
+    // Only one cell per original grid is a Tab stop; arrows move focus, never paint.
+    btn.tabIndex = index === project.selectedIndex ? 0 : -1;
+    btn.addEventListener('keydown', event => {
+      const next = arrowGridIndex(index, project.width, project[target].length, event.key);
+      if (next === null) return;
+      event.preventDefault();
+      if (next === index) return;
+      const destination = el.querySelector(`[data-cell-index="${next}"]`);
+      if (!destination) return;
+      btn.tabIndex = -1;
+      destination.tabIndex = 0;
+      destination.focus();
+    });
+    btn.addEventListener('click', () => {
+      applyBrush(target, index);
+      // rerun() replaces cell nodes; keep the new original-cell control focused.
+      $(`${target}-grid`).querySelector(`[data-cell-index="${index}"]`)?.focus();
+    });fragment.appendChild(btn);
   }
   el.replaceChildren(fragment);
 }

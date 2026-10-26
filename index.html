@@ -38,12 +38,12 @@
         </div>
         <button type="button" id="copy-existing" class="full subtle">Copy existing site → proposed</button>
         <label class="input-label" for="map-view">Cell visualization<select id="map-view"><option value="peak">Peak water depth (mm)</option><option value="final">Final water depth (mm)</option><option value="surface">Surface / elevation</option></select></label>
-        <p class="mini-note">Click any cell in either grid to inspect or edit it. The two scenarios remain separate; comparing them always uses the same rain.</p>
+        <p class="mini-note" id="grid-keyboard-help">Click a cell, or Tab into either grid and move with arrow keys. Enter or Space selects the focused cell and applies the active brush; arrows alone do not edit either site. The two scenarios remain separate and use the same rain for comparison.</p>
         <div class="legend"><span><i style="background:#aeb8bb"></i>Sealed · 1 mm/h</span><span><i style="background:#b6c990"></i>Turf · 9 mm/h</span><span><i style="background:#478e79"></i>Garden · 24 mm/h</span></div>
       </aside>
       <div class="workspace">
         <section class="panel" id="maps" aria-labelledby="maps-title"><div class="section-heading"><div><span class="eyebrow">03 / EDITABLE FIELD</span><h2 id="maps-title">Same storm, two different places</h2></div><div class="site-area" id="site-area"></div></div>
-          <div class="maps"><div class="map-col"><div class="map-heading"><strong>Existing site</strong><span>Editable reference</span></div><div class="grid" id="existing-grid" role="group" aria-label="Existing-site cells"></div></div><div class="map-col"><div class="map-heading"><strong>Proposed change</strong><span>Independent alternative</span></div><div class="grid" id="proposal-grid" role="group" aria-label="Proposed-site cells"></div></div></div>
+          <div class="maps"><div class="map-col"><div class="map-heading"><strong>Existing site</strong><span>Editable reference</span></div><div class="grid" id="existing-grid" role="group" aria-label="Existing-site cells" aria-describedby="grid-keyboard-help"></div></div><div class="map-col"><div class="map-heading"><strong>Proposed change</strong><span>Independent alternative</span></div><div class="grid" id="proposal-grid" role="group" aria-label="Proposed-site cells" aria-describedby="grid-keyboard-help"></div></div></div>
           <div class="selection" id="selection" aria-live="polite"></div><p id="terrain-origin" class="mini-note" style="overflow-wrap:anywhere"></p>
           <p class="caption">Each square is one modeled cell. Overlaid blue indicates simulated depth, not observed water. Elevations use a local model datum; inspect a cell for its supplied source.</p>
         </section>
