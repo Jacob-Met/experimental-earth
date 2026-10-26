@@ -49,6 +49,8 @@ The authored control illustrates the mechanism without claiming a measurement.
 
 Run `python3 -m http.server 8765` from the repository root and open `http://localhost:8765/` in a modern browser. It is dependency-free and local-only. Edit either 8×6 site grid with surface/height brushes, change rain assumptions, compare the matched scenarios, inspect water balance and time series, and save/reopen the full project via Export/Import JSON. Browser storage also retains the last workspace locally. Open the site through a local HTTP server, not directly as a `file:` URL, because JavaScript modules may be blocked by file-origin security policy.
 
+**Inspect both rain maps at one modeled time.** Choose **Water depth at the same time (mm)** in Cell visualization, then move through the retained event snapshots with the slider or Previous/Next. Both scenarios show the same instant, including a fractional final step. Time navigation preserves the site, evidence and unfinished entries; per-cell peak mode remains explicitly distinct from a simultaneous state. See [the rain-map time guide](docs/RAIN_MAP_TIME.md) for controls, an independent mixed-surface example and model limits.
+
 The base project's **Export JSON** and **Import JSON** share a 4 MiB UTF-8 transfer ceiling, which admits a fully sourced 24×24 survey grid that exceeds the former 1 MB importer limit. Export refuses an oversized workspace without modifying it; Import refuses oversized or invalid files, and a pending file read cannot overwrite newer project edits or a reset. A retained source description is an authored claim, not independent provenance verification.
 
 Run `npm test` with Node.js 20+ for the native conservation and record-validation suite.
