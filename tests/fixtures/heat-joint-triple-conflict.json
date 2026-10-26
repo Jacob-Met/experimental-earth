@@ -1,0 +1,3791 @@
+{
+  "schema": "experimental-earth-heat-column-joint-transfer/1",
+  "exposures": [
+    {
+      "reference": "Authored exposure excluding A",
+      "transfer": {
+        "schema": "experimental-earth-heat-column-transfer/1",
+        "originalProject": {
+          "schema": "experimental-earth-site/1",
+          "title": "Authored original heating investigation",
+          "width": 8,
+          "height": 6,
+          "weather": {
+            "rainMmHr": 36,
+            "stormMinutes": 60,
+            "durationMinutes": 240,
+            "stepMinutes": 5,
+            "cellSizeM": 2,
+            "mobilityPerHour": 0.5,
+            "boundaryExitPerHour": 0.38
+          },
+          "existing": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "observations": [],
+          "selectedIndex": 27,
+          "source": "Illustrative geometry and rates; no site measurements",
+          "surfaceHeatStudy": {
+            "schema": "experimental-earth-surface-heat/1",
+            "model": "uniform-layer-forced-linear-exchange",
+            "cellIndex": 0,
+            "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+            "existing": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "proposal": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.4,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "schedule": [
+              {
+                "minutes": 60,
+                "incidentWm2": 700,
+                "reservoirC": 20,
+                "source": "Authored original pulse"
+              },
+              {
+                "minutes": 360,
+                "incidentWm2": 0,
+                "reservoirC": 20,
+                "source": "Authored original dark interval"
+              }
+            ]
+          },
+          "heatColumnStudy": {
+            "schema": "experimental-earth-heat-column/1",
+            "model": "two-uniform-stores-forced-surface-linear-exchange",
+            "heatStudy": {
+              "schema": "experimental-earth-surface-heat/1",
+              "model": "uniform-layer-forced-linear-exchange",
+              "cellIndex": 0,
+              "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+              "existing": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "proposal": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.4,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "schedule": [
+                {
+                  "minutes": 60,
+                  "incidentWm2": 700,
+                  "reservoirC": 20,
+                  "source": "Authored original pulse"
+                },
+                {
+                  "minutes": 360,
+                  "incidentWm2": 0,
+                  "reservoirC": 20,
+                  "source": "Authored original dark interval"
+                }
+              ]
+            },
+            "lowerLayers": {
+              "existing": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              },
+              "proposal": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              }
+            }
+          },
+          "heatColumnEvidence": {
+            "schema": "experimental-earth-heat-column-evidence/1",
+            "quantity": "surface-temperature",
+            "columnStudy": {
+              "schema": "experimental-earth-heat-column/1",
+              "model": "two-uniform-stores-forced-surface-linear-exchange",
+              "heatStudy": {
+                "schema": "experimental-earth-surface-heat/1",
+                "model": "uniform-layer-forced-linear-exchange",
+                "cellIndex": 0,
+                "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+                "existing": {
+                  "capacityJm2K": 20000,
+                  "exchangeWm2K": 10,
+                  "absorptivity": 0.8,
+                  "initialC": 20,
+                  "source": "Authored same surface material; not measured"
+                },
+                "proposal": {
+                  "capacityJm2K": 20000,
+                  "exchangeWm2K": 10,
+                  "absorptivity": 0.4,
+                  "initialC": 20,
+                  "source": "Authored same surface material; not measured"
+                },
+                "schedule": [
+                  {
+                    "minutes": 60,
+                    "incidentWm2": 700,
+                    "reservoirC": 20,
+                    "source": "Authored original pulse"
+                  },
+                  {
+                    "minutes": 360,
+                    "incidentWm2": 0,
+                    "reservoirC": 20,
+                    "source": "Authored original dark interval"
+                  }
+                ]
+              },
+              "lowerLayers": {
+                "existing": {
+                  "capacityJm2K": 80000,
+                  "conductanceWm2K": 20,
+                  "initialC": 20,
+                  "source": "Authored initial state and lower layer, not acquired"
+                },
+                "proposal": {
+                  "capacityJm2K": 80000,
+                  "conductanceWm2K": 20,
+                  "initialC": 20,
+                  "source": "Authored initial state and lower layer, not acquired"
+                }
+              }
+            },
+            "target": "existing",
+            "associationSource": "Fictional surface-reading investigation on the retained two-store declaration; no acquisition occurred",
+            "hypotheses": [
+              {
+                "label": "A",
+                "capacityJm2K": 20000,
+                "conductanceWm2K": 5,
+                "source": "Authored finite family"
+              },
+              {
+                "label": "B",
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "source": "Authored finite family"
+              },
+              {
+                "label": "C",
+                "capacityJm2K": 200000,
+                "conductanceWm2K": 80,
+                "source": "Authored finite family"
+              }
+            ],
+            "readings": [
+              {
+                "minute": 60,
+                "temperatureC": 44.53099896635513,
+                "halfWidthC": 100,
+                "use": "calibration",
+                "source": "Authored analytic control from the retained reference; not an acquired, independent or held-aside sensor reading"
+              }
+            ]
+          }
+        },
+        "challengeProject": {
+          "schema": "experimental-earth-site/1",
+          "title": "Authored later cooling exposure",
+          "width": 8,
+          "height": 6,
+          "weather": {
+            "rainMmHr": 36,
+            "stormMinutes": 60,
+            "durationMinutes": 240,
+            "stepMinutes": 5,
+            "cellSizeM": 2,
+            "mobilityPerHour": 0.5,
+            "boundaryExitPerHour": 0.38
+          },
+          "existing": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "observations": [],
+          "selectedIndex": 27,
+          "source": "Illustrative geometry and rates; no site measurements",
+          "surfaceHeatStudy": {
+            "schema": "experimental-earth-surface-heat/1",
+            "model": "uniform-layer-forced-linear-exchange",
+            "cellIndex": 0,
+            "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+            "existing": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "proposal": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "schedule": [
+              {
+                "minutes": 300,
+                "incidentWm2": 0,
+                "reservoirC": 20,
+                "source": "Authored distinct excitation"
+              }
+            ]
+          },
+          "heatColumnStudy": {
+            "schema": "experimental-earth-heat-column/1",
+            "model": "two-uniform-stores-forced-surface-linear-exchange",
+            "heatStudy": {
+              "schema": "experimental-earth-surface-heat/1",
+              "model": "uniform-layer-forced-linear-exchange",
+              "cellIndex": 0,
+              "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+              "existing": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "proposal": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "schedule": [
+                {
+                  "minutes": 300,
+                  "incidentWm2": 0,
+                  "reservoirC": 20,
+                  "source": "Authored distinct excitation"
+                }
+              ]
+            },
+            "lowerLayers": {
+              "existing": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 5,
+                "source": "Authored initial state and lower layer, not acquired"
+              },
+              "proposal": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 5,
+                "source": "Authored initial state and lower layer, not acquired"
+              }
+            }
+          }
+        },
+        "readingFile": {
+          "name": "authored-pair.csv",
+          "text": "minute,from_minute,aggregation,temperature,half_width,unit,use,source\n1,,instant,18.013506597444838,1.2911788688128523,C,challenge,Authored pair support control\n"
+        },
+        "associationSource": "Authored same-material association, no acquired observations"
+      }
+    },
+    {
+      "reference": "Authored exposure excluding C",
+      "transfer": {
+        "schema": "experimental-earth-heat-column-transfer/1",
+        "originalProject": {
+          "schema": "experimental-earth-site/1",
+          "title": "Authored original heating investigation",
+          "width": 8,
+          "height": 6,
+          "weather": {
+            "rainMmHr": 36,
+            "stormMinutes": 60,
+            "durationMinutes": 240,
+            "stepMinutes": 5,
+            "cellSizeM": 2,
+            "mobilityPerHour": 0.5,
+            "boundaryExitPerHour": 0.38
+          },
+          "existing": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "observations": [],
+          "selectedIndex": 27,
+          "source": "Illustrative geometry and rates; no site measurements",
+          "surfaceHeatStudy": {
+            "schema": "experimental-earth-surface-heat/1",
+            "model": "uniform-layer-forced-linear-exchange",
+            "cellIndex": 0,
+            "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+            "existing": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "proposal": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.4,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "schedule": [
+              {
+                "minutes": 60,
+                "incidentWm2": 700,
+                "reservoirC": 20,
+                "source": "Authored original pulse"
+              },
+              {
+                "minutes": 360,
+                "incidentWm2": 0,
+                "reservoirC": 20,
+                "source": "Authored original dark interval"
+              }
+            ]
+          },
+          "heatColumnStudy": {
+            "schema": "experimental-earth-heat-column/1",
+            "model": "two-uniform-stores-forced-surface-linear-exchange",
+            "heatStudy": {
+              "schema": "experimental-earth-surface-heat/1",
+              "model": "uniform-layer-forced-linear-exchange",
+              "cellIndex": 0,
+              "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+              "existing": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "proposal": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.4,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "schedule": [
+                {
+                  "minutes": 60,
+                  "incidentWm2": 700,
+                  "reservoirC": 20,
+                  "source": "Authored original pulse"
+                },
+                {
+                  "minutes": 360,
+                  "incidentWm2": 0,
+                  "reservoirC": 20,
+                  "source": "Authored original dark interval"
+                }
+              ]
+            },
+            "lowerLayers": {
+              "existing": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              },
+              "proposal": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              }
+            }
+          },
+          "heatColumnEvidence": {
+            "schema": "experimental-earth-heat-column-evidence/1",
+            "quantity": "surface-temperature",
+            "columnStudy": {
+              "schema": "experimental-earth-heat-column/1",
+              "model": "two-uniform-stores-forced-surface-linear-exchange",
+              "heatStudy": {
+                "schema": "experimental-earth-surface-heat/1",
+                "model": "uniform-layer-forced-linear-exchange",
+                "cellIndex": 0,
+                "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+                "existing": {
+                  "capacityJm2K": 20000,
+                  "exchangeWm2K": 10,
+                  "absorptivity": 0.8,
+                  "initialC": 20,
+                  "source": "Authored same surface material; not measured"
+                },
+                "proposal": {
+                  "capacityJm2K": 20000,
+                  "exchangeWm2K": 10,
+                  "absorptivity": 0.4,
+                  "initialC": 20,
+                  "source": "Authored same surface material; not measured"
+                },
+                "schedule": [
+                  {
+                    "minutes": 60,
+                    "incidentWm2": 700,
+                    "reservoirC": 20,
+                    "source": "Authored original pulse"
+                  },
+                  {
+                    "minutes": 360,
+                    "incidentWm2": 0,
+                    "reservoirC": 20,
+                    "source": "Authored original dark interval"
+                  }
+                ]
+              },
+              "lowerLayers": {
+                "existing": {
+                  "capacityJm2K": 80000,
+                  "conductanceWm2K": 20,
+                  "initialC": 20,
+                  "source": "Authored initial state and lower layer, not acquired"
+                },
+                "proposal": {
+                  "capacityJm2K": 80000,
+                  "conductanceWm2K": 20,
+                  "initialC": 20,
+                  "source": "Authored initial state and lower layer, not acquired"
+                }
+              }
+            },
+            "target": "existing",
+            "associationSource": "Fictional surface-reading investigation on the retained two-store declaration; no acquisition occurred",
+            "hypotheses": [
+              {
+                "label": "A",
+                "capacityJm2K": 20000,
+                "conductanceWm2K": 5,
+                "source": "Authored finite family"
+              },
+              {
+                "label": "B",
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "source": "Authored finite family"
+              },
+              {
+                "label": "C",
+                "capacityJm2K": 200000,
+                "conductanceWm2K": 80,
+                "source": "Authored finite family"
+              }
+            ],
+            "readings": [
+              {
+                "minute": 60,
+                "temperatureC": 44.53099896635513,
+                "halfWidthC": 100,
+                "use": "calibration",
+                "source": "Authored analytic control from the retained reference; not an acquired, independent or held-aside sensor reading"
+              }
+            ]
+          }
+        },
+        "challengeProject": {
+          "schema": "experimental-earth-site/1",
+          "title": "Authored later cooling exposure",
+          "width": 8,
+          "height": 6,
+          "weather": {
+            "rainMmHr": 36,
+            "stormMinutes": 60,
+            "durationMinutes": 240,
+            "stepMinutes": 5,
+            "cellSizeM": 2,
+            "mobilityPerHour": 0.5,
+            "boundaryExitPerHour": 0.38
+          },
+          "existing": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "observations": [],
+          "selectedIndex": 27,
+          "source": "Illustrative geometry and rates; no site measurements",
+          "surfaceHeatStudy": {
+            "schema": "experimental-earth-surface-heat/1",
+            "model": "uniform-layer-forced-linear-exchange",
+            "cellIndex": 0,
+            "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+            "existing": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "proposal": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "schedule": [
+              {
+                "minutes": 300,
+                "incidentWm2": 0,
+                "reservoirC": 20,
+                "source": "Authored distinct excitation"
+              }
+            ]
+          },
+          "heatColumnStudy": {
+            "schema": "experimental-earth-heat-column/1",
+            "model": "two-uniform-stores-forced-surface-linear-exchange",
+            "heatStudy": {
+              "schema": "experimental-earth-surface-heat/1",
+              "model": "uniform-layer-forced-linear-exchange",
+              "cellIndex": 0,
+              "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+              "existing": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "proposal": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "schedule": [
+                {
+                  "minutes": 300,
+                  "incidentWm2": 0,
+                  "reservoirC": 20,
+                  "source": "Authored distinct excitation"
+                }
+              ]
+            },
+            "lowerLayers": {
+              "existing": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 5,
+                "source": "Authored initial state and lower layer, not acquired"
+              },
+              "proposal": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 5,
+                "source": "Authored initial state and lower layer, not acquired"
+              }
+            }
+          }
+        },
+        "readingFile": {
+          "name": "authored-pair.csv",
+          "text": "minute,from_minute,aggregation,temperature,half_width,unit,use,source\n1,,instant,19.46366810361004,0.8840633904349504,C,challenge,Authored pair support control\n"
+        },
+        "associationSource": "Authored same-material association, no acquired observations"
+      }
+    },
+    {
+      "reference": "Authored exposure excluding B",
+      "transfer": {
+        "schema": "experimental-earth-heat-column-transfer/1",
+        "originalProject": {
+          "schema": "experimental-earth-site/1",
+          "title": "Authored original heating investigation",
+          "width": 8,
+          "height": 6,
+          "weather": {
+            "rainMmHr": 36,
+            "stormMinutes": 60,
+            "durationMinutes": 240,
+            "stepMinutes": 5,
+            "cellSizeM": 2,
+            "mobilityPerHour": 0.5,
+            "boundaryExitPerHour": 0.38
+          },
+          "existing": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "observations": [],
+          "selectedIndex": 27,
+          "source": "Illustrative geometry and rates; no site measurements",
+          "surfaceHeatStudy": {
+            "schema": "experimental-earth-surface-heat/1",
+            "model": "uniform-layer-forced-linear-exchange",
+            "cellIndex": 0,
+            "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+            "existing": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "proposal": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.4,
+              "initialC": 20,
+              "source": "Authored same surface material; not measured"
+            },
+            "schedule": [
+              {
+                "minutes": 60,
+                "incidentWm2": 700,
+                "reservoirC": 20,
+                "source": "Authored original pulse"
+              },
+              {
+                "minutes": 360,
+                "incidentWm2": 0,
+                "reservoirC": 20,
+                "source": "Authored original dark interval"
+              }
+            ]
+          },
+          "heatColumnStudy": {
+            "schema": "experimental-earth-heat-column/1",
+            "model": "two-uniform-stores-forced-surface-linear-exchange",
+            "heatStudy": {
+              "schema": "experimental-earth-surface-heat/1",
+              "model": "uniform-layer-forced-linear-exchange",
+              "cellIndex": 0,
+              "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+              "existing": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "proposal": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.4,
+                "initialC": 20,
+                "source": "Authored same surface material; not measured"
+              },
+              "schedule": [
+                {
+                  "minutes": 60,
+                  "incidentWm2": 700,
+                  "reservoirC": 20,
+                  "source": "Authored original pulse"
+                },
+                {
+                  "minutes": 360,
+                  "incidentWm2": 0,
+                  "reservoirC": 20,
+                  "source": "Authored original dark interval"
+                }
+              ]
+            },
+            "lowerLayers": {
+              "existing": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              },
+              "proposal": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              }
+            }
+          },
+          "heatColumnEvidence": {
+            "schema": "experimental-earth-heat-column-evidence/1",
+            "quantity": "surface-temperature",
+            "columnStudy": {
+              "schema": "experimental-earth-heat-column/1",
+              "model": "two-uniform-stores-forced-surface-linear-exchange",
+              "heatStudy": {
+                "schema": "experimental-earth-surface-heat/1",
+                "model": "uniform-layer-forced-linear-exchange",
+                "cellIndex": 0,
+                "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+                "existing": {
+                  "capacityJm2K": 20000,
+                  "exchangeWm2K": 10,
+                  "absorptivity": 0.8,
+                  "initialC": 20,
+                  "source": "Authored same surface material; not measured"
+                },
+                "proposal": {
+                  "capacityJm2K": 20000,
+                  "exchangeWm2K": 10,
+                  "absorptivity": 0.4,
+                  "initialC": 20,
+                  "source": "Authored same surface material; not measured"
+                },
+                "schedule": [
+                  {
+                    "minutes": 60,
+                    "incidentWm2": 700,
+                    "reservoirC": 20,
+                    "source": "Authored original pulse"
+                  },
+                  {
+                    "minutes": 360,
+                    "incidentWm2": 0,
+                    "reservoirC": 20,
+                    "source": "Authored original dark interval"
+                  }
+                ]
+              },
+              "lowerLayers": {
+                "existing": {
+                  "capacityJm2K": 80000,
+                  "conductanceWm2K": 20,
+                  "initialC": 20,
+                  "source": "Authored initial state and lower layer, not acquired"
+                },
+                "proposal": {
+                  "capacityJm2K": 80000,
+                  "conductanceWm2K": 20,
+                  "initialC": 20,
+                  "source": "Authored initial state and lower layer, not acquired"
+                }
+              }
+            },
+            "target": "existing",
+            "associationSource": "Fictional surface-reading investigation on the retained two-store declaration; no acquisition occurred",
+            "hypotheses": [
+              {
+                "label": "A",
+                "capacityJm2K": 20000,
+                "conductanceWm2K": 5,
+                "source": "Authored finite family"
+              },
+              {
+                "label": "B",
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "source": "Authored finite family"
+              },
+              {
+                "label": "C",
+                "capacityJm2K": 200000,
+                "conductanceWm2K": 80,
+                "source": "Authored finite family"
+              }
+            ],
+            "readings": [
+              {
+                "minute": 60,
+                "temperatureC": 44.53099896635513,
+                "halfWidthC": 100,
+                "use": "calibration",
+                "source": "Authored analytic control from the retained reference; not an acquired, independent or held-aside sensor reading"
+              }
+            ]
+          }
+        },
+        "challengeProject": {
+          "schema": "experimental-earth-site/1",
+          "title": "Authored later cooling exposure",
+          "width": 8,
+          "height": 6,
+          "weather": {
+            "rainMmHr": 36,
+            "stormMinutes": 60,
+            "durationMinutes": 240,
+            "stepMinutes": 5,
+            "cellSizeM": 2,
+            "mobilityPerHour": 0.5,
+            "boundaryExitPerHour": 0.38
+          },
+          "existing": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.06,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.095,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.107,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.051,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.086,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.098,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.042,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.077,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.089,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.033,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.068,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.08,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "garden",
+              "provenance": "proposed hypothetical change"
+            },
+            {
+              "elevationM": 0.024,
+              "surface": "sealed",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.059,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.071,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.015,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.05,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            },
+            {
+              "elevationM": 0.062,
+              "surface": "turf",
+              "provenance": "illustrative assumption"
+            }
+          ],
+          "observations": [],
+          "selectedIndex": 27,
+          "source": "Illustrative geometry and rates; no site measurements",
+          "surfaceHeatStudy": {
+            "schema": "experimental-earth-surface-heat/1",
+            "model": "uniform-layer-forced-linear-exchange",
+            "cellIndex": 0,
+            "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+            "existing": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 50,
+              "source": "Authored same surface material; not measured"
+            },
+            "proposal": {
+              "capacityJm2K": 20000,
+              "exchangeWm2K": 10,
+              "absorptivity": 0.8,
+              "initialC": 50,
+              "source": "Authored same surface material; not measured"
+            },
+            "schedule": [
+              {
+                "minutes": 300,
+                "incidentWm2": 0,
+                "reservoirC": 20,
+                "source": "Authored distinct excitation"
+              }
+            ]
+          },
+          "heatColumnStudy": {
+            "schema": "experimental-earth-heat-column/1",
+            "model": "two-uniform-stores-forced-surface-linear-exchange",
+            "heatStudy": {
+              "schema": "experimental-earth-surface-heat/1",
+              "model": "uniform-layer-forced-linear-exchange",
+              "cellIndex": 0,
+              "contextJson": "{\"cellIndex\":0,\"cellSizeM\":2,\"existing\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"height\":6,\"proposal\":{\"elevationM\":0.095,\"provenance\":\"illustrative assumption\",\"surface\":\"turf\"},\"source\":\"Illustrative geometry and rates; no site measurements\",\"width\":8}",
+              "existing": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 50,
+                "source": "Authored same surface material; not measured"
+              },
+              "proposal": {
+                "capacityJm2K": 20000,
+                "exchangeWm2K": 10,
+                "absorptivity": 0.8,
+                "initialC": 50,
+                "source": "Authored same surface material; not measured"
+              },
+              "schedule": [
+                {
+                  "minutes": 300,
+                  "incidentWm2": 0,
+                  "reservoirC": 20,
+                  "source": "Authored distinct excitation"
+                }
+              ]
+            },
+            "lowerLayers": {
+              "existing": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              },
+              "proposal": {
+                "capacityJm2K": 80000,
+                "conductanceWm2K": 20,
+                "initialC": 20,
+                "source": "Authored initial state and lower layer, not acquired"
+              }
+            }
+          }
+        },
+        "readingFile": {
+          "name": "authored-pair.csv",
+          "text": "minute,from_minute,aggregation,temperature,half_width,unit,use,source\n120,,instant,21.623452185441828,0.10284526263227001,C,challenge,Authored pair support control\n"
+        },
+        "associationSource": "Authored same-material association, no acquired observations"
+      }
+    }
+  ]
+}
