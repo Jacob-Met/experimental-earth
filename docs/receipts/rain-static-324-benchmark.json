@@ -1,0 +1,516 @@
+{
+  "status": "pass",
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpuCount": 4,
+    "load": [
+      0.27,
+      0.13,
+      0.05
+    ]
+  },
+  "baselineCoreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+  "candidateCoreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+  "method": "Five alternating fresh-process pairs; eight warmups, equal fixed repeats, full-output hashes; first use and whole-process peak RSS reported separately",
+  "rows": [
+    {
+      "name": "courtyard",
+      "baselineMedianMs": 0.8603237199999999,
+      "candidateMedianMs": 1.0254866,
+      "speedup": 0.8389419422935414,
+      "baselineFirstUseMedianMs": 10.044722,
+      "candidateFirstUseMedianMs": 8.086538999999995,
+      "samples": {
+        "baseline": [
+          {
+            "name": "courtyard",
+            "firstUseMs": 14.928343999999996,
+            "wallMs": 1.0937424100000002,
+            "cpuMs": 1.66467,
+            "processMaxRssKiB": 80060,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 9.675050999999996,
+            "wallMs": 0.8603237199999999,
+            "cpuMs": 1.10645,
+            "processMaxRssKiB": 87204,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 10.044722,
+            "wallMs": 0.7551754000000002,
+            "cpuMs": 1.14572,
+            "processMaxRssKiB": 88320,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 10.351793,
+            "wallMs": 0.85519603,
+            "cpuMs": 1.06978,
+            "processMaxRssKiB": 82008,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 9.859127,
+            "wallMs": 0.9059703900000001,
+            "cpuMs": 1.3571,
+            "processMaxRssKiB": 84260,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          }
+        ],
+        "candidate": [
+          {
+            "name": "courtyard",
+            "firstUseMs": 8.5976,
+            "wallMs": 1.04026523,
+            "cpuMs": 1.59875,
+            "processMaxRssKiB": 80376,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 7.988380999999997,
+            "wallMs": 0.9013770900000001,
+            "cpuMs": 1.53465,
+            "processMaxRssKiB": 83564,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 7.850152999999999,
+            "wallMs": 1.0254866,
+            "cpuMs": 2.11457,
+            "processMaxRssKiB": 85444,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 8.086538999999995,
+            "wallMs": 1.04775767,
+            "cpuMs": 2.20636,
+            "processMaxRssKiB": 79484,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "courtyard",
+            "firstUseMs": 8.202015999999993,
+            "wallMs": 0.8892424700000001,
+            "cpuMs": 1.59704,
+            "processMaxRssKiB": 77316,
+            "outputSha256": "b9e47999c92e5ebaaadff91aa4526b5a8bd5620cd77ee7037992dc99fb82d2a0",
+            "repeats": 100,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          }
+        ]
+      }
+    },
+    {
+      "name": "sensitivity",
+      "baselineMedianMs": 23.16697933333334,
+      "candidateMedianMs": 17.895720999999998,
+      "speedup": 1.2945541190172412,
+      "baselineFirstUseMedianMs": 92.21881300000001,
+      "candidateFirstUseMedianMs": 91.705539,
+      "samples": {
+        "baseline": [
+          {
+            "name": "sensitivity",
+            "firstUseMs": 101.070664,
+            "wallMs": 22.59721399999999,
+            "cpuMs": 23.614333333333335,
+            "processMaxRssKiB": 96636,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 85.34924000000001,
+            "wallMs": 24.264137000000005,
+            "cpuMs": 25.337999999999997,
+            "processMaxRssKiB": 95364,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 85.53743899999999,
+            "wallMs": 24.150581999999986,
+            "cpuMs": 25.155666666666665,
+            "processMaxRssKiB": 100596,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 92.21881300000001,
+            "wallMs": 23.16697933333334,
+            "cpuMs": 24.360666666666663,
+            "processMaxRssKiB": 96352,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 99.945876,
+            "wallMs": 22.858215666666677,
+            "cpuMs": 23.899,
+            "processMaxRssKiB": 101512,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          }
+        ],
+        "candidate": [
+          {
+            "name": "sensitivity",
+            "firstUseMs": 84.371602,
+            "wallMs": 18.05581133333332,
+            "cpuMs": 18.483333333333334,
+            "processMaxRssKiB": 100824,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 87.84515400000001,
+            "wallMs": 20.417796333333342,
+            "cpuMs": 20.850333333333335,
+            "processMaxRssKiB": 98856,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 91.705539,
+            "wallMs": 17.895720999999998,
+            "cpuMs": 18.338666666666665,
+            "processMaxRssKiB": 100180,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 96.160872,
+            "wallMs": 16.773046333333337,
+            "cpuMs": 17.203,
+            "processMaxRssKiB": 94704,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "sensitivity",
+            "firstUseMs": 100.83966799999999,
+            "wallMs": 15.313553333333346,
+            "cpuMs": 15.757666666666667,
+            "processMaxRssKiB": 93432,
+            "outputSha256": "24cb48832a70c2c91218d472de2b9c912dca62dedf87906c1e780690aaecf2d6",
+            "repeats": 3,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          }
+        ]
+      }
+    },
+    {
+      "name": "large-open",
+      "baselineMedianMs": 108.36975149999995,
+      "candidateMedianMs": 67.934991,
+      "speedup": 1.5951978487786942,
+      "baselineFirstUseMedianMs": 191.744204,
+      "candidateFirstUseMedianMs": 129.783162,
+      "samples": {
+        "baseline": [
+          {
+            "name": "large-open",
+            "firstUseMs": 187.470336,
+            "wallMs": 102.56975574999996,
+            "cpuMs": 106.286,
+            "processMaxRssKiB": 162952,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 188.218327,
+            "wallMs": 119.9249365,
+            "cpuMs": 145.0795,
+            "processMaxRssKiB": 161184,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 191.744204,
+            "wallMs": 108.36975149999995,
+            "cpuMs": 122.516,
+            "processMaxRssKiB": 164256,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 193.99189099999998,
+            "wallMs": 121.31990325000004,
+            "cpuMs": 146.9795,
+            "processMaxRssKiB": 165672,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 202.735062,
+            "wallMs": 104.58145250000001,
+            "cpuMs": 107.5765,
+            "processMaxRssKiB": 163424,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          }
+        ],
+        "candidate": [
+          {
+            "name": "large-open",
+            "firstUseMs": 129.783162,
+            "wallMs": 68.99060124999997,
+            "cpuMs": 72.00275,
+            "processMaxRssKiB": 162220,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 147.058338,
+            "wallMs": 66.48231500000003,
+            "cpuMs": 70.37375,
+            "processMaxRssKiB": 168848,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 131.594202,
+            "wallMs": 67.29064349999999,
+            "cpuMs": 70.50975,
+            "processMaxRssKiB": 162644,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 126.73660899999999,
+            "wallMs": 67.934991,
+            "cpuMs": 71.309,
+            "processMaxRssKiB": 168220,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-open",
+            "firstUseMs": 124.321365,
+            "wallMs": 76.40505224999998,
+            "cpuMs": 81.0145,
+            "processMaxRssKiB": 161092,
+            "outputSha256": "ebc237b193fd6d11d574039f774805294e20e7c96ae9ad293e578d0d06b1f274",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          }
+        ]
+      }
+    },
+    {
+      "name": "large-crests",
+      "baselineMedianMs": 152.48863250000005,
+      "candidateMedianMs": 79.97746000000001,
+      "speedup": 1.9066451035079137,
+      "baselineFirstUseMedianMs": 247.261035,
+      "candidateFirstUseMedianMs": 177.439812,
+      "samples": {
+        "baseline": [
+          {
+            "name": "large-crests",
+            "firstUseMs": 247.177723,
+            "wallMs": 151.44467174999994,
+            "cpuMs": 154.65825,
+            "processMaxRssKiB": 162972,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 240.371802,
+            "wallMs": 151.06664,
+            "cpuMs": 154.4495,
+            "processMaxRssKiB": 167472,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 248.90772400000003,
+            "wallMs": 164.73340375000004,
+            "cpuMs": 168.30125,
+            "processMaxRssKiB": 168740,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 253.18733199999997,
+            "wallMs": 152.48863250000005,
+            "cpuMs": 157.51925,
+            "processMaxRssKiB": 165040,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 247.261035,
+            "wallMs": 172.55453125000003,
+            "cpuMs": 192.8825,
+            "processMaxRssKiB": 170260,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "3543b403766510fede61f8fca05ab6d13197981a",
+            "node": "v22.23.4"
+          }
+        ],
+        "candidate": [
+          {
+            "name": "large-crests",
+            "firstUseMs": 165.048835,
+            "wallMs": 79.97746000000001,
+            "cpuMs": 82.79725,
+            "processMaxRssKiB": 168628,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 168.955856,
+            "wallMs": 77.65830125,
+            "cpuMs": 80.88575,
+            "processMaxRssKiB": 167584,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 199.601628,
+            "wallMs": 81.66498224999998,
+            "cpuMs": 84.94825,
+            "processMaxRssKiB": 174260,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 177.439812,
+            "wallMs": 78.90435224999999,
+            "cpuMs": 82.1805,
+            "processMaxRssKiB": 170436,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          },
+          {
+            "name": "large-crests",
+            "firstUseMs": 182.453666,
+            "wallMs": 86.8767995,
+            "cpuMs": 90.5405,
+            "processMaxRssKiB": 167688,
+            "outputSha256": "c5668f00cdce8a914d837cbcd17310a867d7ddf0c2a176a8d0b006f4c40ff48a",
+            "repeats": 4,
+            "coreBlob": "08679e473182a5ab5c957c432777ba2a069371a1",
+            "node": "v22.23.4"
+          }
+        ]
+      }
+    }
+  ]
+}

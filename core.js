@@ -137,6 +137,22 @@ export function runRain(cells, width, height, weather, options = {}) {
     const exits = Number(x === 0) + Number(x === width - 1) + Number(y === 0) + Number(y === height - 1);
     if (exits) boundaries.push([i, exits]);
   }
+  // Geometry and material declarations stay fixed during this synchronous run.
+  // Resolve them once, retaining the original pair order and edge indices used
+  // by accounting and reverse attribution. Rebuild on every call so edits to a
+  // reused project cannot inherit stale walls, crests, heights or rates.
+  const elevationMm = cells.map(cell => cell.elevationM * 1000);
+  const infiltrationRates = cells.map((cell, i) => override?.cellIndex === i ? override.rateMmHr :
+    surfaceOverride?.surface === cell.surface ? surfaceOverride.rateMmHr : SURFACES[cell.surface].infiltrationMmHr);
+  const hydraulicEdges = [];
+  for (let edgeIndex = 0; edgeIndex < pairs.length; edgeIndex++) {
+    const [a, b] = pairs[edgeIndex];
+    if (internalEdgeClosed(cells, a, b, width)) continue;
+    const crest = internalEdgeCrest(cells, a, b);
+    hydraulicEdges.push({ a, b, edgeIndex, crestMm: crest === null ? null : crest * 1000 });
+  }
+  const hasCrests = hydraulicEdges.some(edge => edge.crestMm !== null);
+  const proposedOut = Array(n).fill(0), movement = Array(n).fill(0);
   const origins = createRainOriginTracer(n, cellArea, options?.rainOrigins,
     Math.ceil(weather.durationMinutes / weather.stepMinutes) + 1, pairs, water);
   // Optional accounting of the same accepted fluxes used below. This does not
@@ -160,8 +176,7 @@ export function runRain(cells, width, height, weather, options = {}) {
     for (let i = 0; i < n; i++) {
       const initialSurfaceMm = water[i];
       water[i] += rainMm;
-      const rate = override?.cellIndex === i ? override.rateMmHr :
-        surfaceOverride?.surface === cells[i].surface ? surfaceOverride.rateMmHr : SURFACES[cells[i].surface].infiltrationMmHr;
+      const rate = infiltrationRates[i];
       let absorb;
       if (drainingLayer?.applies(i)) {
         const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
@@ -197,25 +212,21 @@ export function runRain(cells, width, height, weather, options = {}) {
     // Explicit finite-volume pair transfers. Simultaneously cap each source's
     // total proposed outflux to available depth; no neighbor creation/loss.
     const links = [];
-    const proposedOut = Array(n).fill(0);
-    for (let edgeIndex = 0; edgeIndex < pairs.length; edgeIndex++) {
-      const [a, b] = pairs[edgeIndex];
-      // Keep every edge index for accounting/tracing, including zero-flux walls.
-      if (internalEdgeClosed(cells, a, b, width)) continue;
-      const headA = cells[a].elevationM * 1000 + water[a];
-      const headB = cells[b].elevationM * 1000 + water[b];
+    proposedOut.fill(0);
+    for (const { a, b, edgeIndex, crestMm } of hydraulicEdges) {
+      const headA = elevationMm[a] + water[a];
+      const headB = elevationMm[b] + water[b];
       const delta = headA - headB;
       if (Math.abs(delta) < 1e-12) continue;
       const src = delta > 0 ? a : b;
       const dst = delta > 0 ? b : a;
-      const crest = internalEdgeCrest(cells, a, b);
       // Preserve the literal legacy request for open links and inert low declarations.
-      const requested = crest === null ? Math.abs(delta) * weather.mobilityPerHour * dtHours :
-        Math.max(0, Math.max(headA, headB) - Math.max(Math.min(headA, headB), crest * 1000)) * weather.mobilityPerHour * dtHours;
+      const requested = crestMm === null ? Math.abs(delta) * weather.mobilityPerHour * dtHours :
+        Math.max(0, Math.max(headA, headB) - Math.max(Math.min(headA, headB), crestMm)) * weather.mobilityPerHour * dtHours;
       if (requested > 0) {
         const link = { src, dst, requested, edgeIndex };
-        if (crest !== null) link.stopDepthMm = Math.max(0,
-          Math.max(Math.min(headA, headB), crest * 1000) - cells[src].elevationM * 1000);
+        if (crestMm !== null) link.stopDepthMm = Math.max(0,
+          Math.max(Math.min(headA, headB), crestMm) - elevationMm[src]);
         links.push(link); proposedOut[src] += requested;
       }
     }
@@ -225,8 +236,8 @@ export function runRain(cells, width, height, weather, options = {}) {
       const requested = (water[i] + 10) * weather.boundaryExitPerHour * dtHours * count;
       if (requested > 0) { links.push({ src: i, dst: -1, requested }); proposedOut[i] += requested; }
     }
-    const movement = Array(n).fill(0);
-    const crestTransfers = allocateCrestTransfers(water, links);
+    movement.fill(0);
+    const crestTransfers = hasCrests ? allocateCrestTransfers(water, links) : null;
     let transferIndex = 0;
     for (const { src, dst, requested, edgeIndex } of links) {
       const capped = crestTransfers?.[transferIndex] ?? requested * Math.min(1, water[src] / proposedOut[src]);
