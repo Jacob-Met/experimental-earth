@@ -38,6 +38,15 @@ export function parseHourlyText(text,{sourceUrl}={}) {
   });
   return {schema:'research.uscrn-hourly03-intake/v1',sourceUrl,byteLength:text.length,rawText:text,readme:README,rows};
 }
+/** Source admissibility only; callers first parse the complete original bytes.
+ * This does not validate a physical model or infer observation uncertainty. */
+export function hourlySourceIssue(row,correctionType){
+ if(row.raw.SUR_TEMP_TYPE!==correctionType)return {code:'correction-policy',message:'Missing or mixed surface correction type'};
+ for(const name of ['T_HR_AVG','SOLARAD','SUR_TEMP'])if(row.numbers[name].missing)return {code:'missing-'+name,message:`Missing required ${name}`};
+ if(row.numbers.SOLARAD_FLAG!==0||row.numbers.SUR_TEMP_FLAG!==0)return {code:'required-qc',message:'Erroneous required measurement'};
+ if(row.numbers.SOLARAD.value<0)return {code:'negative-radiation',message:'Negative radiation requires explicit handling; never clip silently'};
+ return null;
+}
 export function selectCourse(intake,{firstLine,count,correctionType,initialState}={}) {
   if(!Number.isInteger(firstLine)||firstLine<1||!Number.isInteger(count)||count<1||count>48||firstLine+count-1>intake.rows.length) throw Error('Select 1–48 existing contiguous rows');
   if(!['C','R'].includes(correctionType)) throw Error('Declare corrected C or raw R policy');
@@ -47,10 +56,7 @@ export function selectCourse(intake,{firstLine,count,correctionType,initialState
   rows.forEach((r,i)=>{
     if(r.raw.WBANNO!==station || r.raw.LONGITUDE!==rows[0].raw.LONGITUDE || r.raw.LATITUDE!==rows[0].raw.LATITUDE) throw Error('Station/location changes');
     if(i && rows[i-1].intervalEndUtc!==r.intervalStartUtc) throw Error('Gap, duplicate, or reordered interval');
-    if(r.raw.SUR_TEMP_TYPE!==correctionType) throw Error('Missing or mixed surface correction type');
-    for(const name of ['T_HR_AVG','SOLARAD','SUR_TEMP']) if(r.numbers[name].missing) throw Error(`Missing required ${name}`);
-    if(r.numbers.SOLARAD_FLAG!==0 || r.numbers.SUR_TEMP_FLAG!==0) throw Error('Erroneous required measurement');
-    if(r.numbers.SOLARAD.value<0) throw Error('Negative radiation requires explicit handling; never clip silently');
+    const issue=hourlySourceIssue(r,correctionType);if(issue)throw Error(issue.message);
   });
   return {schema:'research.uscrn-course/v1',source:{url:intake.sourceUrl,sha256:intake.sha256,firstLine,count},correctionType,initialState:structuredClone(initialState),forcingAssumption:'Hourly global solar and air means represented as piecewise constant forcing; not measured within-hour history.',rows:structuredClone(rows)};
 }

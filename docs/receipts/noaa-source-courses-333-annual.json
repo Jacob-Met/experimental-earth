@@ -1,0 +1,338 @@
+{
+  "schema": "independent-noaa-annual-receiving-summary/1",
+  "status": "PASS",
+  "source": {
+    "url": "https://www.ncei.noaa.gov/pub/data/uscrn/products/hourly02/2025/CRNH0203-2025-AZ_Tucson_11_W.txt",
+    "bytes": 2137440,
+    "sha256": "8a3f9e470c96557cb21a0e1bab0f556630f4c8ec50965666a8f5a32a0677ea75",
+    "rows": 8760
+  },
+  "modules": {
+    "noaa-hourly.js": "6df632d6c713f0738bcfb6c28471f37436c9e343384660977162b406480f7c9d",
+    "noaa-hourly-courses.js": "3d7e560af296850d56646fcdedc94e30a1fd6cd3416cbe8001afc17a94f9b917",
+    "observation-clock.js": "77591f5904ccd8222872f4f59dee3bff080bcebd2d2b5c78412c767a76389cb7"
+  },
+  "node": "v22.23.4",
+  "checks": [
+    "All original1/6/24-hour windows under C/R exactly equal independent full enumeration; all excluded raw rows/UTC/reasons retained and hash-bound; every original row accounted once",
+    "Authored all-soil-fields-missing perturbation leaves24-hour source course choices unchanged under both policies; no soil depth or fit outcome selects courses"
+  ],
+  "measured": {
+    "intakeMs": 185.07817899999998,
+    "totalMs": 1767.479584,
+    "maxHarnessRssKiB": 333028,
+    "memoryScope": "Whole independent receiving harness, including retained receipts and authored negative control; not browser memory"
+  },
+  "courses": [
+    {
+      "policy": "C",
+      "hours": 1,
+      "windows": 8757,
+      "excludedCount": 3,
+      "windowListSha256": "ca00d23e869e21fdd63f8ab9012d7d28b543b0c16770fc694ff6c17398f7c290",
+      "first": {
+        "firstLine": 1,
+        "count": 1,
+        "station": "53131",
+        "startUtc": "2025-01-01T00:00:00.000Z",
+        "endUtc": "2025-01-01T01:00:00.000Z"
+      },
+      "last": {
+        "firstLine": 8760,
+        "count": 1,
+        "station": "53131",
+        "startUtc": "2025-12-31T23:00:00.000Z",
+        "endUtc": "2026-01-01T00:00:00.000Z"
+      },
+      "proposeMs": 168.10791700000001,
+      "independentEnumerationMs": 14.971046000000001,
+      "totalCaseMs": 200.81938499999998,
+      "runs": [
+        {
+          "firstLine": 1,
+          "count": 2923,
+          "station": "53131",
+          "startUtc": "2025-01-01T00:00:00.000Z",
+          "endUtc": "2025-05-02T19:00:00.000Z"
+        },
+        {
+          "firstLine": 2927,
+          "count": 5834,
+          "station": "53131",
+          "startUtc": "2025-05-02T22:00:00.000Z",
+          "endUtc": "2026-01-01T00:00:00.000Z"
+        }
+      ],
+      "boundaries": []
+    },
+    {
+      "policy": "C",
+      "hours": 6,
+      "windows": 8747,
+      "excludedCount": 3,
+      "windowListSha256": "559b342568a7a22e879f75446eceee9b6a99f8ab1217b6b86b8af9ec4baabe17",
+      "first": {
+        "firstLine": 1,
+        "count": 6,
+        "station": "53131",
+        "startUtc": "2025-01-01T00:00:00.000Z",
+        "endUtc": "2025-01-01T06:00:00.000Z"
+      },
+      "last": {
+        "firstLine": 8755,
+        "count": 6,
+        "station": "53131",
+        "startUtc": "2025-12-31T18:00:00.000Z",
+        "endUtc": "2026-01-01T00:00:00.000Z"
+      },
+      "proposeMs": 156.07578599999994,
+      "independentEnumerationMs": 14.863879999999995,
+      "totalCaseMs": 184.14886199999995,
+      "runs": [
+        {
+          "firstLine": 1,
+          "count": 2923,
+          "station": "53131",
+          "startUtc": "2025-01-01T00:00:00.000Z",
+          "endUtc": "2025-05-02T19:00:00.000Z"
+        },
+        {
+          "firstLine": 2927,
+          "count": 5834,
+          "station": "53131",
+          "startUtc": "2025-05-02T22:00:00.000Z",
+          "endUtc": "2026-01-01T00:00:00.000Z"
+        }
+      ],
+      "boundaries": []
+    },
+    {
+      "policy": "C",
+      "hours": 24,
+      "windows": 8711,
+      "excludedCount": 3,
+      "windowListSha256": "9bed81b33a63d268f2388a6243e6bf48f05671c974162963fa01759df57fef18",
+      "first": {
+        "firstLine": 1,
+        "count": 24,
+        "station": "53131",
+        "startUtc": "2025-01-01T00:00:00.000Z",
+        "endUtc": "2025-01-02T00:00:00.000Z"
+      },
+      "last": {
+        "firstLine": 8737,
+        "count": 24,
+        "station": "53131",
+        "startUtc": "2025-12-31T00:00:00.000Z",
+        "endUtc": "2026-01-01T00:00:00.000Z"
+      },
+      "proposeMs": 135.17888199999993,
+      "independentEnumerationMs": 22.52941899999996,
+      "totalCaseMs": 168.18635099999995,
+      "runs": [
+        {
+          "firstLine": 1,
+          "count": 2923,
+          "station": "53131",
+          "startUtc": "2025-01-01T00:00:00.000Z",
+          "endUtc": "2025-05-02T19:00:00.000Z"
+        },
+        {
+          "firstLine": 2927,
+          "count": 5834,
+          "station": "53131",
+          "startUtc": "2025-05-02T22:00:00.000Z",
+          "endUtc": "2026-01-01T00:00:00.000Z"
+        }
+      ],
+      "boundaries": []
+    },
+    {
+      "policy": "R",
+      "hours": 1,
+      "windows": 0,
+      "excludedCount": 8760,
+      "windowListSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "first": null,
+      "last": null,
+      "proposeMs": 147.84261500000002,
+      "independentEnumerationMs": 0.12420899999995072,
+      "totalCaseMs": 175.56166499999995,
+      "runs": [],
+      "boundaries": []
+    },
+    {
+      "policy": "R",
+      "hours": 6,
+      "windows": 0,
+      "excludedCount": 8760,
+      "windowListSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "first": null,
+      "last": null,
+      "proposeMs": 154.20188000000007,
+      "independentEnumerationMs": 0.08787899999992987,
+      "totalCaseMs": 174.13197400000013,
+      "runs": [],
+      "boundaries": []
+    },
+    {
+      "policy": "R",
+      "hours": 24,
+      "windows": 0,
+      "excludedCount": 8760,
+      "windowListSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "first": null,
+      "last": null,
+      "proposeMs": 157.46191,
+      "independentEnumerationMs": 0.139060999999856,
+      "totalCaseMs": 179.137383,
+      "runs": [],
+      "boundaries": []
+    }
+  ],
+  "exclusions": [
+    {
+      "policy": "C",
+      "count": 3,
+      "byReason": {
+        "correction-policy": 1,
+        "missing-T_HR_AVG": 2
+      },
+      "originalLineRangesByReason": {
+        "correction-policy": [
+          [
+            2924,
+            2924
+          ]
+        ],
+        "missing-T_HR_AVG": [
+          [
+            2925,
+            2926
+          ]
+        ]
+      },
+      "completeExclusionsSha256": "dcf1ccf09a3d8591465d7dbc8b67e59ed0fb7097ed3aab019b27a47a9c42adf5",
+      "individualExclusions": [
+        {
+          "line": 2924,
+          "code": "correction-policy",
+          "reason": "Missing or mixed surface correction type",
+          "intervalStartUtc": "2025-05-02T19:00:00.000Z",
+          "intervalEndUtc": "2025-05-02T20:00:00.000Z",
+          "station": "53131",
+          "originalRowSha256": "2af432e686df7f3604e94b1380ff2bec514f979929874a51611000d1f4beb858"
+        },
+        {
+          "line": 2925,
+          "code": "missing-T_HR_AVG",
+          "reason": "Missing required T_HR_AVG",
+          "intervalStartUtc": "2025-05-02T20:00:00.000Z",
+          "intervalEndUtc": "2025-05-02T21:00:00.000Z",
+          "station": "53131",
+          "originalRowSha256": "97993a681d380412aeba7208dde7000109dece82af569102c14c95e8d2895426"
+        },
+        {
+          "line": 2926,
+          "code": "missing-T_HR_AVG",
+          "reason": "Missing required T_HR_AVG",
+          "intervalStartUtc": "2025-05-02T21:00:00.000Z",
+          "intervalEndUtc": "2025-05-02T22:00:00.000Z",
+          "station": "53131",
+          "originalRowSha256": "749d30ad5d869537b9363113fe4209466d1e15d5ef86e2e5f452f5897ba46a81"
+        }
+      ]
+    },
+    {
+      "policy": "R",
+      "count": 8760,
+      "byReason": {
+        "correction-policy": 8760
+      },
+      "originalLineRangesByReason": {
+        "correction-policy": [
+          [
+            1,
+            8760
+          ]
+        ]
+      },
+      "completeExclusionsSha256": "f4d7e0bf158d53b6c27bb386884d2e2d0b211e37f861fd94fdcd21d2d78676c3"
+    }
+  ],
+  "detailedReceiptSha256": "48947c1d000a09311ea8c12fa49183cebe378b0fa5a7924fbb82ef1b3bfc5ef4",
+  "reproduce": "node earth-experiments/receive-original-year.mjs ORIGINAL_PATH SOURCE_URL EXACT_REPO_ROOT detailed.json; node earth-experiments/compact-year-receipt.mjs detailed.json compact.json [browser.json]",
+  "browser": {
+    "status": "PASS",
+    "checks": [
+      {
+        "check": "Annual original upload,1/6/24h counts,10-row pagination,exact UTC keyboard selection and actual24-row maintained comparison",
+        "intakeAndPickerMs": 332,
+        "selected": {
+          "runIndex": 1,
+          "firstLine": 4382,
+          "count": 24,
+          "station": "53131",
+          "startUtc": "2025-07-02T13:00:00.000Z",
+          "endUtc": "2025-07-03T13:00:00.000Z"
+        },
+        "comparisonState": "calibration-rejected",
+        "sourceRowsVerified": 24
+      },
+      {
+        "check": "Changed duration retires comparison; incompatible R retains8760 exclusions with10-row pagination and refuses comparison without fallback"
+      }
+    ],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-26T01:01:29.532Z",
+      "completedAt": "2026-10-26T01:01:29.630Z",
+      "durationMs": 97.4668059999999,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "5EED8234E7CBA3028B2659B7EEDB843D",
+        "type": "page",
+        "title": "Experimental Earth — Rain Experiment Lab",
+        "url": "http://127.0.0.1:35373/",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "35CCF0555FB48FEA7D5724F586588BD8"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "exceptions": [],
+    "receiptSha256": "d1e73d110d5f97975f11a934ad9af070dbb52749193ce677954d9cd4eb9fff1d"
+  }
+}
