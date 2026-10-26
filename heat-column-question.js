@@ -65,3 +65,5 @@ export function planHeatColumnQuestion(project, settings) {
   return { ...result, status: best.separatedCount ? 'question' : 'no-separating-time', best,
     semantics: 'Largest separated-pair count on the declared time grid; ties prefer the largest guarded minimum pair gap, then the earliest time. This is not a continuous optimum, information gain, error bound or physical identification. Prospective bands contain no observed values.' };
 }
+
+export { guard as heatColumnQuestionGuard };

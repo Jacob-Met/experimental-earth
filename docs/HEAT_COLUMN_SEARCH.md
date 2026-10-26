@@ -100,3 +100,7 @@ bounded bracket continuation for unequal reading bands. The original
 normalized-residual method and its saved files retain their behavior. See
 [original-band inference](HEAT_COLUMN_BAND_SEARCH.md) for the mechanism, negative
 controls, source-method identity and conditional coverage limits.
+
+## A prospective reading for peak uncertainty
+
+The separate [inferred peak question](HEAT_COLUMN_PEAK_QUESTION.md) uses all distinct compatible proposals to choose a sourced available reading time/window that minimizes worst conditional lower-store peak spread. It preserves the existing offered-alternative question planner and provides source-only download/direct fresh reopen. These are conditional finite-proposal predictions, not acquired observations or a continuous uncertainty enclosure.
