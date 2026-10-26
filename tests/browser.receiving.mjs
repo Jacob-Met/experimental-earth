@@ -31,8 +31,44 @@ const report = [];
 let exceptions = [];
 try {
   const result = await withBrowserSession({root, chromeBin, runDirectory}, async session => {
-  const {baseUrl, send, evaluate} = session;
+  const {baseUrl, evaluate} = session;
   exceptions = session.exceptions;
+  let completedReloads = 0;
+  // Page.reload acknowledges navigation before the replacement app is ready.
+  // app.js mounts investigation navigation only after all panels and its first
+  // rerun complete. Require that marker in a genuinely new document, while
+  // leaving each receiving course's own result assertions unchanged.
+  async function send(method, params = {}) {
+    if (method !== 'Page.reload') return session.send(method, params);
+    const previousTimeOrigin = await evaluate('performance.timeOrigin');
+    const result = await session.send(method, params);
+    const deadline = Date.now() + 20_000;
+    let snapshot = null, navigationError = null;
+    while (Date.now() < deadline) {
+      session.signal.throwIfAborted();
+      try {
+        snapshot = await evaluate(`({timeOrigin:performance.timeOrigin,href:location.href,
+          readyState:document.readyState,
+          mounted:!!document.querySelector('#investigation-navigation') &&
+            !!document.querySelector('#investigation-results a[data-investigation-id="local-budget-panel"]'),
+          existingCells:document.querySelectorAll('#existing-grid .cell').length,
+          proposalCells:document.querySelectorAll('#proposal-grid .cell').length})`);
+        if (snapshot.timeOrigin !== previousTimeOrigin && snapshot.readyState === 'complete' && snapshot.mounted) {
+          completedReloads++;
+          return result;
+        }
+      } catch (error) {
+        // Only the expected context replacement is transient. Browser closure,
+        // command timeouts and JavaScript evaluation errors remain failures.
+        if (!/Execution context was destroyed|Cannot find context with specified id|Cannot find default execution context/i.test(String(error))) throw error;
+        navigationError = String(error);
+      }
+      await delay(75);
+    }
+    throw Error(`Reloaded application did not become ready: ${JSON.stringify({
+      previousTimeOrigin, snapshot, navigationError, exceptions,
+    })}`);
+  }
   await send('Runtime.enable'); await send('Page.enable');
   // Wait for the owned page navigation before testing storage.
   for(let n=0;n<30;n++){
@@ -116,7 +152,8 @@ try {
 
   const measurementVisuals = await receiveDecisionObservations({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
   assert.deepEqual(exceptions,[]);
-  return {checks:report,exceptions,dimensions:dims,decisionVisuals,measurementVisuals,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
+  return {checks:report,exceptions,dimensions:dims,decisionVisuals,measurementVisuals,
+    completedReloads,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
   });
   console.log(JSON.stringify({status:'PASS',browser:chromeBin,...result.value,session:result.receipt},null,2));
 } catch(e) {
