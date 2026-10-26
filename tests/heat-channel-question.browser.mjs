@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {randomUUID} from 'node:crypto';
+import {writeFile,readFile,readdir} from 'node:fs/promises';
+import {setTimeout as delay} from 'node:timers/promises';
+import {project} from './heat-channel-question-fixture.mjs';
+import {withBrowserSession} from './support/browser-session.mjs';
+const root=fileURLToPath(new URL('../',import.meta.url)),runDirectory=root+'.browser-run-heat-channel-'+randomUUID();
+const result=await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN??'/opt/google/chrome/chrome'},async session=>{
+ const {evaluate,send,exceptions}=session,checks=[];await send('Runtime.enable');await send('Page.enable');await send('DOM.enable');
+ for(let i=0;i<150;i++){if(await evaluate("Boolean(document.getElementById('heat-channel-form'))"))break;await delay(40);}
+ assert.ok(await evaluate("Boolean(document.getElementById('heat-channel-form'))"));
+ async function upload(selector,path){const doc=await send('DOM.getDocument');const input=await send('DOM.querySelector',{nodeId:doc.root.nodeId,selector});await send('DOM.setFileInputFiles',{nodeId:input.nodeId,files:[path]});await delay(300);}
+ const path=runDirectory+'/source.json';await writeFile(path,JSON.stringify(project()));await upload('#import',path);
+ const original=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
+ await evaluate("document.getElementById('heat-channel-association').value='Authored sensor association <img src=x onerror=alert(1)>; no depth inferred.';document.getElementById('heat-channel-form').requestSubmit()");
+ assert.equal(await evaluate("document.getElementById('heat-channel-status').dataset.state"),'question');
+ const text=await evaluate("document.getElementById('heat-channel-result').textContent");assert.ok(text.includes('surface: 9/10'));assert.ok(text.includes('lower: 10/10'));assert.ok(text.includes('Highest-ranked question: lower, 87 min'));
+ assert.equal(await evaluate("document.querySelectorAll('#heat-channel-result img').length"),0);assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original);checks.push('Original source import selects 10/10 lower versus 9/10 surface, literal association and unchanged site');
+ await evaluate("document.getElementById('heat-channel-inspect').focus()");await send('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowDown',code:'ArrowDown',windowsVirtualKeyCode:40});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowDown',code:'ArrowDown',windowsVirtualKeyCode:40});assert.ok(await evaluate("document.activeElement.id==='heat-channel-inspect'"));checks.push('All-channel/time inspection responds to keyboard');
+ await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:runDirectory});await evaluate("document.getElementById('heat-channel-download').click()");
+ let saved;for(let i=0;i<100;i++){saved=(await readdir(runDirectory)).find(f=>f==='experimental-earth-heat-channel-question.json');if(saved)break;await delay(30);}assert.ok(saved);const raw=JSON.parse(await readFile(runDirectory+'/'+saved,'utf8'));assert.deepEqual(Object.keys(raw).sort(),['project','schema','settings']);assert.deepEqual(raw.project,project());
+ await send('Page.reload',{ignoreCache:true});await delay(350);await upload('#heat-channel-file',runDirectory+'/'+saved);assert.equal(await evaluate("document.getElementById('heat-channel-status').dataset.state"),'question');assert.ok((await evaluate("document.getElementById('heat-channel-result').textContent")).includes('lower: 10/10'));checks.push('Actual downloaded original-only file reopens after page reload');
+ for(const width of [1440,390]){await send('Emulation.setDeviceMetricsOverride',{width,height:width===390?844:1000,deviceScaleFactor:1,mobile:width===390});await evaluate("document.getElementById('heat-channel-result').scrollIntoView({block:'start',behavior:'instant'})");assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'));const png=await send('Page.captureScreenshot',{format:'png'});await writeFile(runDirectory+'/channel-'+width+'.png',Buffer.from(png.data,'base64'));}checks.push('Desktop and 390px result layout stays within viewport');
+ await evaluate("document.getElementById('heat-channel-association').value='Changed sensor premise';document.getElementById('heat-channel-lower').value='100';document.getElementById('heat-channel-lower').dispatchEvent(new Event('input',{bubbles:true}))");assert.equal(await evaluate("document.getElementById('heat-channel-result').children.length"),0);assert.ok(await evaluate("document.getElementById('heat-channel-download').disabled"));await evaluate("document.getElementById('heat-channel-form').requestSubmit()");assert.ok((await evaluate("document.getElementById('heat-channel-result').textContent")).includes('Highest-ranked question: surface'));checks.push('Changed prospective lower precision retires result and changes winning channel');
+ const bad={...raw,best:{channel:'lower'}};await writeFile(runDirectory+'/bad.json',JSON.stringify(bad));await upload('#heat-channel-file',runDirectory+'/bad.json');assert.equal(await evaluate("document.getElementById('heat-channel-status').dataset.state"),'refused');assert.ok(await evaluate("document.getElementById('heat-channel-download').disabled"));assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original);assert.deepEqual(exceptions,[]);checks.push('Injected cached output refuses without changing original site');
+ return {checks,sandbox:session.sandbox,exceptions};
+});await writeFile(runDirectory+'/receipt.json',JSON.stringify(result,null,2));console.log(JSON.stringify({runDirectory,...result}));
