@@ -42,15 +42,8 @@ function arithmeticGuard(study, target, prediction, reading) {
       Math.abs(prediction.subsurfaceC), Math.abs(top.initialC), Math.abs(lower.initialC), transferScale);
 }
 
-export function compareHeatColumnEvidence(project) {
-  validateProject(project);
-  const evidence = project.heatColumnEvidence;
-  if (!evidence) return { status: 'no-evidence' };
-  if (!heatColumnEvidenceCurrent(project, evidence)) return { status: 'context-changed' };
-  const durationMinutes = evidence.columnStudy.heatStudy.schedule.reduce((sum, row) => sum + row.minutes, 0);
-  const times = [...new Set([...evidence.readings.flatMap(r => r.aggregation === 'interval-mean' ? [r.fromMinute, r.minute] : [r.minute]),
-    ...Array.from({ length: 121 }, (_, i) => i === 120 ? durationMinutes : durationMinutes * (i / 120))])];
-  const candidates = evidence.hypotheses.map(h => {
+export function evaluateHeatColumnHypothesis(evidence, h, times = []) {
+    times = [...new Set([...times, ...evidence.readings.map(r => r.minute)])];
     const study = variant(evidence, h);
     // Evaluation checks the complete exposure and both stores' interior extrema,
     // including unsupported intervals where no observation was supplied.
@@ -72,7 +65,17 @@ export function compareHeatColumnEvidence(project) {
       challenge: screenHeatReadings(rows.filter(r => r.use === 'challenge')), trajectory: course.trajectory,
       summary: { surface: course.summary.surface, subsurface: course.summary.subsurface },
       final: course.summary.final };
-  });
+}
+
+export function compareHeatColumnEvidence(project) {
+  validateProject(project);
+  const evidence = project.heatColumnEvidence;
+  if (!evidence) return { status: 'no-evidence' };
+  if (!heatColumnEvidenceCurrent(project, evidence)) return { status: 'context-changed' };
+  const durationMinutes = evidence.columnStudy.heatStudy.schedule.reduce((sum, row) => sum + row.minutes, 0);
+  const times = [...new Set([...evidence.readings.flatMap(r => r.aggregation === 'interval-mean' ? [r.fromMinute, r.minute] : [r.minute]),
+    ...Array.from({ length: 121 }, (_, i) => i === 120 ? durationMinutes : durationMinutes * (i / 120))])];
+  const candidates = evidence.hypotheses.map(h => evaluateHeatColumnHypothesis(evidence, h, times));
   const calibration = candidates.filter(c => c.calibration.compatible === true);
   const survivors = calibration.filter(c => c.challenge.compatible !== false);
   const calibrationCount = evidence.readings.filter(r => r.use === 'calibration').length;
@@ -110,3 +113,4 @@ export function authoredHeatColumnEvidenceExample(project, target = 'existing') 
     source: 'Authored analytic control from the retained reference; not an acquired, independent or held-aside sensor reading' }));
   return { target, associationSource: 'Fictional surface-reading investigation on the retained two-store declaration; no acquisition occurred', hypotheses, readings };
 }
+

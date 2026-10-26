@@ -1,0 +1,12 @@
+import {makeExample} from '../core.js';
+import {prepareSurfaceHeatStudy} from '../surface-heat.js';
+import {prepareHeatColumnStudy,evaluateHeatColumnTarget} from '../heat-column.js';
+import {prepareHeatColumnEvidence} from '../heat-column-evidence.js';
+import {searchHeatColumnParameters} from '../heat-column-search.js';
+const p=makeExample(),top={capacityJm2K:20000,exchangeWm2K:10,absorptivity:.8,initialC:20,source:'Authored'};
+p.surfaceHeatStudy=prepareSurfaceHeatStudy(p,{cellIndex:0,existing:top,proposal:top,schedule:[{minutes:60,incidentWm2:700,reservoirC:20,source:'Authored pulse'},{minutes:360,incidentWm2:0,reservoirC:20,source:'Authored darkness'}]});
+const lower={capacityJm2K:137000,conductanceWm2K:31.7,initialC:20,source:'Authored unseen control'};p.heatColumnStudy=prepareHeatColumnStudy(p,{existing:lower,proposal:lower});
+const times=[27,81,143];const course=evaluateHeatColumnTarget(p.heatColumnStudy,'existing',times);
+p.heatColumnEvidence=prepareHeatColumnEvidence(p,{target:'existing',associationSource:'Authored model control; no acquisition',hypotheses:[{label:'A',capacityJm2K:80000,conductanceWm2K:20,source:'Authored'},{label:'B',capacityJm2K:200000,conductanceWm2K:40,source:'Authored'}],readings:times.map((minute,i)=>({minute,temperatureC:course.trajectory.find(r=>r.minute===minute).surfaceC,halfWidthC:.02,use:i===2?'challenge':'calibration',source:'Authored test'}))});
+const query={capacity:{minimum:40000,maximum:400000},conductance:{minimum:5,maximum:80},source:'Authored domain'};
+export {p,query};

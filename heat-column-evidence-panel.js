@@ -115,6 +115,16 @@ export function mountHeatColumnEvidence({getProject,replaceProject,notice}){
  $('column-evidence-run').onclick=()=>{if(dirty)return;const project=structuredClone(getProject()),request=++generation;$('column-evidence-run').disabled=true;setTimeout(()=>{try{if(request!==generation)return;const next=compareHeatColumnEvidence(project);if(request!==generation||JSON.stringify(project)!==JSON.stringify(getProject()))return;$('column-evidence-status').dataset.state=next.status;$('column-evidence-status').textContent=messages[next.status]??next.status;report=next;accepted=project.heatColumnEvidence;timeIndex=0;$('column-evidence-results').replaceChildren();draw();}catch(e){notice(e.message);invalidate(e.message,'refused');$('column-evidence-run').disabled=dirty;}finally{if(request===generation)$('column-evidence-run').disabled=dirty;}},20);};
  window.addEventListener('resize',()=>{if(report)draw();});
  function refresh(){const p=getProject(),next=JSON.stringify(p);if(p===projectIdentity&&next===signature)return;projectIdentity=p;signature=next;clearTemperaturePreview();dirty=false;selected=0;timeIndex=0;fill(p.heatColumnEvidence);invalidate('Compare the saved surface evidence against its retained hidden-store alternatives.');$('column-evidence-run').disabled=false;}
- return{refresh};
+ function draftAlternative(hypothesis, originalEvidence){
+  if(dirty)throw Error('Save or clear the existing evidence draft before adding a search proposal.');
+  if(JSON.stringify(getProject().heatColumnEvidence)!==JSON.stringify(originalEvidence))throw Error('The current original evidence differs from the searched source. Reopen that project or search the current evidence first.');
+  prepareHeatColumnEvidence(getProject(),originalEvidence);
+  if($('column-hypotheses').children.length>=12)throw Error('The evidence draft already has 12 alternatives; revise it explicitly before adding a proposal.');
+  const h=structuredClone(hypothesis),labels=new Set(rows('column-hypotheses').map(r=>r.label));
+  const base=h.label;let suffix=2;while(labels.has(h.label))h.label=base+' ('+(suffix++)+')';
+  addCard('hypothesis',h);changed();$('column-hypotheses').lastElementChild.scrollIntoView({block:'center',behavior:'instant'});
+  $('column-hypotheses').lastElementChild.querySelector('input').focus();
+ }
+ return{refresh,draftAlternative};
 }
 
