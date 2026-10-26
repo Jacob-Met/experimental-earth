@@ -1,0 +1,45 @@
+{
+  "base": "2fb2d855c5eb303c011ab1e4e6b3f9a86edaf1d5",
+  "team": "hamon-70fa7ab77b59-20261026",
+  "verifiedUnchangedGitBlobs": 323,
+  "newSourceFiles": 8,
+  "nativeGroups": 19,
+  "browserGroups": 29,
+  "nativeCommand": "node --test tests/paired-trends.test.mjs tests/paired-trend-region.test.mjs tests/paired-trend-continuation.test.mjs tests/paired-trend-shift.test.mjs",
+  "browserScripts": [
+    "paired-trend-shift",
+    "paired-trend-continuation",
+    "paired-trend-region",
+    "paired-trends"
+  ],
+  "independentOracle": {
+    "arithmetic": "Python Fraction 3D vertex enumeration",
+    "cases": 60,
+    "feasible": 33
+  },
+  "independentReview": {
+    "reviewer": "retained Workshop worker",
+    "result": "no blocker",
+    "irregularDays": [
+      0,
+      4,
+      7,
+      11
+    ],
+    "fixedSlope": "1/4",
+    "shift": [
+      "7/2",
+      "9/2"
+    ],
+    "changedLaterBand": "empty"
+  },
+  "scope": "All supported common later shifts and shared slopes under an explicitly declared response model. Earlier region unchanged; not a causal effect or statistical confidence interval.",
+  "receivingDirectory": "/tmp/hamon-70fa-earth-shift",
+  "visualSizes": [
+    1280,
+    390
+  ],
+  "publishedReceiving": "required after publication",
+  "browserLaunch": "Isolated system Chrome with Namespace/PID/Network/Seccomp/TSYNC sandbox admission; all four browser journeys rerun with the admitted launcher.",
+  "browserReceiptsDirectory": "/tmp/hamon-70fa-earth-shift-sandboxed-receipts"
+}
