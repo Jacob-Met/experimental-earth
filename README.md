@@ -368,3 +368,8 @@ the fictional 124 L versus 46.25 L standing-water control and qualification limi
 ### Challenge receiving explanations with original readings
 
 Within the draining-layer investigation, offer distinct storage/initial-water/drainage combinations and compare them with original notebook point readings. Calibration admits hypotheses; held-aside readings can contradict them without refitting or hiding rejected alternatives. Inspect paired consequences over the explicitly supported finite set, then save/reopen the complete original investigation. [Receiving-evidence workflow and limits](docs/DRAINING_EVIDENCE.md) includes an authored case where identical early depths separate later.
+
+
+### Compare surface and lower-store measurement questions
+
+After saving heat-column evidence, **Would a lower-store reading distinguish more explanations?** compares both modeled channels over the same declared time grid. Declare separate prospective precision and an explicit lower-sensor association, inspect every offered question, and download/reopen the original inputs. The existing five-model pulse control separates 9 of 10 pairs with its best surface question and 10 of 10 with a lower-store question at identical ±1 °C bands. This is conditional model discrimination, not a measured depth or a sensor-installation recommendation. See [channel questions](docs/HEAT_CHANNEL_QUESTION.md).
