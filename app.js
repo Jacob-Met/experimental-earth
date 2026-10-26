@@ -1,3 +1,4 @@
+import {mountInvestigationNavigation} from './investigation-navigation.js';
 import {arrowGridIndex} from './grid-keyboard.js';
 import {mountHeatColumnSearch} from './heat-column-search-panel.js';
 import {mountSharedObservedConnection} from './observed-shared-connection-panel.js';
@@ -314,5 +315,6 @@ const infiltrationStoragePanel = mountInfiltrationStorage({getProject:()=>projec
 const drainingLayerPanel = mountDrainingLayer({getProject:()=>project});
 const measuredChangePanel = mountMeasuredChange({getProject:()=>project});
 syncForm();rerun();
+mountInvestigationNavigation();
 
 
