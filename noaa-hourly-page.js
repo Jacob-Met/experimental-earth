@@ -1,3 +1,4 @@
+import {renderHeatDeclarationEnvelope} from './heat-declaration-envelope-panel.js';
 import {mountSoilEvidence} from './noaa-soil-panel.js';
 import {mountHourlyCourseProposals} from './noaa-hourly-courses-panel.js';
 import {receiveHourlyBytes,parseHourlyText} from './noaa-hourly.js';
@@ -55,6 +56,7 @@ function draw(result,input){
  $('result-status').textContent=descriptions[report.status]??report.status;$('result-status').dataset.state=report.status;
  host.append(node('p',`Station ${course.rows[0].raw.WBANNO} · ${course.rows[0].intervalStartUtc} to ${course.rows.at(-1).intervalEndUtc}. ${report.counts.calibration} calibration and ${report.counts.challenge} challenge rows. Original selected source rows and all offered alternatives are retained.`));
  host.append(table(['Supplied line / UTC end','Original surface mean / QC','Original hourly solar / QC','Original hourly air mean','Use'],course.rows.map((r,i)=>[`${input.selection.firstLine+i} · ${r.intervalEndUtc}`,`${r.raw.SUR_TEMP} °C · ${r.raw.SUR_TEMP_TYPE}/${r.raw.SUR_TEMP_FLAG}`,`${r.raw.SOLARAD} W/m² · ${r.raw.SOLARAD_FLAG}`,`${r.raw.T_HR_AVG} °C`,i<input.calibrationCount?'calibration':'challenge'])));
+ host.append(renderHeatDeclarationEnvelope(result.project.heatColumnEvidence));
  for(const candidate of report.candidates){const detail=node('details');detail.className='candidate';detail.open=report.candidates.length<=3;detail.append(node('summary',candidate.label+' · calibration '+candidate.calibration.withinCount+'/'+candidate.calibration.count+'; challenge '+candidate.challenge.withinCount+'/'+candidate.challenge.count));
   const rows=[...candidate.calibration.rows,...candidate.challenge.rows].sort((a,b)=>a.index-b.index);
   detail.append(table(['Original window / role','Observed mean ± band · °C','Predicted mean · °C','Observed − predicted · °C','Within declared band?'],rows.map(r=>{const observed=result.project.heatColumnEvidence.readings[r.index];return [`${r.fromMinute}–${r.minute} min · ${r.use}`,`${display(observed.temperatureC)} ± ${display(observed.halfWidthC)}`,display(r.predictionC),display(r.residualC),r.withinBand?'Yes':'No'];})));
