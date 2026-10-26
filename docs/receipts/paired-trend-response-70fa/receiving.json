@@ -1,0 +1,26 @@
+{
+  "base": "fda7d228d5e0b7a9a4d6662e6c8fbcec01f070e4",
+  "nativeGroups": 29,
+  "newNativeGroups": 6,
+  "browserGroups": 12,
+  "newBrowserGroups": 7,
+  "independentOriginalConstraintOracle": {
+    "courses": 60,
+    "supported": 39,
+    "commonSlopeSliceMatches": 33,
+    "broaderOnly": 6,
+    "method": "Python Fraction intersections of original four-dimensional boundary planes."
+  },
+  "review": "Workshop actual-source review; unfamiliar irregular-time singleton (.75,.75) at day 5 and (1.5,.75) at day 6 with earlier vertices unchanged; parallel-history slice (3,0). No blocker.",
+  "browser": {
+    "widths": [
+      1280,
+      390
+    ],
+    "sourceReplay": true,
+    "activeWorkspacePreserved": true,
+    "lateReadInvalidation": true,
+    "exceptions": 0
+  },
+  "scope": "Complete joint gap-jump/slope-change support at the original declared instant. No selected history, substituted source reading, automatic intervention time, confidence or causal effect."
+}
