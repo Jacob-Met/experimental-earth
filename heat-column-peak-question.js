@@ -1,5 +1,5 @@
 import {validateHeatSearch,searchHeatColumnParameters,HEAT_SEARCH_METHOD} from './heat-column-search.js';
-import {searchHeatColumnBands,HEAT_BAND_SEARCH_METHOD} from './heat-column-band-search.js';
+import {searchHeatColumnBands,HEAT_BAND_SEARCH_METHOD,searchHeatColumnCombined,HEAT_BAND_COMBINED_METHOD} from './heat-column-band-search.js';
 import {evaluateHeatColumnTarget} from './heat-column.js';
 import {heatColumnQuestionGuard} from './heat-column-question.js';
 import {finitePeakQuestion} from './heat-column-peak-range.js';
@@ -10,7 +10,7 @@ export function validateHeatPeakQuestion(project,query,settings){
  const {evidence,reservedWork:searchWork}=validateHeatSearch(project,query);
  const duration=evidence.columnStudy.heatStudy.schedule.reduce((sum,r)=>sum+r.minutes,0);
  const {fromMinute,toMinute,sampleCount,halfWidthC,aggregation='instant',averagingMinutes=0,searchMethod=HEAT_SEARCH_METHOD,acquisitionSource}=settings??{};
- if(![HEAT_SEARCH_METHOD,HEAT_BAND_SEARCH_METHOD].includes(searchMethod))throw Error('Select a maintained inferred-proposal search method');
+ if(![HEAT_SEARCH_METHOD,HEAT_BAND_SEARCH_METHOD,HEAT_BAND_COMBINED_METHOD].includes(searchMethod))throw Error('Select a maintained inferred-proposal search method');
  if(typeof acquisitionSource!=='string'||!acquisitionSource.trim()||acquisitionSource.length>600)throw Error('Describe the available acquisition window and prospective precision (at most 600 characters)');
  const includeLower=settings?.includeLower===true;
  if(Object.hasOwn(settings??{},'includeLower')&&!includeLower)throw Error('Omit lower comparison or explicitly enable it');
@@ -20,7 +20,8 @@ export function validateHeatPeakQuestion(project,query,settings){
  if(!['instant','interval-mean'].includes(aggregation)||!finite(averagingMinutes,0,duration)||(mean?averagingMinutes<=0:averagingMinutes!==0))throw Error('Declare an instantaneous reading or positive supported averaging duration');
  if(!finite(fromMinute,averagingMinutes,duration)||!finite(toMinute,fromMinute,duration)||fromMinute===toMinute||!Number.isInteger(sampleCount)||sampleCount<2||sampleCount>241||!finite(halfWidthC,0,100))throw Error('Declare a nonempty supported window, 2–241 times and a 0–100 °C prospective half-width');
  const phases=evidence.columnStudy.heatStudy.schedule.length;
- const reservedWork=searchWork+400*phases*(sampleCount*(mean?2:1)*(includeLower?2:1)+phases*4+1);
+ const maximumProposals=searchMethod===HEAT_BAND_COMBINED_METHOD?800:400;
+ const reservedWork=searchWork*(maximumProposals/400)+maximumProposals*phases*(sampleCount*(mean?2:1)*(includeLower?2:1)+phases*4+1);
  if(reservedWork>2_000_000)throw Error('Search plus complete prospective courses exceed the 2000000 course-sample budget');
  const requested=Array.from({length:sampleCount},(_,i)=>i===sampleCount-1?toMinute:fromMinute+(toMinute-fromMinute)*i/(sampleCount-1));
  if(new Set(requested).size!==requested.length)throw Error('Prospective times collapse at floating-point precision');
@@ -29,7 +30,7 @@ export function validateHeatPeakQuestion(project,query,settings){
 }
 export function planHeatPeakQuestion(project,query,input){
  const {evidence,settings,times,requested,reservedWork}=validateHeatPeakQuestion(project,query,input);
- const report=(settings.searchMethod===HEAT_BAND_SEARCH_METHOD?searchHeatColumnBands:searchHeatColumnParameters)(project,query);
+ const report=(settings.searchMethod===HEAT_BAND_COMBINED_METHOD?searchHeatColumnCombined:settings.searchMethod===HEAT_BAND_SEARCH_METHOD?searchHeatColumnBands:searchHeatColumnParameters)(project,query);
  const includeLower=settings.includeLower===true,evaluationTimes=includeLower?requested:times;
  const base={method:includeLower?HEAT_PEAK_CHANNEL_METHOD:HEAT_PEAK_QUESTION_METHOD,settings,reservedWork,searchEvaluations:report.evaluations,compatibleCount:report.compatibleIds.length,requestedCount:settings.sampleCount,excludedCount:settings.sampleCount-times.length,inspectedCount:times.length+(includeLower?requested.length:0),...(includeLower?{excludedByChannel:{surface:settings.sampleCount-times.length,lower:0}}:{}),target:evidence.target,associationSource:evidence.associationSource,domainSource:query.source};
  if(report.status==='need-calibration')return{...base,status:'need-calibration'};
@@ -52,7 +53,7 @@ export function planHeatPeakQuestion(project,query,input){
    const guardC=heatColumnQuestionGuard(c.study,evidence.target,row),radius=halfWidthC+guardC,predictionC=channel==='lower'?row.subsurfaceC:row.surfaceC;
    return{id:c.proposal.id,hypothesis:c.proposal.hypothesis,peakC:c.proposal.summary.subsurface.maximumC,predictionC,guardC,lowerC:predictionC-radius,upperC:predictionC+radius};
   });
-  rows.push({minute,...(includeLower?{channel,halfWidthC}:{}),...(mean?{fromMinute:minute-settings.averagingMinutes,aggregation:settings.aggregation}:{}),...finitePeakQuestion(predictions),predictions});
+  rows.push({minute,...(includeLower?{channel,halfWidthC}:{}),...(mean?{fromMinute:minute-settings.averagingMinutes,aggregation:settings.aggregation}:{}),...finitePeakQuestion(predictions,settings.searchMethod===HEAT_BAND_COMBINED_METHOD?800:400),predictions});
  }
  const best=rows.reduce((best,r)=>!best||r.worstRemainingC<best.worstRemainingC?r:best,null);
  const bestByChannel={};if(includeLower)for(const row of rows)if(!bestByChannel[row.channel]||row.worstRemainingC<bestByChannel[row.channel].worstRemainingC)bestByChannel[row.channel]=row;

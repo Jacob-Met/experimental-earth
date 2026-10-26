@@ -104,3 +104,7 @@ controls, source-method identity and conditional coverage limits.
 ## A prospective reading for peak uncertainty
 
 The separate [inferred peak question](HEAT_COLUMN_PEAK_QUESTION.md) uses all distinct compatible proposals to choose a sourced available reading time/window that minimizes worst conditional lower-store peak spread. It preserves the existing offered-alternative question planner and provides source-only download/direct fresh reopen. These are conditional finite-proposal predictions, not acquired observations or a continuous uncertainty enclosure.
+
+## Optional combined family
+
+The same consumer can [retain the complete focused family and add complementary sampling](HEAT_COMBINED_BANDS.md), at up to 800 actual evaluations. Every incumbent explanation is preserved. This broadens finite exploration without claiming continuous coverage; original methods remain unchanged.
