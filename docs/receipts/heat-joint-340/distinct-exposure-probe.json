@@ -1,0 +1,36 @@
+{
+  "kind": "Authored software/model probe, not independent physical data",
+  "originalRetained": [
+    "A · offered lower store",
+    "B · reference lower store",
+    "C · offered lower store",
+    "D · offered lower store",
+    "E · offered lower store"
+  ],
+  "perExposure": [
+    [
+      "B · reference lower store"
+    ],
+    [
+      "C · offered lower store"
+    ],
+    [
+      "B · reference lower store"
+    ]
+  ],
+  "jointRetained": [],
+  "minimalConflicts": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "matchingExposureControl": [
+    "B · reference lower store"
+  ],
+  "sourcesUnchanged": true
+}

@@ -1,0 +1,123 @@
+{
+  "scope": "Common support and inclusion-minimal conflicts for an unchanged original finite heat-store family; authored software/model controls, not physical validation",
+  "baseCommit": "03dab7292a4e80a24e295b8fff6c3e0c6d13e32c",
+  "baseTree": "80e623550a1f18f88e9287fafdcdf4f200479b40",
+  "sourceBlobs": {
+    "heat-column-transfer-panel.js": "6f901fe7aef351eda313a59f1cefc34dea8bd024",
+    "heat-column-joint-transfer.js": "045903d7bcc82b4d8846543634d5a7bf6b93ab1f",
+    "heat-column-joint-transfer-panel.js": "962de14d527675f74897410a5d16f614390fe520",
+    "heat-column-joint-transfer-worker.js": "47393a267cfd4e3180bcdadbea52c3ba179b3a83",
+    "tests/heat-column-joint-transfer.test.mjs": "23463d50d8d9a3496901c2354c59a8ad017e0abc",
+    "tests/heat-column-joint-transfer.browser.mjs": "b0b0e6432e4817f0d80157fae87f0f5d4bf9543e",
+    "docs/HEAT_JOINT_TRANSFER.md": "8ec017088be524fdda1e0146d017f5cc0af259cf",
+    "evaluation/heat-joint-distinct-exposure.mjs": "7d31ebe0f5fe17c4acfbc84f149d7f81a8d3bb74",
+    "docs/receipts/heat-joint-340/distinct-exposure-probe.json": "4b35aedcfbba19935ac3380c729c7751fb6d70bc",
+    "tests/fixtures/heat-joint-triple-conflict.json": "58efe6938eb8c0bbdc23a4382b520f4b6c8ba3ae",
+    "evaluation/heat-joint-reference.py": "f098bbc877caf419a0670c6351e3d1d0ef688c36",
+    "docs/receipts/heat-joint-340/triple-reference.json": "941b419cefa0aa46debae9b2961c8ed7ee0db6f5"
+  },
+  "native": {
+    "status": "PASS",
+    "jointGroups": 9,
+    "transferRegressionGroups": 8,
+    "upstreamBandSearchGroups": 6,
+    "totalGroups": 23,
+    "failures": 0,
+    "skips": 0
+  },
+  "distinctExposureProbe": {
+    "originalCandidates": 5,
+    "individualSurvivors": [
+      "B",
+      "C",
+      "B"
+    ],
+    "commonSurvivors": [],
+    "minimalConflictingExposureIndices": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "matchingExposureIndices": [
+      0,
+      2
+    ],
+    "matchingSurvivors": [
+      "B"
+    ],
+    "originalSourcesUnchanged": true
+  },
+  "finiteSetOracle": {
+    "exposures": 8,
+    "originalCandidates": 5,
+    "expectedMinimalConflicts": 18,
+    "actualMinimalConflicts": 18
+  },
+  "costProbe": {
+    "exposures": 8,
+    "candidates": 5,
+    "elapsedMs": 448.026633,
+    "inputBytes": 189138,
+    "meaning": "Local Node authored control; browser execution moved to owned cancelable worker"
+  },
+  "review": {
+    "reviewer": "WORLDLAW direct worker, team hamon-74b2b9ab-20261025",
+    "verdict": "No blocker",
+    "coverage": "complete original admission; baseline unknown/rejection; exhaustive finite conflict enumeration; per-source preservation; owned-worker and async source replacement custody; raw reopening"
+  },
+  "browser": {
+    "status": "PASS",
+    "groups": 9,
+    "runtimeSeconds": 6.25,
+    "runDirectory": "/tmp/earth-joint-340-74b2b9ab/receiving-namespaced",
+    "exceptions": [],
+    "scope": "Actual multiple-file intake, trusted keyboard, all candidate results, four desktop/narrow shots, download/reopen, current transfer inclusion, changed source result, held-worker cancellation, delayed/failed reads, derived injection and unique IDs/preserved hydrology",
+    "cancellationControl": "Consumer termination/version behavior exercised with a deliberately held worker test double; ordinary comparisons and reopened results use the actual module worker",
+    "executedBaseCommit": "982ec2e68c1542bd515070af71640c58486d0081"
+  },
+  "visualReview": "PASS: root inspected all four namespaced desktop/390px screenshots; actual joint inputs and conflict results are legible, contained and usable",
+  "publishedReceiving": "Pending normal publication and exact merged receiving",
+  "higherOrderConflict": {
+    "individualSupport": [
+      [
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "B"
+      ],
+      [
+        "A",
+        "C"
+      ]
+    ],
+    "allPairsRetainOne": true,
+    "onlyMinimalConflict": [
+      0,
+      1,
+      2
+    ],
+    "independentMethod": "Independent SciPy augmented 3x3 matrix exponentials",
+    "predictions": 9,
+    "maximumAbsoluteErrorC": 1.0658141036401503e-13
+  },
+  "retainedFailedAttempts": [
+    {
+      "directory": "/tmp/earth-joint-340-74b2b9ab/receiving-first",
+      "reason": "New DOM IDs collided with existing hydrology joint-evidence controls; all new IDs namespaced heat-joint-* and receiver now checks unique IDs and unchanged hydrology status"
+    }
+  ],
+  "compositionEquivalence": {
+    "testedBase": "982ec2e68c1542bd515070af71640c58486d0081",
+    "publicationBase": "03dab7292a4e80a24e295b8fff6c3e0c6d13e32c",
+    "changes": "Separate NOAA course page/modules/styles, its tests, experiments and receipts only; main app, transfer modules/worker and numerical dependencies unchanged",
+    "receivingDecision": "Retain actual nine-group and four-image evidence for byte-identical main-app runtime; no affected journey rerun required",
+    "upstreamFilesVerified": 15
+  }
+}

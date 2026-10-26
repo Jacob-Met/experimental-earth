@@ -1,4 +1,5 @@
 import {parsePortableProject,MAX_PROJECT_FILE_BYTES} from './project-portability.js';
+import {mountJointHeatTransfer} from './heat-column-joint-transfer-panel.js';
 import {prepareHeatColumnTransfer,compareHeatColumnTransfer,serializeHeatColumnTransfer,parseHeatColumnTransfer,MAX_TRANSFER_FILE_BYTES,MAX_TRANSFER_CSV_BYTES} from './heat-column-transfer.js';
 const node=(tag,text='')=>{const e=document.createElement(tag);e.textContent=text;return e;};
 const display=n=>Number(n).toLocaleString('en-US',{maximumFractionDigits:4});
@@ -59,6 +60,7 @@ export function mountHeatColumnTransfer({getProject}){
  $('transfer-export').onclick=()=>{if(!bundle)return;try{const blob=new Blob([serializeHeatColumnTransfer(bundle)],{type:'application/json'}),url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download='experimental-earth-heat-transfer.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){invalidate(e.message);}};
  $('transfer-import').onchange=async event=>{const file=event.target.files?.[0];if(!file)return;for(const key of Object.keys(versions))versions[key]++;pending.clear();pending.add('bundle');original=null;exposure=null;readingFile=null;summaries();invalidate('Reading replacement transfer; prior sources retired…');updateRun();const request=versions.bundle;try{const source=parseHeatColumnTransfer(await textFile(file,MAX_TRANSFER_FILE_BYTES));if(request!==versions.bundle)return;const result=compareHeatColumnTransfer(source);original=source.originalProject;exposure=source.challengeProject;readingFile=source.readingFile;$('transfer-association').value=source.associationSource;bundle=source;summaries();draw(result,source);}catch(e){if(request===versions.bundle)$('transfer-status').textContent=e.message+'; prior transfer sources remain retired.';}finally{finish('bundle',request);event.target.value='';}};
  updateRun();
+ mountJointHeatTransfer(panel,{getTransfer:()=>bundle});
  // Every comparison uses explicit frozen inputs; workspace changes do not retarget them.
  return {};
 }

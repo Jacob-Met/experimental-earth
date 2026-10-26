@@ -1,0 +1,83 @@
+{
+  "method": "Independent SciPy augmented 3x3 matrix exponentials",
+  "authoredControlOnly": true,
+  "individualSupport": [
+    [
+      "B",
+      "C"
+    ],
+    [
+      "A",
+      "B"
+    ],
+    [
+      "A",
+      "C"
+    ]
+  ],
+  "everyPairHasOneCommonCandidate": true,
+  "jointSupport": [],
+  "minimalConflicts": [
+    [
+      0,
+      1,
+      2
+    ]
+  ],
+  "predictions": [
+    {
+      "exposure": "Authored exposure excluding A",
+      "candidate": "A",
+      "minute": 1.0,
+      "surfaceC": 19.781633378314737
+    },
+    {
+      "exposure": "Authored exposure excluding A",
+      "candidate": "B",
+      "minute": 1.0,
+      "surfaceC": 19.145702828905343
+    },
+    {
+      "exposure": "Authored exposure excluding A",
+      "candidate": "C",
+      "minute": 1.0,
+      "surfaceC": 16.881310365984334
+    },
+    {
+      "exposure": "Authored exposure excluding C",
+      "candidate": "A",
+      "minute": 1.0,
+      "surfaceC": 19.781633378314737
+    },
+    {
+      "exposure": "Authored exposure excluding C",
+      "candidate": "B",
+      "minute": 1.0,
+      "surfaceC": 19.145702828905343
+    },
+    {
+      "exposure": "Authored exposure excluding C",
+      "candidate": "C",
+      "minute": 1.0,
+      "surfaceC": 16.881310365984334
+    },
+    {
+      "exposure": "Authored exposure excluding B",
+      "candidate": "A",
+      "minute": 120.0,
+      "surfaceC": 21.58551525705918
+    },
+    {
+      "exposure": "Authored exposure excluding B",
+      "candidate": "B",
+      "minute": 120.0,
+      "surfaceC": 21.921022450823088
+    },
+    {
+      "exposure": "Authored exposure excluding B",
+      "candidate": "C",
+      "minute": 120.0,
+      "surfaceC": 21.66138911382454
+    }
+  ]
+}
