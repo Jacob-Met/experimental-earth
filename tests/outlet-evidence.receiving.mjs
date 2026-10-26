@@ -77,8 +77,11 @@ export async function receiveOutletEvidence({ evaluate, send, delay, report, art
     await send('Emulation.setDeviceMetricsOverride', {width, height: 900, deviceScaleFactor: 1, mobile: width === 390});
     await evaluate("document.documentElement.style.scrollBehavior='auto';document.querySelector('#outlet-entry').open=true;document.querySelector('#outlet-evidence-panel').scrollIntoView({block:'start',behavior:'instant'})");
     await delay(100);
-    const size = await evaluate("({width:innerWidth,scroll:document.documentElement.scrollWidth,top:document.querySelector('#outlet-evidence-panel').getBoundingClientRect().top})");
-    assert.ok(size.scroll <= size.width + 1, JSON.stringify(size)); assert.ok(Math.abs(size.top) <= 1, JSON.stringify(size));
+    const size = await evaluate("(()=>{const panel=document.querySelector('#outlet-evidence-panel');return {width:innerWidth,height:innerHeight,scroll:document.documentElement.scrollWidth,top:panel.getBoundingClientRect().top,scrollMarginTop:parseFloat(getComputedStyle(panel).scrollMarginTop)}})()");
+    assert.ok(size.scroll <= size.width + 1, JSON.stringify(size));
+    assert.ok(Number.isFinite(size.scrollMarginTop) && size.scrollMarginTop >= 0 && size.scrollMarginTop < size.height, JSON.stringify(size));
+    assert.ok(Number.isFinite(size.top) && size.top >= 0 && size.top < size.height, JSON.stringify(size));
+    assert.ok(Math.abs(size.top - size.scrollMarginTop) <= 1, JSON.stringify(size));
     let screenshot = await send('Page.captureScreenshot', {format: 'png', captureBeyondViewport: false});
     writeFileSync(artifactDirectory + `/outlet-evidence-${width}.png`, Buffer.from(screenshot.data, 'base64'));
     await evaluate("document.querySelector('#outlet-results').scrollIntoView({block:'start',behavior:'instant'})");
@@ -88,3 +91,4 @@ export async function receiveOutletEvidence({ evaluate, send, delay, report, art
   }
   report.push('outlet: partial-collection import refused atomically; collection controls and results visually received at desktop and 390px');
 }
+

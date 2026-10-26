@@ -42,8 +42,11 @@ export async function receiveJointEvidence({evaluate,send,delay,report,artifactD
   for(const width of [1280,390]){
     await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width===390});
     await query("document.documentElement.style.scrollBehavior='auto';document.querySelector('#joint-setup').open=false;document.querySelector('#joint-evidence-panel').scrollIntoView({block:'start',behavior:'instant'})");await delay(100);
-    const size=await query("({width:innerWidth,layout:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,scale:visualViewport.scale,top:document.querySelector('#joint-evidence-panel').getBoundingClientRect().top})");
-    assert.equal(size.width,width,JSON.stringify(size));assert.ok(size.layout>=width-20&&size.layout<=width,JSON.stringify(size));assert.ok(size.scroll<=size.layout+1,JSON.stringify(size));assert.equal(size.scale,1,JSON.stringify(size));assert.ok(Math.abs(size.top)<=1,JSON.stringify(size));
+    const size=await query("(()=>{const panel=document.querySelector('#joint-evidence-panel');return {width:innerWidth,height:innerHeight,layout:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,scale:visualViewport.scale,top:panel.getBoundingClientRect().top,scrollMarginTop:parseFloat(getComputedStyle(panel).scrollMarginTop)};})()");
+    assert.equal(size.width,width,JSON.stringify(size));assert.ok(size.layout>=width-20&&size.layout<=width,JSON.stringify(size));assert.ok(size.scroll<=size.layout+1,JSON.stringify(size));assert.equal(size.scale,1,JSON.stringify(size));
+    assert.ok(Number.isFinite(size.scrollMarginTop)&&size.scrollMarginTop>=0&&size.scrollMarginTop<size.height,JSON.stringify(size));
+    assert.ok(Number.isFinite(size.top)&&size.top>=0&&size.top<size.height,JSON.stringify(size));
+    assert.ok(Math.abs(size.top-size.scrollMarginTop)<=1,JSON.stringify(size));
     const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(artifactDirectory+`/joint-evidence-${width}.png`,Buffer.from(shot.data,'base64'));
   }
   report.push('joint: changed depth source and changed storm retire comparison; exact export import restores it; desktop and 390px receiving preserve page width');

@@ -1,0 +1,204 @@
+{
+  "schema": "experimental-earth-browser-receiving-receipt/1",
+  "issue": "https://github.com/Jacob-Met/experimental-earth/issues/402",
+  "date": "2026-10-26",
+  "source_base": "2447048f9022bdbeddbc6e9d60cc3b70538eeca6",
+  "team": "hamon-cdc4174-20261026",
+  "prompt_version": "2026-10-26.6",
+  "files": {
+    "tests/browser.receiving.mjs": {
+      "git_blob": "f58d80c55bdea360fa938c3b84daa0245e4efe39",
+      "sha256": "0c50a4a17b503855a8df643bd5c56c7a2106209d565d6ca2b76868082d88f9e8"
+    },
+    "tests/infiltration-resolution.receiving.mjs": {
+      "git_blob": "d2541608da2c9880e32f9e4582a7cea318550533",
+      "sha256": "ee11c639e11f66597f1e550d3ae61d889348db7f8418c0839230942670ab5fec"
+    },
+    "tests/outlet-evidence.receiving.mjs": {
+      "git_blob": "22520caada4434fade09454b7ddaa7e3933b2af9",
+      "sha256": "279ca56e7b590080b91a122ea3507b0acbdc5eced51251b223ec21f139de97fb"
+    },
+    "tests/joint-evidence.receiving.mjs": {
+      "git_blob": "5ff3e6f5bd3a7a138b9389640b752c6b544b7b00",
+      "sha256": "7af37fc45429f35cbcd6471edbdf816f051aa2983e92d9cde1c9b141fde90bcf"
+    }
+  },
+  "verification": {
+    "operation_id": "hamon-cdc4174-full-browser-402-004",
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/browser.receiving.mjs",
+    "runtime": {
+      "node": "v22.23.4",
+      "browser": "Chrome/156.0.8078.47"
+    },
+    "status": "PASS",
+    "seconds": 73.12,
+    "checks": [
+      "initial 96 cells, six metrics and two live chart curves",
+      "brush edit, sourced field observation, local-save",
+      "reload durability, scenario reset, portable JSON import",
+      "one-cell infiltration-rate sensitivity, distinct from scenario difference",
+      "sensitivity suggestion and parameter-change recomputation",
+      "390px mobile layout no horizontal overflow",
+      "ponding analytic 2×2 rain control: final10.3mm, above5mm for5.3minutes, identical proposal",
+      "ponding threshold refusal preserves accepted diagnostic; ordinary proposal edit immediately refreshes replay; cell selection works",
+      "ponding imported project survives reload and390px layout; view controls are transient",
+      "legacy readings excluded until explicit scenario/evidence assignment",
+      "actual notebook assignment, analytic candidate comparison and inspectable source residuals",
+      "candidate choices and roles survive reload; stale reports are cleared",
+      "contradictory held-aside import rejects predictions without changing calibration order",
+      "invalid candidate edit is refused without corrupting saved study",
+      "calibration-candidate question prepares location/time/role without painting or inventing observations",
+      "new sourced reading is retained only after explicit form submit, preserving fractional values",
+      "dry indistinguishable event refuses to manufacture a useful measurement",
+      "candidate and evidence controls fit 390px mobile; mobile/desktop images captured",
+      "unit table preview leaves notebook unchanged; explicit append feeds actual candidate comparison",
+      "table source/quantities survive reload and portable project import; repeat evidence refused",
+      "one invalid unit refuses the entire table with its source row; no partial evidence",
+      "project edits invalidate pending import; a fresh preview is required",
+      "actual table preview and unit provenance fit the 390px notebook",
+      "paired analytic browser scenario reveals sign reversal and four local worsening cells",
+      "explicit evidence filter refuses absent calibration without substituting default rate",
+      "actual proposal edit invalidates derived results and reruns identical-plan zero effects without adopting parameters",
+      "intervention panel fits 390px viewport",
+      "actual browser paired step challenge preserves all rates and reveals changing exit consequence without changing saved project",
+      "site edit invalidates numerical-sensitivity report",
+      "browser refuses unsupported finer resolution rather than extrapolating",
+      "numerical-sensitivity panel fits 390px mobile viewport",
+      "resolution band flip: full rate-9 predictions, original source and unchanged saved project",
+      "native keyboard Tab traverses the complementary-depth disclosure and reaches the resolution action with visible focus",
+      "open resolution predictions fit 1280px and 390px without horizontal overflow; screenshots retained",
+      "candidate input and invalid submit clear/disable numerical results without changing saved evidence",
+      "weather change clears numerical comparison and requires a fresh study",
+      "evidence role change clears numerical comparison and disables stale action",
+      "minimum interval and unassigned evidence refuse numerical comparison without manufactured rows",
+      "no-flow 1.5-minute control deduplicates to two intervals and qualifies agreement without claiming convergence",
+      "closest calibration candidate changes 3→9→9 while compatible set stays unchanged",
+      "cross-event import, analytic challenge, escaped sources, portable recomputation, transactional rejection and stale invalidation",
+      "outlet: actual manual collection forms, mL-to-L scoring, fixed event/source, calibration versus held-aside interval",
+      "outlet: invalid candidate refusal preserves accepted record; actual project download and reload retain quantities/sources/roles",
+      "outlet: changed storm refuses stale evidence and actual exported project import restores the comparison",
+      "outlet: partial-collection import refused atomically; collection controls and results visually received at desktop and 390px",
+      "joint: explicit pairs retain equal-volume ambiguity; undeclared depth association refuses; associated held-aside depth distinguishes alternatives",
+      "joint: duplicate pair refusal preserves accepted source; actual project download and reload retain pair set, roles and explicit depth association",
+      "joint: changed depth source and changed storm retire comparison; exact export import restores it; desktop and 390px receiving preserve page width",
+      "joint events: actual second project import preserves fixed volume-equivalent pairs and second-storm evidence challenges one without changing first calibration",
+      "joint events: actual download retains both raw snapshots; reopen recomputes without replacing changed workspace; retuned bundle refuses while accepted results remain",
+      "joint events: second calibration refused, delayed actual file read cannot replace newer draft, and inputs/results fit true1280/390 viewports at normal scale",
+      "actual courtyard decision question selects F2 at70min across opposing outflow effects",
+      "tolerance change invalidates question, overlap is disclosed, preparation sets metadata without inventing evidence",
+      "nonreversing objective gives no manufactured question; proposal changes invalidate derived state",
+      "decision question controls fit390px viewport; visible F2/70 question and predictions captured at1440px and390px after stable paint",
+      "local accounting consumer reproduces analytic 15-liter storage reduction per cell",
+      "neighbor/map navigation preserves computed trace and cannot paint the site",
+      "ordinary project reopen and changed rainfall produce fresh accounting without reusing stale results",
+      "coupled courtyard consumer retains incoming water and both directions for four actual neighbors",
+      "edited-area membership is explicit and whole-site crossings cancel while global water losses remain",
+      "regional neighbor navigation returns to a cell; identical plans explicitly have no edited footprint",
+      "computed local-balance table and neighbor controls fit desktop and 390px layouts",
+      "custom area uses the same disconnected cells in both scenarios: native Enter/Space and arrows select A1/B2 without painting under an active raise brush; analytic stored water is 42→12 L",
+      "empty custom area shows no-area with tracing disabled; selecting cells again reuses the current ledger without a new trace",
+      "an ordinary import suspended during File.text is refused after a custom-area edit, preserving the newer saved selection",
+      "ordinary Export creates a portable JSON Blob/download anchor; ordinary Import and reload restore custom scope and membership and recompute the 42→12 L result",
+      "neighbor navigation saves cell scope and retains the authored custom area; weather edits remove stale results and retracing uses the changed rainfall",
+      "390px custom picker and results fit the page; an imported 24-column area scrolls within its picker and keeps native keyboard focus on the far-edge cell after toggling",
+      "rain attribution uses the existing source cell, renders both destination grids and preserves model/evidence inputs",
+      "retained source timeline reveals the independently established temporary 59.2624 L contribution, initial zero and final zero at matched scenario times",
+      "multi-cell source selection persists; ordinary inspection preserves results and changed source inputs require recomputation",
+      "rain attribution fits the actual 390px viewport; paired heatmaps and source controls remain visible",
+      "independent one-step analytic fixture renders conserved splitting and the actual changed destination quantities",
+      "weather/terrain edits invalidate attribution; dry and identical-scenario controls have zero contribution or change",
+      "actual project export/import reopens the source selection; invalid duplicate-cell import preserves the accepted workspace",
+      "oversized retained timeline is explicitly unavailable while actual final attribution remains usable",
+      "reverse rainfall origins render the independent 4.9167/7.375 L destination control and 2.4583 L remote-origin contribution",
+      "paired rainfall-origin maps, destination selection and complete table fit the actual 390px viewport",
+      "fate and destination edits invalidate derived origins; ordinary inspection preserves results and zero-outflow remains explicit",
+      "actual export, reload and import preserve origin inputs without derived arrays; rejected destination metadata leaves accepted state unchanged",
+      "weather changes retire origin results; dry behavior is finite and oversized reverse analysis is explicitly refused before retained allocation",
+      "exact-time origins show 173.3857 L at minute 60 versus 113.3168 L at event end, at desktop and 390px",
+      "real keyboard time input preserves origin inspection; saved time reopens and survives fate edits; minute-zero rain stays zero",
+      "a stale query leaves ordinary site loading intact and can explicitly return to the current modeled end",
+      "between-step queries refuse while exact fractional-end and earlier-step origins remain available",
+      "actual admitted rainfall-origin hypotheses retain three distinct maps and paired reduction ranges without adopting a rate",
+      "real keyboard hypothesis switching preserves origin inspection and a common scale across all hypotheses",
+      "paired origin hypotheses fit desktop and390px layouts without page overflow",
+      "time and modeled-end changes retain the chosen rate; fate recomputation and minute-zero ranges remain explicit",
+      "saved inputs reopen by recomputation, changed rate evidence invalidates the comparison, and default origins remain available",
+      "missing calibration/challenge refuses; all-rate exploration is labeled; a held-aside band retains only its compatible hypothesis",
+      "the actual browser refuses oversized cohort work even at minute zero without displaying a partial range",
+      "measurement options require declared collection feasibility and compare depth against35–65min collected-volume bands",
+      "both measurement options visibly received at1440px and390px with stable painted bounds",
+      "prospective depth precision invalidates results and changes the declared band-margin choice",
+      "preparation clears stale drafts and fills interval/tolerance only, without a measured value, source or coverage assertion",
+      "only actual explicit form submission retains a sourced collection; reload preserves it and later options exclude overlapping intervals",
+      "changed event context removes collection preparation while retaining independent depth investigation"
+    ],
+    "completedReloads": 47,
+    "exceptions": [],
+    "sandbox": {
+      "admitted": true,
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "module_sha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "text_sha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3"
+    },
+    "cleanup": {
+      "direct_child_exited": true,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logs_complete": true
+    }
+  },
+  "prior_failures": [
+    {
+      "operation": "hamon-cdc4174-full-browser-402-001",
+      "checks": 8,
+      "finding": "After Page.reload plus fixed400ms, ponding grid had0cells instead of4."
+    },
+    {
+      "operation": "hamon-cdc4174-full-browser-402-002",
+      "checks": 44,
+      "finding": "Outlet panel expected zero top but actual15.515625px honors maintained16px CSS scroll margin."
+    },
+    {
+      "operation": "hamon-cdc4174-full-browser-402-003",
+      "checks": 47,
+      "finding": "Joint panel repeated the obsolete zero-top expectation; actual16.46875px."
+    }
+  ],
+  "matched_baseline_probe": {
+    "operation": "hamon-cdc4174-focus-control-001",
+    "finding": "Baseline and candidate Tab correctly enter complementary-depth summary before resolution action."
+  },
+  "visual_review": {
+    "outlet-evidence-390.png": {
+      "sha256": "dc18afaf2757ff2b378fc50e1526ae4e4f915c34420e000c630a31fd7b237611",
+      "bytes": 73113,
+      "review": "Root inspected the actual 390px screenshot: readable, within the page width, with the maintained top scroll margin."
+    },
+    "joint-evidence-390.png": {
+      "sha256": "d7479e4c733add184e5f144deec9ebd37d3642a9205c9337d527d667b171c28f",
+      "bytes": 77405,
+      "review": "Root inspected the actual 390px screenshot: readable, within the page width, with the maintained top scroll margin."
+    }
+  },
+  "independent_review": {
+    "reviewer": "retained integration_review worker",
+    "status": "approved",
+    "condition": "Exact reviewed hashes and complete browser course pass; both met.",
+    "changes_by_reviewer": false
+  },
+  "scope": "Browser receiving repairs only. Application, CSS, physics, fixture outputs and sandbox unchanged. Existing native suite1305/1305 applies to identical application/unit sources; no new native-suite pass is claimed from this browser-only run.",
+  "limits": [
+    "Software/browser verification only; no field validation or deployment claimed.",
+    "The native unit suite was not rerun for this browser-only repair. Application and unit-test source remain identical to the predecessor's 1305/1305 passing run.",
+    "Screenshots and complete native execution logs remain with the original operation; this receipt includes hashes and a privacy-reduced summary."
+  ]
+}

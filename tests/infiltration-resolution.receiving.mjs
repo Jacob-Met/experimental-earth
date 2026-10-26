@@ -43,15 +43,34 @@ export async function receiveInfiltrationResolution({ evaluate, send, delay, rep
     assert.equal(await evaluate(storage),savedBefore,'resolution comparison must not change the saved project');
     report.push('resolution band flip: full rate-9 predictions, original source and unchanged saved project');
 
-    await evaluate("document.querySelector('#find-infiltration-reading').focus()");
-    await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9,nativeVirtualKeyCode:9});
-    await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9,nativeVirtualKeyCode:9});
-    const focus = await evaluate("(()=>{const e=document.activeElement,s=getComputedStyle(e);return {id:e.id,visible:e.matches(':focus-visible'),outline:s.outlineStyle,width:parseFloat(s.outlineWidth)}})()");
-    assert.equal(focus.id,'compare-resolution');
+    const tabBound = await evaluate(`(()=>{
+      const start=document.querySelector('#find-infiltration-reading');
+      start.focus();
+      if(document.activeElement!==start)throw Error('The separating-reading action must be focusable before traversal');
+      return document.querySelectorAll('a[href],button,input,select,textarea,summary,[tabindex]').length+1;
+    })()`);
+    // Let native Tab traverse intervening controls; use the current DOM only as
+    // a conservative bound rather than assuming the resolution action is next.
+    let sawComplementaryDisclosure=false, focus;
+    for(let step=0;step<tabBound;step++) {
+      await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9,nativeVirtualKeyCode:9});
+      await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9,nativeVirtualKeyCode:9});
+      focus=await evaluate(`(()=>{
+        const e=document.activeElement,s=getComputedStyle(e);
+        return {id:e.id,complementaryDisclosure:e.matches('summary')&&
+          e.textContent.replace(/\\s+/g,' ').trim()==='Plan complementary depth readings'&&e.getClientRects().length>0,
+          visible:e.matches(':focus-visible'),outline:s.outlineStyle,width:parseFloat(s.outlineWidth)};
+      })()`);
+      sawComplementaryDisclosure ||= focus.complementaryDisclosure;
+      if(focus.id==='compare-resolution')break;
+      assert.notEqual(focus.id,'find-infiltration-reading','Tab traversal wrapped to its start before reaching the resolution action');
+    }
+    assert.equal(focus?.id,'compare-resolution','Native Tab traversal must reach the resolution action within the current DOM');
+    assert.equal(sawComplementaryDisclosure,true,'The complementary-depth disclosure must remain keyboard reachable');
     assert.equal(focus.visible,true);
     assert.notEqual(focus.outline,'none');
     assert.ok(focus.width>0);
-    report.push('native keyboard Tab reaches resolution action with visible focus');
+    report.push('native keyboard Tab traverses the complementary-depth disclosure and reaches the resolution action with visible focus');
 
     for(const [width,height,mobile,label] of [[1280,1000,false,'desktop-1280'],[390,844,true,'mobile-390']]) {
       await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile});
@@ -120,3 +139,4 @@ export async function receiveInfiltrationResolution({ evaluate, send, delay, rep
   }
   assert.equal(await evaluate(storage),original,'receiving must restore the previous saved project');
 }
+
