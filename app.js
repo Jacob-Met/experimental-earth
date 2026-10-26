@@ -56,6 +56,8 @@ let toastTimeout;
 let projectRevision = 0;
 let projectImportSerial = 0;
 let infiltrationInquiry;
+let observationDraftProject = project;
+let observationDraftCell = project.selectedIndex;
 
 function notice(message) {
   $('toast').textContent = message;
@@ -68,7 +70,19 @@ function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFr
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
-function rerun() { infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
+function clearObservationDraft(reason) {
+  if (!$('obs-depth').value && !$('obs-source').value) return;
+  $('obs-depth').value = ''; $('obs-source').value = '';
+  $('observation-draft-status').textContent = `Unsaved reading cleared: ${reason} Enter the actual reading and source for the current target.`;
+}
+function retireRetargetedObservationDraft() {
+  if (project !== observationDraftProject || project.selectedIndex !== observationDraftCell) {
+    clearObservationDraft('The selected cell or site changed.');
+  }
+  observationDraftProject = project;
+  observationDraftCell = project.selectedIndex;
+}
+function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -199,12 +213,15 @@ $('brushes').addEventListener('click',event=>{const b=event.target.closest('[dat
 $('map-view').addEventListener('change',()=>{view=$('map-view').value;draw();});
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
-$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
+$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;if(s.cellIndex!==project.selectedIndex || s.minute!==Number($('obs-minute').value)) clearObservationDraft('The suggested measurement changed the target cell or time.');project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
 infiltrationInquiry=mountInfiltrationInquiry({getProject:()=>project,selectCell:index=>{
   project.selectedIndex=index;brush='inspect';
   for(const el of document.querySelectorAll('[data-brush]')) {const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}
   rerun();
 }});
+for (const id of ['obs-depth', 'obs-source']) {
+  $(id).addEventListener('input', () => { $('observation-draft-status').textContent = ''; });
+}
 $('observe-form').addEventListener('submit',event=>{
   event.preventDefault();
   const o={cellIndex:project.selectedIndex,minute:Number($('obs-minute').value),depthMm:Number($('obs-depth').value),uncertaintyMm:Number($('obs-uncertainty').value),source:$('obs-source').value.trim(),scenario:$('obs-scenario').value,use:$('obs-use').value};

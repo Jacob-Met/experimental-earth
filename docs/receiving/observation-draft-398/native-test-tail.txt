@@ -1,0 +1,152 @@
+aside values challenge without selecting or reordering pairs
+  ---
+  duration_ms: 5.690948
+  type: 'test'
+  ...
+# Subtest: no calibration and absent source material do not produce fitted candidates
+ok 1283 - no calibration and absent source material do not produce fitted candidates
+  ---
+  duration_ms: 0.280186
+  type: 'test'
+  ...
+# Subtest: rejected calibration retains closest contradicted alternatives
+ok 1284 - rejected calibration retains closest contradicted alternatives
+  ---
+  duration_ms: 2.336166
+  type: 'test'
+  ...
+# Subtest: explicit selection preserves requested order and does not adopt parameters
+ok 1285 - explicit selection preserves requested order and does not adopt parameters
+  ---
+  duration_ms: 2.556184
+  type: 'test'
+  ...
+# Subtest: input-only replay recomputes identical results and rejects derived fields
+ok 1286 - input-only replay recomputes identical results and rejects derived fields
+  ---
+  duration_ms: 2.377449
+  type: 'test'
+  ...
+# Subtest: bounds, nonfinite axes, unknown declarations and aggregate work refuse before solving
+ok 1287 - bounds, nonfinite axes, unknown declarations and aggregate work refuse before solving
+  ---
+  duration_ms: 0.676614
+  type: 'test'
+  ...
+# Subtest: unrepresentably close grid values are refused rather than counted repeatedly
+ok 1288 - unrepresentably close grid values are refused rather than counted repeatedly
+  ---
+  duration_ms: 0.366667
+  type: 'test'
+  ...
+# Subtest: safeguarded inversion preserves difficult independent high-precision roots
+ok 1289 - safeguarded inversion preserves difficult independent high-precision roots
+  ---
+  duration_ms: 0.888795
+  type: 'test'
+  ...
+# Subtest: tiny conductivities and large prior infiltration remain finite, monotone and supply bounded
+ok 1290 - tiny conductivities and large prior infiltration remain finite, monotone and supply bounded
+  ---
+  duration_ms: 1.575064
+  type: 'test'
+  ...
+# Subtest: ponded integration agrees with independent 90-digit Decimal references including cancellation and singular start
+ok 1291 - ponded integration agrees with independent 90-digit Decimal references including cancellation and singular start
+  ---
+  duration_ms: 1.193681
+  type: 'test'
+  ...
+# Subtest: finite rainfall postpones ponding; a full-step ponded cap gives a different and incorrect amount
+ok 1292 - finite rainfall postpones ponding; a full-step ponded cap gives a different and incorrect amount
+  ---
+  duration_ms: 0.374326
+  type: 'test'
+  ...
+# Subtest: a pool can empty and re-form within one segment; initial storage is never counted as rain
+ok 1293 - a pool can empty and re-form within one segment; initial storage is never counted as rain
+  ---
+  duration_ms: 0.124346
+  type: 'test'
+  ...
+# Subtest: dry, impermeable, zero-drive, exhausted-pool and supply-limited boundaries preserve mass
+ok 1294 - dry, impermeable, zero-drive, exhausted-pool and supply-limited boundaries preserve mass
+  ---
+  duration_ms: 0.472284
+  type: 'test'
+  ...
+# Subtest: constant-rain time subdivision preserves the local solution through 500 changed-input transition cases
+ok 1295 - constant-rain time subdivision preserves the local solution through 500 changed-input transition cases
+  ---
+  duration_ms: 19.093324
+  type: 'test'
+  ...
+# Subtest: invalid numerical inputs are refused before a nonfinite or negative state is created
+ok 1296 - invalid numerical inputs are refused before a nonfinite or negative state is created
+  ---
+  duration_ms: 0.711929
+  type: 'test'
+  ...
+# Subtest: actual maintained runoff reproduces analytic ponding, including nonaligned storm end
+ok 1297 - actual maintained runoff reproduces analytic ponding, including nonaligned storm end
+  ---
+  duration_ms: 2.679541
+  type: 'test'
+  ...
+# Subtest: routing, internal walls, local budgets and passive traces consume the same accepted absorption
+ok 1298 - routing, internal walls, local budgets and passive traces consume the same accepted absorption
+  ---
+  duration_ms: 10.427758
+  type: 'test'
+  ...
+# Subtest: zero-drive variant matches constant-rate consumer and cannot conflict with another override
+ok 1299 - zero-drive variant matches constant-rate consumer and cannot conflict with another override
+  ---
+  duration_ms: 6.223349
+  type: 'test'
+  ...
+# Subtest: reverse rainfall origins agree with independently propagated forward tags under wetting-front absorption
+ok 1300 - reverse rainfall origins agree with independently propagated forward tags under wetting-front absorption
+  ---
+  duration_ms: 2.518609
+  type: 'test'
+  ...
+# Subtest: extra hypothesis properties cannot overwrite actual rain, elapsed time or cumulative water state
+ok 1301 - extra hypothesis properties cannot overwrite actual rain, elapsed time or cumulative water state
+  ---
+  duration_ms: 0.477245
+  type: 'test'
+  ...
+# Subtest: separating authored observations select a mechanism; held-aside changes do not alter calibration ordering
+ok 1302 - separating authored observations select a mechanism; held-aside changes do not alter calibration ordering
+  ---
+  duration_ms: 2.877962
+  type: 'test'
+  ...
+# Subtest: dry observations leave parameter alternatives ambiguous; absent surface cannot identify parameters
+ok 1303 - dry observations leave parameter alternatives ambiguous; absent surface cannot identify parameters
+  ---
+  duration_ms: 1.276536
+  type: 'test'
+  ...
+# Subtest: complete matched geometry, equal rain, observation roles and source inputs survive input-only replay
+ok 1304 - complete matched geometry, equal rain, observation roles and source inputs survive input-only replay
+  ---
+  duration_ms: 3.597682
+  type: 'test'
+  ...
+# Subtest: bounded declarations and aggregate work are admitted before simulations or imports
+ok 1305 - bounded declarations and aggregate work are admitted before simulations or imports
+  ---
+  duration_ms: 16.103756
+  type: 'test'
+  ...
+1..1305
+# tests 1305
+# suites 0
+# pass 1305
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21698.040953
