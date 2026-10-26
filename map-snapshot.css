@@ -1,0 +1,70 @@
+#maps .map-snapshot-controls {
+  min-inline-size: 0;
+  margin: 0 0 0.75rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #bacdc4;
+  border-radius: 0.7rem;
+}
+
+#maps .map-snapshot-controls[hidden] {
+  display: none;
+}
+
+#maps .map-snapshot-controls legend {
+  padding: 0 0.35rem;
+  font-weight: 700;
+}
+
+#maps .map-snapshot-controls label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+}
+
+#maps #map-snapshot-time {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+#maps .map-snapshot-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+#maps .map-snapshot-actions button {
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+}
+
+#maps .map-snapshot-actions button[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: default;
+}
+
+#maps #map-snapshot-index {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0;
+  accent-color: #245d48;
+}
+
+#maps .map-snapshot-actions :focus-visible {
+  outline: 3px solid #bc4c19;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  #maps .map-snapshot-controls {
+    padding: 0.6rem;
+  }
+
+  #maps .map-snapshot-actions {
+    gap: 0.4rem;
+  }
+}
