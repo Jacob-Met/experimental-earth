@@ -1,3 +1,4 @@
+import { receiveSavedProjectRecovery } from './saved-project-recovery.receiving.mjs';
 import { receiveBrowserSave } from './browser-save.receiving.mjs';
 import { receiveObservationDuration } from './observation-duration.receiving.mjs';
 import { receiveRainOrigins } from './rain-origin.receiving.mjs';
@@ -157,8 +158,10 @@ try {
   await receiveRainOriginHypotheses({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
 
   const measurementVisuals = await receiveDecisionObservations({ evaluate, send, delay, report, artifactDirectory:session.runDirectory });
+  const savedProjectRecovery = await receiveSavedProjectRecovery({...session,send,runDirectory:session.runDirectory+'/saved-project-recovery'});
+  report.push(...savedProjectRecovery.observations.map(item=>'saved project recovery: '+item.scenario));
   assert.deepEqual(exceptions,[]);
-  return {checks:report,exceptions,dimensions:dims,decisionVisuals,measurementVisuals,
+  return {checks:report,exceptions,dimensions:dims,decisionVisuals,measurementVisuals,savedProjectRecovery,
     completedReloads,sandbox:session.sandbox,sandboxPath:session.sandboxPath};
   });
   console.log(JSON.stringify({status:'PASS',browser:chromeBin,...result.value,session:result.receipt},null,2));
