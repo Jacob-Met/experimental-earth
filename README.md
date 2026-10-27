@@ -8,6 +8,10 @@ The product should help people understand and improve a courtyard, schoolyard, g
 
 **First runnable local workbench available.** The Rain Experiment Lab compares hypothetical rainfall, terrain and surface edits with explicit water accounting and an attributed observation notebook. This is a conceptual computation on invented starting conditions—not an environmentally validated forecast, site survey, authorized intervention or Nebius/model deployment. Read current source, issues and pull requests for subsequent progress.
 
+## Watch the private courtyard investigation
+
+A [source-pinned, 82.7-second silent walkthrough](docs/demos/courtyard-2026-10-27/experimental-earth-courtyard-private-demo.mp4) shows the actual local workbench comparing a copied courtyard, changing one proposed cell, inspecting matched-time rain maps, retaining an attributed reading, exporting the project, and reopening that file in a fresh browser. [Reopen the exact demonstrated project](docs/demos/courtyard-2026-10-27/experimental-earth-site.json) or [inspect the demo provenance and reproduction instructions](docs/demos/courtyard-2026-10-27/README.md). This is a **private, fictional conceptual-model demonstration** recorded against historical source `d362f62bdc0773d840b0e82be4bf409720992630`, not field validation, current-head screen proof, deployment, or a public submission.
+
 ## Connect shade to surface and stored heat
 
 **What does a shade change do to stored heat?** now connects the saved mapped
