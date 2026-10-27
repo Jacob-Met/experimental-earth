@@ -1,4 +1,4 @@
-import {snapshotDepths} from './ponding-exposure.js';
+import {snapshotDepthsAtMinutes} from './ponding-exposure.js';
 
 /**
  * Timing is a user-declared hypothetical journey, never an inferred walking
@@ -118,11 +118,13 @@ export function inspectTimedRoute(result, indices, stepMinutes, departureMinute,
       !Number.isFinite(thresholdMm) || thresholdMm<=0 || thresholdMm>1000) {
     throw new Error('Supply a valid modeled departure time and depth threshold.');
   }
+  const arrivalMinutes=offsets.map(offset=>departureMinute+offset);
+  const arrivalDepths=snapshotDepthsAtMinutes(result,arrivalMinutes);
   const arrivals=[];
   let firstFailure=null;
   for(let k=0;k<indices.length;k++) {
-    const minute=departureMinute+offsets[k],cellIndex=indices[k];
-    const depths=snapshotDepths(result,minute);
+    const minute=arrivalMinutes[k],cellIndex=indices[k];
+    const depths=arrivalDepths[k];
     if(cellIndex >= depths.length) throw new Error('Route cell is outside modeled site.');
     const depthMm=depths[cellIndex];
     arrivals.push({cellIndex,routePosition:k,minute,depthMm});
@@ -132,3 +134,4 @@ export function inspectTimedRoute(result, indices, stepMinutes, departureMinute,
   }
   return {departureMinute,arrivals,allAtOrBelow:firstFailure===null,firstFailure};
 }
+
