@@ -1,0 +1,238 @@
+{
+  "schema": "experimental-earth.timed-route-independent-receiving.v1",
+  "date": "2026-10-27",
+  "actor": "estate-dae856c9-20261027",
+  "task_id": "experimental-earth-timed-route-independent-receiving-dae856c9",
+  "prompt_version": "2026-10-27.17",
+  "production_base_initial": "38e8da98285a1bad55f2504d9f43c7fdd779210e",
+  "production_base_composed": "e4a6d4b047e475aa9bf3b6ff3e60ff36d9b80f93",
+  "preserved_owners": {
+    "timed_route": "hamon-auto11-earth-timed-route-20261024",
+    "same_time": "hamon-astra-estate-20261026-1929 /root/earth"
+  },
+  "scope": "Additive independent tests, browser receiving, documentation and private evidence. No production calculation or application source change.",
+  "execution": {
+    "owner": "node-72e09d180ec675855992b3cbfb59e9e8",
+    "incarnation": "6d623deaac81c47d8d70cb4e706c2457",
+    "provider_generation": 2,
+    "checkout": "/workspace/hamon-dae856c9-ee-20261027",
+    "logs": "/tmp/estate-dae856c9-20261027/verification",
+    "receipts": {
+      "baseline": {
+        "command_id": "estate-dae856c9-20261027-verification-02",
+        "request_sha256": "a1c4b9a53f7ae35687ec2f05784865c618e52a12775d49c7f2e135006f3d9aa4",
+        "generation": "9d01bbcff35b40a62b7e3693dc69671958b2d0a0d995f4f839b300da0dc3701f",
+        "state": "completed",
+        "runner_pid": 782319,
+        "started_at": "2026-10-27T08:17:01.721236344Z",
+        "finished_at": "2026-10-27T08:17:31.072321004Z",
+        "exit_code": 0
+      },
+      "composition": {
+        "command_id": "estate-dae856c9-20261027-verification-03",
+        "request_sha256": "c0be5be30c31d8fcbff2d1e4cae787cf7adf93ddc7c3e7274634100f829ee3c1",
+        "generation": "bee447518d77835b5d9550575f345b34564fe7dfac23fecbf7e1db04ceeac228",
+        "state": "failed",
+        "runner_pid": 806727,
+        "started_at": "2026-10-27T08:22:09.35353219Z",
+        "finished_at": "2026-10-27T08:22:12.8205293Z",
+        "exit_code": 1,
+        "error": "exit status 1"
+      },
+      "finalBrowser": {
+        "command_id": "estate-dae856c9-20261027-verification-04",
+        "request_sha256": "10f08759da0d0716d8a2aebda5ddb31e6863e8cf590ff11a807543e4178d4f5d",
+        "generation": "53f6e03ef3e58547dca1472a7e9bb1528b76e2886c45e4fd7e3bd8b8777f46be",
+        "state": "completed",
+        "runner_pid": 820161,
+        "started_at": "2026-10-27T08:23:16.308321451Z",
+        "finished_at": "2026-10-27T08:23:20.777213797Z",
+        "exit_code": 0
+      }
+    }
+  },
+  "verified": {
+    "complete_native": {
+      "base": "38e8da98285a1bad55f2504d9f43c7fdd779210e",
+      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+      "passed": 1416,
+      "failed": 0,
+      "log": "complete-native-02.stdout.log"
+    },
+    "composed_focused": {
+      "base": "e4a6d4b047e475aa9bf3b6ff3e60ff36d9b80f93",
+      "command": "node --test tests/route-traversal.oracle.test.mjs tests/route-traversal.test.mjs tests/route-ponding.test.mjs tests/ponding-exposure.test.mjs tests/investigation-navigation.test.mjs",
+      "passed": 30,
+      "failed": 0,
+      "log": "composed-focused-03.stdout.log"
+    },
+    "browser": {
+      "command": "CHROME_BIN=/usr/bin/google-chrome node tests/route-traversal-oracle.receiving.mjs",
+      "passed": 11,
+      "failed": 0,
+      "log": "browser-04.stdout.log",
+      "outcomes": [
+        {
+          "input": "maintained index entry mounts traversal",
+          "pass": true
+        },
+        {
+          "input": "maintained example raw-snapshot oracle versus rendered values",
+          "totals": {
+            "existing": 23.33750338852964,
+            "proposal": 24.79284198787692
+          },
+          "delta": 1.4553385993472787,
+          "pass": true
+        },
+        {
+          "input": "maintained traversal desktop and 390px receiving",
+          "screenshots": {
+            "desktop": "/workspace/hamon-dae856c9-ee-20261027/.browser-timed-route-oracle-416ba7a8-a7b6-4eb8-9282-151ebb7f9ed8/maintained-traversal-desktop.png",
+            "mobile": "/workspace/hamon-dae856c9-ee-20261027/.browser-timed-route-oracle-416ba7a8-a7b6-4eb8-9282-151ebb7f9ed8/maintained-traversal-mobile.png"
+          },
+          "screenshotRegions": {
+            "desktop": {
+              "x": 337,
+              "y": 3608.390625,
+              "width": 1064,
+              "height": 782,
+              "scale": 1
+            },
+            "mobile": {
+              "x": 29,
+              "y": 6163.515625,
+              "width": 332,
+              "height": 1219.390625,
+              "scale": 1
+            }
+          },
+          "pass": true
+        },
+        {
+          "input": "analytic crossing shifted by B arrival offset 2",
+          "existing": 3,
+          "proposal": 10,
+          "delta": 7,
+          "pass": true
+        },
+        {
+          "input": "exact threshold equality versus first exceedance at declared arrival",
+          "pass": true
+        },
+        {
+          "input": "parent threshold 1 -> 2 -> 1 recomputes retained query",
+          "pass": true
+        },
+        {
+          "input": "changed B arrival offset 5 removes positive existing window",
+          "pass": true
+        },
+        {
+          "input": "reversed parent route and new timing recompute",
+          "pass": true
+        },
+        {
+          "input": "invalid arrival horizon then valid recovery",
+          "pass": true
+        },
+        {
+          "input": "mismatched proposal horizon then source refresh recovery",
+          "pass": true
+        },
+        {
+          "input": "source custody and browser exceptions",
+          "pass": true
+        }
+      ]
+    },
+    "sandbox": {
+      "browser": "Chrome/156.0.8078.47",
+      "admitted": true,
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "session_status": "course-completed",
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-direct-child-only",
+        "signals": [
+          "SIGTERM"
+        ]
+      }
+    }
+  },
+  "tested_sources_sha256": {
+    "tests/route-traversal.oracle.test.mjs": "f55c90942706c4d67b651740c3b105865dba94d40bc156c4c5fdaee66487e8cb",
+    "tests/support/route-traversal-oracle.mjs": "18335910499aa449abf5beeeecb3b9b5f8902df472842e6569da7f1c5403e4bc",
+    "tests/route-traversal-oracle.receiving.mjs": "25f7277e3347403931ba5679db6e9d39dbc5139e14ef7e6d9fbbb6b0740a94e0"
+  },
+  "negative_controls": [
+    {
+      "mutation": "Replace cumulative offsets with individual segment offsets in a disposable copy",
+      "expected_rejection": true,
+      "evidence": [
+        "start: 22 versus 20",
+        "independent inspector arrival: 23.5 versus 25.5"
+      ],
+      "log": "mutant-cumulative.stdout.log"
+    },
+    {
+      "mutation": "Replace panel proposal-minus-existing difference with zero in a separate disposable copy",
+      "expected_rejection": true,
+      "evidence": "Browser admitted and actual application rendered Existing 23.34 / Proposal 24.79, but AssertionError rejected displayed 0 instead of independent +1.46.",
+      "log": "mutant-panel-delta.stderr.log"
+    }
+  ],
+  "negative_control_scope": "Executed before screenshot-only changes; arithmetic oracle and numeric browser assertions are unchanged. Mutants were never applied to the candidate or maintained source.",
+  "retained_failures": [
+    {
+      "command": "estate-dae856c9-20261027-verification-02",
+      "finding": "Numeric and behavior assertions passed, but original smooth-scroll screenshots showed other page sections; those captures were not accepted as target visual evidence."
+    },
+    {
+      "command": "estate-dae856c9-20261027-verification-03",
+      "finding": "Composed native checks passed; browser rejected mobile target top -0.484375 caused by rounded scroll position. An 8-pixel scroll inset preserved strict visible-target assertions; browser04 then passed."
+    }
+  ],
+  "screenshots": {
+    "desktop": {
+      "repository_path": "docs/receiving/timed-route-independent-dae856c9/desktop.png",
+      "original_path": "/workspace/hamon-dae856c9-ee-20261027/.browser-timed-route-oracle-416ba7a8-a7b6-4eb8-9282-151ebb7f9ed8/maintained-traversal-desktop.png",
+      "sha256": "2b983a90185a26fc40cba069eba92e6358e8abd8f3ac8b09469907d9ce26df87"
+    },
+    "mobile": {
+      "repository_path": "docs/receiving/timed-route-independent-dae856c9/mobile.png",
+      "original_path": "/workspace/hamon-dae856c9-ee-20261027/.browser-timed-route-oracle-416ba7a8-a7b6-4eb8-9282-151ebb7f9ed8/maintained-traversal-mobile.png",
+      "sha256": "61fb3a8110123462700ca79beeacb816e3388dce6580c764c41633aaf8d12ebc"
+    }
+  },
+  "visual_review": {
+    "reviewers": [
+      "/root",
+      "/root/source_scout"
+    ],
+    "finding": "Actual timing controls, windows, totals 23.34 / 24.79 and difference +1.46 are legible at both widths. No visible horizontal overflow.",
+    "limits": [
+      "Existing floating finder and reset toast overlap part of the mobile proposal arrival paragraph; numeric windows, totals and difference remain legible.",
+      "The desktop image clips the final portion of the bottom disclosure; the images do not establish every disclosure pixel is visible."
+    ]
+  },
+  "limits": [
+    "Agreement tests the piecewise-linear retained-snapshot contract, not physical rainfall, accessibility or safe traversal.",
+    "The varied mathematical cases intentionally avoid sub-1e-8 interval stress.",
+    "Historical docs/receiving artifacts were excluded from the initial source-copy comparison; all tracked runtime, test and other documentation source files were matched against the pinned Git tree."
+  ],
+  "independent_review": {
+    "oracle": "/root/recover_board; arrival identity/time gap corrected before execution",
+    "browser": "/root/product_recovery",
+    "visual": "/root/source_scout",
+    "executor": "/root through Renpo"
+  }
+}
