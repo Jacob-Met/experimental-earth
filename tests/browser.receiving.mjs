@@ -1,3 +1,4 @@
+import { receiveBrowserSave } from './browser-save.receiving.mjs';
 import { receiveObservationDuration } from './observation-duration.receiving.mjs';
 import { receiveRainOrigins } from './rain-origin.receiving.mjs';
 import { receiveRainOriginTimes } from './rain-origin-time.receiving.mjs';
@@ -92,6 +93,7 @@ try {
   assert.ok(infiltration.includes('more'),'infiltration gain must be labeled more, not less');
   report.push('initial 96 cells, six metrics and two live chart curves');
   await receiveObservationDuration({ evaluate, send, report });
+  await receiveBrowserSave({ evaluate, send, delay, report });
   await evaluate("document.querySelector('[data-brush=\"garden\"]').click();document.querySelector('#proposal-grid .cell').click()");
   assert.equal(await evaluate("document.querySelector('#proposal-grid .cell').getAttribute('aria-label').includes('Rain garden')"),true);
   await evaluate("document.querySelector('[data-brush=\"inspect\"]').click();document.querySelector('#obs-minute').value='60';document.querySelector('#obs-depth').value='14';document.querySelector('#obs-uncertainty').value='3';document.querySelector('#obs-source').value='fictional ruler check';document.querySelector('#observe-form').requestSubmit()");

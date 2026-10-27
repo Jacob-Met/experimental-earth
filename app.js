@@ -54,6 +54,8 @@ let view = 'peak';
 let mapSnapshotMinute = 0;
 let results;
 let toastTimeout;
+let browserSaveState = 'pending';
+const saveFailureMessage = 'Browser save failed. Keep this tab open and export the current project to retain changes.';
 let projectRevision = 0;
 let projectImportSerial = 0;
 let infiltrationInquiry;
@@ -62,7 +64,9 @@ let observationDraftCell = project.selectedIndex;
 let observationDraftMinute = Number($('obs-minute').value);
 
 function notice(message) {
-  $('toast').textContent = message;
+  $('toast').textContent = browserSaveState === 'unsaved'
+    ? [message, saveFailureMessage].filter(Boolean).join(' ')
+    : message;
   $('toast').classList.add('show');
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => $('toast').classList.remove('show'), 3800);
@@ -71,7 +75,20 @@ function nameCell(index) { return `${String.fromCharCode(65 + index % project.wi
 function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFractionDigits:1}); }
 function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
-function persist() {try {localStorage.setItem(storeKey,JSON.stringify(project));}catch {notice('Browser storage is unavailable. Export your project to retain it.');}}
+function persist() {
+  const previousState = browserSaveState;
+  let saved = false;
+  try { localStorage.setItem(storeKey, JSON.stringify(project)); saved = true; }
+  catch {}
+  browserSaveState = saved ? 'saved' : 'unsaved';
+  const status = $('project-save-status');
+  if (status.dataset.saveState !== browserSaveState) status.dataset.saveState = browserSaveState;
+  const message = saved ? 'Saved in this browser.' : saveFailureMessage;
+  if (status.textContent !== message) status.textContent = message;
+  if (!saved) notice('');
+  else if (previousState === 'unsaved') notice('Saved in this browser.');
+  return saved;
+}
 function clearObservationDraft(reason) {
   if (!$('obs-depth').value && !$('obs-source').value) return;
   $('obs-depth').value = ''; $('obs-source').value = '';
@@ -288,7 +305,7 @@ $('observe-form').addEventListener('submit',event=>{
   event.preventDefault();
   const o={cellIndex:project.selectedIndex,minute:Number($('obs-minute').value),depthMm:Number($('obs-depth').value),uncertaintyMm:Number($('obs-uncertainty').value),source:$('obs-source').value.trim(),scenario:$('obs-scenario').value,use:$('obs-use').value};
   project.observations.push(o);
-  try{validateProject(project);rerun();$('obs-depth').value='';$('obs-source').value='';notice(`Observation for ${nameCell(o.cellIndex)} retained locally.`);}catch(err){project.observations.pop();notice(err.message);}
+  try{validateProject(project);rerun();$('obs-depth').value='';$('obs-source').value='';notice(`Observation for ${nameCell(o.cellIndex)} added to this project.`);}catch(err){project.observations.pop();notice(err.message);}
 });
 $('export').addEventListener('click',()=>{
   try {

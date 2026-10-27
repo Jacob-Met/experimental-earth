@@ -4,6 +4,8 @@
 @media(max-width:780px){.masthead{padding:25px 18px}.brand{align-items:flex-start}.mark{width:38px;height:38px;font-size:28px;flex:0 0 auto}.layout{display:flex;flex-direction:column;margin:12px;gap:12px}.controls{position:static;width:100%}.workspace{width:100%}.maps{gap:10px}.panel{width:100%;padding:16px}.cell{font-size:9px}.cell span{font-size:7px}.grid{gap:2px;padding:4px}.metrics{grid-template-columns:1fr 1fr}.section-heading h2{font-size:20px}.obs-fields{grid-template-columns:1fr 1fr}.disclosure{margin:12px 12px 0}}
 @media(max-width:420px){.maps{grid-template-columns:1fr}.map-heading span{display:block}.cell{font-size:11px}.cell span{font-size:9px}.metrics{grid-template-columns:1fr}.metric-columns strong{font-size:19px}.section-heading{flex-wrap:wrap}.obs-fields{grid-template-columns:1fr 1fr}}
 
+.masthead .project-save-status{margin:12px 0 0;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.masthead .project-save-status[data-save-state="unsaved"]{color:#ffe0a8;background:#382d1c;border:1px solid #c9954f;border-radius:8px;padding:10px 12px}
 .obs-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;min-width:0}.obs-actions button{white-space:normal;max-width:100%}
 /* Candidate evidence stays readable without widening the field workspace. */
 .study-fields{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:14px}
