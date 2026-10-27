@@ -14,6 +14,7 @@ export function mountInvestigationNavigation() {
   const workspace = document.querySelector('.workspace');
   if (!workspace || document.getElementById('investigation-navigation')) return null;
 
+  const content = workspace.closest('main') ?? workspace;
   const style = document.createElement('link');
   style.rel = 'stylesheet';
   style.href = new URL('./investigation-navigation.css', import.meta.url);
@@ -26,7 +27,7 @@ export function mountInvestigationNavigation() {
   nav.innerHTML = `<div class="investigation-navigation-heading">
       <div><span class="eyebrow">EXPLORE THE FIELD LAB</span>
         <h2 id="investigation-navigation-title">What would you like to investigate?</h2></div>
-      <p>Find a question and open its workbench.</p>
+      <p>Find an investigation in this workspace or open an original-data tool in a new tab.</p>
     </div>
     <label for="investigation-search">Find an investigation</label>
     <div class="investigation-search-controls">
@@ -61,7 +62,7 @@ export function mountInvestigationNavigation() {
   }
 
   function collect() {
-    return [...workspace.querySelectorAll('section.panel')].flatMap(panel => {
+    const sections = [...workspace.querySelectorAll('section.panel')].flatMap(panel => {
       if (panel.closest('[hidden], [aria-hidden="true"]')) return [];
       const heading = panel.querySelector('h2, h3');
       if (!heading || heading.closest('section.panel') !== panel) return [];
@@ -74,9 +75,42 @@ export function mountInvestigationNavigation() {
         const slug = searchable(title).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'question';
         anchor.id = uniqueId('investigation-' + slug, anchor);
       }
-      return [{id: anchor.id, title, description: compact(paragraph?.textContent),
+      return [{kind: 'section', id: anchor.id, title, description: compact(paragraph?.textContent),
         topic: compact(eyebrow?.textContent), anchor, heading, paragraph, eyebrow}];
     });
+
+    // Discover the destinations already offered by the application, including
+    // links outside .workspace. No parallel route catalog or form-value search.
+    const pages = new Map();
+    const current = new URL(window.location.href);
+    const pagePath = pathname => pathname.replace(/index\.html$/i, '');
+    const privateContext = 'form,input,textarea,select,[contenteditable]';
+    const contextText = element => element && !element.closest(privateContext) &&
+      !element.querySelector(privateContext) ? compact(element.textContent) : '';
+    for (const sourceAnchor of content.querySelectorAll('a[href]')) {
+      if (nav.contains(sourceAnchor) || sourceAnchor.hasAttribute('download') ||
+        sourceAnchor.closest('[hidden], [aria-hidden="true"],' + privateContext)) continue;
+      const title = contextText(sourceAnchor);
+      if (!title) continue;
+      let url;
+      try { url = new URL(sourceAnchor.getAttribute('href'), document.baseURI); } catch { continue; }
+      if (!/^https?:$/.test(url.protocol) || url.origin !== current.origin ||
+        url.username || url.password || !/\.html$/i.test(url.pathname) ||
+        pagePath(url.pathname) === pagePath(current.pathname)) continue;
+      const id = url.pathname + url.search + url.hash;
+      if (pages.has(id)) continue;
+      const paragraph = sourceAnchor.closest('p');
+      const panel = sourceAnchor.closest('section.panel');
+      const own = selector => panel && [...panel.querySelectorAll(selector)]
+        .find(element => element.closest('section.panel') === panel);
+      const topicHeading = own('h2,h3'), eyebrow = own('.eyebrow');
+      const description = contextText(paragraph);
+      pages.set(id, {kind: 'page', id, href: url.href, title,
+        description: description === title ? '' : description,
+        topic: [contextText(topicHeading), contextText(eyebrow)].join(' '),
+        sourceAnchor, paragraph, topicHeading, eyebrow});
+    }
+    return [...sections, ...pages.values()];
   }
 
   function reveal(entry) {
@@ -103,7 +137,7 @@ export function mountInvestigationNavigation() {
       nav.scrollIntoView({block: 'start', behavior: 'instant'});
       return;
     }
-    const entry = entries.find(candidate => candidate.id === id || candidate.heading.id === id);
+    const entry = entries.find(candidate => candidate.kind === 'section' && (candidate.id === id || candidate.heading.id === id));
     if (entry) {
       pendingHash = null;
       reveal(entry);
@@ -114,7 +148,7 @@ export function mountInvestigationNavigation() {
   function render() {
     const matches = filterInvestigations(entries, input.value);
     const hasQuery = compact(input.value).length > 0;
-    const focusedId = document.activeElement?.closest('#investigation-results a')?.dataset.investigationId;
+    const focusedKey = document.activeElement?.closest('#investigation-results a')?.dataset.investigationKey;
     clear.disabled = !input.value;
     status.textContent = hasQuery
       ? matches.length ? matches.length + ' of ' + entries.length + ' investigations match.'
@@ -125,8 +159,11 @@ export function mountInvestigationNavigation() {
     for (const entry of matches) {
       const item = document.createElement('li');
       const link = document.createElement('a');
-      link.href = '#' + encodeURIComponent(entry.id);
+      link.href = entry.kind === 'page' ? entry.href : '#' + encodeURIComponent(entry.id);
       link.dataset.investigationId = entry.id;
+      link.dataset.investigationKind = entry.kind;
+      link.dataset.investigationKey = entry.kind + ':' + entry.id;
+      if (entry.kind === 'page') { link.target = '_blank'; link.rel = 'noopener'; }
       const title = document.createElement('strong');
       title.textContent = entry.title;
       link.append(title);
@@ -135,19 +172,25 @@ export function mountInvestigationNavigation() {
         description.textContent = entry.description.length > 190 ? entry.description.slice(0, 187).trimEnd() + '…' : entry.description;
         link.append(description);
       }
+      if (entry.kind === 'page') {
+        const destination = document.createElement('span');
+        destination.className = 'investigation-destination';
+        destination.textContent = 'Opens in a new tab';
+        link.append(destination);
+      }
       item.append(link);
       fragment.append(item);
     }
     list.replaceChildren(fragment);
-    if (focusedId) {
-      [...list.querySelectorAll('a')].find(link => link.dataset.investigationId === focusedId)?.focus({preventScroll: true});
+    if (focusedKey) {
+      [...list.querySelectorAll('a')].find(link => link.dataset.investigationKey === focusedKey)?.focus({preventScroll: true});
     }
   }
 
   function refresh() {
     queued = false;
     const next = collect();
-    const nextSignature = JSON.stringify(next.map(({id, title, description, topic}) => [id, title, description, topic]));
+    const nextSignature = JSON.stringify(next.map(({kind, id, href, title, description, topic}) => [kind, id, href, title, description, topic]));
     // Keep live element references even when a renderer replaces identical content.
     entries = next;
     if (nextSignature === signature) return;
@@ -180,8 +223,8 @@ export function mountInvestigationNavigation() {
   list.addEventListener('click', event => {
     if (event.button !== 0 || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
     const link = event.target.closest('a[data-investigation-id]');
-    const entry = entries.find(candidate => candidate.id === link?.dataset.investigationId);
-    if (entry) {
+    const entry = entries.find(candidate => candidate.kind + ':' + candidate.id === link?.dataset.investigationKey);
+    if (entry?.kind === 'section') {
       reveal(entry);
       // A repeated fragment has no hashchange to restore heading focus after the default action.
       if (isCurrentFragment(link)) {
@@ -203,16 +246,20 @@ export function mountInvestigationNavigation() {
 
   const observer = new MutationObserver(records => {
     const relevant = records.some(record => {
-      if (record.type === 'attributes') return record.target.matches('section.panel') || record.target.querySelector?.('section.panel');
-      if (entries.some(entry => [entry.heading, entry.paragraph, entry.eyebrow]
+      if (nav.contains(record.target)) return false;
+      const changed = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+      if (changed?.closest('a[href]')) return true;
+      if (record.type === 'attributes' && (record.target.matches('section.panel,a') ||
+        record.target.querySelector?.('section.panel,a[href]'))) return true;
+      if (entries.some(entry => [entry.heading, entry.paragraph, entry.eyebrow, entry.sourceAnchor, entry.topicHeading]
         .some(node => node?.contains(record.target)))) return true;
       return [...record.addedNodes, ...record.removedNodes].some(node => node.nodeType === 1 &&
-        (node.matches('section.panel,h2,h3,p,.eyebrow') || node.querySelector('section.panel,h2,h3,p,.eyebrow')));
+        (node.matches('section.panel,h2,h3,p,.eyebrow,a[href]') || node.querySelector('section.panel,h2,h3,p,.eyebrow,a[href]')));
     });
     if (relevant && !queued) { queued = true; queueMicrotask(refresh); }
   });
   refresh();
-  observer.observe(workspace, {subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden', 'aria-hidden']});
+  observer.observe(content, {subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden', 'aria-hidden', 'href', 'download', 'contenteditable']});
   const visibility = typeof IntersectionObserver === 'function' ? new IntersectionObserver(([entry]) => {
     returnLink.hidden = entry.isIntersecting;
   }) : null;

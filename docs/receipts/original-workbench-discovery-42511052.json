@@ -1,0 +1,615 @@
+{
+  "schema": "experimental-earth-investigation-discovery-receiving/2",
+  "actor": "estate-42511052-20261027",
+  "canonical_prompt": "2026-10-27.16",
+  "task_id": "experimental-earth-original-workbench-discovery-42511052",
+  "base_commit": "38e8da98285a1bad55f2504d9f43c7fdd779210e",
+  "base_tree": "e79fa31e2873612602b0ffc73b938532fd7fbc87",
+  "qualified_runtime_tree": "750510acf15a3e3a2508cd5f85b96f683f9e2c38",
+  "candidate_before_receipt": "76ba4469f391f1ddf59dd48e191fd65a0808d78b",
+  "test_only_delta_from_full_suite_tree": "M\ttests/investigation-navigation.receiving.mjs",
+  "source_sha256": {
+    "investigation-navigation.js": "c7ee12774f34d82d18d8ff9a27caad3a033a8700101d900f244a87f1b21287fa",
+    "investigation-navigation.css": "a842af33f4ad8be0e8e305788b7cd48a6b9e768dc2d48c0bed8cdb852ff58039",
+    "tests/investigation-navigation.receiving.mjs": "2a10a6f14243dfbeb555c022e89e96bb6687be49061f9a37584c4a940c363082",
+    "tests/investigation-pages.receiving.mjs": "4a7c7330572626d76e7d59306efd17e23d203bfec13ae7eb183149dc85726000",
+    "docs/INVESTIGATION_NAVIGATION.md": "5c88b3037c8c7ea2e37237d0bcdcea56e99365607cc8ae6cd4abc24634af8a92"
+  },
+  "baseline": {
+    "commit": "f854fff9e57cbc7f88c189d0187bfb86c34e0675",
+    "status": "failed",
+    "failure": "ChromiumSessionError: Chromium receiving session failed\n    at withChromiumSession (file:///home/ubuntu/hamon-work/estate-42511052-20261027/experimental-earth/tests/support/chromium-session.mjs:237:25)\n    at async withBrowserSession (file:///home/ubuntu/hamon-work/estate-42511052-20261027/experimental-earth/tests/support/browser-session.mjs:30:12)\n    at async file:///home/ubuntu/hamon-work/estate-42511052-20261027/experimental-earth/tests/investigation-pages.receiving.mjs:97:3"
+  },
+  "native": {
+    "tree": "750510acf15a3e3a2508cd5f85b96f683f9e2c38",
+    "command": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "tests": 1411,
+    "pass": 1411,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "stdout_sha256": "5bd1514888469d1ffdc4fa3fe3af3eb2f4f01fe97a865be4d652c0ae4c113075"
+  },
+  "maintained_browser": {
+    "tree": "750510acf15a3e3a2508cd5f85b96f683f9e2c38",
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/browser.receiving.mjs",
+    "checks": [
+      "initial 96 cells, six metrics and two live chart curves",
+      "manual duration extension updates the observation bound, preserves an in-range draft, and accepts a sourced minute-300 reading",
+      "out-of-horizon submission and invalid shortening preserve retained readings; the longer horizon and minute-300 reading survive reload",
+      "accepted shortening clears only the retargeted draft; invalid weather preserves the draft; the exact shorter-horizon boundary remains usable",
+      "failed key-specific browser save keeps the live reading, preserves stored bytes, and exposes a persistent polite warning after toast expiry at 390px",
+      "the actual Export handler includes the unsaved authored reading while keeping browser-save failure visible",
+      "restoring the setter alone stays unsaved; a successful ordinary save clears the warning and the authored reading survives reload",
+      "brush edit, sourced field observation, local-save",
+      "reload durability, scenario reset, portable JSON import",
+      "one-cell infiltration-rate sensitivity, distinct from scenario difference",
+      "sensitivity suggestion and parameter-change recomputation",
+      "390px mobile layout no horizontal overflow",
+      "ponding analytic 2×2 rain control: final10.3mm, above5mm for5.3minutes, identical proposal",
+      "ponding threshold refusal preserves accepted diagnostic; ordinary proposal edit immediately refreshes replay; cell selection works",
+      "ponding imported project survives reload and390px layout; view controls are transient",
+      "legacy readings excluded until explicit scenario/evidence assignment",
+      "actual notebook assignment, analytic candidate comparison and inspectable source residuals",
+      "candidate choices and roles survive reload; stale reports are cleared",
+      "contradictory held-aside import rejects predictions without changing calibration order",
+      "invalid candidate edit is refused without corrupting saved study",
+      "calibration-candidate question prepares location/time/role without painting or inventing observations",
+      "new sourced reading is retained only after explicit form submit, preserving fractional values",
+      "dry indistinguishable event refuses to manufacture a useful measurement",
+      "candidate and evidence controls fit 390px mobile; mobile/desktop images captured",
+      "unit table preview leaves notebook unchanged; explicit append feeds actual candidate comparison",
+      "table source/quantities survive reload and portable project import; repeat evidence refused",
+      "one invalid unit refuses the entire table with its source row; no partial evidence",
+      "project edits invalidate pending import; a fresh preview is required",
+      "actual table preview and unit provenance fit the 390px notebook",
+      "paired analytic browser scenario reveals sign reversal and four local worsening cells",
+      "explicit evidence filter refuses absent calibration without substituting default rate",
+      "actual proposal edit invalidates derived results and reruns identical-plan zero effects without adopting parameters",
+      "intervention panel fits 390px viewport",
+      "actual browser paired step challenge preserves all rates and reveals changing exit consequence without changing saved project",
+      "site edit invalidates numerical-sensitivity report",
+      "browser refuses unsupported finer resolution rather than extrapolating",
+      "numerical-sensitivity panel fits 390px mobile viewport",
+      "resolution band flip: full rate-9 predictions, original source and unchanged saved project",
+      "native keyboard Tab traverses the complementary-depth disclosure and reaches the resolution action with visible focus",
+      "open resolution predictions fit 1280px and 390px without horizontal overflow; screenshots retained",
+      "candidate input and invalid submit clear/disable numerical results without changing saved evidence",
+      "weather change clears numerical comparison and requires a fresh study",
+      "evidence role change clears numerical comparison and disables stale action",
+      "minimum interval and unassigned evidence refuse numerical comparison without manufactured rows",
+      "no-flow 1.5-minute control deduplicates to two intervals and qualifies agreement without claiming convergence",
+      "closest calibration candidate changes 3→9→9 while compatible set stays unchanged",
+      "cross-event import, analytic challenge, escaped sources, portable recomputation, transactional rejection and stale invalidation",
+      "outlet: actual manual collection forms, mL-to-L scoring, fixed event/source, calibration versus held-aside interval",
+      "outlet: invalid candidate refusal preserves accepted record; actual project download and reload retain quantities/sources/roles",
+      "outlet: changed storm refuses stale evidence and actual exported project import restores the comparison",
+      "outlet: partial-collection import refused atomically; collection controls and results visually received at desktop and 390px",
+      "joint: explicit pairs retain equal-volume ambiguity; undeclared depth association refuses; associated held-aside depth distinguishes alternatives",
+      "joint: duplicate pair refusal preserves accepted source; actual project download and reload retain pair set, roles and explicit depth association",
+      "joint: changed depth source and changed storm retire comparison; exact export import restores it; desktop and 390px receiving preserve page width",
+      "joint events: actual second project import preserves fixed volume-equivalent pairs and second-storm evidence challenges one without changing first calibration",
+      "joint events: actual download retains both raw snapshots; reopen recomputes without replacing changed workspace; retuned bundle refuses while accepted results remain",
+      "joint events: second calibration refused, delayed actual file read cannot replace newer draft, and inputs/results fit true1280/390 viewports at normal scale",
+      "actual courtyard decision question selects F2 at70min across opposing outflow effects",
+      "tolerance change invalidates question, overlap is disclosed, preparation sets metadata without inventing evidence",
+      "nonreversing objective gives no manufactured question; proposal changes invalidate derived state",
+      "decision question controls fit390px viewport; visible F2/70 question and predictions captured at1440px and390px after stable paint",
+      "local accounting consumer reproduces analytic 15-liter storage reduction per cell",
+      "neighbor/map navigation preserves computed trace and cannot paint the site",
+      "ordinary project reopen and changed rainfall produce fresh accounting without reusing stale results",
+      "coupled courtyard consumer retains incoming water and both directions for four actual neighbors",
+      "edited-area membership is explicit and whole-site crossings cancel while global water losses remain",
+      "regional neighbor navigation returns to a cell; identical plans explicitly have no edited footprint",
+      "computed local-balance table and neighbor controls fit desktop and 390px layouts",
+      "custom area uses the same disconnected cells in both scenarios: native Enter/Space and arrows select A1/B2 without painting under an active raise brush; analytic stored water is 42→12 L",
+      "empty custom area shows no-area with tracing disabled; selecting cells again reuses the current ledger without a new trace",
+      "an ordinary import suspended during File.text is refused after a custom-area edit, preserving the newer saved selection",
+      "ordinary Export creates a portable JSON Blob/download anchor; ordinary Import and reload restore custom scope and membership and recompute the 42→12 L result",
+      "neighbor navigation saves cell scope and retains the authored custom area; weather edits remove stale results and retracing uses the changed rainfall",
+      "390px custom picker and results fit the page; an imported 24-column area scrolls within its picker and keeps native keyboard focus on the far-edge cell after toggling",
+      "ordinary imported alternating-surface control retains peak/final/surface views; independent native-step depths distinguish local outcomes despite identical whole-site curves",
+      "native range Home/End/arrows and focused previous/next reach exact shared 0/3/6/9/10.3-minute snapshots; drydown is neither peak nor final and endpoint activation is a focused no-op",
+      "time/view navigation makes no storage writes or project changes and preserves notebook/terrain drafts plus the real comparison, notebook, metric and chart nodes",
+      "grid arrows still only move focus in snapshot mode; native Enter applies the active brush, preserves cell focus and invalidates the previously retained comparison",
+      "duration and ordinary project replacement rebind to native snapshots: preserve9, clamp6.6, nearest6 and earlier4 on a 4/8-minute tie",
+      "1280px desktop visibly contains both paired maps and the shared time controls at the exact minute9 analytic drydown; screenshot retained",
+      "390px paired maps and native time controls fit the page with visible range focus; exact minute9 drydown screenshot retained",
+      "rain attribution uses the existing source cell, renders both destination grids and preserves model/evidence inputs",
+      "retained source timeline reveals the independently established temporary 59.2624 L contribution, initial zero and final zero at matched scenario times",
+      "multi-cell source selection persists; ordinary inspection preserves results and changed source inputs require recomputation",
+      "rain attribution fits the actual 390px viewport; paired heatmaps and source controls remain visible",
+      "independent one-step analytic fixture renders conserved splitting and the actual changed destination quantities",
+      "weather/terrain edits invalidate attribution; dry and identical-scenario controls have zero contribution or change",
+      "actual project export/import reopens the source selection; invalid duplicate-cell import preserves the accepted workspace",
+      "oversized retained timeline is explicitly unavailable while actual final attribution remains usable",
+      "reverse rainfall origins render the independent 4.9167/7.375 L destination control and 2.4583 L remote-origin contribution",
+      "paired rainfall-origin maps, destination selection and complete table fit the actual 390px viewport",
+      "fate and destination edits invalidate derived origins; ordinary inspection preserves results and zero-outflow remains explicit",
+      "actual export, reload and import preserve origin inputs without derived arrays; rejected destination metadata leaves accepted state unchanged",
+      "weather changes retire origin results; dry behavior is finite and oversized reverse analysis is explicitly refused before retained allocation",
+      "exact-time origins show 173.3857 L at minute 60 versus 113.3168 L at event end, at desktop and 390px",
+      "real keyboard time input preserves origin inspection; saved time reopens and survives fate edits; minute-zero rain stays zero",
+      "a stale query leaves ordinary site loading intact and can explicitly return to the current modeled end",
+      "between-step queries refuse while exact fractional-end and earlier-step origins remain available",
+      "actual admitted rainfall-origin hypotheses retain three distinct maps and paired reduction ranges without adopting a rate",
+      "real keyboard hypothesis switching preserves origin inspection and a common scale across all hypotheses",
+      "paired origin hypotheses fit desktop and390px layouts without page overflow",
+      "time and modeled-end changes retain the chosen rate; fate recomputation and minute-zero ranges remain explicit",
+      "saved inputs reopen by recomputation, changed rate evidence invalidates the comparison, and default origins remain available",
+      "missing calibration/challenge refuses; all-rate exploration is labeled; a held-aside band retains only its compatible hypothesis",
+      "the actual browser refuses oversized cohort work even at minute zero without displaying a partial range",
+      "measurement options require declared collection feasibility and compare depth against35–65min collected-volume bands",
+      "both measurement options visibly received at1440px and390px with stable painted bounds",
+      "prospective depth precision invalidates results and changes the declared band-margin choice",
+      "preparation clears stale drafts and fills interval/tolerance only, without a measured value, source or coverage assertion",
+      "only actual explicit form submission retains a sourced collection; reload preserves it and later options exclude overlapping intervals",
+      "changed event context removes collection preparation while retaining independent depth investigation",
+      "saved project recovery: fresh workspace",
+      "saved project recovery: malformed source",
+      "saved project recovery: repeat visit",
+      "saved project recovery: incompatible source, editing and reset",
+      "saved project recovery: unencodable original text",
+      "saved project recovery: full recovery storage",
+      "saved project recovery: denied storage read",
+      "saved project recovery: normal write failure",
+      "saved project recovery: observed later tab change"
+    ],
+    "completed_reloads": 64,
+    "exceptions": [],
+    "sandbox_admitted": true,
+    "stdout_sha256": "cd6d100d185baed2ef6b277c4e4f7a5e4707e249c7f594530338031c56ae8bcb"
+  },
+  "navigation_receiving": {
+    "tree": "76ba4469f391f1ddf59dd48e191fd65a0808d78b",
+    "command": "CHROME_BIN=/opt/google/chrome/chrome node tests/investigation-navigation.receiving.mjs",
+    "checks": [
+      {
+        "name": "actual mounted inventory and destinations",
+        "count": 48,
+        "sectionCount": 45,
+        "pageHeight": 57716
+      },
+      {
+        "name": "IME composition Enter preserves search focus and fragment"
+      },
+      {
+        "name": "search and keyboard Enter reach actual heat workbench"
+      },
+      {
+        "name": "return, no-match and clear"
+      },
+      {
+        "name": "390px navigation layout",
+        "viewport": 390,
+        "width": 351,
+        "scroll": 349,
+        "client": 349
+      },
+      {
+        "name": "identical panel replacement retains live destination and keyboard focus"
+      },
+      {
+        "name": "heading replacement and same-fragment activation focus the live heading"
+      },
+      {
+        "name": "changed and replaced introduction/topic text updates positive and negative search matches"
+      },
+      {
+        "name": "dynamic questions, closed parent, hidden/removal and form focus preservation"
+      },
+      {
+        "name": "all navigation leaves original project bytes unchanged"
+      },
+      {
+        "name": "same-document native fragment reaches mounted workbench"
+      },
+      {
+        "name": "existing heat calculation, actual export, reset, file import and identical recomputation",
+        "summary": "Maximum over the supplied intervals: existing 53.067 °C; proposed 30.324 °C. Final difference: 1.011 °C."
+      },
+      {
+        "name": "no application runtime exceptions"
+      }
+    ],
+    "sandbox_admitted": true,
+    "course_corrections": "Native clicks verify stable visible target and trusted actual hit; heat example/save state is observed before comparison. The fragment check is explicitly same-document, not a fresh-load claim.",
+    "prior_course_failure": "Original course timed out at existing heat comparison; observation-instrumented course passed13. Cause of the earlier timeout was not established. Both outcomes retained."
+  },
+  "packaged_static_consumer": {
+    "tree": "76ba4469f391f1ddf59dd48e191fd65a0808d78b",
+    "package_sha256": "42040c2ddcab5c7baf878ee53d87958059aa120195a1f7916c01066c4f4a8d30",
+    "command": "BROWSER_SOURCE_ROOT=UNPACKED_STATIC_SOURCE CHROME_BIN=/opt/google/chrome/chrome node tests/investigation-pages.receiving.mjs",
+    "checks": [
+      "all three actual destinations and original labels are discoverable",
+      "private unfinished draft is not searched or read",
+      "six native openings preserve opener URL, exact project/download bytes and unfinished draft/selection without form submission",
+      "no-match Enter opens nothing; new cards remain contained at 390px",
+      "temporarily empty source titles restore through childList and retained Text characterData mutations without changing the query",
+      "live source labels/href/visibility/download/editability update; duplicate successor retained; current/external/script URLs excluded",
+      "mounted section still reveals/focuses in same tab; source and draft remain; no observed runtime exceptions"
+    ],
+    "activations": [
+      {
+        "route": "ponded-uptake.html",
+        "activation": "mouse",
+        "nativeOpenedPath": "/ponded-uptake.html",
+        "newTargetCount": 1,
+        "instrumentedReload": {
+          "path": "/ponded-uptake.html",
+          "heading": "What does a ponded soil test support?",
+          "openerNull": true,
+          "ready": true,
+          "requiredAssetsPassed": true,
+          "runtimeExceptions": [],
+          "pageErrors": [],
+          "localAssets": [
+            "/ponded-uptake.html",
+            "/ponded-uptake-panel.js",
+            "/ponded-uptake-area-panel.js",
+            "/ponded-area-offers-panel.js",
+            "/ponded-uptake-offer-panel.js",
+            "/ponded-uptake-course-panel.js",
+            "/ponded-uptake-outcome-panel.js",
+            "/ponded-accounted-outcome-panel.js",
+            "/ponded-shared-inventory-panel.js",
+            "/ponded-accounted-offers-panel.js",
+            "/ponded-water-accounting-panel.js",
+            "/ponded-area-inventory-panel.js",
+            "/ponded-uptake.js",
+            "/ponded-uptake-area.js",
+            "/ponded-area-offers.js",
+            "/ponded-uptake-offers.js",
+            "/ponded-uptake-course.js",
+            "/ponded-uptake-outcome.js",
+            "/ponded-water-accounting.js",
+            "/ponded-accounted-offers.js",
+            "/ponded-accounted-outcome.js",
+            "/vendor/chronos/exact-halfplanes.mjs",
+            "/ponded-accounted-uptake.js",
+            "/ponded-shared-inventory.js",
+            "/ponded-area-inventory.js",
+            "/wetting-front.js",
+            "/complementary-depth-plan.js",
+            "/favicon.ico"
+          ]
+        }
+      },
+      {
+        "route": "noaa-hourly.html",
+        "activation": "mouse",
+        "nativeOpenedPath": "/noaa-hourly.html",
+        "newTargetCount": 1,
+        "instrumentedReload": {
+          "path": "/noaa-hourly.html",
+          "heading": "What can these hourly surface readings challenge?",
+          "openerNull": true,
+          "ready": true,
+          "requiredAssetsPassed": true,
+          "runtimeExceptions": [],
+          "pageErrors": [],
+          "localAssets": [
+            "/noaa-hourly.html",
+            "/noaa-hourly.css",
+            "/noaa-hourly-page.js",
+            "/heat-declaration-envelope-panel.js",
+            "/noaa-hourly-courses-panel.js",
+            "/project-portability.js",
+            "/noaa-soil-panel.js",
+            "/noaa-hourly-investigation.js",
+            "/noaa-hourly.js",
+            "/heat-declaration-envelope.js",
+            "/noaa-hourly-courses.js",
+            "/surface-heat.js",
+            "/noaa-soil-evidence.js",
+            "/core.js",
+            "/heat-column-evidence-contract.js",
+            "/heat-column.js",
+            "/heat-column-evidence.js",
+            "/vendor/chronos/exact-halfplanes.mjs",
+            "/observation-clock.js",
+            "/surface-heat-contract.js",
+            "/infiltration-storage.js",
+            "/draining-infiltration.js",
+            "/surface-heat-evidence.js",
+            "/solar-occlusion-contract.js",
+            "/surface-heat-evidence-contract.js",
+            "/heat-column-contract.js",
+            "/wetting-front.js",
+            "/threshold-evidence-contract.js",
+            "/internal-barriers.js",
+            "/crest-transfers.js",
+            "/rain-origins.js",
+            "/wetting-front-contract.js",
+            "/observation-units.js",
+            "/study-contract.js",
+            "/outlet-evidence-contract.js",
+            "/rain-tracer.js",
+            "/joint-evidence-contract.js",
+            "/surface-temperature-readings.js",
+            "/terrain-contract.js",
+            "/local-water-budget-study.js",
+            "/observation-stations.js",
+            "/heat-column-step.js",
+            "/outlet-table-origin.js",
+            "/terrain-raster-contract.js",
+            "/heat-exponential-loss.js",
+            "/favicon.ico"
+          ]
+        }
+      },
+      {
+        "route": "rate-events.html",
+        "activation": "mouse",
+        "nativeOpenedPath": "/rate-events.html",
+        "newTargetCount": 1,
+        "instrumentedReload": {
+          "path": "/rate-events.html",
+          "heading": "Compare original rainfall and runoff events",
+          "openerNull": true,
+          "ready": true,
+          "requiredAssetsPassed": true,
+          "runtimeExceptions": [],
+          "pageErrors": [],
+          "localAssets": [
+            "/rate-events.html",
+            "/rate-events.css",
+            "/rate-events-page.js",
+            "/rate-events.js",
+            "/observation-units.js",
+            "/csv-records.js",
+            "/observation-stations.js",
+            "/observation-clock.js",
+            "/favicon.ico"
+          ]
+        }
+      },
+      {
+        "route": "ponded-uptake.html",
+        "activation": "keyboard",
+        "nativeOpenedPath": "/ponded-uptake.html",
+        "newTargetCount": 1,
+        "instrumentedReload": {
+          "path": "/ponded-uptake.html",
+          "heading": "What does a ponded soil test support?",
+          "openerNull": true,
+          "ready": true,
+          "requiredAssetsPassed": true,
+          "runtimeExceptions": [],
+          "pageErrors": [],
+          "localAssets": [
+            "/ponded-uptake.html",
+            "/ponded-uptake-panel.js",
+            "/ponded-uptake-area-panel.js",
+            "/ponded-uptake-course-panel.js",
+            "/ponded-uptake-offer-panel.js",
+            "/ponded-area-offers-panel.js",
+            "/ponded-uptake-outcome-panel.js",
+            "/ponded-accounted-outcome-panel.js",
+            "/ponded-shared-inventory-panel.js",
+            "/ponded-uptake.js",
+            "/ponded-area-inventory-panel.js",
+            "/ponded-accounted-offers-panel.js",
+            "/ponded-water-accounting-panel.js",
+            "/ponded-uptake-area.js",
+            "/ponded-uptake-course.js",
+            "/ponded-area-offers.js",
+            "/ponded-uptake-outcome.js",
+            "/ponded-uptake-offers.js",
+            "/ponded-water-accounting.js",
+            "/wetting-front.js",
+            "/ponded-accounted-outcome.js",
+            "/ponded-shared-inventory.js",
+            "/ponded-accounted-uptake.js",
+            "/ponded-accounted-offers.js",
+            "/complementary-depth-plan.js",
+            "/ponded-area-inventory.js",
+            "/vendor/chronos/exact-halfplanes.mjs",
+            "/favicon.ico"
+          ]
+        }
+      },
+      {
+        "route": "noaa-hourly.html",
+        "activation": "keyboard",
+        "nativeOpenedPath": "/noaa-hourly.html",
+        "newTargetCount": 1,
+        "instrumentedReload": {
+          "path": "/noaa-hourly.html",
+          "heading": "What can these hourly surface readings challenge?",
+          "openerNull": true,
+          "ready": true,
+          "requiredAssetsPassed": true,
+          "runtimeExceptions": [],
+          "pageErrors": [],
+          "localAssets": [
+            "/noaa-hourly.html",
+            "/noaa-hourly.css",
+            "/noaa-hourly-page.js",
+            "/heat-declaration-envelope-panel.js",
+            "/noaa-soil-panel.js",
+            "/noaa-hourly.js",
+            "/noaa-hourly-investigation.js",
+            "/project-portability.js",
+            "/noaa-hourly-courses-panel.js",
+            "/core.js",
+            "/noaa-soil-evidence.js",
+            "/surface-heat.js",
+            "/heat-column.js",
+            "/heat-declaration-envelope.js",
+            "/heat-column-evidence.js",
+            "/noaa-hourly-courses.js",
+            "/infiltration-storage.js",
+            "/solar-occlusion-contract.js",
+            "/surface-heat-contract.js",
+            "/draining-infiltration.js",
+            "/surface-heat-evidence-contract.js",
+            "/heat-column-contract.js",
+            "/heat-column-evidence-contract.js",
+            "/internal-barriers.js",
+            "/threshold-evidence-contract.js",
+            "/crest-transfers.js",
+            "/rain-origins.js",
+            "/wetting-front.js",
+            "/wetting-front-contract.js",
+            "/study-contract.js",
+            "/observation-units.js",
+            "/outlet-evidence-contract.js",
+            "/rain-tracer.js",
+            "/joint-evidence-contract.js",
+            "/terrain-contract.js",
+            "/local-water-budget-study.js",
+            "/observation-clock.js",
+            "/vendor/chronos/exact-halfplanes.mjs",
+            "/surface-heat-evidence.js",
+            "/heat-column-step.js",
+            "/surface-temperature-readings.js",
+            "/observation-stations.js",
+            "/outlet-table-origin.js",
+            "/terrain-raster-contract.js",
+            "/heat-exponential-loss.js",
+            "/favicon.ico"
+          ]
+        }
+      },
+      {
+        "route": "rate-events.html",
+        "activation": "keyboard",
+        "nativeOpenedPath": "/rate-events.html",
+        "newTargetCount": 1,
+        "instrumentedReload": {
+          "path": "/rate-events.html",
+          "heading": "Compare original rainfall and runoff events",
+          "openerNull": true,
+          "ready": true,
+          "requiredAssetsPassed": true,
+          "runtimeExceptions": [],
+          "pageErrors": [],
+          "localAssets": [
+            "/rate-events.html",
+            "/rate-events.css",
+            "/rate-events-page.js",
+            "/rate-events.js",
+            "/csv-records.js",
+            "/observation-units.js",
+            "/observation-stations.js",
+            "/observation-clock.js",
+            "/favicon.ico"
+          ]
+        }
+      }
+    ],
+    "project_export_sha256": "ae296fd09a3e7db7f7c1f21eb0c3f439c3611e4f30af1d6ec655ae232bf966e8",
+    "widths": {
+      "viewport": 390,
+      "width": 351,
+      "scroll": 349,
+      "client": 349
+    },
+    "sandbox_admitted": true
+  },
+  "review_regression": {
+    "before_tree": "01d3dad0a6e0b7376ab29deb34321415df214d30",
+    "before_error": "Timed out: document.querySelectorAll('#investigation-results a').length===1",
+    "before_source_line": 172,
+    "observed_failure": "A temporarily empty original anchor label did not return after restoration, with query unchanged.",
+    "after_controls": "childList and retained Text characterData empty/restore cycles pass with the same href exactly once and unchanged query.",
+    "original_wrapper_note": "Original title49 wrapper also failed because it searched the top-level error for the nested cause; session receipt and exact source line preserve the actual browser failure."
+  },
+  "known_upstream_limitation": {
+    "subject": "Fresh-document fragment heading focus resets to body by load",
+    "status": "OPEN; inherited source behavior, not repaired by this change",
+    "control_commit": "38e8da98285a1bad55f2504d9f43c7fdd779210e",
+    "candidate_runtime_tree": "750510acf15a3e3a2508cd5f85b96f683f9e2c38",
+    "observations": {
+      "baseline": {
+        "root": "/home/ubuntu/hamon-work/estate-42511052-20261027/baseline-38e8da-static",
+        "navigation": {
+          "frameId": "768A64306A35DB8BC056CE9588E60A24",
+          "loaderId": "5437203458EFEB363FFF4F6F52D1E097",
+          "isDownload": false
+        },
+        "state": {
+          "url": "http://127.0.0.1:46419/?actual-fresh=1#surface-heat",
+          "ready": "complete",
+          "active": "<body>\n  <a class=\"skip\" href=\"#maps\">Skip to site editor</a>\n  <header class=\"masthead\">\n    <div class=\"brand\"><div class=\"mark\" aria-hidden=\"true\">◎</div><div><span class=\"eyebrow\">EXPERIMENTAL EARTH <span class=\"sep\">/</span> FIELD LAB 01</span><h1>Make a change. Test the assumptions.</h1></div></div>\n    <p>Explore an illustrative courtyard storm, compare a proposed change under identical rai",
+          "heading": "<h2 tabindex=\"-1\" data-investigation-heading=\"\">How does a surface warm up and cool down?</h2>",
+          "headingIsFocused": false,
+          "trace": [
+            {
+              "event": "DOMContentLoaded",
+              "active": "<h2 tabindex=\"-1\" data-investigation-heading=\"\">How does a surface warm up and cool down?</h2>",
+              "time": 787.2999999970198
+            },
+            {
+              "event": "load",
+              "active": "<body>\n  <a class=\"skip\" href=\"#maps\">Skip to site editor</a>\n  <header class=\"masthead\">\n    <div class=\"brand\"><div class=\"mark\" aria-hidden=\"true\">◎</div><div><span class=\"eyebr",
+              "time": 1010
+            }
+          ],
+          "found": true,
+          "heatStatus": "<p id=\"heat-status\" role=\"status\" data-state=\"not-compared\">Compare the retained declaration after any site change.</p>"
+        },
+        "exceptions": []
+      },
+      "current": {
+        "root": "/home/ubuntu/hamon-work/estate-42511052-20261027/experimental-earth-composed-38e8da98285a",
+        "navigation": {
+          "frameId": "0396A6FAFC732159AD137893AB1D0122",
+          "loaderId": "30E5B4692A31C34F005548EA58AB2B29",
+          "isDownload": false
+        },
+        "state": {
+          "url": "http://127.0.0.1:43509/?actual-fresh=1#surface-heat",
+          "ready": "complete",
+          "active": "<body>\n  <a class=\"skip\" href=\"#maps\">Skip to site editor</a>\n  <header class=\"masthead\">\n    <div class=\"brand\"><div class=\"mark\" aria-hidden=\"true\">◎</div><div><span class=\"eyebrow\">EXPERIMENTAL EARTH <span class=\"sep\">/</span> FIELD LAB 01</span><h1>Make a change. Test the assumptions.</h1></div></div>\n    <p>Explore an illustrative courtyard storm, compare a proposed change under identical rai",
+          "heading": "<h2 tabindex=\"-1\" data-investigation-heading=\"\">How does a surface warm up and cool down?</h2>",
+          "headingIsFocused": false,
+          "trace": [
+            {
+              "event": "DOMContentLoaded",
+              "active": "<h2 tabindex=\"-1\" data-investigation-heading=\"\">How does a surface warm up and cool down?</h2>",
+              "time": 962.7000000029802
+            },
+            {
+              "event": "load",
+              "active": "<body>\n  <a class=\"skip\" href=\"#maps\">Skip to site editor</a>\n  <header class=\"masthead\">\n    <div class=\"brand\"><div class=\"mark\" aria-hidden=\"true\">◎</div><div><span class=\"eyebr",
+              "time": 1250.5
+            }
+          ],
+          "found": true,
+          "heatStatus": "<p id=\"heat-status\" role=\"status\" data-state=\"not-compared\">Compare the retained declaration after any site change.</p>"
+        },
+        "exceptions": []
+      }
+    },
+    "cause": "Not assigned between browser and application initialization.",
+    "excluded_experiment_tree": "64018b0395e02b50e7250fa6433515dec69340b8",
+    "excluded_experiment_result": "Positive fresh-document check passed, but focused-field preservation control failed. Experimental startup repair is excluded from published source and retained for follow-up."
+  },
+  "visual_review": {
+    "executor": "root",
+    "viewed": [
+      "finder-desktop.png",
+      "finder-390.png",
+      "ponded-uptake-390.png",
+      "noaa-hourly-390.png",
+      "rate-events-390.png"
+    ],
+    "finding": "Actual finder and destination screenshots were readable; finder stayed within390px. Independent workers reviewed code/evidence/copy, not independent pixels."
+  },
+  "limits": [
+    "Source and private static-package software qualification; no public deployment or physical-model accuracy claim.",
+    "Native child opening and later instrumented reload are separate observations; no retrospective claim about unseen initial child-load exceptions.",
+    "No Nebius/NVIDIA runtime, Devpost entry or competition submission qualification."
+  ],
+  "operations": [
+    "hamon-20261027-42511052-receive29",
+    "hamon-20261027-42511052-repair53",
+    "hamon-20261027-42511052-title49",
+    "hamon-20261027-42511052-heat57",
+    "hamon-20261027-42511052-fragment62",
+    "hamon-20261027-42511052-load64",
+    "hamon-20261027-42511052-candidate67"
+  ]
+}
