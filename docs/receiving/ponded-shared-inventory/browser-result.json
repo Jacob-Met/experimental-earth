@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "startedAt": "2026-10-27T06:10:12.565Z",
+  "finishedAt": "2026-10-27T06:10:14.001Z",
+  "url": "http://127.0.0.1:43930/ponded-uptake.html",
+  "sourceIdentity": {
+    "baseCommit": "564b8cebc5c171f68948527c517d124410e11fdb",
+    "baseTree": "59e91cc641264b829d8270d5016fdecb3ee983f7",
+    "recovery": "Reconstructed six original paths from retained full tool commands after local execution reset. Historical browser artifacts absent; fresh receiving still required.",
+    "files": [
+      {
+        "path": "ponded-shared-inventory.js",
+        "sha256": "ad52d8d3f5225043048d8d6553861b911a79252d8e0510083ae84dd074a9f506",
+        "gitBlob": "bb241490f1a17002ead3a34a64db6a6725071ee0",
+        "bytes": 5660
+      },
+      {
+        "path": "ponded-shared-inventory-panel.js",
+        "sha256": "15efaf49e5c3ed5d3ab301ca676d3b1526e0efb73d5d77acd39a538e79a1f9fe",
+        "gitBlob": "aea8237488963fcc726196595c55d89feb50950e",
+        "bytes": 4792
+      },
+      {
+        "path": "ponded-uptake.html",
+        "sha256": "130640944dce1f9e5507d51c79e921f0d32f824aa0d3c972da2443858be4f470",
+        "gitBlob": "d91606d368a1c6d2fef9bf9b1cc32e35cc8ce67f",
+        "bytes": 1145
+      },
+      {
+        "path": "tests/ponded-shared-inventory.test.mjs",
+        "sha256": "04c2448e422f44467e5992a7dc3516f2d8f94a4b5546328d22be6fd0a940cf7e",
+        "gitBlob": "778cfec503fb3459ee5e2760e82a0ce050029cce",
+        "bytes": 4862
+      },
+      {
+        "path": "tests/ponded-shared-inventory.receiving.mjs",
+        "sha256": "b10cfdf44bfd09e0b8a313611428670ece83af63e55bd1531fb8f92c8dd5c49a",
+        "gitBlob": "270ae7e00728061fc81cfdd950216662cfca3bb2",
+        "bytes": 7248
+      },
+      {
+        "path": "docs/PONDED_SHARED_INVENTORY.md",
+        "sha256": "95e415c2cbb27598d9a2fd4dfdcc32cc8befe432cac89760e8c5641bab9523b4",
+        "gitBlob": "98a49f61d98147bf65fae5e8bb456b4152504387",
+        "bytes": 4357
+      }
+    ],
+    "unchangedDependency": {
+      "path": "vendor/chronos/exact-halfplanes.mjs",
+      "sha256": "3f2020d8adac92ac1b82331dd5b30964a889a85d249e81cd16bb9dbba99b1150",
+      "gitBlob": "eb6552489373b2890b1b99fc829badf204218be7"
+    }
+  },
+  "checks": [
+    "loading original accounted files does not invent the shared-source association",
+    "keyboard shared-source comparison exposes jointly impossible inventory despite separate compatibility",
+    "different original record refuses pooling; source-only reopening retains every original term and declaration",
+    "changed original incoming-water measurement restores a common inventory without fitting its source bounds",
+    "late original-file completion cannot replace a new source association or restore stale export",
+    "shared original record, separate checks and common-inventory verdict fit desktop and narrow"
+  ],
+  "exceptions": [],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/156.0.8078.47",
+    "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "jsVersion": "15.6.75.19"
+  },
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-27T06:10:12.974Z",
+    "completedAt": "2026-10-27T06:10:13.073Z",
+    "durationMs": 99.88630000000006,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "60D037B5C92BF5B75BB6BDB4D5AFD254",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "E62052489B99713E0844277ED4DB3F2A"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "chromeBinarySha256": "95dc9473b4f904cb3ab0800fc7206081fcae12abc094a088bd741a13f1747b72"
+}

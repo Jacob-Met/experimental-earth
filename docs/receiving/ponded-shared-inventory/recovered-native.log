@@ -1,0 +1,35 @@
+✔ explicit accounted challenge reverses supplied-water choice without changing calibration (4.315455ms)
+✔ unknown terms, unassociated source and existing timestamp refuse admission (1.830866ms)
+✔ zero-width and large cancelling terms remain numerical boundary rather than false support (1.273562ms)
+✔ source-only accounted replay preserves original terms and strips verdict/carriers (2.524704ms)
+✔ individually compatible accounts have no common original inventory (6.575248ms)
+✔ consistent course retains a common interior without changing original bounds (5.86238ms)
+✔ explicit single-source declaration and exact original record are required (6.508995ms)
+✔ widening independent source bounds cannot create a contradiction (4.64435ms)
+✔ time order preserves entire course; duplicates refuse (5.976688ms)
+✔ source-only roundtrip strips invented common inventory and recalculates (10.554106ms)
+✔ closed contact stays numerical boundary instead of positive-width support (4.992037ms)
+✔ original calibration rejection is not rescued by shared inventory agreement (1.437942ms)
+✔ explicit zero initial inventory can be common when other terms have interior width (2.589047ms)
+✔ separate possible readings require incompatible original areas jointly (4.183886ms)
+✔ consistent course retains common interior and original calibration unchanged (1.508013ms)
+✔ widening an actual bound cannot create a contradiction (1.175026ms)
+✔ source order does not select subsets and duplicate times refuse (2.657028ms)
+✔ changed retained original design refuses before pooling (0.950596ms)
+✔ course replay contains original outcomes and rejects forged derived status (4.235864ms)
+✔ zero-width actual bands retain numerical boundary rather than false interior (1.152561ms)
+✔ complete-source byte budget refuses before choosing a subset (3.011732ms)
+✔ storage correction changes supplied water into net-volume bounds (0.171516ms)
+✔ unknown losses or inventory never become zero (0.341085ms)
+✔ negative account and interval crossing zero stay distinct (0.154335ms)
+✔ original units and initial inventory preserve conservation (0.241023ms)
+✔ source-only replay removes derived claims and unknown guessed volume refuses (0.588647ms)
+✔ positive subnormal original units cannot collapse to an exact zero enclosure (0.200032ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.764428
