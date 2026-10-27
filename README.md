@@ -26,6 +26,10 @@ with its units, timestamps and full source retained. Constant-input investigatio
 remain supported. See [Shade and stored heat](docs/SHADE_HEAT.md)
 for use, the retained mechanisms, midpoint approximation, input sources and tests.
 
+## Recompute a portable rain project
+
+**Recompute an exported rain site without opening a browser.** Run the read-only native command named inspect-rain-project.mjs with an exported project JSON path to get a source-SHA-256-bound machine-readable existing/proposed/delta water budget. This recomputes the base rain model only, not optional studies or field measurements. See [the headless comparison guide](docs/HEADLESS_RAIN_COMPARISON.md).
+
 ## Run the Rain Experiment Lab
 
 The workbench also includes **How does a surface warm up and cool down?**, a
