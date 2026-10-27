@@ -1,0 +1,32 @@
+✔ explicit accounted challenge reverses supplied-water choice without changing calibration (3.97438ms)
+✔ unknown terms, unassociated source and existing timestamp refuse admission (1.035337ms)
+✔ zero-width and large cancelling terms remain numerical boundary rather than false support (0.541553ms)
+✔ source-only accounted replay preserves original terms and strips verdict/carriers (0.96294ms)
+✔ storage correction changes supplied water into net-volume bounds (0.185696ms)
+✔ unknown losses or inventory never become zero (0.232986ms)
+✔ negative account and interval crossing zero stay distinct (0.349289ms)
+✔ original units and initial inventory preserve conservation (0.342409ms)
+✔ source-only replay removes derived claims and unknown guessed volume refuses (0.643065ms)
+✔ positive subnormal original units cannot collapse to an exact zero enclosure (0.300476ms)
+✔ new and valid saved workspaces keep the normal saving path (2.870411ms)
+✔ unreadable and incompatible sources are retained exactly before a replacement is saved (6.065904ms)
+✔ quota exhaustion keeps the original active source and pauses every attempted save (0.379884ms)
+✔ failed recovery readback cannot authorize replacement (0.356429ms)
+✔ unavailable storage and denied initial reads never authorize a write (0.32983ms)
+✔ recovery survives repeat visits and an already retained source is not duplicated (0.71411ms)
+✔ separate failed projects retain separate original sources (0.64002ms)
+✔ a later observed active project is not overwritten by a stale tab (0.656114ms)
+✔ a failed normal write preserves active data and can recover when storage becomes writable (0.517178ms)
+✔ recovery downloads preserve normal text and retain otherwise unencodable original code units (0.586771ms)
+✔ a silent active-store write cannot be presented as saved; later verified retry succeeds (1.173352ms)
+✔ a completed write whose readback is denied is unverified, not certified saved (0.447064ms)
+✔ an unverified own write can be reconciled before the next intentional edit (0.475786ms)
+✔ an unverified write never authorizes overwriting unrelated newer tab content (0.454836ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55.970232
