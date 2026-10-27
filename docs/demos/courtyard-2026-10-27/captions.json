@@ -1,0 +1,56 @@
+{
+  "source_commit": "d362f62bdc0773d840b0e82be4bf409720992630",
+  "duration_seconds": 82.69325293899999,
+  "timeline": [
+    {
+      "id": "intro",
+      "start": 0,
+      "end": 7.969504262,
+      "text": "A fictional courtyard. A conceptual model\u2014not a real-site forecast."
+    },
+    {
+      "id": "matched",
+      "start": 7.969504262,
+      "end": 16.088126381,
+      "text": "Copy the existing site: same starting geometry, same hypothetical rain."
+    },
+    {
+      "id": "change",
+      "start": 16.088126381,
+      "end": 26.20721552,
+      "text": "Change D4 to a rain garden. Its infiltration rate is an assumption."
+    },
+    {
+      "id": "consequences",
+      "start": 26.20721552,
+      "end": 36.232142436000004,
+      "text": "Compare calculated water outcomes. Water accounting is not field validation."
+    },
+    {
+      "id": "same-time",
+      "start": 36.232142436000004,
+      "end": 46.353401179,
+      "text": "Inspect both maps at the same modeled time. Simulated depth is not a reading."
+    },
+    {
+      "id": "reading",
+      "start": 46.353401179,
+      "end": 64.504159707,
+      "text": "Retain an explicitly fictional reading with time, uncertainty and source."
+    },
+    {
+      "id": "export",
+      "start": 64.504159707,
+      "end": 72.54737734999999,
+      "text": "Export the project and its fictional teaching reading."
+    },
+    {
+      "id": "reopen",
+      "start": 72.54737734999999,
+      "end": 82.69325293899999,
+      "text": "Reopen the actual file in a fresh browser: the inputs and calculation match."
+    }
+  ],
+  "silent": true,
+  "persistent_label": "FICTIONAL COURTYARD | CONCEPTUAL MODEL | PRIVATE DEMONSTRATION"
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "experimental-earth-private-demo-receiving/v1",
+  "status": "PRIVATE_RUNTIME_MEDIA_AND_SAMPLED_VISUAL_RECEIVED",
+  "take": "02",
+  "source_commit": "d362f62bdc0773d840b0e82be4bf409720992630",
+  "source_sha256": {
+    "index.html": "0cf6ae5e6e1ed48f8ba07892638368ecde8c0502f2b32b13a2aa781d9f06cac5",
+    "app.js": "8f3d3c08108a88f0167335dcdb3333fd68b469cb85a1a6d9be54dc38ad9cad91",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "tests/rain-journey.recording.mjs": "cad470b44b02e08cdc49779cf872a5e2983cfde6e0e24ae3c02336d2b4db9e57",
+    "tests/rain-demo-course.mjs": "0426251fa1b204cf7d6a23a0145e1e5f8ea369a6ae43b198384727fadfafe234"
+  },
+  "runtime": {
+    "main_course": "course-completed",
+    "reopen_course": "FRESH_PROFILE_EXPORT_REOPEN_PASSED",
+    "sandbox_admitted": [
+      true,
+      true
+    ],
+    "raw_core_seconds": 72.54737734999999,
+    "raw_reopen_seconds": 10.145875589000003,
+    "raw_frames": 130,
+    "download_filename": "experimental-earth-site.json",
+    "actual_download_imported_into_fresh_profile": true,
+    "original_inputs_and_displayed_calculation_match": true,
+    "reading": {
+      "cellIndex": 27,
+      "minute": 60,
+      "depthMm": 12.5,
+      "uncertaintyMm": 2,
+      "source": "Fictional demonstration reading \u2014 authored, not field data",
+      "scenario": "existing",
+      "use": "challenge"
+    },
+    "reopened_reading_viewport_bounds": {
+      "top": 240.234375,
+      "bottom": 399.5
+    },
+    "checks": [
+      "Copied alternatives have identical original cells and weather",
+      "Only proposed D4 changed; original site and rain preserved",
+      "Actual comparison text",
+      "Actual same-time maps",
+      "Actual retained reading framed in the viewport",
+      "One explicitly fictional source-labelled reading; no parameter or model-result change",
+      "Real download retains exact scenario inputs and source-labelled reading"
+    ],
+    "download_sha256": "010181f8399a95c2c3f57ad5257f2553efb1f0957f9ce6185749e037346b8f0c",
+    "download_bytes": 11411
+  },
+  "final_media": {
+    "status": "selected for private integration",
+    "selected": true,
+    "file": "experimental-earth-courtyard-private-demo.mp4",
+    "sha256": "8137df72942bec8d64fe3f20fa7865012786a704a0ce3facb3fea4d9844fb470",
+    "bytes": 3044605,
+    "duration_seconds": 82.7,
+    "width": 1280,
+    "height": 1012,
+    "silent": true,
+    "encoder_sha256": "365609f67fd6fa0cbd057d1225390bdebdbf7916ad4982137ca475fe2f07030d",
+    "max_input_timestamp_error_seconds": 0.0004990179999992961,
+    "playback_mode": "downloaded-blob",
+    "full_playback": {
+      "startedAt": "2026-10-27T08:04:11.440Z",
+      "completedAt": "2026-10-27T08:05:34.165Z",
+      "elapsedSeconds": 82.72467010399998,
+      "time": 82.7,
+      "duration": 82.7,
+      "ended": true,
+      "playbackRate": 1,
+      "played": [
+        [
+          0,
+          82.7
+        ]
+      ],
+      "qualityBefore": {
+        "total": 636,
+        "dropped": 0,
+        "corrupted": 0
+      },
+      "qualityAfter": {
+        "total": 3113,
+        "dropped": 0,
+        "corrupted": 0
+      },
+      "qualification": "Complete decoder playback at normal speed; no human motion-quality assessment or dropped-frame threshold inferred"
+    },
+    "seek_samples": 9,
+    "sampled_visual_review": {
+      "frames_inspected": 8,
+      "result": "acceptable for private demonstration; source-labelled notebook now fully visible, captions legible and truthful",
+      "limit": "Independent still-frame review, not continuous human motion review",
+      "reviewers": [
+        "retained independent_review worker",
+        "retained stranded_product worker"
+      ]
+    },
+    "http_range_streaming_qualified": false,
+    "decoder_receiver_sha256": "3ff87a6112715b4946dd16522621948a684f4504568f065aec2e293b3542c61c"
+  },
+  "limits": [
+    "Private demonstration only; no publication or submission",
+    "Fictional courtyard and explicitly authored teaching reading, not field evidence",
+    "No physical validity or NVIDIA/Nebius execution qualification",
+    "Source identity, runtime behavior, encoded-media checks and visual acceptance are separate"
+  ],
+  "raw_evidence": "Original operation and browser receipts retained in existing private coordination; infrastructure identifiers omitted here.",
+  "preserved_attempts": [
+    "Initial encode failed duration assertion",
+    "Take01 timing-qualified candidate superseded for notebook framing",
+    "Range-less HTTP seek attempt failed; final playback qualified SHA256-verified downloaded-blob mode only"
+  ],
+  "source_materialization": "Product runtime reconstructed from verified Git blob bytes at the pinned commit; earlier historical proof-image omissions do not enter the recorded runtime. Recording and media receiving harnesses are separate instrumentation."
+}
