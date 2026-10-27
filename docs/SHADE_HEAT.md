@@ -6,6 +6,16 @@ response. A person can compare a dated shade proposal at the saved heat point,
 inspect its surface and lower-store history, and retain the original source for
 independent reopening. It does not edit the original sun or heat investigation.
 
+## Start with the guided example
+
+The main workbench's **Your first investigation** guide introduces the isolated
+shade example before the investigation search. **Open shade + heat** navigates
+to this panel; it does not load the example or replace a draft. Expand the guide
+for the comparison, source inspection and separate download/reopen sequence.
+Its optional zero-direct-beam check keeps diffuse input and material properties
+unchanged: coincident paired curves test this declared mechanism, not physical
+accuracy. Reopen the downloaded investigation to restore its original inputs.
+
 ## Use the actual workbench
 
 1. Save the site's sourced obstruction declaration, surface properties and lower
