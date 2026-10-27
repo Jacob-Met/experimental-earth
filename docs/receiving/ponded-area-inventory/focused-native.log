@@ -1,0 +1,24 @@
+✔ all singles and pairs possible while complete triple contradicts (43.790364ms)
+✔ changed last volume restores common explanation with original sources unchanged (6.749948ms)
+✔ widening source bounds cannot create exclusion (9.370002ms)
+✔ order invariant and mismatched shared source refused (13.230333ms)
+✔ source-only reopening drops invented polygons and preserves declaration (23.454543ms)
+✔ held-aside original readings do not shrink calibration area (5.551146ms)
+✔ original area calibration rejection has precedence (4.058557ms)
+✔ individually compatible accounts have no common original inventory (1.346139ms)
+✔ consistent course retains a common interior without changing original bounds (1.768333ms)
+✔ explicit single-source declaration and exact original record are required (1.948965ms)
+✔ widening independent source bounds cannot create a contradiction (1.17503ms)
+✔ time order preserves entire course; duplicates refuse (2.362404ms)
+✔ source-only roundtrip strips invented common inventory and recalculates (3.223959ms)
+✔ closed contact stays numerical boundary instead of positive-width support (1.065633ms)
+✔ original calibration rejection is not rescued by shared inventory agreement (2.300292ms)
+✔ explicit zero initial inventory can be common when other terms have interior width (1.450362ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158.822153
