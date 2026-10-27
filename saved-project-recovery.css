@@ -1,0 +1,15 @@
+.saved-project-recovery {
+  margin: 0 0 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid #a57a43;
+  border-left: 4px solid #8a5c25;
+  background: #fff8e9;
+  color: #342a1b;
+  overflow-wrap: anywhere;
+}
+.saved-project-recovery[hidden] { display: none; }
+.saved-project-recovery summary { cursor: pointer; font-weight: 700; }
+.saved-project-recovery p { max-width: 76ch; line-height: 1.55; }
+.saved-project-recovery ul { display: flex; flex-wrap: wrap; gap: .6rem; padding: 0; list-style: none; }
+.saved-project-recovery button { min-height: 44px; max-width: 100%; white-space: normal; text-align: left; }
+.saved-project-recovery :focus-visible { outline: 3px solid #135f69; outline-offset: 3px; }

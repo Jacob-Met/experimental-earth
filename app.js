@@ -1,3 +1,4 @@
+import { openSavedProject, mountSavedProjectRecovery } from './saved-project-recovery.js';
 import {mountInvestigationNavigation} from './investigation-navigation.js';
 import {arrowGridIndex} from './grid-keyboard.js';
 import {mountHeatColumnSearch} from './heat-column-search-panel.js';
@@ -45,10 +46,9 @@ import { mountEventChallengePanel } from './event-challenge-panel.js';
 import { mountLocalWaterBudget } from './local-water-budget-panel.js';
 import { mountRainTrace } from './rain-trace-panel.js';
 const $ = id => document.getElementById(id);
-const storeKey = 'experimental-earth-site-v1';
-let project;
-try { project = validateProject(JSON.parse(localStorage.getItem(storeKey))); }
-catch { project = makeExample(); }
+const savedProject = openSavedProject();
+let project = savedProject.project;
+const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
 let brush = 'inspect';
 let view = 'peak';
 let mapSnapshotMinute = 0;
@@ -77,9 +77,8 @@ function readingNumber(value) { return Number(value).toLocaleString('en-US',{max
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {
   const previousState = browserSaveState;
-  let saved = false;
-  try { localStorage.setItem(storeKey, JSON.stringify(project)); saved = true; }
-  catch {}
+  const saved = savedProject.save(project);
+  savedProjectRecovery.refresh();
   browserSaveState = saved ? 'saved' : 'unsaved';
   const status = $('project-save-status');
   if (status.dataset.saveState !== browserSaveState) status.dataset.saveState = browserSaveState;
