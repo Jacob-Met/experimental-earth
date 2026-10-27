@@ -1,0 +1,45 @@
+{
+  "native": {
+    "fullAttempt": {
+      "tests": 1350,
+      "pass": 1349,
+      "fail": 1,
+      "reason": "Copied source omitted .git; maintained reading-method export CLI requires git rev-parse HEAD."
+    },
+    "repair": "Restored retained local receiving Git metadata and committed the isolated source; no product change.",
+    "targetedRerun": {
+      "file": "tests/reading-methods.test.mjs",
+      "pass": 7,
+      "fail": 0
+    },
+    "localReceivingCommit": "fccd60d",
+    "upstreamCommitClaim": false
+  },
+  "actualBrowser": {
+    "pass": 7,
+    "exceptions": 0,
+    "evidence": "browser-r1-evidence",
+    "visualInspection": "Desktop and narrow rendered screenshots inspected."
+  },
+  "establishedBrowser": {
+    "evidence": "/tmp/hamon-69d25c99168e-earth-uptake-browser-r3-ae9d2747-3f19-4628-a663-774d44e0909f-evidence"
+  },
+  "independentReview": "WORLDLAW accepted core/panel; personally reran five focused controls.",
+  "logs": [
+    {
+      "path": "native.log",
+      "sha256": "d242138075b43f803c911a85ac5ca58a5cbdb42b7d8aba026e37358dbb1f0818",
+      "bytes": 134556
+    },
+    {
+      "path": "cli-receiving.log",
+      "sha256": "513ff6049c9592eccffce80447b05f59554dd6543d5d61d22d0dadcd5fe42778",
+      "bytes": 876
+    },
+    {
+      "path": "established-browser.log",
+      "sha256": "3e40bbeb44952cbde2a116a15a3a273cfa9411697915df16d5aa0cb12b78eaaf",
+      "bytes": 1631
+    }
+  ]
+}

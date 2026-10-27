@@ -1,0 +1,15 @@
+✔ saved fixed-source reading roles and calibrated incumbent order match maintained reader (7.740399ms)
+✔ real authored changed-step source exposes method-dependent reading acceptances without reselecting rates (2.087118ms)
+✔ negative control no rain, identical method readings and no reinterpreted records (1.889224ms)
+✔ changed observations affect only interpretations; candidate population and original source preserved (3.215513ms)
+✔ substep captured true outer snapshots are read-only optional, with unchanged default behavior (0.846707ms)
+✔ refuse before simulation when evidence missing or declared work exceeds bounded budget (1.611763ms)
+✔ real exported original-file CLI receives exact source hash and refuses forged source (116.743439ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.58585
