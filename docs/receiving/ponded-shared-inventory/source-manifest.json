@@ -1,0 +1,57 @@
+{
+  "repository": "Jacob-Met/experimental-earth",
+  "baseCommit": "564b8cebc5c171f68948527c517d124410e11fdb",
+  "baseTree": "59e91cc641264b829d8270d5016fdecb3ee983f7",
+  "expectedSourceOnlyTree": "c00fc9edaffb268378c36d45d14fc69a01337bff",
+  "files": [
+    {
+      "path": "ponded-shared-inventory.js",
+      "expectedOriginalGitBlob": null,
+      "newGitBlob": "bb241490f1a17002ead3a34a64db6a6725071ee0",
+      "newSha256": "ad52d8d3f5225043048d8d6553861b911a79252d8e0510083ae84dd074a9f506",
+      "bytes": 5660,
+      "mode": "100644"
+    },
+    {
+      "path": "ponded-shared-inventory-panel.js",
+      "expectedOriginalGitBlob": null,
+      "newGitBlob": "aea8237488963fcc726196595c55d89feb50950e",
+      "newSha256": "15efaf49e5c3ed5d3ab301ca676d3b1526e0efb73d5d77acd39a538e79a1f9fe",
+      "bytes": 4792,
+      "mode": "100644"
+    },
+    {
+      "path": "ponded-uptake.html",
+      "expectedOriginalGitBlob": "8f796282635ab057dc4f3dd8308fba57ca728e3c",
+      "newGitBlob": "d91606d368a1c6d2fef9bf9b1cc32e35cc8ce67f",
+      "newSha256": "130640944dce1f9e5507d51c79e921f0d32f824aa0d3c972da2443858be4f470",
+      "bytes": 1145,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/ponded-shared-inventory.test.mjs",
+      "expectedOriginalGitBlob": null,
+      "newGitBlob": "778cfec503fb3459ee5e2760e82a0ce050029cce",
+      "newSha256": "04c2448e422f44467e5992a7dc3516f2d8f94a4b5546328d22be6fd0a940cf7e",
+      "bytes": 4862,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/ponded-shared-inventory.receiving.mjs",
+      "expectedOriginalGitBlob": null,
+      "newGitBlob": "270ae7e00728061fc81cfdd950216662cfca3bb2",
+      "newSha256": "b10cfdf44bfd09e0b8a313611428670ece83af63e55bd1531fb8f92c8dd5c49a",
+      "bytes": 7248,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/PONDED_SHARED_INVENTORY.md",
+      "expectedOriginalGitBlob": null,
+      "newGitBlob": "98a49f61d98147bf65fae5e8bb456b4152504387",
+      "newSha256": "95e415c2cbb27598d9a2fd4dfdcc32cc8befe432cac89760e8c5641bab9523b4",
+      "bytes": 4357,
+      "mode": "100644"
+    }
+  ],
+  "qualification": "Source-only recovered candidate; final browser evidence pending shared-helper restoration."
+}
