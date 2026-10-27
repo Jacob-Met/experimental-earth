@@ -13,3 +13,13 @@ test('the npm and documented Python launchers bind explicitly to IPv4 loopback',
   assert.match(serverSource,/ThreadingHTTPServer\(\('127\.0\.0\.1', args\.port\)/, 'server must bind explicitly to IPv4 loopback');
   assert.ok(readme.includes('http://127.0.0.1:8765/'), 'README must provide a URL matching the bound family');
 });
+
+// The published private demo may preserve an older pinned source, but must not
+// direct readers to expose its checkout on all interfaces by default.
+test('courtyard reproduction distinguishes maintained launcher from historical local replay', () => {
+  const text = readFileSync(new URL('../docs/demos/courtyard-2026-10-27/README.md', import.meta.url),'utf8');
+  assert.match(text, /current maintained `main`.*`npm run serve`/);
+  assert.match(text, /historical pinned.*python3 -m http\.server 8765 --bind 127\.0\.0\.1/i);
+  assert.doesNotMatch(text, /python3 -m http\.server 8765`/);
+  assert.match(text, /no Host\/Origin restriction/);
+});
