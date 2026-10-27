@@ -47,6 +47,9 @@ export function openSavedProject(getStorage = () => globalThis.localStorage) {
     }
   }
   let lastStored = original;
+  // The setter returned, but its readback was not confirmed. Keep it distinct
+  // from the last verified source so a later read can reconcile either result.
+  let unverifiedWrite = null;
   return {
     project,
     status() {
@@ -59,18 +62,26 @@ export function openSavedProject(getStorage = () => globalThis.localStorage) {
         validateProject(next);
         const raw = JSON.stringify(next);
         // Detect observed changes immediately before writing; this is not a cross-tab lock.
-        if (storage.getItem(SAVED_PROJECT_KEY) !== lastStored) {
-          blocked = 'changed';
-          return false;
+        const current = storage.getItem(SAVED_PROJECT_KEY);
+        if (current !== lastStored) {
+          if (unverifiedWrite !== null && current === unverifiedWrite) {
+            // The previous unverified write is now readable, not a foreign edit.
+            lastStored = current;
+          } else {
+            blocked = 'changed';
+            return false;
+          }
         }
+        unverifiedWrite = null;
         storage.setItem(SAVED_PROJECT_KEY, raw);
         // A completed setter does not prove that the exact project can be reopened.
-        // Do not advance our last-confirmed source or show Saved until readback matches.
+        unverifiedWrite = raw;
         if (storage.getItem(SAVED_PROJECT_KEY) !== raw) {
           writeFailed = true;
           return false;
         }
         lastStored = raw;
+        unverifiedWrite = null;
         writeFailed = false;
         return true;
       } catch {
