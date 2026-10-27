@@ -4,7 +4,7 @@ const finite=(x,lo,hi)=>typeof x==='number'&&Number.isFinite(x)&&x>=lo&&x<=hi;
 const text=x=>typeof x==='string'&&x.trim()&&x.length<=1000;
 const liters=x=>x.volume*(x.unit==='mL'?.001:1);
 export const FINITE_SUPPLY_LIMIT=180000;
-function admit(input){
+function admit(input, predictionOnly=false){
  if(!input||input.schema!=='experimental-earth-finite-supply-soil/1')throw Error('Choose an original finite-supply soil study.');
  const study=parsePondedUptake(serializePondedUptake(input.study)),p=input.protocol;
  if(!p||!text(p.testReference)||!text(p.source)||!text(p.method)||p.reuseOriginalSoilState!==true||p.useOriginalNominalArea!==true||p.noOtherLoss!==true||!text(p.assumptionSource))throw Error('Explicitly declare the new local test, forcing source/method, original soil state and nominal area reuse, and sourced no-other-loss assumption.');
@@ -13,12 +13,18 @@ function admit(input){
  let previous=0,total=liters(initial)/study.areaM2;
  for(const r of p.segments){if(!r||!finite(r.untilMinute,0,720)||r.untilMinute<=previous||!finite(r.volumePerHour,0,1e9)||!['L/h','mL/h'].includes(r.unit)||!text(r.source))throw Error('Supply increasing segment end times through720min, original nonnegative L/h or mL/h rates and sources.');const rate=r.volumePerHour*(r.unit==='mL/h'?.001:1)/study.areaM2,hours=(r.untilMinute-previous)/60;if(rate>2000||hours===0||(r.volumePerHour>0&&(rate===0||rate*hours===0)))throw Error('Original delivery segment exceeds maintained kernel bounds.');total+=rate*hours;previous=r.untilMinute;}
  if(total>1e9)throw Error('Complete original surface-water supply exceeds kernel capacity.');
- if(!Array.isArray(input.readings)||input.readings.length<1||input.readings.length>100)throw Error('Supply1–100 original held-aside surface-inventory readings.');
+ if(!Array.isArray(input.readings)||(!predictionOnly&&input.readings.length<1)||input.readings.length>100)throw Error('Supply1–100 original held-aside surface-inventory readings.');
  let last=-1;for(const r of input.readings){if(!r||!finite(r.minute,0,previous)||r.minute<=last||!finite(r.volume,0,1e9)||!finite(r.uncertainty,0,1e9)||!['L','mL'].includes(r.unit)||!text(r.source))throw Error('Original surface readings need increasing covered times, L/mL values, bounds and sources.');last=r.minute;}
  return{study,protocol:{testReference:p.testReference,source:p.source,method:p.method,reuseOriginalSoilState:true,useOriginalNominalArea:true,noOtherLoss:true,assumptionSource:p.assumptionSource,initialSurface:{volume:initial.volume,unit:initial.unit,source:initial.source},segments:p.segments.map(({untilMinute,volumePerHour,unit,source})=>({untilMinute,volumePerHour,unit,source}))},readings:input.readings.map(({minute,volume,uncertainty,unit,source})=>({minute,volume,uncertainty,unit,source}))};
 }
-export function compareFiniteSupplySoil(input){
- const s=admit(input),baseline=comparePondedUptake(s.study),area=s.study.areaM2,p=s.protocol,times=[...new Set([0,...p.segments.map(x=>x.untilMinute),...s.readings.map(x=>x.minute)])].sort((a,b)=>a-b),requestedWork=(times.length-1)*s.study.hypotheses.length;
+export function predictFiniteSupplySoil(study,protocol,times){
+ if(!Array.isArray(times)||times.length<1||times.length>100||new Set(times).size!==times.length||times.some(t=>!Number.isFinite(t)||t<=0||t>protocol?.segments?.at(-1)?.untilMinute))throw Error('Supply distinct positive covered prediction times.');
+ const r=runFiniteSupply({schema:'experimental-earth-finite-supply-soil/1',study,protocol,readings:[]},times);
+ return{originalHasCalibration:r.originalHasCalibration,originalCalibrationOrder:r.originalCalibrationOrder,nominalAreaM2:r.nominalAreaM2,requestedWork:r.requestedWork,candidates:r.candidates.map(({id,originalCalibrationCompatible,history})=>({id,originalCalibrationCompatible,history}))};
+}
+export function compareFiniteSupplySoil(input){return runFiniteSupply(input,null);}
+function runFiniteSupply(input,queryTimes){
+ const s=admit(input,queryTimes!==null),baseline=comparePondedUptake(s.study),area=s.study.areaM2,p=s.protocol,times=[...new Set([0,...p.segments.map(x=>x.untilMinute),...s.readings.map(x=>x.minute),...(queryTimes??[])])].sort((a,b)=>a-b),requestedWork=(times.length-1)*s.study.hypotheses.length;
  if(requestedWork>1500)throw Error('Complete candidate/time course exceeds1500 maintained-kernel advances.');
  const candidates=s.study.hypotheses.map((h,index)=>{let cumulative=h.initialCumulativeMm,surface=liters(p.initialSurface)/area,infiltrated=0,incoming=0,minute=0,segment=0;const history=[];
   const record=t=>({minute:t,incomingLiters:incoming*area,infiltratedLiters:infiltrated*area,surfaceLiters:surface*area,waterBalanceResidualLiters:(liters(p.initialSurface)/area+incoming-infiltrated-surface)*area,sampledSurfaceState:surface===0?'dry-at-this-time':'water-at-this-time'});history.push(record(0));
@@ -33,3 +39,5 @@ export function serializeFiniteSupplySoil(input){compareFiniteSupplySoil(input);
 export function parseFiniteSupplySoil(text){if(typeof text!=='string'||new TextEncoder().encode(text).length>FINITE_SUPPLY_LIMIT)throw Error('Choose finite-supply source up to180000bytes.');return JSON.parse(serializeFiniteSupplySoil(JSON.parse(text)));}
 
 export const finiteSupplyExample={schema:'experimental-earth-finite-supply-soil/1',study:{...structuredClone(uptakeExample),hypotheses:[{id:'constant K10',conductivityMmHr:10,capillaryDriveMm:0,initialCumulativeMm:0},{id:'wetting K10/A30',conductivityMmHr:10,capillaryDriveMm:30,initialCumulativeMm:0}],readings:[{minute:30,volume:1.2,uncertainty:1,unit:'L',role:'calibration',source:'Authored broad original ponded calibration; not acquired'}]},protocol:{testReference:'Authored finite-delivery local test; fictional',source:'Authored uniform delivery schedule; not measured',method:'Declared constant delivery over the complete minute0–60 interval',reuseOriginalSoilState:true,useOriginalNominalArea:true,noOtherLoss:true,assumptionSource:'Authored reuse of original nominal area and soil state; zero other losses explicitly assumed',initialSurface:{volume:0,unit:'L',source:'Authored initially empty surface'},segments:[{untilMinute:60,volumePerHour:3,unit:'L/h',source:'Authored3liters/hour uniform delivery'}]},readings:[{minute:60,volume:.28068512914114834,uncertainty:.02,unit:'L',source:'Authored surface-inventory control; not field evidence'}]};
+
+export function canonicalFiniteSupplyProtocol(study,protocol){return admit({schema:'experimental-earth-finite-supply-soil/1',study,protocol,readings:[]},true).protocol;}

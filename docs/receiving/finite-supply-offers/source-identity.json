@@ -1,0 +1,49 @@
+{
+  "qualification": "Actual receiving source bound to exact merged predecessor; no post-receiving product changes",
+  "files": [
+    {
+      "path": "finite-supply-soil.js",
+      "sha256": "8cfc464bfff64ab38d81993f598bf85cca0e71d8cf97e05494f9b749938f3826",
+      "gitBlob": "6a69c184f4ae23db4bcf53bd5e3d6f9f7bcca7af",
+      "bytes": 9389
+    },
+    {
+      "path": "finite-supply-offers.js",
+      "sha256": "ae22c863afc064f9059fe6a9e5a2c267eeccd17d405f878f9d78c8e280018adf",
+      "gitBlob": "828f208574d0151ce28fc1e1c67f0a3bba6c1d14",
+      "bytes": 4148
+    },
+    {
+      "path": "finite-supply-offers-panel.js",
+      "sha256": "a91fc1624764c3842b5ced1e467f1057095cba2824d2d4cdf367d943f27ad6a9",
+      "gitBlob": "788f3d0ab29bed9616c630c4cb2e578bbeae8fa8",
+      "bytes": 4597
+    },
+    {
+      "path": "ponded-uptake.html",
+      "sha256": "1ff1572260ff29d93707a1d222cbbe58bddeec207142f5126e3c41ee370e1da8",
+      "gitBlob": "8b4c6d978f1a7fded445a982e460abc3ab9086cb",
+      "bytes": 1506
+    },
+    {
+      "path": "tests/finite-supply-offers.test.mjs",
+      "sha256": "b4a6b993a535a6ec8b510d2b075969dd160997cfce0392e84d20c8c4d8247425",
+      "gitBlob": "c73f223d7f741a74402ce0ca8656f412eccee881",
+      "bytes": 3599
+    },
+    {
+      "path": "tests/finite-supply-offers.receiving.mjs",
+      "sha256": "1a8d9c64e950b8fde11d139c4668fb76d0ba75bb4bd1f5a898f48a725100ea62",
+      "gitBlob": "a6da88acf5e87ebe6633f448c40931c843927ad8",
+      "bytes": 5371
+    },
+    {
+      "path": "docs/FINITE_SUPPLY_OFFERS.md",
+      "sha256": "2607bc49ca06ab8dc33cbe2a05c9569efe26b1566dadd0fb90ebf7da654f8aa4",
+      "gitBlob": "842cfb63633e865b7b82869766a75b7de9110a8f",
+      "bytes": 2439
+    }
+  ],
+  "baseCommit": "62f46c50a16d3178c2896fc0899e9d1d395571d4",
+  "baseTree": "61a0ba05fc945ed99a92ec48571fac92f7497c57"
+}

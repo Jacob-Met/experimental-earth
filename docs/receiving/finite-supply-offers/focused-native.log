@@ -1,0 +1,24 @@
+✔ supply-limited offer unresolved, declared stronger delivery separates without observations (6.884347ms)
+✔ closed measurement contact unresolved and widening cannot improve coverage (1.19954ms)
+✔ unavailable schedule cannot be preferred and earlier offered time wins equal coverage (1.42196ms)
+✔ heldaside actual values never select original alternatives (2.050871ms)
+✔ prediction-only source uses same carried kernel history as comparison (1.307783ms)
+✔ source-only reopen strips forged decision and protocol fields (2.193455ms)
+✔ missing physical declarations, duplicate identities and complete aggregate work refuse (2.738024ms)
+✔ same delivered total with changed timing has materially different surface inventory (0.822622ms)
+✔ low delivery leaves both soil explanations dry and unresolved (0.40036ms)
+✔ adequate declared delivery and surface observation can distinguish original alternatives (0.776576ms)
+✔ complete water accounting and initial surface inventory remain conserved (0.798565ms)
+✔ splitting equal-rate delivery preserves the carried wetting front (0.570636ms)
+✔ dry gap never resets infiltration state (0.809468ms)
+✔ surface readings never rerank original calibration or rescue excluded alternatives (0.659782ms)
+✔ complete original source-only replay strips forged derived histories (1.382343ms)
+✔ missing physical declarations, unsupported rates and incomplete time coverage refuse (0.438772ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.598227
