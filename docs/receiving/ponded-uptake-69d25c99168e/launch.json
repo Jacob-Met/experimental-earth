@@ -1,0 +1,35 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "starting",
+  "startedAt": "2026-10-27T03:44:09.171Z",
+  "executable": "/tmp/hamon-69d25c99168e-tools/chrome-namespace-wrapper.sh",
+  "runDirectory": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-a408fe5c-960f-4a4b-824e-d18f55607428",
+  "profileDirectory": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-a408fe5c-960f-4a4b-824e-d18f55607428/profile",
+  "stdoutFile": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-a408fe5c-960f-4a4b-824e-d18f55607428/stdout.bin",
+  "stderrFile": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-a408fe5c-960f-4a4b-824e-d18f55607428/stderr.bin",
+  "receiptFile": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-a408fe5c-960f-4a4b-824e-d18f55607428/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": false,
+    "directChildExited": false,
+    "scope": "launched-direct-child-only"
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-a408fe5c-960f-4a4b-824e-d18f55607428/profile",
+    "about:blank"
+  ],
+  "pid": 3031799
+}
