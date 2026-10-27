@@ -1,0 +1,35 @@
+✔ separate possible readings require incompatible original areas jointly (6.067016ms)
+✔ consistent course retains common interior and original calibration unchanged (2.012657ms)
+✔ widening an actual bound cannot create a contradiction (0.891303ms)
+✔ source order does not select subsets and duplicate times refuse (2.626438ms)
+✔ changed retained original design refuses before pooling (1.061796ms)
+✔ course replay contains original outcomes and rejects forged derived status (2.287836ms)
+✔ zero-width actual bands retain numerical boundary rather than false interior (1.362252ms)
+✔ complete-source byte budget refuses before choosing a subset (1.741014ms)
+✔ actual reading can discriminate or contradict the entire original family without refitting (2.877811ms)
+✔ worse actual precision exposes unresolved design instead of claiming success (0.320676ms)
+✔ original units retained and equivalent L/mL observations agree (0.446673ms)
+✔ unoffered, unavailable, wrong protocol and unsourced observations refuse (0.649955ms)
+✔ source-only replay preserves frozen design and actual record without forged verdicts (0.68749ms)
+✔ new and valid saved workspaces keep the normal saving path (2.705816ms)
+✔ unreadable and incompatible sources are retained exactly before a replacement is saved (5.787501ms)
+✔ quota exhaustion keeps the original active source and pauses every attempted save (0.345192ms)
+✔ failed recovery readback cannot authorize replacement (0.278864ms)
+✔ unavailable storage and denied initial reads never authorize a write (0.297592ms)
+✔ recovery survives repeat visits and an already retained source is not duplicated (0.502986ms)
+✔ separate failed projects retain separate original sources (0.422788ms)
+✔ a later observed active project is not overwritten by a stale tab (0.419092ms)
+✔ a failed normal write preserves active data and can recover when storage becomes writable (0.427294ms)
+✔ recovery downloads preserve normal text and retain otherwise unencodable original code units (0.526442ms)
+✔ a silent active-store write cannot be presented as saved; later verified retry succeeds (0.355197ms)
+✔ a completed write whose readback is denied is unverified, not certified saved (0.444119ms)
+✔ an unverified own write can be reconciled before the next intentional edit (0.432933ms)
+✔ an unverified write never authorizes overwriting unrelated newer tab content (1.555539ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 69.620009

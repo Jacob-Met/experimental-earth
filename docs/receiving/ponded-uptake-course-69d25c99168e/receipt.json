@@ -1,0 +1,97 @@
+{
+  "status": "passed",
+  "native": {
+    "tests": 1358,
+    "pass": 1358,
+    "fail": 0,
+    "skip": 0,
+    "command": "npm test with the five unchanged retained EARTH_*_ORACLE receipts",
+    "localReceivingCommit": "f569648",
+    "upstreamCommitClaim": false,
+    "oracles": [
+      {
+        "environmentVariable": "EARTH_MEAN_ORACLE",
+        "retainedFile": "mean.json",
+        "bytes": 8848,
+        "sha256": "001e43d675ff30def9592c07940c05cf46704f5a6ac53f1a6db99f354aa12077"
+      },
+      {
+        "environmentVariable": "EARTH_ONSET_ORACLE",
+        "retainedFile": "onset.json",
+        "bytes": 3159,
+        "sha256": "dac0675c999636b68fdeb46ec834c23e3f46b283a05adeb997a79ec0a09df2e0"
+      },
+      {
+        "environmentVariable": "EARTH_SHIFT_ORACLE",
+        "retainedFile": "shift.json",
+        "bytes": 792,
+        "sha256": "94002fcce19f107b806723d72913af71c32fd8d0d153d3d8dd8e233c4ab5206e"
+      },
+      {
+        "environmentVariable": "EARTH_RESPONSE_ORACLE",
+        "retainedFile": "response.json",
+        "bytes": 9620,
+        "sha256": "a1965420834acc01718e081912dda129a83485fd72a7d049b9f5963244378dd2"
+      },
+      {
+        "environmentVariable": "EARTH_FRACTION_ORACLE",
+        "retainedFile": "fraction.json",
+        "bytes": 3007,
+        "sha256": "10f61126f389129c071f51da786afd6f6e9982b37b0101083287f9973ea3cf3d"
+      }
+    ]
+  },
+  "browser": {
+    "newCourse": 6,
+    "actualRegression": 7,
+    "establishedUptakeOffers": 13,
+    "exceptions": 0,
+    "namespacePidNetworkSeccompTsyncAdmitted": true,
+    "visualInspection": "Desktop and narrow course/result screenshots inspected."
+  },
+  "independentReview": "WORLDLAW inspected core/panel and personally reran original6controls; no blocker. Two additional zero-width/budget controls pass locally.",
+  "sourceFiles": [
+    {
+      "path": "ponded-uptake-course.js",
+      "sha256": "6083f83a4f206a97d9f6e7e2e4f91bcde9112120ce06f551a7827cf8dc63e8d8"
+    },
+    {
+      "path": "ponded-uptake-course-panel.js",
+      "sha256": "3228a9177a164730c1486bf371cef1e74f2fdf0a8593bdab1696b5f869319ec5"
+    },
+    {
+      "path": "ponded-uptake.html",
+      "sha256": "2b1a725c39555407b16206e2ce77772ffb924052647841843e612eda10229061"
+    },
+    {
+      "path": "tests/ponded-uptake-course.test.mjs",
+      "sha256": "155e335a547ea4d5fe6678aade47d0dcfb416275c4a5437cded3b2cd2c232c07"
+    },
+    {
+      "path": "tests/ponded-uptake-course.receiving.mjs",
+      "sha256": "9af1d1f303fd644d00cdd1e824110541decbca7d2e8fb45ae040e52166382e56"
+    },
+    {
+      "path": "docs/PONDED_UPTAKE_COURSE.md",
+      "sha256": "6fa5821439e922bb7cba02bf7605f258006a617fb2d9f650090f88778f6ebd7f"
+    }
+  ],
+  "qualificationBeforeCurrentBase": "The1358native,6joint-course and7actual-regression groups were received on the preceding source composition. Current delta changes only saved-project recovery and its tests; direct ponded runtime dependencies are byte-identical.",
+  "currentBase": {
+    "commit": "0ca0ebe65e6e5ab3ee7e59b36ad169b5ed9151cb",
+    "tree": "0dec8b59d64670f15309b1194aed01dea929501c",
+    "nativeFocused": {
+      "tests": 27,
+      "pass": 27,
+      "fail": 0,
+      "skip": 0,
+      "files": [
+        "tests/saved-project-recovery.test.mjs",
+        "tests/ponded-uptake-outcome.test.mjs",
+        "tests/ponded-uptake-course.test.mjs"
+      ]
+    },
+    "establishedBrowserGroups": 13,
+    "comparisonSource": "exact supplied base-to-current GitHub comparison; both reconstructed changed blobs verified"
+  }
+}
