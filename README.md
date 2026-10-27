@@ -30,6 +30,12 @@ for use, the retained mechanisms, midpoint approximation, input sources and test
 
 **Recompute an exported rain site without opening a browser.** Run the read-only native command named inspect-rain-project.mjs with an exported project JSON path to get a source-SHA-256-bound machine-readable existing/proposed/delta water budget. This recomputes the base rain model only, not optional studies or field measurements. See [the headless comparison guide](docs/HEADLESS_RAIN_COMPARISON.md).
 
+**Compare several saved proposals on one unchanged site.** The separate read-only
+`compare-rain-proposals.mjs` recomputes 2–16 original exported site projects,
+refuses differing original evidence or weather and reports each proposal's
+source SHA-256, conceptual water-accounting changes and explicitly limited
+absorption/depth tradeoffs. See [the multiple-proposal guide](docs/RAIN_PROPOSAL_COMPARISON.md).
+
 ## Run the Rain Experiment Lab
 
 The workbench also includes **How does a surface warm up and cool down?**, a
