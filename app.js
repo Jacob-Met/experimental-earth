@@ -59,6 +59,7 @@ let projectImportSerial = 0;
 let infiltrationInquiry;
 let observationDraftProject = project;
 let observationDraftCell = project.selectedIndex;
+let observationDraftMinute = Number($('obs-minute').value);
 
 function notice(message) {
   $('toast').textContent = message;
@@ -77,11 +78,14 @@ function clearObservationDraft(reason) {
   $('observation-draft-status').textContent = `Unsaved reading cleared: ${reason} Enter the actual reading and source for the current target.`;
 }
 function retireRetargetedObservationDraft() {
-  if (project !== observationDraftProject || project.selectedIndex !== observationDraftCell) {
-    clearObservationDraft('The selected cell or site changed.');
+  const cellOrSiteChanged = project !== observationDraftProject || project.selectedIndex !== observationDraftCell;
+  const minute = Number($('obs-minute').value);
+  if (cellOrSiteChanged || minute !== observationDraftMinute) {
+    clearObservationDraft(cellOrSiteChanged ? 'The selected cell or site changed.' : 'The observation time changed.');
   }
   observationDraftProject = project;
   observationDraftCell = project.selectedIndex;
+  observationDraftMinute = minute;
 }
 function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
@@ -271,6 +275,7 @@ infiltrationInquiry=mountInfiltrationInquiry({getProject:()=>project,selectCell:
   for(const el of document.querySelectorAll('[data-brush]')) {const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}
   rerun();
 }});
+$('obs-minute').addEventListener('input', retireRetargetedObservationDraft);
 for (const id of ['obs-depth', 'obs-source']) {
   $(id).addEventListener('input', () => { $('observation-draft-status').textContent = ''; });
 }
