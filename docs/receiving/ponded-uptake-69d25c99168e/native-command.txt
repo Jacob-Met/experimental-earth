@@ -1,0 +1,3 @@
+cwd: /tmp/hamon-69d25c99168e-earth-uptake-area/composed
+shell: bash; login: false
+EARTH_MEAN_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/mean.json EARTH_ONSET_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/onset.json EARTH_SHIFT_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/shift.json EARTH_RESPONSE_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/response.json EARTH_FRACTION_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/fraction.json npm test > /tmp/hamon-69d25c99168e-earth-uptake-area/native-composed.log 2>&1

@@ -1,0 +1,46 @@
+[
+  {
+    "path": "oracles/fraction-input.json",
+    "sha256": "f1a992711a108ddb73a34e560aadae210e717bd32a98dc429498eb2c0fc7ddc0"
+  },
+  {
+    "path": "oracles/fraction-oracle.py",
+    "sha256": "b4a296ff056d43222ffe45359cd23c1859e7fa5b50f7e89aacc012ad7064bda1"
+  },
+  {
+    "path": "oracles/fraction.json",
+    "sha256": "10f61126f389129c071f51da786afd6f6e9982b37b0101083287f9973ea3cf3d"
+  },
+  {
+    "path": "oracles/mean-input.json",
+    "sha256": "804826daf080a8ace60a71473587be5e652579bab8b3f76fdfb29961d21666d2"
+  },
+  {
+    "path": "oracles/mean.json",
+    "sha256": "001e43d675ff30def9592c07940c05cf46704f5a6ac53f1a6db99f354aa12077"
+  },
+  {
+    "path": "oracles/onset-input.json",
+    "sha256": "8eb0a11d6c6f92e7b0eb08136894b809b33a5026d20b8c1293b2442e41e71d16"
+  },
+  {
+    "path": "oracles/onset.json",
+    "sha256": "dac0675c999636b68fdeb46ec834c23e3f46b283a05adeb997a79ec0a09df2e0"
+  },
+  {
+    "path": "oracles/response-input.json",
+    "sha256": "88cbad9289e43c0f3ea30769f7eb9e663dc44d63d2fe8ea9ea63947fdcf94f9b"
+  },
+  {
+    "path": "oracles/response.json",
+    "sha256": "a1965420834acc01718e081912dda129a83485fd72a7d049b9f5963244378dd2"
+  },
+  {
+    "path": "oracles/shift-input.json",
+    "sha256": "fb9d6372debf820ea83e85aa4e974c12d9c33cbff13c4f51e05fb5c1bf962e43"
+  },
+  {
+    "path": "oracles/shift.json",
+    "sha256": "94002fcce19f107b806723d72913af71c32fd8d0d153d3d8dd8e233c4ab5206e"
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "product": "earth-uptake",
+  "courseName": "earth-combined",
+  "root": "/tmp/hamon-69d25c99168e-earth-uptake-area/composed",
+  "baseUrl": "http://127.0.0.1:40295/",
+  "processId": null,
+  "startedAt": "2026-10-27T03:44:09.169Z",
+  "checks": [
+    "Rain Lab keyboard link reaches the initialized ponded-test consumer",
+    "authored original volume admits constant explanation and contradicts wetting-front alternative",
+    "changed challenge contradicts without changing calibration; draft retires old verdict",
+    "actual save/reopen retains original units and challenge source for recomputation",
+    "unsupported test protocol refuses before model comparison",
+    "narrow and desktop source/results fit",
+    "keyboard comparison updates the actual sourced-volume consumer",
+    "crossing source retains two explanations and asks earliest offered separating volume",
+    "availability and volume uncertainty change decision while unresolved pairs stay visible",
+    "source-only save/reopen independently recomputes offered question and clears file selection",
+    "empty offer list produces no invented opportunity",
+    "late accepted original source invalidates questions and exports calculated during pending read",
+    "offer controls/results fit narrow and desktop; retained preferred90 and unresolved60 for final screenshots"
+  ],
+  "status": "passed",
+  "browser": "Chrome/156.0.8078.47",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "ef662d33e2bdd322845891a89a78d89eb55b39799cc3608cd38be7b329308b5c",
+    "startedAt": "2026-10-27T03:44:09.429Z",
+    "completedAt": "2026-10-27T03:44:09.537Z",
+    "durationMs": 108.32065,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "52D58612A7DF95EC63A1DDF748D013B4",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "7FDD787491219956EB5ED7C54CE1C34E"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "exceptions": [],
+  "finishedAt": "2026-10-27T03:44:10.648Z"
+}

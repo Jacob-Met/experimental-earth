@@ -1,0 +1,35 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "starting",
+  "startedAt": "2026-10-27T03:38:45.221Z",
+  "executable": "/tmp/hamon-69d25c99168e-tools/chrome-namespace-wrapper.sh",
+  "runDirectory": "/dev/shm/hamon-69d25c99168e-earth-area-browser-r2",
+  "profileDirectory": "/dev/shm/hamon-69d25c99168e-earth-area-browser-r2/profile",
+  "stdoutFile": "/dev/shm/hamon-69d25c99168e-earth-area-browser-r2/stdout.bin",
+  "stderrFile": "/dev/shm/hamon-69d25c99168e-earth-area-browser-r2/stderr.bin",
+  "receiptFile": "/dev/shm/hamon-69d25c99168e-earth-area-browser-r2/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": false,
+    "directChildExited": false,
+    "scope": "launched-direct-child-only"
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/dev/shm/hamon-69d25c99168e-earth-area-browser-r2/profile",
+    "about:blank"
+  ],
+  "pid": 3017802
+}
