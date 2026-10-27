@@ -64,6 +64,12 @@ export function openSavedProject(getStorage = () => globalThis.localStorage) {
           return false;
         }
         storage.setItem(SAVED_PROJECT_KEY, raw);
+        // A completed setter does not prove that the exact project can be reopened.
+        // Do not advance our last-confirmed source or show Saved until readback matches.
+        if (storage.getItem(SAVED_PROJECT_KEY) !== raw) {
+          writeFailed = true;
+          return false;
+        }
         lastStored = raw;
         writeFailed = false;
         return true;
