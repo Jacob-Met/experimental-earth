@@ -1,0 +1,42 @@
+[
+  {
+    "id": "intro",
+    "atSeconds": 0,
+    "label": "A fictional courtyard. A conceptual model\u2014not a real-site forecast."
+  },
+  {
+    "id": "matched",
+    "atSeconds": 7.969504262,
+    "label": "Copy the existing site: same starting geometry, same hypothetical rain."
+  },
+  {
+    "id": "change",
+    "atSeconds": 16.088126381,
+    "label": "Change D4 to a rain garden. Its infiltration rate is an assumption."
+  },
+  {
+    "id": "consequences",
+    "atSeconds": 26.20721552,
+    "label": "Compare calculated water outcomes. Water accounting is not field validation."
+  },
+  {
+    "id": "same-time",
+    "atSeconds": 36.232142436000004,
+    "label": "Inspect both maps at the same modeled time. Simulated depth is not a reading."
+  },
+  {
+    "id": "reading",
+    "atSeconds": 46.353401179,
+    "label": "Retain an explicitly fictional reading with time, uncertainty and source."
+  },
+  {
+    "id": "export",
+    "atSeconds": 64.504159707,
+    "label": "Export the project and its fictional teaching reading."
+  },
+  {
+    "id": "reopen",
+    "atSeconds": 72.54737734999999,
+    "label": "Reopen the actual file in a fresh browser: the inputs and calculation match."
+  }
+]
