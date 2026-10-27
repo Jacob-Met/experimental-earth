@@ -1,0 +1,1394 @@
+{
+  "schema": "experimental-earth.timed-route-departure-inspection.v1",
+  "actor": "estate-dae856c9-20261027",
+  "prompt_version": "2026-10-27.17",
+  "task": "experimental-earth-timed-route-departure-inspection-dae856c9",
+  "qualification": "Candidate verification before private source integration; accepted-source receiving is recorded separately with the PR and live task.",
+  "base": "4012a3d19e80f524ee22fcd1dcff9a706e464344",
+  "tested_sources": {
+    "route-traversal-panel.js": {
+      "sha256": "eea6b9799d243653e07300d05e2e5b61a31ad1cc4da48d085ad73e9660228882",
+      "git_blob": "1dd0d38ad4e665946924791187163b8a55d3c70b"
+    },
+    "tests/route-traversal-inspection.receiving.mjs": {
+      "sha256": "e9e3c883659bd06544f3d1ee7a1fccf1e55e667a46b674a5aa27f01e163687b4",
+      "git_blob": "c95fedaccec58a179889ce17a3386e891b6b9281"
+    }
+  },
+  "execution_owner": {
+    "owner": "node-72e09d180ec675855992b3cbfb59e9e8",
+    "incarnation": "6d623deaac81c47d8d70cb4e706c2457",
+    "generation": 2
+  },
+  "native": {
+    "result": {
+      "label": "inspection-native-01",
+      "returncode": 0,
+      "stdout": "ture can fail when traveler reaches the wet cell later\nok 27 - same-time clear departure can fail when traveler reaches the wet cell later\n  ---\n  duration_ms: 0.207482\n  type: 'test'\n  ...\n# Subtest: changed threshold and step duration change exact moving windows without mutating original\nok 28 - changed threshold and step duration change exact moving windows without mutating original\n  ---\n  duration_ms: 0.331595\n  type: 'test'\n  ...\n# Subtest: refuse unsupported departure range, travel duration and malformed exposures\nok 29 - refuse unsupported departure range, travel duration and malformed exposures\n  ---\n  duration_ms: 0.256693\n  type: 'test'\n  ...\n# Subtest: maintained original solver feeds source-bound traversal without altering a site\nok 30 - maintained original solver feeds source-bound traversal without altering a site\n  ---\n  duration_ms: 14.112098\n  type: 'test'\n  ...\n1..30\n# tests 30\n# suites 0\n# pass 30\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 137.893687\n",
+      "stderr": ""
+    },
+    "containing_run": {
+      "command_id": "estate-dae856c9-20261027-inspection-verify-01",
+      "request_sha256": "8dcbbdd3677a7e5e0d9a2034647a7f45f55dce396bc76f4da34a0fe0a6c80af9",
+      "generation": "e9055c774577b855dc248527a36237af6cb831019c0568429b0a816ab04be56e",
+      "state": "failed",
+      "runner_pid": 1036676,
+      "started_at": "2026-10-27T09:05:14.223573239Z",
+      "finished_at": "2026-10-27T09:05:16.175438774Z",
+      "exit_code": 1,
+      "error": "exit status 1"
+    },
+    "qualification": "Native30passed before the first run failed its keyboard phase. No math production change was made subsequently."
+  },
+  "browser": {
+    "execution": {
+      "command_id": "estate-dae856c9-20261027-inspection-verify-02",
+      "request_sha256": "ecd5edc5355135d58f496f7f9ae4068143336f24232ce93aa3bc261ef6462f94",
+      "generation": "49a7e4069c8a4d84f943b20f232cd3035a571772000d57a96b06a27b2e8eec52",
+      "state": "completed",
+      "runner_pid": 1069612,
+      "started_at": "2026-10-27T09:11:33.049631465Z",
+      "finished_at": "2026-10-27T09:11:43.481598918Z",
+      "exit_code": 0
+    },
+    "new_course": {
+      "pass": 13,
+      "outcomes": [
+        {
+          "input": "real maintained entry exact arrival rows; desktop and 390px",
+          "screenshots": {
+            "desktop": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/inspection-desktop.png",
+            "mobile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/inspection-mobile.png"
+          },
+          "pass": true
+        },
+        {
+          "input": "inside-window20.5; failing18; two failures12 use original comparison",
+          "pass": true
+        },
+        {
+          "input": "keyboard departure and Enter submission",
+          "pass": true
+        },
+        {
+          "input": "unsubmitted comparison drafts ignored and preserved",
+          "pass": true
+        },
+        {
+          "input": "native-invalid range preserves prior evidence with explicit warning; valid comparison resets",
+          "pass": true
+        },
+        {
+          "input": "outside committed range refusal and recovery",
+          "pass": true
+        },
+        {
+          "input": "new comparison and route reset; threshold refresh no stale evidence",
+          "pass": true
+        },
+        {
+          "input": "source horizon refusal/recovery and fixture custody",
+          "pass": true
+        },
+        {
+          "input": "inclusive comparison end15 reaches final retained instant20",
+          "pass": true
+        },
+        {
+          "input": "rounded window endpoints .16 and1.82 are tested exactly and exceed1mm",
+          "pass": true
+        },
+        {
+          "input": "isolated equality departure inspectable without positive-duration interval",
+          "pass": true
+        },
+        {
+          "input": "maximum128arrival rows in bounded390px keyboard-scrollable evidence",
+          "pass": true
+        },
+        {
+          "input": "browser exceptions",
+          "pass": true
+        }
+      ],
+      "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8"
+    },
+    "regression": {
+      "pass": 11,
+      "outcomes": [
+        {
+          "input": "maintained index entry mounts traversal",
+          "pass": true
+        },
+        {
+          "input": "maintained example raw-snapshot oracle versus rendered values",
+          "totals": {
+            "existing": 23.33750338852964,
+            "proposal": 24.79284198787692
+          },
+          "delta": 1.4553385993472787,
+          "pass": true
+        },
+        {
+          "input": "maintained traversal desktop and 390px receiving",
+          "screenshots": {
+            "desktop": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/maintained-traversal-desktop.png",
+            "mobile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/maintained-traversal-mobile.png"
+          },
+          "screenshotRegions": {
+            "desktop": {
+              "x": 337,
+              "y": 3608.390625,
+              "width": 1064,
+              "height": 1057.671875,
+              "scale": 1
+            },
+            "mobile": {
+              "x": 29,
+              "y": 6163.515625,
+              "width": 332,
+              "height": 1602.15625,
+              "scale": 1
+            }
+          },
+          "pass": true
+        },
+        {
+          "input": "analytic crossing shifted by B arrival offset 2",
+          "existing": 3,
+          "proposal": 10,
+          "delta": 7,
+          "pass": true
+        },
+        {
+          "input": "exact threshold equality versus first exceedance at declared arrival",
+          "pass": true
+        },
+        {
+          "input": "parent threshold 1 -> 2 -> 1 recomputes retained query",
+          "pass": true
+        },
+        {
+          "input": "changed B arrival offset 5 removes positive existing window",
+          "pass": true
+        },
+        {
+          "input": "reversed parent route and new timing recompute",
+          "pass": true
+        },
+        {
+          "input": "invalid arrival horizon then valid recovery",
+          "pass": true
+        },
+        {
+          "input": "mismatched proposal horizon then source refresh recovery",
+          "pass": true
+        },
+        {
+          "input": "source custody and browser exceptions",
+          "pass": true
+        }
+      ],
+      "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e"
+    }
+  },
+  "negative_control": {
+    "run": {
+      "label": "inspection-mutant-browser-02",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/support/chromium-session.mjs:237\n  if (hasFailure) throw new ChromiumSessionError('Chromium receiving session failed', receipt, failure);\n                        ^\n\nChromiumSessionError: Chromium receiving session failed\n    at withChromiumSession (file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/support/chromium-session.mjs:237:25)\n    at async withBrowserSession (file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/support/browser-session.mjs:30:12)\n    at async file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/route-traversal-inspection.receiving.mjs:13:1 {\n  receipt: {\n    schema: 'hamon.chromium-session.v1',\n    status: 'failed',\n    startedAt: '2026-10-27T09:11:42.628Z',\n    executable: '/opt/google/chrome/google-chrome',\n    runDirectory: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948',\n    profileDirectory: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/profile',\n    stdoutFile: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stdout.bin',\n    stderrFile: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stderr.bin',\n    receiptFile: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/session.json',\n    sandbox: 'not-assessed',\n    limits: { startupMs: 15000, shutdownMs: 3000, courseMs: 120000 },\n    cleanup: {\n      attempted: true,\n      directChildExited: true,\n      scope: 'launched-direct-child-only',\n      signals: [ 'SIGTERM' ]\n    },\n    argv: [\n      '--headless=new',\n      '--enable-automation',\n      '--allow-chrome-scheme-url',\n      '--no-first-run',\n      '--no-default-browser-check',\n      '--disable-background-networking',\n      '--remote-debugging-address=127.0.0.1',\n      '--remote-debugging-port=0',\n      '--user-data-dir=/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/profile',\n      'about:blank'\n    ],\n    pid: 1070064,\n    cdpUrl: 'http://127.0.0.1:38273',\n    browserWebSocketUrl: 'ws://127.0.0.1:38273/devtools/browser/4e925bc7-2102-4455-a44a-5b7a6283a556',\n    browserVersion: 'Chrome/156.0.8078.47',\n    readyAt: '2026-10-27T09:11:42.828Z',\n    error: {\n      name: 'AssertionError',\n      message: \"Expected values to be strictly equal:\\n\\n'0' !== '10'\\n\"\n    },\n    exit: { code: 0, signal: null },\n    logsComplete: true,\n    logScope: 'bytes observed after direct-child close; descendants are not independently inventoried',\n    stdout: {\n      path: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stdout.bin',\n      bytes: 0,\n      sha256: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'\n    },\n    stderr: {\n      path: '/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stderr.bin',\n      bytes: 5297,\n      sha256: '106c723bc29778d1c5d0599d73f0782f2fb72f0cca23c33e04d2078efc3d2435'\n    },\n    finishedAt: '2026-10-27T09:11:43.463Z'\n  },\n  [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  '0' !== '10'\n  \n      at file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/route-traversal-inspection.receiving.mjs:66:50\n      at Array.forEach (<anonymous>)\n      at verifyRows (file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/route-traversal-inspection.receiving.mjs:61:15)\n      at file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/route-traversal-inspection.receiving.mjs:85:27\n      at async file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/support/browser-session.mjs:84:16\n      at async withChromiumSession (file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/support/chromium-session.mjs:173:15)\n      at async withBrowserSession (file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/support/browser-session.mjs:30:12)\n      at async file:///workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/tests/route-traversal-inspection.receiving.mjs:13:1 {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: '0',\n    expected: '10',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n}\n\nNode.js v22.23.4\n"
+    },
+    "mutation": "Replace exactly one segmentMinutes,inspectionMinute,threshold call with segmentMinutes,declared.from,threshold in disposable panel copy.",
+    "qualification": "Intended raw-oracle row assertion failed actual0 versus expected10; unmodified evaluator and candidate production source retained."
+  },
+  "retained_failure": {
+    "receipt": {
+      "command_id": "estate-dae856c9-20261027-inspection-verify-01",
+      "request_sha256": "8dcbbdd3677a7e5e0d9a2034647a7f45f55dce396bc76f4da34a0fe0a6c80af9",
+      "generation": "e9055c774577b855dc248527a36237af6cb831019c0568429b0a816ab04be56e",
+      "state": "failed",
+      "runner_pid": 1036676,
+      "started_at": "2026-10-27T09:05:14.223573239Z",
+      "finished_at": "2026-10-27T09:05:16.175438774Z",
+      "exit_code": 1,
+      "error": "exit status 1"
+    },
+    "cause": "Test keyboard Enter event omitted character text; initial rows remained at12 instead of20.5. Product source unchanged."
+  },
+  "keyboard_diagnostic": {
+    "receipt": {
+      "command_id": "estate-dae856c9-20261027-inspection-keyboard-diagnostic-01",
+      "request_sha256": "a4386a3fe20c07187bd74541c1ece83f3874c76c75ddda861ed37e7279cfc8a0",
+      "generation": "9817b1f36d2456027dd594448807d425cdf583680ff79769f82b693887456d18",
+      "state": "completed",
+      "runner_pid": 1068919,
+      "started_at": "2026-10-27T09:10:34.259822852Z",
+      "finished_at": "2026-10-27T09:10:39.277336729Z",
+      "exit_code": 0
+    },
+    "output": {
+      "returncode": 0,
+      "stdout": "{\n  \"diagnostic\": \"departure keyboard current versus text-bearing Enter\",\n  \"beforeEdit\": {\n    \"value\": \"12\",\n    \"valueAsNumber\": 12,\n    \"activeElement\": \"route-traversal-departure\",\n    \"validity\": {\n      \"valid\": true,\n      \"badInput\": false,\n      \"valueMissing\": false,\n      \"rangeUnderflow\": false,\n      \"rangeOverflow\": false,\n      \"stepMismatch\": false\n    },\n    \"validationMessage\": \"\",\n    \"events\": [],\n    \"results\": \"Inspecting departure 12 min against 1 mm.Existing: first modeled exceedance is B1 at arrival minute 14 (1.2 mm).Existing arrivals at departure 12 minCellArrival (min)Depth (mm)Threshold comparisonA1120At/belowB1141.2Above — first exceedanceC1171.4AboveProposal: first modeled exceedance is B1 at arrival minute 14 (1.2 mm).Proposal arrivals at departure 12 minCellArrival (min)Depth (mm)Threshold comparisonA1120At/belowB1141.2Above — first exceedanceC1171.4AboveThese findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.\",\n    \"error\": \"\"\n  },\n  \"beforeCurrentEnter\": {\n    \"value\": \"20.5\",\n    \"valueAsNumber\": 20.5,\n    \"activeElement\": \"route-traversal-departure\",\n    \"validity\": {\n      \"valid\": true,\n      \"badInput\": false,\n      \"valueMissing\": false,\n      \"rangeUnderflow\": false,\n      \"rangeOverflow\": false,\n      \"stepMismatch\": false\n    },\n    \"validationMessage\": \"\",\n    \"events\": [\n      {\n        \"type\": \"keydown\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"a\",\n        \"code\": \"KeyA\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"12\"\n      },\n      {\n        \"type\": \"keyup\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"a\",\n        \"code\": \"KeyA\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"12\"\n      },\n      {\n        \"type\": \"input\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": null,\n        \"code\": null,\n        \"data\": \"20.5\",\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      }\n    ],\n    \"results\": \"Inspecting departure 12 min against 1 mm.Existing: first modeled exceedance is B1 at arrival minute 14 (1.2 mm).Existing arrivals at departure 12 minCellArrival (min)Depth (mm)Threshold comparisonA1120At/belowB1141.2Above — first exceedanceC1171.4AboveProposal: first modeled exceedance is B1 at arrival minute 14 (1.2 mm).Proposal arrivals at departure 12 minCellArrival (min)Depth (mm)Threshold comparisonA1120At/belowB1141.2Above — first exceedanceC1171.4AboveThese findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.\",\n    \"error\": \"\"\n  },\n  \"afterCurrentEnter\": {\n    \"value\": \"20.5\",\n    \"valueAsNumber\": 20.5,\n    \"activeElement\": \"route-traversal-departure\",\n    \"validity\": {\n      \"valid\": true,\n      \"badInput\": false,\n      \"valueMissing\": false,\n      \"rangeUnderflow\": false,\n      \"rangeOverflow\": false,\n      \"stepMismatch\": false\n    },\n    \"validationMessage\": \"\",\n    \"events\": [\n      {\n        \"type\": \"keydown\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"a\",\n        \"code\": \"KeyA\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"12\"\n      },\n      {\n        \"type\": \"keyup\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"a\",\n        \"code\": \"KeyA\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"12\"\n      },\n      {\n        \"type\": \"input\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": null,\n        \"code\": null,\n        \"data\": \"20.5\",\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keydown\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keyup\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      }\n    ],\n    \"results\": \"Inspecting departure 12 min against 1 mm.Existing: first modeled exceedance is B1 at arrival minute 14 (1.2 mm).Existing arrivals at departure 12 minCellArrival (min)Depth (mm)Threshold comparisonA1120At/belowB1141.2Above — first exceedanceC1171.4AboveProposal: first modeled exceedance is B1 at arrival minute 14 (1.2 mm).Proposal arrivals at departure 12 minCellArrival (min)Depth (mm)Threshold comparisonA1120At/belowB1141.2Above — first exceedanceC1171.4AboveThese findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.\",\n    \"error\": \"\"\n  },\n  \"afterTextEnter\": {\n    \"value\": \"20.5\",\n    \"valueAsNumber\": 20.5,\n    \"activeElement\": \"route-traversal-departure\",\n    \"validity\": {\n      \"valid\": true,\n      \"badInput\": false,\n      \"valueMissing\": false,\n      \"rangeUnderflow\": false,\n      \"rangeOverflow\": false,\n      \"stepMismatch\": false\n    },\n    \"validationMessage\": \"\",\n    \"events\": [\n      {\n        \"type\": \"keydown\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"a\",\n        \"code\": \"KeyA\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"12\"\n      },\n      {\n        \"type\": \"keyup\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"a\",\n        \"code\": \"KeyA\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"12\"\n      },\n      {\n        \"type\": \"input\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": null,\n        \"code\": null,\n        \"data\": \"20.5\",\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keydown\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keyup\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keydown\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keypress\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"submit\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-inspection-form\",\n        \"key\": null,\n        \"code\": null,\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      },\n      {\n        \"type\": \"keyup\",\n        \"trusted\": true,\n        \"target\": \"route-traversal-departure\",\n        \"key\": \"Enter\",\n        \"code\": \"Enter\",\n        \"data\": null,\n        \"defaultPrevented\": false,\n        \"value\": \"20.5\"\n      }\n    ],\n    \"results\": \"Inspecting departure 20.5 min against 1 mm.Existing: every cell is at/below the threshold at its declared arrival.Existing arrivals at departure 20.5 minCellArrival (min)Depth (mm)Threshold comparisonA120.50At/belowB122.50At/belowC125.50.9At/belowProposal: every cell is at/below the threshold at its declared arrival.Proposal arrivals at departure 20.5 minCellArrival (min)Depth (mm)Threshold comparisonA120.50At/belowB122.50At/belowC125.50.9At/belowThese findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.\",\n    \"error\": \"\"\n  },\n  \"exceptions\": [],\n  \"runDirectory\": \"/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-7d4909ae-34d0-4203-8998-ede8f71cbb06\"\n}\n{\n  \"pass\": 2,\n  \"outcomes\": [\n    {\n      \"input\": \"real maintained entry exact arrival rows; desktop and 390px\",\n      \"screenshots\": {\n        \"desktop\": \"/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-7d4909ae-34d0-4203-8998-ede8f71cbb06/inspection-desktop.png\",\n        \"mobile\": \"/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-7d4909ae-34d0-4203-8998-ede8f71cbb06/inspection-mobile.png\"\n      },\n      \"pass\": true\n    },\n    {\n      \"input\": \"inside-window20.5; failing18; two failures12 use original comparison\",\n      \"pass\": true\n    }\n  ],\n  \"runDirectory\": \"/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-7d4909ae-34d0-4203-8998-ede8f71cbb06\"\n}\n",
+      "stderr": ""
+    }
+  },
+  "visual": {
+    "execution": {
+      "command_id": "estate-dae856c9-20261027-inspection-visual-01",
+      "request_sha256": "497512e0f5156b0b60e4c5e971d21a8cce6feb0312250d4852bb21940f774935",
+      "generation": "cc44b916c3e54c4eb8e90f2e8ff820b01028e046eca1c98e07303222b5cb2eaa",
+      "state": "completed",
+      "runner_pid": 1086172,
+      "started_at": "2026-10-27T09:15:32.409017321Z",
+      "finished_at": "2026-10-27T09:15:41.904824659Z",
+      "exit_code": 0
+    },
+    "course_sha256": "1f96ffbf5795f91747f840cd1eda6f644fb5c7406b9f11ca4ba5b6c8a86bd09a",
+    "receipt": {
+      "repository": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection",
+      "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3",
+      "sandboxPath": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/sandbox.json",
+      "outcomes": [
+        {
+          "name": "desktop",
+          "position": "top",
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/inspection-desktop-top.png",
+          "sha256": "83c3eb97b536c828d8425f7eea552b038c8ea8cf1a17f10d0aa4b79316054673",
+          "metrics": {
+            "viewport": {
+              "width": 1440,
+              "height": 1000
+            },
+            "documentWidth": 1425,
+            "scroll": {
+              "x": 0,
+              "y": 4438
+            },
+            "section": {
+              "left": 337,
+              "top": 8.125,
+              "right": 1401,
+              "bottom": 726.65625,
+              "width": 1064,
+              "height": 718.53125,
+              "scrollWidth": 1064,
+              "clientWidth": 1064
+            },
+            "qualification": {
+              "left": 337,
+              "top": 687.0625,
+              "right": 1401,
+              "bottom": 726.65625,
+              "width": 1064,
+              "height": 39.59375,
+              "scrollWidth": 1064,
+              "clientWidth": 1064
+            },
+            "proposal": {
+              "left": 337,
+              "top": 527.8125,
+              "right": 1401,
+              "bottom": 685.0625,
+              "width": 1064,
+              "height": 157.25,
+              "scrollWidth": 1064,
+              "clientWidth": 1064
+            },
+            "paragraphs": [
+              {
+                "text": "Choose one departure from 0 to 30 min, including either endpoint. This inspects the comparison above without changing its interval. Changes to timing inputs apply when you compare again.",
+                "left": 337,
+                "top": 50.5625,
+                "right": 1401,
+                "bottom": 95.5625,
+                "width": 1064,
+                "height": 45,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "",
+                "left": 337,
+                "top": 243.0625,
+                "right": 1401,
+                "bottom": 243.0625,
+                "width": 1064,
+                "height": 0,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "Inspecting departure 10 min against 10 mm.",
+                "left": 337,
+                "top": 243.0625,
+                "right": 1401,
+                "bottom": 265.5625,
+                "width": 1064,
+                "height": 22.5,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "Existing: first modeled exceedance is F3 at arrival minute 12 (10.0033 mm).",
+                "left": 337,
+                "top": 280.5625,
+                "right": 1401,
+                "bottom": 303.0625,
+                "width": 1064,
+                "height": 22.5,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "Proposal: every cell is at/below the threshold at its declared arrival.",
+                "left": 337,
+                "top": 490.3125,
+                "right": 1401,
+                "bottom": 512.8125,
+                "width": 1064,
+                "height": 22.5,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "These findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.",
+                "left": 337,
+                "top": 687.0625,
+                "right": 1401,
+                "bottom": 726.65625,
+                "width": 1064,
+                "height": 39.59375,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              }
+            ],
+            "fixed": [
+              {
+                "tag": "DIV",
+                "id": "toast",
+                "text": "Fictional example restored.",
+                "left": 1210.34375,
+                "top": 937.5,
+                "right": 1408,
+                "bottom": 983,
+                "width": 197.65625,
+                "height": 45.5,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "A",
+                "id": "",
+                "text": "Find an investigation ↑",
+                "left": 16,
+                "top": 940,
+                "right": 198.46875,
+                "bottom": 984,
+                "width": 182.46875,
+                "height": 44,
+                "scrollWidth": 180,
+                "clientWidth": 180
+              }
+            ],
+            "toast": {
+              "show": false,
+              "opacity": "0",
+              "display": "block",
+              "visibility": "hidden",
+              "offscreen": false
+            }
+          }
+        },
+        {
+          "name": "desktop",
+          "position": "bottom",
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/inspection-desktop-bottom.png",
+          "sha256": "74e5c60a58e8add4823c24e03d8a9972dfd8df3479b54888713681bd4fda06b6",
+          "metrics": {
+            "viewport": {
+              "width": 1440,
+              "height": 1000
+            },
+            "documentWidth": 1425,
+            "scroll": {
+              "x": 0,
+              "y": 4265
+            },
+            "section": {
+              "left": 337,
+              "top": 181.125,
+              "right": 1401,
+              "bottom": 899.65625,
+              "width": 1064,
+              "height": 718.53125,
+              "scrollWidth": 1064,
+              "clientWidth": 1064
+            },
+            "qualification": {
+              "left": 337,
+              "top": 860.0625,
+              "right": 1401,
+              "bottom": 899.65625,
+              "width": 1064,
+              "height": 39.59375,
+              "scrollWidth": 1064,
+              "clientWidth": 1064
+            },
+            "proposal": {
+              "left": 337,
+              "top": 700.8125,
+              "right": 1401,
+              "bottom": 858.0625,
+              "width": 1064,
+              "height": 157.25,
+              "scrollWidth": 1064,
+              "clientWidth": 1064
+            },
+            "paragraphs": [
+              {
+                "text": "Choose one departure from 0 to 30 min, including either endpoint. This inspects the comparison above without changing its interval. Changes to timing inputs apply when you compare again.",
+                "left": 337,
+                "top": 223.5625,
+                "right": 1401,
+                "bottom": 268.5625,
+                "width": 1064,
+                "height": 45,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "",
+                "left": 337,
+                "top": 416.0625,
+                "right": 1401,
+                "bottom": 416.0625,
+                "width": 1064,
+                "height": 0,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "Inspecting departure 10 min against 10 mm.",
+                "left": 337,
+                "top": 416.0625,
+                "right": 1401,
+                "bottom": 438.5625,
+                "width": 1064,
+                "height": 22.5,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "Existing: first modeled exceedance is F3 at arrival minute 12 (10.0033 mm).",
+                "left": 337,
+                "top": 453.5625,
+                "right": 1401,
+                "bottom": 476.0625,
+                "width": 1064,
+                "height": 22.5,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "Proposal: every cell is at/below the threshold at its declared arrival.",
+                "left": 337,
+                "top": 663.3125,
+                "right": 1401,
+                "bottom": 685.8125,
+                "width": 1064,
+                "height": 22.5,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              },
+              {
+                "text": "These findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.",
+                "left": 337,
+                "top": 860.0625,
+                "right": 1401,
+                "bottom": 899.65625,
+                "width": 1064,
+                "height": 39.59375,
+                "scrollWidth": 1064,
+                "clientWidth": 1064
+              }
+            ],
+            "fixed": [
+              {
+                "tag": "DIV",
+                "id": "toast",
+                "text": "Fictional example restored.",
+                "left": 1210.34375,
+                "top": 937.5,
+                "right": 1408,
+                "bottom": 983,
+                "width": 197.65625,
+                "height": 45.5,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "A",
+                "id": "",
+                "text": "Find an investigation ↑",
+                "left": 16,
+                "top": 940,
+                "right": 198.46875,
+                "bottom": 984,
+                "width": 182.46875,
+                "height": 44,
+                "scrollWidth": 180,
+                "clientWidth": 180
+              }
+            ],
+            "toast": {
+              "show": false,
+              "opacity": "0",
+              "display": "block",
+              "visibility": "hidden",
+              "offscreen": false
+            }
+          }
+        },
+        {
+          "name": "mobile",
+          "position": "top",
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/inspection-mobile-top.png",
+          "sha256": "afdba49b8c3b13fcd8277579eeeedc3293755f459333bfeab7372a56bef88cc3",
+          "metrics": {
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "documentWidth": 390,
+            "scroll": {
+              "x": 0,
+              "y": 7470
+            },
+            "section": {
+              "left": 29,
+              "top": 8.234375,
+              "right": 361,
+              "bottom": 985.953125,
+              "width": 332,
+              "height": 977.71875,
+              "scrollWidth": 332,
+              "clientWidth": 332
+            },
+            "qualification": {
+              "left": 29,
+              "top": 867.171875,
+              "right": 361,
+              "bottom": 985.953125,
+              "width": 332,
+              "height": 118.78125,
+              "scrollWidth": 332,
+              "clientWidth": 332
+            },
+            "proposal": {
+              "left": 29,
+              "top": 685.421875,
+              "right": 361,
+              "bottom": 865.171875,
+              "width": 332,
+              "height": 179.75,
+              "scrollWidth": 332,
+              "clientWidth": 332
+            },
+            "paragraphs": [
+              {
+                "text": "Choose one departure from 0 to 30 min, including either endpoint. This inspects the comparison above without changing its interval. Changes to timing inputs apply when you compare again.",
+                "left": 29,
+                "top": 50.671875,
+                "right": 361,
+                "bottom": 163.171875,
+                "width": 332,
+                "height": 112.5,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "",
+                "left": 29,
+                "top": 310.671875,
+                "right": 361,
+                "bottom": 310.671875,
+                "width": 332,
+                "height": 0,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "Inspecting departure 10 min against 10 mm.",
+                "left": 29,
+                "top": 310.671875,
+                "right": 361,
+                "bottom": 333.171875,
+                "width": 332,
+                "height": 22.5,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "Existing: first modeled exceedance is F3 at arrival minute 12 (10.0033 mm).",
+                "left": 29,
+                "top": 348.171875,
+                "right": 361,
+                "bottom": 393.171875,
+                "width": 332,
+                "height": 45,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "Proposal: every cell is at/below the threshold at its declared arrival.",
+                "left": 29,
+                "top": 625.421875,
+                "right": 361,
+                "bottom": 670.421875,
+                "width": 332,
+                "height": 45,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "These findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.",
+                "left": 29,
+                "top": 867.171875,
+                "right": 361,
+                "bottom": 985.953125,
+                "width": 332,
+                "height": 118.78125,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              }
+            ],
+            "fixed": [
+              {
+                "tag": "DIV",
+                "id": "toast",
+                "text": "Fictional example restored.",
+                "left": 175.34375,
+                "top": 781.5,
+                "right": 373,
+                "bottom": 827,
+                "width": 197.65625,
+                "height": 45.5,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "A",
+                "id": "",
+                "text": "Find an investigation ↑",
+                "left": 12,
+                "top": 788,
+                "right": 183.203125,
+                "bottom": 832,
+                "width": 171.203125,
+                "height": 44,
+                "scrollWidth": 169,
+                "clientWidth": 169
+              }
+            ],
+            "toast": {
+              "show": false,
+              "opacity": "0",
+              "display": "block",
+              "visibility": "hidden",
+              "offscreen": false
+            }
+          }
+        },
+        {
+          "name": "mobile",
+          "position": "bottom",
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/inspection-mobile-bottom.png",
+          "sha256": "d725a2bcacc01105f5af05cf51300ab4bac729e2bda463a72ac0affb63705408",
+          "metrics": {
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "documentWidth": 390,
+            "scroll": {
+              "x": 0,
+              "y": 7712
+            },
+            "section": {
+              "left": 29,
+              "top": -233.765625,
+              "right": 361,
+              "bottom": 743.953125,
+              "width": 332,
+              "height": 977.71875,
+              "scrollWidth": 332,
+              "clientWidth": 332
+            },
+            "qualification": {
+              "left": 29,
+              "top": 625.171875,
+              "right": 361,
+              "bottom": 743.953125,
+              "width": 332,
+              "height": 118.78125,
+              "scrollWidth": 332,
+              "clientWidth": 332
+            },
+            "proposal": {
+              "left": 29,
+              "top": 443.421875,
+              "right": 361,
+              "bottom": 623.171875,
+              "width": 332,
+              "height": 179.75,
+              "scrollWidth": 332,
+              "clientWidth": 332
+            },
+            "paragraphs": [
+              {
+                "text": "Choose one departure from 0 to 30 min, including either endpoint. This inspects the comparison above without changing its interval. Changes to timing inputs apply when you compare again.",
+                "left": 29,
+                "top": -191.328125,
+                "right": 361,
+                "bottom": -78.828125,
+                "width": 332,
+                "height": 112.5,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "",
+                "left": 29,
+                "top": 68.671875,
+                "right": 361,
+                "bottom": 68.671875,
+                "width": 332,
+                "height": 0,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "Inspecting departure 10 min against 10 mm.",
+                "left": 29,
+                "top": 68.671875,
+                "right": 361,
+                "bottom": 91.171875,
+                "width": 332,
+                "height": 22.5,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "Existing: first modeled exceedance is F3 at arrival minute 12 (10.0033 mm).",
+                "left": 29,
+                "top": 106.171875,
+                "right": 361,
+                "bottom": 151.171875,
+                "width": 332,
+                "height": 45,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "Proposal: every cell is at/below the threshold at its declared arrival.",
+                "left": 29,
+                "top": 383.421875,
+                "right": 361,
+                "bottom": 428.421875,
+                "width": 332,
+                "height": 45,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              },
+              {
+                "text": "These findings apply to the selected departure instant; an all-cell result does not establish a positive-duration qualifying window. Arrival times and depths are rounded for display; threshold comparisons use the retained model values. No safe traversal or physical flood conditions are established.",
+                "left": 29,
+                "top": 625.171875,
+                "right": 361,
+                "bottom": 743.953125,
+                "width": 332,
+                "height": 118.78125,
+                "scrollWidth": 332,
+                "clientWidth": 332
+              }
+            ],
+            "fixed": [
+              {
+                "tag": "DIV",
+                "id": "toast",
+                "text": "Fictional example restored.",
+                "left": 175.34375,
+                "top": 781.5,
+                "right": 373,
+                "bottom": 827,
+                "width": 197.65625,
+                "height": 45.5,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "A",
+                "id": "",
+                "text": "Find an investigation ↑",
+                "left": 12,
+                "top": 788,
+                "right": 183.203125,
+                "bottom": 832,
+                "width": 171.203125,
+                "height": 44,
+                "scrollWidth": 169,
+                "clientWidth": 169
+              }
+            ],
+            "toast": {
+              "show": false,
+              "opacity": "0",
+              "display": "block",
+              "visibility": "hidden",
+              "offscreen": false
+            }
+          }
+        }
+      ],
+      "exceptions": [],
+      "scope": "Visual-only maintained-example course; production and functional evaluator unchanged. Full viewport captures at top and bottom; natural reset-toast expiry, no CSS hiding. Does not replace functional receiving."
+    },
+    "reviewed_artifacts": [
+      {
+        "path": "inspection-desktop.png",
+        "original_name": "inspection-desktop-top.png",
+        "sha256": "83c3eb97b536c828d8425f7eea552b038c8ea8cf1a17f10d0aa4b79316054673"
+      },
+      {
+        "path": "inspection-mobile.png",
+        "original_name": "inspection-mobile-bottom.png",
+        "sha256": "d725a2bcacc01105f5af05cf51300ab4bac729e2bda463a72ac0affb63705408"
+      }
+    ],
+    "review": {
+      "reviewers": [
+        "/root",
+        "/root/source_scout"
+      ],
+      "finding": "Actual desktop shows full context, both three-row tables and complete qualification. Mobile top plus bottom show normal page scroll; mobile bottom shows all Proposal rows and qualification above persistent finder. Readable six-significant-digit values and first-exceedance distinction.",
+      "limits": "Initial cropped screenshots cut desktop text and mobile toast/finder obscured some Proposal cells. Final viewport captures waited for natural toast expiry and preserved production styles. Mobile top alone does not show the full section."
+    }
+  },
+  "browser_receipts": [
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/sandbox.json",
+      "sha256": "42e536cf9aaa83c73fe20597c566f244cdea508a413e178df512ca3904f8f04d",
+      "data": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-27T09:11:33.401Z",
+        "completedAt": "2026-10-27T09:11:33.511Z",
+        "durationMs": 109.96361300000001,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "03119B7D28680EB00D1FDB1913DCF697",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "5B461EB79BDF69FBD045BA2842C4AFB6"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/session.json",
+      "sha256": "91c3ccf5147dc6f21b4ac2c24f64b8741b86786c9353369c5d842113546cf0a4",
+      "data": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-27T09:11:33.123Z",
+        "executable": "/opt/google/chrome/google-chrome",
+        "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8",
+        "profileDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/profile",
+        "stdoutFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/stdout.bin",
+        "stderrFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/stderr.bin",
+        "receiptFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 120000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-direct-child-only",
+          "signals": [
+            "SIGTERM"
+          ]
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/profile",
+          "about:blank"
+        ],
+        "pid": 1069632,
+        "cdpUrl": "http://127.0.0.1:34839",
+        "browserWebSocketUrl": "ws://127.0.0.1:34839/devtools/browser/49358c8d-39dc-4199-98ca-6858d7597c66",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-27T09:11:33.368Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+        "stdout": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-departure-inspection-19711814-3a1e-4cfe-9b04-dc5069d84be8/stderr.bin",
+          "bytes": 5297,
+          "sha256": "745f027c6dcff8d9bed7ab8a5d14b2cfa33adfb710fe9882f13254610be1df58"
+        },
+        "finishedAt": "2026-10-27T09:11:34.970Z"
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/sandbox.json",
+      "sha256": "74abadf54eddb1b560bb1f7bba9a35732a2c1595ff09fb6d860b9c2c6c72b512",
+      "data": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-27T09:11:38.218Z",
+        "completedAt": "2026-10-27T09:11:38.335Z",
+        "durationMs": 116.71682099999998,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "C326CA34C6EBA6775A3E083B37C879AF",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "D1E83C9F79E635EEE77314267F9CBF11"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/session.json",
+      "sha256": "9342f1f96e0366f1aa2e915779db6ee29fc7eefa8aac4f18c2b7a25929b46b0e",
+      "data": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-27T09:11:37.995Z",
+        "executable": "/opt/google/chrome/google-chrome",
+        "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e",
+        "profileDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/profile",
+        "stdoutFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/stdout.bin",
+        "stderrFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/stderr.bin",
+        "receiptFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 120000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-direct-child-only",
+          "signals": [
+            "SIGTERM"
+          ]
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/profile",
+          "about:blank"
+        ],
+        "pid": 1069839,
+        "cdpUrl": "http://127.0.0.1:38931",
+        "browserWebSocketUrl": "ws://127.0.0.1:38931/devtools/browser/85db4557-109d-4f66-9975-1a20d9ad1d2c",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-27T09:11:38.178Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+        "stdout": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-timed-route-oracle-b478e0c6-e699-478a-95f7-df5f3130804e/stderr.bin",
+          "bytes": 5297,
+          "sha256": "166bea4383eea70ea203c755087c927481eee964ba580a7b2b20daef1ac814e3"
+        },
+        "finishedAt": "2026-10-27T09:11:39.472Z"
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/sandbox.json",
+      "sha256": "da3e0598c33ce9a47559b7ccb0b9a058340d0b040309892f0e7280544bdb1025",
+      "data": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-27T09:11:42.856Z",
+        "completedAt": "2026-10-27T09:11:42.949Z",
+        "durationMs": 92.455511,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "9D89993E9CCCF073202B6B087B6A8B5A",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "ADD424F00E2A1F79DC689FA1AD3488FA"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/session.json",
+      "sha256": "ba82709d9e59e3030ea4df5ea71c909585f1f9eafe9205c61eac436654813be7",
+      "data": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "failed",
+        "startedAt": "2026-10-27T09:11:42.628Z",
+        "executable": "/opt/google/chrome/google-chrome",
+        "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948",
+        "profileDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/profile",
+        "stdoutFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stdout.bin",
+        "stderrFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stderr.bin",
+        "receiptFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 120000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-direct-child-only",
+          "signals": [
+            "SIGTERM"
+          ]
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/profile",
+          "about:blank"
+        ],
+        "pid": 1070064,
+        "cdpUrl": "http://127.0.0.1:38273",
+        "browserWebSocketUrl": "ws://127.0.0.1:38273/devtools/browser/4e925bc7-2102-4455-a44a-5b7a6283a556",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-27T09:11:42.828Z",
+        "error": {
+          "name": "AssertionError",
+          "message": "Expected values to be strictly equal:\n\n'0' !== '10'\n"
+        },
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+        "stdout": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection-mutant-departure/.browser-departure-inspection-858a1b58-c4aa-41d4-a870-fdeeebcfb948/stderr.bin",
+          "bytes": 5297,
+          "sha256": "106c723bc29778d1c5d0599d73f0782f2fb72f0cca23c33e04d2078efc3d2435"
+        },
+        "finishedAt": "2026-10-27T09:11:43.463Z"
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/sandbox.json",
+      "sha256": "497f4ec4f9d9f577e8f260e16b28fb9c639f7494be2b4abfddd9798b763c1435",
+      "data": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-27T09:15:32.948Z",
+        "completedAt": "2026-10-27T09:15:33.097Z",
+        "durationMs": 149.22298600000005,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "F0A1675FCF05B5ED0D3A7E8F919399FB",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "EAD8992AEDB6CE55202E794B8EFDAAE6"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      }
+    },
+    {
+      "type": "receipt",
+      "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/session.json",
+      "sha256": "9f3b1092a60fef390ed3ec188a06b043c4f363bfc66afb27e1ec7a221e6a546e",
+      "data": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-27T09:15:32.502Z",
+        "executable": "/opt/google/chrome/google-chrome",
+        "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3",
+        "profileDirectory": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/profile",
+        "stdoutFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/stdout.bin",
+        "stderrFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/stderr.bin",
+        "receiptFile": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 120000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-direct-child-only",
+          "signals": [
+            "SIGTERM"
+          ]
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/profile",
+          "about:blank"
+        ],
+        "pid": 1086238,
+        "cdpUrl": "http://127.0.0.1:35257",
+        "browserWebSocketUrl": "ws://127.0.0.1:35257/devtools/browser/e4844053-828a-480e-b298-dbc4e6c0b89b",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-27T09:15:32.888Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+        "stdout": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/workspace/hamon-dae856c9-ee-20261027-departure-inspection/.browser-inspection-visual-146943df-43a9-4e85-87ad-53ebfb168be3/stderr.bin",
+          "bytes": 5297,
+          "sha256": "e3fa35605967f9faede1a4c3a4f252149a9811a5765f2e15c1def3d9fee508e2"
+        },
+        "finishedAt": "2026-10-27T09:15:38.952Z"
+      }
+    }
+  ],
+  "independent_reviews": [
+    {
+      "worker": "/root/product_recovery",
+      "scope": "Authored independent raw-value browser acceptance, keyboard diagnostic and reviewed exact13/11/30receipts; no acceptance weakening."
+    },
+    {
+      "worker": "/root/recover_board",
+      "scope": "State/lifecycle and ownership/source-pin review; source/evaluator hashes match."
+    },
+    {
+      "worker": "/root/source_scout",
+      "scope": "Source/precision semantics, docs, original and final actual pixels."
+    }
+  ],
+  "scope_reconciliation": {
+    "snapshot": 2379,
+    "complete_records": 10,
+    "main": "4012a3d19e80f524ee22fcd1dcff9a706e464344",
+    "open_prs": [
+      441,
+      436
+    ],
+    "issue99_comments": 4,
+    "original_archive": "634d28e0aca9b5d55261cb250a5a0ec076116ae7bb1159cf17e78988a5660067",
+    "scope_comment": {
+      "id": 6437689956,
+      "url": "https://github.com/Jacob-Met/experimental-earth/issues/99#issuecomment-6437689956",
+      "operation_id": "estate-dae856c9-20261027-issue99-inspection-scope-01",
+      "state": "completed"
+    }
+  },
+  "limits": [
+    "This receipt covers the exact candidate source and authored retained-model cases; not physical flood accuracy or safe traversal.",
+    "The full1442native suite passed on unchanged numerical parent; currentUIqualification uses30focusednative and affected browser courses.",
+    "No deployment/publicrelease, persistent source edits or schema changes.",
+    "Visual review is confined to recorded1440x1000 and390x844 viewports; no exhaustive device or assistive-technology audit.",
+    "Actual course emits13groups; earlier informal14estimate corrected."
+  ]
+}
