@@ -258,7 +258,12 @@ function draw() {
 for(const [id,key] of [['rain','rainMmHr'],['storm','stormMinutes'],['duration','durationMinutes'],['cell-size','cellSizeM']]) {
   $(id).addEventListener('change',()=>{
     const prev=project.weather[key];const n=Number($(id).value);project.weather[key]=n;
-    try {validateProject(project);rerun();}catch(err){project.weather[key]=prev;byName(id,prev);notice(err.message);}
+    try {
+      validateProject(project);
+      // Update the accepted time bound before rerun retires a retargeted draft.
+      if (key === 'durationMinutes') syncForm();
+      rerun();
+    } catch(err){project.weather[key]=prev;byName(id,prev);notice(err.message);}
   });
 }
 $('project-title').addEventListener('change',()=>{const n=$('project-title').value.trim();project.title=n||'Untitled site';rerun();});
