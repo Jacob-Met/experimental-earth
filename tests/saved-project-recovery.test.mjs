@@ -200,3 +200,44 @@ test('a completed write whose readback is denied is unverified, not certified sa
   const reopened = openSavedProject(() => storage);
   assert.equal(reopened.project.title, 'Possibly written, not independently verified');
 });
+
+
+test('an unverified own write can be reconciled before the next intentional edit', () => {
+  let denyReadback = false;
+  let faultNextWrite = true;
+  const storage = memory({ [active]: JSON.stringify(makeExample()) }, {
+    write: (key) => {
+      if (key === active && faultNextWrite) { denyReadback = true; faultNextWrite = false; }
+    },
+    read: (key) => { if (key === active && denyReadback) throw new Error('Readback temporarily unavailable'); },
+  });
+  const opened = openSavedProject(() => storage);
+  opened.project.title = 'First write may have committed';
+  assert.equal(opened.save(opened.project), false);
+  assert.equal(opened.status().writeFailed, true);
+  denyReadback = false;
+  assert.equal(JSON.parse(storage.getItem(active)).title, 'First write may have committed');
+  opened.project.title = 'Next accepted edit after storage recovered';
+  assert.equal(opened.save(opened.project), true, 'recognize the prior own bytes, do not classify them as another tab');
+  assert.equal(opened.status().blocked, null);
+  assert.equal(opened.status().writeFailed, false);
+  assert.equal(JSON.parse(storage.getItem(active)).title, 'Next accepted edit after storage recovered');
+});
+
+test('an unverified write never authorizes overwriting unrelated newer tab content', () => {
+  let denyReadback = false;
+  const storage = memory({ [active]: JSON.stringify(makeExample()) }, {
+    write: (key) => { if (key === active) denyReadback = true; },
+    read: (key) => { if (key === active && denyReadback) throw new Error('Readback interrupted'); },
+  });
+  const opened = openSavedProject(() => storage);
+  opened.project.title = 'Our unverified write';
+  assert.equal(opened.save(opened.project), false);
+  denyReadback = false;
+  const other = JSON.stringify({ ...makeExample(), title:'Another tab changed this site' });
+  storage.data.set(active, other);
+  opened.project.title = 'Attempt after another tab changed the site';
+  assert.equal(opened.save(opened.project), false);
+  assert.equal(opened.status().blocked, 'changed');
+  assert.equal(storage.getItem(active), other);
+});
