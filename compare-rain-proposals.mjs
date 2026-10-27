@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {readOriginalProject,computeReceipt} from './inspect-rain-project.mjs';
+import {changedBarrierCells} from './internal-barriers.js';
 
 const MIN_FILES=2;
 const MAX_FILES=16;
@@ -14,6 +15,10 @@ const CANDIDATE_ONLY=new Set(['proposal','title','selectedIndex']);
 const OBJECTIVES=Object.freeze([
   {field:'absorbedLiters',direction:'maximize',unit:'L'},
   {field:'maxDepthMm',direction:'minimize',unit:'mm'},
+]);
+const FOOTPRINT_OBJECTIVES=Object.freeze([
+  ...OBJECTIVES,
+  {field:'changedCellCount',direction:'minimize',unit:'modeled grid cells'},
 ]);
 
 function sortedJson(value){
@@ -49,6 +54,35 @@ export function dominates(a,b){
       ||strictlyLess(a.maxDepthMm,b.maxDepthMm));
 }
 
+/**
+ * Counts only changes that the existing base-rain calculation actually reads.
+ * This is grid involvement, not physical area, construction effort or costs.
+ * A changed hydraulic edge conservatively involves its two adjoining cells.
+ */
+export function modeledFootprint(project){
+  const changed=new Set(changedBarrierCells(project.existing,project.proposal,project.width,project.height));
+  for(let i=0;i<project.existing.length;i++){
+    const before=project.existing[i],after=project.proposal[i];
+    if(before.surface!==after.surface||before.elevationM!==after.elevationM)changed.add(i);
+  }
+  const changedCellIndices=[...changed].sort((a,b)=>a-b);
+  return {changedCellCount:changedCellIndices.length,changedCellIndices};
+}
+
+export function footprintDominates(a,b){
+  const ac=a.proposal,bc=b.proposal;
+  const af=a.modeledFootprint.changedCellCount,bf=b.modeledFootprint.changedCellCount;
+  finiteObjectives(ac);finiteObjectives(bc);
+  if(!Number.isInteger(af)||!Number.isInteger(bf)||af<0||bf<0)
+    throw Error('Comparison produced an invalid modeled footprint');
+  return greaterOrClose(ac.absorbedLiters,bc.absorbedLiters)
+    &&lessOrClose(ac.maxDepthMm,bc.maxDepthMm)
+    &&af<=bf
+    &&(strictlyGreater(ac.absorbedLiters,bc.absorbedLiters)
+      ||strictlyLess(ac.maxDepthMm,bc.maxDepthMm)
+      ||af<bf);
+}
+
 export async function compareProposalFiles(paths){
   if(!Array.isArray(paths)||paths.length<MIN_FILES||paths.length>MAX_FILES)
     throw Error('Provide between 2 and 16 separately exported project files');
@@ -76,6 +110,7 @@ export async function compareProposalFiles(paths){
       originalFile:{sha256:sourceSHA256,bytes:sourceBytes},
       proposal:receipt.proposal,
       proposalMinusExisting:receipt.proposalMinusExisting,
+      modeledFootprint:modeledFootprint(project),
     });
   }
   const comparison=candidates.map((entry,i)=>{
@@ -85,7 +120,17 @@ export async function compareProposalFiles(paths){
       if(dominates(candidates[j].proposal,entry.proposal))dominatedBy.push(j+1);
       if(dominates(entry.proposal,candidates[j].proposal))dominatesOrdinals.push(j+1);
     }
-    return {...entry,dominatedBy,dominates:dominatesOrdinals,onNamedObjectiveFrontier:dominatedBy.length===0};
+    const footprintAwareDominatedBy=[];
+    for(let j=0;j<candidates.length;j++){
+      if(i!==j&&footprintDominates(candidates[j],entry))
+        footprintAwareDominatedBy.push(j+1);
+    }
+    return {
+      ...entry,dominatedBy,dominates:dominatesOrdinals,
+      onNamedObjectiveFrontier:dominatedBy.length===0,
+      footprintAwareDominatedBy,
+      onFootprintAwareFrontier:footprintAwareDominatedBy.length===0,
+    };
   });
   return {
     schema:'experimental-earth-rain-proposal-comparison/1',
@@ -99,6 +144,9 @@ export async function compareProposalFiles(paths){
     nearEqualRelativeTolerance:1e-9,
     candidates:comparison,
     namedObjectiveFrontier:comparison.filter(c=>c.onNamedObjectiveFrontier).map(c=>c.inputOrdinal),
+    footprintAwareObjectives:FOOTPRINT_OBJECTIVES,
+    footprintInterpretation:'Counts source-declared modeled grid cells whose surface, elevation or adjoining hydraulic edge changed; not actual area, cost, construction, ecology or physical safety.',
+    footprintAwareFrontier:comparison.filter(c=>c.onFootprintAwareFrontier).map(c=>c.inputOrdinal),
   };
 }
 
