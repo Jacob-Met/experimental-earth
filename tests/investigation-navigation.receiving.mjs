@@ -18,9 +18,18 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
     throw Error('Timed out: '+label);
   }
   async function click(selector){
-    const rect=await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});if(!e)throw Error('missing click target');e.scrollIntoView({block:'center',behavior:'instant'});const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
-    await send('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...rect});
-    await send('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...rect});
+    const point=await evaluate(`(async()=>{const e=document.querySelector(${JSON.stringify(selector)});if(!e)throw Error('missing click target');
+      e.scrollIntoView({block:'center',behavior:'instant'});let previous;const deadline=performance.now()+3000;
+      do{await new Promise(requestAnimationFrame);const r=e.getBoundingClientRect(),shape=[r.x,r.y,r.width,r.height].join(','),x=r.x+r.width/2,y=r.y+r.height/2,hit=document.elementFromPoint(x,y);
+        if(shape===previous&&e.isConnected&&r.width>0&&r.height>0&&!e.matches(':disabled')&&(hit===e||e.contains(hit))){
+          window.__navigationClickProbe=null;document.addEventListener('click',event=>{window.__navigationClickProbe={matched:event.target===e||e.contains(event.target),trusted:event.isTrusted,target:event.target.id};},{capture:true,once:true});return{x,y};
+        }previous=shape;
+      }while(performance.now()<deadline);throw Error('click target not stable, enabled or exposed');})()`);
+    await send('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...point});
+    await send('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...point});
+    const received=await evaluate('window.__navigationClickProbe');
+    assert.equal(received?.matched,true,'native click must reach '+selector+': '+JSON.stringify(received));
+    assert.equal(received?.trusted,true,'receiving must use a trusted native click');
   }
   async function search(value){
     await evaluate(`(()=>{const e=document.getElementById('investigation-search');e.value=${JSON.stringify(value)};e.dispatchEvent(new Event('input',{bubbles:true}));})()`);
@@ -31,10 +40,10 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
   }
   await wait("document.querySelectorAll('#existing-grid .cell').length===48 && !!document.getElementById('investigation-search')",'maintained app and navigation');
   const original=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
-  const inventory=await evaluate(`(()=>{const links=[...document.querySelectorAll('#investigation-results a')];return{count:links.length,unique:new Set(links.map(a=>a.hash)).size,allReachable:links.every(a=>!!document.getElementById(decodeURIComponent(a.hash.slice(1)))),titles:links.map(a=>a.querySelector('strong').textContent),height:document.documentElement.scrollHeight};})()`);
-  assert.ok(inventory.count>=40,'assembled workbenches must be discoverable');assert.equal(inventory.unique,inventory.count);assert.ok(inventory.allReachable);
+  const inventory=await evaluate(`(()=>{const all=[...document.querySelectorAll('#investigation-results a')],links=all.filter(a=>a.dataset.investigationKind!=='page');return{count:all.length,sectionCount:links.length,unique:new Set(links.map(a=>a.hash)).size,allReachable:links.every(a=>!!document.getElementById(decodeURIComponent(a.hash.slice(1)))),titles:links.map(a=>a.querySelector('strong').textContent),height:document.documentElement.scrollHeight};})()`);
+  assert.ok(inventory.count>=40,'assembled workbenches must be discoverable');assert.equal(inventory.unique,inventory.sectionCount);assert.ok(inventory.allReachable);
   assert.ok(inventory.titles.includes('How does a surface warm up and cool down?'));
-  checks.push({name:'actual mounted inventory and destinations',count:inventory.count,pageHeight:inventory.height});
+  checks.push({name:'actual mounted inventory and destinations',count:inventory.count,sectionCount:inventory.sectionCount,pageHeight:inventory.height});
   await search('surface warm');
   assert.ok(await evaluate("!!document.querySelector('#investigation-results a[href=\"#surface-heat\"]')"));
   const composing=await evaluate("(()=>{const e=document.getElementById('investigation-search');e.focus();const before=location.hash;e.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',code:'Enter',bubbles:true,isComposing:true}));return{before,after:location.hash,focusStayed:document.activeElement===e};})()");
@@ -125,13 +134,19 @@ await withBrowserSession({root,chromeBin:process.env.CHROME_BIN??'/opt/google/ch
   assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"),original,'navigation must preserve exact retained project');
   checks.push({name:'all navigation leaves original project bytes unchanged'});
 
-  // A native fragment requested before modules mount resolves after app startup.
+  // A native fragment change uses the already-mounted workbench.
   await send('Page.navigate',{url:baseUrl+'#surface-heat'});
-  await wait("document.querySelectorAll('#existing-grid .cell').length===48 && document.activeElement.closest('section.panel')?.id==='surface-heat'",'direct link after fresh app load');
-  checks.push({name:'direct fragment on fresh load'});
+  await wait("document.querySelectorAll('#existing-grid .cell').length===48 && document.activeElement.closest('section.panel')?.id==='surface-heat'",'same-document fragment reaches mounted workbench');
+  checks.push({name:'same-document native fragment reaches mounted workbench'});
 
   // Exercise the unchanged scientific consumer reached through the finder.
-  await click('#heat-example');await click('#heat-save');await click('#heat-run');
+  await wait("document.readyState==='complete' && !!document.getElementById('heat-example') && !!document.getElementById('heat-status')?.dataset.state",'heat consumer mounted');
+  await click('#heat-example');
+  await wait("document.getElementById('heat-run').disabled && document.getElementById('heat-status').textContent.includes('Draft changed')",'fictional heat draft ready');
+  await click('#heat-save');
+  await wait("!!JSON.parse(localStorage.getItem('experimental-earth-site-v1')).surfaceHeatStudy && !document.getElementById('heat-run').disabled && document.getElementById('heat-status').textContent.includes('saved with its original place')",'heat declaration retained and comparison enabled');
+  await click('#heat-run');
+
   await wait("document.getElementById('heat-status').dataset.state==='compared' && !!document.getElementById('heat-summary')",'existing heat comparison');
   const summary=await evaluate("document.getElementById('heat-summary').textContent");
   const saved=await evaluate("localStorage.getItem('experimental-earth-site-v1')");
