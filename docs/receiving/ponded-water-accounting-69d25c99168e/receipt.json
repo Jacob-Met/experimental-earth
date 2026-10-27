@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "sourceFiles": [
+    {
+      "path": "ponded-water-accounting.js",
+      "sha256": "ebe31d00b8499e44aa84f3d1ba936915aaf433ed20f63465eb2dc3cdd3f99bfb"
+    },
+    {
+      "path": "ponded-accounted-uptake.js",
+      "sha256": "1741f546309e8fa2d523b511a05da4782aad985aa2926c9e50c194e1d1252750"
+    },
+    {
+      "path": "ponded-water-accounting-panel.js",
+      "sha256": "aa8b1e36d7e1e6c554626113f469ba75c676f34789f071c101d2e5d3b18af259"
+    },
+    {
+      "path": "ponded-uptake.html",
+      "sha256": "b53f1d5be73a2a9b7a6bdfb980054923df7d708ffcade2a394794adbe8daa32b"
+    },
+    {
+      "path": "tests/ponded-water-accounting.test.mjs",
+      "sha256": "944381623ca17602cb61559af1ba55e8ecda4c5f74a928281509f90253de5a7d"
+    },
+    {
+      "path": "tests/ponded-accounted-uptake.test.mjs",
+      "sha256": "81cd8057af56c1d18af1473def48d3e456ba355c491c82729604daae5f31ce04"
+    },
+    {
+      "path": "tests/ponded-water-accounting.receiving.mjs",
+      "sha256": "faeba3e3525471232fca93d17dac541928eebf4674a589f0fd28642c4332c30a"
+    },
+    {
+      "path": "docs/PONDED_WATER_ACCOUNTING.md",
+      "sha256": "09e48980dbd04c8cc8b94b144dd5f031aa6ec96bd61823df483dfda599659b1e"
+    }
+  ],
+  "native": {
+    "priorCompleteComposition": {
+      "pass": 1368,
+      "fail": 0,
+      "skip": 0,
+      "localReceivingCommit": "def2398",
+      "upstreamCommitClaim": false
+    },
+    "current0caComposition": {
+      "pass": 24,
+      "fail": 0,
+      "skip": 0,
+      "files": [
+        "tests/saved-project-recovery.test.mjs",
+        "tests/ponded-water-accounting.test.mjs",
+        "tests/ponded-accounted-uptake.test.mjs"
+      ],
+      "localReceivingCommit": "8d3ce2d"
+    },
+    "unchangedOracleReceipts": [
+      {
+        "environmentVariable": "EARTH_MEAN_ORACLE",
+        "retainedFile": "mean.json",
+        "bytes": 8848,
+        "sha256": "001e43d675ff30def9592c07940c05cf46704f5a6ac53f1a6db99f354aa12077"
+      },
+      {
+        "environmentVariable": "EARTH_ONSET_ORACLE",
+        "retainedFile": "onset.json",
+        "bytes": 3159,
+        "sha256": "dac0675c999636b68fdeb46ec834c23e3f46b283a05adeb997a79ec0a09df2e0"
+      },
+      {
+        "environmentVariable": "EARTH_SHIFT_ORACLE",
+        "retainedFile": "shift.json",
+        "bytes": 792,
+        "sha256": "94002fcce19f107b806723d72913af71c32fd8d0d153d3d8dd8e233c4ab5206e"
+      },
+      {
+        "environmentVariable": "EARTH_RESPONSE_ORACLE",
+        "retainedFile": "response.json",
+        "bytes": 9620,
+        "sha256": "a1965420834acc01718e081912dda129a83485fd72a7d049b9f5963244378dd2"
+      },
+      {
+        "environmentVariable": "EARTH_FRACTION_ORACLE",
+        "retainedFile": "fraction.json",
+        "bytes": 3007,
+        "sha256": "10f61126f389129c071f51da786afd6f6e9982b37b0101083287f9973ea3cf3d"
+      }
+    ]
+  },
+  "browser": {
+    "newAccountAdmission": 7,
+    "currentEstablishedUptakeOffers": 13,
+    "exceptions": 0,
+    "namespacePidNetworkSeccompTsyncAdmitted": true,
+    "visualInspection": "Final desktop and390px screenshots inspected."
+  },
+  "qualification": "Full1368native and7specific browser groups ran before upstream0ca recovery changes. Exact two changed blobs then composed;24affected native and fresh13established browser groups passed. All direct ponded accounting runtime dependencies are byte-identical. No new full-suite claim on0ca.",
+  "independentReview": "WORLDLAW personally10/10focused pass and accepted sum/subtraction, unknown semantics, underflow repair, outer/inner admission carriers and source/async custody. Only explanatory consumer wording changed afterward."
+}
