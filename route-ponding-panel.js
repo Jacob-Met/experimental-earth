@@ -1,5 +1,6 @@
 import {pondingExposure, snapshotDepths} from './ponding-exposure.js';
 import {parseRouteCells, routeThresholdWindows, routeDepthAtMinute} from './route-ponding.js';
+import {mountTimedTraversal} from './route-traversal-panel.js';
 
 /**
  * Same-time route question over existing solver results. The parent ponding
@@ -31,6 +32,8 @@ export function mountRoutePondingPanel({getProject, getResults}) {
   const num=value=>Number(value.toFixed(2)).toLocaleString('en-US');
   const cellName=(i,p)=>String.fromCharCode(65+(i%p.width))+(Math.floor(i/p.width)+1);
   let declared=null, route=null, windows=null;
+  const traversal=mountTimedTraversal({parent:panel,getProject,getResults,
+    getRoute:()=>route,getThreshold:()=>Number(limit.value)});
   function renderWindows() {
     const target=$('route-ponding-windows');
     target.replaceChildren();
@@ -110,10 +113,10 @@ export function mountRoutePondingPanel({getProject, getResults}) {
         $('route-ponding-error').textContent='Route query cannot be evaluated for this site: '+error.message;
       }
     }
-    renderWindows();drawAtMinute();
+    renderWindows();drawAtMinute();traversal.refresh();
   }
   $('route-ponding-form').addEventListener('submit',event=>{
-    event.preventDefault();declared=$('route-ponding-cells').value;refresh();
+    event.preventDefault();declared=$('route-ponding-cells').value;traversal.reset();refresh();
   });
   clock.addEventListener('input',drawAtMinute);
   limit.addEventListener('change',refresh);
