@@ -166,3 +166,37 @@ test('recovery downloads preserve normal text and retain otherwise unencodable o
     assert.equal(storage.getItem(opened.status().recoveries[0].key), raw);
   }
 });
+
+
+test('a silent active-store write cannot be presented as saved; later verified retry succeeds', () => {
+  let acceptWrites = false;
+  const raw = JSON.stringify(makeExample());
+  const storage = memory({ [active]: raw }, {
+    stored: (key, value) => key === active && !acceptWrites ? raw : value,
+  });
+  const opened = openSavedProject(() => storage);
+  opened.project.title = 'Measured surface, unsaved until confirmed';
+  assert.equal(opened.save(opened.project), false, 'a discarded write is not a saved project');
+  assert.equal(opened.status().writeFailed, true);
+  assert.equal(storage.getItem(active), raw);
+  acceptWrites = true;
+  assert.equal(opened.save(opened.project), true);
+  assert.equal(opened.status().writeFailed, false);
+  assert.equal(JSON.parse(storage.getItem(active)).title, 'Measured surface, unsaved until confirmed');
+});
+
+test('a completed write whose readback is denied is unverified, not certified saved', () => {
+  let denyReadback = false;
+  const raw = JSON.stringify(makeExample());
+  const storage = memory({ [active]: raw }, {
+    write: (key) => { if (key === active) denyReadback = true; },
+    read: (key) => { if (key === active && denyReadback) throw new Error('Readback denied'); },
+  });
+  const opened = openSavedProject(() => storage);
+  opened.project.title = 'Possibly written, not independently verified';
+  assert.equal(opened.save(opened.project), false);
+  assert.equal(opened.status().writeFailed, true);
+  denyReadback = false;
+  const reopened = openSavedProject(() => storage);
+  assert.equal(reopened.project.title, 'Possibly written, not independently verified');
+});
