@@ -1,0 +1,35 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "starting",
+  "startedAt": "2026-10-27T04:06:44.509Z",
+  "executable": "/tmp/hamon-69d25c99168e-tools/chrome-namespace-wrapper.sh",
+  "runDirectory": "/dev/shm/hamon-69d25c99168e-earth-area-offers-browser-r1",
+  "profileDirectory": "/dev/shm/hamon-69d25c99168e-earth-area-offers-browser-r1/profile",
+  "stdoutFile": "/dev/shm/hamon-69d25c99168e-earth-area-offers-browser-r1/stdout.bin",
+  "stderrFile": "/dev/shm/hamon-69d25c99168e-earth-area-offers-browser-r1/stderr.bin",
+  "receiptFile": "/dev/shm/hamon-69d25c99168e-earth-area-offers-browser-r1/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": false,
+    "directChildExited": false,
+    "scope": "launched-direct-child-only"
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/dev/shm/hamon-69d25c99168e-earth-area-offers-browser-r1/profile",
+    "about:blank"
+  ],
+  "pid": 3057250
+}
