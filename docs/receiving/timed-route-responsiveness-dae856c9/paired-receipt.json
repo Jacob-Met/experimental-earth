@@ -1,0 +1,747 @@
+{
+  "schema": "experimental-earth.timed-route-responsiveness.v1",
+  "actor": "estate-dae856c9-20261027",
+  "prompt_version": "2026-10-27.17",
+  "task": "experimental-earth-timed-route-responsiveness-dae856c9",
+  "base": "3033ca20391a1776f7f7bc9075413236d030bffa",
+  "comparison": {
+    "baseline_commit": "3033ca20391a1776f7f7bc9075413236d030bffa",
+    "native": [
+      {
+        "name": "default-three-cell",
+        "resultEqual": true,
+        "before": {
+          "median": 0.44294200000000217,
+          "max": 1.8892159999999762
+        },
+        "after": {
+          "median": 0.6975160000000002,
+          "max": 1.451155
+        }
+      },
+      {
+        "name": "default-48-cell",
+        "resultEqual": true,
+        "before": {
+          "median": 1.671466499999994,
+          "max": 1.910919000000007
+        },
+        "after": {
+          "median": 0.26548699999999315,
+          "max": 0.29350500000001034
+        }
+      },
+      {
+        "name": "maximum-supported-128-cell",
+        "resultEqual": true,
+        "before": {
+          "median": 630.3459629999998,
+          "max": 635.9062159999994
+        },
+        "after": {
+          "median": 16.447851500000013,
+          "max": 19.506795000000068
+        }
+      }
+    ],
+    "browser": {
+      "sourceEqual": true,
+      "displayEqual": true,
+      "before": {
+        "firstCallMs": 647.3999999910593,
+        "warmupMs": 675.9000000059605,
+        "medianMs": 676.5,
+        "maxMs": 713.5999999940395,
+        "samplesMs": [
+          709.1000000089407,
+          713.5999999940395,
+          676.5,
+          670.2999999970198,
+          670.4000000059605
+        ]
+      },
+      "after": {
+        "firstCallMs": 21.19999998807907,
+        "warmupMs": 20.099999994039536,
+        "medianMs": 20.30000001192093,
+        "maxMs": 21.5,
+        "samplesMs": [
+          21.5,
+          20.30000001192093,
+          19.899999991059303,
+          20.30000001192093,
+          19.600000008940697
+        ]
+      },
+      "medianSpeedup": 33.325123133139584,
+      "medianReductionPercent": 96.99926089993778
+    },
+    "limits": [
+      "One host and three native workload sizes; not a universal speedup claim.",
+      "Default three-cell full-native median rose from0.443 to0.698ms; report this alongside max-case gain.",
+      "Original imported file bytes unchanged; benchmark alone does not establish all in-memory app project custody.",
+      "Next animation-frame timing is opportunity, not completed paint."
+    ]
+  },
+  "measurements": {
+    "baseline": {
+      "native": {
+        "repository": "/workspace/hamon-dae856c9-ee-20261027-accepted-443",
+        "node": "v22.23.4",
+        "methodology": "Retained actual solver results; synchronous queries only; first call separate; 3 warmups and 10 measurements unless a call exceeds 1000 ms; no browser timing",
+        "findings": [
+          {
+            "name": "default-three-cell",
+            "grid": [
+              8,
+              6
+            ],
+            "routeCells": 3,
+            "snapshots": 49,
+            "departureRange": [
+              0,
+              10
+            ],
+            "stepMinutes": 1,
+            "thresholdMm": 1,
+            "inspection": {
+              "label": "paired inspector",
+              "firstCallMs": 0.7938379999999938,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 0.2744830000000036,
+              "maxMs": 0.8161899999999775,
+              "samplesMs": [
+                0.2804790000000139,
+                0.255217000000016,
+                0.279988000000003,
+                0.26897800000000416,
+                0.29177000000001385,
+                0.2890700000000095,
+                0.8161899999999775,
+                0.16467500000001678,
+                0.14257999999998106,
+                0.14115999999998508
+              ],
+              "resultSha256": "43401bedbed6b3b26445465877feaffdbc88d6d313dba498a9e4dd5c51708145"
+            },
+            "full": {
+              "label": "full paired traversal",
+              "firstCallMs": 1.4428470000000004,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 0.44294200000000217,
+              "maxMs": 1.8892159999999762,
+              "samplesMs": [
+                1.4362130000000093,
+                1.8892159999999762,
+                1.7503289999999936,
+                1.6909379999999885,
+                0.3845140000000242,
+                0.3887990000000059,
+                0.45732000000000994,
+                0.39695199999999886,
+                0.40337399999998524,
+                0.4285639999999944
+              ],
+              "resultSha256": "44663e280121ae0db4c80793be6a9c1056b0f4997a01395cb15f9457599c606f"
+            },
+            "inputUnchanged": true
+          },
+          {
+            "name": "default-48-cell",
+            "grid": [
+              8,
+              6
+            ],
+            "routeCells": 48,
+            "snapshots": 49,
+            "departureRange": [
+              0,
+              10
+            ],
+            "stepMinutes": 1,
+            "thresholdMm": 1,
+            "inspection": {
+              "label": "paired inspector",
+              "firstCallMs": 2.42440000000002,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 1.5393254999999897,
+              "maxMs": 1.9906569999999988,
+              "samplesMs": [
+                1.6734610000000032,
+                1.5437919999999963,
+                1.6477450000000147,
+                1.9906569999999988,
+                1.4800809999999842,
+                1.4567009999999811,
+                1.5064249999999788,
+                1.7071599999999876,
+                1.497903000000008,
+                1.534858999999983
+              ],
+              "resultSha256": "86ef582ff6801273d8de5113de0cdd29fc96c212f28e62cf3e40ce767dc7b7fb"
+            },
+            "full": {
+              "label": "full paired traversal",
+              "firstCallMs": 1.6800179999999898,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 1.671466499999994,
+              "maxMs": 1.910919000000007,
+              "samplesMs": [
+                1.6715149999999994,
+                1.910919000000007,
+                1.6714179999999885,
+                1.8257480000000044,
+                1.6392859999999985,
+                1.8284500000000037,
+                1.655259000000001,
+                1.6387520000000109,
+                1.6114949999999908,
+                1.8849229999999864
+              ],
+              "resultSha256": "801f30785dd40a2feb3a49ae03a9d5dc98e2bcf3aed943a54cbc068aab4f451a"
+            },
+            "inputUnchanged": true
+          },
+          {
+            "name": "maximum-supported-128-cell",
+            "grid": [
+              24,
+              24
+            ],
+            "routeCells": 128,
+            "snapshots": 721,
+            "departureRange": [
+              0,
+              10
+            ],
+            "stepMinutes": 1,
+            "thresholdMm": 1,
+            "inspection": {
+              "label": "paired inspector",
+              "firstCallMs": 641.8947539999999,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 645.339039,
+              "maxMs": 685.1326889999996,
+              "samplesMs": [
+                668.4834599999999,
+                685.1326889999996,
+                630.5359490000001,
+                675.2765930000005,
+                635.8770770000001,
+                628.5834940000004,
+                623.9559380000001,
+                666.7267200000006,
+                623.5645160000004,
+                654.8010009999998
+              ],
+              "resultSha256": "74c85f7a4fb7fc7b1272da6a0958a2c30fc8c467346a86d8e6d37db42fd9b873"
+            },
+            "full": {
+              "label": "full paired traversal",
+              "firstCallMs": 640.8436089999996,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 630.3459629999998,
+              "maxMs": 635.9062159999994,
+              "samplesMs": [
+                625.5626379999994,
+                632.8654860000006,
+                629.484821,
+                633.5382109999991,
+                630.6608450000003,
+                630.0310809999992,
+                629.9520790000006,
+                634.8127400000012,
+                629.943381000001,
+                635.9062159999994
+              ],
+              "resultSha256": "529ebd134c3ed2a539ce719a2e635988c1b30fd728a266d48a29c64736ce4ee1"
+            },
+            "inputUnchanged": true
+          }
+        ]
+      },
+      "browser": {
+        "repository": "/workspace/hamon-dae856c9-ee-20261027-accepted-443",
+        "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-accepted-443/.browser-timed-route-latency-0a2ce47c-3878-4e40-8bb9-02461b506355",
+        "sandboxPath": "/workspace/hamon-dae856c9-ee-20261027-accepted-443/.browser-timed-route-latency-0a2ce47c-3878-4e40-8bb9-02461b506355/sandbox.json",
+        "activeSandbox": true,
+        "sourceSha256": "dfb356637048030934a2f840214bf394dd37c76fba06372f657687c1d2f47538",
+        "sourceBytesUnchanged": true,
+        "grid": [
+          24,
+          24
+        ],
+        "routeCells": 128,
+        "horizonMinutes": 720,
+        "stepMinutes": 1,
+        "thresholdMm": 1,
+        "departureRange": [
+          0,
+          10
+        ],
+        "repetitions": 5,
+        "synchronousSubmit": {
+          "firstCallMs": 647.3999999910593,
+          "warmupMs": 675.9000000059605,
+          "medianMs": 676.5,
+          "maxMs": 713.5999999940395,
+          "samplesMs": [
+            709.1000000089407,
+            713.5999999940395,
+            676.5,
+            670.2999999970198,
+            670.4000000059605
+          ]
+        },
+        "submitToNextAnimationFrame": {
+          "firstCallMs": 648.7999999970198,
+          "warmupMs": 677.7000000029802,
+          "medianMs": 677.7999999970198,
+          "maxMs": 715,
+          "samplesMs": [
+            710.6000000089407,
+            715,
+            677.7999999970198,
+            671.5,
+            671.5
+          ]
+        },
+        "displayedResults": "Declared travel: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 modeled min per step. Departure interval 0\u201310 min; every route arrival is inside the retained replay.Existing: 0 modeled departure minutes in 0 continuous qualifying interval(s). No positive-duration modeled departure window qualifies.At earliest requested departure 0 min, first modeled exceedance is D1 at arrival minute 3 (1.1 mm).Proposal: 0 modeled departure minutes in 0 continuous qualifying interval(s). No positive-duration modeled departure window qualifies.At earliest requested departure 0 min, first modeled exceedance is D1 at arrival minute 3 (1.1 mm).Proposal minus existing: 0 modeled departure minutes satisfying these conditional arrival-depth comparisons.These conditional interpolated model-depth comparisons do not establish safe human traversal, accessibility, walking speeds or physical flood conditions. Isolated threshold-equality instants are not counted as positive-duration departure windows.",
+        "exceptions": [],
+        "limitation": "Next animation-frame callback is a rendering-opportunity timing, not proof of completed paint. Import, solver generation and route setup excluded."
+      }
+    },
+    "candidate": {
+      "native": {
+        "repository": "/workspace/hamon-dae856c9-ee-20261027-route-performance",
+        "node": "v22.23.4",
+        "methodology": "Retained actual solver results; synchronous queries only; first call separate; 3 warmups and 10 measurements unless a call exceeds 1000 ms; no browser timing",
+        "findings": [
+          {
+            "name": "default-three-cell",
+            "grid": [
+              8,
+              6
+            ],
+            "routeCells": 3,
+            "snapshots": 49,
+            "departureRange": [
+              0,
+              10
+            ],
+            "stepMinutes": 1,
+            "thresholdMm": 1,
+            "inspection": {
+              "label": "paired inspector",
+              "firstCallMs": 0.4279520000000048,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 0.09154649999999975,
+              "maxMs": 0.10195699999999874,
+              "samplesMs": [
+                0.10195699999999874,
+                0.09099199999999996,
+                0.08817099999998845,
+                0.09221800000000258,
+                0.09306899999999985,
+                0.0927470000000028,
+                0.09210099999999954,
+                0.0875559999999922,
+                0.08824199999999394,
+                0.09092099999999448
+              ],
+              "resultSha256": "43401bedbed6b3b26445465877feaffdbc88d6d313dba498a9e4dd5c51708145"
+            },
+            "full": {
+              "label": "full paired traversal",
+              "firstCallMs": 2.014585999999994,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 0.6975160000000002,
+              "maxMs": 1.451155,
+              "samplesMs": [
+                0.9347470000000015,
+                1.0421960000000041,
+                1.1014789999999977,
+                1.3461620000000067,
+                1.451155,
+                0.46028499999999894,
+                0.21613600000000588,
+                0.2053290000000061,
+                0.19725900000000252,
+                0.198639
+              ],
+              "resultSha256": "44663e280121ae0db4c80793be6a9c1056b0f4997a01395cb15f9457599c606f"
+            },
+            "inputUnchanged": true
+          },
+          {
+            "name": "default-48-cell",
+            "grid": [
+              8,
+              6
+            ],
+            "routeCells": 48,
+            "snapshots": 49,
+            "departureRange": [
+              0,
+              10
+            ],
+            "stepMinutes": 1,
+            "thresholdMm": 1,
+            "inspection": {
+              "label": "paired inspector",
+              "firstCallMs": 0.25489499999999055,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 0.23270750000001783,
+              "maxMs": 0.7005490000000236,
+              "samplesMs": [
+                0.25589300000000037,
+                0.25201899999999,
+                0.23350700000000302,
+                0.2320060000000126,
+                0.2306509999999946,
+                0.23340900000002307,
+                0.7005490000000236,
+                0.11718900000002463,
+                0.11676099999999678,
+                0.11638499999997975
+              ],
+              "resultSha256": "86ef582ff6801273d8de5113de0cdd29fc96c212f28e62cf3e40ce767dc7b7fb"
+            },
+            "full": {
+              "label": "full paired traversal",
+              "firstCallMs": 0.27272800000000075,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 0.26548699999999315,
+              "maxMs": 0.29350500000001034,
+              "samplesMs": [
+                0.29350500000001034,
+                0.26624100000000794,
+                0.25073400000002266,
+                0.2809479999999951,
+                0.2671369999999911,
+                0.256036000000023,
+                0.24173199999998474,
+                0.2642590000000098,
+                0.26473299999997835,
+                0.27895599999999376
+              ],
+              "resultSha256": "801f30785dd40a2feb3a49ae03a9d5dc98e2bcf3aed943a54cbc068aab4f451a"
+            },
+            "inputUnchanged": true
+          },
+          {
+            "name": "maximum-supported-128-cell",
+            "grid": [
+              24,
+              24
+            ],
+            "routeCells": 128,
+            "snapshots": 721,
+            "departureRange": [
+              0,
+              10
+            ],
+            "stepMinutes": 1,
+            "thresholdMm": 1,
+            "inspection": {
+              "label": "paired inspector",
+              "firstCallMs": 6.121944999999982,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 5.201019500000015,
+              "maxMs": 5.579383999999976,
+              "samplesMs": [
+                5.087413999999995,
+                5.0668679999999995,
+                5.279888,
+                5.2064510000000155,
+                5.152352999999977,
+                5.579383999999976,
+                5.195588000000015,
+                5.33211399999999,
+                5.167658000000017,
+                5.377382000000011
+              ],
+              "resultSha256": "74c85f7a4fb7fc7b1272da6a0958a2c30fc8c467346a86d8e6d37db42fd9b873"
+            },
+            "full": {
+              "label": "full paired traversal",
+              "firstCallMs": 16.945797999999968,
+              "warmups": 3,
+              "measuredRepetitions": 10,
+              "shortened": false,
+              "medianMs": 16.447851500000013,
+              "maxMs": 19.506795000000068,
+              "samplesMs": [
+                16.15497499999998,
+                16.45976300000001,
+                16.435940000000016,
+                16.22229299999998,
+                16.17918800000001,
+                16.40454600000004,
+                19.506795000000068,
+                16.50708899999995,
+                16.569477000000006,
+                16.600587999999902
+              ],
+              "resultSha256": "529ebd134c3ed2a539ce719a2e635988c1b30fd728a266d48a29c64736ce4ee1"
+            },
+            "inputUnchanged": true
+          }
+        ]
+      },
+      "browser": {
+        "repository": "/workspace/hamon-dae856c9-ee-20261027-route-performance",
+        "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-route-performance/.browser-timed-route-latency-0cd86795-4936-4e64-9b30-30a5a042361b",
+        "sandboxPath": "/workspace/hamon-dae856c9-ee-20261027-route-performance/.browser-timed-route-latency-0cd86795-4936-4e64-9b30-30a5a042361b/sandbox.json",
+        "activeSandbox": true,
+        "sourceSha256": "dfb356637048030934a2f840214bf394dd37c76fba06372f657687c1d2f47538",
+        "sourceBytesUnchanged": true,
+        "grid": [
+          24,
+          24
+        ],
+        "routeCells": 128,
+        "horizonMinutes": 720,
+        "stepMinutes": 1,
+        "thresholdMm": 1,
+        "departureRange": [
+          0,
+          10
+        ],
+        "repetitions": 5,
+        "synchronousSubmit": {
+          "firstCallMs": 21.19999998807907,
+          "warmupMs": 20.099999994039536,
+          "medianMs": 20.30000001192093,
+          "maxMs": 21.5,
+          "samplesMs": [
+            21.5,
+            20.30000001192093,
+            19.899999991059303,
+            20.30000001192093,
+            19.600000008940697
+          ]
+        },
+        "submitToNextAnimationFrame": {
+          "firstCallMs": 22.399999991059303,
+          "warmupMs": 21.399999991059303,
+          "medianMs": 21.30000001192093,
+          "maxMs": 22.700000002980232,
+          "samplesMs": [
+            22.700000002980232,
+            21.400000005960464,
+            20.899999991059303,
+            21.30000001192093,
+            20.600000008940697
+          ]
+        },
+        "displayedResults": "Declared travel: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 modeled min per step. Departure interval 0\u201310 min; every route arrival is inside the retained replay.Existing: 0 modeled departure minutes in 0 continuous qualifying interval(s). No positive-duration modeled departure window qualifies.At earliest requested departure 0 min, first modeled exceedance is D1 at arrival minute 3 (1.1 mm).Proposal: 0 modeled departure minutes in 0 continuous qualifying interval(s). No positive-duration modeled departure window qualifies.At earliest requested departure 0 min, first modeled exceedance is D1 at arrival minute 3 (1.1 mm).Proposal minus existing: 0 modeled departure minutes satisfying these conditional arrival-depth comparisons.These conditional interpolated model-depth comparisons do not establish safe human traversal, accessibility, walking speeds or physical flood conditions. Isolated threshold-equality instants are not counted as positive-duration departure windows.",
+        "exceptions": [],
+        "limitation": "Next animation-frame callback is a rendering-opportunity timing, not proof of completed paint. Import, solver generation and route setup excluded."
+      }
+    }
+  },
+  "execution": {
+    "owner": "node-72e09d180ec675855992b3cbfb59e9e8",
+    "incarnation": "6d623deaac81c47d8d70cb4e706c2457",
+    "generation": 2,
+    "baseline_receipt": {
+      "command_id": "estate-dae856c9-20261027-performance-baseline-01",
+      "request_sha256": "e800e45d5b85956fb3eaf064b2318fdfc1fbbb0b32d6a655e6da6755906e5706",
+      "generation": "361984ea9e062d8dd5b924459612c3e645bb679a96c7d741df4590393b40ada3",
+      "state": "completed",
+      "runner_pid": 925453,
+      "started_at": "2026-10-27T08:43:42.192122238Z",
+      "finished_at": "2026-10-27T08:44:10.269928338Z",
+      "exit_code": 0
+    },
+    "candidate_receipt": {
+      "command_id": "estate-dae856c9-20261027-performance-verify-03",
+      "request_sha256": "8be3f08c5fd8e1b4c69fdf6adce420616507113b4113303d22fdc32ae2d269a9",
+      "generation": "4f40dcb6aabe7b6d3470234fdeb0a1f0d3cc096ca15495b3b139ce7b0d2694f8",
+      "state": "completed",
+      "runner_pid": 945133,
+      "started_at": "2026-10-27T08:47:04.545396023Z",
+      "finished_at": "2026-10-27T08:47:37.159272702Z",
+      "exit_code": 0
+    },
+    "logs": "/tmp/estate-dae856c9-20261027/verification",
+    "commands": {
+      "native": "node --test --test-concurrency=2 tests/*.test.mjs (glob expanded to sorted file list by runner)",
+      "browser": "CHROME_BIN=/usr/bin/google-chrome node tests/route-traversal-oracle.receiving.mjs",
+      "native_benchmark": "node /tmp/estate-dae856c9-20261027/timed-route-latency.mjs ABSOLUTE_REPOSITORY_PATH",
+      "browser_benchmark": "node /tmp/estate-dae856c9-20261027/timed-route-browser-latency.mjs ABSOLUTE_REPOSITORY_PATH",
+      "negative_control": "node --test tests/ponding-exposure-batch.test.mjs in disposable copy with batch validation bypassed"
+    }
+  },
+  "verification": {
+    "native": {
+      "passed": 1442,
+      "failed": 0,
+      "skipped": 0,
+      "output_tail": "th another override\n  ---\n  duration_ms: 6.342327\n  type: 'test'\n  ...\n# Subtest: reverse rainfall origins agree with independently propagated forward tags under wetting-front absorption\nok 1437 - reverse rainfall origins agree with independently propagated forward tags under wetting-front absorption\n  ---\n  duration_ms: 2.828161\n  type: 'test'\n  ...\n# Subtest: extra hypothesis properties cannot overwrite actual rain, elapsed time or cumulative water state\nok 1438 - extra hypothesis properties cannot overwrite actual rain, elapsed time or cumulative water state\n  ---\n  duration_ms: 0.470884\n  type: 'test'\n  ...\n# Subtest: separating authored observations select a mechanism; held-aside changes do not alter calibration ordering\nok 1439 - separating authored observations select a mechanism; held-aside changes do not alter calibration ordering\n  ---\n  duration_ms: 2.593653\n  type: 'test'\n  ...\n# Subtest: dry observations leave parameter alternatives ambiguous; absent surface cannot identify parameters\nok 1440 - dry observations leave parameter alternatives ambiguous; absent surface cannot identify parameters\n  ---\n  duration_ms: 1.43636\n  type: 'test'\n  ...\n# Subtest: complete matched geometry, equal rain, observation roles and source inputs survive input-only replay\nok 1441 - complete matched geometry, equal rain, observation roles and source inputs survive input-only replay\n  ---\n  duration_ms: 3.091873\n  type: 'test'\n  ...\n# Subtest: bounded declarations and aggregate work are admitted before simulations or imports\nok 1442 - bounded declarations and aggregate work are admitted before simulations or imports\n  ---\n  duration_ms: 15.447401\n  type: 'test'\n  ...\n1..1442\n# tests 1442\n# suites 0\n# pass 1442\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 22628.610998\n",
+      "stderr": ""
+    },
+    "browser": {
+      "pass": 11,
+      "outcomes": [
+        {
+          "input": "maintained index entry mounts traversal",
+          "pass": true
+        },
+        {
+          "input": "maintained example raw-snapshot oracle versus rendered values",
+          "totals": {
+            "existing": 23.33750338852964,
+            "proposal": 24.79284198787692
+          },
+          "delta": 1.4553385993472787,
+          "pass": true
+        },
+        {
+          "input": "maintained traversal desktop and 390px receiving",
+          "screenshots": {
+            "desktop": "/workspace/hamon-dae856c9-ee-20261027-route-performance/.browser-timed-route-oracle-e8d35fc4-2151-440f-b622-8c3871b5c458/maintained-traversal-desktop.png",
+            "mobile": "/workspace/hamon-dae856c9-ee-20261027-route-performance/.browser-timed-route-oracle-e8d35fc4-2151-440f-b622-8c3871b5c458/maintained-traversal-mobile.png"
+          },
+          "screenshotRegions": {
+            "desktop": {
+              "x": 337,
+              "y": 3608.390625,
+              "width": 1064,
+              "height": 782,
+              "scale": 1
+            },
+            "mobile": {
+              "x": 29,
+              "y": 6163.515625,
+              "width": 332,
+              "height": 1219.390625,
+              "scale": 1
+            }
+          },
+          "pass": true
+        },
+        {
+          "input": "analytic crossing shifted by B arrival offset 2",
+          "existing": 3,
+          "proposal": 10,
+          "delta": 7,
+          "pass": true
+        },
+        {
+          "input": "exact threshold equality versus first exceedance at declared arrival",
+          "pass": true
+        },
+        {
+          "input": "parent threshold 1 -> 2 -> 1 recomputes retained query",
+          "pass": true
+        },
+        {
+          "input": "changed B arrival offset 5 removes positive existing window",
+          "pass": true
+        },
+        {
+          "input": "reversed parent route and new timing recompute",
+          "pass": true
+        },
+        {
+          "input": "invalid arrival horizon then valid recovery",
+          "pass": true
+        },
+        {
+          "input": "mismatched proposal horizon then source refresh recovery",
+          "pass": true
+        },
+        {
+          "input": "source custody and browser exceptions",
+          "pass": true
+        }
+      ],
+      "runDirectory": "/workspace/hamon-dae856c9-ee-20261027-route-performance/.browser-timed-route-oracle-e8d35fc4-2151-440f-b622-8c3871b5c458"
+    },
+    "negative_control": {
+      "phase": "negative-control",
+      "expected_rejection": true,
+      "mutation": "Batch full-result validation bypassed in disposable copy",
+      "failures": [
+        "not ok 5 - batch validates entire retained result including cells and times never sampled",
+        "not ok 6 - full source validation precedes batch query validation",
+        "not ok 7 - valid and invalid mutations on same object are observed on every invocation",
+        "not ok 8 - timed route consumer retains cumulative arrival identities and first-failure order"
+      ]
+    }
+  },
+  "reviews": {
+    "implementation": "/root/source_scout",
+    "independent_tests": "/root/product_recovery",
+    "source": [
+      "/root",
+      "/root/product_recovery",
+      "/root/recover_board"
+    ],
+    "benchmark": "/root/source_scout",
+    "executor": "/root through Renpo"
+  },
+  "retained_failures": [
+    {
+      "command": "estate-dae856c9-20261027-performance-verify-01",
+      "reason": "Orchestration SHA check used escaped backslash-zero instead of Git NUL header; rejected before candidate directory or test execution."
+    },
+    {
+      "command": "estate-dae856c9-20261027-performance-verify-02",
+      "reason": "Orchestration escape correction also changed embedded JSON; parse refused before candidate directory or test execution."
+    }
+  ],
+  "scope": "Full source validation and scalar interpolation retained; eager inspector may report later invalid time before earlier invalid cell when both are invalid. No other input-hardening, solver, physical model, UI, source-schema or persistent-cache change.",
+  "tested_sources": {
+    "ponding-exposure.js": {
+      "base_blob": "27cac70914192d0605fa46c732ef3ed79bc3d48f",
+      "git_blob": "0442ed38e6e76f776d8260810543da0881db45f5",
+      "sha256": "b998b4a73d9667f4440c4f4bd1684c5e29f2256a5eb1e5f95eea5de90b197ad1"
+    },
+    "route-traversal.js": {
+      "base_blob": "7f99235b43386eb5fcacf046883bcb942f4a4da2",
+      "git_blob": "5050486ade12e42225e72242fea6ed13e71a8e07",
+      "sha256": "eb9865b048eddcabb828c2a2f9bb857e08cd560cc16fd1b80b0ddae0b500cdb3"
+    },
+    "tests/ponding-exposure-batch.test.mjs": {
+      "base_blob": null,
+      "git_blob": "729912cc59ca7abc6398573822000060bd4c20e9",
+      "sha256": "f81f6871ffa199fc9e5cd01c4ff272bdf9c3f753634695d29e35c16af98eb580"
+    },
+    "tests/benchmarks/timed-route-latency.mjs": {
+      "base_blob": null,
+      "git_blob": "3f2c6c794abdb9c746bcc5185c8d55ac4d5c6163",
+      "sha256": "f005b5c7c9bc739520ceb6907c290d273ba5fc8ca55114528d3dc9a1e5f9bd0c"
+    },
+    "tests/benchmarks/timed-route-browser-latency.mjs": {
+      "base_blob": null,
+      "git_blob": "f896c9c663ae6ae29e883741db74a1f39b1ff76b",
+      "sha256": "b39ab60e763aa75fe513a7d2f0a59dd38c06d24cfece64f73f255fcb0eb28127"
+    }
+  },
+  "publication_note": "Documentation is finalized after execution; tested source pins cover production, independent tests and unchanged benchmark scripts."
+}

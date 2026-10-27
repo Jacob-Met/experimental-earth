@@ -34,6 +34,26 @@ export function pondingExposure(result, thresholdMm) {
 
 export function snapshotDepths(result, minute) {
   const snapshots = validateSnapshots(result);
+  return depthsFromValidatedSnapshots(snapshots, minute);
+}
+
+/** Sample one bounded query without repeatedly validating the full replay. */
+export function snapshotDepthsAtMinutes(result, minutes) {
+  const snapshots = validateSnapshots(result);
+  if (!Array.isArray(minutes) || minutes.length < 1 || minutes.length > 128) {
+    throw new Error('Supply between 1 and 128 modeled replay times.');
+  }
+  const rows = [];
+  for (let i = 0; i < minutes.length; i++) {
+    if (!Object.prototype.hasOwnProperty.call(minutes, i)) {
+      throw new Error('Supply a dense array of modeled replay times.');
+    }
+    rows.push(depthsFromValidatedSnapshots(snapshots, minutes[i]));
+  }
+  return rows;
+}
+
+function depthsFromValidatedSnapshots(snapshots, minute) {
   if (!Number.isFinite(minute) || minute < snapshots[0].minute || minute > snapshots.at(-1).minute) throw new Error('Replay time is outside the modeled event.');
   let i = snapshots.findIndex(s => s.minute >= minute);
   const b = snapshots[i];
@@ -56,3 +76,4 @@ function validateSnapshots(result) {
   });
   return snapshots;
 }
+
