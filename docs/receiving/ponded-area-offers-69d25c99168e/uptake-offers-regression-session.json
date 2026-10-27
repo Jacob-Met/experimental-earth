@@ -1,0 +1,59 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "course-completed",
+  "startedAt": "2026-10-27T04:11:02.611Z",
+  "executable": "/tmp/hamon-69d25c99168e-tools/chrome-namespace-wrapper.sh",
+  "runDirectory": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398",
+  "profileDirectory": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/profile",
+  "stdoutFile": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/stdout.bin",
+  "stderrFile": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/stderr.bin",
+  "receiptFile": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": true,
+    "directChildExited": true,
+    "scope": "launched-direct-child-only",
+    "signals": [
+      "SIGTERM"
+    ]
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/profile",
+    "about:blank"
+  ],
+  "pid": 3061404,
+  "cdpUrl": "http://127.0.0.1:43473",
+  "browserWebSocketUrl": "ws://127.0.0.1:43473/devtools/browser/b5199c54-b9bb-4c6c-b996-f107628fa3df",
+  "browserVersion": "Chrome/156.0.8078.47",
+  "readyAt": "2026-10-27T04:11:03.026Z",
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "logsComplete": true,
+  "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+  "stdout": {
+    "path": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/stdout.bin",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/dev/shm/hamon-69d25c99168e-earth-uptake-browser-r3-6e5d4633-4782-435d-91e3-94a817568398/stderr.bin",
+    "bytes": 8131,
+    "sha256": "07b1e9e713c6a9421d6bb54ec6bd826443621791eaa418767602bcad4b89f9be"
+  },
+  "finishedAt": "2026-10-27T04:11:05.044Z"
+}

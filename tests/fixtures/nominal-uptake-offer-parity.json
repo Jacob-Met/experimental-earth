@@ -1,0 +1,295 @@
+{
+  "source": "Frozen original offer module before helper extraction",
+  "cases": [
+    {
+      "study": {
+        "schema": "experimental-earth-ponded-uptake/1",
+        "place": "Authored small test patch; fictional",
+        "method": "Continuously ponded net infiltration supplied as an authored control; no real measurement. Surface storage, evaporation, leakage and lateral losses excluded by declaration.",
+        "source": "Fictional analytic K=10, A=0 control",
+        "areaM2": 0.1,
+        "quantity": "net-infiltrated-volume",
+        "continuouslyPonded": true,
+        "hypotheses": [
+          {
+            "id": "K10",
+            "conductivityMmHr": 10,
+            "capillaryDriveMm": 0,
+            "initialCumulativeMm": 0
+          },
+          {
+            "id": "K20",
+            "conductivityMmHr": 20,
+            "capillaryDriveMm": 0,
+            "initialCumulativeMm": 0
+          }
+        ],
+        "readings": [
+          {
+            "minute": 60,
+            "volume": 1,
+            "uncertainty": 0.01,
+            "unit": "L",
+            "role": "calibration",
+            "source": "Authored original"
+          }
+        ]
+      },
+      "offer": {
+        "basis": "Offered continuing test",
+        "afterMinute": 60,
+        "times": [
+          {
+            "minute": 90,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          },
+          {
+            "minute": 120,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          },
+          {
+            "minute": 240,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          },
+          {
+            "minute": 720,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          }
+        ]
+      },
+      "result": {
+        "status": "insufficient-alternatives",
+        "candidates": [
+          {
+            "id": "K10",
+            "conductivityMmHr": 10,
+            "capillaryDriveMm": 0,
+            "initialCumulativeMm": 0,
+            "calibrationNumericalBoundary": false
+          }
+        ],
+        "rows": [
+          {
+            "minute": 90,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "K10",
+                "liters": 1.5,
+                "lowLiters": 1.49,
+                "highLiters": 1.51
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          },
+          {
+            "minute": 120,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "K10",
+                "liters": 2,
+                "lowLiters": 1.99,
+                "highLiters": 2.01
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          },
+          {
+            "minute": 240,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "K10",
+                "liters": 4,
+                "lowLiters": 3.99,
+                "highLiters": 4.01
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          },
+          {
+            "minute": 720,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "K10",
+                "liters": 12,
+                "lowLiters": 11.99,
+                "highLiters": 12.01
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          }
+        ],
+        "preferredMinute": null,
+        "policy": "Greatest pair coverage among supplied offers; earliest time breaks ties. Numerical-boundary calibration alternatives remain possible, not confirmed; maintained conservative band guard; no probabilities, automatic evidence or site transfer."
+      }
+    },
+    {
+      "study": {
+        "schema": "experimental-earth-ponded-uptake/1",
+        "place": "Authored small test patch; fictional",
+        "method": "Continuously ponded net infiltration supplied as an authored control; no real measurement. Surface storage, evaporation, leakage and lateral losses excluded by declaration.",
+        "source": "Fictional analytic K=10, A=0 control",
+        "areaM2": 0.1,
+        "quantity": "net-infiltrated-volume",
+        "continuouslyPonded": true,
+        "hypotheses": [
+          {
+            "id": "constant 10",
+            "conductivityMmHr": 10,
+            "capillaryDriveMm": 0,
+            "initialCumulativeMm": 0
+          },
+          {
+            "id": "wetting front",
+            "conductivityMmHr": 10,
+            "capillaryDriveMm": 30,
+            "initialCumulativeMm": 0
+          }
+        ],
+        "readings": [
+          {
+            "minute": 30,
+            "volume": 500,
+            "uncertainty": 20,
+            "unit": "mL",
+            "role": "calibration",
+            "source": "Authored half-hour quantity"
+          },
+          {
+            "minute": 60,
+            "volume": 1,
+            "uncertainty": 0.02,
+            "unit": "L",
+            "role": "challenge",
+            "source": "Authored held-aside hour quantity"
+          }
+        ]
+      },
+      "offer": {
+        "basis": "Offered continuing test",
+        "afterMinute": 60,
+        "times": [
+          {
+            "minute": 90,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          },
+          {
+            "minute": 120,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          },
+          {
+            "minute": 240,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          },
+          {
+            "minute": 720,
+            "available": true,
+            "uncertaintyLiters": 0.01
+          }
+        ]
+      },
+      "result": {
+        "status": "insufficient-alternatives",
+        "candidates": [
+          {
+            "id": "constant 10",
+            "conductivityMmHr": 10,
+            "capillaryDriveMm": 0,
+            "initialCumulativeMm": 0,
+            "calibrationNumericalBoundary": false
+          }
+        ],
+        "rows": [
+          {
+            "minute": 90,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "constant 10",
+                "liters": 1.5,
+                "lowLiters": 1.49,
+                "highLiters": 1.51
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          },
+          {
+            "minute": 120,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "constant 10",
+                "liters": 2,
+                "lowLiters": 1.99,
+                "highLiters": 2.01
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          },
+          {
+            "minute": 240,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "constant 10",
+                "liters": 4,
+                "lowLiters": 3.99,
+                "highLiters": 4.01
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          },
+          {
+            "minute": 720,
+            "available": true,
+            "uncertaintyLiters": 0.01,
+            "status": "insufficient-alternatives",
+            "predictions": [
+              {
+                "id": "constant 10",
+                "liters": 12,
+                "lowLiters": 11.99,
+                "highLiters": 12.01
+              }
+            ],
+            "separatedPairs": [],
+            "unresolvedPairs": []
+          }
+        ],
+        "preferredMinute": null,
+        "policy": "Greatest pair coverage among supplied offers; earliest time breaks ties. Numerical-boundary calibration alternatives remain possible, not confirmed; maintained conservative band guard; no probabilities, automatic evidence or site transfer."
+      }
+    }
+  ]
+}

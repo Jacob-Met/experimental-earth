@@ -1,0 +1,29 @@
+{
+  "native": {
+    "passed": 1344,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "successor": 7,
+    "uptakeOffersRegression": 13,
+    "sharedAreaRegression": 7,
+    "exceptions": 0,
+    "sandboxAdmitted": true
+  },
+  "localReceivingCommit": "ca7103106628cf9041a06f9b0664e8484efa7285",
+  "localReceivingCommitIsUpstream": false,
+  "review": "WORLDLAW independently reran7focused tests and exact-contact/reversed-order probes; no numerical/source blocker. No edits or independent browser claim.",
+  "sourceQualification": "New consumer7course served byte-identical product files; both unchanged predecessor courses executed against complete successor composition. Original34-path freeze unchanged.",
+  "nativeCommand": "EARTH_MEAN_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/mean.json EARTH_ONSET_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/onset.json EARTH_SHIFT_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/shift.json EARTH_RESPONSE_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/response.json EARTH_FRACTION_ORACLE=/tmp/hamon-69d25c99168e-earth-uptake-composition/oracles/fraction.json npm test",
+  "nativeCwd": "/dev/shm/hamon-69d25c99168e-earth-area-offers-composed",
+  "currentBaseComposition": {
+    "delta": "Only added tests/rain-envelope-invariants.test.mjs",
+    "upstreamBlob": "fd53da4a45e102ef66f6b282407bf939ba252294",
+    "focusedPassed": 23,
+    "failed": 0,
+    "skipped": 0,
+    "fullGateNotRepeated": "1344native and13+7+7browser proofs retain their original base; every runtime product dependency is unchanged by this test-only upstream commit.",
+    "log": "\u2714 constant K\u00d7area confounding survives every later offered reading (3.653133ms)\n\u2714 nonlinear curves distinguish after calibration without forcing one nominal area (0.595564ms)\n\u2714 wider future volume bound and availability can remove an offered distinction (0.452842ms)\n\u2714 held-aside volume cannot choose the question or alter common area (1.256425ms)\n\u2714 source-only replay strips fabricated derived results and preserves bounds (1.085091ms)\n\u2714 extracting maintained validation/ranking preserves original offer consumer results (1.170828ms)\n\u2714 no calibration and impossible common area cannot invent questions (0.231824ms)\n\u2714 one shared area refuses independently possible but mutually inconsistent calibration (0.214879ms)\n\u2714 area measurement tightens finite soil alternatives without nominal mutation (0.240156ms)\n\u2714 zero width follows maintained exact-area classification including numerical boundary (1.180172ms)\n\u2714 held-aside values cannot change common calibration area (0.285544ms)\n\u2714 widening declared area never removes feasible common areas (0.203522ms)\n\u2714 L and mL give the same support and area; zero prediction remains numerical or excluded (0.354627ms)\n\u2714 source-only roundtrip strips forged conclusions, preserves original units and rejects invalid area (0.736243ms)\n\u2714 no calibration is explicit and cannot select a supported soil explanation (0.179927ms)\n\u2714 crossing alternatives separate later; earliest equal-coverage offer preferred (0.488746ms)\n\u2714 wide bounds retain unresolved pairs; unavailable earliest offer shifts choice (0.18255ms)\n\u2714 challenge values cannot select candidate or preferred offered time (0.254628ms)\n\u2714 recorded offer excluded; no calibration no suggestion (0.271984ms)\n\u2714 no available offered times gives no recommendation (0.156241ms)\n\u2714 invalid/nonfuture and duplicate offers refuse (0.208019ms)\n\u2714 zero-radius unit roundtrip remains numerically unresolved and available for questioning (0.231404ms)\n\u2714 bounded mixed-site rain courses conserve water at every retained time (264.175793ms)\n\u2139 tests 23\n\u2139 suites 0\n\u2139 pass 23\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 317.644108\n"
+  }
+}
