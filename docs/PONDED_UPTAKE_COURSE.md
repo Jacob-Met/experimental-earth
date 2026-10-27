@@ -1,0 +1,15 @@
+# Compare a complete actual follow-up course
+
+Save each actual outcome from the ponded test's existing follow-up panel using the same retained original design. In **Can one original test area explain all these follow-ups?**, select the saved outcomes together. The consumer includes every selected actual record, sorts distinct offered times and refuses mixed original studies, area declarations or offered designs. It does not merge unrelated experiments.
+
+A separately possible reading need not have the same explaining area as another reading. For an authored constant10mm/hour soil model, a60minute1±0.1L calibration permits about0.09–0.11m². A120minute1.8±0.01L outcome and a180minute3.3±0.01L outcome each overlap this calibration range but require disjoint common areas. The course reports that joint contradiction while retaining the original calibration range unchanged. Replacing the second reading with2.7±0.01L restores a common interior. Widening an actual bound can restore ambiguity, never falsely exclude additional area.
+
+The implementation reuses the maintained area checker's outward possible and inward interior intervals. It intersects every selected actual interval with the original calibration interval. Empty outer intersection means joint contradiction; a nonempty interior supports a common area under the maintained engineering arithmetic; boundary-only overlap remains explicit uncertainty. Exact-area behavior delegates to the existing nominal checker. No challenge intersection is adopted as new calibration, fitted area, soil parameter or site input.
+
+Actual precision remains reported separately for each source record. A missed design bound is not hidden by a possible course; meeting it does not guarantee model agreement. Originally excluded explanations remain excluded and every selected source is retained. Original held-aside rows keep their original role and do not choose a question or calibrate the course.
+
+Save/reopen stores original outcomes only and recomputes all results. Edits retire results and export. Late file reads cannot overwrite a newer draft. Complete original and actual rows must fit the maintained100-reading bound; duplicate times refuse instead of choosing a preferred record. Source files are bounded at2,000,000UTF-8bytes and at most99outcomes, with the maintained32distinct offered-time limit imposing the tighter actual-time count.
+
+## Receiving
+
+Eight focused controls cover the joint contradiction, consistent interior, monotone widening, order/duplicates, exact retained design identity, source-only replay, zero-width numerical boundary and full-source budget. Independent core/panel review accepted the first six controls and inspected numerical/custody behavior. The actual browser course exercises selecting original files, keyboard comparison, saved-course replay, mixed-design refusal, delayed-file invalidation and desktop/narrow rendering. See the packaged receipts for exact composed gate coverage; none is a field-validation claim.
