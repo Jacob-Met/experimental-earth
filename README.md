@@ -34,7 +34,7 @@ for use, the retained mechanisms, midpoint approximation, input sources and test
 `compare-rain-proposals.mjs` recomputes 2–16 original exported site projects,
 refuses differing original evidence or weather and reports each proposal's
 source SHA-256, conceptual water-accounting changes and explicitly limited
-absorption/depth tradeoffs. See [the multiple-proposal guide](docs/RAIN_PROPOSAL_COMPARISON.md).
+absorption/depth tradeoffs. The receipt additionally preserves the original two-metric frontier and distinguishes a separate footprint-aware three-metric tradeoff; modeled changed cells are not physical cost or safety. See [the multiple-proposal guide](docs/RAIN_PROPOSAL_COMPARISON.md).
 
 ## Run the Rain Experiment Lab
 
