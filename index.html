@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./rain-trace.css">
   <link rel="stylesheet" href="./local-water-budget-area.css">
   <link rel="stylesheet" href="./map-snapshot.css">
+  <link rel="stylesheet" href="./first-investigation.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
@@ -22,6 +23,27 @@
   <main>
     <section class="disclosure" aria-label="Model status"><span class="pulse" aria-hidden="true"></span><strong>Conceptual model · not a real-site forecast</strong><span>The example geometry and infiltration rates are invented; imported elevations retain their supplied sources. Surface movement conserves water in this bounded grid; it does not model full soil, sewer or flood physics.</span></section>
     <p><a href="./rate-events.html">Compare original rainfall and runoff rate observations</a></p>
+    <section id="first-investigation" class="first-investigation" aria-labelledby="first-investigation-title">
+      <div class="first-investigation-intro">
+        <div>
+          <span class="eyebrow">YOUR FIRST INVESTIGATION</span>
+          <h2 id="first-investigation-title">How does morning shade change stored heat?</h2>
+          <p>Explore an invented courtyard with the same materials in both plans. Follow the surface and stored heat as the sun moves, then inspect the assumptions behind the difference.</p>
+        </div>
+        <a id="first-investigation-open" class="first-investigation-open" href="#shade-heat">Open shade + heat <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="first-investigation-boundary">A local model experiment, not measured temperatures or a real-site forecast. The isolated example leaves your working site intact.</p>
+      <details id="first-investigation-steps">
+        <summary>Follow the example, inspect its sources, and reopen it</summary>
+        <ol>
+          <li><strong>Compare the authored example.</strong> In Shade + Heat, choose <b>Explore authored shade example</b>. The comparison runs immediately. The rain controls still describe your working site. It compares a clear courtyard with a proposed three-metre opaque column; the location, weather and material properties are explicit invented assumptions.</li>
+          <li><strong>Follow the response.</strong> Move <b>Inspect a retained time</b> and switch <b>Temperature to inspect</b> between the surface and lower heat store. Open <b>Original declarations, mapped intervals and model limits</b> to examine what produced the curves. A lower heat store is a declared model component, not a measured depth.</li>
+          <li><strong>Keep the question and its source.</strong> Choose <b>Download original site + investigation inputs</b> in that panel. Use <b>Reopen an investigation</b> there to recompute the saved inputs, including their location, without replacing your working site. The header's <b>Export project</b> saves the main workspace instead.</li>
+        </ol>
+        <p class="first-investigation-challenge"><strong>Challenge the explanation:</strong> open <b>Location, dated exposure and declared weather</b>, set <b>Direct-normal irradiance</b> to 0, then choose <b>Compare shade and heat</b>. With no direct beam and identical materials in this example, the two modeled temperature courses should coincide. This checks the mechanism, not physical accuracy. Reopen your downloaded example to restore its original inputs.</p>
+      </details>
+      <p class="first-investigation-alternative">Working on rain? <a href="#maps">Inspect the paired site maps</a>, or use <b>Find an investigation</b> below to choose another question.</p>
+    </section>
     <div class="layout">
       <aside class="controls panel" aria-labelledby="site-controls-title">
         <div class="panel-title"><span class="eyebrow">01 / FIELD ASSUMPTIONS</span><h2 id="site-controls-title">Describe the site</h2></div>
