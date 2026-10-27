@@ -1,0 +1,5 @@
+# Offered finite-delivery test receiving
+
+16 focused native controls passed: seven offered-design controls plus nine unchanged original finite-supply controls. Seven new actual-browser groups and eight original predecessor groups passed on this exact composed consumer, each with zero exceptions and active namespace/PID/network/seccomp/TSYNC sandbox. Owned children exited zero and temporary profiles were removed. Offered-test desktop/390px screenshots were visually inspected. The browser sourceIdentity field is null; adjacent source manifest records exact served product identity after receiving, with no subsequent product edits.
+
+Independent core and panel custody review accepted. Reviewer personally ran all16controls. Prediction-only simulation shares the maintained finite-delivery kernel path without creating future observations; original calibration selects alternatives. Closed contact remains unresolved. Ordinary original-study intake invents no offers; saved design restores only original declarations and delayed reads cannot overwrite edits. No full-repository test or physical-validation claim.
