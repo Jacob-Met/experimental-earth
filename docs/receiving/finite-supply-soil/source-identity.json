@@ -1,0 +1,42 @@
+{
+  "baseCommit": "38e8da98285a1bad55f2504d9f43c7fdd779210e",
+  "baseTree": "e79fa31e2873612602b0ffc73b938532fd7fbc87",
+  "files": [
+    {
+      "path": "finite-supply-soil.js",
+      "bytes": 8345,
+      "sha256": "7f73e6d204b2f20553b05a8ecc1f20677227dbb7f2d33129954a38dbe4ab3dd4",
+      "gitBlob": "ac37c3a5fd3495ebf75e94863a62ae4cec83b693"
+    },
+    {
+      "path": "finite-supply-soil-panel.js",
+      "bytes": 8012,
+      "sha256": "da6d15d566e0009cb6e31da053ec35c7428c887dac52512d323a095e407e855b",
+      "gitBlob": "fcad12cc9fdbaea9739a2b5a5ee850b0a4b00051"
+    },
+    {
+      "path": "ponded-uptake.html",
+      "bytes": 1435,
+      "sha256": "5da356ad7ee6ff4515d59a51e2952c83e06652b532578556d23193d3d530fb45",
+      "gitBlob": "1b0362299f0b1ff52533ccbd04a937ec9ca6bcf7"
+    },
+    {
+      "path": "tests/finite-supply-soil.test.mjs",
+      "bytes": 5374,
+      "sha256": "11335abfab8dcaa908330ec7f0687bd122d331d3b8ad06f91585a218e02dac16",
+      "gitBlob": "a5df7cc8541692e29a3af06550a9e643f2c427fb"
+    },
+    {
+      "path": "tests/finite-supply-soil.receiving.mjs",
+      "bytes": 6689,
+      "sha256": "9d7e036034d709a16f1477cf928030a2f7fc81f7bccc94341c8ea546204a65f7",
+      "gitBlob": "239aba7a6916186bbe777df8abeca6faa54259c9"
+    },
+    {
+      "path": "docs/FINITE_SUPPLY_SOIL.md",
+      "bytes": 3470,
+      "sha256": "282d9359efb37255de5cff28c5ce2eee8b6d52067934d4e6dbca52d142835d11",
+      "gitBlob": "cbae56965f6d41675d47a156f82c0313fdc3cfd6"
+    }
+  ]
+}
