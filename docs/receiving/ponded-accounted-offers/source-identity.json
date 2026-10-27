@@ -1,0 +1,48 @@
+{
+  "baseCommit": "f854fff9e57cbc7f88c189d0187bfb86c34e0675",
+  "baseTree": "ba19bdd975b0e5e82c79bfadd7949b404b0048d4",
+  "files": [
+    {
+      "path": "ponded-accounted-offers.js",
+      "sha256": "b5a7d64e1c4d935bbbb81dcff31d4c54fbccb98bb2693fd78fa77671d64546b3",
+      "gitBlob": "09728687ea5c63bcbecd953faee4476161305d43",
+      "bytes": 6629
+    },
+    {
+      "path": "ponded-accounted-offers-panel.js",
+      "sha256": "7ea26c6e5fdb472cb5d777488925eb1712383314ab5d9ba007a08552be6821a2",
+      "gitBlob": "d5b83e83742bb1a630098b2dee94a0725ad280e9",
+      "bytes": 5422
+    },
+    {
+      "path": "ponded-uptake.html",
+      "sha256": "f398517950b778f24c33ee6cde9977f6a845d76a940d91f9261d6c2b42b559d5",
+      "gitBlob": "5b8936754f24eb667a1380242c8c9b094ed101fe",
+      "bytes": 1291
+    },
+    {
+      "path": "tests/ponded-accounted-offers.test.mjs",
+      "sha256": "8ae93331c06382c6b4399f43a64a674a79abdcc6e846248ac3d96630a47aab9c",
+      "gitBlob": "af603fc41d12fb20edb39ea4f40970c9522db9ed",
+      "bytes": 4515
+    },
+    {
+      "path": "tests/ponded-accounted-offers.receiving.mjs",
+      "sha256": "3e573d26fddb11687f060c7dfa97968f5434b6b7164fcdef813ce13c9c8f01b7",
+      "gitBlob": "0f73375ae13a96cc6a9ca1d1ba9ec1a6bad9b19f",
+      "bytes": 6014
+    },
+    {
+      "path": "tests/accounted-offer-fixture.json",
+      "sha256": "d25d165ad7e078734121eaa6d1886ed4e6b519a1de2ce6ee17810f8fb0e0a079",
+      "gitBlob": "ede733895c69a524f61f0f55d01b15f307a53c5a",
+      "bytes": 1314
+    },
+    {
+      "path": "docs/PONDED_ACCOUNTED_OFFERS.md",
+      "sha256": "93965a159903143a5e41d5ee71221ba0e78a2e81d11061b6bc8c0e6477ff26b6",
+      "gitBlob": "ff036e544f79e10dd9f53e9952a5ecb6db432a9a",
+      "bytes": 2977
+    }
+  ]
+}
