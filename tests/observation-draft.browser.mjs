@@ -33,7 +33,7 @@ try {
       minute:Number(document.querySelector('#obs-minute').value),
       status:document.querySelector('#observation-draft-status')?.textContent ?? ''})`);
     const fill = (depth, source, minute = 30) => evaluate(`(() => {
-      for (const [id,value] of Object.entries(${JSON.stringify({ 'obs-depth': depth, 'obs-source': source, 'obs-minute': minute, 'obs-uncertainty': 0.2, 'obs-scenario': 'existing', 'obs-use': 'calibration' })})) {
+      for (const [id,value] of Object.entries(${JSON.stringify({ 'obs-minute': minute, 'obs-depth': depth, 'obs-source': source, 'obs-uncertainty': 0.2, 'obs-scenario': 'existing', 'obs-use': 'calibration' })})) {
         const input=document.getElementById(id);input.value=String(value);
         input.dispatchEvent(new Event('input',{bubbles:true}));
       }
@@ -71,6 +71,16 @@ try {
       checks.push('Maintained baseline accepted the unchanged A1 draft as B1 after an ordinary grid click');
       return { baselineDefect: after.observations[0], checks, source, exceptions, sandbox: session.sandbox };
     }
+
+    await evaluate("document.querySelector('#obs-minute').value='35';document.querySelector('#obs-minute').dispatchEvent(new Event('input',{bubbles:true}))");
+    const timeRetired = await draft();
+    assert.equal(timeRetired.minute, 35);
+    assert.equal(timeRetired.depth, '', 'Changing an observation time must retire earlier depth');
+    assert.equal(timeRetired.source, '', 'Changing an observation time must retire earlier source');
+    assert.match(timeRetired.status, /Unsaved reading cleared.*time changed/);
+    assert.equal((await stored()).observations.length, 0);
+    checks.push('Changing only the observation minute retires old values before they can be misattributed');
+    await fill(12.5, 'Original A1 field notebook — authored attribution regression', 30);
 
     await evaluate("document.querySelector('#existing-grid [data-cell-index=\"0\"]').click()");
     assert.equal((await draft()).depth, '12.5');
