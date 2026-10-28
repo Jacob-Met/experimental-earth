@@ -97,9 +97,8 @@ $('reopen').addEventListener('change', async () => {
 $('example').addEventListener('click', async () => {
   const request = startFile('Opening the authored two-point courtyard control…');
   try {
-    const response = await fetch(new URL('./examples/shared-sky-two-points.json', import.meta.url));
-    if (!response.ok) throw Error('The authored source could not be loaded');
-    const text = await response.text(); checkShadeHeatBytes(new Blob([text]).size); await parseIntoWorker(text, request);
+    const { makeSpatialSkyExample } = await import('./shade-heat-spatial-example.js');
+    const text = JSON.stringify(makeSpatialSkyExample()); checkShadeHeatBytes(new Blob([text]).size); await parseIntoWorker(text, request);
   } catch (error) { if (request === generation && error.code !== 'superseded') state('Example refused: ' + error.message, 'file-refused'); }
   finally { if (request === generation) { reading = false; controls(); } }
 });

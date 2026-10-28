@@ -1,0 +1,52 @@
+{
+  "status": "Qualified launcher repair before publication",
+  "baseCommit": "5055c34b6516fc9a533cdb0e333cf97cb28340ea",
+  "qualifiedAt": "2026-10-28T23:42:42.651083+00:00",
+  "reason": "Accepted spatial source used an authored nested JSON fixture outside the documented browser-asset surface. The control now uses an ordinary top-level browser module; server and allowlist stay byte-identical.",
+  "native": {
+    "passed": 9,
+    "failed": 0,
+    "tapSHA256": "8755639fdb9ade598cf47b11f9c567418e05886d75421d2a8b2af0936e142f5e",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/shade-heat-spatial-evidence.test.mjs"
+  },
+  "browser": {
+    "status": "PASS",
+    "groups": 9,
+    "checks": [
+      "Ordinary reading-panel link opens the independent consumer; actual authored-source worker evaluates both original bases and all 64 three-bin vertices",
+      "Real keyboard and extremum-button selection inspect noncontiguous witness IDs, both observation bands and the same shared mixture",
+      "Actual source-only download reopens on a fresh document and recomputes the same result without parent state or stored result fields",
+      "Two actual original files retain distinct receivers and original 4/16-bin histories while point selection and common-bin changes recompute the chosen consequence",
+      "A malformed member, incomplete pair and invalid UTF-8 refuse transactionally without mixing new inputs into the prior accepted pair",
+      "A delayed two-file read cannot reverse or replace a newer comparison after a common-input edit retires the whole batch",
+      "A held response from the actual old worker cannot replace a newer complete 16-bin inquiry",
+      "Mismatched original orientation refuses, incompatible common skies remain an exportable completed empty result, and forged results cannot replace it",
+      "Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation"
+    ],
+    "launcher": {
+      "command": "python3 serve.py --port 0",
+      "url": "http://127.0.0.1:46057/",
+      "scope": "Every interaction and worker module above uses the unchanged documented loopback launcher."
+    },
+    "activeSandbox": true,
+    "exceptions": [],
+    "receiptSHA256": "f6772b3fbadb8631cf6704fc32947f7a1070d82c442e4dd58fcf6ae407dbf47c",
+    "completedAt": "2026-10-28T23:41:20.958Z"
+  },
+  "canonicalBaseFiles": 713,
+  "allExecutedCandidateFilesRehashed": 714,
+  "unchanged": [
+    "serve.py and all asset admission/security behavior",
+    "scientific models and exact coefficient arithmetic",
+    "both original source envelopes and authored example values",
+    "working site storage"
+  ],
+  "sourceQualification": "The original mechanism qualification remains at docs/receipts/spatial-sky-evidence-52d429.json; this receipt covers the concrete launcher repair.",
+  "sha256": {
+    "shade-heat-spatial-example.js": "1617bf1e5a1008794256f3f81c64c23f4e298e3b36ad94e0805e3e61451be3a1",
+    "shade-heat-spatial-evidence-page.js": "7ecafef896c795ff891bb857cfa3647f08237dbc71f56bd37bccf2e377abb48d",
+    "tests/shade-heat-spatial-evidence.test.mjs": "452bf45e5b889a6b62133b58782c1c7a77aa1ac1514f351b78379d0aeb210b4c",
+    "tests/shade-heat-spatial-evidence.browser.mjs": "9e9cca9be3fba87740da733be0de1720ff5fe2d8a6fa8e04bdf39c5889f0f759",
+    "docs/SHADE_HEAT_SPATIAL_EVIDENCE.md": "3cfa355dc51dcef664fa31f080e32820cf28cadbd8474cc8eb304a195df51274"
+  }
+}
