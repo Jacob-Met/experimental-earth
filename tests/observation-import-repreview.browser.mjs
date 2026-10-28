@@ -7,16 +7,24 @@ import {withBrowserSession} from './support/browser-session.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const runDirectory=process.env.BROWSER_RUN_DIRECTORY || root+'.browser-repreview-'+randomUUID();
 await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || '/usr/bin/chromium'},async({evaluate,exceptions,send})=>{
+ const wait=async expression=>{for(let i=0;i<100;i++){
+  try {if(await evaluate(expression))return;}catch(error){
+   if(!/Execution context was destroyed|Cannot find context with specified id|Cannot find default execution context/i.test(String(error)))throw error;
+  }
+  await delay(100);
+ }throw Error('Timed out: '+expression);};
  if(process.env.EARTH_RECEIVING_URL) {
   const target=new URL(process.env.EARTH_RECEIVING_URL);
   assert.equal(target.protocol,'http:');assert.equal(target.hostname,'127.0.0.1');
   assert.ok(target.port && Number(target.port)>0,'Explicit loopback port required');
   assert.equal(target.username,'');assert.equal(target.password,'');
   assert.equal(target.pathname,'/');assert.equal(target.search,'');assert.equal(target.hash,'');
+  const previousTimeOrigin=await evaluate('performance.timeOrigin');
   await send('Page.navigate',{url:target.href});
+  await wait(`performance.timeOrigin!==${previousTimeOrigin} && location.href===${JSON.stringify(target.href)} && document.readyState==='complete'`);
  }
- const wait=async expression=>{for(let i=0;i<100;i++){if(await evaluate(expression))return;await delay(100);}throw Error('Timed out: '+expression);};
  await wait(`!!document.querySelector('#investigation-navigation')`);
+ const receivingOrigin=await evaluate('location.origin');
  await evaluate(`window.q=id=>document.getElementById(id);window.stored=()=>localStorage.getItem('experimental-earth-site-v1');window.setMap=value=>{q('observation-station-map').value=value;q('observation-station-map').dispatchEvent(new Event('input',{bubbles:true}));};window.upload=(name,body,defer=false)=>{const file=new File([body],name,{type:'text/csv'});if(defer)file.arrayBuffer=()=>new Promise(resolve=>window.pendingFiles[name]=()=>resolve(new TextEncoder().encode(body).buffer));const transfer=new DataTransfer();transfer.items.add(file);q('observation-table-file').files=transfer.files;q('observation-table-file').dispatchEvent(new Event('change',{bubbles:true}));};window.pendingFiles={};q('reset').click();window.before=stored();`);
  const csv='station,minute,depth,uncertainty,unit,source,scenario,use\neast,15,1,.1,cm,logger,existing,calibration';
  const mapping=JSON.stringify({source:'Independent receiving placement',entries:[{station:'east',cell:'B2'}]});
@@ -26,7 +34,7 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || 
  const retryPresent=await evaluate(`!!q('preview-observation-table')`);
  if(process.env.BASELINE_EXPECT_MISSING_REPREVIEW==='1'){
   assert.equal(retryPresent,false);assert.equal(await evaluate(`q('append-observation-table').disabled && stored()===before`),true);
-  await writeFile(runDirectory+'/repreview.json',JSON.stringify({baselineMissingRetry:true,existingNotebookPreserved:true}));return;
+  await writeFile(runDirectory+'/repreview.json',JSON.stringify({receivingOrigin,baselineMissingRetry:true,existingNotebookPreserved:true}));return;
  }
  assert.equal(retryPresent,true,'Corrected mapping must offer retry without reselecting CSV');
  await evaluate(`q('preview-observation-table').click()`);
@@ -70,5 +78,5 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || 
  await evaluate(`q('reset').click()`);
  assert.equal(await evaluate(`q('preview-observation-table').disabled && q('append-observation-table').disabled`),true,'External project refresh forgets source');
  assert.deepEqual(exceptions,[]);
- await writeFile(runDirectory+'/repreview.json',JSON.stringify({desktopAnd390ActualScreenshots:true,portableDownloadAndReopen:true,correctedMappingSameFile:true,previewReadOnly:true,appendOnceOriginalProvenance:true,mappingEditInvalidates:true,invalidReplacementPreservesNotebook:true,latestSelectionWins:true,externalRefreshForgetsSource:true,exceptions},null,2));
+ await writeFile(runDirectory+'/repreview.json',JSON.stringify({receivingOrigin,desktopAnd390ActualScreenshots:true,portableDownloadAndReopen:true,correctedMappingSameFile:true,previewReadOnly:true,appendOnceOriginalProvenance:true,mappingEditInvalidates:true,invalidReplacementPreservesNotebook:true,latestSelectionWins:true,externalRefreshForgetsSource:true,exceptions},null,2));
 });
