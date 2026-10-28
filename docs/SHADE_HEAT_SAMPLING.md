@@ -65,3 +65,9 @@ At narrow widths, visible table captions stay above their horizontally scrolling
 The paired table compares the existing and proposed sites at the same selected integer minute and heat store for each solar grid. Positive existing-minus-proposed temperature means the proposal is cooler; negative means warmer. Units are degrees Celsius. Independent beam ranges are subtracted as [existing lower minus proposed upper, existing upper minus proposed lower]. The extreme pairs need not be jointly attainable; no shared-geometry correlation is inferred.
 
 Daily mean cooling averages each complete course. The difference of separate daily peaks can compare different times and is not the greatest simultaneous cooling. Each grid remains a separate conditional result, without a convergence or finest-grid claim. Site/store/minute selections are view state; downloads retain original inputs only and recompute the paired view on reopening.
+
+## Greatest coincident sampled cooling
+
+The new table searches all 1,441 common integer-minute samples separately for each solar grid and selected heat store. It maximizes the lower and upper paired-cooling curves separately and retains each curve's earliest tied minute. The two maxima need not occur at the same time or be jointly attainable. Buttons move the existing common-minute inspector to the selected bound's witness. Negative maxima mean even the greatest sampled cooling for that bound is warming.
+
+Missing, duplicate or nonfinite required samples refuse the whole result. Thermal stationary points between integer minutes are not part of this search. This is not a continuous-time maximum or a numerical enclosure between samples. Summaries are cached for each accepted report and heat store; moving the minute inspector neither reruns the physical model nor rescans extrema. Original-only exports and reopening are unchanged.
