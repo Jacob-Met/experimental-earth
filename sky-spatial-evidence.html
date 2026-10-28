@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Two readings, one sky · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-spatial-evidence.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="index.html#shade-profile-evidence" target="_blank" rel="noopener">Experimental Earth ↗</a>
+    <p class="eyebrow">Original readings / shared sky</p>
+    <h1>Two readings, one sky</h1>
+    <p class="intro">Use temperature readings at two saved points to constrain one common sky. Compare the existing and proposed designs at the point you choose.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Original evidence</p><h2 id="source-heading">Bring both readings</h2></div>
+        <button type="button" id="spatial-example" disabled>Try an authored courtyard</button></div>
+      <p>Choose exactly two original reading-input JSON files from Earth’s temperature-band inquiry. Each keeps its own saved point, original band and thermal declaration.</p>
+      <label class="file-label">Open two original reading inputs<input id="spatial-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <div id="spatial-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+    </section>
+    <form id="spatial-form" class="card">
+      <p class="eyebrow">02 / Common conditions</p><h2>State the shared sky</h2>
+      <p>The original site, geometry, orientation and dated forcing must agree. Each point keeps its own material properties and starting temperatures.</p>
+      <div class="question-grid"><label>Equal sky bins<select id="spatial-bins" disabled><option>4</option><option selected>8</option><option>16</option></select></label>
+        <label>Basis for one shared static sky<input id="spatial-sharing" required maxlength="400" placeholder="Why these points share one directional sky over the original course" disabled></label></div>
+      <div class="actions"><button id="spatial-run" type="submit" disabled>Compare both readings</button>
+        <label class="file-label">Reopen a two-point inquiry<input id="spatial-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="spatial-export" type="button" disabled>Download original inputs</button></div>
+      <p id="spatial-status" role="status">Open two original readings or try the authored example.</p>
+    </form>
+    <section id="spatial-results" class="card" aria-label="Shared-sky comparison" hidden></section>
+  </main>
+  <footer>Compatibility is a result of the declared model. Fixed materials, initial states and weather remain assumptions; a compatible profile does not identify the actual sky or establish intervention performance.</footer>
+  <script type="module" src="shade-heat-spatial-evidence-page.js"></script>
+</body>
+</html>

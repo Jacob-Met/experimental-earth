@@ -22,6 +22,7 @@ export function mountShadeHeatProfileEvidence({ host, getAccepted, cancelParentP
     + '<label class="shade-file">Reopen original reading inquiry<input id="shade-profile-evidence-import" type="file" accept=".json,application/json"></label>'
     + '<button id="shade-profile-evidence-export" type="button" disabled>Download original reading inputs</button></div>'
     + '<p class="mini-note">Use a completed shared-profile inquiry above, or reopen this inquiry’s original inputs. Fixed materials, starting temperatures and weather remain part of the model; this is a compatibility test, not a measured-sky reconstruction.</p>'
+    + '<p class="mini-note"><a href="sky-spatial-evidence.html" target="_blank" rel="noopener">Use two original readings to constrain one shared sky ↗</a></p>'
     + '<p id="shade-profile-evidence-status" role="status"></p><div id="shade-profile-evidence-results"></div>';
   host.append(panel);
   const $ = id => panel.querySelector('#shade-profile-evidence-' + id);

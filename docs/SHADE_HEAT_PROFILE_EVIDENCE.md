@@ -42,6 +42,8 @@ The intersection examines at most 120 bin pairs and at most 256 candidates. It r
 
 The single reading constrains one static profile across every original weather interval. It does not estimate a time-varying sky, change material parameters or initial states, optimize a daily peak, identify the actual sky, or validate a physical intervention. Incompatibility concerns the supplied band and this declared coefficient family; it does not establish which physical assumption or observation is wrong.
 
+Two original saved receiver files can also be used in the separate [two-point shared-sky inquiry](SHADE_HEAT_SPATIAL_EVIDENCE.md). Its link opens an independent page, retains both original records and asks explicitly why one static sky should be shared. The one-band inquiry and its input format remain unchanged.
+
 ## Original-source replay and interaction
 
 The separate `experimental-earth/shared-sky-final-reading-inputs/1` envelope contains only `kind`, `model`, `source` and `query`. The source is the original strict v1–v5 shade-and-heat envelope, including raw uploaded weather and original authored sky weights. The query contains the bin count and one exact reading record: target, store, instantaneous aggregation, saved cell, canonical final UTC, temperature, half-width and attribution. Saved results, mixture vertices and altered receiver/time roles are rejected.

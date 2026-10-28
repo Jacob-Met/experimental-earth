@@ -1,0 +1,335 @@
+{
+  "qualificationVersion": 1,
+  "status": "Qualified source; publication and accepted-source receiving are subsequent gates",
+  "qualifiedAt": "2026-10-28T23:28:15.821795+00:00",
+  "baseCommit": "412591eb7102cc5e675c53b81a53802189572e25",
+  "baseTree": "3d652ca3f7c9d0897b7f40466c1c2da3dd4944bd",
+  "materializedCanonicalBaseFiles": 701,
+  "native": {
+    "passed": 77,
+    "failed": 0,
+    "tapSHA256": "c61b4e5a211d0a5ffdd13f0faa0e9d692c094bf8b870bd4f790720804abd3c7e",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/shade-heat*.test.mjs tests/continuous-sky.test.mjs tests/weighted-continuous-sky.test.mjs"
+  },
+  "independentPrototypeCore": {
+    "sourceSha256": "2c5834b18faa15ffb0520291d48606783b1d2b44bcee9d2eb076d604fedb4ca3",
+    "cases": 125,
+    "exactCandidateWitnesses": 412,
+    "objectivePairs": 384,
+    "method": "Full-dimensional inequality active-set enumeration and exact Gaussian elimination using Python Fraction; no pair/triangle support enumeration",
+    "status": "PASS"
+  },
+  "independentOriginalSource": {
+    "reviewedSourceSHA256": "77c8f9f9d52c89d7e3988e5d596d5189a96d6d757d73c986ba9e1db49ba99ada",
+    "status": "No blocking source/complete-family/pairing/admission finding",
+    "independentSourceControls": {
+      "strictRefusals": 8,
+      "frozenNonmutation": true,
+      "sourceOnlyRoundtrip": true,
+      "objectKeyOrder": true,
+      "independentOriginalBinChoices": [
+        4,
+        16
+      ],
+      "activeCommonBins": 8,
+      "executedCourses": 64
+    },
+    "independentActualBasisOracle": {
+      "method": "Full-dimensional inequality active-set enumeration with exact Python Fraction Gaussian elimination",
+      "vertices": 64,
+      "pairedObjectivesAndSelectedWitnesses": 4
+    },
+    "terminalChunks": [
+      "a0dd80",
+      "635d19"
+    ],
+    "scope": "Isolated source adapter and mathematical report only; no UI/browser/physical validation claim",
+    "files": [
+      {
+        "path": "review.py",
+        "sha256": "489a7da5195badd23e67264abb2b95db802f401bb60a8b708bf605414becd149"
+      },
+      {
+        "path": "bounds.mjs",
+        "sha256": "519a2c9ee54c7fde6258182e034a896fa4ba0469921b1a89186600b3609f43de"
+      },
+      {
+        "path": "source-review.mjs",
+        "sha256": "3358a6ea378cb4edce5167b160c05067ea7e261a96b3439af15a24f927fb1e48"
+      },
+      {
+        "path": "source-objectives.py",
+        "sha256": "b04ad1096f032c67d1f38bfe8ebb02a147bd23a398b672db31927a0726b634a2"
+      },
+      {
+        "path": "source-evidence.json",
+        "sha256": "af2e1a78cfb1a209a078793333a096b080dbba1130a5723e85714834b87cdc29"
+      }
+    ]
+  },
+  "portableIndependentCore": {
+    "status": "PASS",
+    "sourceSHA256": "dee03035200d9fe054d73e52f893403167e07010599fa0bcc88a08570d220717",
+    "cases": 125,
+    "exactVertices": 412,
+    "objectivePairs": 384,
+    "terminalChunk": "fc9bc3"
+  },
+  "originalSourceQualification": {
+    "status": "PASS",
+    "scope": "Isolated original-source join, exact coefficient screening and maintained thermal replay; no UI, acquired-field or integration claim",
+    "checks": [
+      "Two complete original source bases and all joint candidates constrain the primary paired consequence",
+      "Strict source-only bundle roundtrip retains both original inputs and explicit common-sky declaration",
+      "Forged joint report refuses",
+      "Forged nested original report refuses",
+      "Different independently valid declared place refuses",
+      "Different original orientation refuses",
+      "Wrong original receiver refuses",
+      "Wrong original observation UTC refuses",
+      "Duplicate original receiver refuses",
+      "Missing common-sky declaration refuses",
+      "Unknown source model refuses",
+      "An incompatible joint family completes both original bases and carries no survivor range",
+      "Unresolved observation endpoints refuse the complete joined family",
+      "A separate original point may add no consequence information; exact no-gain result retained",
+      "Every joint candidate replays both original complete heat models under the same approximate represented mixture"
+    ],
+    "jointCandidates": 64,
+    "originalThermalReplays": 128,
+    "maximumOriginalReplayResidualC": 7.105427357601002e-15,
+    "firstReadingSurfaceRange": {
+      "lower": {
+        "differenceC": {
+          "exact": {
+            "numerator": "-3602879701896397",
+            "denominator": "18014398509481984"
+          },
+          "lower": -0.2,
+          "upper": -0.2
+        },
+        "witnessId": 1
+      },
+      "upper": {
+        "differenceC": {
+          "exact": {
+            "numerator": "96021807450729805",
+            "denominator": "36028797018963968"
+          },
+          "lower": 2.6651405374480905,
+          "upper": 2.665140537448091
+        },
+        "witnessId": 4
+      }
+    },
+    "jointSurfaceRange": {
+      "lower": {
+        "differenceC": {
+          "exact": {
+            "numerator": "35400824768727577",
+            "denominator": "36028797018963968"
+          },
+          "lower": 0.9825702687240472,
+          "upper": 0.9825702687240473
+        },
+        "witnessId": 3
+      },
+      "upper": {
+        "differenceC": {
+          "exact": {
+            "numerator": "96021807450729805",
+            "denominator": "36028797018963968"
+          },
+          "lower": 2.6651405374480905,
+          "upper": 2.665140537448091
+        },
+        "witnessId": 16
+      }
+    },
+    "jointLowerStoreRange": {
+      "lower": {
+        "differenceC": {
+          "exact": {
+            "numerator": "24541866971397864641226421832945",
+            "denominator": "26013615535726683063073162395648"
+          },
+          "lower": 0.9434239134384245,
+          "upper": 0.9434239134384246
+        },
+        "witnessId": 3
+      },
+      "upper": {
+        "differenceC": {
+          "exact": {
+            "numerator": "66567783101221050207273823921925",
+            "denominator": "26013615535726683063073162395648"
+          },
+          "lower": 2.5589592884463874,
+          "upper": 2.558959288446388
+        },
+        "witnessId": 16
+      }
+    },
+    "work": {
+      "geometryPasses": 2,
+      "estimatedRayTests": 2880,
+      "estimatedSkyFaceTests": 8160,
+      "thermalCourses": 64,
+      "courseIntervals": 1024,
+      "sources": [
+        {
+          "geometryPasses": 1,
+          "estimatedRayTests": 1440,
+          "estimatedSkyFaceTests": 4080,
+          "thermalCourses": 32,
+          "courseIntervals": 512
+        },
+        {
+          "geometryPasses": 1,
+          "estimatedRayTests": 1440,
+          "estimatedSkyFaceTests": 4080,
+          "thermalCourses": 32,
+          "courseIntervals": 512
+        }
+      ],
+      "executedThermalCourses": 64,
+      "actualSkyFaceTests": 82,
+      "profileIntersection": {
+        "examinedPairs": 28,
+        "examinedTriangles": 56,
+        "parallelTriangles": 40,
+        "testedPairPlanes": 48,
+        "testedPlanePairs": 64,
+        "maximumCandidates": 344,
+        "admittedOriginalVertices": 0,
+        "admittedPairVertices": 0,
+        "admittedTriangleVertices": 64,
+        "candidates": 64
+      }
+    },
+    "sourceInputSHA256": "2a7b12cb12be78a96ea6a1e9b5c843e77b1fb4709b9bfe22423e4a4e3a111472",
+    "savedBytes": 22308,
+    "sourceCoreSHA256": "77c8f9f9d52c89d7e3988e5d596d5189a96d6d757d73c986ba9e1db49ba99ada"
+  },
+  "prototypePort": {
+    "math": "Only the import path changes from the independently reviewed exact prototype.",
+    "source": "Only import paths change, followed by one strict original-file admission export calling the same originalReading validator."
+  },
+  "consumerSourceReview": {
+    "reviewer": "retained Ground worker",
+    "status": "No bounded blocker",
+    "scope": "Generation retirement, original point ordering, worker completion ownership, transactional failed intake and source-only export; no independent browser claim."
+  },
+  "browser": [
+    {
+      "course": "two-original-spatial-reading",
+      "groups": 9,
+      "checks": [
+        "Ordinary reading-panel link opens the independent consumer; actual authored-source worker evaluates both original bases and all 64 three-bin vertices",
+        "Real keyboard and extremum-button selection inspect noncontiguous witness IDs, both observation bands and the same shared mixture",
+        "Actual source-only download reopens on a fresh document and recomputes the same result without parent state or stored result fields",
+        "Two actual original files retain distinct receivers and original 4/16-bin histories while point selection and common-bin changes recompute the chosen consequence",
+        "A malformed member, incomplete pair and invalid UTF-8 refuse transactionally without mixing new inputs into the prior accepted pair",
+        "A delayed two-file read cannot reverse or replace a newer comparison after a common-input edit retires the whole batch",
+        "A held response from the actual old worker cannot replace a newer complete 16-bin inquiry",
+        "Mismatched original orientation refuses, incompatible common skies remain an exportable completed empty result, and forged results cannot replace it",
+        "Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T23:26:27.851Z",
+      "receiptSHA256": "8bcd96ec83d7a051fa4a9e3d3cce74b8c8ea1ca0c964858aa0cd60d03b3dbe1b"
+    },
+    {
+      "course": "maintained-original-reading",
+      "groups": 9,
+      "checks": [
+        "Actual worker retains compatible mixed skies when every one-bin profile is excluded and narrows both same-profile design consequences",
+        "Separate extrema and real keyboard selection inspect mixture masses, exact fractions and both same-profile thermal endpoints",
+        "Actual source-only download reopens independently on a fresh page and bin edits recompute its original source without parent results",
+        "Forged results refuse transactionally and edited original bands retire delayed file results and stale downloads",
+        "A held actual worker response cannot replace a newer completed reading inquiry after input retirement",
+        "Newer reading input retires both pending ancestor file loads so neither can relabel or replace the accepted source",
+        "An incompatible band remains a complete empty-family result; unresolved observation operators and unsupported vertices refuse without survivor ranges",
+        "Complete hourly weather and reading attribution survive download while either ancestor input retires dependent results and source attachment",
+        "Actual reading controls, horizontally scrollable ranges and mixture inspection fit desktop and 390px with no application exceptions"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T23:26:32.527Z",
+      "receiptSHA256": "1365a1b76b218309184a4348a9b30118022ee06fa33d103503a5b8128d7bb591"
+    }
+  ],
+  "browserComposition": [
+    {
+      "course": "two-original-spatial-reading",
+      "allMaterializedCandidateFilesRehashed": 712
+    },
+    {
+      "course": "maintained-original-reading",
+      "allMaterializedCandidateFilesRehashed": 712
+    }
+  ],
+  "nativeTask": {
+    "id": "experimental-earth-spatial-sky-evidence-52d429",
+    "revision": 2,
+    "owner": "estate-52d429-20261025",
+    "reconciliationSourceSHA256": "a4b7c427aa85651fca1926547fc4257a8a5d4e17cd047c5fe61fb31519a91c42"
+  },
+  "scope": "Two complete original receiver bands constrain one explicitly shared static sky; paired component consequences at the chosen original point.",
+  "observedControl": {
+    "originalB2BandC": [
+      23.286786013034295,
+      0.1
+    ],
+    "originalA3BandC": [
+      24.56935628175834,
+      0.1
+    ],
+    "firstOnlySurfaceC": [
+      -0.2,
+      2.665140537448091
+    ],
+    "jointSurfaceC": [
+      0.9825702687240472,
+      2.665140537448091
+    ],
+    "jointVertices": 64,
+    "allRequireThreeBins": true,
+    "originalThermalReplays": 128,
+    "maximumReplayResidualC": 7.105427357601002e-15
+  },
+  "limits": [
+    "Exact coefficient arithmetic does not certify geometry, thermal integration, common conditions or physical validity.",
+    "Original materials, initial states, forcing and observation roles remain fixed; no favorable observation endpoint selection.",
+    "No time-varying sky, daily-peak optimization, lateral-transfer inference, source adoption, public release or deployment."
+  ],
+  "visualInspection": {
+    "desktop1440": true,
+    "narrow390": true,
+    "summary": "Exact original values retained on source cards; approximate paired ranges precede shared-profile inspector; narrow tables scroll within their own containers.",
+    "screenshotsExcludedFromRepository": true
+  },
+  "retainedInformativeFailures": [
+    "Initial browser TMPDIR prefix exceeded the Unix socket length limit; only its owned path was shortened.",
+    "Initial static example control could be clicked before module initialization; controls now enable only after all handlers are ready.",
+    "An overlong native fixture correctly reached the existing original-course refusal before a later aggregate guard; test expectation corrected without loosening admission."
+  ],
+  "sha256": {
+    "shade-heat-profile-two-bands.js": "dee03035200d9fe054d73e52f893403167e07010599fa0bcc88a08570d220717",
+    "shade-heat-spatial-evidence.js": "65df8f4e43dfd4f07d4d257968cf892f9097cb5062206f9ebdba11ae3fc25c4b",
+    "shade-heat-spatial-evidence-worker.js": "ff3b0ad6cfb9b21ef633c832b2b941c7ec5c1012bf30be64ac10571d253809cc",
+    "shade-heat-spatial-evidence-page.js": "cd3717922c15fae9826adc504ad5361e733e1ec9f6b55907f26cb1c6c9948477",
+    "shade-heat-spatial-evidence.css": "9481eee51fa03731397ca11e16e80a6581503d7a430459950960f1e001601962",
+    "sky-spatial-evidence.html": "4fa9db58b82aeba01c37fafc038150e5e1e4568dc94561c0998ad00e476fad23",
+    "examples/shared-sky-two-points.json": "6cdd496b737feaab9b25cd925cb238586b2f9cbdeccee570d03fa034c016ebfd",
+    "shade-heat-profile-evidence-panel.js": "4c011c6d0efbe2c4c60e3e27fb1b1d440f9ae00d806c323dd390237f344396b5",
+    "tests/shade-heat-spatial-evidence.test.mjs": "6a71c1a206ef19843e4c8632e3e5c660877bbd77d0aad886369c02ce56720cfa",
+    "tests/shade-heat-spatial-evidence.browser.mjs": "12b78853066aec019a0a9451714bf472895f7e43c317f55a7bfe74d83927a134",
+    "tests/shade-heat-spatial-evidence-independent.py": "7cf9d1ea6a8e7b8326675af385b6a83310b84ed1a41ea0a0228a11c9b9eb014b",
+    "docs/SHADE_HEAT_SPATIAL_EVIDENCE.md": "e4f7fc46298d1380e771fc112abbba9f08afc60f8f0742a20c8f5cc0b31c2ccd",
+    "docs/SHADE_HEAT_PROFILE_EVIDENCE.md": "c31df123bd5e06c5ddc6e61f081feb2a3f1f5688a84557677e4ddec3ecaa7b17"
+  }
+}
