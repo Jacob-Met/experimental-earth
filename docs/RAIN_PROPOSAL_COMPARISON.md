@@ -1,5 +1,24 @@
 # Compare saved alternative rain proposals against one original site
 
+## Compare in the browser
+
+Run `python3 serve.py` in the source checkout or extracted runtime, then open its printed local URL.
+
+1. Give the workspace a useful name and use **Export project** to save your first proposal.
+2. Try a different proposed layout, give it a distinguishable name, and export again. Keep the existing site, storm, observations and other investigation declarations unchanged.
+3. Select **Compare saved proposals** in the workbench. It opens a separate tab, keeping the editor and any unfinished reading open.
+4. Choose 2–16 original project files, then select **Compare proposals**.
+
+The page shows the one common existing-site result, each proposal's water outcomes and changes from that reference, and the two existing trade-off comparisons described below. File names, original byte counts and SHA-256 identifiers identify the actual inputs. Wide result tables can be scrolled horizontally; keyboard users can focus each table region.
+
+**Download comparison JSON** saves the same report produced by the command-line comparison. It is a result record, not a replacement for the original project exports; retain those projects to reopen or recompute the alternatives.
+
+Files are read locally in a browser worker. Comparing does not replace or write the workbench, adopt a proposal, or change the original files. Selecting another set or clearing the selection removes the previous result and stops its worker. An incompatible or invalid input refuses the complete comparison; no previous result remains available as though it belonged to the new files.
+
+The browser uses the same original-project validator, source identity rules, calculation receipt and comparison algorithm as the CLI. Its file picker supplies browser File objects; the CLI additionally checks native filesystem identity, regular-file status and changes during reading.
+
+## Compare with the command line
+
 Use the maintained workbench's **Export project** action to save two or more explicitly authored proposed surface plans. The existing `inspect-rain-project.mjs` command recomputes one file. This complementary read-only command compares 2–16 separate local exports:
 
 ```sh
@@ -13,3 +32,4 @@ The versioned JSON receipt includes SHA-256 of every exact original file, a SHA-
 **Intervention footprint and a separate tradeoff:** Each candidate additionally reports its modeledFootprint.changedCellCount and sorted changedCellIndices. This counts modeled cells whose surface or elevation differs from the retained original, plus *both adjoining cells* for an altered internal hydraulic edge. Source wording or cell provenance alone never increases the count. The extra footprintAwareFrontier minimizes that count **alongside** the two modeled rain objectives. It intentionally does not replace the original namedObjectiveFrontier or its fields, and it is not a measure of construction cost, land ownership, true treated area, habitat impact, labor or safety. An authored 6-cell garden may be worth considering even if an extensive 48-cell garden dominates it in the original two rain metrics, because changing 48 original cells is a substantially different declared intervention. The new frontier answers this narrower modeled-decision question, not what a landowner should build.
 
 Only the existing conceptual base-rain scenario is recomputed. Attached observation records and optional studies are held identical across files, **not independently recalibrated or interpreted**. The underlying simulation is not a measured hydrologic forecast. Compare an actual field intervention with real observations and local expertise before drawing site-safety conclusions. This command does not upload data or trigger deployment.
+
