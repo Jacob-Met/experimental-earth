@@ -47,8 +47,22 @@ const hot=rebuild(base,{surface:{absorptivity:1,capacityJm2K:100000,exchangeWm2K
 const hotInput=input(JSON.stringify(document)),hotReport=run(hot,hotInput);let highStates=0;
 for(const course of hotReport.courses)for(const target of targets)for(const bound of bounds){const value=course.targets[target][bound];close(value.final.surfaceC,286.4,1e-9);close(value.final.subsurfaceC,200,1e-12);close(value.means.surfaceC,243.2,1e-9);close(value.means.subsurfaceC,200,1e-9);close(value.surface.maximumC,286.4,1e-9);close(value.surface.minimumC,200,1e-12);close(value.final.inputJm2,8640000,1e-6);for(const point of value.trajectory){close(point.surfaceC,200+.06*point.minute,1e-9);if(point.surfaceC>200)highStates++;}}
 assert.ok(highStates>0);checks.push({name:'Legitimate carriedstatesabove200C preserve originaldeclarationlimits',highStates,expectedFinalC:286.4});
-const large=structuredClone(base);large.width=14;large.height=14;large.existing=Array.from({length:196},()=>structuredClone(base.existing[0]));large.proposal=structuredClone(large.existing);const overBudget=rebuild(large),before=snapshot(overBudget,declarationInput);
-assert.throws(()=>compareShadeHeatSampling(overBudget,declarationInput),/budget|ray|work|16 million/i);assert.equal(snapshot(overBudget,declarationInput),before);checks.push({name:'Combinedthreegrid budget refuses with callerinputs unchanged',hourlyRayEstimate:6*196*195*24,combinedRayEstimate:6*196*195*168});
+const admittedLarge=[];
+for(const width of [12,24]){
+ const large=structuredClone(base);large.width=width;large.height=width;large.existing=Array.from({length:width*width},()=>structuredClone(base.existing[0]));large.proposal=structuredClone(large.existing);
+ const project=rebuild(large),before=snapshot(project,declarationInput),complete=compareShadeHeatSampling(project,declarationInput);
+ const expected=2*3*(width*width-1)*(24+48+96);
+ assert.equal(complete.estimatedRayTests,expected);assert.equal(complete.courses.reduce((sum,c)=>sum+c.estimatedRayTests,0),expected);
+ assert.equal(complete.courses.reduce((sum,c)=>sum+c.intervals.length,0),168);assert.equal(snapshot(project,declarationInput),before);
+ const reference=compareShadeHeat(project,declarationInput),hourly=complete.courses[0];
+ for(const target of targets)for(const bound of bounds){
+  const byMinute=new Map(hourly.targets[target][bound].trajectory.map(p=>[p.minute,p]));
+  for(const point of reference.trajectory)if(Number.isInteger(point.minute))for(const field of ['surfaceC','subsurfaceC'])close(byMinute.get(point.minute)[field],point[target][bound][field],1e-10);
+ }
+ admittedLarge.push({width,selectedPointBound:expected});
+}
+assert.equal(admittedLarge[1].selectedPointBound,579600);assert.ok(admittedLarge[1].selectedPointBound<16000000);
+checks.push({name:'Complete selected-point work admits valid larger and maximum grids without source mutation',admittedLarge});
 assert.equal(checks.length,6);
 });
 

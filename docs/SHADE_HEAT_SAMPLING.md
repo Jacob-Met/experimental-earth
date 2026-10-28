@@ -22,7 +22,9 @@ The source remains the strict hourly shade/heat input envelope: the original por
 
 Only the midpoint solar and mapped-shadow sampling changes. Each grid still propagates both existing/proposal targets and both lower/upper beam courses through the maintained two-store thermal step. This creates twelve complete thermal courses.
 
-The complete investigation preflights the combined 24 + 48 + 96 intervals. Its estimated work is 6 × N × (N − 1) × 168 ray checks for N grid cells, subject to the maintained 16 million limit. A site that fits the original hourly calculation can therefore be refused for the complete three-grid comparison. No partially calculated new comparison is presented.
+The complete investigation preflights the combined 24 + 48 + 96 intervals. Its selected-point work bound is 6 × (N − 1) × 168 ray checks for N grid cells, subject to the unchanged 16 million limit. Each midpoint inspects one ground receiver in two scenarios, with three ray/column checks per other cell. Lower and upper thermal courses reuse that forcing; they do not repeat geometry. The bound conservatively charges night and low-elevation midpoints even though those skip obstruction checks. The aggregate equals the sum of the three maintained per-course bounds.
+
+With the supported maximum 24 × 24 grid, the complete bound is 579,600 checks, so no currently valid uniform-diffuse grid exhausts the shared ceiling. The former extra receiver factor incorrectly refused valid larger sites after the maintained geometry switched to selected-point evaluation. All original grid, geometry, thermal, weather, source-byte and uniform-diffuse admission rules remain unchanged; mapped-sky declarations are still refused by this saved sampling model. No partially calculated new comparison is presented.
 
 The maintained −100…200°C initial declaration contract is unchanged. Carried states are passed directly to the existing thermal state contract, which admits its existing −100…500°C range. Chunking does not reinterpret a later temperature as a fresh initial declaration. Cumulative stored heat remains relative to the original initial state.
 
@@ -48,7 +50,7 @@ Run the focused numerical and input regressions from the repository root:
 node --test tests/shade-heat.test.mjs tests/shade-heat-weather.test.mjs tests/shade-heat-sampling-independent.test.mjs
 ```
 
-The independent sampling test exercises baseline parity at every common integer minute, original-hour containment, energy conservation, nonzero uncertainty bands, analytic warming above the initial-declaration limit, the combined work refusal and strict input-only round trips. The existing shade/heat and hourly-weather tests preserve their original admission and numerical contracts.
+The independent sampling test exercises baseline parity at every common integer minute, original-hour containment, energy conservation, nonzero uncertainty bands, analytic warming above the initial-declaration limit, complete selected-point work at12×12 and maximum24×24 grids and strict input-only round trips. The existing shade/heat and hourly-weather tests preserve their original admission and numerical contracts.
 
 Run the actual application course with an installed Chromium binary:
 

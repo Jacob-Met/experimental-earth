@@ -73,9 +73,12 @@ export function compareShadeHeatSampling(project, input) {
   if (!declaration.weather) throw Error('Attach one complete original hourly weather day before comparing solar sample grids');
   validateHeatColumnStudy(project.heatColumnStudy);
   const cells = project.width * project.height;
-  const estimatedRayTests = 6 * cells * (cells - 1) *
+  const estimatedRayTests = 6 * (cells - 1) *
     SHADE_HEAT_SAMPLING_STEPS.reduce((sum, step) => sum + 1440 / step, 0);
-  // One budget for the complete comparison, before any solar course is run.
+  // One selected ground receiver: two scenarios × three rayColumn tests
+  // per other cell. Charge every midpoint, including skipped night/low sun.
+  // Thermal lower/upper courses reuse forcing and add no geometry rays.
+  // One shared budget for all three grids, before any solar course is run.
   if (estimatedRayTests > SHADE_HEAT_LIMITS.maxRayTests) {
     throw Error('The complete 60/30/15 minute comparison exceeds the shared 16 million ray-check budget; use a smaller original grid');
   }
