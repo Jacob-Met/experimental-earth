@@ -3,6 +3,7 @@ import { checkShadeHeatBytes } from './shade-heat.js';
 import { createShadeHeatComputation } from './shade-heat-computation.js';
 import { makeShadeHeatExample } from './shade-heat-example.js';
 import { mountShadeHeatSampling } from './shade-heat-sampling-panel.js';
+import { mountShadeHeatProfileRange } from './shade-heat-profile-range-panel.js';
 
 const node = (tag, text = '') => { const e = document.createElement(tag); e.textContent = text; return e; };
 const svg = (tag, attrs = {}) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -44,6 +45,13 @@ export function mountShadeHeat({ getProject, notice }) {
   document.querySelector('#heat-column').after(panel);
   const $ = id => panel.querySelector('#' + id);
   let source = null, sourceMode = '', signature = '', generation = 0, accepted = null, selectedIndex = 0, store = 'surfaceC', hourlyWeather = null;
+  const profileRange = mountShadeHeatProfileRange({ host: panel, getAccepted: () => accepted, notice,
+    cancelParentPending: () => {
+      const pending = computation.pending || ['file-pending', 'weather-pending'].includes($('shade-status').dataset.state);
+      generation++; computation.cancel();
+      $('shade-run').disabled = !source; $('shade-export').disabled = !accepted;
+      if (pending) state(accepted ? 'The prior accepted comparison is retained.' : 'No shade-and-heat comparison has been accepted.', accepted ? 'compared' : 'not-compared');
+    } });
   const sampling = mountShadeHeatSampling({ host: panel,
     getAccepted: () => accepted?.investigation.declaration.diffuseSky ? null : accepted, notice });
 
@@ -66,6 +74,7 @@ export function mountShadeHeat({ getProject, notice }) {
   function state(message, kind = 'not-compared') { $('shade-status').textContent = message; $('shade-status').dataset.state = kind; }
   function invalidate(message) {
     generation++; computation.cancel(); accepted = null;
+    profileRange.invalidate('Source or declarations changed. Accept the comparison again or reopen original profile-range inputs.');
     sampling.invalidate('Source or declarations changed. Accept the hourly comparison again before comparing its solar grids.');
     $('shade-results').replaceChildren(); $('shade-export').disabled = true;
     $('shade-run').disabled = !source; state(message);
@@ -123,6 +132,7 @@ export function mountShadeHeat({ getProject, notice }) {
   }
   function result(next, mode) {
     accepted = next;
+    profileRange.invalidate('Original comparison accepted. Investigate its final paired range across shared sky profiles.');
     sampling.invalidate(next.report.diffuseSky
       ? 'Solar-grid comparison currently uses uniform diffuse input. Turn off mapped diffuse-sky obstruction and compare the hourly source again, or reopen original sampling inputs.'
       : 'Hourly comparison replaced. Compare its solar grids to inspect sampling sensitivity.');
