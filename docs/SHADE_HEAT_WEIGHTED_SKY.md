@@ -59,6 +59,8 @@ The separate solar-sampling and cooling-window investigations retain their own u
 
 ## Verification
 
+To ask how the final paired result could change across all shared brightness profiles, use the separate [shared-profile final temperature inquiry](SHADE_HEAT_PROFILE_RANGE.md). It retains this original declaration and supplies a separate source-only query and witness profiles.
+
 The new core tests cover an independent vertical-plane integral, extreme uniform weights, clear-sky normalization, positive scaling, profile refinement, joint geometry/profile rotation, nonnegative roof and added-column ordering, malformed input and the one-ulp boundary regression. Thermal tests cover independently scaled diffuse forcing, direct-beam invariance, source-only constant/hourly v5 replay, coherent roof endpoints, cross-model refusal and the separate solar-grid boundary.
 
 Independent review also checks convex mixtures of one-hot profiles, additive-profile linearity, zero-weight obstacles and complete legacy report parity. A separately authored AABB slab-ray and adaptive-quadrature oracle agrees on its supported cases. Its explicit depth-limit refusals remain unqualified; a separate convergence study is not a certified error enclosure. The maintained browser session verifies the actual module worker, real downloads and fresh reopening, malformed profiles, delayed-read retirement, keyboard skyline inspection, source preservation and narrow layouts. Source identities and exact results are recorded in the associated qualification receipt and normal private pull request.

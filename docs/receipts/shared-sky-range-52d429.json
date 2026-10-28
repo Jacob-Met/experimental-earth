@@ -1,0 +1,239 @@
+{
+  "qualificationVersion": 3,
+  "status": "Qualified current-main source; this receipt precedes publication and accepted receiving",
+  "qualifiedAt": "2026-10-28T22:07:42.043297+00:00",
+  "baseCommit": "d853d247aac5d853687a40a88c8f314d30bc24df",
+  "baseTree": "ea7ff1bdc630b71d7e17584c64d27a429b4b4c0b",
+  "materializedCanonicalBaseFiles": 677,
+  "native": {
+    "passed": 148,
+    "failed": 0,
+    "tapSHA256": "5124e6944cf2d0695ded2516f352d497062fb71aaca02f0a55c73ed101beeef1",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/solar*.test.mjs tests/shade-heat*.test.mjs tests/diffuse-sky.test.mjs tests/continuous-sky.test.mjs tests/weighted-continuous-sky.test.mjs"
+  },
+  "browser": [
+    {
+      "course": "shared-profile-range",
+      "groups": 8,
+      "checks": [
+        "Actual child worker exposes both signs from one shared profile domain while retaining the original site and parent profile",
+        "Separate extrema buttons and actual keyboard input inspect the complete same-bin transmission and paired terminal-temperature witnesses",
+        "An actual source-only download reopens in a fresh document and changing bins recomputes that original child source without a parent result",
+        "Forged derived results refuse transactionally and bin edits retire delayed input loads and their downloads before recomputation",
+        "A newer independent child import retires an older pending parent import so its late completion cannot overwrite or invalidate the new result",
+        "One unsupported vertex refuses the complete new inquiry and visibly retains the prior accepted source instead of presenting a survivor range",
+        "Original hourly weather remains byte-attached through actual download; parent input edits retire the child result and reopening restores its own source",
+        "Profile-range controls and scrollable evidence tables fit desktop and 390px screens with no application exceptions"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:06:57.605Z",
+      "receiptSHA256": "269687b19b24d94b7114b96104ae8aa6a31dc2a6ca20cd38bb16c7bcb209c036"
+    },
+    {
+      "course": "authored-weighted-sky",
+      "groups": 7,
+      "checks": [
+        "Actual worker connects authored azimuth brightness to diffuse-only thermal output; profile table and sector weights are inspectable and working-site bytes remain unchanged",
+        "A real v5 input-only download reopens in a fresh document with the same source, method and recomputed thermal trajectory",
+        "Derived-result injection refuses transactionally; editing the brightness profile retires a delayed old v5 load and can recompute the sampled method",
+        "Original hourly weather remains byte-attached through v5 download and fresh reopening with recomputed continuous sky and locked weather controls",
+        "Editing authored weights retires the accepted result and download; zero-mass brightness refuses visibly before a fresh valid computation",
+        "Declared height endpoints have separate inspectable skylines and actual keyboard input changes the selected horizon sector",
+        "Authored profile controls, grid-heading weights and sector inspection fit desktop and 390px layouts without application exceptions"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:06:58.516Z",
+      "receiptSHA256": "74c0d927530cc58d6caeab9690f6d9bfe753fab34e912bf713a343186d90093a"
+    },
+    {
+      "course": "solar-sampling-and-window",
+      "groups": 9,
+      "checks": [
+        "Original hourly source admits all three complete solar grids; constant weather does not; working site is unchanged",
+        "Rendered endpoint and off-hour common-minute values plus analytic day means and peaks match recomputed retained inputs for both sites and heat stores",
+        "Actual input-only download retains raw hourly source and recomputes in a fresh page without replacing the parent or working site",
+        "Wrong model, invalid UTF8 and oversized inputs refuse atomically; the byte limit precedes reading",
+        "A previously refused authored12\u00d712 source completes all168 intervals at144144 selected-point checks and reopens from original inputs",
+        "A delayed sampling read cannot replace a newly selected parent source; downloads pause and the same file can be selected again",
+        "Declaration edits cancel queued sampling results and detaching hourly weather invalidates the child comparison",
+        "The complete comparison and captions fit 390px, wide data tables scroll locally, keyboard focus reaches the scroll region, and no browser exception occurs",
+        "Declared window classification, definite counterexample jump, query invalidation, input-only download/fresh replay and parent replacement preserve source"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:06:59.210Z",
+      "receiptSHA256": "c801002288e09c07224f74809c2c1ed5e203f5b099481f8d1da97e89d9c8186e"
+    },
+    {
+      "course": "incoming-original-source-identity",
+      "groups": 3,
+      "checks": [
+        "A window source remains independent of B workspace and survives both refused replacement formats",
+        "Ordinary B sampling replacement clears A window stamp; new inquiry names B",
+        "Actual raw-only B download freshly reopens over A workspace with B receiver and date"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:06:52.145Z",
+      "receiptSHA256": "cb6616e0e24066c5d8050d7a825b00a127725431416d08136c4b863ee69c727a"
+    }
+  ],
+  "browserComposition": [
+    {
+      "course": "shared-profile-range",
+      "codeFilesIncludingTestsRehashed": 653
+    },
+    {
+      "course": "authored-weighted-sky",
+      "codeFilesIncludingTestsRehashed": 653
+    },
+    {
+      "course": "solar-sampling-and-window",
+      "codeFilesIncludingTestsRehashed": 653
+    },
+    {
+      "course": "incoming-original-source-identity",
+      "codeFilesIncludingTestsRehashed": 653
+    }
+  ],
+  "independentReview": {
+    "core": {
+      "reviewer": "worldlaw_recovered",
+      "sha256": "21aadde1a3aa395d6ef04405649d93fa4ac89135839f5f031d4670f1f593cfac",
+      "result": "No blocker after independent full-model oracle, every per-bin target/bound/final store and range on15fixture/bincombinations; strict replay and whole-query refused-vertex counterexample",
+      "evidence": {
+        "/tmp/worldlaw-52d429-sky-profile-review/candidate-review.mjs": "be9a5f21351d16025c1642c80e5026cb954084520e0ec07477b92afd66b4f097",
+        "/tmp/worldlaw-52d429-sky-profile-review/candidate-review-receipt.json": "641f3a3867130493a9d440740e58dcfb81d1a257f72be85305d9c1f7249d1fe7",
+        "/tmp/worldlaw-52d429-sky-profile-review/candidate-refusal.mjs": "269ce8b0a3830d8e8e64f324da5ceb90b9c16eb9d3d529e8c10782b46326fb83",
+        "/tmp/worldlaw-52d429-sky-profile-review/candidate-refusal-receipt.json": "48545b5209eb0194210788c38a99a6e705554e7e806bd2b9ede8827b6ed72803",
+        "/tmp/worldlaw-52d429-sky-profile-review/PROOF.md": "fe91e3481a9102b498bfcfa0b28cb61a83bc273600629169e18e3f0a80064375"
+      }
+    },
+    "consumer": {
+      "reviewer": "microverse_recovered",
+      "result": "No concrete unresolved defect in source identity, child-only replay, retained source across query changes, transactional failed import, pending parent/child retirement and complete report admission",
+      "sha256": {
+        "shade-heat-profile-range-panel.js": "442d525e19da42d04a479d7b09031cbdee33adc8731db86415f58277548e39af",
+        "shade-heat-profile-range-worker.js": "925d73e1e7e0633edcd0524610f9124d948521ebe5fdb141f356ff0af9d2582a",
+        "shade-heat-panel.js": "e5e5acf88f20a8b9d6a6c72f864adb323c85add15c4cc64c2e2788a16b1d9082"
+      },
+      "scope": "Independent source review; no duplicate browser claim"
+    },
+    "visualRepair": "Keep numeric values unbroken and permit horizontal scrolling on narrow tables; does not change model or consumer control flow"
+  },
+  "composition": {
+    "base": "d853d247aac5d853687a40a88c8f314d30bc24df",
+    "baseTree": "ea7ff1bdc630b71d7e17584c64d27a429b4b4c0b",
+    "acceptedPredecessor": "72332d621b50220df45743a3e109ba9f6a7b394d",
+    "incomingPaths": [
+      {
+        "path": "docs/RAIN_PROPOSAL_COMPARISON.md",
+        "sha": "3b3af237a70e197f132cdc10db2d5098aebd2a74",
+        "status": "modified"
+      },
+      {
+        "path": "proposal-comparison-page.js",
+        "sha": "c7f6e4563ce8d8cf14a080e1d13d1954366322f5",
+        "status": "modified"
+      },
+      {
+        "path": "proposal-comparison-worker.js",
+        "sha": "dab56ca273c5261495f71988d87b6d52bdda01d0",
+        "status": "modified"
+      },
+      {
+        "path": "proposal-comparison.css",
+        "sha": "90e69c7184d5a8a73c26abaa524f93af491b7156",
+        "status": "modified"
+      },
+      {
+        "path": "proposal-file-intake.js",
+        "sha": "7112abb9dcdeb233502c1374f09535e1edd07005",
+        "status": "added"
+      },
+      {
+        "path": "proposal-local-depth-worker.js",
+        "sha": "f6cbaf023ed3f6dbd43877319c46507ff01f1104",
+        "status": "added"
+      },
+      {
+        "path": "proposal-local-inspection.js",
+        "sha": "f3e82d5250a3660e69b044883a9d3f899be58b23",
+        "status": "added"
+      },
+      {
+        "path": "rain-proposal-local-depth.js",
+        "sha": "82d1bbf57ee4bf2718301e7fe62fe30727a8af97",
+        "status": "added"
+      },
+      {
+        "path": "tests/proposal-comparison.browser.mjs",
+        "sha": "c100bb8f6909a0f063b4b5659e827444cff94fc3",
+        "status": "modified"
+      },
+      {
+        "path": "tests/proposal-local-depth.test.mjs",
+        "sha": "46e5a6e23c79635fb4550a09ec2251526fc8b1ab",
+        "status": "added"
+      },
+      {
+        "path": "shade-heat-sampling-panel.js",
+        "sha": "b8ff6f67c93a7e133b1efd63eda916e9e3237878",
+        "status": "modified"
+      },
+      {
+        "path": "shade-heat-source-label.js",
+        "sha": "7f55fa2c99b29f27862a8d06b759b536c7c3e6cd",
+        "status": "added"
+      },
+      {
+        "path": "shade-heat-window-view.js",
+        "sha": "85f73a649851365ac8e8ad85a57bbd7588a0a90f",
+        "status": "modified"
+      },
+      {
+        "path": "tests/shade-heat-source-identity.browser.mjs",
+        "sha": "606acc51405319158ccc69c7e07bf161ca4f218b",
+        "status": "added"
+      }
+    ],
+    "overlapWithContribution": [],
+    "materializedCanonicalFiles": 677,
+    "qualification": "All14incomingpaths and materialized base files match current tree; PR478 original receiver identity retained unchanged"
+  },
+  "nativeTask": {
+    "id": "experimental-earth-shared-sky-range-52d429",
+    "revision": 2,
+    "owner": "estate-52d429-20261025",
+    "sourceSHA256": "ef74f7399a8d6ca65fb5e9f8b01a9ebbbd7c13c72dbf9f1222f7003a9b99a1a1"
+  },
+  "scope": "Final paired temperatures across one shared static nonnegative4/8/16-bin profile. One maintained geometry/forcing pass,4N complete thermal courses, separate same-bin paired witnesses. Every vertex must succeed. Original v1-v5 parent sources remain unchanged.",
+  "limits": [
+    "Final-temperature component ranges only; no daily-peak optimization or varying profile over time.",
+    "Original beam/roof forcing envelopes and numerical diagnostics retained; no joint physical realization, certified enclosure or physical-validation claim.",
+    "Normal private source integration only; outlet24 and other owners/holds remain unchanged. No public deployment or replay of earlier uncertain object writes."
+  ],
+  "visualInspection": {
+    "desktop": true,
+    "narrow390": true,
+    "repair": "Automatic table layout keeps numeric temperatures and transmissions unbroken in horizontally scrollable narrow evidence tables",
+    "screenshotsExcludedFromRepository": true
+  },
+  "sha256": {
+    "shade-heat-profile-range.js": "21aadde1a3aa395d6ef04405649d93fa4ac89135839f5f031d4670f1f593cfac",
+    "shade-heat-profile-range-worker.js": "925d73e1e7e0633edcd0524610f9124d948521ebe5fdb141f356ff0af9d2582a",
+    "shade-heat-profile-range-panel.js": "442d525e19da42d04a479d7b09031cbdee33adc8731db86415f58277548e39af",
+    "shade-heat-profile-range.css": "8f2738447c8ca77d9925215c0364f47238308e251c8e167ea961c92bcc54bae9",
+    "shade-heat-panel.js": "e5e5acf88f20a8b9d6a6c72f864adb323c85add15c4cc64c2e2788a16b1d9082",
+    "tests/shade-heat-profile-range.test.mjs": "f19832c1686cacadb0c577b5818f6dc1dd3d8435a5808d59f03c49f37cdd7c1a",
+    "tests/shade-heat-profile-range.browser.mjs": "a861b121f2a2ecbb5e5b8a6301eb1956f182ba26b7774474a423bcd787bf4ab1",
+    "docs/SHADE_HEAT_PROFILE_RANGE.md": "fd7659f12f368b2049c90e2101096773ef954cc16ebcceaa291e39feca565455",
+    "docs/SHADE_HEAT_WEIGHTED_SKY.md": "21792c60ee8a8adb9cd11408851032124a36d20c84f8e70dd6b330f3bdd74c24"
+  }
+}
