@@ -1,6 +1,8 @@
 import { parsePowerHourly, POWER_HOURLY_FORMAT } from './weather-power.js';
 import { validateProject } from './core.js';
-import { compareSolarOcclusion } from './solar-occlusion.js';
+import { compareSolarOcclusionAt } from './solar-occlusion.js';
+import { compareDiffuseSkyAt, normalizeDiffuseSky, DIFFUSE_SKY_MODEL, DIFFUSE_SKY_SEMANTICS } from './diffuse-sky.js';
+import { compareContinuousSkyAt, normalizeContinuousSky, CONTINUOUS_SKY_MODEL, CONTINUOUS_SKY_SEMANTICS } from './continuous-sky.js';
 import { solarContext } from './solar-occlusion-contract.js';
 import { validateSunPath, sunPathPosition, SUN_PATH_MODEL } from './solar-path.js';
 import { evaluateHeatColumnTarget } from './heat-column.js';
@@ -14,7 +16,24 @@ export const SHADE_HEAT_MODEL = Object.freeze({
 });
 export const SHADE_HEAT_KIND = 'experimental-earth/shade-heat-inputs/1';
 export const SHADE_HEAT_HOURLY_KIND = 'experimental-earth/shade-heat-inputs/2';
+export const SHADE_HEAT_SKY_KIND = 'experimental-earth/shade-heat-inputs/3';
+export const SHADE_HEAT_CONTINUOUS_SKY_KIND = 'experimental-earth/shade-heat-inputs/4';
 export const SHADE_HEAT_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_MODEL, version: 2, weather: POWER_HOURLY_FORMAT });
+export const SHADE_HEAT_SKY_MODEL = Object.freeze({ ...SHADE_HEAT_MODEL,
+  name: 'mapped-isotropic-sky-midpoint-two-store', version: 3,
+  sky: DIFFUSE_SKY_MODEL.name + '/' + DIFFUSE_SKY_MODEL.version,
+  forcing: 'mapped-sky-transmission * DHI + mapped-beam-transmission * DNI * max(0, sin(apparent-elevation))' });
+export const SHADE_HEAT_SKY_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_SKY_MODEL, weather: POWER_HOURLY_FORMAT });
+export const SHADE_HEAT_CONTINUOUS_SKY_MODEL = Object.freeze({ ...SHADE_HEAT_SKY_MODEL,
+  name: 'continuous-isotropic-column-sky-midpoint-two-store', version: 4, sky: CONTINUOUS_SKY_MODEL.kind });
+export const SHADE_HEAT_CONTINUOUS_SKY_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_CONTINUOUS_SKY_MODEL, weather: POWER_HOURLY_FORMAT });
+const isContinuousSky = declaration => declaration?.diffuseSky?.method === 'continuous-columns';
+const shadeHeatModel = declaration => isContinuousSky(declaration)
+  ? (declaration.weather ? SHADE_HEAT_CONTINUOUS_SKY_HOURLY_MODEL : SHADE_HEAT_CONTINUOUS_SKY_MODEL)
+  : declaration?.diffuseSky
+  ? (declaration.weather ? SHADE_HEAT_SKY_HOURLY_MODEL : SHADE_HEAT_SKY_MODEL)
+  : (declaration?.weather ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL);
+
 export const SHADE_HEAT_LIMITS = Object.freeze({ maxIntervals: 24, maxMinutes: 1440,
   maxRayTests: 16000000, maxFileBytes: 5 * 1024 * 1024 });
 export const SHADE_HEAT_SEMANTICS = 'Each interval holds its midpoint sun position and mapped obstruction constant. '
@@ -23,6 +42,17 @@ export const SHADE_HEAT_SEMANTICS = 'Each interval holds its midpoint sun positi
   + 'Declared diffuse-horizontal input is unchanged by geometry, including at night; declare zero if appropriate. '
   + 'No sky-view attenuation, reflected sunlight, cloud inference, foliage transmission, nonlinear thermal radiation, '
   + 'moisture, lateral heat flow, field calibration or human comfort is modeled.';
+export const SHADE_HEAT_SKY_SEMANTICS = 'Each interval holds its midpoint sun position and mapped obstruction constant. '
+  + 'Temperature ranges cover independent uncertain sampled beam and diffuse choices in this declared model, not a joint physical realization '
+  + 'of column heights, sunlight between samples, angular-sampling error or formal floating-point bounds. '
+  + DIFFUSE_SKY_SEMANTICS
+  + ' Declared diffuse input is attenuated by the same static geometry at every interval, including night; declare zero when appropriate. '
+  + 'No cloud inference, nonlinear thermal radiation, moisture, lateral heat flow, field calibration or human comfort is modeled.';
+export const SHADE_HEAT_CONTINUOUS_SKY_SEMANTICS = 'Each interval retains the maintained midpoint direct-beam calculation. '
+  + 'Diffuse forcing uses continuous angular integration over static declared ground columns; beam sampling and its grazing convention remain unchanged. '
+  + 'Thermal ranges combine independent incident-input extremes and do not establish one joint physical realization of all column heights, continuous sunlight between time samples or formal floating-point bounds. '
+  + CONTINUOUS_SKY_SEMANTICS
+  + ' Declared nonzero diffuse input also applies at night. No cloud inference, nonlinear thermal radiation, moisture, lateral heat flow or human comfort is modeled.';
 const targets = ['existing', 'proposal'];
 const bounds = ['lower', 'upper'];
 const pathKeys = ['latitudeDeg', 'longitudeDeg', 'gridColumnBearingDeg', 'locationSource',
@@ -33,6 +63,13 @@ const exactKeys = (value, keys) => value !== null && typeof value === 'object' &
   && Object.keys(value).length === keys.length && keys.every(k => Object.hasOwn(value, k));
 
 export function normalizeShadeHeat(input) {
+  if (input && typeof input === 'object' && !Array.isArray(input) && Object.hasOwn(input, 'diffuseSky')) {
+    const { diffuseSky, ...ordinary } = input;
+    if (diffuseSky === undefined) throw Error('Supply an explicit diffuse-sky declaration');
+    const sky = diffuseSky && Object.hasOwn(diffuseSky, 'method')
+      ? normalizeContinuousSky(diffuseSky) : normalizeDiffuseSky(diffuseSky);
+    return { ...normalizeShadeHeat(ordinary), diffuseSky: sky };
+  }
   const hourly = exactKeys(input, ['path', 'weather']);
   if ((!hourly && !exactKeys(input, inputKeys)) || !exactKeys(input.path, pathKeys)) {
     throw Error('Supply only the supported location, UTC, direct/diffuse irradiance, reservoir and source inputs');
@@ -84,6 +121,21 @@ export function mappedHorizontalIrradiance(status, elevationDeg, directNormalWm2
     upper: diffuseHorizontalWm2 + transmission[1] * fullBeamWm2 };
 }
 
+/** Apply sampled isotropic diffuse transmission while retaining the maintained
+ * direct-beam projection and ambiguity. The old beam-only helper is unchanged.
+ */
+export function mappedSkyHorizontalIrradiance(status, elevationDeg, directNormalWm2, diffuseHorizontalWm2, transmission) {
+  if (!Array.isArray(transmission) || transmission.length !== 2
+      || !finite(transmission[0], 0, 1) || !finite(transmission[1], 0, 1) || transmission[0] > transmission[1]) {
+    throw Error('Diffuse-sky transmission must be an ordered pair between zero and one');
+  }
+  const beam = mappedHorizontalIrradiance(status, elevationDeg, directNormalWm2, diffuseHorizontalWm2);
+  const diffuseWm2 = transmission.map(value => value * diffuseHorizontalWm2);
+  return { ...beam, fullDiffuseHorizontalWm2: diffuseHorizontalWm2, diffuseTransmission: [...transmission], diffuseWm2,
+    lower: diffuseWm2[0] + beam.transmission[0] * beam.fullBeamWm2,
+    upper: diffuseWm2[1] + beam.transmission[1] * beam.fullBeamWm2 };
+}
+
 function sourceAdmission(project, input, solarStepMinutes = null) {
   validateProject(project);
   const declaration = normalizeShadeHeat(input);
@@ -100,11 +152,20 @@ function sourceAdmission(project, input, solarStepMinutes = null) {
   if (solarStepMinutes !== null && (!declaration.weather || ![60, 30, 15].includes(solarStepMinutes))) {
     throw Error('Derived solar sampling requires original hourly weather and a 60, 30 or 15 minute interval');
   }
+  if (solarStepMinutes !== null && declaration.diffuseSky) {
+    throw Error('Solar sample-grid comparison currently requires uniform diffuse input; mapped diffuse-sky investigations retain their own original time grid');
+  }
   const stepMinutes = solarStepMinutes ?? declaration.path.stepMinutes;
   const start = Date.parse(declaration.path.startUtc), end = Date.parse(declaration.path.endUtc);
   const count = Math.ceil((end - start) / (stepMinutes * 60000));
-  const cells = project.width * project.height, estimatedRayTests = 6 * cells * (cells - 1) * count;
-  if (estimatedRayTests > SHADE_HEAT_LIMITS.maxRayTests) {
+  const cells = project.width * project.height;
+  const skyDirections = declaration.diffuseSky && !isContinuousSky(declaration)
+    ? declaration.diffuseSky.azimuthSamples * declaration.diffuseSky.elevationBands : 0;
+  const estimatedRayTests = 6 * (cells - 1) * (count + skyDirections);
+  // Four endpoint skylines (two scenarios, minimum/maximum roofs), each with
+  // no more than four corners per other cell plus the cardinal sectors.
+  const skyFaceTestBound = isContinuousSky(declaration) ? 4 * (4 * (cells - 1) + 4) * (cells - 1) : 0;
+  if (estimatedRayTests + skyFaceTestBound > SHADE_HEAT_LIMITS.maxRayTests) {
     throw Error('The complete coupled investigation exceeds the 16 million ray-check budget; use fewer intervals or a smaller source grid');
   }
   const weather = declaration.weather ? parsePowerHourly(declaration.weather.rawText) : null;
@@ -117,6 +178,9 @@ function sourceAdmission(project, input, solarStepMinutes = null) {
 export function sampleShadeHeatForcing(project, input, solarStepMinutes = null) {
   const admitted = sourceAdmission(project, input, solarStepMinutes);
   const { declaration, weather, cellIndex, start, end, count, stepMinutes } = admitted;
+  const diffuseSky = isContinuousSky(declaration) ? compareContinuousSkyAt(project, cellIndex)
+    : declaration.diffuseSky ? compareDiffuseSkyAt(project, cellIndex, declaration.diffuseSky) : null;
+  if (diffuseSky && diffuseSky.status !== 'compared') throw Error('The maintained diffuse-sky calculation refused the source');
   const working = structuredClone(project), intervals = [];
   for (let i = 0; i < count; i++) {
     const from = start + i * stepMinutes * 60000;
@@ -131,7 +195,7 @@ export function sampleShadeHeatForcing(project, input, solarStepMinutes = null) 
     if (position.elevationDeg >= 1) {
       working.solarStudy = { ...project.solarStudy, headingDeg: position.headingDeg,
         elevationDeg: position.elevationDeg, sunSource: 'Calculated source-bound midpoint ' + utc };
-      comparison = compareSolarOcclusion(working);
+      comparison = compareSolarOcclusionAt(working, cellIndex);
       if (comparison.status !== 'compared') throw Error('The maintained obstruction calculation refused a midpoint');
     }
     const row = { fromMinute: (from - start) / 60000, toMinute: (to - start) / 60000,
@@ -140,18 +204,21 @@ export function sampleShadeHeatForcing(project, input, solarStepMinutes = null) 
       weather: weather?.intervals[Math.floor((from - start) / 3600000)] ?? { directNormalWm2: declaration.directNormalWm2,
         diffuseHorizontalWm2: declaration.diffuseHorizontalWm2, reservoirC: declaration.reservoirC } };
     for (const target of targets) {
-      const ray = comparison ? comparison[target][cellIndex] : { cellIndex,
+      const ray = comparison ? comparison[target] : { cellIndex,
         status: position.elevationDeg <= 0 ? 'below-horizon' : 'low-elevation', witness: null };
-      row[target] = { ...ray, irradiance: mappedHorizontalIrradiance(ray.status, position.elevationDeg,
-        row.weather.directNormalWm2, row.weather.diffuseHorizontalWm2) };
+      const irradiance = diffuseSky
+        ? mappedSkyHorizontalIrradiance(ray.status, position.elevationDeg, row.weather.directNormalWm2,
+          row.weather.diffuseHorizontalWm2, diffuseSky[target].transmission)
+        : mappedHorizontalIrradiance(ray.status, position.elevationDeg, row.weather.directNormalWm2, row.weather.diffuseHorizontalWm2);
+      row[target] = { ...ray, irradiance };
     }
     intervals.push(row);
   }
-  return { ...admitted, intervals };
+  return { ...admitted, intervals, ...(diffuseSky ? { diffuseSky } : {}) };
 }
 
 export function compareShadeHeat(project, input) {
-  const { declaration, weather, cellIndex, start, end, estimatedRayTests, intervals } = sampleShadeHeatForcing(project, input);
+  const { declaration, weather, cellIndex, start, end, estimatedRayTests, intervals, diffuseSky } = sampleShadeHeatForcing(project, input);
   const studies = {}, responses = {}, durationMinutes = (end - start) / 60000;
   // Exact thermal courses reuse the maintained propagator and its interior
   // turning points; no separate integration or extrema finder is introduced.
@@ -193,9 +260,12 @@ export function compareShadeHeat(project, input) {
     summary[target].final = Object.fromEntries(bounds.map(bound => [bound, responses[target][bound].summary.final]));
     summary[target].ambiguousIntervals = intervals.filter(row => row[target].irradiance.lower !== row[target].irradiance.upper).length;
   }
-  return { status: 'compared', model: weather ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL, declaration, cellIndex,
+  return { status: 'compared', model: shadeHeatModel(declaration), declaration, cellIndex,
     weatherSource: weather?.source ?? { declaration: declaration.weatherSource },
-    durationMinutes, estimatedRayTests, intervals, trajectory, summary, semantics: SHADE_HEAT_SEMANTICS
+    durationMinutes, estimatedRayTests, intervals, trajectory, summary,
+    ...(diffuseSky ? { diffuseSky } : {}),
+    ...(isContinuousSky(declaration) ? { estimatedSkyFaceTests: diffuseSky.estimatedFaceTests } : {}),
+    semantics: (isContinuousSky(declaration) ? SHADE_HEAT_CONTINUOUS_SKY_SEMANTICS : diffuseSky ? SHADE_HEAT_SKY_SEMANTICS : SHADE_HEAT_SEMANTICS)
       + (weather ? ' Hourly weather uses source point data at its original spatial resolution; uploaded metadata does not authenticate the file. Hourly direct-normal energy is divided by its one-hour interval and projected at the midpoint, not integrated against continuous sun. T2M drives the ambient reservoir, not an observed ground temperature.' : '') };
 }
 
@@ -209,8 +279,9 @@ export function checkShadeHeatBytes(bytes) {
 export function prepareShadeHeatSource(project, input) {
   const source = parsePortableProject(serializePortableProject(project));
   const { declaration } = sourceAdmission(source, input);
-  const investigation = { kind: declaration.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND,
-    model: { ...(declaration.weather ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL) }, project: source, declaration };
+  const investigation = { kind: isContinuousSky(declaration) ? SHADE_HEAT_CONTINUOUS_SKY_KIND
+    : declaration.diffuseSky ? SHADE_HEAT_SKY_KIND : declaration.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND,
+    model: { ...shadeHeatModel(declaration) }, project: source, declaration };
   checkShadeHeatBytes(new Blob([JSON.stringify(investigation)]).size);
   return investigation;
 }
@@ -233,10 +304,12 @@ export function parseShadeHeatSource(text) {
   checkShadeHeatBytes(new Blob([text]).size);
   let value;
   try { value = JSON.parse(text); } catch { throw Error('Invalid shade and heat input JSON'); }
-  const expected = value?.kind === SHADE_HEAT_HOURLY_KIND ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL;
+  const expected = shadeHeatModel(value?.declaration);
+  const expectedKind = isContinuousSky(value?.declaration) ? SHADE_HEAT_CONTINUOUS_SKY_KIND
+    : value?.declaration?.diffuseSky ? SHADE_HEAT_SKY_KIND
+    : value?.declaration?.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND;
   if (!exactKeys(value, ['kind', 'model', 'project', 'declaration'])
-      || ![SHADE_HEAT_KIND, SHADE_HEAT_HOURLY_KIND].includes(value.kind)
-      || (value.kind === SHADE_HEAT_HOURLY_KIND) !== Boolean(value.declaration?.weather)
+      || value.kind !== expectedKind
       || !exactKeys(value.model, Object.keys(expected))
       || Object.keys(expected).some(key => value.model[key] !== expected[key])) {
     throw Error('Unsupported shade and heat input model or envelope; saved result fields are not accepted');

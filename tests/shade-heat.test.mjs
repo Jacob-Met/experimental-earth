@@ -144,7 +144,7 @@ test('full-source input-only export recomputes and refuses derived verdicts or m
   assert.throws(() => checkShadeHeatBytes(5 * 1024 * 1024 + 1), /limit/);
 });
 
-test('complete-work and input limits reject before producing partial courses', () => {
+test('strict input limits and supported full-grid point heating remain admitted', () => {
   const { project, declaration } = makeShadeHeatExample();
   for (const input of [{ ...declaration, directNormalWm2: NaN }, { ...declaration, diffuseHorizontalWm2: -1 },
     { ...declaration, weatherSource: ' ' }, { ...declaration, surprise: 5 },
@@ -155,5 +155,6 @@ test('complete-work and input limits reject before producing partial courses', (
   p.solarStudy = prepareSolarStudy(p, { ...p.solarStudy });
   delete p.heatColumnStudy; p.surfaceHeatStudy = prepareSurfaceHeatStudy(p, { ...project.surfaceHeatStudy });
   p.heatColumnStudy = prepareHeatColumnStudy(p, structuredClone(project.heatColumnStudy.lowerLayers));
-  assert.throws(() => compareShadeHeat(p, declaration), /ray-check budget/);
+  const report=compareShadeHeat(p,declaration),small=compareShadeHeat(project,declaration);
+  assert.equal(report.estimatedRayTests,6*575*report.intervals.length);assert.deepEqual(report.trajectory,small.trajectory);
 });
