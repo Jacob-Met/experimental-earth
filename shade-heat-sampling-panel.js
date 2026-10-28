@@ -1,3 +1,4 @@
+import { pairedShadeCooling } from './shade-heat-benefit.js';
 import { prepareShadeHeatSampling, parseShadeHeatSampling } from './shade-heat-sampling.js';
 import { checkShadeHeatBytes } from './shade-heat.js';
 
@@ -159,6 +160,12 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
       inspector.append(item);
     }
     host.append(inspector);
+    const paired = $('benefit'); paired.replaceChildren();
+    paired.append(table('Paired cooling · existing minus proposed · ' + labelForStore(store),
+      ['Solar grid', 'At common minute ' + minute + ' · °C', 'Daily mean cooling · °C', 'Difference of separate peaks · °C'],
+      pairedShadeCooling(report, minute, store).map(row => [row.solarStepMinutes + ' min',
+        ...[row.cooling, row.meanCooling, row.separatePeakDifference].map(v => pair(v.lowerC, v.upperC))])));
+    paired.append(node('p', 'Positive cooling means the proposed site is cooler; negative means warmer. Bounds subtract independent beam ranges: existing lower minus proposed upper, and existing upper minus proposed lower. Their extremes need not be jointly attainable. Separate daily peaks can occur at different times; their difference is not the greatest coincident cooling. Each solar grid remains separate; these ranges do not bound sampling error.'));
     for (const course of report.courses) for (const bound of ['lower', 'upper']) {
       const point = course.targets[target][bound].trajectory.find(row => row.minute === minute);
       host.dataset['grid' + course.solarStepMinutes + (bound === 'lower' ? 'Lower' : 'Upper')] = point[store];
@@ -196,7 +203,7 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
     const time = node('label', 'Inspect a common minute'); time.className = 'input-label';
     const slider = node('input'); slider.id = 'shade-sampling-time'; slider.type = 'range'; slider.min = 0; slider.max = 1440; slider.step = 1; slider.value = minute;
     slider.addEventListener('input', () => { minute = Number(slider.value); inspect(); }); time.append(slider);
-    const inspector = node('div'); inspector.id = 'shade-sampling-inspect'; host.append(time, inspector); inspect();
+    const inspector = node('div'); inspector.id = 'shade-sampling-inspect'; const benefit = node('div'); benefit.id = 'shade-sampling-benefit'; host.append(time, benefit, inspector); inspect();
     const energy = node('details'); energy.id = 'shade-sampling-energy'; energy.append(node('summary', 'Inspect final cumulative energy from the original initial state'));
     energy.append(table(labelForTarget(target) + ' · cumulative energy, kJ/m²',
       ['Grid · beam', 'Absorbed input', 'Ambient exchange out', 'Surface stored change', 'Lower stored change', 'Balance residual'],

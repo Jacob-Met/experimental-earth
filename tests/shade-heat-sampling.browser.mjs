@@ -93,6 +93,25 @@ try {
         await evaluate("document.getElementById('shade-sampling-time').value=" + minute + ";document.getElementById('shade-sampling-time').dispatchEvent(new Event('input'))");
         const visible = await evaluate("({data:{...document.getElementById('shade-sampling-inspect').dataset},rows:Array.from(document.querySelectorAll('#shade-sampling-inspect tbody tr'),tr=>Array.from(tr.children,td=>td.textContent)),text:document.getElementById('shade-sampling-inspect').textContent})");
         assert.equal(Number(visible.data.minute), minute);
+        const expectedCooling = report.courses.map(course => {
+          const points = t => ['lower','upper'].map(b => course.targets[t][b].trajectory.find(p=>p.minute===minute)[store]);
+          const e=points('existing'),p=points('proposal');
+          return pair(e[0]-p[1],e[1]-p[0]);
+        });
+        assert.deepEqual(await evaluate("Array.from(document.querySelectorAll('#shade-sampling-benefit tbody tr'),tr=>tr.children[1].textContent)"),expectedCooling);
+        for (const [column, metric] of [[2,'mean'],[3,'peak']]) {
+          const expectedColumn = report.courses.map(course => {
+            const values = target => ['lower','upper'].map(bound => {
+              const courseBound=course.targets[target][bound];
+              return metric==='mean' ? courseBound.means[store] : courseBound[name].maximumC;
+            });
+            const e=values('existing'),p=values('proposal');
+            return pair(e[0]-p[1],e[1]-p[0]);
+          });
+          assert.deepEqual(await evaluate("Array.from(document.querySelectorAll('#shade-sampling-benefit tbody tr'),tr=>tr.children["+column+"].textContent)"),expectedColumn);
+        }
+
+
         report.courses.forEach((course, index) => {
           const values = ['lower', 'upper'].map(bound => course.targets[target][bound].trajectory.find(point => point.minute === minute)[store]);
           assert.equal(visible.rows[index][1], pair(...values) + ' °C');
@@ -172,7 +191,7 @@ try {
     return { checks, sandbox: session.sandbox, exceptions };
   });
   const files = {};
-  for (const relative of ['shade-heat.js', 'shade-heat-sampling.js', 'shade-heat-panel.js', 'shade-heat-sampling-panel.js', 'shade-heat.css', 'tests/shade-heat-sampling.browser.mjs']) {
+  for (const relative of ['shade-heat-benefit.js', 'shade-heat.js', 'shade-heat-sampling.js', 'shade-heat-panel.js', 'shade-heat-sampling-panel.js', 'shade-heat.css', 'tests/shade-heat-sampling.browser.mjs']) {
     files[relative] = createHash('sha256').update(await readFile(join(root, relative))).digest('hex');
   }
   const receipt = { status: 'PASS', sourceRoot: root, sourceFiles: files, ...result.value, receipt: result.receipt };

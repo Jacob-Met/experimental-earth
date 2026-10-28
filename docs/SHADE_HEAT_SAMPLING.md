@@ -59,3 +59,9 @@ CHROME_BIN=/opt/google/chrome/chrome node tests/shade-heat-sampling.browser.mjs
 The browser course uses the maintained process owner and requires active sandbox admission before product assertions. It exercises original hourly attachment, the displayed means, peaks, endpoints and common-minute values, the real input download and fresh-page reopening, strict refusals, delayed reads, queued calculations and parent invalidation. It retains source hashes, browser receipts and desktop/390-pixel screenshots in a unique temporary run directory.
 
 At narrow widths, visible table captions stay above their horizontally scrolling data regions. Each table also retains its semantic caption and a labeled keyboard-focusable scroll area. Numerical and browser receipts describe the exercised source and runtime; physical accuracy and convergence remain separate claims.
+
+## Paired cooling at a common minute
+
+The paired table compares the existing and proposed sites at the same selected integer minute and heat store for each solar grid. Positive existing-minus-proposed temperature means the proposal is cooler; negative means warmer. Units are degrees Celsius. Independent beam ranges are subtracted as [existing lower minus proposed upper, existing upper minus proposed lower]. The extreme pairs need not be jointly attainable; no shared-geometry correlation is inferred.
+
+Daily mean cooling averages each complete course. The difference of separate daily peaks can compare different times and is not the greatest simultaneous cooling. Each grid remains a separate conditional result, without a convergence or finest-grid claim. Site/store/minute selections are view state; downloads retain original inputs only and recompute the paired view on reopening.
