@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
+import { spawn } from 'node:child_process';
 import { parseSpatialProfileEvidence, prepareSpatialProfileEvidence } from '../shade-heat-spatial-evidence.js';
 import { withBrowserSession } from './support/browser-session.mjs';
 
@@ -10,7 +11,20 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const runDirectory = root + '.browser-run-spatial-evidence-' + randomUUID(), checks = [];
 const sourceText = await readFile(new URL('../examples/shared-sky-two-points.json', import.meta.url), 'utf8');
 const reference = parseSpatialProfileEvidence(sourceText), raw = JSON.parse(sourceText);
+let launcher = null, launcherUrl = null;
 try {
+  launcher = spawn('python3', ['serve.py', '--port', '0'], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
+  launcherUrl = await new Promise((resolve, reject) => {
+    let output = '', errors = '';
+    const timer = setTimeout(() => reject(Error('Documented launcher readiness timed out: ' + errors)), 10000);
+    launcher.stdout.on('data', data => {
+      output += data.toString(); const match = /Serving Experimental Earth at (http:\/\/127\.0\.0\.1:\d+\/)/.exec(output);
+      if (match) { clearTimeout(timer); resolve(match[1]); }
+    });
+    launcher.stderr.on('data', data => { errors = (errors + data.toString()).slice(-4096); });
+    launcher.once('error', error => { clearTimeout(timer); reject(error); });
+    launcher.once('exit', code => { clearTimeout(timer); reject(Error('Documented launcher exited ' + code + ': ' + errors)); });
+  });
   const result = await withBrowserSession({ root, runDirectory,
     chromeBin: process.env.CHROME_BIN ?? '/opt/google/chrome/chrome', commandMs: 30000 }, async session => {
     const { send, evaluate: value, exceptions } = session;
@@ -51,10 +65,11 @@ try {
       assert.ok(found); const text = await readFile(path, 'utf8');
       return { path, text, parsed: parseSpatialProfileEvidence(text) };
     }
+    await send('Page.navigate', { url: launcherUrl });
     await until("Boolean(document.querySelector('a[href=\"sky-spatial-evidence.html\"]'))");
     assert.equal(await value("document.querySelector('a[href=\"sky-spatial-evidence.html\"]').target"), '_blank');
     const originalStorage = await stored();
-    await send('Page.navigate', { url: session.baseUrl + 'sky-spatial-evidence.html' });
+    await send('Page.navigate', { url: launcherUrl + 'sky-spatial-evidence.html' });
     await until("document.getElementById('spatial-example')?.disabled===false");
     assert.equal(await value("document.getElementById('spatial-run').disabled"), true);
     await click('spatial-example'); await state('compatible'); await matches(reference.report);
@@ -153,11 +168,18 @@ try {
     }
     assert.equal(await stored(), originalStorage); assert.deepEqual(exceptions, []);
     checks.push('Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation');
-    return { checks, sandbox: session.sandbox, exceptions };
+    return { checks, sandbox: session.sandbox, exceptions,
+      launcher: { command: 'python3 serve.py --port 0', url: launcherUrl,
+        scope: 'Every interaction and worker module above uses the unchanged documented loopback launcher.' } };
   });
   const receipt = { status: 'PASS', ...result.value, receipt: result.receipt };
   await writeFile(runDirectory + '/browser.json', JSON.stringify(receipt, null, 2)); console.log(JSON.stringify(receipt, null, 2));
 } catch (error) {
   console.error(JSON.stringify({ status: 'FAIL', error: String(error), checks, receipt: error.receipt ?? null, runDirectory }, null, 2));
   process.exitCode = 1;
+} finally {
+  if (launcher && launcher.exitCode === null && launcher.signalCode === null) await new Promise(resolve => {
+    const timer = setTimeout(() => launcher.kill('SIGKILL'), 3000);
+    launcher.once('close', () => { clearTimeout(timer); resolve(); }); launcher.kill('SIGTERM');
+  });
 }

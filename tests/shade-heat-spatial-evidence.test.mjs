@@ -7,10 +7,17 @@ import { prepareSpatialProfileEvidence, prepareSpatialProfileEvidenceSource,
 import { profileFraction } from '../shade-heat-profile-band.js';
 import { compareShadeHeat } from '../shade-heat.js';
 import { prepareSolarStudy } from '../solar-occlusion.js';
+import { makeSpatialSkyExample } from '../shade-heat-spatial-example.js';
 
 const originalText = await readFile(new URL('../examples/shared-sky-two-points.json', import.meta.url), 'utf8');
 const original = JSON.parse(originalText), reference = parseSpatialProfileEvidence(originalText);
 const band = (temperatureC, halfWidthC = 0) => ({ temperatureC, halfWidthC });
+
+test('the ordinary browser example module preserves the exact authored source and returns independent inputs', () => {
+  const example = makeSpatialSkyExample(); assert.deepEqual(example, original);
+  example.readings[0].query.reading.temperatureC = 0;
+  assert.deepEqual(makeSpatialSkyExample(), original);
+});
 
 test('two exact bands can require a three-bin vertex while excluding every one- and two-bin profile', () => {
   const family = intersectTwoProfileBands([[0, 1, 0], [0, 0, 1]], [band(.25), band(.25)]);
