@@ -1,0 +1,18 @@
+#shade-profile-range { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--line, #ccd5d0); min-width: 0; }
+#shade-profile-range .shade-profile-actions { display: flex; align-items: end; gap: .7rem; flex-wrap: wrap; }
+#shade-profile-range .shade-profile-actions .input-label { min-width: 11rem; }
+#shade-profile-range .shade-profile-table { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+#shade-profile-range table { width: 100%; min-width: 35rem; table-layout: auto; border-collapse: collapse; text-align: left; font-variant-numeric: tabular-nums; }
+#shade-profile-range caption { text-align: left; font-weight: 650; padding: .3rem 0 .6rem; }
+#shade-profile-range th, #shade-profile-range td { padding: .6rem .7rem; border-bottom: 1px solid var(--line, #ccd5d0); vertical-align: top; }
+#shade-profile-range th { font-size: .88rem; overflow-wrap: normal; word-break: normal; }
+#shade-profile-range td { white-space: nowrap; overflow-wrap: normal; word-break: normal; }
+#shade-profile-range td button { white-space: nowrap; }
+#shade-profile-range #shade-profile-witness { padding: .8rem; border: 1px solid var(--line, #ccd5d0); border-radius: .5rem; margin: .8rem 0; }
+#shade-profile-range p { overflow-wrap: anywhere; }
+#shade-profile-range details { margin-top: .8rem; }
+@media (max-width: 600px) {
+  #shade-profile-range .shade-profile-actions { align-items: stretch; }
+  #shade-profile-range .shade-profile-actions > * { width: 100%; }
+  #shade-profile-range th, #shade-profile-range td { padding: .45rem; }
+}
