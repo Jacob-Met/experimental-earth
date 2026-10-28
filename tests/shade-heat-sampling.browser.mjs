@@ -122,9 +122,32 @@ try {
         });
       }
     }
-    checks.push('Rendered endpoint and off-hour common-minute values plus analytic day means and peaks match recomputed retained inputs for both sites and heat stores');
+    for(const field of ['surfaceC','subsurfaceC']){
+ await evaluate("document.getElementById('shade-sampling-store').value="+JSON.stringify(field)+";document.getElementById('shade-sampling-store').dispatchEvent(new Event('change'))");
+ assert.equal(await evaluate("document.querySelector('#shade-sampling-max-cooling .shade-sampling-caption').textContent"),'Greatest coincident cooling among 1,441 common-minute samples · '+(field==='surfaceC'?'Ground surface':'Lower heat store'));
+ for(const course of report.courses)for(const bound of ['lower','upper']){
+  const e=course.targets.existing[bound].trajectory.filter(p=>Number.isInteger(p.minute));
+  const other=bound==='lower'?'upper':'lower', p=new Map(course.targets.proposal[other].trajectory.map(r=>[r.minute,r[field]]));
+  let best=-Infinity,at=0;for(const point of e){const delta=point[field]-p.get(point.minute);if(delta>best){best=delta;at=point.minute;}}
+  const selector='#shade-sampling-max-cooling button[data-grid="'+course.solarStepMinutes+'"][data-bound="'+bound+'"]';
+  const cellColumn=bound==='lower'?1:3;
+  const displayed=await evaluate("(()=>{const b=document.querySelector("+JSON.stringify(selector)+");return {label:b.textContent,value:b.closest('tr').children["+cellColumn+"].textContent}})()");
+  assert.equal(displayed.label,String(at));assert.equal(displayed.value,format(best));
+  await evaluate("document.querySelector('#shade-sampling-max-cooling button[data-grid=\""+course.solarStepMinutes+"\"][data-bound=\""+bound+"\"]').click()");
+  assert.equal(await evaluate("Number(document.getElementById('shade-sampling-inspect').dataset.minute)"),at);
+ }
+}
+checks.push('Rendered endpoint and off-hour common-minute values plus analytic day means and peaks match recomputed retained inputs for both sites and heat stores');
     await send('Page.reload', { ignoreCache: true }); await until("Boolean(document.getElementById('shade-sampling-import'))"); await reopen(exported);
     assert.equal(await evaluate("document.getElementById('shade-sampling-results').dataset.sourceMode"), 'Reopened sampling inputs');
+
+    const reopenedMax=report.courses.map(course=>{
+      const e=new Map(course.targets.existing.lower.trajectory.map(p=>[p.minute,p.surfaceC]));
+      const p=new Map(course.targets.proposal.upper.trajectory.map(p=>[p.minute,p.surfaceC]));
+      let best=-Infinity,at=0;for(let t=0;t<=1440;t++){const v=e.get(t)-p.get(t);if(v>best){best=v;at=t;}}
+      return [format(best),String(at)];
+    });
+    assert.deepEqual(await evaluate("Array.from(document.querySelectorAll('#shade-sampling-max-cooling tbody tr'),tr=>[tr.children[1].textContent,tr.children[2].textContent])"),reopenedMax);
     assert.equal(await stored(), original); assert.equal(await evaluate("document.getElementById('shade-results').children.length"), 0);
     checks.push('Actual input-only download retains raw hourly source and recomputes in a fresh page without replacing the parent or working site');
 

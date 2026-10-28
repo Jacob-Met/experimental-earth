@@ -1,4 +1,4 @@
-import { pairedShadeCooling } from './shade-heat-benefit.js';
+import { pairedShadeCooling, greatestSampledCooling } from './shade-heat-benefit.js';
 import { prepareShadeHeatSampling, parseShadeHeatSampling } from './shade-heat-sampling.js';
 import { checkShadeHeatBytes } from './shade-heat.js';
 
@@ -28,6 +28,7 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
   const $ = id => panel.querySelector('#shade-sampling-' + id);
   let accepted = null, generation = 0, pending = false, target = 'proposal', store = 'surfaceC', minute = 1440;
   let sourceMode = '';
+  const sampledCache = new WeakMap();
   const hourlyParent = () => getAccepted()?.investigation?.declaration?.weather ? getAccepted() : null;
   function state(message, kind) { $('status').textContent = message; $('status').dataset.state = kind; }
   function controls() { $('run').disabled = pending || !hourlyParent(); $('export').disabled = pending || !accepted; }
@@ -200,6 +201,24 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
       }));
     differences.id = 'shade-sampling-differences'; host.append(differences,
       node('p', 'The largest difference is over the 1,441 common integer-minute samples. Means use duration-weighted analytic interval means; peaks include interval boundaries and thermal turning points. Differences can reverse direction. These comparisons do not establish convergence or that 15-minute samples are best.'));
+    let byStore = sampledCache.get(report);
+    if (!byStore) { byStore = new Map(); sampledCache.set(report, byStore); }
+    if (!byStore.has(store)) byStore.set(store, greatestSampledCooling(report, store));
+    const maxima = byStore.get(store);
+    const maximumTable = table('Greatest coincident cooling among 1,441 common-minute samples · ' + labelForStore(store),
+      ['Solar grid', 'Lower curve maximum · °C', 'Its earliest minute', 'Upper curve maximum · °C', 'Its earliest minute'],
+      maxima.map(row => [row.solarStepMinutes + ' min', number(row.lower.coolingC), '', number(row.upper.coolingC), '']));
+    maximumTable.id = 'shade-sampling-max-cooling';
+    [...maximumTable.querySelectorAll('tbody tr')].forEach((tr, index) => {
+      for (const [bound,column] of [['lower',2],['upper',4]]) {
+        const result=maxima[index][bound], jump=node('button', String(result.minute));
+        jump.type='button'; jump.dataset.grid=maxima[index].solarStepMinutes; jump.dataset.bound=bound;
+        jump.setAttribute('aria-label','Inspect '+maxima[index].solarStepMinutes+' minute grid '+bound+' cooling maximum at minute '+result.minute);
+        jump.addEventListener('click',()=>{ minute=result.minute; $('time').value=minute; inspect(); $('inspect').scrollIntoView({block:'nearest'}); });
+        tr.children[column].append(jump);
+      }
+    });
+    host.append(maximumTable,node('p','Each bound has its own earliest sampled maximum time. These times can differ; the two extrema need not be jointly attainable. No maximum between integer-minute samples, continuous-time bound or finest-grid preference is inferred.'));
     const time = node('label', 'Inspect a common minute'); time.className = 'input-label';
     const slider = node('input'); slider.id = 'shade-sampling-time'; slider.type = 'range'; slider.min = 0; slider.max = 1440; slider.step = 1; slider.value = minute;
     slider.addEventListener('input', () => { minute = Number(slider.value); inspect(); }); time.append(slider);
