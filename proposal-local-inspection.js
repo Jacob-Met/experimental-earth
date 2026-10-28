@@ -1,3 +1,5 @@
+import {summarizeLocalDepthChange} from './proposal-local-timing.js';
+
 const node=(tag,text,classes)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(classes)el.className=classes;return el;};
 const format=value=>new Intl.NumberFormat('en-US',{maximumSignificantDigits:7}).format(value);
 
@@ -40,6 +42,34 @@ export function mountProposalLocalInspection(container,{files,report}) {
   addRow('Existing site','Shared unchanged reference',data.existing.surfaceName);
   for(const candidate of data.candidates)addRow(`${candidate.inputOrdinal}. ${candidate.title}`,files[candidate.inputOrdinal-1]?.name??'Original project file',candidate.surfaceName);
   function show(i){index=Math.max(0,Math.min(times.length-1,i));slider.value=String(index);selectedMinute=times[index];output.textContent=`${format(times[index])} min · snapshot ${index+1} of ${times.length}`;slider.setAttribute('aria-valuetext',`${format(times[index])} minutes after event start, snapshot ${index+1} of ${times.length}`);previous.setAttribute('aria-disabled',String(index===0));next.setAttribute('aria-disabled',String(index===times.length-1));displayed[0].depth.textContent=format(data.existing.depthsMm[index]);displayed[0].delta.textContent='0';data.candidates.forEach((candidate,i)=>{displayed[i+1].depth.textContent=format(candidate.depthsMm[index]);const delta=candidate.proposalMinusExistingMm[index];displayed[i+1].delta.textContent=(delta>0?'+':'')+format(delta);});}
+  const timing=node('details',undefined,'local-timing');timing.id='local-depth-timing';
+  timing.append(node('summary','Across the retained times'));
+  timing.append(node('p',`Changes from the existing site at cell ${data.cell.label}. Select a time below to update the shared time control and every row above.`,'note'));
+  timing.append(node('p','These findings use exact signs and ties in the retained modeled samples. Display rounding does not determine equality. A sampled change of direction does not establish an exact crossing time or continuous duration.','note'));
+  function timeButton(text,target,kind){const button=node('button','View '+text,'secondary');button.type='button';button.dataset.snapshotIndex=String(target);button.dataset.timingKind=kind;button.addEventListener('click',()=>{show(target);slider.focus({preventScroll:true});timeGroup.scrollIntoView({behavior:'instant',block:'start'});status.textContent=`Cell ${data.cell.label}: showing ${format(times[target])} minutes after event start, snapshot ${target+1} of ${times.length}, for the existing site and all proposals.`;});return button;}
+  for(const candidate of data.candidates){
+   const summary=summarizeLocalDepthChange(times,candidate.proposalMinusExistingMm);
+   const entry=node('article',undefined,'local-timing-candidate');entry.dataset.timingOrdinal=String(candidate.inputOrdinal);
+   entry.append(node('h4',`${candidate.inputOrdinal}. ${candidate.title}`));
+   entry.append(node('p',files[candidate.inputOrdinal-1]?.name??'Original project file','local-source-file'));
+   for(const [label,key,kind,absent] of [['Greatest increase','greatestDeepening','increase','No retained sample is deeper than the existing site.'],['Greatest decrease','greatestShallowing','decrease','No retained sample is shallower than the existing site.']]){
+    const finding=node('div',undefined,'local-timing-finding');finding.dataset.timingFinding=kind;finding.append(node('strong',label));const extremum=summary[key];
+    if(extremum){const first=extremum.indices[0];finding.append(node('span',`${extremum.deltaMm>0?'+':''}${format(extremum.deltaMm)} mm`),timeButton(`${format(times[first])} min`,first,kind),node('small',`${extremum.indices.length} retained sample${extremum.indices.length===1?'':'s'} at this exact value${extremum.indices.length>1?'; button selects the earliest':''}.`,'note'));}
+    else finding.append(node('span',absent));entry.append(finding);
+   }
+   const zeroCount=summary.zeroRuns.reduce((count,run)=>count+run.endIndex-run.startIndex+1,0);
+   entry.append(node('p',`Exactly equal at ${zeroCount} retained sample${zeroCount===1?'':'s'}.`,'note'));
+   if(!summary.signReversals.length)entry.append(node('p','No sampled reversal between deeper and shallower water.','note'));
+   else{
+    const reversals=node('details',undefined,'local-timing-reversals');reversals.append(node('summary',`${summary.signReversals.length} sampled direction change${summary.signReversals.length===1?'':'s'}`));
+    reversals.append(node('p','Each pair identifies retained samples with opposite signs. Equal samples between them are stated separately.','note'));
+    const list=node('ol');for(const reversal of summary.signReversals){const item=node('li');item.append(timeButton(`${format(times[reversal.fromIndex])} min: ${reversal.fromSign>0?'deeper':'shallower'}`,reversal.fromIndex,'reversal-from'),node('span',' → '),timeButton(`${format(times[reversal.toIndex])} min: ${reversal.toSign>0?'deeper':'shallower'}`,reversal.toIndex,'reversal-to'));
+     if(reversal.zeroStartIndex!==undefined){const count=reversal.zeroEndIndex-reversal.zeroStartIndex+1;item.append(node('p',`${count} exactly equal retained sample${count===1?'':'s'} between these endpoints (${format(times[reversal.zeroStartIndex])}–${format(times[reversal.zeroEndIndex])} min); this is not a claim of continuous equality.`,'note'));}list.append(item);}
+    reversals.append(list);entry.append(reversals);
+   }
+   timing.append(entry);
+  }
+  results.append(timing);
   // These controls belong to the disposable results subtree, with no global listeners.
   slider.addEventListener('input',()=>show(Number(slider.value)));previous.addEventListener('click',()=>show(index-1));next.addEventListener('click',()=>show(index+1));show(index);
  }

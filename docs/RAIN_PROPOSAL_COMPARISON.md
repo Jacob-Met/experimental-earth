@@ -33,6 +33,16 @@ This local view rereads and verifies the original files against the comparison. 
 
 **Download comparison JSON** continues to save the aggregate CLI-compatible report. The supplementary local view is recomputed from the original project exports; it is not added to that report. These selected-cell results use the same conceptual base-rain model, not observed depths, local peak depths, terrain hypotheses, or independently recalibrated studies.
 
+### Find changes across the retained times
+
+Open **Across the retained times** beneath the local depth table to find each proposal's greatest sampled increase and decrease from the existing site at this cell. Use **View** at a finding's time to focus and reveal the existing shared time control and inspect all the original scenario depths together. If an extreme is tied, the action selects the earliest tied snapshot and the summary gives the number of tied samples.
+
+The section also identifies opposite directions at consecutive nonzero samples. Equal-depth samples between them are retained as neutral evidence. A positive change followed by zero and another positive change is not a direction reversal; positive and negative samples on either side of zeros form one sampled bracket. These findings do not assign an exact crossing time, infer values between snapshots, or measure a continuous duration.
+
+Signs and ties use the full retained numerical differences, before display rounding. Zero is exact; no numerical tolerance or physical-significance threshold is introduced. An absent direction is reported explicitly, such as **No retained sample is deeper than the existing site.** A very small modeled difference is still a numerical difference and does not establish a measurable field effect.
+
+This summary uses the already calculated selected-cell course. Opening it or selecting a finding performs no additional model run or file read. Cell changes, replacement files and **Clear selection** retire the summary with the local results, while the original files and aggregate report remain unchanged.
+
 ## Compare with the command line
 
 Use the maintained workbench's **Export project** action to save two or more explicitly authored proposed surface plans. The existing `inspect-rain-project.mjs` command recomputes one file. This complementary read-only command compares 2–16 separate local exports:
