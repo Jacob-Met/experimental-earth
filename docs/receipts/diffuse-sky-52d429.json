@@ -1,0 +1,824 @@
+{
+  "status": "Qualified current-main composition; this receipt precedes repository publication",
+  "qualificationVersion": 4,
+  "repository": "Jacob-Met/experimental-earth",
+  "baseCommit": "6e7344181992372c3ed6064ca6ad2e4d1245a66e",
+  "baseTree": "4f686651c3c975fb94dc1e9865d6801aae39f76a",
+  "currentIntegrationGate": "Independent exact-published-head review, compatible normal merge, and accepted-main receiving",
+  "native": {
+    "runtime": "v24.22.1",
+    "passed": 127,
+    "failed": 0,
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/solar*.test.mjs tests/shade-heat*.test.mjs tests/diffuse-sky.test.mjs tests/continuous-sky.test.mjs",
+    "scope": "Current 6e73441 main composition, including the incoming solar-benefit and rain-proposal work; unchanged reviewed sky production code and two cross-feature groups",
+    "tapSHA256": "c298cd629c4676a7f59437c545e2b2e4c87f5f256dc3b825571fc83afb80094e"
+  },
+  "browser": [
+    {
+      "course": "current-solar-sampling",
+      "groups": 8,
+      "checks": [
+        "Original hourly source admits all three complete solar grids; constant weather does not; working site is unchanged",
+        "Rendered endpoint and off-hour common-minute values plus analytic day means and peaks match recomputed retained inputs for both sites and heat stores",
+        "Actual input-only download retains raw hourly source and recomputes in a fresh page without replacing the parent or working site",
+        "Wrong model, invalid UTF8 and oversized inputs refuse atomically; the byte limit precedes reading",
+        "A site admitted for hourly forcing refuses the complete combined-grid work budget without a partial comparison",
+        "A delayed sampling read cannot replace a newly selected parent source; downloads pause and the same file can be selected again",
+        "Declaration edits cancel queued sampling results and detaching hourly weather invalidates the child comparison",
+        "The complete comparison and captions fit 390px, wide data tables scroll locally, keyboard focus reaches the scroll region, and no browser exception occurs"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeSandbox": true,
+      "exceptions": [],
+      "startedAt": "2026-10-28T20:24:35.765Z",
+      "finishedAt": "2026-10-28T20:24:41.333Z",
+      "receiptSHA256": "59410fe41640384d2eecd7cc783b490727e4258d12d589bbde41c4b95bc943ce"
+    },
+    {
+      "course": "current-sky-sampling-interaction",
+      "groups": 4,
+      "checks": [
+        "Actual worker-fed hourly parent supports all three original solar grids and an actual source-only download",
+        "Selecting either mapped-sky model retires the old solar-grid comparison and explains the current uniform-diffuse requirement",
+        "Original sampling inputs reopen independently beside a continuous-sky parent without replacing either parent or working site",
+        "Changing the sky method retires a delayed sampling read; returning to uniform diffuse input restores the original three-grid consumer"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeSandbox": true,
+      "exceptions": [],
+      "startedAt": "2026-10-28T20:24:34.869Z",
+      "finishedAt": "2026-10-28T20:24:38.174Z",
+      "receiptSHA256": "b6e61399770cbb6985303c218d7c1b9d7710bc411beb6672a13e4c2e9ff5150b"
+    }
+  ],
+  "browserComposition": [
+    {
+      "course": "current-solar-sampling",
+      "equalCodeFilesIncludingTests": 634
+    },
+    {
+      "course": "current-sky-sampling-interaction",
+      "equalCodeFilesIncludingTests": 634
+    }
+  ],
+  "visualInspection": {
+    "currentSolarSampling390": true,
+    "currentSkySampling390": true,
+    "priorContinuousSettings390": "Retained in frozen version 3; production files unchanged",
+    "screenshotsExcludedFromRepository": true
+  },
+  "continuous": {
+    "model": "experimental-earth/continuous-column-sky/1",
+    "inputKind": "experimental-earth/shade-heat-inputs/4",
+    "method": "continuous-columns",
+    "geometry": "Unpadded maintained opaque ground-filled columns at original horizontal ground receiver",
+    "integral": "T=(1/(2*pi))*integral[0,2*pi] 1/(1+horizon(theta)^2) dtheta",
+    "methodScope": "Corner/cardinal sectors, maximum x/y entering-face coefficients, at most one crossover, analytic atan2 arc integral",
+    "heightEndpoints": "Maximum roofs lower transmission; minimum roofs upper transmission; coherent diffuse endpoint geometry",
+    "work": "At most575 off-receiver columns;16million complete beam-plus-conservative-sky preflight allowance; actual face checks retained",
+    "numerics": "Binary64 estimate, not certified enclosure. Raw transmission, clamp, collapsed-sector count and omitted angular width retained.",
+    "authoredControl": {
+      "sourcePreserved": true,
+      "rows": [
+        {
+          "method": "uniform",
+          "diffuseSky": null,
+          "directNormalWm2": 0,
+          "diffuseHorizontalWm2": 80,
+          "transmission": [
+            1,
+            1
+          ],
+          "existingFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            }
+          },
+          "proposalFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            }
+          },
+          "estimatedRayTests": 1440,
+          "estimatedSkyFaceTests": null,
+          "savedBytes": 12660
+        },
+        {
+          "method": "sampled512",
+          "diffuseSky": {
+            "azimuthSamples": 32,
+            "elevationBands": 16
+          },
+          "directNormalWm2": 0,
+          "diffuseHorizontalWm2": 80,
+          "transmission": [
+            0.78515625,
+            0.78515625
+          ],
+          "existingFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            }
+          },
+          "proposalFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 24.594676705652187,
+              "subsurfaceC": 24.41162125153631,
+              "inputJm2": 1447200,
+              "exchangeOutJm2": 1002376.7657640513,
+              "transferDownJm2": 352929.70012290473,
+              "surfaceStoredJm2": 91893.53411304374,
+              "subsurfaceStoredJm2": 352929.70012290485,
+              "totalStoredJm2": 444823.2342359486,
+              "balanceResidualJm2": 5.820766091346741e-11,
+              "surfaceBalanceResidualJm2": 1.7462298274040222e-10,
+              "subsurfaceBalanceResidualJm2": -1.1641532182693481e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 24.594676705652187,
+              "subsurfaceC": 24.41162125153631,
+              "inputJm2": 1447200,
+              "exchangeOutJm2": 1002376.7657640513,
+              "transferDownJm2": 352929.70012290473,
+              "surfaceStoredJm2": 91893.53411304374,
+              "subsurfaceStoredJm2": 352929.70012290485,
+              "totalStoredJm2": 444823.2342359486,
+              "balanceResidualJm2": 5.820766091346741e-11,
+              "surfaceBalanceResidualJm2": 1.7462298274040222e-10,
+              "subsurfaceBalanceResidualJm2": -1.1641532182693481e-10
+            }
+          },
+          "estimatedRayTests": 47520,
+          "estimatedSkyFaceTests": null,
+          "savedBytes": 12824
+        },
+        {
+          "method": "sampled4096",
+          "diffuseSky": {
+            "azimuthSamples": 64,
+            "elevationBands": 64
+          },
+          "directNormalWm2": 0,
+          "diffuseHorizontalWm2": 80,
+          "transmission": [
+            0.78076171875,
+            0.78076171875
+          ],
+          "existingFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            }
+          },
+          "proposalFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 24.568960231553387,
+              "subsurfaceC": 24.38692934154637,
+              "inputJm2": 1439100,
+              "exchangeOutJm2": 996766.448045223,
+              "transferDownJm2": 350954.3473237091,
+              "surfaceStoredJm2": 91379.20463106774,
+              "subsurfaceStoredJm2": 350954.34732370963,
+              "totalStoredJm2": 442333.5519547774,
+              "balanceResidualJm2": -4.0745362639427185e-10,
+              "surfaceBalanceResidualJm2": 1.3096723705530167e-10,
+              "subsurfaceBalanceResidualJm2": -5.238689482212067e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 24.568960231553387,
+              "subsurfaceC": 24.38692934154637,
+              "inputJm2": 1439100,
+              "exchangeOutJm2": 996766.448045223,
+              "transferDownJm2": 350954.3473237091,
+              "surfaceStoredJm2": 91379.20463106774,
+              "subsurfaceStoredJm2": 350954.34732370963,
+              "totalStoredJm2": 442333.5519547774,
+              "balanceResidualJm2": -4.0745362639427185e-10,
+              "surfaceBalanceResidualJm2": 1.3096723705530167e-10,
+              "subsurfaceBalanceResidualJm2": -5.238689482212067e-10
+            }
+          },
+          "estimatedRayTests": 370080,
+          "estimatedSkyFaceTests": null,
+          "savedBytes": 12824
+        },
+        {
+          "method": "continuous",
+          "diffuseSky": {
+            "method": "continuous-columns"
+          },
+          "directNormalWm2": 0,
+          "diffuseHorizontalWm2": 80,
+          "transmission": [
+            0.7808293973514892,
+            0.7808293973514892
+          ],
+          "existingFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 25.851926550482386,
+              "subsurfaceC": 25.618781295489033,
+              "inputJm2": 1843200,
+              "exchangeOutJm2": 1276658.96535123,
+              "transferDownJm2": 449502.5036391223,
+              "surfaceStoredJm2": 117038.53100964772,
+              "subsurfaceStoredJm2": 449502.5036391226,
+              "totalStoredJm2": 566541.0346487704,
+              "balanceResidualJm2": -3.4924596548080444e-10,
+              "surfaceBalanceResidualJm2": -1.4551915228366852e-11,
+              "subsurfaceBalanceResidualJm2": -2.9103830456733704e-10
+            }
+          },
+          "proposalFinal": {
+            "lower": {
+              "minute": 480,
+              "surfaceC": 24.569356281758342,
+              "subsurfaceC": 24.387309612806522,
+              "inputJm2": 1439224.745198265,
+              "exchangeOutJm2": 996852.850538577,
+              "transferDownJm2": 350984.7690245212,
+              "surfaceStoredJm2": 91387.12563516684,
+              "subsurfaceStoredJm2": 350984.76902452175,
+              "totalStoredJm2": 442371.8946596886,
+              "balanceResidualJm2": -5.820766091346741e-10,
+              "surfaceBalanceResidualJm2": -7.275957614183426e-11,
+              "subsurfaceBalanceResidualJm2": -5.238689482212067e-10
+            },
+            "upper": {
+              "minute": 480,
+              "surfaceC": 24.569356281758342,
+              "subsurfaceC": 24.387309612806522,
+              "inputJm2": 1439224.745198265,
+              "exchangeOutJm2": 996852.850538577,
+              "transferDownJm2": 350984.7690245212,
+              "surfaceStoredJm2": 91387.12563516684,
+              "subsurfaceStoredJm2": 350984.76902452175,
+              "totalStoredJm2": 442371.8946596886,
+              "balanceResidualJm2": -5.820766091346741e-10,
+              "surfaceBalanceResidualJm2": -7.275957614183426e-11,
+              "subsurfaceBalanceResidualJm2": -5.238689482212067e-10
+            }
+          },
+          "estimatedRayTests": 1440,
+          "estimatedSkyFaceTests": 16,
+          "savedBytes": 12826
+        }
+      ]
+    },
+    "independentPrototypeReview": {
+      "sourceSha256": "db714746e558fe0e242cd91e5729f6df10f7d717902a9537a4f8134fa22b553e",
+      "actualPrototypeParity": "13 fixtures; max absolute difference4.440892098500626e-16",
+      "maintainedUnpaddedRayParity": "13000 classifications pass",
+      "primitive": "512 controls coefficient0..960, max6.661338147750939e-16",
+      "sourceGrid": "45 courses/90 integrations; rotation max1.1102230246251565e-16; collapsed sectors at most5",
+      "finding": "Sparse review-kernel arrays silently returned1; root repaired, independent point/columns/lo-coordinate refusal recheck passes",
+      "remainingLimits": "Binary64 analytic estimate, not certified enclosure. Collapsed cut count and tiny range clamp are numerical diagnostics. Adaptive oracle has depth cap; no certified tolerance claim. No source consumer/UI/browser review."
+    },
+    "finalKernelReplay": {
+      "scope": "Root replay of unchanged independently authored controls against final kernel, including diagnostic-only additions",
+      "kernelSHA256": "68112c602e493d67daf63047c0014422b0a5731cb170b1dc2a8165995bf444e2",
+      "results": [
+        {
+          "harness": "prototype-parity.mjs",
+          "exitCode": 0,
+          "harnessSHA256": "237826e4975cce40ffd9c6bc600d05c13a87f1086d33d188d300c3c8610d83da"
+        },
+        {
+          "harness": "corner-controls.mjs",
+          "exitCode": 0,
+          "harnessSHA256": "0dc46b8f2ba99c8ae38c6f62c28d96283c356bc25ca2c7587aa88f7f4f8e0c48"
+        },
+        {
+          "harness": "admission-controls.mjs",
+          "exitCode": 0,
+          "harnessSHA256": "e8fdbe23c7ece645cbbdc04cea6846cb4d4897b9bb14ef53d324781c0a6ca1a4"
+        }
+      ]
+    },
+    "finalOracleResults": {
+      "status": "passed",
+      "fixtures": 13,
+      "maxError": 4.440892098500626e-16
+    },
+    "thermalAndLegacyReview": {
+      "maintainedTests": {
+        "groups": 5,
+        "passed": 5,
+        "failed": 0,
+        "scope": [
+          "uniform scaled DHI thermal equivalence",
+          "zero DHI exact thermal invariance",
+          "intermediate height thermal bracketing",
+          "constant/hourly typed input-only v4 replay",
+          "forged model/method/sampling/stale/footprint refusals"
+        ]
+      },
+      "separateCompatibility": {
+        "groups": 1,
+        "passed": 1,
+        "forms": [
+          "v1 constant",
+          "v2 hourly",
+          "v3 constant",
+          "v3 hourly"
+        ],
+        "checks": "Complete reports, exact serialized input bytes and reconstructed envelopes equal separately loaded saved candidate-batched module. No snapshot fingerprints in maintained tests."
+      },
+      "sourceHashes": {
+        "/tmp/hamon-52d429-earth/continuous-sky-experiment/tests/shade-heat-continuous-sky.test.mjs": "d04a6aed101bd87b0a80a64f0bb1fdb25e298429a3848cc81399c32c420c616b",
+        "/tmp/worldlaw-52d429-continuous-sky-review/heat-v4-direct-baseline.test.mjs": "5831dab42fc3908405cca6dc226d05b92346b6da2e19907ecb09cb52e02fe9f6",
+        "/tmp/hamon-52d429-earth/continuous-sky-experiment/shade-heat.js": "238c121e66ecdc5afc96901115e7276b93e3cf71d15d7877c6074b8d4361ae65",
+        "/tmp/hamon-52d429-earth/candidate-batched/shade-heat.js": "2a510d91e70490c40bc7d7c44d6de827d727a9029701ea25008f75db33119192"
+      },
+      "implementationEdits": false
+    },
+    "negativeControls": {
+      "status": "passed",
+      "scope": "Two deliberate faults in private copies; qualified source unchanged",
+      "results": [
+        {
+          "control": "missing-projection-scale",
+          "intentionalMutation": {
+            "before": "return Math.atan2(g * determinant, denominator) / g;",
+            "after": "return Math.atan2(g * determinant, denominator);"
+          },
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=tap",
+            "--test-name-pattern=continuous finite wall|a finite surrounding square",
+            "tests/continuous-sky.test.mjs"
+          ],
+          "exitCode": 1,
+          "status": "deliberate fault detected",
+          "sourceSHA256": "68112c602e493d67daf63047c0014422b0a5731cb170b1dc2a8165995bf444e2",
+          "mutantSHA256": "d42d80ccab5c233445a5dda5d87468344d3419083575442424214efca4bb4262",
+          "log": "missing-projection-scale.log",
+          "logSHA256": "386ff8c935ddcf3e89d89c32bb4c086356f5f9f2fd148b745ab3ed14d5059c05",
+          "positiveEvidence": "continuous-combined-native.tap:122 pass; independent prototype-parity.json:13 fixtures pass"
+        },
+        {
+          "control": "absolute-roof-height",
+          "intentionalMutation": {
+            "before": "const height = column[topKey] - point[2];",
+            "after": "const height = column[topKey];"
+          },
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "negative-oracle.mjs"
+          ],
+          "exitCode": 1,
+          "status": "deliberate fault detected",
+          "sourceSHA256": "68112c602e493d67daf63047c0014422b0a5731cb170b1dc2a8165995bf444e2",
+          "mutantSHA256": "8b36311093971ddc0bc009f06eda077ef192c2cdac2bfdf2feb38ff69a3c28d6",
+          "log": "absolute-roof-height.log",
+          "logSHA256": "7fd829143411dc9e210919d8aaa3ea1e54faab5023f49a1a3a5b7cb39b831931",
+          "positiveEvidence": "continuous-combined-native.tap:122 pass; independent prototype-parity.json:13 fixtures pass"
+        }
+      ]
+    },
+    "observedFixes": [
+      "Sparse geometry arrays materialized before validation",
+      "Radian arc endpoints retained when distinct angles round to one degree value",
+      "Collapsed sector omitted angular width disclosed",
+      "Positive tiny transmission uses significant-digit UI formatting",
+      "Continuous method retires sample fields and pending old files",
+      "Narrow inspector uses short options and wrapping height explanation"
+    ]
+  },
+  "precedingQualification": {
+    "version": 1,
+    "archiveSHA256": "d1887902c5a9925c2b15bb3414fd6f0ab7c5385fe5d7cbdbc07a1638a75a2e5d",
+    "path": "verification/preceding-v1/experimental-earth-diffuse-sky-review.zip",
+    "scope": "Immutable111native,24precedingUI groups, full-grid batched worker receiving, scalar/batch parity and original v1/v2 comparisons; not claimed as rerun here"
+  },
+  "limitations": [
+    "Authored numerical controls; no field calibration or certified floating-point enclosure",
+    "Continuous unpadded diffuse geometry differs from sampled epsilon/grazing classification",
+    "No off-map geometry, anisotropic radiance, reflections, foliage transmission, elevated or tilted receiver",
+    "Direct-beam temporal sampling and separately owned refinement unchanged",
+    "Source qualification is separate from repository publication and accepted-main receiving; no public release or deployment claim"
+  ],
+  "sha256": {
+    "solar-occlusion.js": "30b9bb5211b3ab52f9738a0efa4a3b2e05281282d0a0f432244e358aa1c32846",
+    "shade-heat.js": "ba96263efc7710a253159f288f432201e6695d63a8247d827408a4a6bac209c2",
+    "shade-heat-panel.js": "8c2366034b725b6ea976f0aa4b854de724fd9f4fa8956cba00673a968715b84f",
+    "shade-heat.css": "99e988c512e18434f752db4127d3d40a4f89f4eed81e73f8cc4b8088797fd224",
+    "diffuse-sky.js": "fbe6128f13b95e3cd5150995b5134b28ae5c3bed8860319a5bbdabaa33c8a2ba",
+    "shade-heat-computation.js": "94c06f64db775b926d70d141df5038ef22cd9df312280778165e9fd27f5bac47",
+    "shade-heat-worker.js": "1e94b703778643afd3b0129ea73c7e46488d670ba882eebf867f03b619458bc5",
+    "tests/shade-heat.test.mjs": "9f90d3d86ee9e3a1877e699b2b9818ffdf3a3ac8103e0d7a489a7ccb782b70d1",
+    "tests/diffuse-sky.test.mjs": "6d8bdf021314e022f26a1582b14bba6864243eec4f9ab154872f5f91980fa9d8",
+    "tests/shade-heat-sky.test.mjs": "5b18ab67c51e0fe4e9cb80869540c8aac29001737ba443c72ea4a2fb4309a78f",
+    "tests/shade-heat-computation.test.mjs": "830024e528967e023df009c3bcc205f4e87323f788c397c64a06d9cce0cb3731",
+    "tests/solar-point.test.mjs": "9e5b780861d7422c8dae2b9d3ec2891e2208e04424264a0a92071c15eab13bf6",
+    "tests/solar-directions.test.mjs": "1fa6a26402ca53c102d6efc87646cd836f7e5b28852767216c4d83713bb46a3a",
+    "tests/shade-heat-sky.browser.mjs": "b4e74d0926b20c84cf3e00cac3493f12207067df76c27d45ae626b3dbaf875b7",
+    "tests/shade-heat-weather.browser.mjs": "56a19146148a8f04ec82c73e457a08bf7622b2abc631573bd61be27c819b9b3e",
+    "docs/SHADE_HEAT_DIFFUSE_SKY.md": "2611d90f2e9b90d8280c66cffbd0dec092d13acf1025b8c956014fd9efb70a85",
+    "continuous-sky.js": "68112c602e493d67daf63047c0014422b0a5731cb170b1dc2a8165995bf444e2",
+    "tests/continuous-sky.test.mjs": "b03b9e5f0008ffce7ffa847e6f416b19e7e0eae979b02d695d02ef643cc1a7a3",
+    "tests/shade-heat-continuous-sky.test.mjs": "d04a6aed101bd87b0a80a64f0bb1fdb25e298429a3848cc81399c32c420c616b",
+    "tests/shade-heat-continuous-sky.browser.mjs": "63dfb003a1ceb22fe706755f564fbf456265d36d6c0a93f0d816c9c32c17485e",
+    "docs/SHADE_HEAT_CONTINUOUS_SKY.md": "2d2f0756f68cccad27724fdf1520c83b94141e9000efeccb6ba0abfc6c86aa05",
+    "tests/shade-heat-sky-sampling.test.mjs": "32e6bf58af72401661ca1744982503ce9e25001f2e39e32efa9b7f2660e72ab7",
+    "tests/shade-heat-sky-sampling.browser.mjs": "e40322070746052c47013c2bb84acaed10e5e11999e0d75608a907d23a044b07"
+  },
+  "originalQualificationBase": {
+    "commit": "3b7f6bff95515339f0198b1edc714edb5b013b00",
+    "tree": "fe548b77a3d400e5f6ee7fc624b4eca6c7afde76"
+  },
+  "currentMainComposition": {
+    "baseCommit": "6e7344181992372c3ed6064ca6ad2e4d1245a66e",
+    "baseTree": "4f686651c3c975fb94dc1e9865d6801aae39f76a",
+    "canonicalBaseMaterializedFilesVerified": 641,
+    "newIncomingPathsPreservedExactly": [
+      "compare-rain-proposals.mjs",
+      "docs/RAIN_PROPOSAL_COMPARISON.md",
+      "docs/SHADE_HEAT_SAMPLING.md",
+      "index.html",
+      "inspect-rain-project.mjs",
+      "proposal-comparison-page.js",
+      "proposal-comparison-worker.js",
+      "proposal-comparison.css",
+      "proposal-comparison.html",
+      "rain-comparison-receipt.js",
+      "rain-proposal-comparison.js",
+      "shade-heat-benefit.js",
+      "shade-heat-sampling-panel.js",
+      "tests/proposal-browser-core.test.mjs",
+      "tests/proposal-comparison.browser.mjs",
+      "tests/shade-heat-benefit.test.mjs",
+      "tests/shade-heat-sampling.browser.mjs"
+    ],
+    "reviewedProductionSourceUnchangedFromVersion3": true,
+    "currentNativePassed": 127,
+    "currentNativeFailed": 0,
+    "currentBrowserCourses": 2,
+    "currentBrowserGroups": 12,
+    "priorUnknownObjectWrite": {
+      "expectedTree": "bf9d0c021a5ff75d7674e96572c63d0c3d36c158",
+      "requestSHA256": "d2983d877fd395737beb915bde5ee7ee7a5f892f0733db0284ef4ebfd8ee7d2c",
+      "status": "Interrupted; outcome unknown; exact tree GET returned404; never replayed; no downstream commit/ref/PR sent for that operation"
+    },
+    "composition": "Distinct 6e73441 source composition preserves all17 incoming paths and uses a new current-base tree request. Frozen version3 proof remains separately identified."
+  },
+  "frozenVersion2Qualification": {
+    "native": {
+      "runtime": "v24.22.1",
+      "passed": 122,
+      "failed": 0,
+      "command": "node --test --test-isolation=none --test-reporter=tap tests/solar*.test.mjs tests/shade-heat*.test.mjs tests/diffuse-sky.test.mjs tests/continuous-sky.test.mjs",
+      "scope": "Final geometry, thermal and typed-input source. Subsequent changes were continuous inspector wording and documentation."
+    },
+    "browser": [
+      {
+        "course": "continuous-final",
+        "groups": 6,
+        "checks": [
+          "Actual worker connects the continuous horizon to diffuse-only thermal output; sampling controls retire and working-site bytes remain unchanged",
+          "A real v4 input-only download reopens in a fresh document with the same source, method and recomputed thermal trajectory",
+          "Derived-result injection refuses transactionally; changing sky method retires a delayed old v4 load and can recompute the sampled method",
+          "Original hourly weather remains byte-attached through v4 download and fresh reopening with recomputed continuous sky and locked weather controls",
+          "Declared height endpoints have separate inspectable skylines and actual keyboard input changes the selected horizon sector",
+          "Continuous method controls and sector inspection fit desktop and 390px layouts without application exceptions"
+        ],
+        "browser": "Chrome/156.0.8078.73",
+        "activeSandbox": true,
+        "exceptions": [],
+        "startedAt": "2026-10-28T18:18:19.911Z",
+        "finishedAt": "2026-10-28T18:18:25.867Z"
+      },
+      {
+        "course": "sampled-regression",
+        "groups": 9,
+        "checks": [
+          "Actual module worker connects optional mapped diffuse forcing to the DHI-only temperature response without editing the working site",
+          "A real constant-weather v3 download retains arbitrary valid sampling, full original source and no saved report; fresh reopening recomputes",
+          "Forged derived reports refuse transactionally; a pending v3 file disables export and its late completion cannot revive a changed draft",
+          "Worker startup failure refuses visibly without a synchronous calculation or stale accepted result",
+          "A cancelled real worker completion cannot terminate or publish over its pending successor; only the newer forcing reaches the interface",
+          "Original hourly weather and mapped sky remain attached through actual v3 download and fresh reopen, with the source time and weather controls locked",
+          "Changing the working site retires its live sky investigation; original-file replay retains its independent source",
+          "Uncertain height produces inspectable diffuse and thermal ranges, and keyboard input changes the actual sky witness",
+          "Sky controls and witness inspection fit desktop and 390px layouts without application exceptions"
+        ],
+        "browser": "Chrome/156.0.8078.73",
+        "activeSandbox": true,
+        "exceptions": [],
+        "startedAt": "2026-10-28T18:17:46.713Z",
+        "finishedAt": "2026-10-28T18:17:55.980Z"
+      }
+    ],
+    "browserComposition": {
+      "continuousFinalEqualCodeFilesIncludingTests": 615,
+      "sampledRegressionEqualCodeFilesIncludingTests": 614,
+      "sampledLaterChange": "Continuous-inspector option labels and wrapping explanatory text only in shade-heat-panel.js",
+      "manifest": "verification/continuous-browser-composition.json"
+    },
+    "visualInspection": {
+      "desktop1440": true,
+      "narrow390": true,
+      "settings390": true,
+      "screenshotsExcluded": true
+    },
+    "sha256": {
+      "solar-occlusion.js": "30b9bb5211b3ab52f9738a0efa4a3b2e05281282d0a0f432244e358aa1c32846",
+      "shade-heat.js": "238c121e66ecdc5afc96901115e7276b93e3cf71d15d7877c6074b8d4361ae65",
+      "shade-heat-panel.js": "1d43f5f714fab16ba35b77cfdcb208c01943bfe44c82ffeb68782d9dafeaf4d0",
+      "shade-heat.css": "517a442c08aff4ab4f8f59b143719aceba319346eabb6e7797cd4a00cef0724c",
+      "diffuse-sky.js": "fbe6128f13b95e3cd5150995b5134b28ae5c3bed8860319a5bbdabaa33c8a2ba",
+      "shade-heat-computation.js": "94c06f64db775b926d70d141df5038ef22cd9df312280778165e9fd27f5bac47",
+      "shade-heat-worker.js": "1e94b703778643afd3b0129ea73c7e46488d670ba882eebf867f03b619458bc5",
+      "tests/shade-heat.test.mjs": "9f90d3d86ee9e3a1877e699b2b9818ffdf3a3ac8103e0d7a489a7ccb782b70d1",
+      "tests/diffuse-sky.test.mjs": "6d8bdf021314e022f26a1582b14bba6864243eec4f9ab154872f5f91980fa9d8",
+      "tests/shade-heat-sky.test.mjs": "5b18ab67c51e0fe4e9cb80869540c8aac29001737ba443c72ea4a2fb4309a78f",
+      "tests/shade-heat-computation.test.mjs": "830024e528967e023df009c3bcc205f4e87323f788c397c64a06d9cce0cb3731",
+      "tests/solar-point.test.mjs": "9e5b780861d7422c8dae2b9d3ec2891e2208e04424264a0a92071c15eab13bf6",
+      "tests/solar-directions.test.mjs": "1fa6a26402ca53c102d6efc87646cd836f7e5b28852767216c4d83713bb46a3a",
+      "tests/shade-heat-sky.browser.mjs": "b4e74d0926b20c84cf3e00cac3493f12207067df76c27d45ae626b3dbaf875b7",
+      "tests/shade-heat-weather.browser.mjs": "56a19146148a8f04ec82c73e457a08bf7622b2abc631573bd61be27c819b9b3e",
+      "docs/SHADE_HEAT_DIFFUSE_SKY.md": "6e39714037720f4fd87a43082e33ea5e37ef439194e308fc7ef39a11ec4b543e",
+      "continuous-sky.js": "68112c602e493d67daf63047c0014422b0a5731cb170b1dc2a8165995bf444e2",
+      "tests/continuous-sky.test.mjs": "b03b9e5f0008ffce7ffa847e6f416b19e7e0eae979b02d695d02ef643cc1a7a3",
+      "tests/shade-heat-continuous-sky.test.mjs": "d04a6aed101bd87b0a80a64f0bb1fdb25e298429a3848cc81399c32c420c616b",
+      "tests/shade-heat-continuous-sky.browser.mjs": "63dfb003a1ceb22fe706755f564fbf456265d36d6c0a93f0d816c9c32c17485e",
+      "docs/SHADE_HEAT_CONTINUOUS_SKY.md": "a59f8f381d78363da751ba9afc3e996deeee154024a00829e6d28915a553e529"
+    }
+  },
+  "qualifiedAt": "2026-10-28T20:25:44.918111+00:00",
+  "nativeCoordination": {
+    "owner": "node-081c5e7873a59896ba9260421b10ec0a",
+    "taskId": "experimental-earth-diffuse-sky-52d429",
+    "actor": "estate-52d429-20261025",
+    "taskRevisionAtQualification": 2,
+    "operationId": "estate-52d429-earth-native-claim-dispatch-20261028-a",
+    "reconciliationSHA256": "ec1367b79461925b7a4044e88d07f5002b436e6d99fd944dfcc86e80bf8b49c9"
+  },
+  "frozenVersion3Qualification": {
+    "baseCommit": "3d574d48d1c1b7c6c953fb80f96ab7826d3a59cd",
+    "baseTree": "064b174eeba7791a6c97ca2c7174aaa5e47136bc",
+    "qualifiedAt": "2026-10-28T19:01:56.793313+00:00",
+    "native": {
+      "runtime": "v24.22.1",
+      "passed": 126,
+      "failed": 0,
+      "command": "node --test --test-isolation=none --test-reporter=tap tests/solar*.test.mjs tests/shade-heat*.test.mjs tests/diffuse-sky.test.mjs tests/continuous-sky.test.mjs",
+      "scope": "Current-main composition with accepted PR464, unchanged numerical kernels, original sampling tests and two new cross-feature groups",
+      "tapSHA256": "2c1d09a63fbacff2f5437110a8cd76e6eafd3c6c07a44f70565cd61d64843b9b"
+    },
+    "browser": [
+      {
+        "course": "continuous",
+        "groups": 6,
+        "checks": [
+          "Actual worker connects the continuous horizon to diffuse-only thermal output; sampling controls retire and working-site bytes remain unchanged",
+          "A real v4 input-only download reopens in a fresh document with the same source, method and recomputed thermal trajectory",
+          "Derived-result injection refuses transactionally; changing sky method retires a delayed old v4 load and can recompute the sampled method",
+          "Original hourly weather remains byte-attached through v4 download and fresh reopening with recomputed continuous sky and locked weather controls",
+          "Declared height endpoints have separate inspectable skylines and actual keyboard input changes the selected horizon sector",
+          "Continuous method controls and sector inspection fit desktop and 390px layouts without application exceptions"
+        ],
+        "browser": "Chrome/156.0.8078.73",
+        "activeSandbox": true,
+        "exceptions": [],
+        "startedAt": "2026-10-28T18:57:09.278Z",
+        "finishedAt": "2026-10-28T18:57:13.777Z",
+        "receiptSHA256": "d3dcbdd4437f56d74652f682212603ac54102bd02f56a1d7161570b43570083f"
+      },
+      {
+        "course": "unchanged-solar-sampling",
+        "groups": 8,
+        "checks": [
+          "Original hourly source admits all three complete solar grids; constant weather does not; working site is unchanged",
+          "Rendered endpoint and off-hour common-minute values plus analytic day means and peaks match recomputed retained inputs for both sites and heat stores",
+          "Actual input-only download retains raw hourly source and recomputes in a fresh page without replacing the parent or working site",
+          "Wrong model, invalid UTF8 and oversized inputs refuse atomically; the byte limit precedes reading",
+          "A site admitted for hourly forcing refuses the complete combined-grid work budget without a partial comparison",
+          "A delayed sampling read cannot replace a newly selected parent source; downloads pause and the same file can be selected again",
+          "Declaration edits cancel queued sampling results and detaching hourly weather invalidates the child comparison",
+          "The complete comparison and captions fit 390px, wide data tables scroll locally, keyboard focus reaches the scroll region, and no browser exception occurs"
+        ],
+        "browser": "Chrome/156.0.8078.73",
+        "activeSandbox": true,
+        "exceptions": [],
+        "startedAt": "2026-10-28T18:57:48.884Z",
+        "finishedAt": "2026-10-28T18:57:54.152Z",
+        "receiptSHA256": "603379e2a8e38811771005d8ff6144a6b8ec64d8076820088548f1381379508f"
+      },
+      {
+        "course": "sky-sampling-interaction",
+        "groups": 4,
+        "checks": [
+          "Actual worker-fed hourly parent supports all three original solar grids and an actual source-only download",
+          "Selecting either mapped-sky model retires the old solar-grid comparison and explains the current uniform-diffuse requirement",
+          "Original sampling inputs reopen independently beside a continuous-sky parent without replacing either parent or working site",
+          "Changing the sky method retires a delayed sampling read; returning to uniform diffuse input restores the original three-grid consumer"
+        ],
+        "browser": "Chrome/156.0.8078.73",
+        "activeSandbox": true,
+        "exceptions": [],
+        "startedAt": "2026-10-28T18:57:58.703Z",
+        "finishedAt": "2026-10-28T18:58:01.529Z",
+        "receiptSHA256": "de4dcdfb64bd7c9c30031c1fafc68748b517ca449517c8108be7d83af24f8ed8"
+      }
+    ],
+    "browserComposition": [
+      {
+        "course": "continuous",
+        "equalCodeFilesIncludingTests": 623,
+        "laterAddedTestFiles": [
+          "tests/shade-heat-sky-sampling.browser.mjs"
+        ]
+      },
+      {
+        "course": "unchanged-solar-sampling",
+        "equalCodeFilesIncludingTests": 624,
+        "laterAddedTestFiles": []
+      },
+      {
+        "course": "sky-sampling-interaction",
+        "equalCodeFilesIncludingTests": 624,
+        "laterAddedTestFiles": []
+      }
+    ],
+    "visualInspection": {
+      "continuousSettings390": true,
+      "solarSampling390": true,
+      "screenshotsExcludedFromRepository": true
+    },
+    "sha256": {
+      "solar-occlusion.js": "30b9bb5211b3ab52f9738a0efa4a3b2e05281282d0a0f432244e358aa1c32846",
+      "shade-heat.js": "ba96263efc7710a253159f288f432201e6695d63a8247d827408a4a6bac209c2",
+      "shade-heat-panel.js": "8c2366034b725b6ea976f0aa4b854de724fd9f4fa8956cba00673a968715b84f",
+      "shade-heat.css": "99e988c512e18434f752db4127d3d40a4f89f4eed81e73f8cc4b8088797fd224",
+      "diffuse-sky.js": "fbe6128f13b95e3cd5150995b5134b28ae5c3bed8860319a5bbdabaa33c8a2ba",
+      "shade-heat-computation.js": "94c06f64db775b926d70d141df5038ef22cd9df312280778165e9fd27f5bac47",
+      "shade-heat-worker.js": "1e94b703778643afd3b0129ea73c7e46488d670ba882eebf867f03b619458bc5",
+      "tests/shade-heat.test.mjs": "9f90d3d86ee9e3a1877e699b2b9818ffdf3a3ac8103e0d7a489a7ccb782b70d1",
+      "tests/diffuse-sky.test.mjs": "6d8bdf021314e022f26a1582b14bba6864243eec4f9ab154872f5f91980fa9d8",
+      "tests/shade-heat-sky.test.mjs": "5b18ab67c51e0fe4e9cb80869540c8aac29001737ba443c72ea4a2fb4309a78f",
+      "tests/shade-heat-computation.test.mjs": "830024e528967e023df009c3bcc205f4e87323f788c397c64a06d9cce0cb3731",
+      "tests/solar-point.test.mjs": "9e5b780861d7422c8dae2b9d3ec2891e2208e04424264a0a92071c15eab13bf6",
+      "tests/solar-directions.test.mjs": "1fa6a26402ca53c102d6efc87646cd836f7e5b28852767216c4d83713bb46a3a",
+      "tests/shade-heat-sky.browser.mjs": "b4e74d0926b20c84cf3e00cac3493f12207067df76c27d45ae626b3dbaf875b7",
+      "tests/shade-heat-weather.browser.mjs": "56a19146148a8f04ec82c73e457a08bf7622b2abc631573bd61be27c819b9b3e",
+      "docs/SHADE_HEAT_DIFFUSE_SKY.md": "6e39714037720f4fd87a43082e33ea5e37ef439194e308fc7ef39a11ec4b543e",
+      "continuous-sky.js": "68112c602e493d67daf63047c0014422b0a5731cb170b1dc2a8165995bf444e2",
+      "tests/continuous-sky.test.mjs": "b03b9e5f0008ffce7ffa847e6f416b19e7e0eae979b02d695d02ef643cc1a7a3",
+      "tests/shade-heat-continuous-sky.test.mjs": "d04a6aed101bd87b0a80a64f0bb1fdb25e298429a3848cc81399c32c420c616b",
+      "tests/shade-heat-continuous-sky.browser.mjs": "63dfb003a1ceb22fe706755f564fbf456265d36d6c0a93f0d816c9c32c17485e",
+      "docs/SHADE_HEAT_CONTINUOUS_SKY.md": "6a7ea476f1ceef165518ffc2d659f8bbdf5c109d508bfdcd399604c50a9b1dea",
+      "tests/shade-heat-sky-sampling.test.mjs": "32e6bf58af72401661ca1744982503ce9e25001f2e39e32efa9b7f2660e72ab7",
+      "tests/shade-heat-sky-sampling.browser.mjs": "e40322070746052c47013c2bb84acaed10e5e11999e0d75608a907d23a044b07"
+    },
+    "currentMainComposition": {
+      "baseCommit": "3d574d48d1c1b7c6c953fb80f96ab7826d3a59cd",
+      "baseTree": "064b174eeba7791a6c97ca2c7174aaa5e47136bc",
+      "canonicalBaseMaterializedFilesVerified": 630,
+      "previousIncomingPathsPreserved": [
+        "docs/OBSERVATION_TABLE_REPREVIEW.md",
+        "observation-import-panel.js",
+        "tests/observation-import-heldback.browser.mjs",
+        "tests/observation-import-repreview.browser.mjs",
+        "tests/receive-earth-fresh-profile.browser.mjs"
+      ],
+      "incomingSamplingFilesPreservedExactly": [
+        "docs/SHADE_HEAT.md",
+        "docs/SHADE_HEAT_SAMPLING.md",
+        "shade-heat-sampling.js",
+        "shade-heat-sampling-panel.js",
+        "tests/shade-heat-sampling-independent.test.mjs",
+        "tests/shade-heat-sampling.browser.mjs"
+      ],
+      "composedFiles": [
+        "shade-heat.js",
+        "shade-heat-panel.js",
+        "shade-heat.css"
+      ],
+      "semantics": "Keep PR464 source/forcing extraction and uniform-diffuse sampling model; explicit refusal for mapped sky with derived solar grids; preserve independent source reopen and invalidate child work on changed parent/method.",
+      "currentNativePassed": 126,
+      "currentNativeFailed": 0,
+      "earlierPrepared51209TreeDispatched": false,
+      "priorUnknownMutation": "Old isolated object-only tree operation remains unreplayed; this new24file payload has a different base and content."
+    }
+  }
+}

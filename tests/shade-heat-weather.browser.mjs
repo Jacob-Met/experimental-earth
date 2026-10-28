@@ -9,7 +9,7 @@ import {authoredPowerWeather} from './weather-power-fixture.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url)),runDirectory=root+'.browser-run-weather-'+randomUUID(),checks=[];
 const rawPath=runDirectory+'/authored-hourly-weather.json',raw=JSON.stringify(authoredPowerWeather());
 try {
-const result=await withBrowserSession({root,runDirectory,chromeBin:'/opt/google/chrome/chrome'},async session=>{
+const result=await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN??'/opt/google/chrome/chrome'},async session=>{
  await writeFile(rawPath,raw);
  const {send,evaluate,exceptions}=session;await send('Runtime.enable');await send('Page.enable');await send('DOM.enable');
  async function until(code){for(let i=0;i<150;i++){try{if(await evaluate(code))return;}catch{}await delay(40);}throw Error('Timeout '+code+' '+await evaluate("document.getElementById('shade-status')?.textContent"));}

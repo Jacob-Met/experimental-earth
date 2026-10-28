@@ -1,6 +1,8 @@
 #shade-heat { overflow-wrap: anywhere; }
 #shade-heat .shade-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; padding: 15px 0; }
+#shade-heat .shade-fields[hidden] { display: none; }
 #shade-heat input, #shade-heat select { min-width: 0; width: 100%; box-sizing: border-box; }
+#shade-heat input[type=checkbox] { width: auto; margin: 0 .5rem 0 0; vertical-align: middle; }
 #shade-heat input[type=file] { max-width: 260px; display: block; }
 #shade-heat .shade-file { display: block; font-size: .85rem; }
 #shade-heat details { margin: 14px 0; }
