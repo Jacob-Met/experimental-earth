@@ -21,8 +21,8 @@ const raw = JSON.stringify(authoredPowerWeather());
 
 function largeSource(base) {
   const p = structuredClone(base), old = p.heatColumnStudy;
-  p.width = 14; p.height = 14;
-  p.existing = Array.from({ length: 196 }, () => structuredClone(base.existing[0])); p.proposal = structuredClone(p.existing);
+  p.width = 12; p.height = 12;
+  p.existing = Array.from({ length: 144 }, () => structuredClone(base.existing[0])); p.proposal = structuredClone(p.existing);
   p.solarStudy = prepareSolarStudy(p, { headingDeg: 0, elevationDeg: 45, sunSource: 'Authored browser budget control',
     existing: [], proposal: [{ cellIndex: 6, heightMinM: 3, heightMaxM: 3, source: 'Authored column' }] });
   p.heatColumnStudy = undefined; p.surfaceHeatStudy = undefined;
@@ -168,11 +168,20 @@ checks.push('Rendered endpoint and off-hour common-minute values plus analytic d
     const large = largeSource(envelope.source.project), largeParent = join(runDirectory, 'hourly-budget-source.json');
     await writeFile(largeParent, serializeShadeHeatInvestigation(large, envelope.source.declaration));
     await file('#shade-import', largeParent); await until("document.getElementById('shade-status').dataset.state==='compared'");
-    await click('shade-sampling-run'); await until("document.getElementById('shade-sampling-status').dataset.state==='refused'");
-    assert.match(await evaluate("document.getElementById('shade-sampling-status').textContent"), /complete.*budget/i);
-    assert.equal(await evaluate("document.getElementById('shade-sampling-results').children.length"), 0);
-    assert.equal(await evaluate("document.getElementById('shade-sampling-export').disabled"), true); assert.equal(await stored(), original);
-    checks.push('A site admitted for hourly forcing refuses the complete combined-grid work budget without a partial comparison');
+    await samplingRun();
+    assert.equal(await evaluate("document.querySelectorAll('#shade-sampling-summary tbody tr').length"),3);
+    assert.match(await evaluate("document.getElementById('shade-sampling-sources').textContent"),/144,144 ray checks/);
+    const largeDownloads=join(runDirectory,'large-downloads');await mkdir(largeDownloads);
+    await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:largeDownloads});await click('shade-sampling-export');
+    const largeExport=join(largeDownloads,'experimental-earth-shade-heat-sampling-inputs.json');
+    let largeText;for(let i=0;i<120;i++){try{largeText=await readFile(largeExport,'utf8');break;}catch{await delay(40);}}
+    const largeReceived=parseShadeHeatSampling(largeText);assert.equal(largeReceived.investigation.source.project.width,12);
+    assert.equal(largeReceived.report.estimatedRayTests,144144);assert.equal(largeReceived.report.courses.reduce((n,c)=>n+c.intervals.length,0),168);
+    await send('Page.reload',{ignoreCache:true});await until("Boolean(document.getElementById('shade-sampling-import'))");await reopen(largeExport);
+    assert.match(await evaluate("document.getElementById('shade-sampling-sources').textContent"),/144,144 ray checks/);
+    assert.equal(await stored(),original);
+    await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:downloads});
+    checks.push('A previously refused authored12×12 source completes all168 intervals at144144 selected-point checks and reopens from original inputs');
 
     await reopen(exported);
     await evaluate("window.__samplingOldArrayBuffer=File.prototype.arrayBuffer;window.__releaseSampling=null;File.prototype.arrayBuffer=async function(){await new Promise(resolve=>window.__releaseSampling=resolve);return window.__samplingOldArrayBuffer.call(this)}");
