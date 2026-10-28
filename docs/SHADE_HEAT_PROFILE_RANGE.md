@@ -56,3 +56,7 @@ node --test --test-isolation=none --test-reporter=tap tests/shade-heat-profile-r
 `tests/shade-heat-profile-range.browser.mjs` exercises the actual worker, opposite-sign result, separate witness buttons and keyboard selection, real download/fresh reopening, strict source custody, stale parent/child imports, whole-query refusal, original hourly bytes and desktop/390px layout with the maintained active Chromium sandbox.
 
 Independent review uses full original `compareShadeHeat` one-bin and mixed-profile replays rather than the optimized basis. Its 217-call oracle covers 4/8/16 bins, original hourly and direct forcing, unequal materials, uncertain roofs and the identical-scenario negative control; three further calls establish the refused-vertex counterexample. The maximum observed affine residual is 1.4210854715202004e-14 °C for these fixtures, not a global error guarantee.
+
+## Use an attributed final reading
+
+The separate [temperature-band inquiry](SHADE_HEAT_PROFILE_EVIDENCE.md) can constrain this shared profile family with one original existing-surface reading at the saved receiver and final UTC. It retains compatible mixtures even when every original one-bin profile is excluded, then recomputes the paired design ranges under those same mixtures. The original observation operator must have one computed value in every bin; source-only replay, fixed model assumptions and the distinction between coefficient arithmetic and physical validity remain explicit.

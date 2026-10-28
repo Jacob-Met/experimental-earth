@@ -1,0 +1,1406 @@
+{
+  "qualificationVersion": 1,
+  "status": "Qualified source before publication and accepted receiving",
+  "qualifiedAt": "2026-10-28T22:41:16.142064+00:00",
+  "baseCommit": "7a018a4f31524ee4b6255dbd1504d2118444d41f",
+  "baseTree": "3dbafbf1faaaae2dfab8af9a7340c9b298f61134",
+  "materializedCanonicalBaseFiles": 691,
+  "native": {
+    "passed": 156,
+    "failed": 0,
+    "tapSHA256": "35ce1f322074258e158056226f895bb24359518db12232be0b50691a3f6b5dd1",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/solar*.test.mjs tests/shade-heat*.test.mjs tests/diffuse-sky.test.mjs tests/continuous-sky.test.mjs tests/weighted-continuous-sky.test.mjs"
+  },
+  "independentCoreReview": {
+    "reviewer": "retained SECOND GROUND worker",
+    "method": "Independent Fraction convex hull in observation/objective plane followed by vertical slab clipping; different construction from simplex edge enumeration",
+    "reportedExecutedControls": {
+      "cases": 416,
+      "candidateWitnesses": 7100,
+      "result": "PASS"
+    },
+    "scope": "Exact coefficient simplex membership, complete objective extrema, minimal adjacent outward binary64 enclosure and degeneracy/subnormal/zero-width controls; no consumer or browser claim",
+    "coreSHA256": "a74eef5e7d65aa1137f6bc84007f337a06eb0653b6e760705821f172706adfef",
+    "originalHarnessSHA256": "0c16bed4666417ecc20ab625c3bb6b07af161a9bfe146835b5cc874b77eb2c82",
+    "portableHarnessSHA256": "a10cdcc22cbda2ad26079a38c26e63651f5843b62a763a76dfd0c5392e4ce63b",
+    "adaptation": "Only the source-file locator changed from the immutable experiment path to the repository-relative module. Original algorithm, seed,416cases, checks and expected core hash unchanged."
+  },
+  "portableIndependentReplay": {
+    "exitCode": 0,
+    "result": {
+      "projectedHullCases": 416,
+      "candidateWitnesses": 7100,
+      "sourceSHA256": "a74eef5e7d65aa1137f6bc84007f337a06eb0653b6e760705821f172706adfef",
+      "result": "PASS exact alternative 2D hull-clipping extrema; witness simplex/band membership; minimal outward displays; degeneracy/subnormal/zero-width"
+    },
+    "command": "python3 tests/shade-heat-profile-band-independent.py"
+  },
+  "prototypeControl": {
+    "status": "PASS",
+    "scope": "Authored original-model controls and exact represented-coefficient prototype; no physical validity or accepted production claim",
+    "source": "6e23b4aaa7ccc10afe40c52886c065d104e580f3",
+    "originalBasisRange": {
+      "surfaceC": {
+        "lower": {
+          "differenceC": -5.130281074896182,
+          "bin": 0,
+          "profile": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "proposalBound": "lower",
+          "existingBound": "upper",
+          "proposalC": 20.721645475586204,
+          "existingC": 25.851926550482386
+        },
+        "upper": {
+          "differenceC": 5.130281074896182,
+          "bin": 3,
+          "profile": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "proposalBound": "upper",
+          "existingBound": "lower",
+          "proposalC": 25.851926550482386,
+          "existingC": 20.721645475586204
+        }
+      },
+      "subsurfaceC": {
+        "lower": {
+          "differenceC": -4.925886730730049,
+          "bin": 0,
+          "profile": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "proposalBound": "lower",
+          "existingBound": "upper",
+          "proposalC": 20.692894564758983,
+          "existingC": 25.618781295489033
+        },
+        "upper": {
+          "differenceC": 4.925886730730049,
+          "bin": 3,
+          "profile": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "proposalBound": "upper",
+          "existingBound": "lower",
+          "proposalC": 25.618781295489033,
+          "existingC": 20.692894564758983
+        }
+      }
+    },
+    "observedCoefficients": [
+      25.851926550482386,
+      25.851926550482386,
+      25.851926550482386,
+      20.721645475586204,
+      20.721645475586204,
+      25.851926550482386,
+      25.851926550482386,
+      25.851926550482386
+    ],
+    "controls": [
+      {
+        "reading": {
+          "temperatureC": 22,
+          "halfWidthC": 0.1
+        },
+        "status": "compatible",
+        "work": {
+          "examinedPairs": 28,
+          "admittedOriginalVertices": 0,
+          "mixedVertices": 24,
+          "candidates": 24,
+          "maximumCandidates": 64
+        },
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "exact": {
+                "numerator": "42758472368558131",
+                "denominator": "18014398509481984"
+              },
+              "lower": 2.3735720260685893,
+              "upper": 2.3735720260685897
+            },
+            "upper": {
+              "exact": {
+                "numerator": "142383159521184333",
+                "denominator": "36028797018963968"
+              },
+              "lower": 3.9519265504823853,
+              "upper": 3.9519265504823857
+            },
+            "lowerWitness": {
+              "support": [
+                0,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "49660455380275277",
+                    "denominator": "184837855497666816"
+                  },
+                  "lower": 0.26867037191362636,
+                  "upper": 0.2686703719136264
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "135177400117391539",
+                    "denominator": "184837855497666816"
+                  },
+                  "lower": 0.7313296280863736,
+                  "upper": 0.7313296280863737
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "796236414119103693",
+                  "denominator": "36028797018963968"
+                },
+                "lower": 22.099999999999998,
+                "upper": 22.1
+              }
+            },
+            "upperWitness": {
+              "support": [
+                1,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "14151565325494161",
+                    "denominator": "61612618499222272"
+                  },
+                  "lower": 0.2296861530998361,
+                  "upper": 0.22968615309983612
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "47461053173728111",
+                    "denominator": "61612618499222272"
+                  },
+                  "lower": 0.7703138469001638,
+                  "upper": 0.7703138469001639
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "789030654715310899",
+                  "denominator": "36028797018963968"
+                },
+                "lower": 21.9,
+                "upper": 21.900000000000002
+              }
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "exact": {
+                "numerator": "29642607132033295659440667187835",
+                "denominator": "13006807767863341531536581197824"
+              },
+              "lower": 2.27900709083077,
+              "upper": 2.2790070908307705
+            },
+            "upper": {
+              "exact": {
+                "numerator": "32902703847200277653748047522135",
+                "denominator": "8671205178575561021024387465216"
+              },
+              "lower": 3.7944787569431355,
+              "upper": 3.794478756943136
+            },
+            "lowerWitness": {
+              "support": [
+                0,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "49660455380275277",
+                    "denominator": "184837855497666816"
+                  },
+                  "lower": 0.26867037191362636,
+                  "upper": 0.2686703719136264
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "135177400117391539",
+                    "denominator": "184837855497666816"
+                  },
+                  "lower": 0.7313296280863736,
+                  "upper": 0.7313296280863737
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "796236414119103693",
+                  "denominator": "36028797018963968"
+                },
+                "lower": 22.099999999999998,
+                "upper": 22.1
+              }
+            },
+            "upperWitness": {
+              "support": [
+                1,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "14151565325494161",
+                    "denominator": "61612618499222272"
+                  },
+                  "lower": 0.2296861530998361,
+                  "upper": 0.22968615309983612
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "47461053173728111",
+                    "denominator": "61612618499222272"
+                  },
+                  "lower": 0.7703138469001638,
+                  "upper": 0.7703138469001639
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "789030654715310899",
+                  "denominator": "36028797018963968"
+                },
+                "lower": 21.9,
+                "upper": 21.900000000000002
+              }
+            }
+          }
+        },
+        "maximumOriginalReplayResidualC": 7.105427357601002e-15
+      },
+      {
+        "reading": {
+          "temperatureC": 22,
+          "halfWidthC": 0
+        },
+        "status": "compatible",
+        "work": {
+          "examinedPairs": 28,
+          "admittedOriginalVertices": 0,
+          "mixedVertices": 12,
+          "candidates": 12,
+          "maximumCandidates": 64
+        },
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "exact": {
+                "numerator": "181099031525213",
+                "denominator": "70368744177664"
+              },
+              "lower": 2.5735720260685895,
+              "upper": 2.5735720260685895
+            },
+            "upper": {
+              "exact": {
+                "numerator": "1084220936088187",
+                "denominator": "281474976710656"
+              },
+              "lower": 3.8519265504823856,
+              "upper": 3.8519265504823856
+            },
+            "lowerWitness": {
+              "support": [
+                0,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "359824809987335",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.24917826250673122,
+                  "upper": 0.24917826250673125
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "1084220936088187",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.7508217374932687,
+                  "upper": 0.7508217374932689
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "22",
+                  "denominator": "1"
+                },
+                "lower": 22,
+                "upper": 22
+              }
+            },
+            "upperWitness": {
+              "support": [
+                1,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "359824809987335",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.24917826250673122,
+                  "upper": 0.24917826250673125
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "1084220936088187",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.7508217374932687,
+                  "upper": 0.7508217374932689
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "22",
+                  "denominator": "1"
+                },
+                "lower": 22,
+                "upper": 22
+              }
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "exact": {
+                "numerator": "125548157970233526382696557205",
+                "denominator": "50807842843216177857564770304"
+              },
+              "lower": 2.471038936993496,
+              "upper": 2.4710389369934966
+            },
+            "upper": {
+              "exact": {
+                "numerator": "751643673697299577083706961795",
+                "denominator": "203231371372864711430259081216"
+              },
+              "lower": 3.6984628338617727,
+              "upper": 3.698462833861773
+            },
+            "lowerWitness": {
+              "support": [
+                0,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "359824809987335",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.24917826250673122,
+                  "upper": 0.24917826250673125
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "1084220936088187",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.7508217374932687,
+                  "upper": 0.7508217374932689
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "22",
+                  "denominator": "1"
+                },
+                "lower": 22,
+                "upper": 22
+              }
+            },
+            "upperWitness": {
+              "support": [
+                1,
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "359824809987335",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.24917826250673122,
+                  "upper": 0.24917826250673125
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "1084220936088187",
+                    "denominator": "1444045746075522"
+                  },
+                  "lower": 0.7508217374932687,
+                  "upper": 0.7508217374932689
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "22",
+                  "denominator": "1"
+                },
+                "lower": 22,
+                "upper": 22
+              }
+            }
+          }
+        },
+        "maximumOriginalReplayResidualC": 3.552713678800501e-15
+      },
+      {
+        "reading": {
+          "temperatureC": 23,
+          "halfWidthC": 20
+        },
+        "status": "compatible",
+        "work": {
+          "examinedPairs": 28,
+          "admittedOriginalVertices": 8,
+          "mixedVertices": 0,
+          "candidates": 8,
+          "maximumCandidates": 64
+        },
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "exact": {
+                "numerator": "-722022873037761",
+                "denominator": "140737488355328"
+              },
+              "lower": -5.130281074896182,
+              "upper": -5.130281074896182
+            },
+            "upper": {
+              "exact": {
+                "numerator": "722022873037761",
+                "denominator": "140737488355328"
+              },
+              "lower": 5.130281074896182,
+              "upper": 5.130281074896182
+            },
+            "lowerWitness": {
+              "support": [
+                0
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "1",
+                    "denominator": "1"
+                  },
+                  "lower": 1,
+                  "upper": 1
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "7276670423722619",
+                  "denominator": "281474976710656"
+                },
+                "lower": 25.851926550482386,
+                "upper": 25.851926550482386
+              }
+            },
+            "upperWitness": {
+              "support": [
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "1",
+                    "denominator": "1"
+                  },
+                  "lower": 1,
+                  "upper": 1
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "5832624677647097",
+                  "denominator": "281474976710656"
+                },
+                "lower": 20.721645475586204,
+                "upper": 20.721645475586204
+              }
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "exact": {
+                "numerator": "-693256926405785",
+                "denominator": "140737488355328"
+              },
+              "lower": -4.925886730730049,
+              "upper": -4.925886730730049
+            },
+            "upper": {
+              "exact": {
+                "numerator": "693256926405785",
+                "denominator": "140737488355328"
+              },
+              "lower": 4.925886730730049,
+              "upper": 4.925886730730049
+            },
+            "lowerWitness": {
+              "support": [
+                0
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "1",
+                    "denominator": "1"
+                  },
+                  "lower": 1,
+                  "upper": 1
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "7276670423722619",
+                  "denominator": "281474976710656"
+                },
+                "lower": 25.851926550482386,
+                "upper": 25.851926550482386
+              }
+            },
+            "upperWitness": {
+              "support": [
+                3
+              ],
+              "weights": [
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "1",
+                    "denominator": "1"
+                  },
+                  "lower": 1,
+                  "upper": 1
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                },
+                {
+                  "exact": {
+                    "numerator": "0",
+                    "denominator": "1"
+                  },
+                  "lower": 0,
+                  "upper": 0
+                }
+              ],
+              "observedC": {
+                "exact": {
+                  "numerator": "5832624677647097",
+                  "denominator": "281474976710656"
+                },
+                "lower": 20.721645475586204,
+                "upper": 20.721645475586204
+              }
+            }
+          }
+        },
+        "maximumOriginalReplayResidualC": 0
+      },
+      {
+        "reading": {
+          "temperatureC": 40,
+          "halfWidthC": 0.1
+        },
+        "status": "incompatible",
+        "work": {
+          "examinedPairs": 28,
+          "admittedOriginalVertices": 0,
+          "mixedVertices": 0,
+          "candidates": 0,
+          "maximumCandidates": 64
+        },
+        "ranges": {},
+        "maximumOriginalReplayResidualC": 0
+      }
+    ]
+  },
+  "browser": [
+    {
+      "course": "original-reading-child",
+      "groups": 9,
+      "checks": [
+        "Actual worker retains compatible mixed skies when every one-bin profile is excluded and narrows both same-profile design consequences",
+        "Separate extrema and real keyboard selection inspect mixture masses, exact fractions and both same-profile thermal endpoints",
+        "Actual source-only download reopens independently on a fresh page and bin edits recompute its original source without parent results",
+        "Forged results refuse transactionally and edited original bands retire delayed file results and stale downloads",
+        "A held actual worker response cannot replace a newer completed reading inquiry after input retirement",
+        "Newer reading input retires both pending ancestor file loads so neither can relabel or replace the accepted source",
+        "An incompatible band remains a complete empty-family result; unresolved observation operators and unsupported vertices refuse without survivor ranges",
+        "Complete hourly weather and reading attribution survive download while either ancestor input retires dependent results and source attachment",
+        "Actual reading controls, horizontally scrollable ranges and mixture inspection fit desktop and 390px with no application exceptions"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:40:21.748Z",
+      "receiptSHA256": "12d9750237f36693288cf64139f9c8b6692c4b6b98b8d106130e08066aa6fa90"
+    },
+    {
+      "course": "maintained-shared-profile-parent",
+      "groups": 8,
+      "checks": [
+        "Actual child worker exposes both signs from one shared profile domain while retaining the original site and parent profile",
+        "Separate extrema buttons and actual keyboard input inspect the complete same-bin transmission and paired terminal-temperature witnesses",
+        "An actual source-only download reopens in a fresh document and changing bins recomputes that original child source without a parent result",
+        "Forged derived results refuse transactionally and bin edits retire delayed input loads and their downloads before recomputation",
+        "A newer independent child import retires an older pending parent import so its late completion cannot overwrite or invalidate the new result",
+        "One unsupported vertex refuses the complete new inquiry and visibly retains the prior accepted source instead of presenting a survivor range",
+        "Original hourly weather remains byte-attached through actual download; parent input edits retire the child result and reopening restores its own source",
+        "Profile-range controls and scrollable evidence tables fit desktop and 390px screens with no application exceptions"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:40:41.432Z",
+      "receiptSHA256": "efae680adccd9fe006facfb908d02782d6e2ba50757c15fa928e1c60cb6fe314"
+    },
+    {
+      "course": "incoming-sampled-cooling-window-search",
+      "groups": 3,
+      "checks": [
+        "Actual three-grid earliest starts and earlier refutation counts; accepted source stamp and failed replacement retention",
+        "Jump rechecks selected window and actual raw-only export; live query edit and detached stale button cannot revive result",
+        "Original uncertain-height source shows unresolved starts without a supported jump; successful replacement retires search; fresh selected-window reopen and span0"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "browser": "Chrome/156.0.8078.73",
+      "completedAt": "2026-10-28T22:40:15.902Z",
+      "receiptSHA256": "21318a5ceabb78aba1234bbd54a51ae8ba509d579c00adf6dd4b94834acc89a8"
+    }
+  ],
+  "browserComposition": [
+    {
+      "course": "original-reading-child",
+      "allMaterializedJavascriptHtmlCssIncludingTestsRehashed": 666
+    },
+    {
+      "course": "maintained-shared-profile-parent",
+      "allMaterializedJavascriptHtmlCssIncludingTestsRehashed": 666
+    },
+    {
+      "course": "incoming-sampled-cooling-window-search",
+      "allMaterializedJavascriptHtmlCssIncludingTestsRehashed": 666
+    }
+  ],
+  "incomingComposition": {
+    "baseCommit": "7a018a4f31524ee4b6255dbd1504d2118444d41f",
+    "baseTree": "3dbafbf1faaaae2dfab8af9a7340c9b298f61134",
+    "canonicalBaseFiles": 691,
+    "incomingPathsPreserved": [
+      "docs/RAIN_PROPOSAL_COMPARISON.md",
+      "docs/SHADE_HEAT_SAMPLING.md",
+      "proposal-comparison.css",
+      "proposal-local-inspection.js",
+      "proposal-local-timing.js",
+      "shade-heat-window-search-view.js",
+      "shade-heat-window-search.js",
+      "shade-heat-window-view.js",
+      "tests/proposal-comparison.browser.mjs",
+      "tests/proposal-local-timing.test.mjs",
+      "tests/shade-heat-window-search.browser.mjs",
+      "tests/shade-heat-window-search.test.mjs"
+    ],
+    "ownOverlaps": [],
+    "priorRequest": "publication-6e23b4 preserved; nativeprewrite exit1 on advanced main before mutation"
+  },
+  "productionSourceReview": {
+    "scope": "Independent production core, typed source and worker/panel/parent lifecycle source review; no independent browser claim",
+    "filesSHA256": {
+      "shade-heat-profile-evidence.js": "f6f54eecd99de82048c78de936e8011ccf84373e1f83c0430f4af8e4fcce64a8",
+      "shade-heat-profile-evidence-worker.js": "b4f5e9abca84005577e0f84df8a1022b7554fdd75f47fe7d65265d913cfe4b5c",
+      "shade-heat-profile-evidence-panel.js": "b49e121d16805f6cea7e6d8a682bbc35f0483a4b3255c20515e4eba954c0afae",
+      "shade-heat-profile-range-panel.js": "faffbf8f7355bfe5e220e8be6cdc7076fa0a7cbfbff63adbe2c5bf642989ec8b"
+    },
+    "native": {
+      "command": "node --test --test-isolation=none --test-reporter=tap tests/shade-heat-profile-evidence.test.mjs",
+      "cwd": "/tmp/hamon-52d429-earth/sky-evidence-experiment/candidate",
+      "groups": 7,
+      "passed": 7,
+      "failed": 0,
+      "exit": 0,
+      "terminalChunk": "dc5a98"
+    },
+    "findings": "No blocker found. Complete basis precedes exact every-bin observation endpoint equality; both paired endpoint objectives use the same exact candidate. Strict final receiver, UTC, existing surface, instantaneous aggregation, attribution and source-only parsing reviewed. Panel/parent pending generations, cancellation, stale file/compute guards, transactional refused-import retention, source invalidation and export custody are coherent by source inspection.",
+    "independentCore": "Separate immutable prototype review.py:416 exact projected-hull cases,7100 candidate witnesses and minimal outward display checks passed at a74eef5e7d65aa1137f6bc84007f337a06eb0653b6e760705821f172706adfef. This receipt does not attribute that prototype hash to production source."
+  },
+  "nativeTask": {
+    "id": "experimental-earth-sky-evidence-52d429",
+    "revision": 2,
+    "owner": "estate-52d429-20261025",
+    "reconciliationSourceSHA256": "51415975ab202f5338c065b280151d7f5145b1b14047752f8e01288f48736697"
+  },
+  "scope": "One original instantaneous existing-surface band at the saved receiver and final UTC constrains one shared static sky. Complete original basis first; exact simplex-slab intersection and paired linear objectives over represented temperature coefficients. Strict input-only child and original source custody.",
+  "limits": [
+    "Existing computed observation endpoints must coincide in every bin; no favorable endpoint selection.",
+    "Exact fraction arithmetic does not certify geometry/thermal integration or physical validity. Fixed materials,initial states,weather and original forcing envelopes retained.",
+    "No daily-peak optimization,changing sky,actual-sky identification,physical intervention approval or public deployment. All other owners/holds and unknown operations preserved."
+  ],
+  "visualInspection": {
+    "desktop1440": true,
+    "narrow390": true,
+    "summary": "Compatible component ranges visible before the detailed horizontally scrollable table",
+    "screenshotsExcludedFromRepository": true
+  },
+  "observedControl": "A22\u00b10.1C authoredband excludes all eight one-hot vertices but admits24mixtures; the coarser4bin family is incompatible and is never coerced into the8bin result.",
+  "sha256": {
+    "shade-heat-profile-band.js": "a74eef5e7d65aa1137f6bc84007f337a06eb0653b6e760705821f172706adfef",
+    "shade-heat-profile-evidence.js": "f6f54eecd99de82048c78de936e8011ccf84373e1f83c0430f4af8e4fcce64a8",
+    "shade-heat-profile-evidence-worker.js": "b4f5e9abca84005577e0f84df8a1022b7554fdd75f47fe7d65265d913cfe4b5c",
+    "shade-heat-profile-evidence-panel.js": "b49e121d16805f6cea7e6d8a682bbc35f0483a4b3255c20515e4eba954c0afae",
+    "shade-heat-profile-evidence.css": "ce1b3d5ee34865c3aa942a172f4f33d73f738a1c231b4f1b4c3c12ec8f3c3030",
+    "shade-heat-profile-range-panel.js": "faffbf8f7355bfe5e220e8be6cdc7076fa0a7cbfbff63adbe2c5bf642989ec8b",
+    "tests/shade-heat-profile-evidence.test.mjs": "84f43527f0f689d3565cbcf1155aa3fcf90c409071b3a0b5ac149896e00bdc20",
+    "tests/shade-heat-profile-evidence.browser.mjs": "cf6c78ae148c2b2f592e1ccd3a633b243c6d75967103e575ff88df7f9da68a68",
+    "tests/shade-heat-profile-band-independent.py": "a10cdcc22cbda2ad26079a38c26e63651f5843b62a763a76dfd0c5392e4ce63b",
+    "docs/SHADE_HEAT_PROFILE_EVIDENCE.md": "e282c46774c330301f69f47853bfdab52a394f3a2e546d5eddaa255c9c2a2fd4",
+    "docs/SHADE_HEAT_PROFILE_RANGE.md": "08294b0d7c5741f32ae3a4b05b1679172e3d0758df77c6bc782eae307279becc"
+  }
+}
