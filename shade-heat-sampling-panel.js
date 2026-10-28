@@ -1,3 +1,4 @@
+import { shadeHeatSourceLabel } from './shade-heat-source-label.js';
 import { mountCoolingWindow } from './shade-heat-window-view.js';
 import { pairedShadeCooling, greatestSampledCooling } from './shade-heat-benefit.js';
 import { prepareShadeHeatSampling, parseShadeHeatSampling } from './shade-heat-sampling.js';
@@ -178,7 +179,8 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
     if (!accepted) return;
     const host = $('results'), report = accepted.report, source = accepted.investigation.source;
     host.replaceChildren(); host.dataset.sourceMode = sourceMode;
-    host.append(node('p', sourceMode + ' · ' + source.project.title + ' · ' + source.declaration.path.startUtc.slice(0, 10) + ' UTC. All 12 thermal courses are complete.'));
+    const identity = node('p', sourceMode + ' · ' + shadeHeatSourceLabel(accepted) + '. All 12 thermal courses are complete.');
+    identity.id = 'shade-sampling-source'; host.append(identity);
     const selectors = node('div'); selectors.className = 'shade-sampling-selectors';
     selectors.append(choice('Site to inspect', 'target', [['existing', 'Existing site'], ['proposal', 'Proposed site']], target, value => { target = value; draw(); }),
       choice('Temperature to inspect', 'store', [['surfaceC', 'Ground surface'], ['subsurfaceC', 'Lower heat store']], store, value => { store = value; draw(); }));
