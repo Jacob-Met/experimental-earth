@@ -2,7 +2,9 @@ import { parsePowerHourly, POWER_HOURLY_FORMAT } from './weather-power.js';
 import { validateProject } from './core.js';
 import { compareSolarOcclusionAt } from './solar-occlusion.js';
 import { compareDiffuseSkyAt, normalizeDiffuseSky, DIFFUSE_SKY_MODEL, DIFFUSE_SKY_SEMANTICS } from './diffuse-sky.js';
-import { compareContinuousSkyAt, normalizeContinuousSky, CONTINUOUS_SKY_MODEL, CONTINUOUS_SKY_SEMANTICS } from './continuous-sky.js';
+import { compareContinuousSkyAt, normalizeContinuousSky, CONTINUOUS_SKY_MODEL, CONTINUOUS_SKY_SEMANTICS,
+  compareWeightedContinuousSkyAt, normalizeWeightedContinuousSky,
+  WEIGHTED_CONTINUOUS_SKY_MODEL, WEIGHTED_CONTINUOUS_SKY_SEMANTICS } from './continuous-sky.js';
 import { solarContext } from './solar-occlusion-contract.js';
 import { validateSunPath, sunPathPosition, SUN_PATH_MODEL } from './solar-path.js';
 import { evaluateHeatColumnTarget } from './heat-column.js';
@@ -18,6 +20,7 @@ export const SHADE_HEAT_KIND = 'experimental-earth/shade-heat-inputs/1';
 export const SHADE_HEAT_HOURLY_KIND = 'experimental-earth/shade-heat-inputs/2';
 export const SHADE_HEAT_SKY_KIND = 'experimental-earth/shade-heat-inputs/3';
 export const SHADE_HEAT_CONTINUOUS_SKY_KIND = 'experimental-earth/shade-heat-inputs/4';
+export const SHADE_HEAT_WEIGHTED_SKY_KIND = 'experimental-earth/shade-heat-inputs/5';
 export const SHADE_HEAT_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_MODEL, version: 2, weather: POWER_HOURLY_FORMAT });
 export const SHADE_HEAT_SKY_MODEL = Object.freeze({ ...SHADE_HEAT_MODEL,
   name: 'mapped-isotropic-sky-midpoint-two-store', version: 3,
@@ -27,8 +30,14 @@ export const SHADE_HEAT_SKY_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_SKY_MOD
 export const SHADE_HEAT_CONTINUOUS_SKY_MODEL = Object.freeze({ ...SHADE_HEAT_SKY_MODEL,
   name: 'continuous-isotropic-column-sky-midpoint-two-store', version: 4, sky: CONTINUOUS_SKY_MODEL.kind });
 export const SHADE_HEAT_CONTINUOUS_SKY_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_CONTINUOUS_SKY_MODEL, weather: POWER_HOURLY_FORMAT });
-const isContinuousSky = declaration => declaration?.diffuseSky?.method === 'continuous-columns';
-const shadeHeatModel = declaration => isContinuousSky(declaration)
+export const SHADE_HEAT_WEIGHTED_SKY_MODEL = Object.freeze({ ...SHADE_HEAT_SKY_MODEL,
+  name: 'authored-azimuth-column-sky-midpoint-two-store', version: 5, sky: WEIGHTED_CONTINUOUS_SKY_MODEL.kind });
+export const SHADE_HEAT_WEIGHTED_SKY_HOURLY_MODEL = Object.freeze({ ...SHADE_HEAT_WEIGHTED_SKY_MODEL, weather: POWER_HOURLY_FORMAT });
+const isWeightedSky = declaration => declaration?.diffuseSky?.method === 'weighted-continuous-columns';
+const isContinuousSky = declaration => declaration?.diffuseSky?.method === 'continuous-columns' || isWeightedSky(declaration);
+const shadeHeatModel = declaration => isWeightedSky(declaration)
+  ? (declaration.weather ? SHADE_HEAT_WEIGHTED_SKY_HOURLY_MODEL : SHADE_HEAT_WEIGHTED_SKY_MODEL)
+  : isContinuousSky(declaration)
   ? (declaration.weather ? SHADE_HEAT_CONTINUOUS_SKY_HOURLY_MODEL : SHADE_HEAT_CONTINUOUS_SKY_MODEL)
   : declaration?.diffuseSky
   ? (declaration.weather ? SHADE_HEAT_SKY_HOURLY_MODEL : SHADE_HEAT_SKY_MODEL)
@@ -53,6 +62,11 @@ export const SHADE_HEAT_CONTINUOUS_SKY_SEMANTICS = 'Each interval retains the ma
   + 'Thermal ranges combine independent incident-input extremes and do not establish one joint physical realization of all column heights, continuous sunlight between time samples or formal floating-point bounds. '
   + CONTINUOUS_SKY_SEMANTICS
   + ' Declared nonzero diffuse input also applies at night. No cloud inference, nonlinear thermal radiation, moisture, lateral heat flow or human comfort is modeled.';
+export const SHADE_HEAT_WEIGHTED_SKY_SEMANTICS = 'Each interval retains the maintained midpoint direct-beam calculation. '
+  + 'The same authored azimuth brightness profile applies to both scenarios, both roof endpoints and every weather interval. '
+  + 'Thermal ranges combine independent incident-input extremes and do not establish one joint physical realization of all column heights or continuous sunlight between samples. '
+  + WEIGHTED_CONTINUOUS_SKY_SEMANTICS
+  + ' Declared nonzero diffuse input also applies at night. No cloud inference, nonlinear thermal radiation, moisture, lateral heat flow or human comfort is modeled.';
 const targets = ['existing', 'proposal'];
 const bounds = ['lower', 'upper'];
 const pathKeys = ['latitudeDeg', 'longitudeDeg', 'gridColumnBearingDeg', 'locationSource',
@@ -66,7 +80,8 @@ export function normalizeShadeHeat(input) {
   if (input && typeof input === 'object' && !Array.isArray(input) && Object.hasOwn(input, 'diffuseSky')) {
     const { diffuseSky, ...ordinary } = input;
     if (diffuseSky === undefined) throw Error('Supply an explicit diffuse-sky declaration');
-    const sky = diffuseSky && Object.hasOwn(diffuseSky, 'method')
+    const sky = diffuseSky?.method === 'weighted-continuous-columns' ? normalizeWeightedContinuousSky(diffuseSky)
+      : diffuseSky && Object.hasOwn(diffuseSky, 'method')
       ? normalizeContinuousSky(diffuseSky) : normalizeDiffuseSky(diffuseSky);
     return { ...normalizeShadeHeat(ordinary), diffuseSky: sky };
   }
@@ -163,8 +178,10 @@ function sourceAdmission(project, input, solarStepMinutes = null) {
     ? declaration.diffuseSky.azimuthSamples * declaration.diffuseSky.elevationBands : 0;
   const estimatedRayTests = 6 * (cells - 1) * (count + skyDirections);
   // Four endpoint skylines (two scenarios, minimum/maximum roofs), each with
-  // no more than four corners per other cell plus the cardinal sectors.
-  const skyFaceTestBound = isContinuousSky(declaration) ? 4 * (4 * (cells - 1) + 4) * (cells - 1) : 0;
+  // no more than four corners per other cell plus the cardinal sectors and
+  // authored profile edges. Cardinal edges are already counted once.
+  const extraProfileCuts = isWeightedSky(declaration) ? declaration.diffuseSky.azimuthWeights.length - 4 : 0;
+  const skyFaceTestBound = isContinuousSky(declaration) ? 4 * (4 * (cells - 1) + 4 + extraProfileCuts) * (cells - 1) : 0;
   if (estimatedRayTests + skyFaceTestBound > SHADE_HEAT_LIMITS.maxRayTests) {
     throw Error('The complete coupled investigation exceeds the 16 million ray-check budget; use fewer intervals or a smaller source grid');
   }
@@ -178,7 +195,8 @@ function sourceAdmission(project, input, solarStepMinutes = null) {
 export function sampleShadeHeatForcing(project, input, solarStepMinutes = null) {
   const admitted = sourceAdmission(project, input, solarStepMinutes);
   const { declaration, weather, cellIndex, start, end, count, stepMinutes } = admitted;
-  const diffuseSky = isContinuousSky(declaration) ? compareContinuousSkyAt(project, cellIndex)
+  const diffuseSky = isWeightedSky(declaration) ? compareWeightedContinuousSkyAt(project, cellIndex, declaration.diffuseSky)
+    : isContinuousSky(declaration) ? compareContinuousSkyAt(project, cellIndex)
     : declaration.diffuseSky ? compareDiffuseSkyAt(project, cellIndex, declaration.diffuseSky) : null;
   if (diffuseSky && diffuseSky.status !== 'compared') throw Error('The maintained diffuse-sky calculation refused the source');
   const working = structuredClone(project), intervals = [];
@@ -265,7 +283,8 @@ export function compareShadeHeat(project, input) {
     durationMinutes, estimatedRayTests, intervals, trajectory, summary,
     ...(diffuseSky ? { diffuseSky } : {}),
     ...(isContinuousSky(declaration) ? { estimatedSkyFaceTests: diffuseSky.estimatedFaceTests } : {}),
-    semantics: (isContinuousSky(declaration) ? SHADE_HEAT_CONTINUOUS_SKY_SEMANTICS : diffuseSky ? SHADE_HEAT_SKY_SEMANTICS : SHADE_HEAT_SEMANTICS)
+    semantics: (isWeightedSky(declaration) ? SHADE_HEAT_WEIGHTED_SKY_SEMANTICS
+      : isContinuousSky(declaration) ? SHADE_HEAT_CONTINUOUS_SKY_SEMANTICS : diffuseSky ? SHADE_HEAT_SKY_SEMANTICS : SHADE_HEAT_SEMANTICS)
       + (weather ? ' Hourly weather uses source point data at its original spatial resolution; uploaded metadata does not authenticate the file. Hourly direct-normal energy is divided by its one-hour interval and projected at the midpoint, not integrated against continuous sun. T2M drives the ambient reservoir, not an observed ground temperature.' : '') };
 }
 
@@ -279,7 +298,8 @@ export function checkShadeHeatBytes(bytes) {
 export function prepareShadeHeatSource(project, input) {
   const source = parsePortableProject(serializePortableProject(project));
   const { declaration } = sourceAdmission(source, input);
-  const investigation = { kind: isContinuousSky(declaration) ? SHADE_HEAT_CONTINUOUS_SKY_KIND
+  const investigation = { kind: isWeightedSky(declaration) ? SHADE_HEAT_WEIGHTED_SKY_KIND
+    : isContinuousSky(declaration) ? SHADE_HEAT_CONTINUOUS_SKY_KIND
     : declaration.diffuseSky ? SHADE_HEAT_SKY_KIND : declaration.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND,
     model: { ...shadeHeatModel(declaration) }, project: source, declaration };
   checkShadeHeatBytes(new Blob([JSON.stringify(investigation)]).size);
@@ -305,7 +325,8 @@ export function parseShadeHeatSource(text) {
   let value;
   try { value = JSON.parse(text); } catch { throw Error('Invalid shade and heat input JSON'); }
   const expected = shadeHeatModel(value?.declaration);
-  const expectedKind = isContinuousSky(value?.declaration) ? SHADE_HEAT_CONTINUOUS_SKY_KIND
+  const expectedKind = isWeightedSky(value?.declaration) ? SHADE_HEAT_WEIGHTED_SKY_KIND
+    : isContinuousSky(value?.declaration) ? SHADE_HEAT_CONTINUOUS_SKY_KIND
     : value?.declaration?.diffuseSky ? SHADE_HEAT_SKY_KIND
     : value?.declaration?.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND;
   if (!exactKeys(value, ['kind', 'model', 'project', 'declaration'])
