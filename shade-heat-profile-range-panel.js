@@ -1,5 +1,6 @@
 import { checkShadeHeatBytes } from './shade-heat.js';
 import { createShadeHeatComputation } from './shade-heat-computation.js';
+import { mountShadeHeatProfileEvidence } from './shade-heat-profile-evidence-panel.js';
 
 const node = (tag, text = '') => { const el = document.createElement(tag); el.textContent = text; return el; };
 const number = value => value !== 0 && Math.abs(value) < .000001 ? value.toExponential(4)
@@ -28,14 +29,21 @@ export function mountShadeHeatProfileRange({ host, getAccepted, cancelParentPend
   const source = () => retainedSource ?? getAccepted()?.investigation ?? null;
   function state(message, kind) { $('status').textContent = message; $('status').dataset.state = kind; }
   function controls() { $('run').disabled = pending() || !source(); $('export').disabled = pending() || !accepted; }
+  const evidence = mountShadeHeatProfileEvidence({ host: panel, getAccepted: () => pending() ? null : accepted, notice,
+    cancelParentPending: () => {
+      cancelParentPending(); const wasPending = pending(); generation++; reading = false; computation.cancel(); controls();
+      if (wasPending) state(accepted ? 'The prior accepted profile range is retained.' : 'No profile range is accepted.', accepted ? 'compared' : 'not-compared');
+    } });
   function invalidate(message = 'Accept a shade-and-heat comparison or reopen original profile-range inputs.', keepSource = false) {
     generation++; reading = false; computation.cancel(); accepted = null;
     if (!keepSource) { retainedSource = null; sourceMode = ''; }
+    evidence.invalidate('The profile source or bin query changed. Complete the range again or reopen original reading inputs.');
     $('results').replaceChildren(); controls(); state(message, 'not-compared');
   }
   function receive(next, mode) {
     accepted = next; retainedSource = next.investigation.source; sourceMode = mode; reading = false;
     $('bins').value = String(next.investigation.query.bins);
+    evidence.invalidate('Original profile source accepted. Supply its attributed final surface-temperature band.');
     selectedBin = next.report.ranges.surfaceC.lower.bin; draw(); controls();
     state('Every required one-bin course completed. The final paired range retains one shared profile across both designs.', 'compared');
   }
@@ -64,6 +72,7 @@ export function mountShadeHeatProfileRange({ host, getAccepted, cancelParentPend
     const file = $('import').files?.[0]; if (!file) return; $('import').value = '';
     cancelParentPending(); computation.cancel();
     const request = ++generation; reading = true; controls();
+    evidence.invalidate('A new profile source is pending. Complete it or reopen original reading inputs.');
     state('Reading and recomputing original profile-range inputs…', 'file-pending');
     try {
       checkShadeHeatBytes(file.size);
