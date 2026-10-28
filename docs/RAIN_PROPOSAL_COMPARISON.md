@@ -17,6 +17,22 @@ Files are read locally in a browser worker. Comparing does not replace or write 
 
 The browser uses the same original-project validator, source identity rules, calculation receipt and comparison algorithm as the CLI. Its file picker supplies browser File objects; the CLI additionally checks native filesystem identity, regular-file status and changes during reading.
 
+### Inspect one cell at the same time
+
+Whole-site totals and maximum depths do not show where water moves. A proposal can improve the totals while leaving a particular path or entrance cell wetter.
+
+After comparing the files, use **Inspect one cell**:
+
+1. Choose the grid column and row, such as **B1**, then select **Inspect cell**.
+2. Read the existing-site depth and every saved proposal's depth, surface material and change from that reference. A positive change means deeper water at this same cell and time; a negative change means shallower water.
+3. Move the shared time slider or use **Previous snapshot** and **Next snapshot**. All rows use the same actual retained solver time, including minute zero and any shorter final interval. No interpolation is applied.
+
+The first inspection starts at the final modeled time. Changing the cell clears its old result; select **Inspect cell** to calculate the new location. Changing only the time uses the already calculated cell course. Coordinate labels refer to the shared project grid, not geographic coordinates, and values are rounded for display.
+
+This local view rereads and verifies the original files against the comparison. If a file or its original context no longer matches, compare the files again. A new file selection or **Clear selection** removes both the aggregate and local results. The workbench and original project files remain unchanged.
+
+**Download comparison JSON** continues to save the aggregate CLI-compatible report. The supplementary local view is recomputed from the original project exports; it is not added to that report. These selected-cell results use the same conceptual base-rain model, not observed depths, local peak depths, terrain hypotheses, or independently recalibrated studies.
+
 ## Compare with the command line
 
 Use the maintained workbench's **Export project** action to save two or more explicitly authored proposed surface plans. The existing `inspect-rain-project.mjs` command recomputes one file. This complementary read-only command compares 2–16 separate local exports:

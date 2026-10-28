@@ -1,10 +1,11 @@
+import {mountProposalLocalInspection} from './proposal-local-inspection.js';
 const $=id=>document.getElementById(id);
 const input=$('proposal-files'),compareButton=$('compare-proposals'),clearButton=$('clear-proposals'),status=$('comparison-status'),results=$('comparison-results'),download=$('comparison-report-download');
-let files=[],worker=null,downloadURL=null,generation=0;
+let files=[],worker=null,downloadURL=null,generation=0,disposeLocal=null;
 const metrics=[['rainLiters','Rain','L'],['absorbedLiters','Infiltrated water','L'],['exitLiters','Edge outflow','L'],['storedLiters','Final stored water','L'],['massErrorLiters','Mass balance residual','L'],['peakPondingLiters','Peak stored water','L'],['maxDepthMm','Maximum depth','mm'],['cellsOver10Mm','Cells over 10 mm','cells']];
 const format=value=>new Intl.NumberFormat('en-US',{maximumSignificantDigits:7}).format(value);
 function element(tag,text,className){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;}
-function resetResult(){generation++;worker?.terminate();worker=null;results.replaceChildren();results.setAttribute('aria-busy','false');download.hidden=true;download.removeAttribute('href');if(downloadURL)URL.revokeObjectURL(downloadURL);downloadURL=null;}
+function resetResult(){disposeLocal?.();disposeLocal=null;generation++;worker?.terminate();worker=null;results.replaceChildren();results.setAttribute('aria-busy','false');download.hidden=true;download.removeAttribute('href');if(downloadURL)URL.revokeObjectURL(downloadURL);downloadURL=null;}
 function available(){return files.length>=2&&files.length<=16&&files.every(file=>file.size<=4*1024*1024);}
 function updateSelection(){resetResult();files=Array.from(input.files??[]);$('proposal-file-list').replaceChildren(...files.map(file=>element('li',`${file.name} · ${file.size.toLocaleString('en-US')} bytes`)));compareButton.disabled=!available();clearButton.disabled=files.length===0;status.textContent=!files.length?'Choose at least two exported projects to begin.':!available()?'Select 2–16 project files, each no larger than 4 MiB.':`${files.length} files selected. Ready to compare their original site and proposed changes.`;}
 input.addEventListener('change',updateSelection);
@@ -19,6 +20,7 @@ function metricTable(report,deltas=false){
 function render(report){
  const site=card('One unchanged reference');const s=report.originalSite,e=s.event;site.append(element('p',`${s.width} × ${s.height} cells · ${s.cellSizeM} m cell width · ${e.rainMmHr} mm/h rain for ${e.stormMinutes} minutes · ${e.durationMinutes} minutes modeled · ${e.stepMinutes} minute time step.`));site.append(element('p',s.includes,'note'));const identity=element('p','Shared source-context SHA-256: ','identity');identity.append(element('code',s.sha256OfCanonicalUnchangedFields));site.append(identity);
  for(const [title,deltas] of [['Compare modeled outcomes',false],['Difference from the existing site',true]]){const section=card(title);section.append(element('p','Scroll horizontally to see every proposal. With a keyboard, focus the table region and use the arrow keys.','note'),metricTable(report,deltas));}
+ const local=card('Inspect one cell');disposeLocal=mountProposalLocalInspection(local,{files:[...files],report});
  const tradeoffs=card('Trade-offs, not a universal winner');tradeoffs.append(element('p','The first comparison favors more infiltrated water and a lower maximum depth. A proposal remains on this frontier when no other supplied proposal is at least as good on both measures and strictly better on one. Equal or near-equal results can remain together.'));
  const names=ordinals=>ordinals.map(i=>`${i}. ${report.candidates.find(c=>c.inputOrdinal===i)?.title??'Proposal'}`).join('; ');
  tradeoffs.append(element('p',`Water-objective frontier: ${names(report.namedObjectiveFrontier)}`));tradeoffs.append(element('p','The second comparison also favors fewer changed modeled cells. It can retain a smaller intervention even when another proposal has better water results.'));
@@ -28,7 +30,7 @@ function render(report){
 }
 compareButton.addEventListener('click',()=>{
  if(!available())return;resetResult();const ticket=generation;compareButton.disabled=true;results.setAttribute('aria-busy','true');status.textContent='Checking original files and computing proposals…';
- const fail=message=>{if(ticket!==generation)return;worker?.terminate();worker=null;results.replaceChildren();results.setAttribute('aria-busy','false');compareButton.disabled=!available();status.textContent=`Comparison unavailable: ${message}`;};
+ const fail=message=>{if(ticket!==generation)return;worker?.terminate();worker=null;disposeLocal?.();disposeLocal=null;results.replaceChildren();results.setAttribute('aria-busy','false');compareButton.disabled=!available();status.textContent=`Comparison unavailable: ${message}`;};
  try{worker=new Worker('./proposal-comparison-worker.js',{type:'module'});worker.onmessage=({data})=>{if(ticket!==generation)return;if(data.type==='progress'){status.textContent=`Computed ${data.completed} of ${data.total}: ${data.fileName}`;}else if(data.type==='error'){fail(data.message);}else if(data.type==='complete'){worker.terminate();worker=null;try{render(data.report);results.setAttribute('aria-busy','false');compareButton.disabled=false;status.textContent=`Compared ${data.report.candidates.length} proposals. Original files and your workbench are unchanged.`;}catch(error){fail(error.message);}}};worker.onerror=event=>{event.preventDefault();fail(event.message||'The comparison worker could not complete.');};worker.postMessage({files});}catch(error){fail(error.message);}
 });
-window.addEventListener('pagehide',()=>{worker?.terminate();if(downloadURL)URL.revokeObjectURL(downloadURL);});
+window.addEventListener('pagehide',()=>{disposeLocal?.();worker?.terminate();if(downloadURL)URL.revokeObjectURL(downloadURL);});
