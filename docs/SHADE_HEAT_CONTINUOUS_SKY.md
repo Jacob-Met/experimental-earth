@@ -2,6 +2,8 @@
 
 The continuous column method accounts for every azimuth and visible elevation above the original horizontal ground receiver. It uses the retained opaque, ground-filled column geometry and isotropic sky radiance. It does not require an angular sample count. Direct beam and the thermal time intervals keep their existing models.
 
+The separate [authored directional-brightness option](SHADE_HEAT_WEIGHTED_SKY.md) reuses this horizon and elevation integral with declared relative azimuth weights. It has its own v5 input model; the isotropic method and its v4 files retain their original meaning.
+
 Enable mapped diffuse obstruction in the shade and heat settings and choose continuous columns. The sampling controls retire. The sky inspector lets you choose existing or proposal geometry and minimum or maximum roofs, then inspect each angular sector and its controlling source. Keyboard input changes the selected sector. Minimum roofs give the upper diffuse transmission estimate; maximum roofs give the lower estimate.
 
 ## Why a separate method

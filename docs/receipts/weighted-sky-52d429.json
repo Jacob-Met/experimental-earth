@@ -1,0 +1,148 @@
+{
+  "qualificationVersion": 2,
+  "status": "Qualified current-main source; this receipt precedes repository publication",
+  "qualifiedAt": "2026-10-28T21:28:35.343014+00:00",
+  "baseCommit": "24b4d0f7ead010778f3a9f944eaa0e7ace06c105",
+  "baseTree": "eb6951a73674599b24bbac037d3839e9b85765bd",
+  "materializedCanonicalBaseFiles": 665,
+  "native": {
+    "passed": 141,
+    "failed": 0,
+    "tapSHA256": "424ca7bd30cea67ad1179912e86ca726525feedbea266739d54253549a774d74",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/solar*.test.mjs tests/shade-heat*.test.mjs tests/diffuse-sky.test.mjs tests/continuous-sky.test.mjs tests/weighted-continuous-sky.test.mjs"
+  },
+  "browser": [
+    {
+      "course": "authored-directional-sky",
+      "groups": 7,
+      "checks": [
+        "Actual worker connects authored azimuth brightness to diffuse-only thermal output; profile table and sector weights are inspectable and working-site bytes remain unchanged",
+        "A real v5 input-only download reopens in a fresh document with the same source, method and recomputed thermal trajectory",
+        "Derived-result injection refuses transactionally; editing the brightness profile retires a delayed old v5 load and can recompute the sampled method",
+        "Original hourly weather remains byte-attached through v5 download and fresh reopening with recomputed continuous sky and locked weather controls",
+        "Editing authored weights retires the accepted result and download; zero-mass brightness refuses visibly before a fresh valid computation",
+        "Declared height endpoints have separate inspectable skylines and actual keyboard input changes the selected horizon sector",
+        "Authored profile controls, grid-heading weights and sector inspection fit desktop and 390px layouts without application exceptions"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeSandbox": true,
+      "exceptions": [],
+      "startedAt": "2026-10-28T21:26:45.024Z",
+      "finishedAt": "2026-10-28T21:26:55.908Z",
+      "receiptSHA256": "2f0c7568e7ae72b2368c17e21fc30e52ed21b69e83e2e232cd3df75d143cbdbe"
+    },
+    {
+      "course": "current-solar-sampling-and-window",
+      "groups": 9,
+      "checks": [
+        "Original hourly source admits all three complete solar grids; constant weather does not; working site is unchanged",
+        "Rendered endpoint and off-hour common-minute values plus analytic day means and peaks match recomputed retained inputs for both sites and heat stores",
+        "Actual input-only download retains raw hourly source and recomputes in a fresh page without replacing the parent or working site",
+        "Wrong model, invalid UTF8 and oversized inputs refuse atomically; the byte limit precedes reading",
+        "A previously refused authored12\u00d712 source completes all168 intervals at144144 selected-point checks and reopens from original inputs",
+        "A delayed sampling read cannot replace a newly selected parent source; downloads pause and the same file can be selected again",
+        "Declaration edits cancel queued sampling results and detaching hourly weather invalidates the child comparison",
+        "The complete comparison and captions fit 390px, wide data tables scroll locally, keyboard focus reaches the scroll region, and no browser exception occurs",
+        "Declared window classification, definite counterexample jump, query invalidation, input-only download/fresh replay and parent replacement preserve source"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeSandbox": true,
+      "exceptions": [],
+      "startedAt": "2026-10-28T21:26:43.967Z",
+      "finishedAt": "2026-10-28T21:26:56.696Z",
+      "receiptSHA256": "cf4566392e7297dd04c216f2ac4eb7e734b28796a73cf6d589124fa13744345b"
+    }
+  ],
+  "browserComposition": [
+    {
+      "course": "authored-directional-sky",
+      "equalCodeFilesIncludingTests": 640
+    },
+    {
+      "course": "current-solar-sampling-and-window",
+      "equalCodeFilesIncludingTests": 640
+    }
+  ],
+  "independentReview": {
+    "coreSHA256": "174806c1495e71235fb3adf2c2cd7ebc20587cb49cc67bd584584c1d15f95ae6",
+    "core": "MICROVERSE:14 complete prior kernel reports and3 complete project reports unchanged,126 exact extreme-uniform parities,42 convex/additive profile mixtures and42 independent slab-oracle comparisons; refinement,zero-weighted obstacles,malformed source and isolation controls passed.",
+    "consumer": "MICROVERSE:6 legacy constant/hourly v1-v4 exact serialized/full-report/replay parities,2 v5 constant/hourly replay,16 strict refusal controls,7x-profile thermal equality,clear-sky DHI and nonmutation passed. Isotropic-only sector text is omitted from weighted output.",
+    "oracleSHA256": "a1adb2100e5109311903911590efd34a7da0745c19cdd95e713b661c1e4b1cdc",
+    "oracle": "GROUND immutable AABB slab-ray/adaptive quadrature:237 supported nonuniform translated/elevated-receiver min/max queries agreed with v2, maximum absolute transmission difference4.44e-16. Three explicit depth-limit refusals remain unqualified. Separate midpoint convergence against v1 is historical evidence only, not a v2 qualification or certified bound.",
+    "repairs": [
+      "One-ulp sector below pi/8 uses explicit start-boundary comparisons, not rounded midpoint or divided angle.",
+      "Weighted inspector shows one correctly weighted contribution claim."
+    ]
+  },
+  "composition": {
+    "base": "24b4d0f7ead010778f3a9f944eaa0e7ace06c105",
+    "previousComposition": {
+      "base": "d56e16eb1c49f96e08c5b0768f355a4c3ce4b115",
+      "incoming": [
+        {
+          "path": "docs/SHADE_HEAT_WINDOW.md",
+          "sha": "ef0cba070d74a8d5d938ffbf8bd3a5d0e59c1f8c"
+        },
+        {
+          "path": "shade-heat-panel.js",
+          "sha": "03d8f625396861b04d1e1d9adf5f962ed6fd8a6c"
+        },
+        {
+          "path": "shade-heat-sampling-panel.js",
+          "sha": "47f83b1f987b047807bb5924fa010f2f8a966fa8"
+        },
+        {
+          "path": "shade-heat-window-view.js",
+          "sha": "97b11c598eb61254d63c0aa031d57990a48b235f"
+        },
+        {
+          "path": "shade-heat-window.js",
+          "sha": "7a24f6717f07adc5dd06b9f349558f5f0e00acf7"
+        },
+        {
+          "path": "tests/shade-heat-sampling.browser.mjs",
+          "sha": "450111700b10404eadb194c1a4ee10cf04e58d2a"
+        },
+        {
+          "path": "tests/shade-heat-window.test.mjs",
+          "sha": "020424a784d4a178aa22606e5429fa09e7b54a0d"
+        }
+      ],
+      "overlap": "shade-heat-panel.js only; retain PR472 parent-form-only event binding and add textarea to that same parent form",
+      "candidatePanelSHA256": "7df675d8dcbe4f0ff2116b291b731741c6ff460edea90ee6608dc1f31d54ecaf"
+    },
+    "incoming": [
+      {
+        "path": "docs/SHADE_HEAT_SAMPLING.md",
+        "sha": "9ed1b6e122815bb67a6c9773eea030c714ac5e0a"
+      },
+      {
+        "path": "shade-heat-sampling.js",
+        "sha": "980ec4429ff822a9a79f3529d6b71f4f113db1f9"
+      },
+      {
+        "path": "tests/shade-heat-sampling-independent.test.mjs",
+        "sha": "ece95f738a5432095d12f76fb6fce93ac88f9e1b"
+      },
+      {
+        "path": "tests/shade-heat-sampling.browser.mjs",
+        "sha": "9cf45b132638d674712ed80608ef6ace390aade4"
+      }
+    ],
+    "overlapWithOwned10": [],
+    "preserved": "PR474 selected-ground-receiver sampling work estimate and current native/browser admission controls; all10ownedcandidatefiles unchanged from d56 qualification"
+  },
+  "scope": "Authored azimuth brightness and unchanged projected-elevation law at the saved horizontal ground point. No measured sky inference or physical validation. Same authored profile for both scenarios,all roof endpoints and every interval. Existing v1-v4 semantics and PR472 child-form isolation preserved.",
+  "authorizationBoundary": "Normal private source integration only. Existing outlet24/public-release/deployment/access holds and earlier unknown object/claim receipts remain unchanged and unreplayed.",
+  "sha256": {
+    "continuous-sky.js": "174806c1495e71235fb3adf2c2cd7ebc20587cb49cc67bd584584c1d15f95ae6",
+    "shade-heat.js": "fbac5ab8966b432fd7f30acefba4c60d24d1346f968f903729585be570952978",
+    "shade-heat-panel.js": "7df675d8dcbe4f0ff2116b291b731741c6ff460edea90ee6608dc1f31d54ecaf",
+    "shade-heat.css": "069c792236fa8a4940724e7ba2f786c18f73c9d2c713d10cdd7fa58594aed75a",
+    "tests/weighted-continuous-sky.test.mjs": "7d6bd58551e722896b06c60a49469aa7b8edc15d164854dfd0272d6adee45690",
+    "tests/shade-heat-weighted-sky.test.mjs": "53e859aacaf6491011e25a2e00481760f7c2dca6f772e608d227a832a51d2449",
+    "tests/shade-heat-weighted-sky.browser.mjs": "6a32a947386a2e407ceb0dd9eb1e5af6a1e2db3752efeb23465fbc08354b573c",
+    "docs/SHADE_HEAT_CONTINUOUS_SKY.md": "9c890ef27d2b63c532f90410d722a7e6bb56b6b8c21a6f2602c278ee6343a9aa",
+    "docs/SHADE_HEAT_WEIGHTED_SKY.md": "2ac2ba639807f226677356f070192c7435f89be340f08989295651777e328089"
+  }
+}

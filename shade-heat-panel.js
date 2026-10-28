@@ -32,11 +32,12 @@ export function mountShadeHeat({ getProject, notice }) {
     <div class="obs-actions"><button id="shade-current" type="button">Use saved site declarations</button><button id="shade-example" type="button">Explore authored shade example</button><label class="shade-file">Reopen an investigation<input id="shade-import" type="file" accept=".json,application/json"></label></div>
     <p id="shade-basis" class="mini-note"></p>
     <details id="shade-settings"><summary>Location, dated exposure and declared weather</summary><form id="shade-form"><div class="obs-actions"><label class="shade-file">Use NASA POWER hourly JSON<input id="shade-weather-import" type="file" accept=".json,application/json"></label><button id="shade-weather-clear" type="button" hidden>Use constant weather</button></div><p id="shade-weather-basis" class="mini-note">Use declared constant weather below, or import one complete UTC day of POWER direct-normal, diffuse-horizontal and two-metre temperature records.</p><div class="shade-fields">${[...pathFields, ...weatherFields].map(([key, label, type]) => `<label class="input-label">${label}<input id="shade-${key}" type="${type}" ${type === 'number' ? 'step="any"' : 'maxlength="400"'} required></label>`).join('')}</div><fieldset><legend>Diffuse sky</legend><label class="input-label"><span><input id="shade-sky-enabled" type="checkbox"> Include mapped diffuse-sky obstruction</span></label>
-    <p class="mini-note">This optional model treats the sky as equally bright. Declared opaque columns and stepped terrain attenuate diffuse light at the saved ground point. Off-map objects remain unknown.</p>
-    <label class="input-label">Sky calculation<select id="shade-sky-method" disabled><option value="sampled">Weighted direction samples</option><option value="continuous-columns">Continuous column horizon</option></select></label>
+    <p class="mini-note">Declared opaque columns and stepped terrain attenuate diffuse light at the saved ground point. Choose an equally bright sky or author a directional brightness profile. Off-map objects remain unknown.</p>
+    <label class="input-label">Sky calculation<select id="shade-sky-method" disabled><option value="sampled">Weighted direction samples</option><option value="continuous-columns">Continuous column horizon</option><option value="weighted-continuous-columns">Authored directional brightness</option></select></label>
     <div id="shade-sky-sampling" class="shade-fields"><label class="input-label">Directions around the horizon<input id="shade-sky-azimuthSamples" type="number" min="4" max="128" step="4" value="32" required disabled></label><label class="input-label">Elevation bands<input id="shade-sky-elevationBands" type="number" min="1" max="64" step="1" value="16" required disabled></label></div>
+    <div id="shade-sky-profile-input" hidden><label class="input-label">Relative brightness · 4, 8 or 16 comma-separated weights<textarea id="shade-sky-weights" rows="3" spellcheck="false" required disabled>1, 1, 1, 1, 1, 1, 1, 1</textarea></label><p class="mini-note">Equal-width bins start at grid +X (0°), increasing toward grid +Y (90°). Eight weights describe 0–45°, 45–90°, and so on. These are grid headings, not geographic bearings. Use nonnegative weights with at least one positive value; zero excludes that bin.</p></div>
     <p id="shade-sky-method-basis" class="mini-note"></p></fieldset><button id="shade-run" type="submit" class="primary">Compare shade and heat</button></form></details>
-    <p class="mini-note">Direct beam is projected onto horizontal ground. Diffuse input uses its original value by default; the optional mapped-sky calculation attenuates it under an equally bright sky assumption. Reflected light is omitted. Temperature also depends on each saved material declaration.</p>
+    <p class="mini-note">Direct beam is projected onto horizontal ground. Diffuse input uses its original value by default; an optional sky model attenuates it using the declared geometry and brightness. Reflected light is omitted. Temperature also depends on each saved material declaration.</p>
     <p id="shade-status" role="status"></p><div id="shade-results"></div>
     <button id="shade-export" type="button" disabled>Download original site + investigation inputs</button>
     <p class="mini-note">The download includes the declared geographic location and original site. Reopening recomputes the comparison without replacing the working site.</p>`;
@@ -49,11 +50,16 @@ export function mountShadeHeat({ getProject, notice }) {
   const computation = createShadeHeatComputation(() => new Worker(new URL('./shade-heat-worker.js', import.meta.url), { type: 'module' }));
   function skyMode() {
     const enabled = $('shade-sky-enabled').checked;
-    const continuous = $('shade-sky-method').value === 'continuous-columns';
+    const weighted = $('shade-sky-method').value === 'weighted-continuous-columns';
+    const continuous = weighted || $('shade-sky-method').value === 'continuous-columns';
     $('shade-sky-method').disabled = !enabled;
     $('shade-sky-sampling').hidden = continuous;
     for (const key of ['azimuthSamples', 'elevationBands']) $('shade-sky-' + key).disabled = !enabled || continuous;
-    $('shade-sky-method-basis').textContent = continuous
+    $('shade-sky-profile-input').hidden = !weighted;
+    $('shade-sky-weights').disabled = !enabled || !weighted;
+    $('shade-sky-method-basis').textContent = weighted
+      ? 'Integrates the declared column horizon against your relative azimuth brightness. Weights redistribute the original diffuse horizontal input; they do not change its total or the direct beam. This is an authored sky assumption, not a measured sky. The same profile applies to every weather interval.'
+      : continuous
       ? 'Integrates the whole visible sky above the declared column horizon. There is no direction grid to choose. Numerical rounding, uncertain heights and omitted objects still limit the result; direct beam keeps its existing time samples.'
       : 'Use at most 4096 weighted directions. Changing this grid tests sampling sensitivity; the displayed geometry ranges do not bound sampling error.';
   }
@@ -74,7 +80,8 @@ export function mountShadeHeat({ getProject, notice }) {
   }
   function fill(declaration) {
     $('shade-sky-enabled').checked = Boolean(declaration?.diffuseSky);
-    $('shade-sky-method').value = declaration?.diffuseSky?.method === 'continuous-columns' ? 'continuous-columns' : 'sampled';
+    $('shade-sky-method').value = declaration?.diffuseSky?.method ?? 'sampled';
+    $('shade-sky-weights').value = (declaration?.diffuseSky?.azimuthWeights ?? Array(8).fill(1)).join(', ');
     $('shade-sky-azimuthSamples').value = declaration?.diffuseSky?.azimuthSamples ?? 32;
     $('shade-sky-elevationBands').value = declaration?.diffuseSky?.elevationBands ?? 16;
     skyMode();
@@ -84,11 +91,17 @@ export function mountShadeHeat({ getProject, notice }) {
   }
   function read() {
     const declaration = { path: {} };
-    if ($('shade-sky-enabled').checked) declaration.diffuseSky = $('shade-sky-method').value === 'continuous-columns'
-      ? { method: 'continuous-columns' } : {
-      azimuthSamples: Number($('shade-sky-azimuthSamples').value),
-      elevationBands: Number($('shade-sky-elevationBands').value),
-    };
+    if ($('shade-sky-enabled').checked) {
+      const method = $('shade-sky-method').value;
+      if (method === 'weighted-continuous-columns') {
+        const parts = $('shade-sky-weights').value.split(',').map(part => part.trim());
+        if (parts.some(part => !part)) throw Error('Enter each azimuth weight, separated by commas');
+        declaration.diffuseSky = { method, azimuthWeights: parts.map(Number) };
+      } else declaration.diffuseSky = method === 'continuous-columns' ? { method } : {
+        azimuthSamples: Number($('shade-sky-azimuthSamples').value),
+        elevationBands: Number($('shade-sky-elevationBands').value),
+      };
+    }
     for (const [key, , type] of pathFields) {
       const raw = $('shade-' + key).value;
       if (!raw.trim()) throw Error('Enter each dated exposure field and source');
@@ -133,7 +146,7 @@ export function mountShadeHeat({ getProject, notice }) {
   $('shade-form').addEventListener('submit', run);
   $('shade-sky-enabled').addEventListener('input', skyMode);
   $('shade-sky-method').addEventListener('input', skyMode);
-  for (const el of $('shade-form').querySelectorAll('input:not([type=file]), select')) el.addEventListener('input', () => invalidate('Inputs changed. Compare again to inspect the new assumptions.'));
+  for (const el of $('shade-form').querySelectorAll('input:not([type=file]), select, textarea')) el.addEventListener('input', () => invalidate('Inputs changed. Compare again to inspect the new assumptions.'));
   $('shade-weather-clear').addEventListener('click', () => {
     hourlyWeather = null; weatherMode(); invalidate('Hourly weather detached. Declare constant irradiance, reservoir and their source before comparing.');
   });
@@ -254,11 +267,22 @@ export function mountShadeHeat({ getProject, notice }) {
     if (report.diffuseSky) {
       const sky = report.diffuseSky, details = node('details'); details.id = 'shade-sky-inspection';
       details.append(node('summary', 'Inspect the mapped diffuse sky'));
-      if (report.declaration.diffuseSky.method === 'continuous-columns') {
-        details.dataset.method = 'continuous-columns';
+      if (['continuous-columns', 'weighted-continuous-columns'].includes(report.declaration.diffuseSky.method)) {
+        const weighted = report.declaration.diffuseSky.method === 'weighted-continuous-columns';
+        details.dataset.method = report.declaration.diffuseSky.method;
         details.append(node('p', ['existing', 'proposal'].map(target => target + ' continuous diffuse transmission: '
           + skyRange(sky[target].transmission.map(value => value * 100)) + '%').join('. ') + '.'));
         details.append(node('p', 'The column horizon is integrated over all azimuths and visible elevations. These ranges vary declared roof heights; numerical rounding, omitted objects and physical prediction error are not enclosed. Direct beam retains its original sampled grazing convention.'));
+        if (weighted) {
+          const weights = report.declaration.diffuseSky.azimuthWeights;
+          const profile = node('table'); profile.id = 'shade-sky-weight-bins';
+          const caption = node('caption', 'Authored brightness by grid heading · zero is +X, increasing toward +Y'); profile.append(caption);
+          const header = node('tr'); header.append(node('th', 'Grid heading'), node('th', 'Declared relative weight')); profile.append(header);
+          weights.forEach((weight, i) => {
+            const row = node('tr'); row.append(node('th', `${display(i * 360 / weights.length)}–${display((i + 1) * 360 / weights.length)}°`), node('td', skyNumber(weight))); profile.append(row);
+          });
+          details.append(profile, node('p', 'Weights are normalized across the unobstructed horizontal sky. The profile changes the share arriving from each direction; the declared diffuse horizontal total and direct beam are retained. No geographic rotation is applied to these grid headings.'));
+        }
         const choiceLabel = node('label', 'Inspect a declared skyline'); choiceLabel.className = 'input-label';
         const choice = node('select'); choice.id = 'shade-sky-scenario';
         for (const target of ['existing', 'proposal']) for (const roofs of ['minimumRoofs', 'maximumRoofs']) {
@@ -281,10 +305,14 @@ export function mountShadeHeat({ getProject, notice }) {
           inspection.append(node('p', 'Sector ' + (Number(sector.value) + 1) + ' of ' + skyline.arcs.length + ': headings '
             + display(arc.headingStartDeg) + '–' + display(arc.headingEndDeg) + '° from increasing grid columns; angular width '
             + skyNumber(arc.angularWidthRad * 180 / Math.PI) + '°.'));
+          if (weighted) inspection.append(node('p', 'Relative brightness compared with the brightest bin: '
+            + skyNumber(arc.relativeRadianceWeight) + '. This visible sector contributes '
+            + skyNumber(100 * arc.weightedProjectedIntegral / skyline.relativeWeightIntegral)
+            + '% of the authored unobstructed diffuse input.'));
           inspection.append(node('p', arc.controller
             ? 'Horizon set by mapped cell ' + (arc.controller.cellIndex + 1) + ' (' + arc.controller.kind + '): ' + arc.controller.source
             : 'No mapped roof rises above the receiver in this sector.'));
-          inspection.append(node('p', 'This sector contributes ' + skyNumber(arc.projectedIntegral / (2 * Math.PI) * 100) + '% of unobstructed horizontal diffuse input.'));
+          if (!weighted) inspection.append(node('p', 'This sector contributes ' + skyNumber(arc.projectedIntegral / (2 * Math.PI) * 100) + '% of unobstructed horizontal diffuse input.'));
           if (skyline.collapsedSectors || skyline.transmissionClamped)
             inspection.append(node('p', 'Numerical diagnostics: ' + skyline.collapsedSectors + ' unresolved duplicate sectors totaling '
               + skyline.omittedAngularWidthRad.toExponential(3) + ' radians; transmission projection applied: ' + skyline.transmissionClamped + '.'));
