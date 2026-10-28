@@ -84,7 +84,7 @@ export function mappedHorizontalIrradiance(status, elevationDeg, directNormalWm2
     upper: diffuseHorizontalWm2 + transmission[1] * fullBeamWm2 };
 }
 
-function sourceAdmission(project, input) {
+function sourceAdmission(project, input, solarStepMinutes = null) {
   validateProject(project);
   const declaration = normalizeShadeHeat(input);
   if (!project.solarStudy || project.solarStudy.contextJson !== solarContext(project)) {
@@ -97,23 +97,30 @@ function sourceAdmission(project, input) {
   if (targets.some(target => project.solarStudy[target].some(row => row.cellIndex === cellIndex))) {
     throw Error('The saved heat point is inside a declared column footprint; use another ground point');
   }
+  if (solarStepMinutes !== null && (!declaration.weather || ![60, 30, 15].includes(solarStepMinutes))) {
+    throw Error('Derived solar sampling requires original hourly weather and a 60, 30 or 15 minute interval');
+  }
+  const stepMinutes = solarStepMinutes ?? declaration.path.stepMinutes;
   const start = Date.parse(declaration.path.startUtc), end = Date.parse(declaration.path.endUtc);
-  const count = Math.ceil((end - start) / (declaration.path.stepMinutes * 60000));
+  const count = Math.ceil((end - start) / (stepMinutes * 60000));
   const cells = project.width * project.height, estimatedRayTests = 6 * cells * (cells - 1) * count;
   if (estimatedRayTests > SHADE_HEAT_LIMITS.maxRayTests) {
     throw Error('The complete coupled investigation exceeds the 16 million ray-check budget; use fewer intervals or a smaller source grid');
   }
   const weather = declaration.weather ? parsePowerHourly(declaration.weather.rawText) : null;
-  return { declaration, weather, cellIndex, start, end, count, estimatedRayTests };
+  return { declaration, weather, cellIndex, start, end, count, stepMinutes, estimatedRayTests };
 }
 
-export function compareShadeHeat(project, input) {
-  const admitted = sourceAdmission(project, input);
-  const { declaration, weather, cellIndex, start, end, count, estimatedRayTests } = admitted;
+/** Derive midpoint geometry while retaining each original weather hour. The
+ * optional solar interval never changes the source weather/declaration clock.
+ */
+export function sampleShadeHeatForcing(project, input, solarStepMinutes = null) {
+  const admitted = sourceAdmission(project, input, solarStepMinutes);
+  const { declaration, weather, cellIndex, start, end, count, stepMinutes } = admitted;
   const working = structuredClone(project), intervals = [];
   for (let i = 0; i < count; i++) {
-    const from = start + i * declaration.path.stepMinutes * 60000;
-    const to = Math.min(end, from + declaration.path.stepMinutes * 60000);
+    const from = start + i * stepMinutes * 60000;
+    const to = Math.min(end, from + stepMinutes * 60000);
     // All accepted instants use whole seconds. Odd-second intervals may have a
     // half-second midpoint, so use the earlier full second and disclose it.
     const sampleMs = Math.floor((from + to) / 2000) * 1000;
@@ -130,7 +137,7 @@ export function compareShadeHeat(project, input) {
     const row = { fromMinute: (from - start) / 60000, toMinute: (to - start) / 60000,
       fromUtc: new Date(from).toISOString(), toUtc: new Date(to).toISOString(), sampleUtc: utc,
       sampleOffsetSeconds: sampleMs / 1000 - (from + to) / 2000, ...position,
-      weather: weather?.intervals[i] ?? { directNormalWm2: declaration.directNormalWm2,
+      weather: weather?.intervals[Math.floor((from - start) / 3600000)] ?? { directNormalWm2: declaration.directNormalWm2,
         diffuseHorizontalWm2: declaration.diffuseHorizontalWm2, reservoirC: declaration.reservoirC } };
     for (const target of targets) {
       const ray = comparison ? comparison[target][cellIndex] : { cellIndex,
@@ -140,6 +147,11 @@ export function compareShadeHeat(project, input) {
     }
     intervals.push(row);
   }
+  return { ...admitted, intervals };
+}
+
+export function compareShadeHeat(project, input) {
+  const { declaration, weather, cellIndex, start, end, estimatedRayTests, intervals } = sampleShadeHeatForcing(project, input);
   const studies = {}, responses = {}, durationMinutes = (end - start) / 60000;
   // Exact thermal courses reuse the maintained propagator and its interior
   // turning points; no separate integration or extrema finder is introduced.
@@ -193,13 +205,19 @@ export function checkShadeHeatBytes(bytes) {
   }
 }
 
-export function prepareShadeHeatInvestigation(project, input) {
+/** Strict input-only admission; performs no solar or thermal course evaluation. */
+export function prepareShadeHeatSource(project, input) {
   const source = parsePortableProject(serializePortableProject(project));
-  const declaration = normalizeShadeHeat(input);
-  const report = compareShadeHeat(source, declaration);
+  const { declaration } = sourceAdmission(source, input);
   const investigation = { kind: declaration.weather ? SHADE_HEAT_HOURLY_KIND : SHADE_HEAT_KIND,
-    model: { ...report.model }, project: source, declaration };
+    model: { ...(declaration.weather ? SHADE_HEAT_HOURLY_MODEL : SHADE_HEAT_MODEL) }, project: source, declaration };
   checkShadeHeatBytes(new Blob([JSON.stringify(investigation)]).size);
+  return investigation;
+}
+
+export function prepareShadeHeatInvestigation(project, input) {
+  const investigation = prepareShadeHeatSource(project, input);
+  const report = compareShadeHeat(investigation.project, investigation.declaration);
   return { investigation, report };
 }
 
@@ -210,7 +228,7 @@ export function serializeShadeHeatInvestigation(project, input) {
   return text;
 }
 
-export function parseShadeHeatInvestigation(text) {
+export function parseShadeHeatSource(text) {
   if (typeof text !== 'string') throw TypeError('Shade and heat inputs must be JSON text');
   checkShadeHeatBytes(new Blob([text]).size);
   let value;
@@ -223,5 +241,11 @@ export function parseShadeHeatInvestigation(text) {
       || Object.keys(expected).some(key => value.model[key] !== expected[key])) {
     throw Error('Unsupported shade and heat input model or envelope; saved result fields are not accepted');
   }
-  return prepareShadeHeatInvestigation(value.project, value.declaration);
+  return prepareShadeHeatSource(value.project, value.declaration);
 }
+
+export function parseShadeHeatInvestigation(text) {
+  const investigation = parseShadeHeatSource(text);
+  return { investigation, report: compareShadeHeat(investigation.project, investigation.declaration) };
+}
+

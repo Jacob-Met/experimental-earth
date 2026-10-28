@@ -169,3 +169,8 @@ receives actual files through the application, downloads and reopens the complet
 source, rejects LST and invalid UTF-8 transactionally, supersedes late reads,
 reselects the same file, returns to constant mode and inspects the narrow layout.
 The original shade-and-heat browser course continues to exercise v1 receiving.
+
+
+## Compare solar sample grids
+
+After accepting an original hourly weather investigation, the [Solar sampling sensitivity](SHADE_HEAT_SAMPLING.md) companion compares declared 60-, 30-, and 15-minute solar sample grids while preserving every original hourly weather row. It reports the actual trajectories, day summaries, sampled grid differences, and source witnesses; a smaller grid is not a claim of convergence or physical accuracy. Exported comparisons contain the original project, weather source, and model declaration, and are recomputed when reopened.

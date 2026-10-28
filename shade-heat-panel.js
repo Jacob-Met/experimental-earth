@@ -2,6 +2,7 @@ import { parsePowerHourly, checkPowerHourlyBytes, POWER_HOURLY_FORMAT } from './
 import { prepareShadeHeatInvestigation, serializeShadeHeatInvestigation,
   parseShadeHeatInvestigation, checkShadeHeatBytes } from './shade-heat.js';
 import { makeShadeHeatExample } from './shade-heat-example.js';
+import { mountShadeHeatSampling } from './shade-heat-sampling-panel.js';
 
 const node = (tag, text = '') => { const e = document.createElement(tag); e.textContent = text; return e; };
 const svg = (tag, attrs = {}) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -35,10 +36,11 @@ export function mountShadeHeat({ getProject, notice }) {
   document.querySelector('#heat-column').after(panel);
   const $ = id => panel.querySelector('#' + id);
   let source = null, sourceMode = '', signature = '', generation = 0, accepted = null, selectedIndex = 0, store = 'surfaceC', hourlyWeather = null;
+  const sampling = mountShadeHeatSampling({ host: panel, getAccepted: () => accepted, notice });
 
   function state(message, kind = 'not-compared') { $('shade-status').textContent = message; $('shade-status').dataset.state = kind; }
   function invalidate(message) {
-    generation++; accepted = null; $('shade-results').replaceChildren(); $('shade-export').disabled = true;
+    generation++; accepted = null; sampling.invalidate('Source or declarations changed. Accept the hourly comparison again before comparing its solar grids.'); $('shade-results').replaceChildren(); $('shade-export').disabled = true;
     $('shade-run').disabled = !source; state(message);
   }
   function weatherMode() {
@@ -76,7 +78,7 @@ export function mountShadeHeat({ getProject, notice }) {
       : 'Use a site with saved obstruction geometry, surface properties and a lower heat store, or explore the isolated authored example.';
   }
   function result(next, mode) {
-    accepted = next; source = next.investigation.project; sourceMode = mode; fill(next.investigation.declaration);
+    accepted = next; sampling.invalidate('Hourly comparison replaced. Compare its solar grids to inspect sampling sensitivity.'); source = next.investigation.project; sourceMode = mode; fill(next.investigation.declaration);
     selectedIndex = next.report.trajectory.length - 1; basis(); draw(); $('shade-export').disabled = false; $('shade-run').disabled = false;
     state(`Compared ${next.report.intervals.length} midpoint intervals at the saved ground point. Temperature ranges retain unresolved mapped beam obstruction.`, 'compared');
   }
