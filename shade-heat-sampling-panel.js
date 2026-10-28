@@ -1,3 +1,4 @@
+import { mountCoolingWindow } from './shade-heat-window-view.js';
 import { pairedShadeCooling, greatestSampledCooling } from './shade-heat-benefit.js';
 import { prepareShadeHeatSampling, parseShadeHeatSampling } from './shade-heat-sampling.js';
 import { checkShadeHeatBytes } from './shade-heat.js';
@@ -28,15 +29,16 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
   const $ = id => panel.querySelector('#shade-sampling-' + id);
   let accepted = null, generation = 0, pending = false, target = 'proposal', store = 'surfaceC', minute = 1440;
   let sourceMode = '';
+  const windowView=mountCoolingWindow({host:panel,getAccepted:()=>accepted,beginImport:()=>{const retired=pending;generation++;pending=false;controls();if(retired)state(accepted?'The prior accepted sampling comparison is retained.':'No sampling comparison has been accepted.',accepted?'compared':'not-compared');},adopt:next=>{generation++;receive(next,'Reopened window inputs');},jump:(at,field)=>{minute=at;store=field;draw();$('inspect').scrollIntoView({block:'nearest'});}});
   const sampledCache = new WeakMap();
   const hourlyParent = () => getAccepted()?.investigation?.declaration?.weather ? getAccepted() : null;
   function state(message, kind) { $('status').textContent = message; $('status').dataset.state = kind; }
   function controls() { $('run').disabled = pending || !hourlyParent(); $('export').disabled = pending || !accepted; }
   function invalidate(message = 'Compare the accepted hourly source to inspect its solar sampling sensitivity.') {
-    generation++; pending = false; accepted = null; $('results').replaceChildren(); controls(); state(message, 'not-compared');
+    windowView.invalidate(); generation++; pending = false; accepted = null; $('results').replaceChildren(); controls(); state(message, 'not-compared');
   }
   function receive(next, mode) {
-    accepted = next; sourceMode = mode; pending = false; draw(); controls();
+    windowView.invalidate(); accepted = next; sourceMode = mode; pending = false; draw(); controls();
     state('Compared all three complete solar grids from the same original hourly source. Sampling differences and beam ambiguity remain separate.', 'compared');
   }
   $('run').addEventListener('click', () => {
@@ -59,7 +61,7 @@ export function mountShadeHeatSampling({ host, getAccepted, notice }) {
   });
   $('import').addEventListener('change', async () => {
     const file = $('import').files?.[0]; if (!file) return;
-    $('import').value = '';
+    $('import').value = ''; windowView.cancelPending();
     const request = ++generation, parent = getAccepted();
     pending = true; controls(); state('Reading original sampling inputs…', 'reading');
     try {

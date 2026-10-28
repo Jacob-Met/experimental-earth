@@ -133,7 +133,7 @@ export function mountShadeHeat({ getProject, notice }) {
   $('shade-form').addEventListener('submit', run);
   $('shade-sky-enabled').addEventListener('input', skyMode);
   $('shade-sky-method').addEventListener('input', skyMode);
-  for (const el of panel.querySelectorAll('form input:not([type=file]), form select')) el.addEventListener('input', () => invalidate('Inputs changed. Compare again to inspect the new assumptions.'));
+  for (const el of $('shade-form').querySelectorAll('input:not([type=file]), select')) el.addEventListener('input', () => invalidate('Inputs changed. Compare again to inspect the new assumptions.'));
   $('shade-weather-clear').addEventListener('click', () => {
     hourlyWeather = null; weatherMode(); invalidate('Hourly weather detached. Declare constant irradiance, reservoir and their source before comparing.');
   });
