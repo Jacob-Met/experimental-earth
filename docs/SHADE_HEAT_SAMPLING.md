@@ -73,3 +73,13 @@ Daily mean cooling averages each complete course. The difference of separate dai
 The new table searches all 1,441 common integer-minute samples separately for each solar grid and selected heat store. It maximizes the lower and upper paired-cooling curves separately and retains each curve's earliest tied minute. The two maxima need not occur at the same time or be jointly attainable. Buttons move the existing common-minute inspector to the selected bound's witness. Negative maxima mean even the greatest sampled cooling for that bound is warming.
 
 Missing, duplicate or nonfinite required samples refuse the whole result. Thermal stationary points between integer minutes are not part of this search. This is not a continuous-time maximum or a numerical enclosure between samples. Summaries are cached for each accepted report and heat store; moving the minute inspector neither reruns the physical model nor rescans extrema. Original-only exports and reopening are unchanged.
+
+## Find a sampled window within available times
+
+The session-local availability search asks for inclusive available minutes, an integer endpoint span, a cooling threshold and the surface or lower heat store. An endpoint span of 120 requires 121 integer-minute samples; span zero checks one sample. These counts do not establish continuous coverage.
+
+For each solar grid separately, the search finds the earliest window whose every lower cooling bound meets the threshold. Every earlier eligible start is listed as refuted (an upper bound is below the threshold somewhere) or unresolved (no definite failure, but ambiguous samples remain). Earlier unresolved windows are not excluded, so the earliest supported window is not established as the earliest physically workable one. If none is supported, the result distinguishes all starts refuted from unresolved starts remaining. The grids are not ranked.
+
+This query reads the accepted original comparison, not the current working site. It reuses the maintained checker once across the declared availability, then uses prefix counts and witness indices. Work is linear in all retained trajectory rows scanned by that checker plus eligible starts; no solar or thermal course is rerun. Missing, duplicate or nonfinite required samples refuse the whole search.
+
+Choose **Check this sampled window** to put a result into the existing checker. Its ordinary **Download window inputs** retains the original source and selected window for fresh reopening. The availability-search query itself is session-local and is not saved. Editing its fields or replacing the accepted source retires its result; a refused replacement keeps the accepted source/result. The declared model and independent beam bounds retain all existing limitations.
