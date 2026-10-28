@@ -4,10 +4,10 @@ import {constants as flags} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {compare} from './core.js';
+import {computeReceipt} from './rain-comparison-receipt.js';
+export {computeReceipt} from './rain-comparison-receipt.js';
 import {MAX_PROJECT_FILE_BYTES,checkProjectFileBytes,parsePortableProject} from './project-portability.js';
 
-const FIELDS=['rainLiters','absorbedLiters','exitLiters','storedLiters','massErrorLiters','peakPondingLiters','maxDepthMm','cellsOver10Mm'];
 const same=(a,b)=>a.dev===b.dev&&a.ino===b.ino&&a.size===b.size&&a.mtimeNs===b.mtimeNs&&a.ctimeNs===b.ctimeNs;
 export async function readOriginalProject(path){
   const filename=resolve(path), before=await lstat(filename,{bigint:true});
@@ -34,20 +34,6 @@ export async function readOriginalProject(path){
   const text=new TextDecoder('utf-8',{fatal:true}).decode(bytes);
   return {project:parsePortableProject(text),sourceSHA256:createHash('sha256').update(bytes).digest('hex'),sourceBytes:bytes.length};
 }
-const summary=run=>Object.fromEntries(FIELDS.map(field=>[field,run[field]]));
-export function computeReceipt(project,sourceSHA256,sourceBytes){
-  const result=compare(project),existing=summary(result.existing),proposal=summary(result.proposal);
-  return {
-    schema:'experimental-earth-rain-comparison/1',
-    claim:'Conceptual finite-volume grid calculation from declared original project inputs; not measured site performance.',
-    source:{sha256:sourceSHA256,bytes:sourceBytes,projectSchema:project.schema,title:project.title,description:project.source??null,observationsRetainedInOriginal:project.observations.length},
-    geometry:{width:project.width,height:project.height,cellSizeM:project.weather.cellSizeM},
-    event:{rainMmHr:project.weather.rainMmHr,stormMinutes:project.weather.stormMinutes,durationMinutes:project.weather.durationMinutes,stepMinutes:project.weather.stepMinutes},
-    units:{rainLiters:'L',absorbedLiters:'L',exitLiters:'L',storedLiters:'L',massErrorLiters:'L',peakPondingLiters:'L',maxDepthMm:'mm',cellsOver10Mm:'cells'},
-    existing,proposal,
-    proposalMinusExisting:Object.fromEntries(FIELDS.map(field=>[field,proposal[field]-existing[field]])),
-  };
-}
 async function main(args){
   if(args.length!==1||args[0]==='--help'||args[0]==='-h'){
     const usage='Usage: node inspect-rain-project.mjs /path/to/exported-project.json\n';
@@ -59,3 +45,4 @@ async function main(args){
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)
   main(process.argv.slice(2)).catch(error=>{process.stderr.write('Unable to inspect original project: '+error.message+'\n');process.exitCode=1;});
+
