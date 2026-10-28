@@ -101,6 +101,14 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN||'/
  await evaluate(`document.getElementById('local-depth-next').click()`);
  assert.equal(await evaluate(`Number(document.getElementById('local-depth-time').value)`),times.length-1);
  assert.deepEqual(JSON.parse(await evaluate(`fetch(document.getElementById('comparison-report-download').href).then(response=>response.text())`)),actual,'Local inspection leaves the original downloadable report unchanged');
+ // Frame the already-qualified A1 storm-end values, rather than a zero final state.
+ await inspectCell(0);
+ const captureSnapshot=times.findIndex(minute=>minute===firstProject.weather.stormMinutes);
+ assert.ok(captureSnapshot>=0,'Actual export storm end is a retained snapshot');
+ await evaluate(`(()=>{const control=document.getElementById('local-depth-time');control.value=${JSON.stringify(String(captureSnapshot))};control.dispatchEvent(new Event('input',{bubbles:true}));})()`);
+ const capturedValues=await evaluate(`[...document.querySelectorAll('#local-depth-results tbody tr')].map(tr=>[...tr.querySelectorAll('td')].slice(1).map(td=>td.textContent))`);
+ const captureBaseline=runs[0].existing.snapshots[captureSnapshot].depthsMm[0];
+ assert.deepEqual(capturedValues,[[visible(captureBaseline),'0'],...runs.map(run=>{const depth=run.proposal.snapshots[captureSnapshot].depthsMm[0],delta=depth-captureBaseline;return [visible(depth),(delta>0?'+':'')+visible(delta)];})],'Captured A1 storm-end values match the unchanged core oracle');
  for(const width of [1440,390]){
   await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width===390});await delay(100);
   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth+1`),true,'No page-level horizontal overflow');
@@ -127,6 +135,22 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN||'/
   await evaluate(`(()=>{const heading=[...document.querySelectorAll('#comparison-results h2')].find(h=>h.textContent==='Original files and changed cells');if(!heading)throw Error('Missing sources heading');heading.closest('section').scrollIntoView({block:'start'});})()`);await capture(`comparison-sources-${width}.png`);
   await evaluate(`document.querySelector('.local-inspection').scrollIntoView({block:'start'})`);await capture(`local-depth-controls-${width}.png`);
   await evaluate(`document.querySelector('#local-depth-results').scrollIntoView({block:'start'})`);await capture(`local-depth-results-${width}.png`);
+  if(width===390){
+   await evaluate(`document.getElementById('inspect-local-depth').focus()`);
+   let localReached=false;
+   for(let i=0;i<20;i++){
+    await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+    if(await evaluate(`document.activeElement===document.querySelector('.local-depth-table')`)){localReached=true;break;}
+   }
+   assert(localReached,'Actual Tab navigation reaches the local depth table');
+   assert.equal(await evaluate(`document.activeElement.scrollWidth>document.activeElement.clientWidth`),true,'Local depth table contains horizontally scrollable values');
+   await evaluate(`document.activeElement.scrollLeft=0`);
+   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
+   await wait(`document.activeElement===document.querySelector('.local-depth-table') && document.activeElement.scrollLeft>0`);
+   // The keyboard assertion above establishes access; position the numeric columns for inspection.
+   await evaluate(`(()=>{const table=document.querySelector('.local-depth-table');table.scrollLeft=table.scrollWidth;table.scrollIntoView({block:'center'});})()`);
+   await capture('local-depth-numeric-390.png');
+  }
  }
  // A changed storm must retire an earlier successful report, not compare stale rows.
  const changed=JSON.parse(await readFile(second,'utf8'));changed.weather.rainMmHr+=1;
@@ -145,6 +169,6 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN||'/
  assert.equal(await evaluate(`JSON.stringify({...localStorage})`),beforeStorage,'Comparison never edits the authored workspace');
  assert.deepEqual(await originalEvaluate(`({depth:document.querySelector('#obs-depth').value,source:document.querySelector('#obs-source').value,uncertainty:document.querySelector('#obs-uncertainty').value})`),draft,'Comparison workflow preserves unsubmitted reading in original tab');
  assert.deepEqual(exceptions,[]);
- await writeFile(join(runDirectory,'proposal-comparison.json'),JSON.stringify({productUrl:product.href,sourceFiles,reportPath,exactCliEquality:true,actualNewTabNavigation:true,mainDraftPreserved:true,changedStormRefused:true,clearAndReselect:true,workspaceUnchanged:true,desktopAnd390Screenshots:true,narrowTableKeyboardScroll:true,localDepthExactCoreOracle:true,localCellsChecked:[0,firstProject.width+1],localTimesChecked:[0,firstProject.weather.stormMinutes,times.at(-1)],localReportUnchanged:true,localReplacementClears:true,localDesktopAnd390Screenshots:true,exceptions,limits:['Reselection during a deterministically deferred file read was not exercised']},null,2));
+ await writeFile(join(runDirectory,'proposal-comparison.json'),JSON.stringify({productUrl:product.href,sourceFiles,reportPath,exactCliEquality:true,actualNewTabNavigation:true,mainDraftPreserved:true,changedStormRefused:true,clearAndReselect:true,workspaceUnchanged:true,desktopAnd390Screenshots:true,narrowTableKeyboardScroll:true,localDepthExactCoreOracle:true,localCellsChecked:[0,firstProject.width+1],localTimesChecked:[0,firstProject.weather.stormMinutes,times.at(-1)],localReportUnchanged:true,localReplacementClears:true,localDesktopAnd390Screenshots:true,localCaptureCell:0,localCaptureMinute:times[captureSnapshot],localNarrowTableKeyboardScroll:true,localNumeric390Screenshot:true,exceptions,limits:['Reselection during a deterministically deferred file read was not exercised']},null,2));
  } finally {comparisonSocket?.close();}
 });
