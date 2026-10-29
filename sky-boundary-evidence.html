@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Compare possible sky-change times · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-boundary-evidence.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-epoch-evidence.html" target="_blank" rel="noopener">Experimental Earth · changing-sky investigations ↗</a>
+    <p class="eyebrow">Original readings / offered change boundaries</p>
+    <h1>Keep the possible changes in view</h1>
+    <p class="intro">A change in directional brightness may explain two readings at several different times. Compare every boundary you explicitly offer, then inspect how those alternatives change the proposal’s consequences.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Original evidence</p><h2 id="source-heading">Keep both original readings</h2></div>
+        <button type="button" id="boundary-example" disabled>Try all courtyard boundaries</button></div>
+      <p>Choose exactly two original temperature-band input files. Each keeps its saved point, original observation, material properties and starting temperatures.</p>
+      <label class="file-label">Open two original reading inputs<input id="boundary-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <div id="boundary-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+    </section>
+    <form id="boundary-form" class="card">
+      <p class="eyebrow">02 / Explicit alternatives</p><h2>Offer original change boundaries</h2>
+      <p>At each offered boundary, a four-bin sky profile before the change and another afterwards supply both points and designs. Every alternative uses the same original intervals, total diffuse light and direct forcing.</p>
+      <div class="question-grid"><label>Change after these original intervals<input id="boundary-splits" type="text" maxlength="256" value="8" placeholder="3, 8, 13" required disabled></label>
+        <label>Basis for shared conditions<input id="boundary-sharing" required maxlength="400" placeholder="Why both points share the same sky profiles" disabled></label></div>
+      <button type="button" id="boundary-all" disabled>Offer every original internal boundary</button>
+      <p id="boundary-boundary" class="quiet">Use distinct whole interval numbers separated by commas.</p>
+      <div class="actions"><button id="boundary-run" type="submit" disabled>Compare every offered boundary</button>
+        <label class="file-label">Reopen a boundary inquiry<input id="boundary-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="boundary-export" type="button" disabled>Download original inputs</button></div>
+      <p id="boundary-status" role="status">Open both original readings or try the authored example.</p>
+    </form>
+    <section id="boundary-results" class="card" aria-label="Complete offered-boundary comparison" hidden></section>
+  </main>
+  <footer>Compatibility is conditional on the declared additive coefficient model. Original thermal replays remain separate, including endpoints outside original bands. The comparison does not infer an unoffered change time, identify the actual sky or establish intervention performance.</footer>
+  <script type="module" src="shade-heat-boundary-evidence-page.js"></script>
+</body>
+</html>

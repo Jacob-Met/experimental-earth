@@ -1,0 +1,671 @@
+{
+  "status": "Qualified exact source before private publication; accepted receiving is separate",
+  "qualifiedAt": "2026-10-29T01:01:49.098090+00:00",
+  "baseCommit": "bd812d28b824f3e215de3a5f739c808ac9f4264e",
+  "baseTree": "41ff5ff808c52a1eb21ac89a391a146085134968",
+  "canonicalBaseMaterializedFiles": 797,
+  "canonicalTreeEntries": 2106,
+  "scope": "Complete finite offered-original-boundary inquiry using the accepted four-bin/two-epoch additive model and unchanged original band/replay semantics.",
+  "native": {
+    "passed": 18,
+    "failed": 0,
+    "tapSHA256": "c063b6d7efb37a2e4ca76fbb5b9e23a9302b4e585f6a5431470d99680b7583a6",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/shade-heat-epoch-evidence.test.mjs tests/shade-heat-boundary-evidence.test.mjs"
+  },
+  "independentCoreReviews": [
+    {
+      "status": "PASS",
+      "sourceSHA256": "27060fba65a346372f4eea4e9c9b0153bc6ba93cf627409ad24230a1858c04ac",
+      "wholeBoundaryReportParities": 12,
+      "exactUnionWitnessLinks": 8,
+      "modes": [
+        "authored bands",
+        "wide bands",
+        "all incompatible",
+        "zero forcing exact objective ties"
+      ],
+      "additional": [
+        "reordered union extrema",
+        "private-query accounting",
+        "24interval23boundary source admission",
+        "4invalid list/boundary refusals"
+      ],
+      "browserClaim": false,
+      "receiptSHA256": "2ef8dde0a99df56903321f25cc3f93f9893eafa80b3b016dea5f1c616496889f"
+    },
+    {
+      "status": "PASS",
+      "sourceSHA256": "27060fba65a346372f4eea4e9c9b0153bc6ba93cf627409ad24230a1858c04ac",
+      "wholeBoundaryReportParities": 12,
+      "exactUnionWitnessLinks": 12,
+      "modes": [
+        "authored bands",
+        "wide bands",
+        "all incompatible",
+        "zero forcing exact objective ties"
+      ],
+      "additional": [
+        "reordered union extrema",
+        "private-query accounting",
+        "24interval23boundary source admission",
+        "4invalid list/boundary refusals"
+      ],
+      "browserClaim": false,
+      "receiptSHA256": "eb54f2c59bdeceb0bf0941ce0947e44ce79eb90191cb80ad075ffc731b1d27b6"
+    }
+  ],
+  "independentCoreTotals": {
+    "completeFrozenSingleReportParities": 24,
+    "exactUnionWitnessLinks": 20
+  },
+  "independentConsumerReview": {
+    "files": {
+      "shade-heat-boundary-evidence-page.js": "efd813ff093c385973b2d3f024724d78b13e56f00a2767ad3e647b8ef147e589",
+      "shade-heat-epoch-view.js": "b64e4f1e49aaa0ab7d3bc37b4e3f63b5600f608dc9d803df3c767fdd9a93d9f3",
+      "shade-heat-epoch-evidence-page.js": "be5952cdb2ff7bb2c98c3ab4746e8b659a238b39922500f7e11c79db72919e8f",
+      "sky-boundary-evidence.html": "eefa105fdf02af446dabaca8b7afa9c4670dd8e5bd7dda319b378f48c923a70d",
+      "shade-heat-boundary-evidence-worker.js": "a0a525c8c704feef723dbdeb3114138bb2040209d547b86abfb5cac2236d3fe0",
+      "shade-heat-boundary-example.js": "bc32f34dfb8e62273c51274357ecee393c9f82cb30a42f964444bd0b849510f5",
+      "shade-heat-computation.js": "94c06f64db775b926d70d141df5038ef22cd9df312280778165e9fd27f5bac47"
+    },
+    "scope": "Source review: accepted-fcfb13a extraction diff, boundary/witness membership, ordered reading attribution, input-only export, async generation/worker custody, dense-list parsing, corrected all-offered example attribution. No blocker found. CSS visual qualification belongs to root; no independent browser claim.",
+    "historicalParent": "fcfb13abf6216911f2591f0d797f4f48e1e2c99b",
+    "followup": "Only boundary page hash changed: compactSigned used solely in approximate overview range label; seven significant digits (or five mantissa digits for tiny values) does not alter numeric reports, detailed range table or witness renderer. Other six reviewed hashes unchanged. No additional blocker; root final browser evidence remains attributed to root.",
+    "receiptSHA256": "01963a21735ac7078e665c30e904c0cc23358f8f59e5499ca4d6406b47228355",
+    "reviewer": "WORLDLAW retained worker; no independent browser claim"
+  },
+  "browser": [
+    {
+      "course": "offered-boundaries",
+      "groups": 9,
+      "checks": [
+        "Ordinary epoch-inquiry entry opens the actual15-boundary worker inquiry; all15 outcomes and compatible8\u201312 remain visible with1472new+448reused complete basis courses",
+        "All four union-extremum buttons select the exact original boundary and witness; keyboard inspection retains noncontiguous IDs and outside-band replay, and incompatible alternatives remain inspectable",
+        "Actual compact source-only download reopens on a fresh document and recomputes all original boundary alternatives without saved results",
+        "Two actual original files preserve4/16-bin history and receiver reversal; nonmonotone and changed offered lists retain exact original order and recompute all consequences",
+        "Malformed original member, incomplete pair and invalid UTF8 retain the prior inquiry; a missing interior offer refuses the entire new query without partial results",
+        "Delayed two-file acquisition cannot restore old original order or boundaries after a newer complete query",
+        "A held compatible actual-worker result cannot replace a newer all-incompatible offered list",
+        "Mismatched source and forged-result files refuse; an all-incompatible completed inquiry stays downloadable with every original offered boundary",
+        "Explicit offer-all action, complete alternatives, union bounds and exact-witness inspection fit desktop/390px without exceptions or working-project storage changes"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "launcher": {
+        "command": "python3 serve.py --port 0",
+        "url": "http://127.0.0.1:45049/",
+        "scope": "Every interaction and worker module above uses the unchanged documented loopback launcher."
+      },
+      "allCandidateFilesExceptLaterQualificationReceiptEqualExecutedSource": 806,
+      "receiptSHA256": "3099f182ca3f8d8bc147c5a8780bc9996155db574b1e8a7237dbbff99d3080c2",
+      "finishedAt": "2026-10-29T00:58:54.355Z"
+    },
+    {
+      "course": "maintained-epoch",
+      "groups": 9,
+      "checks": [
+        "Ordinary spatial-inquiry link opens the two-epoch consumer; the actual worker completes 128 original basis courses and 308 vertices while both static comparisons reject",
+        "Real keyboard and extremum buttons inspect noncontiguous witness IDs, exact early/late profiles and original replay endpoints that remain explicitly outside their bands",
+        "Actual source-only download reopens on a fresh document and recomputes the same result without parent state or stored result fields",
+        "Two actual original files retain distinct receivers and original 4/16-bin histories while point selection and original-boundary changes recompute the chosen consequence",
+        "A malformed member, incomplete pair and invalid UTF-8 refuse transactionally without mixing new inputs into the prior accepted pair",
+        "A delayed two-file read cannot reverse or replace a newer comparison after a common-input edit retires the whole batch",
+        "A held compatible response from the actual old worker cannot replace a newer incompatible inquiry at a different original boundary",
+        "Mismatched original orientation refuses, incompatible common skies remain an exportable completed empty result, and forged results cannot replace it",
+        "Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation"
+      ],
+      "activeSandbox": true,
+      "exceptions": [],
+      "launcher": {
+        "command": "python3 serve.py --port 0",
+        "url": "http://127.0.0.1:32939/",
+        "scope": "Every interaction and worker module above uses the unchanged documented loopback launcher."
+      },
+      "allCandidateFilesExceptLaterQualificationReceiptEqualExecutedSource": 806,
+      "receiptSHA256": "39f9c5b1931ec3b6d32a30dad7392dd86b87680dceb8c1a956d2d06b78d8e2fb",
+      "finishedAt": "2026-10-29T00:59:40.155Z"
+    }
+  ],
+  "visualInspection": [
+    "Final1440px complete overview",
+    "Final390px complete alternatives",
+    "Final390px exact phase profiles and outside-band replay",
+    "Final390px range/unit stays on one line after preserved failure"
+  ],
+  "authoredResult": {
+    "status": "PASS",
+    "compatibleBoundaries": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "ranges": {
+      "surfaceC": {
+        "lower": {
+          "differenceC": {
+            "exact": {
+              "numerator": "25533611539134818786538986964344396834757269463",
+              "denominator": "15600829243662249310814245463370333087298748416"
+            },
+            "lower": 1.6366829698817265,
+            "upper": 1.6366829698817267
+          },
+          "boundaryIndex": 10,
+          "splitAfterInterval": 11,
+          "splitUtc": "2026-06-21T09:30:00.000Z",
+          "witnessId": 33
+        },
+        "upper": {
+          "differenceC": {
+            "exact": {
+              "numerator": "2927465762729622605914472754902523206922461061",
+              "denominator": "1784297037556647621732449173427411804412182528"
+            },
+            "lower": 1.6406829698817351,
+            "upper": 1.6406829698817353
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 52
+        }
+      },
+      "subsurfaceC": {
+        "lower": {
+          "differenceC": {
+            "exact": {
+              "numerator": "41738427996782565364161899603261",
+              "denominator": "36627797468794677825985048477696"
+            },
+            "lower": 1.1395287426807992,
+            "upper": 1.1395287426807994
+          },
+          "boundaryIndex": 8,
+          "splitAfterInterval": 9,
+          "splitUtc": "2026-06-21T08:30:00.000Z",
+          "witnessId": 1
+        },
+        "upper": {
+          "differenceC": {
+            "exact": {
+              "numerator": "2063629489312858705943259624194611084193629803",
+              "denominator": "1784297037556647621732449173427411804412182528"
+            },
+            "lower": 1.1565504206287978,
+            "upper": 1.156550420628798
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 52
+        }
+      }
+    },
+    "work": {
+      "offeredBoundaries": 15,
+      "geometryPasses": 2,
+      "estimatedRayTests": 2880,
+      "estimatedSkyFaceTests": 7680,
+      "completeBasisCourses": 1920,
+      "reservedExecutedBasisCourses": 1472,
+      "reservedWitnessCourses": 480,
+      "reservedThermalCourses": 1952,
+      "reservedCourseIntervals": 31232,
+      "reservedCandidates": 41040,
+      "actualSkyFaceTests": 64,
+      "reusedCompleteBasisCourses": 448,
+      "executedBasisCourses": 1472,
+      "executedWitnessCourses": 120,
+      "executedThermalCourses": 1592,
+      "executedCourseIntervals": 25472,
+      "candidates": 1460
+    },
+    "boundaries": [
+      {
+        "split": 1,
+        "utc": "2026-06-21T04:30:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 2,
+        "utc": "2026-06-21T05:00:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 3,
+        "utc": "2026-06-21T05:30:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 4,
+        "utc": "2026-06-21T06:00:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 5,
+        "utc": "2026-06-21T06:30:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 6,
+        "utc": "2026-06-21T07:00:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 7,
+        "utc": "2026-06-21T07:30:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 8,
+        "utc": "2026-06-21T08:00:00.000Z",
+        "compatibility": "compatible",
+        "vertices": 308,
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "1116396776737430089969115739666363",
+                  "denominator": "682109362216984315509799974338560"
+                },
+                "lower": 1.6366829698817351,
+                "upper": 1.6366829698817353
+              },
+              "witnessId": 4
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "2927465762729622605914472754902523206922461061",
+                  "denominator": "1784297037556647621732449173427411804412182528"
+                },
+                "lower": 1.6406829698817351,
+                "upper": 1.6406829698817353
+              },
+              "witnessId": 52
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "155611554664708295553797328645965",
+                  "denominator": "136421872443396863101959994867712"
+                },
+                "lower": 1.1406642635642863,
+                "upper": 1.1406642635642865
+              },
+              "witnessId": 4
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "2063629489312858705943259624194611084193629803",
+                  "denominator": "1784297037556647621732449173427411804412182528"
+                },
+                "lower": 1.1565504206287978,
+                "upper": 1.156550420628798
+              },
+              "witnessId": 52
+            }
+          }
+        },
+        "witnessIds": [
+          4,
+          52
+        ]
+      },
+      {
+        "split": 9,
+        "utc": "2026-06-21T08:30:00.000Z",
+        "compatibility": "compatible",
+        "vertices": 288,
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "943483496100224385",
+                  "denominator": "576460752303423488"
+                },
+                "lower": 1.6366829698817316,
+                "upper": 1.6366829698817318
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "945789339109438079",
+                  "denominator": "576460752303423488"
+                },
+                "lower": 1.6406829698817313,
+                "upper": 1.6406829698817316
+              },
+              "witnessId": 0
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "41738427996782565364161899603261",
+                  "denominator": "36627797468794677825985048477696"
+                },
+                "lower": 1.1395287426807992,
+                "upper": 1.1395287426807994
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "6283565729035224967572378519753742561027507595",
+                  "denominator": "5433393810703570981665378820278344170407460864"
+                },
+                "lower": 1.1564716175471854,
+                "upper": 1.1564716175471856
+              },
+              "witnessId": 32
+            }
+          }
+        },
+        "witnessIds": [
+          1,
+          0,
+          32
+        ]
+      },
+      {
+        "split": 10,
+        "utc": "2026-06-21T09:00:00.000Z",
+        "compatibility": "compatible",
+        "vertices": 288,
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "943483496100224385",
+                  "denominator": "576460752303423488"
+                },
+                "lower": 1.6366829698817316,
+                "upper": 1.6366829698817318
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "945789339109438079",
+                  "denominator": "576460752303423488"
+                },
+                "lower": 1.6406829698817313,
+                "upper": 1.6406829698817316
+              },
+              "witnessId": 0
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "494994892336427344806547341577",
+                  "denominator": "434385605702770038688219922432"
+                },
+                "lower": 1.1395287639322225,
+                "upper": 1.1395287639322227
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "3782497487491873034601423012854206057167393971",
+                  "denominator": "3271435070985963176103298962467973639941652480"
+                },
+                "lower": 1.1562196422721245,
+                "upper": 1.1562196422721247
+              },
+              "witnessId": 32
+            }
+          }
+        },
+        "witnessIds": [
+          1,
+          0,
+          32
+        ]
+      },
+      {
+        "split": 11,
+        "utc": "2026-06-21T09:30:00.000Z",
+        "compatibility": "compatible",
+        "vertices": 288,
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "25533611539134818786538986964344396834757269463",
+                  "denominator": "15600829243662249310814245463370333087298748416"
+                },
+                "lower": 1.6366829698817265,
+                "upper": 1.6366829698817267
+              },
+              "witnessId": 33
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "432469219679363875103564273901553",
+                  "denominator": "263590972551229508201023314853888"
+                },
+                "lower": 1.6406829698817265,
+                "upper": 1.6406829698817267
+              },
+              "witnessId": 0
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "75092397717214050849771560911271",
+                  "denominator": "65897743137807377050255828713472"
+                },
+                "lower": 1.1395291271231933,
+                "upper": 1.1395291271231935
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "9012651033536931561027809581374826043669869997",
+                  "denominator": "7800414621831124655407122731685166543649374208"
+                },
+                "lower": 1.1554066636808131,
+                "upper": 1.1554066636808134
+              },
+              "witnessId": 32
+            }
+          }
+        },
+        "witnessIds": [
+          33,
+          0,
+          1,
+          32
+        ]
+      },
+      {
+        "split": 12,
+        "utc": "2026-06-21T10:00:00.000Z",
+        "compatibility": "compatible",
+        "vertices": 288,
+        "ranges": {
+          "surfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "943483496100224385",
+                  "denominator": "576460752303423488"
+                },
+                "lower": 1.6366829698817316,
+                "upper": 1.6366829698817318
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "945789339109438079",
+                  "denominator": "576460752303423488"
+                },
+                "lower": 1.6406829698817313,
+                "upper": 1.6406829698817316
+              },
+              "witnessId": 0
+            }
+          },
+          "subsurfaceC": {
+            "lower": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "178157669068218291000890470768541",
+                  "denominator": "156342376651891828078945459240960"
+                },
+                "lower": 1.1395353766746161,
+                "upper": 1.1395353766746164
+              },
+              "witnessId": 1
+            },
+            "upper": {
+              "differenceC": {
+                "exact": {
+                  "numerator": "10599681160400219133942875917119317788848791159",
+                  "denominator": "9195073983101073950026245646872702668400230400"
+                },
+                "lower": 1.1527564846004028,
+                "upper": 1.152756484600403
+              },
+              "witnessId": 32
+            }
+          }
+        },
+        "witnessIds": [
+          1,
+          0,
+          32
+        ]
+      },
+      {
+        "split": 13,
+        "utc": "2026-06-21T10:30:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 14,
+        "utc": "2026-06-21T11:00:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      },
+      {
+        "split": 15,
+        "utc": "2026-06-21T11:30:00.000Z",
+        "compatibility": "incompatible",
+        "vertices": 0,
+        "ranges": null,
+        "witnessIds": []
+      }
+    ]
+  },
+  "limits": {
+    "offeredBoundaries": 23,
+    "originalIntervals": 24,
+    "newBasisCourses": 2240,
+    "reservedWitnessCourses": 736,
+    "totalCourses": 2976,
+    "courseIntervals": 71424,
+    "exactCandidates": 62928,
+    "geometry": "Original shared limit unchanged"
+  },
+  "composition": {
+    "preservedIncomingRuntimeAndTestFiles": 79,
+    "stages": [
+      {
+        "base": "77867b0c1cfd3cf0463accf873893d8fa4231183",
+        "receivedFiles": 76
+      },
+      {
+        "base": "bd812d28b824f3e215de3a5f739c808ac9f4264e",
+        "receivedFiles": 9
+      }
+    ],
+    "scope": "All materialized base files match canonical blobs. Every other canonical parent-tree entry remains unchanged; this is not a full checkout claim."
+  },
+  "negativeFindings": [
+    "An isolated prototype silently skipped an interior sparse array member; dense admission was repaired and independently reviewed before production.",
+    "Authored source attribution initially named only boundary8; corrected to the explicitly offered alternatives before publication.",
+    "Actual390px receiving found a range/unit wrap; first typography-only repair failed the concrete receiving assertion. Final compact approximate labels and typography pass; exact values are unchanged.",
+    "Original floating-course replay can remain outside the original bands while the additive witness is compatible; outside remains explicit."
+  ],
+  "nativeTask": {
+    "taskId": "experimental-earth-sky-boundaries-52d429",
+    "owner": "estate-52d429-20261025",
+    "revision": 2,
+    "reconciliationSHA256": "e6efb0182d6642538f5acb55f600db303d10b9a86c1d2e0f939dea054da1e147"
+  },
+  "limitations": [
+    "Finite explicitly offered alternatives, not a detected physical change time or inferred unoffered boundary.",
+    "Outer bounds enclose a union and need not imply a continuous attainable range.",
+    "Exact additive coefficients remain distinct from original floating-course and physical truth; no band widening or certified numerical-error claim.",
+    "Private query-local reuse stores complete static thermal courses only; additive coefficients are rebuilt at every boundary.",
+    "Original single-boundary public result and work limits remain unchanged; other owners and exact denied/unknown actions preserved.",
+    "No absent GitHub status/check is claimed as passing CI. No public release/deployment or access changes."
+  ],
+  "sha256": {
+    "shade-heat-epoch-evidence.js": "27060fba65a346372f4eea4e9c9b0153bc6ba93cf627409ad24230a1858c04ac",
+    "shade-heat-epoch-view.js": "b64e4f1e49aaa0ab7d3bc37b4e3f63b5600f608dc9d803df3c767fdd9a93d9f3",
+    "shade-heat-epoch-evidence-page.js": "be5952cdb2ff7bb2c98c3ab4746e8b659a238b39922500f7e11c79db72919e8f",
+    "sky-epoch-evidence.html": "eb2dd60c006688cf0b6fba3d326359d4d482ebcfac9297960d34c32238b32b2e",
+    "shade-heat-boundary-example.js": "bc32f34dfb8e62273c51274357ecee393c9f82cb30a42f964444bd0b849510f5",
+    "shade-heat-boundary-evidence-worker.js": "a0a525c8c704feef723dbdeb3114138bb2040209d547b86abfb5cac2236d3fe0",
+    "shade-heat-boundary-evidence-page.js": "efd813ff093c385973b2d3f024724d78b13e56f00a2767ad3e647b8ef147e589",
+    "shade-heat-boundary-evidence.css": "e1dbb2f8df2e4267797b24674372cd978eb0087c18cf1a784c63d75a1ee737bf",
+    "sky-boundary-evidence.html": "eefa105fdf02af446dabaca8b7afa9c4670dd8e5bd7dda319b378f48c923a70d",
+    "tests/shade-heat-boundary-evidence.test.mjs": "31e553808d1710f930debe6dc9507f37f5b8efc9faa02b5006265d911f01a5a7",
+    "tests/shade-heat-boundary-evidence.browser.mjs": "bf7c035bf2afa7cf6f219a0c996371f0479bc9ece7c9d1e93bb250c24d26764d",
+    "docs/SHADE_HEAT_BOUNDARIES.md": "6bcbd4b394b0f45915b2872949358126ffc7cdcfe1529fb53584a2e3a9fb61ec"
+  }
+}
