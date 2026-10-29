@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>What follows after both requirements are satisfied? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-sky-conditional.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-coverage.html" target="_blank" rel="noopener">Experimental Earth · profile coverage ↗</a>
+    <p class="eyebrow">Original observations / two conditions / a third consequence</p>
+    <h1>What follows after both requirements are satisfied?</h1>
+    <p class="intro">Keep the original minimum sky class, apply both requirements at one exact allowance, and inspect the range of a third declared consequence. Every surviving pattern, excluded pattern and gap stays visible.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="conditional-source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the complete record</p><h2 id="conditional-source-heading">The observations stay together</h2></div>
+        <button id="conditional-example" type="button" disabled>Try the original-record example</button></div>
+      <p>Open three to 24 original reading files, or original inputs from a saved sky inquiry. Every receiver, original UTC, component, temperature band and attribution stays attached.</p>
+      <label class="file-label">Open original evidence<input id="conditional-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="conditional-source-summary" class="quiet">No original readings loaded.</p>
+      <details id="conditional-source-details"><summary>Inspect the complete original record</summary><div id="conditional-sources"></div></details>
+    </section>
+    <form id="conditional-form" class="card" novalidate>
+      <p class="eyebrow">02 / Fix the original model class</p><h2>Infer the minimum before applying requirements</h2>
+      <p>Four-bin sky profiles stay shared across all original receivers and both designs. Every pattern in the first compatible class is retained. The requirements do not select a class with more changes.</p>
+      <div class="question-grid">
+        <label>Maximum allowed changes<select id="conditional-maximum" disabled><option value="0">0 · one fixed profile</option><option value="1">1 · up to two profiles</option><option value="2" selected>2 · up to three profiles</option></select></label>
+        <label>Basis for shared conditions<input id="conditional-sharing" maxlength="400" required disabled></label>
+        <label class="coverage-wide">Basis for this model comparison<textarea id="conditional-search-source" maxlength="400" required disabled>Compare every original boundary under at most two shared-profile changes; this is a declared model comparison.</textarea></label>
+      </div>
+      <h3>Two original requirements on the same profile</h3>
+      <p>Both thresholds concern proposal minus existing. “At most” constrains the upper represented endpoint; “at least” constrains the lower. The same nonnegative Celsius amount raises an “at most” limit and lowers an “at least” limit. Equality is included.</p>
+      <fieldset class="coverage-requirement"><legend>Requirement A</legend>
+        <div class="coverage-target-grid">
+          <label>Original receiver<select id="conditional-a-receiver" disabled></select></label>
+          <label>Original clock endpoint<select id="conditional-a-time" disabled></select></label>
+          <label>Temperature component<select id="conditional-a-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label>
+          <label>Entire represented interval must be<select id="conditional-a-relation" disabled><option value="at-most">At most this threshold</option><option value="at-least">At least this threshold</option></select></label>
+          <label>Proposal − existing threshold · °C<input id="conditional-a-limit" type="number" step="any" required disabled></label>
+          <label>Basis for this requirement<input id="conditional-a-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <fieldset class="coverage-requirement"><legend>Requirement B</legend>
+        <div class="coverage-target-grid">
+          <label>Original receiver<select id="conditional-b-receiver" disabled></select></label>
+          <label>Original clock endpoint<select id="conditional-b-time" disabled></select></label>
+          <label>Temperature component<select id="conditional-b-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label>
+          <label>Entire represented interval must be<select id="conditional-b-relation" disabled><option value="at-most">At most this threshold</option><option value="at-least">At least this threshold</option></select></label>
+          <label>Proposal − existing threshold · °C<input id="conditional-b-limit" type="number" step="any" required disabled></label>
+          <label>Basis for this requirement<input id="conditional-b-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <fieldset class="coverage-requirement"><legend>Fixed allowance and third consequence</legend>
+        <p>Choose one nonnegative Celsius amount for both requirements. Decimal, scientific and fraction text are interpreted exactly. This amount is fixed for the inquiry.</p>
+        <label>Exact common allowance · °C<input id="conditional-allowance" type="text" inputmode="decimal" maxlength="4096" value="0" required disabled aria-describedby="conditional-allowance-help"></label>
+        <p id="conditional-allowance-help" class="quiet">Examples: 0, 0.001, 1e-3, or 1 / 1000. The original requirement limits remain unchanged.</p>
+        <p>Inspect proposal minus existing at this original receiver and clock endpoint after both selected conditions hold.</p>
+        <div class="coverage-target-grid">
+          <label>Third original receiver<select id="conditional-c-receiver" disabled></select></label>
+          <label>Third original clock endpoint<select id="conditional-c-time" disabled></select></label>
+          <label>Third temperature component<select id="conditional-c-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC" selected>Lower heat store</option></select></label>
+          <label class="coverage-wide">Basis for the third consequence<input id="conditional-c-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <p id="conditional-clock" class="quiet">Load a complete original record to inspect its clock.</p>
+      <div class="actions"><button id="conditional-run" type="submit" disabled>Compute the conditioned consequence</button>
+        <label class="file-label">Reopen this inquiry<input id="conditional-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="conditional-export" type="button" disabled>Download original inputs</button></div>
+      <p id="conditional-status" role="status">Open original evidence or try the authored example.</p>
+    </form>
+    <section id="conditional-results" class="card" aria-label="Complete conditioned consequence in the original minimum class" hidden></section>
+  </main>
+  <footer>This question is conditional on the original represented model. The fixed allowance is a query input. It does not adopt relaxed thresholds or add observations. Exact represented results and original numerical replays remain separate.</footer>
+  <script type="module" src="shade-heat-sky-conditional-page.js"></script>
+</body>
+</html>
