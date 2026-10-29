@@ -13,7 +13,7 @@ function pointPlot(parent,result){
   const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 640 280');svg.setAttribute('role','img');svg.setAttribute('aria-label','Original runoff sample points: left blue, right red. No interpolation. All values follow in tables.');
   const all=[...result.left.samples,...result.right.samples],maxT=Math.max(1,...all.map(s=>s.minute)),maxQ=Math.max(1,...all.filter(s=>s.runoff.kind==='observed').map(s=>s.runoff.value));
   for(const [event,side] of [[result.left,'left'],[result.right,'right']])for(const s of event.samples){if(s.runoff.kind!=='observed')continue;const c=document.createElementNS(ns,'circle');c.setAttribute('cx',String(40+560*s.minute/maxT));c.setAttribute('cy',String(235-195*s.runoff.value/maxQ));c.setAttribute('r',side==='left'?'5':'3');c.setAttribute('class',side);const title=document.createElementNS(ns,'title');title.textContent=`${side}: ${s.raw.minute} min, ${s.raw.runoff_mm_hr} mm/h, source line ${s.sourceLine}`;c.append(title);svg.append(c);}
-  for(const [x,y,text] of [[40,265,'0 min'],[510,265,`${maxT} min`],[5,22,`${maxQ} mm/h`],[5,239,'0']]){const t=document.createElementNS(ns,'text');t.setAttribute('x',x);t.setAttribute('y',y);t.textContent=text;svg.append(t);}parent.append(svg);
+  for(const [x,y,text,anchor] of [[40,265,'0 min',null],[600,265,`${maxT} min`,'end'],[5,22,`${maxQ} mm/h`,null],[5,239,'0',null]]){const t=document.createElementNS(ns,'text');t.setAttribute('x',x);t.setAttribute('y',y);if(anchor)t.setAttribute('text-anchor',anchor);t.textContent=text;svg.append(t);}parent.append(svg);
 }
 function render(result){
   resultHost.replaceChildren();node('h2','Original sample comparison',resultHost);
