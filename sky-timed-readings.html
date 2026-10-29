@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>What do earlier readings reveal? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-timed-course.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-course-evidence.html" target="_blank" rel="noopener">Experimental Earth · original sky courses ↗</a>
+    <p class="eyebrow">Original observations / their own times</p>
+    <h1>What do earlier readings reveal?</h1>
+    <p class="intro">Keep each temperature reading at its original time and receiver. Compare the profiles admitted by two readings with those that also meet a third, then follow one shared profile through the complete original course.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the original readings</p><h2 id="source-heading">Three readings, each at its own UTC</h2></div>
+        <button id="timed-example" type="button" disabled>Try the earlier-reading example</button></div>
+      <p>Open three original reading files, or reuse the original evidence from a saved three-reading inquiry. Surface and lower-store readings can share a receiver when its complete original declarations agree. The same receiver, time and component cannot be counted twice.</p>
+      <p>The first two records form the reference family. The third may narrow or reject it. The first record also chooses the point where the two designs are compared. Changing the first record changes this evidence order explicitly.</p>
+      <label class="file-label">Open original evidence<input id="timed-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <div id="timed-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+    </section>
+    <form id="timed-form" class="card" novalidate>
+      <p class="eyebrow">02 / Declare the common conditions</p><h2>One sky profile pair for every reading</h2>
+      <p>One four-bin profile applies before the chosen original change boundary, and another after it. Both remain shared across every original time, receiver and design. Each observation keeps its supplied UTC, component, value, band and attribution.</p>
+      <div class="question-grid"><label>Change after original interval<input id="timed-split" type="number" min="1" step="1" value="8" required disabled></label>
+        <label>Basis for shared conditions<input id="timed-sharing" required maxlength="400" placeholder="Why these original readings share the same sky profiles" disabled></label></div>
+      <p id="timed-boundary" class="quiet">Choose an internal original interval boundary.</p>
+      <div class="actions"><button id="timed-run" type="submit" disabled>Compare the original-time evidence</button>
+        <label class="file-label">Reopen an original-time inquiry<input id="timed-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="timed-export" type="button" disabled>Download original inputs</button></div>
+      <p id="timed-status" role="status">Open original readings or try the authored example.</p>
+    </form>
+    <section id="timed-results" class="card" aria-label="Original-time evidence and paired temperature comparison" hidden></section>
+  </main>
+  <footer>Conditional results under the declared model. Every point is an original interval boundary; no values between these times or interval means are inferred. Exact additive model bands and original numerical replay statuses remain separate. These results do not establish a measured sky history or a validated physical effect.</footer>
+  <script type="module" src="shade-heat-timed-page.js"></script>
+</body>
+</html>
