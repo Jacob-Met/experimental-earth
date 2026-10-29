@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Water and confined air · Experimental Earth</title>
+<link rel="stylesheet" href="pressure-batches.css"><link rel="stylesheet" href="soil-air-boundary.css">
+<script type="module" src="soil-air-boundary-page.js"></script>
+</head><body><main>
+<a href="./pressure-batches.html">← Return to local soil tests</a>
+<header><p class="eyebrow">WATER AND AIR IN A SOIL COLUMN</p><h1>How much air must leave as the water front advances?</h1>
+<p>Hold the surface water depth constant. Compare freely vented air with a pocket that retains all its original gas. Inspect the minimum gas removal needed to avoid an opposing pressure barrier at a deeper front.</p>
+<p>A sealed column base does not tell us whether air can escape through the soil. These are declared physical limits, with no predicted elapsed time.</p></header>
+<div class="actions"><button id="air-example" type="button">Try an authored column</button>
+<label class="file-label">Open saved inquiry<input type="file" id="air-import" accept=".json,application/json"></label></div>
+<p id="air-import-status" role="status" aria-live="polite"></p>
+<form id="air-form">
+<section><h2>Declare the column and boundary</h2>
+<label>Inquiry title<input name="title" maxlength="160" required></label>
+<div class="fields"><label>Packed column depth<input name="depth" type="number" min="0" step="any" required></label>
+<label>Initial water-front depth<input name="initialFront" type="number" min="0" step="any" required></label>
+<label>Column unit<select name="columnUnit"><option>mm</option><option>cm</option><option>m</option></select></label></div>
+<p class="small">Depths run downward from the soil surface. Declare a positive initial front; the singular start from zero depth is outside this inquiry.</p>
+<label>Column and initial-front source<textarea name="columnSource" maxlength="1000" rows="2" required></textarea></label>
+<div class="fields"><label>Constant ponding depth<input name="pondingHead" type="number" min="0" step="any" required></label>
+<label>Atmospheric absolute pressure, as water head<input name="atmosphericHead" type="number" min="0" step="any" required></label>
+<label>Boundary head unit<select name="boundaryUnit"><option>mm</option><option>cm</option><option>m</option></select></label></div>
+<p class="small">Atmospheric head is absolute pressure divided by water density and gravity. It is separate from gauge pressure. No atmospheric value is filled in for your experiment.</p>
+<label>Boundary source and basis<textarea name="boundarySource" maxlength="1000" rows="2" required></textarea></label>
+</section>
+<section><h2>Offer capillary-head alternatives</h2><p>The capillary head is an explicit suction assumption at the front. Missing soil properties are not inferred from the column geometry.</p>
+<div id="air-hypotheses"></div><button id="air-add" class="secondary" type="button">Add an alternative</button></section>
+<section><h2>Choose a target front</h2>
+<div class="fields"><label>Target depth<input name="targetFront" type="number" min="0" step="any" required></label>
+<label>Target unit<select name="targetUnit"><option>mm</option><option>cm</option><option>m</option></select></label></div>
+<label>Target source or question<textarea name="targetSource" maxlength="1000" rows="2" required></textarea></label>
+<p class="small">Keep the target between the initial front and the packed base, with a positive gas region remaining.</p>
+</section>
+<section><h2>State the model assumptions</h2>
+<p>The column is rigid and uniform, with a fully wet sharp front, positive water conductivity and constant ponding. Air begins at ambient pressure and obeys the isothermal ideal-gas law. The connected gas occupies only the unfilled pore space ahead of the front.</p>
+<p>There is no connected tubing or other gas volume, residual gas behind the front, dissolution, changing gas composition, or additional gas input. Gas amount can change only by release from this pocket. Water supplied at the surface replaces water entering the soil.</p>
+<label class="check"><input name="assumptions" type="checkbox" required><span>I explicitly offer these assumptions for this inquiry.</span></label>
+<div class="actions"><button type="submit" id="air-run">Compare the air boundaries</button>
+<button type="button" id="air-download" class="secondary" disabled>Save original inquiry inputs</button></div>
+</section></form>
+<p id="air-status" role="status" aria-live="polite"></p>
+<section id="air-results" aria-live="polite"></section>
+<details class="air-context"><summary>Why ask this question?</summary>
+<p>Published ponded sand-column experiments report air compression and counterflow. Their sealed base does not establish a fixed gas amount, and their measured pressure changes between air and water regimes. This inquiry adds an explicit gas-pressure limit; it does not fit those records.</p>
+<p>Sources: <a href="https://doi.org/10.3390/app152212200">Cheng et al., 2025</a> and <a href="https://doi.org/10.2136/vzj2016.04.0034">Mizrahi et al., 2016</a>.</p></details>
+</main></body></html>

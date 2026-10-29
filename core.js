@@ -10,6 +10,8 @@ import { validateInternalBarriers, internalEdgeClosed, internalEdgeCrest } from 
 import { allocateCrestTransfers } from './crest-transfers.js';
 import { createRainOriginTracer, validateRainOriginStudy } from './rain-origins.js';
 import { advanceWettingFront } from './wetting-front.js';
+import { advancePressureHead } from './pressure-head.js';
+import { validatePressureHeadModel } from './pressure-head-contract.js';
 import { validateWettingFrontModel, validateWettingFrontStudy } from './wetting-front-contract.js';
 /**
  * EXPERIMENTAL EARTH / rain experiment core.
@@ -106,14 +108,23 @@ export function runRain(cells, width, height, weather, options = {}) {
   const override = options?.infiltrationOverride;
   const surfaceOverride = options?.surfaceInfiltrationOverride;
   const wettingFront = options?.surfaceWettingFront;
+  const pressureHead = options?.surfacePressureHead;
+  if (pressureHead !== undefined) {
+    validatePressureHeadModel(pressureHead, SURFACES);
+    if (wettingFront !== undefined || override !== undefined || surfaceOverride !== undefined) {
+      throw new Error('Choose the pressure-head model separately from other infiltration models or overrides');
+    }
+  }
+  const activeFront = pressureHead ?? wettingFront;
+  const advanceFront = pressureHead ? advancePressureHead : advanceWettingFront;
   if (wettingFront !== undefined) {
     validateWettingFrontModel(wettingFront, SURFACES);
     if (override !== undefined || surfaceOverride !== undefined) throw new Error('Choose one infiltration model or override');
   }
-  const cumulativeInfiltration = wettingFront ? Array(n).fill(0) : null;
+  const cumulativeInfiltration = activeFront ? Array(n).fill(0) : null;
   const receivingStore = createInfiltrationStorage(cells, cellArea, options?.infiltrationStorage, SURFACES);
   const drainingLayer = createDrainingLayer(cells, cellArea, options?.drainingLayer, SURFACES);
-  if (drainingLayer && (receivingStore || wettingFront !== undefined)) {
+  if (drainingLayer && (receivingStore || activeFront !== undefined)) {
     throw new Error('Choose the draining layer separately from a closed store or wetting-front model');
   }
   if (options?.traceBudget !== undefined && typeof options.traceBudget !== 'boolean') {
@@ -184,22 +195,22 @@ export function runRain(cells, width, height, weather, options = {}) {
         const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
         absorb = Math.min(water[i], drainingLayer.advance(i, initialSurfaceMm, rate,
           weather.rainMmHr, rainyHours, Math.max(0, dtHours - rainyHours)));
-      } else if (wettingFront?.surface === cells[i].surface) {
+      } else if (activeFront?.surface === cells[i].surface) {
         const rainyHours = Math.min(dtHours, Math.max(0, rainOverlap / 60));
-        const wet = advanceWettingFront({ cumulativeMm: cumulativeInfiltration[i],
+        const wet = advanceFront({ cumulativeMm: cumulativeInfiltration[i],
           surfaceWaterMm: initialSurfaceMm, rainMmHr: weather.rainMmHr,
-          hours: rainyHours, conductivityMmHr: wettingFront.conductivityMmHr,
-          capillaryDriveMm: wettingFront.capillaryDriveMm });
-        const dry = advanceWettingFront({ cumulativeMm: wet.cumulativeMm,
+          hours: rainyHours, conductivityMmHr: activeFront.conductivityMmHr,
+          capillaryDriveMm: activeFront.capillaryDriveMm, moistureDeficit: pressureHead?.moistureDeficit });
+        const dry = advanceFront({ cumulativeMm: wet.cumulativeMm,
           surfaceWaterMm: wet.surfaceWaterMm, rainMmHr: 0,
-          hours: Math.max(0, dtHours - rainyHours), conductivityMmHr: wettingFront.conductivityMmHr,
-          capillaryDriveMm: wettingFront.capillaryDriveMm });
+          hours: Math.max(0, dtHours - rainyHours), conductivityMmHr: activeFront.conductivityMmHr,
+          capillaryDriveMm: activeFront.capillaryDriveMm, moistureDeficit: pressureHead?.moistureDeficit });
         absorb = Math.min(water[i], wet.infiltratedMm + dry.infiltratedMm);
       } else absorb = Math.min(water[i], rate * dtHours);
       // A filled receiving store leaves refused water in the same surface state,
       // before routing and before any budget or passive provenance is recorded.
       if (receivingStore) absorb = receivingStore.accept(i, absorb);
-      if (wettingFront?.surface === cells[i].surface) cumulativeInfiltration[i] += absorb;
+      if (activeFront?.surface === cells[i].surface) cumulativeInfiltration[i] += absorb;
       tracer?.absorb(i, absorb, water[i]);
       origins?.absorb(i, absorb, water[i]);
       water[i] -= absorb;
@@ -281,6 +292,9 @@ export function runRain(cells, width, height, weather, options = {}) {
     ...(drainingLayer ? { drainingLayer: drainingLayer.finish() } : {}),
     ...(tracer ? { rainTrace: tracer.finish() } : {}),
     ...(origins ? { rainOrigins: origins.finish(water, snapshots) } : {}),
+    ...(pressureHead ? { pressureHead: { ...pressureHead,
+      cumulativeInfiltrationMm: cumulativeInfiltration.map((amount, i) =>
+        cells[i].surface === pressureHead.surface ? amount : null) } } : {}),
     ...(wettingFront ? { wettingFront: { surface: wettingFront.surface,
       conductivityMmHr: wettingFront.conductivityMmHr, capillaryDriveMm: wettingFront.capillaryDriveMm,
       cumulativeInfiltrationMm: cumulativeInfiltration.map((amount, i) =>
@@ -296,6 +310,12 @@ export function runRain(cells, width, height, weather, options = {}) {
       cells: budgetCells, edges: budgetEdges };
   }
   return result;
+}
+
+/** Explicit export prevents a new study from silently using an older core. */
+export function runPressureHeadRain(cells, width, height, weather, model, options = {}) {
+  validatePressureHeadModel(model, SURFACES);
+  return runRain(cells, width, height, weather, { ...options, surfacePressureHead: model });
 }
 
 export function compare(project) {

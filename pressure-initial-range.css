@@ -1,0 +1,11 @@
+#range-source:empty,#range-results:empty{display:none}
+#range-status,#range-import-status{font-weight:650}
+.range-stage{border-left:4px solid #698f73;padding:.6rem 1rem;margin:1.1rem 0;background:#f5f8f2}
+.range-stage[data-status=rejected]{border-color:#a95634;background:#fbf5ef}
+.range-stage h3{margin:.2rem 0 .75rem}
+.range-chart{max-width:760px;margin:.75rem 0;background:#fff}
+.range-chart svg{overflow:visible}
+.range-summary{font-size:1.1rem}
+.range-original{font-weight:600}
+.range-qualification{border-top:1px solid #bccbbf;padding-top:1rem}
+@media(max-width:480px){.range-stage{padding:.6rem .7rem}.range-chart{margin-inline:-.15rem}.range-chart svg text{font-size:28px}}

@@ -23,6 +23,7 @@ import {mountHeatColumnEvidence} from './heat-column-evidence-panel.js';
 import {mountHeatColumnTransfer} from './heat-column-transfer-panel.js';
 import { mountStormIntensityPanel } from './storm-intensity-panel.js';
 import { mountWettingFrontPanel } from './wetting-front-panel.js';
+import { mountPressureHeadPanel } from './pressure-head-panel.js';
 import { mountProposalComponents } from './proposal-components-panel.js';
 import {mountThresholdEvidence} from './threshold-evidence-panel.js';
 import {mountClockPanel} from './clock-panel.js';
@@ -103,7 +104,7 @@ function retireRetargetedObservationDraft() {
   observationDraftCell = project.selectedIndex;
   observationDraftMinute = minute;
 }
-function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
+function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); pressureHeadPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -408,6 +409,7 @@ const heatChannelQuestionPanel = mountHeatChannelQuestion({getProject:()=>projec
 const sunPathPanel = mountSunPathPanel({getProject:()=>project, notice});
 const wettingFrontPanel = mountWettingFrontPanel({ getProject: () => project,
   replaceProject: next => { project = validateProject(next); rerun(); }, prepareReading: prepareObservedReading });
+const pressureHeadPanel = mountPressureHeadPanel({ getProject: () => project });
 const heatEvidencePanel = mountHeatEvidence({getProject:()=>project, replaceProject:next=>{project=validateProject(next);rerun();}, notice});
 const shadeHeatPanel = mountShadeHeat({getProject:()=>project, notice});
 const rootZonePanel = mountRootZone({getProject:()=>project});

@@ -1,0 +1,206 @@
+{
+  "schema": "experimental-earth-soil-air-boundary-receiving/1",
+  "upstreamCommit": "5055c34b6516fc9a533cdb0e333cf97cb28340ea",
+  "upstreamTree": "4569b652b84fbc889791ead27b12cb790168dd67",
+  "localReceivingCommit": "8779c57cf8d18d5b95be83bf83cb1b0a8d16ffaf",
+  "parentExpectedTree": "ce26b3de4315e513c42a804e24647c8021dc2af7",
+  "scope": "Static fully wet sharp-front gas conservation and force balance under explicit constant-head, ambient-initial, isothermal/no-other-gas-volume assumptions. Vented and all-original-gas-retained limits; necessary gas-amount removal at a declared target.",
+  "sourceHashes": {
+    "docs/soil-air-boundary.md": "b74b05777322f25ba9642343760f18bf9f612697eea06369f8dc67d9538cb1dd",
+    "pressure-batches.html": "dcba2437a348f71f8b6975fff0f27afe4f48b828aaceb97e160837d05c3e4d4b",
+    "soil-air-boundary-example.js": "f38e0a1d37f3fb033be23506d96a5c2969ad0d15f907f8dd3887251baf10481e",
+    "soil-air-boundary-page.js": "feafa77c50a05a5005714896603109a3b546c3238093ff131470e8adc57cc51e",
+    "soil-air-boundary.css": "b8f70cb23b23df1f8ad0a9d0e21625f69792600915ba81de84f05951d412eb08",
+    "soil-air-boundary.html": "dc6c2cdda40e3f65f33e9ff77c27e0493409ae486ce322ca9ece0b3477136ac7",
+    "soil-air-boundary.js": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+    "tests/soil-air-boundary-independent.py": "d01d17c45d1a030c798b3b7429d780d4e4488c054c8eeb8e8692fc3e252368ac",
+    "tests/soil-air-boundary.browser.mjs": "e3da94cb03c7d5ecaf37a96bbf28034f241dd57e2d87a21ba2351e4b3e18e8da",
+    "tests/soil-air-boundary.test.mjs": "44f92fd14bbc686bfd9ed24866477fcf1756dc43da271a2527004d8a993faa1d"
+  },
+  "native": {
+    "command": "node tests/soil-air-boundary.test.mjs",
+    "files": 1,
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "logSha256": "77f531fd74391282c3f21b1e531aec31564c10fdf3a8f211e8f452b5d730fd44",
+    "meaning": "Five directly executed native groups on the unchanged static core. Original native01 child-isolated runner reported only one file; its record is preserved and not counted as five assertion groups."
+  },
+  "independentOracle": {
+    "status": "pass",
+    "scriptSha256": "d01d17c45d1a030c798b3b7429d780d4e4488c054c8eeb8e8692fc3e252368ac",
+    "coreSha256": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+    "cases": 48,
+    "method": "100-digit original gas-law bisection and independent PV mole ratio; exact binary64 inputs",
+    "rootTolerance": "128 EPS times domain scale; not certified enclosure",
+    "releaseAbsoluteTolerance": 2e-12,
+    "nodeBinary": "node",
+    "maximumRootAbsoluteErrorMm": "2.03939580827697278597474413246136409786309869738480975293971608226609381845229593723E-11"
+  },
+  "independentContactControls": {
+    "status": "pass",
+    "contactCases": 5,
+    "unitEquivalence": true,
+    "admissionRefusals": 4,
+    "sourceUnchanged": true
+  },
+  "browser": {
+    "groups": [
+      "maintained workbench and batch entry reaches a blank explicit inquiry; authored static limits and counterfactual pressures match the executing API without changing the site",
+      "actual source-only download retains literal source text, distinct original units and exact physical declarations; no HTML executes or computed conclusions enter the file",
+      "fresh page recomputes the actual download; imported conclusions refuse atomically while the original accepted inquiry remains available",
+      "before-root, exact numerical contact and beyond-root states stay distinct; an exact-base target refuses and edited inputs retire old conclusions",
+      "late failed and successful file reads cannot replace a newer accepted inquiry or later physical input edits",
+      "desktop and 390px original inquiry, chart and target results remain readable without horizontal overflow or browser exceptions"
+    ],
+    "ordinarySandboxAdmitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "layouts": [
+      {
+        "width": 1440,
+        "page": 1425,
+        "badControls": 0,
+        "chartFont": 22.322222222222223,
+        "clippedLabels": []
+      },
+      {
+        "width": 390,
+        "page": 390,
+        "badControls": 0,
+        "chartFont": 13.475260416666666,
+        "clippedLabels": []
+      }
+    ],
+    "javascriptExceptions": 0,
+    "sourceHashes": {
+      "soil-air-boundary.js": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+      "soil-air-boundary-example.js": "f38e0a1d37f3fb033be23506d96a5c2969ad0d15f907f8dd3887251baf10481e",
+      "soil-air-boundary-page.js": "feafa77c50a05a5005714896603109a3b546c3238093ff131470e8adc57cc51e",
+      "soil-air-boundary.html": "dc6c2cdda40e3f65f33e9ff77c27e0493409ae486ce322ca9ece0b3477136ac7",
+      "soil-air-boundary.css": "b8f70cb23b23df1f8ad0a9d0e21625f69792600915ba81de84f05951d412eb08",
+      "pressure-batches.html": "dcba2437a348f71f8b6975fff0f27afe4f48b828aaceb97e160837d05c3e4d4b",
+      "pressure-batches.css": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6",
+      "tests/soil-air-boundary.browser.mjs": "e3da94cb03c7d5ecaf37a96bbf28034f241dd57e2d87a21ba2351e4b3e18e8da"
+    },
+    "receiptSha256": "4b011dbb2c1d5f4b34415a783f1de76ded983a9e18cc5c8169189d242770d21e",
+    "captureHashes": {
+      "desktop-air-limits.png": "c7fe837956d77eb576958b17f58bbdfd778f12873021a1ceaff7a0bfdf29d502",
+      "mobile-air-chart.png": "f015c54fbf7e9b25926b52e04d2e1b5b68de6bb6889e16ea224b49687c70e6ff",
+      "mobile-air-limits.png": "b7f550e8256cae7ddad7e9a1fed2de9c257b330553d04fe8a69c7a0cc678c69a",
+      "mobile-air-target.png": "f1615ebb65e573bc385beeed15aa47eb9df9124a19f9a5533d091fec9e833a97"
+    },
+    "sourceDownloadSha256": "ef05e8fb0df5b1f92e02a712e2f8cd40b34fd1ed5d5b64f67e1f96cd45308158"
+  },
+  "maintainedServer": {
+    "status": "pass",
+    "completedAt": "2026-10-28T23:58:22.802537+00:00",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/tmp/hamon-earth-air-boundary-20261028/product/serve.py",
+      "--port",
+      "0"
+    ],
+    "serverSha256": "5049176c57e8bf023cca55a38588f9a30d2c4740f725585d90af94de4ce086bb",
+    "assets": [
+      {
+        "path": "soil-air-boundary.html",
+        "bytes": 5191,
+        "sha256": "dc6c2cdda40e3f65f33e9ff77c27e0493409ae486ce322ca9ece0b3477136ac7",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "path": "soil-air-boundary.css",
+        "bytes": 1741,
+        "sha256": "b8f70cb23b23df1f8ad0a9d0e21625f69792600915ba81de84f05951d412eb08",
+        "status": 200,
+        "contentType": "text/css"
+      },
+      {
+        "path": "soil-air-boundary.js",
+        "bytes": 8994,
+        "sha256": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "soil-air-boundary-example.js",
+        "bytes": 1399,
+        "sha256": "f38e0a1d37f3fb033be23506d96a5c2969ad0d15f907f8dd3887251baf10481e",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "soil-air-boundary-page.js",
+        "bytes": 15113,
+        "sha256": "feafa77c50a05a5005714896603109a3b546c3238093ff131470e8adc57cc51e",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-batches.html",
+        "bytes": 4828,
+        "sha256": "dcba2437a348f71f8b6975fff0f27afe4f48b828aaceb97e160837d05c3e4d4b",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "path": "pressure-batches.css",
+        "bytes": 3087,
+        "sha256": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6",
+        "status": 200,
+        "contentType": "text/css"
+      }
+    ],
+    "meaning": "Actual maintained serve.py CLI returns the exact new browser assets; browser interaction is qualified separately."
+  },
+  "reviews": {
+    "core": {
+      "status": "accepted-static-limiting-model",
+      "coreSha256": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+      "oracle": "CORE_ORACLE_RECEIPT.json",
+      "contact": "CONTACT_RECEIPT.json",
+      "findings": [
+        "Root uses advancement-coordinate stable positive root; arithmetic bounds prevent overflow in admitted ranges.",
+        "Factored removal and drive match original gas-law/PV independent controls. Numerical contact yields null rather than fabricated exact zero release.",
+        "Target excludes exact base; separately tagged profile endpoint is limiting removal only, not finite gas pressure.",
+        "Original inputs/units/sources and offered order retained; all physical assumptions explicit.",
+        "No K/time integration, measured gas-release or physical-validation claim in API."
+      ],
+      "limitations": [
+        "48 authored boundary cases plus contact controls are not exhaustive floating-point proof or certified enclosure.",
+        "Initial test fixture rounded slightly outside strict gas-gap admission; refusal and original harness preserved, valid interior fixture then passed.",
+        "Point source strings record declarations, not verification of physical truth."
+      ],
+      "productEdits": false
+    },
+    "coreReviewSha256": "4c94a3c025314b1cd2455e7f23ec9ff2d25abaea5bf585c2e217980e3d03d943",
+    "consumerReviewSha256": "96d8ea8e11036982a759a8720270b1ddf16969218b43aaa8f21ca27b17de3a2d",
+    "rootFinalVisualSha256": "a766eeb676905caa21267f8e6226945fb5417e80137542af65ee247d516a0d6b",
+    "physicalNoteReview": {
+      "status": "accepted",
+      "file": "/tmp/hamon-earth-air-boundary-20261028/product/docs/soil-air-boundary.md",
+      "sha256": "b74b05777322f25ba9642343760f18bf9f612697eea06369f8dc67d9538cb1dd",
+      "finding": "Equality/zero-drive interpretation is now explicitly restricted to positive gas-removal thresholds beyond the fixed-gas limit. Before that limit, clamped zero removal can coexist with positive drive. Necessary static bound is not sufficient dynamic history.",
+      "coreChanged": false
+    }
+  },
+  "earlierReceiving": "Browser01 passed its six groups on the earlier consumer; independent review then corrected an overbroad equality statement for zero-removal targets. Browser02 qualified corrected wording and full SVG text bounds. Browser03 qualifies the same reviewed bytes on fresh upstream composition. Every earlier receipt is preserved.",
+  "upstreamComposition": {
+    "updatedPaths": 14,
+    "ownedOverlap": [],
+    "meaning": "14 exact Git-blob-verified unrelated sky-evidence paths were received; root source hashes unchanged. Browser03 starts at the composed workbench."
+  },
+  "inheritedEvidence": "The frozen 44-path parent retains its earlier focused native/browser proof, and the 41-path ancestor retains its historical full 1599-test receiving. Neither full suite is claimed rerun for this successor; existing physical kernels and parent sources are unchanged except the additive batch-page link.",
+  "interpretation": "Authored controls only. Gas amount means moles or mass, not emptied pore volume. Positive-threshold equality is zero drive; below the fixed-gas limit zero removal can coexist with positive drive. No conductivity/time/release-history inference, empirical validation, certified numerical enclosure, actual cloud execution or parameter adoption.",
+  "publication": "No new remote mutation, PR, merge, deployment or physical action established."
+}
