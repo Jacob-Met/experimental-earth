@@ -1,0 +1,8 @@
+import assert from'node:assert/strict';import{advanceGraph}from'../finite-profile-transport.js';
+const budget=()=>({used:0,limit:3000000}),cases=[];
+for(const mirror of[false,true])for(const capacity of[.05,.1,1]){const initial=mirror?[0,1]:[1,0],z=mirror?[10,20]:[20,10],edge=mirror?{a:1,b:0,crestMm:null}:{a:0,b:1,crestMm:null},receiver={capacityMm:capacity,storedMm:0,drainagePerHour:0};const r=advanceGraph(initial,z,[edge],[[mirror?0:1,1]],1,10/11,1,0,mirror?[1,0]:[0,1],budget(),mirror?[receiver,null]:[null,receiver]);const uptake=Math.min(capacity,.1);assert.ok(Math.abs(r.absorbed-uptake)<1e-12);assert.ok(Math.abs(r.exit-(1-uptake))<1e-12);assert.ok(Math.abs(r.stores.reduce((a,b)=>a+b,0)-uptake)<1e-12);assert.ok(Math.abs(r.balance)<1e-12);cases.push({mirror,capacity,result:r});}
+// Outgoing edge list order must not materially alter the complete ledger.
+const args=[[2,0,0],[30,20,10],[{a:0,b:1,crestMm:null},{a:0,b:2,crestMm:null},{a:1,b:2,crestMm:null}],[[2,1]],.5,.3,.4,1,[2,3,1]],receivers=[null,{capacityMm:.4,storedMm:.1,drainagePerHour:.7},null];const a=advanceGraph(...args,budget(),receivers),rev=structuredClone(args);rev[2].reverse();const b=advanceGraph(...rev,budget(),receivers);for(const k of['absorbed','exit','balance','drained'])assert.ok(Math.abs(a[k]-b[k])<1e-10);for(let i=0;i<3;i++)assert.ok(Math.abs(a.water[i]-b.water[i])<1e-10);
+assert.throws(()=>advanceGraph(...args,{used:0,limit:1},receivers),/work bound/);assert.throws(()=>advanceGraph(...args,budget(),[null,,null]),/receiver bounds/);
+
+assert.throws(()=>advanceGraph([0,0],[1,0],[],[],1,0,0,0,[0,0],budget(),[{capacityMm:1e308,storedMm:1e308,drainagePerHour:0},{capacityMm:1e308,storedMm:1e308,drainagePerHour:0}]),/inventory overflow/);
