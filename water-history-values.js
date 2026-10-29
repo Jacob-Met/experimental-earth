@@ -27,6 +27,22 @@ export function exactWaterNumber(value, signed = false) {
   return (signed && value > 0 ? '+' : '') + (Object.is(value, -0) ? '-0' : String(value));
 }
 
+/** Exact maxima of retained snapshots, not interpolated or continuous-time peaks. */
+function peaksFromValues(values) {
+  const peak = key => {
+    let liters = values[0][key];
+    for (const row of values) liters = Math.max(liters, row[key]);
+    const indices = values.flatMap((row, index) => row[key] === liters ? [index] : []);
+    return Object.freeze({ liters, indices: Object.freeze(indices),
+      minutes: Object.freeze(indices.map(index => values[index].minute)) });
+  };
+  return Object.freeze({ existing: peak('existingLiters'), proposed: peak('proposedLiters') });
+}
+
+export function retainedWaterPeaks(comparison) {
+  return peaksFromValues(retainedWaterValues(comparison));
+}
+
 export function createWaterHistoryValues(chartWrap) {
   const document = chartWrap.ownerDocument;
   const section = document.createElement('section');
@@ -54,6 +70,26 @@ export function createWaterHistoryValues(chartWrap) {
         <tr><th scope="row">Change<br>(proposed − existing)</th><td id="water-history-change"></td></tr>
       </tbody>
     </table>
+    <section id="water-history-peaks" aria-labelledby="water-history-peaks-title">
+      <h4 id="water-history-peaks-title">When did standing water peak?</h4>
+      <p>Each scenario has its own maximum across retained snapshots. Read paired values at either peak time to compare both scenarios at the same time. These are not continuous-time peaks.</p>
+      <div class="water-peak-grid">
+        <div>
+          <h5>Existing peak</h5>
+          <p id="water-history-existing-peak"></p>
+          <label for="water-history-existing-peak-time">Existing peak time</label>
+          <select id="water-history-existing-peak-time" disabled></select>
+          <button type="button" id="water-history-existing-peak-read" class="subtle" disabled>Read paired values at existing peak</button>
+        </div>
+        <div>
+          <h5>Proposed peak</h5>
+          <p id="water-history-proposed-peak"></p>
+          <label for="water-history-proposed-peak-time">Proposed peak time</label>
+          <select id="water-history-proposed-peak-time" disabled></select>
+          <button type="button" id="water-history-proposed-peak-read" class="subtle" disabled>Read paired values at proposed peak</button>
+        </div>
+      </div>
+    </section>
     <p id="water-history-help">Whole-site model totals before display rounding. Arrow keys move one retained time; Home and End select the endpoints.</p>
     <p id="water-history-status" role="status"></p>`;
   chartWrap.append(section);
@@ -62,12 +98,20 @@ export function createWaterHistoryValues(chartWrap) {
   const minute = get('minute'), position = get('position'), caption = get('caption');
   const existing = get('existing'), proposed = get('proposed'), change = get('change');
   const source = get('source'), status = get('status');
+  const peakControls = ['existing', 'proposed'].map(scenario => ({
+    scenario, summary: get(scenario + '-peak'),
+    time: get(scenario + '-peak-time'), read: get(scenario + '-peak-read'),
+  }));
   let course = [], selected = 0, available = false;
   function draw() {
     const sample = course[selected];
     slider.disabled = !available || !sample;
     previous.disabled = !available || !sample || selected === 0;
     next.disabled = !available || !sample || selected === course.length - 1;
+    for (const peak of peakControls) {
+      peak.time.disabled = !available || !sample;
+      peak.read.disabled = !available || !sample;
+    }
     section.dataset.state = available && sample ? 'ready' : 'unavailable';
     status.textContent = available && sample ? '' : course.length
       ? 'Showing the last completed comparison. Time selection is unavailable until the current comparison is ready.'
@@ -91,6 +135,7 @@ export function createWaterHistoryValues(chartWrap) {
   slider.addEventListener('input', () => select(Number(slider.value)));
   previous.addEventListener('click', () => select(selected - 1));
   next.addEventListener('click', () => select(selected + 1));
+  for (const peak of peakControls) peak.read.addEventListener('click', () => select(Number(peak.time.value)));
   draw();
   return {
     selectMinute(value) {
@@ -102,6 +147,20 @@ export function createWaterHistoryValues(chartWrap) {
       const values = retainedWaterValues(comparison);
       const previousMinute = course[selected]?.minute;
       const retained = values.findIndex(sample => sample.minute === previousMinute);
+      const peaks = peaksFromValues(values);
+      for (const control of peakControls) {
+        const peak = peaks[control.scenario];
+        control.summary.textContent = exactWaterNumber(peak.liters) + ' L · ' + peak.indices.length +
+          (peak.indices.length === 1 ? ' retained peak time' : ' tied retained peak times');
+        control.time.replaceChildren(...peak.indices.map((index, tie) => {
+          const option = document.createElement('option');
+          option.value = String(index);
+          option.textContent = exactWaterNumber(values[index].minute) + ' min (peak time ' +
+            (tie + 1) + ' of ' + peak.indices.length + ')';
+          return option;
+        }));
+        control.time.value = String(peak.indices[0]);
+      }
       course = values;
       selected = retained >= 0 ? retained : values.length - 1;
       slider.max = String(values.length - 1);

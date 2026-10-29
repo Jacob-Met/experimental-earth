@@ -67,6 +67,8 @@ Run `npm run serve` (or `python3 serve.py`) from the repository root and open `h
 
 **Inspect both rain maps at one modeled time.** Choose **Water depth at the same time (mm)** in Cell visualization, then move through the retained event snapshots with the slider or Previous/Next. Both scenarios show the same instant, including a fractional final step. Time navigation preserves the site, evidence and unfinished entries; per-cell peak mode remains explicitly distinct from a simultaneous state. See [the rain-map time guide](docs/RAIN_MAP_TIME.md) for controls, an independent mixed-surface example and model limits.
 
+**See when whole-site standing water peaks.** Below the water-history readout, inspect each scenario's exact retained maximum and every tied peak time. **Read paired values** selects both original scenario totals at that time, so separate maxima are not mistaken for a simultaneous comparison. Zero-water ties and fractional endpoints remain explicit; inspection does not edit the site or run another solve. See [peak-water times](docs/PEAK_WATER_TIMES.md) for controls and the retained-snapshot boundary.
+
 The base project's **Export JSON** and **Import JSON** share a 4 MiB UTF-8 transfer ceiling, which admits a fully sourced 24×24 survey grid that exceeds the former 1 MB importer limit. Export refuses an oversized workspace without modifying it; Import refuses oversized or invalid files, and a pending file read cannot overwrite newer project edits or a reset. A retained source description is an authored claim, not independent provenance verification.
 
 Run `npm test` with Node.js 20+ for the native conservation and record-validation suite.

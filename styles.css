@@ -200,3 +200,13 @@
 #water-tradeoff-groups li strong { font-size: 14px; }
 #water-tradeoff-groups li p { font-size: 13px; line-height: 1.5; }
 @media (max-width: 640px) { #water-tradeoff-extremes { grid-template-columns: 1fr; } }
+
+#water-history-peaks { border-top: 1px solid #d4e2d9; margin-top: 16px; padding-top: 12px; }
+#water-history-peaks h4 { margin: 0; font-size: 14px; }
+#water-history-peaks h5 { margin: 0; font-size: 13px; }
+#water-history-peaks p, #water-history-peaks label { font-size: 12px; color: #426157; overflow-wrap: anywhere; }
+.water-peak-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.water-peak-grid > div { min-width: 0; }
+.water-peak-grid select { width: 100%; min-width: 0; margin: 6px 0; }
+.water-peak-grid button { width: 100%; padding: 8px; white-space: normal; font-size: 12px; }
+@media (max-width: 600px) { .water-peak-grid { grid-template-columns: minmax(0, 1fr); } }
