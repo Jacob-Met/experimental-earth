@@ -1,0 +1,231 @@
+{
+  "schema": "experimental-earth/original-sky-course-receiving/1",
+  "qualifiedAtUtc": "2026-10-29T02:35:30.639500+00:00",
+  "baseCommit": "eb58a68d87cc03d2ab420e16296de8cb928af5bf",
+  "scope": "Qualified candidate; merge and accepted-source receiving are separate subsequent receipts.",
+  "source": {
+    "docs/SKY_ORIGINAL_COURSE.md": {
+      "sha256": "73c28d5a20797a750a2ec9d334938ba0c4488589a8e3ff1b39ae94ac558df8d8",
+      "bytes": 8909
+    },
+    "shade-heat-course-evidence.css": {
+      "sha256": "6a07f918d05f90a0e42cc0ef2ccadfddb259f4aaaea337976aee26c151566677",
+      "bytes": 3255
+    },
+    "shade-heat-course-evidence.js": {
+      "sha256": "400d35f4596e038b67da3751dd89a14e6fb6142b4df41d2bf5b52a1536ef1eb2",
+      "bytes": 12756
+    },
+    "shade-heat-course-inputs.js": {
+      "sha256": "11b45bdd2a29f11b288b6df64df73cf884acde7b0c2beac44259c03b8b2c2b67",
+      "bytes": 2930
+    },
+    "shade-heat-course-page.js": {
+      "sha256": "3eda7fb4cd8354586c70638c50e2254fcaac79a83116796d9a670f577d5fa09d",
+      "bytes": 26409
+    },
+    "shade-heat-course-worker.js": {
+      "sha256": "ca494d793cd28845dde9ac1d028b837b9e962c40f9432cde9a040e56bed12336",
+      "bytes": 578
+    },
+    "shade-heat-epoch-kernel.js": {
+      "sha256": "a8dc9598cdaaee92c98830ce3c757ddbd23149ae60283359adf11ba7570e0270",
+      "bytes": 18364
+    },
+    "shade-heat-profile-basis.js": {
+      "sha256": "8150a73b1e74dc544db3c97aacc14f9103888dfc737e817eeec905b94c631079",
+      "bytes": 6181
+    },
+    "sky-course-evidence.html": {
+      "sha256": "3e34b20be508d2166788fe4ede868b37edc1f512da502f579cd2a5450598cab6",
+      "bytes": 3515
+    },
+    "sky-third-receiver.html": {
+      "sha256": "84057d548622bfd8ac105f02658b8a8dfd4712a32b0a52f213d714422d1cb7c7",
+      "bytes": 4107
+    },
+    "tests/shade-heat-course-evidence.browser.mjs": {
+      "sha256": "eb4196378bdc4114854afa9f5138dab520cbf3148c19a2573dba932057a7555a",
+      "bytes": 22069
+    },
+    "tests/shade-heat-course-evidence.test.mjs": {
+      "sha256": "8f8e1fe2f828c3f5b4a93bad603762163c844c0f75f693f2e15e2282c17f9264",
+      "bytes": 10197
+    },
+    "tests/shade-heat-course-inputs.test.mjs": {
+      "sha256": "4211000677b09647a517f0629841f7bc87ac6c22809a2896db6160fd2f9c5f61",
+      "bytes": 3468
+    }
+  },
+  "native": {
+    "coreGroups": 8,
+    "inputAndDisplayGroups": 3,
+    "maintainedGroups": 34,
+    "coreLogSHA256": "e30e19342bb26539663b89f7f1cc3ad45c5800d7903c2fd7e880c689c32ff2a4",
+    "maintainedLogSHA256": "7c6595cc4d92857132956a0c93706ed1b446431a0a83934d4fddb746714c2a34",
+    "inputsPeerReceiptSHA256": "3d1f6e023dd9f5e4d65f949084d6ff9547a915ad083f95a2c8cdcbc75e946a14",
+    "coreCLI": 96811,
+    "maintainedCLI": 89948,
+    "inputsCLIInitialBeforeSparseFix": 27913,
+    "inputsAfterSparseFix": "Independent Ground execution recorded in the consumer review;3 groups pass."
+  },
+  "independent": {
+    "adapterStates": 176,
+    "adapterCourses": 4,
+    "coreReviewSHA256": "196e982186045056188b82201f59af2fa0f6dd7e25e3dd23a8820f2949983871",
+    "adapterReceiptSHA256": "ef0bb8d296f6ad8f279ca268cf3040978f15d1257a0513043af551a2ee87cacd",
+    "nodeExactPrimalDualExtrema": 68,
+    "nodeCertificateSHA256": "d92beff507280e7caa440e333b4fe7cb9ea86d7f24215005dd862c9f3de66c55",
+    "chromiumExactPrimalDualExtrema": 68,
+    "chromiumCertificateSHA256": "6ad5ccd17c939fd811c9c5f05667871f6bdbaa1c9a2784c57ddba49f142d3b8f",
+    "rawChromiumPairsSHA256": "072065f6af2b63fd83f3e52deb83dfadef1b28cee40f98a936c2b38933cc5ec8",
+    "finalBrowserReportEqualsIndependentCertificateReport": true
+  },
+  "browser": {
+    "status": "PASS",
+    "groups": 8,
+    "checks": [
+      "Ordinary parent entry runs the actual complete worker:17 original times,68 exact range endpoints,3 original points and correctly bound whole-profile markers",
+      "All68 extrema select their exact time and noncontiguous witness ID; keyboard time/profile controls preserve the fixed profile and inspect cooling-to-warming without another computation",
+      "Actual source-only download opens in a fresh document and recomputes the complete course; inspection choices and derived ranges are not saved as evidence",
+      "Original-time whiskers,selected profile,range units and three-point source view fit desktop and390px without a continuous-time connecting curve",
+      "Actual three-file intake preserves4/16/8 histories and permits the third comparison point; a saved prior inquiry supplies originals without choosing a boundary; detached older controls cannot restore stale inputs or times",
+      "Malformed prior results,incomplete intake,invalidUTF8 and mismatched forcing refuse while retaining prior accepted results; an invalid new boundary clears the new inquiry whole",
+      "A held actual third-file read cannot overwrite newer accepted originals or the selected course",
+      "A held older actual-worker result cannot replace a newer incompatible family; all17 original times and source-only export remain available without invented witnesses or ranges"
+    ],
+    "exceptions": [],
+    "activeSandbox": true,
+    "namespaceSandbox": true,
+    "seccompSandbox": true,
+    "CLI": 14997,
+    "exitCode": 0,
+    "terminalChunk": "142282",
+    "startedAt": "2026-10-29T02:42:01.785Z",
+    "finishedAt": "2026-10-29T02:42:19.203Z",
+    "receiptSHA256": "511da83f39d1a3e85a46ac0b612cc4e0784ad9aa55e68335c7dabdd0f0d776e8",
+    "launcher": "python3 serve.py --port 0",
+    "visualInspection": [
+      "desktop plots",
+      "390px plots",
+      "390px selected-time ranges",
+      "390px original-profile witness"
+    ],
+    "priorDiagnosticFailures": [
+      {
+        "CLI": 78564,
+        "terminalChunk": "c0fdce"
+      },
+      {
+        "CLI": 74289,
+        "terminalChunk": "a3b76d"
+      },
+      {
+        "CLI": 47072,
+        "terminalChunk": "1502f2"
+      }
+    ],
+    "scope": "Fresh current-main composition preserving PR496;8 groups pass on the exact source."
+  },
+  "runtimeDifference": {
+    "maximumRangeDifferenceC": 3.552713678800501e-15,
+    "nodeWitnessCountAtChangedPoint": 6,
+    "chromiumWitnessCountAtChangedPoint": 5,
+    "feasibleVertices": 78,
+    "originalSourcesExactlyEqual": true,
+    "scope": "Own-runtime exact extrema separately certified. Cross-runtime thermal coefficients are not claimed bit identical."
+  },
+  "authoredBenefit": {
+    "times": 17,
+    "comparisonPoint": "B2",
+    "selectedBoundary": 8,
+    "surfaceAt0800C": [
+      -2.1019117536649183,
+      -2.083703454640974
+    ],
+    "surfaceAt1200C": [
+      1.6370395522973524,
+      1.6406829698817353
+    ],
+    "actualThermalCourses": 228,
+    "finalSameRuntimeRangesMatchAcceptedThreeReadingInquiry": true,
+    "physicalValidation": false
+  },
+  "limits": {
+    "maxIntervals": 24,
+    "maxRetainedTimes": 25,
+    "maxThermalCourses": 1392,
+    "maxCourseIntervals": 33408,
+    "maxOriginalReplayEndpointRows": 7500,
+    "numericalScreenC": 1e-09
+  },
+  "holds": "No held Page insertion, denied ref/merge, or UNKNOWN operation was retried. This record concerns the new original-course source only.",
+  "sourceEquivalence": {
+    "matchedExecutedFiles": 859,
+    "receiptSHA256": "a53085d490595b037098c648b6110b48c1894beab6e3b49fa532af0beac134bc",
+    "baseFilesUnchangedAndMatchedToAcceptedGit": 850
+  },
+  "integrationBaseCommit": "11de74ea9dfeabb698cd1061a1e3dcdf297fed89",
+  "composition": {
+    "preservedMainPR": 496,
+    "preservedPaths": [
+      "README.md",
+      "app.js",
+      "docs/MAIN_RAIN_COMPARISON.md",
+      "rain-comparison-computation.js",
+      "rain-comparison-worker.js",
+      "tests/grid-keyboard.test.mjs",
+      "tests/main-comparison-worker.receiving.mjs",
+      "tests/rain-comparison-computation.test.mjs",
+      "tests/rain-comparison-worker.test.mjs",
+      "tools/package-browser-build.py"
+    ],
+    "overlappingChangedPaths": [],
+    "originalPublicationAttempt": "Terminal exit1 at the main-read guard before any GitHub write; newer main preserved by fresh composition."
+  },
+  "firstCandidateBrowser": {
+    "status": "PASS",
+    "groups": 8,
+    "checks": [
+      "Ordinary parent entry runs the actual complete worker:17 original times,68 exact range endpoints,3 original points and correctly bound whole-profile markers",
+      "All68 extrema select their exact time and noncontiguous witness ID; keyboard time/profile controls preserve the fixed profile and inspect cooling-to-warming without another computation",
+      "Actual source-only download opens in a fresh document and recomputes the complete course; inspection choices and derived ranges are not saved as evidence",
+      "Original-time whiskers,selected profile,range units and three-point source view fit desktop and390px without a continuous-time connecting curve",
+      "Actual three-file intake preserves4/16/8 histories and permits the third comparison point; a saved prior inquiry supplies originals without choosing a boundary; detached older controls cannot restore stale inputs or times",
+      "Malformed prior results,incomplete intake,invalidUTF8 and mismatched forcing refuse while retaining prior accepted results; an invalid new boundary clears the new inquiry whole",
+      "A held actual third-file read cannot overwrite newer accepted originals or the selected course",
+      "A held older actual-worker result cannot replace a newer incompatible family; all17 original times and source-only export remain available without invented witnesses or ranges"
+    ],
+    "exceptions": [],
+    "activeSandbox": true,
+    "namespaceSandbox": true,
+    "seccompSandbox": true,
+    "CLI": 96049,
+    "exitCode": 0,
+    "terminalChunk": "62e531",
+    "startedAt": "2026-10-29T02:30:43.240Z",
+    "finishedAt": "2026-10-29T02:31:02.542Z",
+    "receiptSHA256": "d6c2e68fdfa2142a904efcdb9daba50db76286216c229f66e072568e909afc95",
+    "launcher": "python3 serve.py --port 0",
+    "visualInspection": [
+      "desktop plots",
+      "390px plots",
+      "390px selected-time ranges",
+      "390px original-profile witness"
+    ],
+    "priorDiagnosticFailures": [
+      {
+        "CLI": 78564,
+        "terminalChunk": "c0fdce"
+      },
+      {
+        "CLI": 74289,
+        "terminalChunk": "a3b76d"
+      },
+      {
+        "CLI": 47072,
+        "terminalChunk": "1502f2"
+      }
+    ]
+  }
+}

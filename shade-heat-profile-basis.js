@@ -63,10 +63,18 @@ export function sampleProfileBasisGeometry(source, bins) {
   return { sampled, transmissions, diagnostics };
 }
 
-export function evaluateProfileThermalCourse(source, geometry, transmissionsFor, label, refusalPrefix) {
-  const final = {};
+function evaluateProfileThermal(source, geometry, transmissionsFor, label, refusalPrefix, keepOriginalBoundaries) {
+  const final = {}, states = {};
+  let elapsed = 0;
+  const originalBoundaries = keepOriginalBoundaries ? [
+    { index: 0, utc: source.declaration.path.startUtc, minute: 0, thermalMinute: 0 },
+    ...geometry.sampled.intervals.map((row, index) => ({ index: index + 1,
+      utc: row.toUtc, minute: row.toMinute,
+      thermalMinute: elapsed += row.toMinute - row.fromMinute })),
+  ] : null;
   for (const target of targets) {
     final[target] = {};
+    if (keepOriginalBoundaries) states[target] = {};
     for (const bound of bounds) {
       try {
         const study = structuredClone(source.project.heatColumnStudy);
@@ -78,7 +86,15 @@ export function evaluateProfileThermalCourse(source, geometry, transmissionsFor,
           reservoirC: row.weather.reservoirC,
           source: label + '; original midpoint ' + row.sampleUtc,
         }));
-        const value = evaluateHeatColumnTarget(study, target).summary.final;
+        const course = evaluateHeatColumnTarget(study, target), value = course.summary.final;
+        if (keepOriginalBoundaries) {
+          const byMinute = new Map(course.trajectory.map(row => [row.minute, row]));
+          states[target][bound] = originalBoundaries.map(boundary => {
+            const point = byMinute.get(boundary.thermalMinute);
+            if (!point) throw Error('A complete original thermal interval endpoint is missing');
+            return { minute: point.minute, surfaceC: point.surfaceC, subsurfaceC: point.subsurfaceC };
+          });
+        }
         final[target][bound] = { minute: value.minute,
           surfaceC: value.surfaceC, subsurfaceC: value.subsurfaceC };
       } catch (error) {
@@ -87,5 +103,16 @@ export function evaluateProfileThermalCourse(source, geometry, transmissionsFor,
       }
     }
   }
-  return final;
+  return { final, ...(keepOriginalBoundaries ? { originalBoundaries, states } : {}) };
+}
+
+export function evaluateProfileThermalCourse(source, geometry, transmissionsFor, label, refusalPrefix) {
+  return evaluateProfileThermal(source, geometry, transmissionsFor, label, refusalPrefix, false).final;
+}
+
+// Retain only the unchanged course's actual original interval endpoints.
+// Original UTC/minute and the thermal accumulator's minute remain distinct;
+// no nearest-time lookup, interpolation, or newly requested sample is used.
+export function evaluateProfileOriginalBoundaryCourse(source, geometry, transmissionsFor, label, refusalPrefix) {
+  return evaluateProfileThermal(source, geometry, transmissionsFor, label, refusalPrefix, true);
 }
