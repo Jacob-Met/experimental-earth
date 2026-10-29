@@ -1,3 +1,4 @@
+import {drawSkyAllowanceReport} from './shade-heat-sky-allowance-view.js';
 import {node,number,point,table,phaseFigure} from './shade-heat-epoch-view.js';
 import {rational as q,sub} from './vendor/chronos/exact-halfplanes.mjs';
 import {profileFraction} from './shade-heat-profile-band.js';
@@ -101,6 +102,7 @@ export function drawSkyCoverageReport(host,result,isCurrent){
  const inquiryCode=node('pre');inquiryProof.append(inquiryCode);
  inquiryProof.addEventListener('toggle',()=>{if(!active(inquiryProof)||!inquiryProof.open||inquiryCode.textContent)return;inquiryCode.textContent=JSON.stringify({requirements:r.requirements,requirementIntervalRows:r.exactEvidence.requirementIntervalRows,result:r.exactEvidence.result},null,2);});
  verdict.append(inquiryProof);host.append(verdict);
+ drawSkyAllowanceReport(host,result,isCurrent);
   const classes=node('div');classes.className='coverage-classes';
   for(let changes=0;changes<=2;changes++){
     const examined=r.patterns.filter(p=>p.changes===changes),compatible=examined.filter(p=>p.compatibility==='compatible');
