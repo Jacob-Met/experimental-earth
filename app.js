@@ -37,6 +37,7 @@ import { mountRoutePondingPanel } from './route-ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, chooseNextObservation } from './core.js';
 import { createRainComparisonComputation } from './rain-comparison-computation.js';
 import { modelNumber, readingNumber as formatReadingNumber } from './number-format.js';
+import { createWaterChart } from './water-chart.js';
 import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -51,6 +52,7 @@ import { mountEventChallengePanel } from './event-challenge-panel.js';
 import { mountLocalWaterBudget } from './local-water-budget-panel.js';
 import { mountRainTrace } from './rain-trace-panel.js';
 const $ = id => document.getElementById(id);
+const waterChart = createWaterChart($('chart'));
 const savedProject = openSavedProject();
 let project = savedProject.project;
 const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
@@ -436,20 +438,7 @@ function metric(title,a,b,unit,desirable='low') {
   return `<div class="metric"><div class="metric-label">${title}</div><div class="metric-columns"><div><small>Existing</small><strong>${numeric(a)}</strong></div><div><small>Proposal</small><strong>${numeric(b)}</strong></div></div><div class="metric-foot ${Math.abs(delta)<.001?'no-change':''}">${change}</div></div>`;
 }
 function chart() {
-  const svg=$('chart');const w=700,h=215,left=48,right=12,top=18,bottom=26;
-  const arr=[results.existing,results.proposal];
-  const maximum=Math.max(1,...arr.flatMap(r=>r.snapshots.map(s=>s.storedLiters)));
-  const duration=project.weather.durationMinutes;
-  const xx=t=>left+(w-left-right)*t/duration;
-  const yy=v=>top+(h-top-bottom)*(1-v/maximum);
-  const gridlines=Array.from({length:5},(_,i)=>{
-    const value=maximum*i/4, y=yy(value);
-    return `<line x1="${left}" y1="${y}" x2="${w-right}" y2="${y}" stroke="#e8efec" stroke-width="1"/><text x="${left-8}" y="${y+4}" text-anchor="end">${numeric(value)}</text>`;
-  }).join('');
-  const paths=arr.map((r,i)=>`<path d="${r.snapshots.map((s,j)=>`${j?'L':'M'}${xx(s.minute).toFixed(2)},${yy(s.storedLiters).toFixed(2)}`).join(' ')}" fill="none" stroke="${i?'#248c7a':'#cc8965'}" stroke-width="3.5" stroke-linejoin="round"/>`).join('');
-  const times=Array.from({length:5},(_,i)=>`<text x="${xx(duration*i/4)}" y="${h-7}" text-anchor="middle">${Math.round(duration*i/4)} min</text>`).join('');
-  const stormX=xx(project.weather.stormMinutes);
-  svg.innerHTML=`${gridlines}<line x1="${stormX}" y1="${top}" x2="${stormX}" y2="${h-bottom}" stroke="#a4b9ae" stroke-dasharray="4 5"/><text x="${Math.min(stormX+5,w-70)}" y="12">rain stops</text>${paths}${times}`;
+  waterChart.update(results, project.weather);
 }
 function observations() {
   const restoreFocus = observationFocus.capture();
