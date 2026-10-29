@@ -1,0 +1,21 @@
+# Explicit event-aware source and transport research model
+
+`uniform-source-finite-event-midpoint/research1` is an additional mixed-planning choice. Maintained rainfall, timed-profile and finite timed-profile choices remain unchanged. It requires a separately sourced finite receiving layer and an infiltration-rate study. Receiving-hypothesis inference and crest declarations refuse. Original calibration and every hypothetical layout use the identical selected model. Original support stays private and fixed during layout and timestep comparisons. Raw save/reopen retains declarations, not trusted computed results; adoption records the explicit model.
+
+## Mechanism and limits
+
+Each accepted internal interval evaluates instantaneous source, uptake, directional head requests and receiver drainage, predicts a midpoint, then computes midpoint fluxes. Dry nodes allocate arriving flow to uptake before outgoing transport. Left-limit wet/full states remain active through an event endpoint; averaging two already donor-limited completed steps is deliberately not used. Candidate intervals stop at surface-empty or receiver-capacity events. A quadratic prediction accelerates root finding, with bounded bisection fallback. Final incoming/uptake/outgoing volumes receive one conservative donor/capacity allocation. Stored receiving water uses the exponential response to uniform accepted uptake over the interval, with stable expm1/phi drainage accounting.
+
+Event roots are approximate: they use midpoint-predicted storage, while final storage uses the exponential update. Acceptance tolerance is `1e-12 * max(1, whole graph inventory)`, so tiny local inventories can be poorly resolved. This is not an exact hitting-time or general stability theorem. If positive wet inventory has a depletion duration that cannot advance the current floating-point clock, that represented inventory is transferred through uptake/outgoing shares without adding elapsed rain. Such transfers are counted and update sampled peaks. They preserve the measured ledger within its explicit tolerance, not bitwise arithmetic or accurate subnormal fractional allocation.
+
+Every stage evaluation and residue operation is charged. Shared comparison work remains bounded by3M; each graph call has4096 iterations and at most48 bisection refinements per root. Nonfinite states, unsupported declarations, unresolved steps and work limits refuse without a complete plan report. Diagnostics report solver iterations (including residue-only iterations), event roots, rounding transfers and transferred inventory; they do not authorize adoption or replace private work accounting. Peak depth is sampled at accepted internal states and zero-time inventory transfers; it is not an exact continuous maximum. Duration summaries still use retained output snapshots.
+
+## Receiving and counterevidence
+
+Forty independently solved closed linear graph cases improve against the maintained profile operator. Four analytic node/event controls include wet-to-dry uptake, subsequent receiver relaxation, capacity filling and represented minimum-subnormal inventory. Twenty-four finite graphs and their mirrored/reordered counterparts retain numerical state and mass consistency. Twelve pulse courses improve against a4096-substep numerical comparator; that comparator is not a rigorous error certificate.
+
+For the frozen19-layout finite courtyard at one fixed infiltration rate, maximum full-score change between5 and1minute is1.3522L for the prior profile model and0.02212L here. At1minute work rises from1,889,584 to2,494,954. The near-tie remains unresolved as a field decision; unchanged winners do not establish convergence. Actual original-calibration support, all9 mixed layouts, raw recomputation, adoption custody and the optional browser path are separately received.
+
+Rejected degree-based damping, pair-fitted damping and averaging completed limited stages remain in the research checkpoint. They improved selected simple cases but worsened real pulse or courtyard behavior. None is silently substituted here.
+
+Run `node --test tests/event-*.test.mjs`. The full browser course is `tests/mixed-placement.browser.mjs` with explicit browser/Playwright/output paths; it rejects missing served assets and records source hashes.
