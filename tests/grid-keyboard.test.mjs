@@ -60,7 +60,7 @@ function mountGrid(currentSource = source) {
   const result = {peakDepthMm:Array(12).fill(0),finalDepthMm:Array(12).fill(0)};
   let activations=0;
   const context = {
-    document,project,SURFACES,view:'peak',arrowGridIndex,
+    document,project,SURFACES,view:'peak',arrowGridIndex,comparisonState:'ready',
     $:id => grids[id.replace('-grid','')],
     nameCell:index=>String.fromCharCode(65+index%project.width)+(1+Math.floor(index/project.width)),
     numeric:x=>String(x),
