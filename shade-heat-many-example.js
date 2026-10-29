@@ -1,0 +1,163 @@
+import {makeJointCourseExample} from './shade-heat-joint-example.js';
+import {prepareTimedSkyReadingSource} from './shade-heat-timed-reading-source.js';
+
+// Fixed original values from complete authored pair courses: zero-based early
+// bin1 and late bin 2, original 08:00 boundary. These are numerical controls,
+// not field observations, and are not fitted or regenerated on page intake.
+const observations=[
+  [
+    0,
+    "2026-06-21T10:00:00.000Z",
+    "surfaceC",
+    26.18913653295379
+  ],
+  [
+    0,
+    "2026-06-21T12:00:00.000Z",
+    "surfaceC",
+    26.189136986396296
+  ],
+  [
+    0,
+    "2026-06-21T06:00:00.000Z",
+    "surfaceC",
+    26.168026334165262
+  ],
+  [
+    1,
+    "2026-06-21T06:00:00.000Z",
+    "surfaceC",
+    22.052182695114478
+  ],
+  [
+    1,
+    "2026-06-21T06:00:00.000Z",
+    "subsurfaceC",
+    21.3960548760837
+  ],
+  [
+    2,
+    "2026-06-21T06:00:00.000Z",
+    "surfaceC",
+    23.32447427220958
+  ],
+  [
+    2,
+    "2026-06-21T06:00:00.000Z",
+    "subsurfaceC",
+    23.127022065084798
+  ],
+  [
+    0,
+    "2026-06-21T06:00:00.000Z",
+    "subsurfaceC",
+    26.1590460617306
+  ],
+  [
+    1,
+    "2026-06-21T08:00:00.000Z",
+    "surfaceC",
+    22.693238070866528
+  ],
+  [
+    1,
+    "2026-06-21T08:00:00.000Z",
+    "subsurfaceC",
+    22.309800314498464
+  ],
+  [
+    2,
+    "2026-06-21T08:00:00.000Z",
+    "surfaceC",
+    23.711192392940063
+  ],
+  [
+    2,
+    "2026-06-21T08:00:00.000Z",
+    "subsurfaceC",
+    23.678246412029328
+  ],
+  [
+    0,
+    "2026-06-21T08:00:00.000Z",
+    "surfaceC",
+    26.189038921477653
+  ],
+  [
+    0,
+    "2026-06-21T08:00:00.000Z",
+    "subsurfaceC",
+    26.188997204689738
+  ],
+  [
+    1,
+    "2026-06-21T10:00:00.000Z",
+    "surfaceC",
+    23.067860648141693
+  ],
+  [
+    1,
+    "2026-06-21T10:00:00.000Z",
+    "subsurfaceC",
+    22.843783788299554
+  ],
+  [
+    2,
+    "2026-06-21T10:00:00.000Z",
+    "surfaceC",
+    26.067145562752582
+  ],
+  [
+    2,
+    "2026-06-21T10:00:00.000Z",
+    "subsurfaceC",
+    25.92555243738586
+  ],
+  [
+    0,
+    "2026-06-21T10:00:00.000Z",
+    "subsurfaceC",
+    26.18913633916341
+  ],
+  [
+    1,
+    "2026-06-21T12:00:00.000Z",
+    "surfaceC",
+    23.286786013034295
+  ],
+  [
+    1,
+    "2026-06-21T12:00:00.000Z",
+    "subsurfaceC",
+    23.155837930124008
+  ],
+  [
+    2,
+    "2026-06-21T12:00:00.000Z",
+    "surfaceC",
+    26.344461416282485
+  ],
+  [
+    2,
+    "2026-06-21T12:00:00.000Z",
+    "subsurfaceC",
+    26.320835828737266
+  ],
+  [
+    0,
+    "2026-06-21T12:00:00.000Z",
+    "subsurfaceC",
+    26.189136985496067
+  ]
+];
+export function makeManySkyExample(){
+  const originals=makeJointCourseExample().readings;
+  const readings=observations.map(([sourceIndex,utc,store,temperatureC])=>{
+    const original=originals[sourceIndex],source=original.source;
+    return prepareTimedSkyReadingSource(source.project,source.declaration,{bins:original.query.bins,reading:{
+      ...original.query.reading,utc,store,temperatureC,halfWidthC:.001,
+      source:'Authored complete original receiver course, zero-based early bin 1 and late bin 2 with 08:00 UTC change; numerical control, not field observations.'}});
+  });
+  return {readings,query:{bins:4,splitAfterInterval:8,
+    sharingSource:'Authored unchanged site, forcing and thermal declarations: one shared early/late sky across every original receiver and time. No measured sky-history claim.'}};
+}

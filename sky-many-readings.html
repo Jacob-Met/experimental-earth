@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>What does the whole temperature record reveal? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-many-course.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-timed-readings.html" target="_blank" rel="noopener">Experimental Earth · original-time readings ↗</a>
+    <p class="eyebrow">Original observations / the complete record</p>
+    <h1>What does the whole temperature record reveal?</h1>
+    <p class="intro">Keep up to 24 temperature readings at their original times and receivers. See what the full record adds to its first three readings, then follow one shared sky profile through every original observation and the complete thermal course.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the original record</p><h2 id="source-heading">Every band keeps its own identity</h2></div>
+        <button id="many-example" type="button" disabled>Try the 24-reading example</button></div>
+      <p>Open three to 24 original reading files from at most three receivers, or use the original evidence from a saved inquiry. Repeated receivers must retain identical complete source declarations. Each receiver, original UTC and temperature component can appear only once.</p>
+      <p>The first three records form the reference family. Every loaded record constrains the complete result. The first record also chooses where the designs are compared. Choosing a different first record explicitly changes this evidence order.</p>
+      <label class="file-label">Open original evidence<input id="many-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="many-source-summary" class="quiet">No original readings loaded.</p>
+      <details id="many-source-details"><summary>Inspect and revise the original readings</summary>
+        <div id="many-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+      </details>
+    </section>
+    <form id="many-form" class="card" novalidate>
+      <p class="eyebrow">02 / Declare the common conditions</p><h2>One sky profile pair for the whole record</h2>
+      <p>One four-bin profile applies before the chosen original change boundary, and another after it. Both stay shared across every original receiver, time and design. Each observation retains its supplied UTC, component, value, band and attribution.</p>
+      <div class="question-grid"><label>Change after original interval<input id="many-split" type="number" min="1" step="1" value="8" required disabled></label>
+        <label>Basis for shared conditions<input id="many-sharing" required maxlength="400" placeholder="Why these original readings share the same sky profiles" disabled></label></div>
+      <p id="many-boundary" class="quiet">Choose an internal original interval boundary.</p>
+      <div class="actions"><button id="many-run" type="submit" disabled>Compare the complete original record</button>
+        <label class="file-label">Reopen a complete-record inquiry<input id="many-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="many-export" type="button" disabled>Download original inputs</button></div>
+      <p id="many-status" role="status">Open original readings or try the authored example.</p>
+    </form>
+    <section id="many-results" class="card" aria-label="Complete original record and paired temperature comparison" hidden></section>
+  </main>
+  <footer>Conditional results under the declared model. Every point is an original interval boundary; no values between these times or interval means are inferred. Exact additive compatibility and original numerical replay statuses remain separate. These results do not establish a measured sky history or a validated physical effect.</footer>
+  <script type="module" src="shade-heat-many-page.js"></script>
+</body>
+</html>
