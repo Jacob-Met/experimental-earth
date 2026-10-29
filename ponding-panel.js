@@ -1,3 +1,4 @@
+import { pondingNumber } from './number-format.js';
 import { pondingExposure, snapshotDepths } from './ponding-exposure.js';
 
 export function mountPondingPanel({ getProject, getResults }) {
@@ -14,7 +15,7 @@ export function mountPondingPanel({ getProject, getResults }) {
   document.getElementById('maps').after(panel);
   const $=id=>panel.querySelector('#'+id);
   let selected=0, exposure, threshold=10;
-  const num=x=>Number(x.toFixed(2)).toLocaleString('en-US');
+  const num=pondingNumber;
   const cellName=(i,p)=>`${String.fromCharCode(65+i%p.width)}${Math.floor(i/p.width)+1}`;
   function draw() {
     const project=getProject(), results=getResults(), minute=Number($('ponding-minute').value);

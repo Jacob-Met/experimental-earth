@@ -36,6 +36,7 @@ import { mountPondingPanel } from './ponding-panel.js';
 import { mountRoutePondingPanel } from './route-ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, chooseNextObservation } from './core.js';
 import { createRainComparisonComputation } from './rain-comparison-computation.js';
+import { modelNumber, readingNumber as formatReadingNumber } from './number-format.js';
 import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -140,8 +141,8 @@ function notice(message) {
   toastTimeout = setTimeout(() => $('toast').classList.remove('show'), 3800);
 }
 function nameCell(index) { return `${String.fromCharCode(65 + index % project.width)}${Math.floor(index / project.width) + 1}`; }
-function numeric(value) { return Number(value).toLocaleString('en-US',{maximumFractionDigits:1}); }
-function readingNumber(value) { return Number(value).toLocaleString('en-US',{maximumSignificantDigits:6}); }
+function numeric(value) { return modelNumber(value); }
+function readingNumber(value) { return formatReadingNumber(value); }
 function safeText(value) { const s = document.createElement('span'); s.textContent=String(value); return s.innerHTML; }
 function persist() {
   const previousState = browserSaveState;
