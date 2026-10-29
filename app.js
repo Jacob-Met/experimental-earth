@@ -40,6 +40,7 @@ import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.j
 import { mountInterventionPanel } from './intervention-panel.js';
 import { mountTerrainImport } from './terrain-panel.js';
 import { mountObservationImport } from './observation-import-panel.js';
+import { mountObservationExport } from './observation-export-panel.js';
 import { mountOutletEvidence } from './outlet-evidence-panel.js';
 import { mountJointEvidence } from './joint-evidence-panel.js';
 import { mountJointEventChallenge } from './joint-event-panel.js';
@@ -104,7 +105,7 @@ function retireRetargetedObservationDraft() {
   observationDraftCell = project.selectedIndex;
   observationDraftMinute = minute;
 }
-function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); pressureHeadPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
+function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); observationExporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); pressureHeadPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -345,6 +346,7 @@ function prepareObservedReading(question) {
 const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice, prepareReading: prepareObservedReading });
 const observationImporter = mountObservationImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
+const observationExporter = mountObservationExport({ getProject: () => project });
 const eventChallengePanel = mountEventChallengePanel({ getProject: () => project });
 const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading,
   prepareCollection: question => outletEvidencePanel.prepareReading(question) });

@@ -143,6 +143,10 @@ After comparing candidate rates, **Check finer calculation intervals** repeats t
 
 This finite sensitivity check does not establish convergence, an error bound or physical validity. Unchanged decisions can coexist with changed predictions. Surface-transfer discretization and interpolation across a rainfall change can both affect results. Held-aside values never influence calibration ranking. At the one-minute minimum, without assigned readings or a matching surface, or above two million estimated cell-steps, the diagnostic gives an explicit uncomputed result. The work estimate is grid cells × candidate rates × summed time steps and bounds interactive work, not numerical accuracy.
 
+### Export the observation notebook
+
+Choose **Export observation CSV** in the notebook to download every retained reading as current grid cells, modeled event minutes and water depth with uncertainty in millimetres. The table keeps numeric precision, source descriptions and assigned evidence roles. Use the complete project JSON to preserve original units, station mappings and clock details. See [the normalized CSV guide](docs/OBSERVATION_CSV_EXPORT.md) for transfer, source-text and provenance details.
+
 ### Import a sourced depth table
 
 The notebook's **Preview CSV** accepts UTF-8 observation tables up to 128 KB. Required columns are `cell,minute,depth,uncertainty,unit,source`; optional `scenario` (`existing`, `proposal`, `unassigned`) and `use` (`calibration`, `challenge`, `unassigned`) make evidence assignment explicit. Missing assignments remain notebook-only. Cell labels such as `B2` refer to the current grid; time is minutes since the modeled event began. `mm`, `cm` and `in` apply to both depth and ± uncertainty in each row. Decimal values use a period; quoted commas, escaped double quotes and multiline source text are supported.
