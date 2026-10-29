@@ -1,0 +1,336 @@
+{
+  "f": {
+    "source": {
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard · fictional",
+        "width": 4,
+        "height": 4,
+        "weather": {
+          "rainMmHr": 90,
+          "stormMinutes": 60,
+          "durationMinutes": 120,
+          "stepMinutes": 5,
+          "cellSizeM": 2,
+          "mobilityPerHour": 1,
+          "boundaryExitPerHour": 0.2
+        },
+        "existing": [
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.012,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.024,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.036000000000000004,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.007,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.061,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.049,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.043000000000000003,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.014,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.054,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.042,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.05,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.021,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.033,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.045,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.05700000000000001,
+            "provenance": "Authored sloped courtyard"
+          }
+        ],
+        "proposal": [
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.012,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.024,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.036000000000000004,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.007,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.061,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.049,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.043000000000000003,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.014,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.054,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": -0.042,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.05,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.021,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.033,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.045,
+            "provenance": "Authored sloped courtyard"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0.05700000000000001,
+            "provenance": "Authored sloped courtyard"
+          }
+        ],
+        "observations": [
+          {
+            "cellIndex": 6,
+            "minute": 60,
+            "depthMm": 89.22779106280696,
+            "uncertaintyMm": 0.000001,
+            "source": "Authored nonlinear off-grid storm with interpolation-crossing early anchor",
+            "scenario": "existing",
+            "use": "calibration"
+          },
+          {
+            "cellIndex": 5,
+            "minute": 30.5,
+            "depthMm": 86.38581778489925,
+            "uncertaintyMm": 0.000001,
+            "source": "Authored nonlinear off-grid storm with interpolation-crossing early anchor",
+            "scenario": "existing",
+            "use": "calibration"
+          },
+          {
+            "cellIndex": 10,
+            "minute": 45,
+            "depthMm": 87.56549179607032,
+            "uncertaintyMm": 0.000001,
+            "source": "Authored nonlinear off-grid storm with interpolation-crossing early anchor",
+            "scenario": "existing",
+            "use": "challenge"
+          }
+        ],
+        "selectedIndex": 0,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "request": {
+        "target": "existing",
+        "surface": "sealed",
+        "rainRatesMmHr": [
+          90
+        ],
+        "ratesMmHr": [
+          10,
+          24.595279111565404
+        ]
+      },
+      "gauge": {
+        "schema": "experimental-earth-interval-rain-gauge/1",
+        "eventRef": "Original authored event",
+        "sameEventBasis": "Same clock",
+        "siteCoverageBasis": "Uniform authored input",
+        "intervalBasis": "Original interval totals",
+        "readings": [
+          {
+            "id": "rain",
+            "startMinute": 0,
+            "endMinute": 60,
+            "depth": 51.0118,
+            "uncertainty": 0.2,
+            "unit": "mm",
+            "source": "Authored rainfall control",
+            "use": "calibration"
+          }
+        ]
+      },
+      "durations": [
+        60
+      ],
+      "capacities": [
+        {
+          "remainingCapacityMm": 5,
+          "source": "Authored"
+        }
+      ],
+      "layers": [
+        {
+          "schema": "experimental-earth-draining-layer/1",
+          "surface": "sealed",
+          "capacityMm": 5,
+          "initialStoredMm": 0,
+          "drainagePerHour": 1,
+          "source": "Authored"
+        }
+      ]
+    },
+    "fronts": [
+      {
+        "conductivityMmHr": 3,
+        "capillaryDriveMm": 7,
+        "source": "Authored unfamiliar soil"
+      }
+    ],
+    "study": {
+      "schema": "experimental-earth-pressure-head-study/1",
+      "target": "existing",
+      "surface": "sealed",
+      "basis": "Explicit unfamiliar authored pressure hypotheses",
+      "hypotheses": [
+        {
+          "conductivityMmHr": 3,
+          "capillaryDriveMm": 7,
+          "moistureDeficit": 0
+        },
+        {
+          "conductivityMmHr": 3,
+          "capillaryDriveMm": 7,
+          "moistureDeficit": 0.4
+        }
+      ]
+    },
+    "counter": {
+      "schema": "experimental-earth-cumulative-rain-counter/2",
+      "eventRef": "Original authored event",
+      "sameEventBasis": "Same authored storm",
+      "siteCoverageBasis": "Uniform authored source",
+      "clockBasis": "Original elapsed minutes",
+      "noResetBasis": "Original counter was not reset",
+      "readings": [
+        {
+          "id": "0",
+          "minute": 0,
+          "depth": 10.05,
+          "uncertainty": 0.2,
+          "unit": "mm",
+          "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+          "use": "calibration"
+        },
+        {
+          "id": "1",
+          "minute": 30,
+          "depth": 59.73,
+          "uncertainty": 0.2,
+          "unit": "mm",
+          "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+          "use": "calibration"
+        },
+        {
+          "id": "2",
+          "minute": 60,
+          "depth": 61.101800000000004,
+          "uncertainty": 0.2,
+          "unit": "mm",
+          "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+          "use": "calibration"
+        }
+      ]
+    }
+  },
+  "q": {
+    "earlyIndex": 1,
+    "lateIndex": 0,
+    "minimumMmHr": 90,
+    "maximumMmHr": 110,
+    "minimumMinutes": 30,
+    "maximumMinutes": 32,
+    "basis": "Authored finite routing hypotheses"
+  }
+}

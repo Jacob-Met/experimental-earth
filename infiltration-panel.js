@@ -1,3 +1,4 @@
+import { mountRainSoilPanel } from './rain-soil-panel.js';
 import { mountDepthOffsetPanel } from './depth-offset-panel.js';
 import { renderEvidenceConflict } from './evidence-conflict-panel.js';
 import { SURFACES } from './core.js';
@@ -53,6 +54,7 @@ export function evidenceControls(reading, changed) {
 }
 
 export function mountInfiltrationPanel({ getProject, changed, notice, prepareReading }) {
+  const rainSoil = mountRainSoilPanel({getProject, notice});
   const button = $('compare-infiltration');
   const resolution = mountResolutionPanel({ getProject, notice });
   const complementary = mountComplementaryDepthPanel({ getProject, prepareReading, notice });
@@ -73,6 +75,7 @@ export function mountInfiltrationPanel({ getProject, changed, notice, prepareRea
     $('study-status').textContent = 'Choices changed. Compare again to evaluate these candidates; the site parameters remain unchanged.';
   });
   function refresh() {
+    rainSoil.refresh();
     depthOffset.refresh();
     clearQuestion();
     const study = getProject().infiltrationStudy ?? DEFAULT_STUDY;

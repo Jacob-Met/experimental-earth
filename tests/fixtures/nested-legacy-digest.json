@@ -1,0 +1,12 @@
+{
+  "sha256": "5570e121e61d174b2a0dae4f71da3ba26725c2a07dfcea92af9c30a8e39bca18",
+  "request": {
+    "earlyIndex": 1,
+    "lateIndex": 0,
+    "minimumMmHr": 90,
+    "maximumMmHr": 110,
+    "minimumMinutes": 30,
+    "maximumMinutes": 32,
+    "basis": "Authored bounded original calibration"
+  }
+}

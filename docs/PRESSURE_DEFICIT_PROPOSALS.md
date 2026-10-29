@@ -1,0 +1,9 @@
+# Third-calibration pressure-deficit proposals
+
+This additive source-only consumer reduces manual deficit enumeration while keeping conductivity and capillary drive conditional on a selected original hypothesis. It retains the complete original offered family, then uses the existing bounded proposal policy on deficit. Each proposed deficit calls the unchanged nested rainfall/duration comparison. The tested point with minimum squared residual across the first two selected calibration centers guides the third calibration residual. Held-aside data never guide any stage.
+
+The maintained study contract requires two hypotheses. Each trial therefore includes an explicit companion deficit0 (or1 when proposing0). All companion results remain inspectable, but proposed aggregate counts exclude them. The entire original family plus every trial is reserved before simulation: n²H+2n³ runs, where n=declared midpoint depth+2. Existing3M cell-step and200000 evidence-row caps remain.
+
+Authored2×2 control: unoffered deficit0.37, rain99.6mm/h, end30.73min, fixedK3/A7, three original calibration readings and a fourth held-aside reading. Original deficits0/0.4 yield no support;21midpoints per stage reserve2,437,632cellsteps and produce425 calibration-compatible/379 uncontradicted proposed points. These nearby tested alternatives are not independent measurements or continuous/unique identification. Changing only the held-aside depth retains identical proposals/calibration and removes survivors.
+
+Native3groups cover this distinction, original-source replay, whole-work refusal and role separation. Actual maintained Rain Lab12browsergroups pass including prior journeys, new original download/reopen and held-aside contradiction; mobile personally inspected. Independent numerical/source and consumer lifecycle reviews bind exact bytes in the checkpoint. No parameter adoption, publication, field calibration, convergence or continuous coverage claim.
