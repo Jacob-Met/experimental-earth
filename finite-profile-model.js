@@ -1,0 +1,22 @@
+import{validateDrainingLayer}from'./draining-infiltration.js';
+import{validateProject,SURFACES}from'./core.js';
+import{internalEdgeClosed,internalEdgeCrest}from'./internal-barriers.js';
+import{advanceGraph}from'./finite-profile-transport.js';
+export const PROFILE_MODEL='uniform-source-finite-profile/1';
+export const PROFILE_CONTRACT='Research process: uniform rain and propagated piecewise arrivals; uptake priority at dry cells; frozen interval heads and request shares. Exact constant-node events do not make graph flow exact. No convergence or validated field-optimality claim. Finite storage has exact constant-node empty/full events; crests unsupported; event/timing/work limits can refuse.';
+export function runProfile(cells,width,height,weather,options={},budget){
+ if(!options||typeof options!=='object'||Array.isArray(options)||Object.keys(options).some(k=>!['surfaceInfiltrationOverride','drainingLayer'].includes(k)))throw Error('Unsupported profile model options');const{surfaceInfiltrationOverride}=options;
+ validateProject({schema:'experimental-earth-site/1',title:'profile model',width,height,existing:cells,proposal:cells,weather,observations:[]});
+ const o=surfaceInfiltrationOverride;if(o!==undefined&&(!o||!Object.hasOwn(SURFACES,o.surface)||!Number.isFinite(o.rateMmHr)||o.rateMmHr<0||o.rateMmHr>2000))throw Error('Invalid profile infiltration rate');
+ const layer=options.drainingLayer??null;if(layer!==null)validateDrainingLayer(layer,SURFACES);
+ const n=cells.length,area=weather.cellSizeM**2,elevation=cells.map(c=>c.elevationM*1000),rates=cells.map(c=>o?.surface===c.surface?o.rateMmHr:SURFACES[c.surface].infiltrationMmHr),edges=[],boundaries=[];
+ for(let y=0;y<height;y++)for(let x=0;x<width;x++){const i=y*width+x;for(const j of[x+1<width?i+1:null,y+1<height?i+width:null])if(j!==null&&!internalEdgeClosed(cells,i,j,width)){const crest=internalEdgeCrest(cells,i,j);if(crest!==null)throw Error('Profile model does not support declared crests');edges.push({a:i,b:j,crestMm:null});}const count=Number(x===0)+Number(x===width-1)+Number(y===0)+Number(y===height-1);if(count)boundaries.push([i,count]);}
+ const receivers=cells.map(c=>layer&&c.surface===layer.surface?{capacityMm:layer.capacityMm,storedMm:layer.initialStoredMm,drainagePerHour:layer.drainagePerHour}:null);const lowerInitial=receivers.reduce((sum,r)=>sum+(r?.storedMm??0),0);let lowerDrained=0,lowerInfiltrated=0;
+ let water=Array(n).fill(0),rainLiters=0,absorbedLiters=0,exitLiters=0;const peak=Array(n).fill(0),snapshots=[{minute:0,depthsMm:[...water],storedLiters:0,absorbedLiters:0,exitLiters:0}];
+ for(let start=0;start<weather.durationMinutes-1e-10;start+=weather.stepMinutes){const dt=Math.min(weather.stepMinutes,weather.durationMinutes-start),rainMinutes=Math.max(0,Math.min(start+dt,weather.stormMinutes)-Math.min(start,weather.stormMinutes)),intervals=[];if(rainMinutes>0)intervals.push([rainMinutes/60,weather.rainMmHr]);if(dt>rainMinutes)intervals.push([(dt-rainMinutes)/60,0]);
+  for(const [hours,rain]of intervals){const r=advanceGraph(water,elevation,edges,boundaries,hours,weather.mobilityPerHour,weather.boundaryExitPerHour,rain,rates,budget,receivers);for(let i=0;i<n;i++)if(receivers[i])receivers[i].storedMm=r.stores[i];lowerDrained+=r.drained;lowerInfiltrated+=r.receiverAbsorbed;water=r.water;rainLiters+=rain*hours*n*area;absorbedLiters+=r.absorbed*area;exitLiters+=r.exit*area;for(let i=0;i<n;i++)peak[i]=Math.max(peak[i],r.peak[i]);}
+  snapshots.push({minute:Math.min(start+dt,weather.durationMinutes),depthsMm:[...water],storedLiters:water.reduce((a,b)=>a+b,0)*area,absorbedLiters,exitLiters});
+ }
+ const lowerFinal=receivers.reduce((sum,r)=>sum+(r?.storedMm??0),0),lowerBalance=lowerInitial+lowerInfiltrated-lowerDrained-lowerFinal;if(!Number.isFinite(lowerBalance)||Math.abs(lowerBalance)>1e-8*Math.max(1,lowerInitial+lowerInfiltrated))throw Error('Finite receiving ledger refusal');
+ const storedLiters=water.reduce((a,b)=>a+b,0)*area;return{lowerBalanceLiters:lowerBalance*area,lowerInfiltratedLiters:lowerInfiltrated*area,lowerRetainedLiters:receivers.reduce((sum,r)=>sum+(r?.storedMm??0),0)*area,lowerDrainedLiters:lowerDrained*area,rainLiters,absorbedLiters,exitLiters,storedLiters,massErrorLiters:rainLiters-absorbedLiters-exitLiters-storedLiters,maxDepthMm:Math.max(...peak),peakDepthMm:peak,finalDepthMm:water,snapshots,peakPondingLiters:Math.max(...snapshots.map(s=>s.storedLiters))};
+}
