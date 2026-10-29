@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {advance} from '../event-graph.mjs';
-const guard='if(rain===0&&water.every(v=>v===0)&&stores.every(v=>v===0)){time=h;break;}';
+const guard=sourceGuard();
+function sourceGuard(){return 'if(rain===0&&water.every(v=>v===0)){const remaining=h-time;for(let i=0;i<n;i++){const r=receivers[i];if(!r||stores[i]===0)continue;const loss=stores[i]*(-Math.expm1(-r.drainagePerHour*remaining));stores[i]*=Math.exp(-r.drainagePerHour*remaining);drained+=loss;}time=h;break;}';}
 const source=readFileSync(new URL('../event-graph.mjs',import.meta.url),'utf8');
 assert.equal(source.split(guard).length,2);
 const {advance:baseline}=await import('data:text/javascript;base64,'+Buffer.from(source.replace(guard,'')).toString('base64'));
