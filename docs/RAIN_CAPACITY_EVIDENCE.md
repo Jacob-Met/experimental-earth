@@ -1,0 +1,11 @@
+# Joint rate and closed receiving-capacity evidence
+
+This comparison addresses a model-mismatch course: an unlimited constant infiltration rate can fit one ponding reading while failing the early rise, later saturation and dry-period tail together. The new finite inference family reuses the maintained runRain surface-rate override and closed receiving-store mechanism, with the original duration/rain offers and original depth/rainfall evidence.
+
+Every offered duration×rainfall×soil-rate combination is evaluated for the unlimited baseline and1–8 explicitly sourced closed capacities. Capacity is remaining space per affected cell at event start, not a measured porosity. No drainage, recovery or groundwater exchange is modeled. Unlimited candidates are retained even when rejected; finite models are never pruned because their unlimited counterpart failed. The complete Cartesian course is reserved under3million cell steps before baseline or finite-store fitting.
+
+Original depth calibration orders candidates; original gauge calibration independently filters forcing. Held-aside depth and rainfall only challenge. No model family is adopted or identified as physical cause. The active site stays unchanged.
+
+Independent authored balance: rain30mm/h, soil20mm/h, remaining capacity5mm, closed immobile cells. At5/15/30/60/90/120min the surface depths are5/6,2.5,10,25,25,25mm. Unlimited rate5 fits25mm at60min but gives6.25mm at15min and22.5mm at90min. Unlimited rate20 fits the early course but gives10mm at60min and drains to0. Early and late original readings distinguish the explicitly offered rate/capacity alternatives, and a separately held dry-tail reading challenges them.
+
+Native controls cover5- and7-minute steps with analytic observation times, zero mass error, original nonmutation, single-reading ambiguity, challenge isolation, complete-work refusal, nonlimiting-capacity equivalence, zero-capacity non-identifiability and original-only transfer. Actual maintained browser receiving retains all rejected unlimited models, displays the surviving finite explanation, saves/reopens original capacity inputs and retires authority on malformed replacement. Desktop/mobile results were inspected.

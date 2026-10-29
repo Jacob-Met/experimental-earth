@@ -1,0 +1,187 @@
+{
+  "source": {
+    "project": {
+      "schema": "experimental-earth-site/1",
+      "title": "Example courtyard · fictional",
+      "width": 2,
+      "height": 2,
+      "weather": {
+        "rainMmHr": 29,
+        "stormMinutes": 60,
+        "durationMinutes": 120,
+        "stepMinutes": 5,
+        "cellSizeM": 2,
+        "mobilityPerHour": 0,
+        "boundaryExitPerHour": 0
+      },
+      "existing": [
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        },
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        },
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        },
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        }
+      ],
+      "proposal": [
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        },
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        },
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        },
+        {
+          "surface": "sealed",
+          "elevationM": 0,
+          "provenance": "Authored"
+        }
+      ],
+      "observations": [
+        {
+          "cellIndex": 0,
+          "minute": 60,
+          "depthMm": 18.13396868573262,
+          "uncertaintyMm": 0.000001,
+          "source": "Unfamiliar authored native course, not field evidence",
+          "scenario": "existing",
+          "use": "calibration"
+        },
+        {
+          "cellIndex": 0,
+          "minute": 30,
+          "depthMm": 7.055001610115577,
+          "uncertaintyMm": 0.000001,
+          "source": "Unfamiliar authored native course, not field evidence",
+          "scenario": "existing",
+          "use": "challenge"
+        }
+      ],
+      "selectedIndex": 0,
+      "source": "Illustrative geometry and rates; no site measurements"
+    },
+    "request": {
+      "target": "existing",
+      "surface": "sealed",
+      "rainRatesMmHr": [
+        29
+      ],
+      "ratesMmHr": [
+        10,
+        24.595279111565404
+      ]
+    },
+    "gauge": {
+      "schema": "experimental-earth-interval-rain-gauge/1",
+      "eventRef": "Original authored event",
+      "sameEventBasis": "Same clock",
+      "siteCoverageBasis": "Uniform authored input",
+      "intervalBasis": "Original interval totals",
+      "readings": [
+        {
+          "id": "rain",
+          "startMinute": 0,
+          "endMinute": 60,
+          "depth": 37,
+          "uncertainty": 1,
+          "unit": "mm",
+          "source": "Authored rainfall control",
+          "use": "calibration"
+        }
+      ]
+    },
+    "durations": [
+      60
+    ],
+    "capacities": [
+      {
+        "remainingCapacityMm": 5,
+        "source": "Authored"
+      }
+    ],
+    "layers": [
+      {
+        "schema": "experimental-earth-draining-layer/1",
+        "surface": "sealed",
+        "capacityMm": 5,
+        "initialStoredMm": 0,
+        "drainagePerHour": 1,
+        "source": "Authored"
+      }
+    ]
+  },
+  "fronts": [
+    {
+      "conductivityMmHr": 7.3,
+      "capillaryDriveMm": 11.2,
+      "source": "Unfamiliar authored soil offer"
+    }
+  ],
+  "study": {
+    "schema": "experimental-earth-pressure-head-study/1",
+    "target": "existing",
+    "surface": "sealed",
+    "basis": "Explicit unfamiliar authored pressure hypotheses",
+    "hypotheses": [
+      {
+        "conductivityMmHr": 7.3,
+        "capillaryDriveMm": 11.2,
+        "moistureDeficit": 0
+      },
+      {
+        "conductivityMmHr": 7.3,
+        "capillaryDriveMm": 11.2,
+        "moistureDeficit": 0.35
+      }
+    ]
+  },
+  "counter": {
+    "schema": "experimental-earth-cumulative-rain-counter/2",
+    "eventRef": "Original authored event",
+    "sameEventBasis": "Same authored storm",
+    "siteCoverageBasis": "Uniform authored source",
+    "clockBasis": "Original elapsed minutes",
+    "noResetBasis": "Original counter was not reset",
+    "readings": [
+      {
+        "id": "start",
+        "minute": 0,
+        "depth": 10,
+        "uncertainty": 0,
+        "unit": "mm",
+        "source": "Original cumulative start",
+        "use": "calibration"
+      },
+      {
+        "id": "end",
+        "minute": 60,
+        "depth": 47,
+        "uncertainty": 1,
+        "unit": "mm",
+        "source": "Original cumulative end",
+        "use": "calibration"
+      }
+    ]
+  }
+}

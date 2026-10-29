@@ -1,0 +1,11 @@
+# Explicit finite refinement depth for routed sites
+
+The original nested method reserves two endpoints and 44 midpoint evaluations per stage and pressure hypothesis. On the authored sloped 8×8 courtyard this correctly exceeds the existing three-million-cell-step cap (6,500,352). The additive explicit-depth API lets the caller declare 1–44 midpoint refinements per stage; it reserves the entire `(iterations+2)^2 × hypotheses` course before simulation. The original default, exact output, schema and source replay are unchanged.
+
+At depth 26 the same maintained routing, boundary exit, pressure-head model and observation interpolation produce 840 tested points, 31 calibration-compatible and 30 not contradicted, within 2,408,448 reserved cell steps. Depths 12 and 20 produce no compatible point. These are retained finite-search failures; depth is neither an error tolerance nor a convergence guarantee. No hypothesis is pruned to fit the cap. The authored generating forcing is 99.6 mm/h ending at 30.73 minutes, with measurements at three distinct cells. These are synthetic controls, not field validation.
+
+All original water, interval-gauge, direct rainfall and cumulative-counter calibration remains required. Held-aside evidence can contradict candidates but does not guide either proposal stage. Both stages reuse the existing bounded proposal policy. The result remains conditional on offered pressure hypotheses, numerical bounds and model assumptions; it does not identify a unique physical soil or certify continuous coverage.
+
+The maintained nested consumer has an optional explicit depth input. Blank preserves original 44-depth behavior. The new `experimental-earth-counter-nested-budget/1` transfer stores only original source, pressure study, counter, request and declared iterations; import recomputes. Existing source files remain accepted. Editing depth retires accepted results and pending imports.
+
+Native verification: `node --test tests/rain-counter-nested-budget.test.mjs`. It covers the routed before/after and shallow failures, held-aside isolation, invalid/oversized budgets, original-only roundtrip and a frozen predecessor full-report SHA256 comparison. Actual browser receiving is recorded separately; no remote publication is claimed.

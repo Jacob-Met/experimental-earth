@@ -1,0 +1,58 @@
+import {mountRainDuration} from './rain-duration-panel.js';
+import {investigateGaugeRechecks} from './rain-gauge-recheck.js';
+import {rainfallHistoryConsistency} from './rain-gauge-history.js';
+import {importGaugeCsv,GAUGE_CSV_HEADER} from './rain-gauge-csv.js';
+import {rainfallConsistency} from './rain-gauge-consistency.js';
+import {RAIN_GAUGE_SCHEMA,compareRainGauge,exportRainGauge,importRainGauge} from './rain-gauge-evidence.js';
+const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
+export function mountRainGauge({host,getAccepted,notice}){
+ const section=el('section');section.id='rain-gauge-investigation';section.append(el('h4','Do original rain-gauge intervals support these explanations?'),el('p','Use measured interval rainfall totals with their original uncertainty, units and evidence roles. The declared storm ends at the original storm minute; an interval extending beyond it is not treated as all rainy. This separate comparison preserves the original soil/rain fit and does not adopt a soil rate.'));host.append(section);
+ const identity=el('p','Compare or reopen an original rain/soil investigation first.');section.append(identity);
+ const form=el('form');section.append(form);
+ const field=(parent,label,value='',type='text')=>{const wrap=el('label',label),n=el('input');n.type=type;n.value=value;n.style.width='100%';n.style.boxSizing='border-box';if(type==='number')n.step='any';wrap.append(n);parent.append(wrap);return n;};
+ const declarations=Object.fromEntries([['eventRef','Original rainfall event reference'],['sameEventBasis','Why are these the same event and elapsed-minute origin?'],['siteCoverageBasis','Why does this rainfall represent the original site?'],['intervalBasis','How were original interval totals obtained (including resets or differences)?']].map(([key,label])=>[key,field(form,label)]));
+ const csvDetails=el('details');csvDetails.append(el('summary','Import original interval-total rainfall CSV'));form.append(csvDetails);
+ csvDetails.append(el('p','Paste original interval totals, not cumulative counter readings. Each timestamp needs seconds and a known explicit UTC offset. Supply the association declarations above; imported evidence roles are retained.'));
+ const eventOrigin=field(csvDetails,'Original event start timestamp with UTC offset');
+ const csvLabel=el('label','Original interval rainfall CSV'),csv=el('textarea');csv.style.width='100%';csv.style.boxSizing='border-box';csv.rows=6;csv.maxLength=128000;csv.placeholder=GAUGE_CSV_HEADER;csvLabel.append(csv);csvDetails.append(csvLabel);
+ const csvImport=el('button','Read original rainfall CSV into intervals');csvImport.type='button';csvDetails.append(csvImport);
+ const rows=el('div');form.append(rows);const add=el('button','Add original rainfall interval');add.type='button';form.append(add);
+ const run=el('button','Compare original rainfall intervals');run.type='submit';run.disabled=true;form.append(run);
+ const output=el('div');output.setAttribute('role','status');section.append(output);
+ const save=el('button','Download original gauge investigation');save.type='button';save.disabled=true;section.append(save);
+ const openLabel=el('label','Reopen original gauge investigation without replacing the working site'),file=el('input');file.type='file';file.accept='.json';openLabel.append(file);section.append(openLabel);
+ let basis=null,accepted=null,generation=0,rowNumber=0;
+ function retire(){generation++;accepted=null;save.disabled=true;output.replaceChildren();}
+ function clear(){retire();basis=null;run.disabled=true;identity.textContent='Original rain/soil inputs changed. Compare or reopen before using rainfall evidence.';}
+ function addRow(r={}){
+  if(rows.children.length>=64)throw Error('At most 64 original intervals.');
+  const box=el('fieldset');box.append(el('legend','Original interval '+(++rowNumber)));const inputs={};
+  for(const [key,label,type]of [['id','Reading identifier','text'],['startMinute','Interval start minute','number'],['endMinute','Interval end minute','number'],['depth','Original rainfall depth','number'],['uncertainty','Original rainfall ± bound','number'],['source','Original reading source','text']])inputs[key]=field(box,label,r[key]??'',type);
+  for(const [key,label,values]of [['unit','Original rainfall unit',['mm','cm','in']],['use','Evidence role',['unassigned','calibration','challenge']]]){const wrap=el('label',label),select=el('select');select.setAttribute('aria-label',label);for(const value of values){const o=el('option',value);o.value=value;select.append(o);}select.value=r[key]??values[0];wrap.append(select);box.append(wrap);inputs[key]=select;}
+  box.readingInputs=inputs;const remove=el('button','Remove this interval');remove.type='button';remove.addEventListener('click',()=>{retire();box.remove();});box.append(remove);rows.append(box);
+ }
+ function fill(gauge){for(const [key,n]of Object.entries(declarations))n.value=gauge?.[key]??'';rows.replaceChildren();rowNumber=0;for(const r of gauge?.readings??[{}])addRow(r);}
+ function enable(){retire();const current=getAccepted();basis=current?structuredClone(current):null;run.disabled=!basis;fill();identity.textContent=basis?`Original ${basis.project.title}, ${basis.request.target}; constant storm through minute ${basis.project.weather.stormMinutes}. Supply explicitly associated rainfall observations below.`:'Compare or reopen an original rain/soil investigation first.';}
+ function collect(){const numeric=n=>n.value.trim()===''?NaN:Number(n.value);return {schema:RAIN_GAUGE_SCHEMA,...Object.fromEntries(Object.entries(declarations).map(([k,n])=>[k,n.value])),readings:[...rows.children].map(box=>Object.fromEntries(Object.entries(box.readingInputs).map(([k,n])=>[k,['startMinute','endMinute','depth','uncertainty'].includes(k)?numeric(n):n.value])))};}
+ function show(project,request,gauge,report){accepted={project:structuredClone(project),request:structuredClone(request),gauge:structuredClone(gauge)};save.disabled=false;output.replaceChildren(el('p',`${report.status}: ${report.compatiblePairs.length} calibration-compatible pairs; ${report.survivingPairs.length} not contradicted. ${report.counts.gaugeCalibration} rainfall calibration, ${report.counts.gaugeChallenge} held aside, ${report.counts.gaugeIgnored} excluded.`),el('p',report.meaning));
+  const interval=rainfallConsistency(project,gauge,request.rainRatesMmHr);
+  const rate=r=>r===null?'unbounded':r.denominator==='1'?r.numerator:`${r.numerator}/${r.denominator}`;
+  const result=el('div');result.style.overflowWrap='anywhere';result.append(el('h5','Do the rainfall intervals admit any constant intensity?'),el('p',`${interval.status}. Calibration intensity interval: ${rate(interval.lower)} to ${rate(interval.upper)} mm/h. Offered rates inside the supplied bands: ${interval.compatibleOfferedRates.join(', ')||'none'}.`),el('p',interval.meaning));
+  for(const w of interval.witness)result.append(el('p',`Original constraint witness ${w.reading.id}: minutes ${w.reading.startMinute}–${w.reading.endMinute}, ${w.reading.depth} ± ${w.reading.uncertainty} ${w.reading.unit}. Source: ${w.reading.source}`));
+  output.append(result);
+  const history=rainfallHistoryConsistency(project,gauge);output.append(el('h5','Could changing rainfall explain these interval totals?'),el('p',history.status),el('p',history.meaning??'Assign original rainfall calibration readings first.'));
+  for(const w of history.witness)output.append(el('p',`History constraint witness ${w.reading.id}: minutes ${w.reading.startMinute}–${w.reading.endMinute}, ${w.reading.depth} ± ${w.reading.uncertainty} ${w.reading.unit}. Source: ${w.reading.source}`));
+  if(history.status==='interval-totals-inconsistent'){
+   const recheck=el('button','Which original rainfall readings could I recheck?');recheck.type='button';const answer=el('div');output.append(recheck,answer);
+   recheck.addEventListener('click',()=>{answer.replaceChildren();try{const r=investigateGaugeRechecks(project,gauge);answer.append(el('p',r.status),el('p',r.meaning??'Complete recheck analysis was not admitted.'));for(const c of r.choices)answer.append(el('p',`Possible original source to recheck: ${c.reading.id}, minutes ${c.reading.startMinute}–${c.reading.endMinute}, ${c.reading.depth} ± ${c.reading.uncertainty} ${c.reading.unit}. Excluding only this constraint leaves ${c.remainingCalibration} calibration intervals compatible. Source: ${c.reading.source}`));}catch(error){answer.append(el('p',error.message));}});
+  }
+  mountRainDuration(output,project,request,gauge);
+  for(const c of report.candidates){const card=el('details');card.append(el('summary',`Rain ${c.rainMmHr}, soil ${c.rateMmHr} mm/h: ${c.compatible?'calibration compatible':'not supported by calibration'}; ${c.surviving?'not contradicted overall':'not surviving'}`));for(const role of ['calibration','challenge'])for(const e of c.rainfall[role].errors){const r=gauge.readings[e.index];card.append(el('p',`${role} ${r.id}, minutes ${r.startMinute}–${r.endMinute}: original ${r.depth} ± ${r.uncertainty} ${r.unit}; modeled rainy overlap ${e.rainyMinutes} min, predicted ${e.predictedMm} mm, observed-minus-predicted ${e.residualMm} mm. ${e.withinBand?'Inside':'Outside'} supplied band; separate numerical guard ${e.numericalGuardMm} mm. Source: ${r.source}`));}output.append(card);}
+ }
+ csvImport.addEventListener('click',()=>{retire();try{if(!basis)throw Error('Compare or reopen original rain/soil inputs first.');const gauge=importGaugeCsv(basis.project,csv.value,{eventOrigin:eventOrigin.value,...Object.fromEntries(Object.entries(declarations).map(([key,n])=>[key,n.value]))});fill(gauge);output.append(el('p',`Imported ${gauge.readings.length} original intervals with retained timestamps and sources. Compare explicitly to investigate their evidence.`));}catch(error){output.append(el('p',error.message));notice(error.message);}});
+ form.addEventListener('input',retire);add.addEventListener('click',()=>{retire();try{addRow();}catch(e){output.append(el('p',e.message));}});
+ form.addEventListener('submit',event=>{event.preventDefault();retire();try{if(!basis)throw Error('Compare or reopen original inputs first.');const gauge=collect(),r=compareRainGauge(basis.project,basis.request,gauge);show(basis.project,basis.request,gauge,r);}catch(e){output.append(el('p',e.message));notice(e.message);}});
+ save.addEventListener('click',()=>{if(!accepted)return;try{const text=exportRainGauge(accepted.project,accepted.request,accepted.gauge),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download='rain-gauge-original-inputs.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){notice(e.message);}});
+ file.addEventListener('change',async()=>{const selected=file.files[0];if(!selected)return;clear();const token=generation;identity.textContent='Reading replacement original gauge investigation…';try{if(selected.size>4*1024*1024)throw Error('Open at most 4 MiB of original inputs.');const text=await selected.text();if(token!==generation)return;const r=importRainGauge(text);basis={project:r.project,request:r.request};run.disabled=false;fill(r.gauge);identity.textContent=`Reopened ${selected.name}: original ${r.project.title}, ${r.request.target}, ${r.gauge.eventRef}; storm through minute ${r.project.weather.stormMinutes}. Working site unchanged.`;show(r.project,r.request,r.gauge,r.report);}catch(e){if(token===generation){identity.textContent='Replacement original inputs were not accepted.';output.append(el('p',e.message));notice(e.message);}}finally{if(token===generation)file.value='';}});
+ fill();return {clear,enable};
+}
