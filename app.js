@@ -1,6 +1,7 @@
 import { openSavedProject, mountSavedProjectRecovery } from './saved-project-recovery.js';
 import {mountInvestigationNavigation} from './investigation-navigation.js';
 import {arrowGridIndex} from './grid-keyboard.js';
+import { createObservationFocus } from './observation-focus.js';
 import {mountHeatColumnSearch} from './heat-column-search-panel.js';
 import {mountSharedObservedConnection} from './observed-shared-connection-panel.js';
 import {mountMeasuredChange} from './measured-change-panel.js';
@@ -76,6 +77,9 @@ let comparisonGeneration = 0;
 let completedComparison = null;
 let comparisonState = 'initial';
 let comparisonFocus = null;
+const observationFocus = createObservationFocus({
+  list: $('observation-list'), getProject: () => project, emptyTarget: $('obs-depth'),
+});
 let comparisonInert = [];
 const comparisonStatus = document.createElement('section');
 comparisonStatus.id = 'rain-comparison-status';
@@ -173,7 +177,7 @@ function setComparisonInteraction(pending) {
       const active = document.activeElement;
       const cell = active?.closest('#existing-grid .cell, #proposal-grid .cell');
       if (cell) comparisonFocus = { grid: cell.dataset.grid, index: cell.dataset.cellIndex };
-      else comparisonFocus = null;
+      else comparisonFocus = observationFocus.capture();
       const panels = [...document.querySelectorAll('.workspace, main > section.panel')]
         .filter(node => node !== comparisonStatus && !node.inert);
       comparisonInert = panels;
@@ -193,6 +197,10 @@ function setComparisonState(state, error) {
   comparisonStatus.dataset.generation = String(comparisonGeneration);
   comparisonStatus.hidden = state === 'ready';
   comparisonMessage.setAttribute('role', state === 'failed' ? 'alert' : 'status');
+  // Retry is about to disappear; retain the reading or grid return target.
+  if (state === 'pending' && document.activeElement === retryComparison) {
+    comparisonMessage.focus({ preventScroll: true });
+  }
   retryComparison.hidden = state !== 'failed';
   restoreComparison.hidden = state === 'ready' || !completedComparison;
   if (state === 'ready') return;
@@ -249,7 +257,9 @@ function finishComparisonDisplay() {
   comparisonFocus = null;
   setComparisonState('ready');
   setComparisonInteraction(false);
-  if (focusedStatus && restoreFocus) {
+  if (focusedStatus && restoreFocus?.kind === 'observation') {
+    if (!observationFocus.restore(restoreFocus)) $('project-title').focus({ preventScroll: true });
+  } else if (focusedStatus && restoreFocus) {
     const cell = $(restoreFocus.grid + '-grid')
       .querySelector('[data-cell-index="' + restoreFocus.index + '"]');
     if (cell) cell.focus({ preventScroll: true });
@@ -441,6 +451,7 @@ function chart() {
   svg.innerHTML=`${gridlines}<line x1="${stormX}" y1="${top}" x2="${stormX}" y2="${h-bottom}" stroke="#a4b9ae" stroke-dasharray="4 5"/><text x="${Math.min(stormX+5,w-70)}" y="12">rain stops</text>${paths}${times}`;
 }
 function observations() {
+  const restoreFocus = observationFocus.capture();
   const n=project.selectedIndex; const base=project.existing[n]; const plan=project.proposal[n];
   $('obs-cell').value=nameCell(n);
   $('selection').innerHTML=`<div><strong>Selected ${nameCell(n)}</strong> · existing: ${SURFACES[base.surface].label}, ${numeric(base.elevationM)} m</div><div>proposed: ${SURFACES[plan.surface].label}, ${numeric(plan.elevationM)} m</div>`;
@@ -461,16 +472,18 @@ function observations() {
     $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement.${timeSupport} Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
   }
   const list=$('observation-list');list.replaceChildren();
-  if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);return;}
+  if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);observationFocus.restore(restoreFocus);return;}
   for(let i=project.observations.length-1;i>=0;i--){
     const o=project.observations[i];const a=interpolateDepth(results.existing,o.cellIndex,o.minute),b=interpolateDepth(results.proposal,o.cellIndex,o.minute);
     const row=document.createElement('div');row.className='observation';
+    const markRemoval = observationFocus.register(row, o, i);
     const info=document.createElement('div');const main=document.createElement('strong');main.textContent=`${nameCell(o.cellIndex)} · ${o.minute} min · ${readingNumber(o.depthMm)} ± ${readingNumber(o.uncertaintyMm)} mm measured`;
     const body=document.createElement('small');body.textContent=`${o.source} · model depths at ${o.minute} min (solver brackets ${a.beforeMinute}–${a.afterMinute} min): existing ${numeric(a.depthMm)} mm (residual ${numeric(o.depthMm-a.depthMm)}), proposal ${numeric(b.depthMm)} mm (residual ${numeric(o.depthMm-b.depthMm)})`;
     info.append(main,body);
     if(o.tableSource){const origin=document.createElement('small');origin.className='table-origin';origin.textContent=`Supplied table: ${o.tableSource.fileName}, line ${o.tableSource.line} · original ${o.tableSource.depthValue} ± ${o.tableSource.uncertaintyValue} ${o.tableSource.unit}`;info.append(origin);}
-    info.append(evidenceControls(o,rerun));const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.addEventListener('click',()=>{project.observations.splice(i,1);rerun();});row.append(info,remove);list.append(row);
+    info.append(evidenceControls(o,rerun));const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.dataset.observationRemove='';remove.addEventListener('click',()=>{markRemoval();project.observations.splice(i,1);rerun();});row.append(info,remove);list.append(row);
   }
+  observationFocus.restore(restoreFocus);
 }
 function draw() {
   const a=results.existing,b=results.proposal;
