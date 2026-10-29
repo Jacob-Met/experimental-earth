@@ -2,7 +2,9 @@
 
 In **Test it against a reading**, choose **Export observation CSV** to download every retained notebook reading, in notebook order. The button becomes available after a reading is retained, including readings imported from an original measurement table. Exporting does not change the project, model, readings, evidence roles or retained source files.
 
-While a comparison is pending or has failed, complete it, retry it or restore the last completed project before exporting notebook CSV. The notebook follows the workbench\'s existing interaction controls.\n\nThe UTF-8 file is named `experimental-earth-observations.csv`. It uses the existing observation-table columns:
+While a comparison is pending or has failed, complete it, retry it or restore the last completed project before exporting notebook CSV. The notebook follows the existing workbench interaction controls.
+
+The UTF-8 file is named `experimental-earth-observations.csv`. It uses the existing observation-table columns:
 
 ```csv
 cell,minute,depth,uncertainty,unit,source,scenario,use
