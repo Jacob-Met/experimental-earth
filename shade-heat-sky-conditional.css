@@ -1,0 +1,26 @@
+@import './shade-heat-sky-coverage.css';
+#conditional-run{background:#205b4e;color:#fff;border-color:#205b4e}
+#conditional-status{margin-bottom:0;font-size:.94rem}
+#conditional-status[data-state="refused"],#conditional-status[data-state="file-refused"]{color:#8a3c24}
+#conditional-sources p,#conditional-results p,#conditional-clock{overflow-wrap:anywhere}
+#conditional-results,#conditional-pattern-detail,#conditional-role-detail{min-width:0}
+#conditional-results .table-wrap{max-width:100%;max-height:500px;overflow:auto;margin:20px 0}
+#conditional-results .table-wrap:focus{outline:3px solid #427e6d;outline-offset:3px}
+#conditional-results td{white-space:nowrap}
+#conditional-results caption{max-width:600px;white-space:normal}
+#conditional-results details{margin:14px 0}
+#conditional-results summary{cursor:pointer;font-weight:650}
+#conditional-results pre{max-width:100%;max-height:450px;white-space:pre;overflow:auto;padding:12px;background:#f4f7f1}
+.conditional-verdict{margin:10px 0 22px;padding:20px;border:1px solid #91ad9c;border-left:5px solid #3d7968;border-radius:12px;background:#f1f7f2}
+.conditional-verdict[data-status="original-incompatible"],.conditional-verdict[data-status="conditional-empty"]{background:#fcf7ef;border-left-color:#986039}
+.conditional-verdict h2{margin-top:4px}
+.conditional-bounds,.conditional-selection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.conditional-value{min-width:0;padding:18px;background:#f5f8f2;border:1px solid #c6d8cc;border-radius:10px}
+.conditional-value h4{margin:0 0 10px}.conditional-value>strong{font-size:1.6rem;color:#194f42;overflow-wrap:anywhere}
+.conditional-allowance{padding:16px 20px;background:#f7f8f1;border-radius:10px}
+.conditional-selection label,.conditional-pattern-choice,#conditional-pattern-detail>label{display:grid;gap:8px;font-weight:650;margin:18px 0}
+.conditional-selection select,.conditional-pattern-choice select,#conditional-role{max-width:100%;min-width:0;width:100%}
+#conditional-allowance{box-sizing:border-box;width:100%;min-width:0}
+#conditional-source-details>summary{font-weight:650;cursor:pointer}
+#conditional-pattern-detail{padding-top:18px;border-top:1px solid #cadbce}
+@media(max-width:760px){.conditional-bounds,.conditional-selection{grid-template-columns:1fr}.conditional-value>strong{font-size:1.35rem}}
