@@ -1,0 +1,29 @@
+@import './shade-heat-epoch-evidence.css';
+#change-run{background:#205b4e;color:white;border-color:#205b4e}
+#change-status{margin-bottom:0;font-size:.94rem}
+#change-status[data-state="refused"],#change-status[data-state="file-refused"]{color:#8a3c24}
+.question-grid{grid-template-columns:minmax(190px,1fr) minmax(0,2fr)}
+.change-wide{grid-column:1/-1}
+.question-grid textarea{box-sizing:border-box;width:100%;min-height:90px;padding:12px;border:1px solid #b9cec4;border-radius:8px;resize:vertical;font:inherit}
+#change-source-details>summary,.change-proof>summary{cursor:pointer;font-weight:650;padding:10px 0}
+#change-sources p,#change-results p,#change-clock{overflow-wrap:anywhere}
+.change-outcome{padding:18px 20px;border:1px solid #bdcfc3;border-left:5px solid #3d7968;border-radius:10px;background:#f2f7ef}
+.change-outcome[data-status="incompatible"]{border-left-color:#996338;background:#fcf7ef}
+.change-classes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0}
+.change-class{padding:16px;border:1px solid #d5e1d8;border-radius:10px;background:#fafcf8;min-width:0}
+.change-class[data-status="compatible"]{background:#edf6ee;border-color:#82a890}
+.change-class h3{margin-top:0}.change-class p{margin-bottom:0;font-size:.9rem}
+.change-selection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.change-selection label,.change-pattern-choice{display:grid;gap:7px;font-weight:650}
+.change-pattern-choice{margin-top:24px}
+.change-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.change-value{min-width:0;padding:16px;border:1px solid #d4dfd7;border-radius:10px;background:#f7f9f5}
+.change-value h4{margin-top:0}.change-value p{font-size:.9rem;overflow-wrap:anywhere}
+#change-results .phase-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+#change-results .phase-profile figcaption{overflow-wrap:anywhere;font-size:.87rem}
+.change-witness{margin-top:22px;padding-top:20px;border-top:1px solid #d5e1d8}
+.change-proof pre{max-height:450px;white-space:pre;overflow:auto}
+.change-table caption{max-width:560px;white-space:normal}
+.change-table{max-height:490px;overflow:auto}
+.change-table button{white-space:nowrap}
+@media(max-width:760px){.question-grid,.change-classes,.change-selection,.change-values,#change-results .phase-grid{grid-template-columns:1fr}}

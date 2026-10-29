@@ -1,0 +1,3745 @@
+{
+  "scope": "Exact two-bin represented-coefficient feasibility only; no thermal/browser claim",
+  "cases": [
+    {
+      "name": "static-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-change-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/5",
+              "4/5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unique-two-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              2
+            ],
+            "shares": [
+              "0",
+              "1",
+              "0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-one-splits-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "incompatible-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "nonuniform-causal-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1/6",
+            "0",
+            "0"
+          ],
+          "lower": "1/42",
+          "upper": "1/42"
+        },
+        {
+          "coefficients": [
+            "1/6",
+            "1/3",
+            "0"
+          ],
+          "lower": "11/42",
+          "upper": "11/42"
+        },
+        {
+          "coefficients": [
+            "1/6",
+            "1/3",
+            "1/2"
+          ],
+          "lower": "17/42",
+          "upper": "17/42"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              2
+            ],
+            "shares": [
+              "1/7",
+              "5/7",
+              "2/7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1/6",
+            "0",
+            "0"
+          ],
+          "lower": "1/42",
+          "upper": "1/42"
+        },
+        {
+          "coefficients": [
+            "1/6",
+            "1/3",
+            "1/2"
+          ],
+          "lower": "17/42",
+          "upper": "17/42"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/7",
+              "16/35"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/7",
+              "2/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "near-boundary-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846975/1152921504606846976",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-near-3",
+      "intervals": 3,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846977/1152921504606846976",
+          "upper": "576460752303423489/576460752303423488"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "static-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-change-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/5",
+              "4/5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unique-two-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              3
+            ],
+            "shares": [
+              "0",
+              "1",
+              "0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-one-splits-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "incompatible-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "nonuniform-causal-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1/7",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/49",
+          "upper": "1/49"
+        },
+        {
+          "coefficients": [
+            "1/7",
+            "2/7",
+            "0",
+            "0"
+          ],
+          "lower": "11/49",
+          "upper": "11/49"
+        },
+        {
+          "coefficients": [
+            "1/7",
+            "2/7",
+            "3/7",
+            "0"
+          ],
+          "lower": "26/49",
+          "upper": "26/49"
+        },
+        {
+          "coefficients": [
+            "1/7",
+            "2/7",
+            "3/7",
+            "4/7"
+          ],
+          "lower": "34/49",
+          "upper": "34/49"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              3
+            ],
+            "shares": [
+              "1/7",
+              "5/7",
+              "2/7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1/7",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/49",
+          "upper": "1/49"
+        },
+        {
+          "coefficients": [
+            "1/7",
+            "2/7",
+            "3/7",
+            "4/7"
+          ],
+          "lower": "34/49",
+          "upper": "34/49"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/7",
+              "11/21"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/7",
+              "31/49"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/7",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "near-boundary-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846975/1152921504606846976",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-near-4",
+      "intervals": 4,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846977/1152921504606846976",
+          "upper": "576460752303423489/576460752303423488"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "static-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-change-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/5",
+              "4/5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unique-two-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              4
+            ],
+            "shares": [
+              "0",
+              "1",
+              "0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-one-splits-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "incompatible-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "nonuniform-causal-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1/8",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/56",
+          "upper": "1/56"
+        },
+        {
+          "coefficients": [
+            "1/8",
+            "1/4",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "11/56",
+          "upper": "11/56"
+        },
+        {
+          "coefficients": [
+            "1/8",
+            "1/4",
+            "3/8",
+            "0",
+            "0"
+          ],
+          "lower": "13/28",
+          "upper": "13/28"
+        },
+        {
+          "coefficients": [
+            "1/8",
+            "1/4",
+            "3/8",
+            "1/2",
+            "0"
+          ],
+          "lower": "23/28",
+          "upper": "23/28"
+        },
+        {
+          "coefficients": [
+            "1/8",
+            "1/4",
+            "3/8",
+            "1/2",
+            "5/8"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              4
+            ],
+            "shares": [
+              "1/7",
+              "5/7",
+              "2/7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1/8",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/56",
+          "upper": "1/56"
+        },
+        {
+          "coefficients": [
+            "1/8",
+            "1/4",
+            "3/8",
+            "1/2",
+            "5/8"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/7",
+              "55/98"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/7",
+              "53/84"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/7",
+              "50/63"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "near-boundary-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846975/1152921504606846976",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-near-5",
+      "intervals": 5,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846977/1152921504606846976",
+          "upper": "576460752303423489/576460752303423488"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "static-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-change-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/5",
+              "4/5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unique-two-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              5
+            ],
+            "shares": [
+              "0",
+              "1",
+              "0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-one-splits-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              5
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "incompatible-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "nonuniform-causal-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1/9",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/63",
+          "upper": "1/63"
+        },
+        {
+          "coefficients": [
+            "1/9",
+            "2/9",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "11/63",
+          "upper": "11/63"
+        },
+        {
+          "coefficients": [
+            "1/9",
+            "2/9",
+            "1/3",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "26/63",
+          "upper": "26/63"
+        },
+        {
+          "coefficients": [
+            "1/9",
+            "2/9",
+            "1/3",
+            "4/9",
+            "0",
+            "0"
+          ],
+          "lower": "46/63",
+          "upper": "46/63"
+        },
+        {
+          "coefficients": [
+            "1/9",
+            "2/9",
+            "1/3",
+            "4/9",
+            "5/9",
+            "0"
+          ],
+          "lower": "71/63",
+          "upper": "71/63"
+        },
+        {
+          "coefficients": [
+            "1/9",
+            "2/9",
+            "1/3",
+            "4/9",
+            "5/9",
+            "2/3"
+          ],
+          "lower": "83/63",
+          "upper": "83/63"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              5
+            ],
+            "shares": [
+              "1/7",
+              "5/7",
+              "2/7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1/9",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/63",
+          "upper": "1/63"
+        },
+        {
+          "coefficients": [
+            "1/9",
+            "2/9",
+            "1/3",
+            "4/9",
+            "5/9",
+            "2/3"
+          ],
+          "lower": "83/63",
+          "upper": "83/63"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/7",
+              "41/70"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/7",
+              "40/63"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/7",
+              "11/15"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "1/7",
+              "73/77"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "near-boundary-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846975/1152921504606846976",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-near-6",
+      "intervals": 6,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846977/1152921504606846976",
+          "upper": "576460752303423489/576460752303423488"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "static-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-change-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/5",
+              "4/5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unique-two-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              6
+            ],
+            "shares": [
+              "0",
+              "1",
+              "0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-one-splits-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              5
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              6
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "incompatible-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "nonuniform-causal-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1/10",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/70",
+          "upper": "1/70"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "11/70",
+          "upper": "11/70"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "3/10",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "13/35",
+          "upper": "13/35"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "3/10",
+            "2/5",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "23/35",
+          "upper": "23/35"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "3/10",
+            "2/5",
+            "1/2",
+            "0",
+            "0"
+          ],
+          "lower": "71/70",
+          "upper": "71/70"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "3/10",
+            "2/5",
+            "1/2",
+            "3/5",
+            "0"
+          ],
+          "lower": "101/70",
+          "upper": "101/70"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "3/10",
+            "2/5",
+            "1/2",
+            "3/5",
+            "7/10"
+          ],
+          "lower": "23/14",
+          "upper": "23/14"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              6
+            ],
+            "shares": [
+              "1/7",
+              "5/7",
+              "2/7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1/10",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/70",
+          "upper": "1/70"
+        },
+        {
+          "coefficients": [
+            "1/10",
+            "1/5",
+            "3/10",
+            "2/5",
+            "1/2",
+            "3/5",
+            "7/10"
+          ],
+          "lower": "23/14",
+          "upper": "23/14"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/7",
+              "38/63"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/7",
+              "16/25"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/7",
+              "109/154"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "1/7",
+              "5/6"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "near-boundary-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846975/1152921504606846976",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-near-7",
+      "intervals": 7,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846977/1152921504606846976",
+          "upper": "576460752303423489/576460752303423488"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "static-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1/3",
+          "upper": "1/3"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1/3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-change-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/5",
+          "upper": "1/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "4/5",
+          "upper": "4/5"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "1/5",
+              "4/5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unique-two-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              7
+            ],
+            "shares": [
+              "0",
+              "1",
+              "0"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-one-splits-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              5
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              6
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "cuts": [
+              7
+            ],
+            "shares": [
+              "0",
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "incompatible-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          "lower": "0",
+          "upper": "0"
+        },
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    },
+    {
+      "name": "nonuniform-causal-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1/11",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/77",
+          "upper": "1/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/7",
+          "upper": "1/7"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "26/77",
+          "upper": "26/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "4/11",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "46/77",
+          "upper": "46/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "4/11",
+            "5/11",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "71/77",
+          "upper": "71/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "4/11",
+            "5/11",
+            "6/11",
+            "0",
+            "0"
+          ],
+          "lower": "101/77",
+          "upper": "101/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "4/11",
+            "5/11",
+            "6/11",
+            "7/11",
+            "0"
+          ],
+          "lower": "136/77",
+          "upper": "136/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "4/11",
+            "5/11",
+            "6/11",
+            "7/11",
+            "8/11"
+          ],
+          "lower": "152/77",
+          "upper": "152/77"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 2,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1,
+              7
+            ],
+            "shares": [
+              "1/7",
+              "5/7",
+              "2/7"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "partial-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1/11",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1/77",
+          "upper": "1/77"
+        },
+        {
+          "coefficients": [
+            "1/11",
+            "2/11",
+            "3/11",
+            "4/11",
+            "5/11",
+            "6/11",
+            "7/11",
+            "8/11"
+          ],
+          "lower": "152/77",
+          "upper": "152/77"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 1,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [
+              1
+            ],
+            "shares": [
+              "1/7",
+              "151/245"
+            ]
+          },
+          {
+            "cuts": [
+              2
+            ],
+            "shares": [
+              "1/7",
+              "149/231"
+            ]
+          },
+          {
+            "cuts": [
+              3
+            ],
+            "shares": [
+              "1/7",
+              "73/105"
+            ]
+          },
+          {
+            "cuts": [
+              4
+            ],
+            "shares": [
+              "1/7",
+              "71/91"
+            ]
+          },
+          {
+            "cuts": [
+              5
+            ],
+            "shares": [
+              "1/7",
+              "137/147"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "near-boundary-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846975/1152921504606846976",
+          "upper": "1"
+        }
+      ],
+      "expected": {
+        "minimumChanges": 0,
+        "allCompatiblePatterns": [
+          {
+            "cuts": [],
+            "shares": [
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-near-8",
+      "intervals": 8,
+      "observations": [
+        {
+          "coefficients": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "lower": "1152921504606846977/1152921504606846976",
+          "upper": "576460752303423489/576460752303423488"
+        }
+      ],
+      "expected": {
+        "minimumChanges": null,
+        "allCompatiblePatterns": []
+      }
+    }
+  ]
+}
