@@ -1,0 +1,72 @@
+{
+  "outcome": "Complete original temperature record over explicitly offered original sky-change boundaries",
+  "owner": "estate-52d429-20261025",
+  "task": "experimental-earth-sky-record-boundaries-52d429",
+  "acceptedPredecessor": "ccc697ab93f56020f7dc0b74241c1b25ac0faa2f",
+  "composedBase": "736059d63c735b57fdae7496959fa501f2805e0c",
+  "preservedUpstream": "PR461 original-rate chart-axis fix, including its native regression",
+  "coreSha256": "494aa3e559d1d49038b095803b423f5a9fc7f60f5f8fec92d4b53a71df6bc0cf",
+  "authoredControl": {
+    "originalReadings": 24,
+    "uniqueReceiverSources": 3,
+    "originalTimes": 17,
+    "offeredBoundaries": 15,
+    "firstThreeCompatible": 15,
+    "completeRecordCompatible": 1,
+    "compatibleOriginalBoundary": "2026-06-21T08:00:00.000Z",
+    "executedBasisCourses": 2880,
+    "executedWitnessCourses": 36,
+    "executedThermalIntervals": 46656,
+    "qualification": "Authored numerical observations under the declared model, not field evidence or physical timing recovery"
+  },
+  "native": {
+    "newCoreGroups": 8,
+    "composedGroups": 11,
+    "composedTerminalChunk": "269a88",
+    "unchangedAcceptedChildReportsComparedExactly": 15
+  },
+  "independent": {
+    "authoredUnionEndpoints": 136,
+    "authoredNativeAttainmentProofBindings": 433,
+    "authoredSameBoundaryWitnessBindings": 68,
+    "unfamiliarPartialClockEndpoints": 88,
+    "unfamiliarAttainmentProofBindings": 150,
+    "unfamiliarWitnessBindings": 75,
+    "consumerSourceRefusalControls": 10,
+    "scope": "Independent exact arithmetic and bounded consumer source review; independent reviewers did not run a second Earth browser"
+  },
+  "firstCandidateBrowser": {
+    "run": "earth52-record-boundary-ot750vb4",
+    "session": 27261,
+    "terminalChunk": "9a4e6b",
+    "exitCode": 0,
+    "groups": 8,
+    "activeNamespaceSeccompTsyncSandbox": true,
+    "exceptions": 0,
+    "materializedFilesByteEqual": 917,
+    "qualification": "First browser precedes the narrow mobile width-text addition and current-main composition. Final exact-source and accepted receiving are separate retained receipts."
+  },
+  "portableChecker": {
+    "candidateBrowserChildOptimalCertificates": 1632,
+    "candidateBrowserChildIncompatibilityCertificates": 16,
+    "negativeControls": [
+      "changed union endpoint",
+      "wrong attaining boundary",
+      "omitted rejected offer",
+      "missing final original record",
+      "changed objective dual",
+      "wrong incompatibility certificate status"
+    ],
+    "scope": "Independent original-band matrices, retained child certificates and exact unions; does not rerun thermal trajectories or claim physical validation"
+  },
+  "limits": {
+    "maxOriginalReadings": 24,
+    "maxUniqueReceiverSources": 3,
+    "maxOriginalIntervals": 24,
+    "maxOfferedBoundaries": 23,
+    "maxAggregateThermalIntervals": 300000,
+    "maxReportBytes": 67108864,
+    "completeQueryRefusal": true
+  },
+  "preservedScope": "Original sources, bands, clock, thermal/geometry solvers and accepted single-boundary reports; all other owners and exact denied or UNKNOWN actions. No public deployment, access change or unrun CI pass."
+}

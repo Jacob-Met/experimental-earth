@@ -1,0 +1,45 @@
+@import './shade-heat-many-course.css';
+#record-boundary-run {background:#205b4e;color:white;border-color:#205b4e}
+#record-boundary-status[data-state="refused"],#record-boundary-status[data-state="file-refused"] {color:#8a3c24}
+#record-boundary-hint,#record-boundary-source-summary {overflow-wrap:anywhere}
+.record-primary {display:grid;gap:7px;font-weight:650;max-width:100%;margin:20px 0 8px}
+.record-primary select {width:100%;min-width:0}
+#record-boundary-sources>summary {font-weight:650;cursor:pointer;padding:8px 0}
+#record-boundary-all {margin-top:12px}
+.record-counts {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+.record-count {border:1px solid #d3e2d9;background:#f4f8f3;border-radius:12px;padding:16px;min-width:0}
+.record-count strong {display:block;color:#205b4e;font-size:2.15rem;line-height:1.15;margin-bottom:6px}
+.record-count span {font-size:.88rem;color:#486962}
+.record-count[data-kind="reference"] {background:#f1f5f9;border-color:#cedae5}
+.record-count[data-kind="reference"] strong {color:#52718f}
+.record-offers {display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:20px 0 26px}
+.record-offer {display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:14px;border:1px solid #cddbd4;border-radius:10px;background:#f7f9f6;text-align:left;min-width:0}
+.record-offer strong {font-size:1.05rem}.record-offer small {font-size:.78rem;line-height:1.35;font-weight:500}
+.record-offer[data-status="compatible"] {background:#eaf5ed;border-color:#629b7c;color:#205b4e}
+.record-offer[data-status="incompatible"] {background:#faf5ef;border-color:#e3d2bd;color:#775437}
+.record-offer[aria-pressed="true"] {outline:3px solid #315d70;outline-offset:2px}
+.record-selected {border:1px solid #cdded5;border-radius:12px;background:#f8fbf7;padding:20px;margin:20px 0}
+.record-selected h3 {margin:0 0 10px}.record-selected p {font-size:.94rem}
+.record-selected[data-status="incompatible"] {border-color:#e3d2bd;background:#fcf8f2}
+.record-selected select {width:100%;max-width:680px}
+.record-selected label {display:grid;gap:7px;font-weight:650;margin:16px 0}
+.record-proof pre {max-height:320px;overflow:auto}
+.record-proof summary {cursor:pointer;font-weight:600}
+.record-legend {display:flex;gap:12px 24px;flex-wrap:wrap;font-size:.85rem;margin:16px 0}
+.record-legend span {display:flex;align-items:center;gap:7px}
+.record-time {display:grid;gap:9px;margin:24px 0;font-weight:650}
+.record-time input {width:100%;accent-color:#205b4e;padding:10px 0}
+.record-time output {font-weight:500;overflow-wrap:anywhere;color:#426863}
+.record-range {border-top:1px solid #d8e4dc;margin-top:18px;padding-top:20px}
+.record-range h3 {overflow-wrap:anywhere}
+.record-origins {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.record-origins section {background:#f3f7f1;border-radius:10px;padding:14px;min-width:0}
+.record-origins h4 {margin:0 0 10px}.record-origins p {margin:8px 0;font-size:.88rem}
+.record-origins .record-width-change {font-weight:650;overflow-wrap:anywhere}
+.record-origins button {margin:4px 5px 4px 0;font-size:.82rem;padding:8px 10px}
+#record-boundary-witness {min-width:0}
+#record-boundary-profile-details {border-top:1px solid #d8e4dc;padding-top:18px;margin-top:24px}
+#record-boundary-profile-details>summary {font-weight:650;cursor:pointer}
+#record-boundary-results>p {overflow-wrap:anywhere}
+@media(max-width:700px){.record-origins{grid-template-columns:1fr}.record-counts{gap:8px}.record-count{padding:13px 10px}.record-count strong{font-size:1.8rem}.record-count span{font-size:.8rem}}
+@media(max-width:440px){.record-offers{grid-template-columns:repeat(2,minmax(0,1fr))}.record-selected{padding:14px}.record-counts{grid-template-columns:1fr}.record-count{display:flex;align-items:center;gap:16px}.record-count strong{margin:0;min-width:40px}.record-count span{font-size:.9rem}}

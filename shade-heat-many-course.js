@@ -210,6 +210,11 @@ function evaluate(investigation){
 export function prepareManySkyCourseEvidence(originals,query){
   const investigation=prepareManySkyCourseSource(originals,query);return {investigation,report:evaluate(investigation)};
 }
+// Complete reservation for callers composing several unchanged inquiries. This
+// performs the same original-source admission and does not execute a course.
+export function inspectManySkyCourseWork(originals,query){
+  return preflight(prepareManySkyCourseSource(originals,query));
+}
 export function parseManySkyCourseSource(text){
   if(typeof text!=='string')throw TypeError('Original-record sky inputs must be JSON text');
   checkShadeHeatBytes(new Blob([text]).size);let raw;

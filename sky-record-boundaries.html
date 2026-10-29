@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Which sky-change times fit the whole record? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-record-boundaries.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-many-readings.html" target="_blank" rel="noopener">Experimental Earth · original temperature records ↗</a>
+    <p class="eyebrow">The complete record / offered times of change</p>
+    <h1>Which sky-change times fit the whole record?</h1>
+    <p class="intro">Offer several times from the original clock. Keep every temperature reading, then see which times remain possible under the same declared sky and heat model—and what those alternatives mean for the designs.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="record-source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Keep the original evidence</p><h2 id="record-source-heading">One complete temperature record</h2></div>
+        <button id="record-boundary-example" type="button" disabled>Try the 24-reading example</button></div>
+      <p>Load three to 24 original instantaneous readings from at most three receivers, or use the originals from a saved inquiry. Every receiver, UTC, component, value, band and attribution stays attached to its original source.</p>
+      <label class="file-label">Open original evidence<input id="record-boundary-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="record-boundary-source-summary" class="quiet">No original record loaded.</p>
+      <label class="record-primary">First record and comparison point<select id="record-boundary-primary" disabled><option>No record loaded</option></select></label>
+      <p class="quiet">The first three records form the reference. Choosing another first record explicitly moves it to the front; the remaining records keep their order. All loaded records still constrain the complete family.</p>
+      <details id="record-boundary-sources"><summary>Inspect every original reading and its source</summary><div id="record-boundary-source-table"></div></details>
+    </section>
+    <form id="record-boundary-form" class="card" novalidate>
+      <p class="eyebrow">02 / Offer the original change times</p><h2>Compare the whole list</h2>
+      <p>At each offered boundary, one common four-bin profile applies before the change and another after it. The same two profiles must explain every original observation. No time between the supplied boundaries is considered.</p>
+      <div class="question-grid"><label>Change after original intervals, separated by commas<input id="record-boundary-splits" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15" disabled></label>
+        <label>Basis for shared conditions<input id="record-boundary-sharing" maxlength="400" required placeholder="Why the readings share the same sky profiles" disabled></label></div>
+      <button id="record-boundary-all" type="button" disabled>Offer every internal original boundary</button>
+      <p id="record-boundary-hint" class="quiet">Load a record to inspect its original clock.</p>
+      <div class="actions"><button id="record-boundary-run" type="submit" disabled>Compare every offered time</button>
+        <label class="file-label">Reopen this inquiry<input id="record-boundary-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="record-boundary-export" type="button" disabled>Download original inputs</button></div>
+      <p id="record-boundary-status" role="status">Load original evidence or try the authored example.</p>
+    </form>
+    <section id="record-boundary-results" class="card" aria-label="Complete record and offered sky-change comparison" hidden></section>
+  </main>
+  <footer>Conditional compatibility under the declared model. An allowed offered time is not an inferred physical change time. Pointwise limits can come from different boundaries and profiles; they do not describe one possible trajectory. Exact additive evidence and original numerical replay remain separate.</footer>
+  <script type="module" src="shade-heat-record-boundaries-page.js"></script>
+</body>
+</html>
