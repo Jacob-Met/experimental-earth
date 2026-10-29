@@ -1,0 +1,356 @@
+{
+  "utc": "2026-10-28T20:24:29.423Z",
+  "kind": "explicit-hypothetical-nonunique-witness",
+  "sourceModelSha": "f36a3b04cc4bb2b5f0f3dfb685c37917265ef8e80065d2eedeb5a647867a3eea",
+  "initialSurfaceMm": 0.3830214402039416,
+  "initialStoredMm": 2.472060387401662,
+  "capacityMm": 2.472060387401662,
+  "infiltrationMmHr": 10.0647969688627,
+  "drainagePerHour": 4.071420350471951,
+  "maxErrorMmHr": 1.7763568394002505e-15,
+  "purpose": "The unchanged maintained coupled model exactly reproduces the delayed-linear fitted rate curve with hypothetical remaining surface water; this is not an observed surface head or physical parameter identification.",
+  "predictions": [
+    {
+      "tauSeconds": 30,
+      "observedRateMmHr": 10.2962637850918,
+      "fullKernelRateMmHr": 10.0647969688627,
+      "formulaRateMmHr": 10.0647969688627,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 1.3877787807814457e-17
+    },
+    {
+      "tauSeconds": 60,
+      "observedRateMmHr": 9.91429192167138,
+      "fullKernelRateMmHr": 10.0647969688627,
+      "formulaRateMmHr": 10.0647969688627,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 90,
+      "observedRateMmHr": 9.6596440127242,
+      "fullKernelRateMmHr": 10.0647969688627,
+      "formulaRateMmHr": 10.0647969688627,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 5.551115123125783e-17
+    },
+    {
+      "tauSeconds": 120,
+      "observedRateMmHr": 9.74452664904018,
+      "fullKernelRateMmHr": 10.0647969688627,
+      "formulaRateMmHr": 10.0647969688627,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 150,
+      "observedRateMmHr": 9.69359706725043,
+      "fullKernelRateMmHr": 9.917903275771776,
+      "formulaRateMmHr": 9.917903275771774,
+      "difference": 1.7763568394002505e-15,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -3.3306690738754696e-16
+    },
+    {
+      "tauSeconds": 180,
+      "observedRateMmHr": 9.54080832188197,
+      "fullKernelRateMmHr": 9.587048113549063,
+      "formulaRateMmHr": 9.587048113549063,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 210,
+      "observedRateMmHr": 9.30313694019906,
+      "fullKernelRateMmHr": 9.267230076344179,
+      "formulaRateMmHr": 9.267230076344179,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -1.1102230246251565e-16
+    },
+    {
+      "tauSeconds": 240,
+      "observedRateMmHr": 9.03151250398759,
+      "fullKernelRateMmHr": 8.958080972444952,
+      "formulaRateMmHr": 8.958080972444952,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 270,
+      "observedRateMmHr": 8.7259350132522,
+      "fullKernelRateMmHr": 8.659244892788607,
+      "formulaRateMmHr": 8.659244892788607,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -1.1102230246251565e-16
+    },
+    {
+      "tauSeconds": 300,
+      "observedRateMmHr": 8.33547488620006,
+      "fullKernelRateMmHr": 8.370377801220119,
+      "formulaRateMmHr": 8.370377801220119,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 1.1102230246251565e-16
+    },
+    {
+      "tauSeconds": 330,
+      "observedRateMmHr": 8.31849835893578,
+      "fullKernelRateMmHr": 8.091147138419311,
+      "formulaRateMmHr": 8.091147138419311,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -1.1102230246251565e-16
+    },
+    {
+      "tauSeconds": 360,
+      "observedRateMmHr": 8.0978035045156,
+      "fullKernelRateMmHr": 7.821231439040679,
+      "formulaRateMmHr": 7.821231439040679,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 390,
+      "observedRateMmHr": 7.50362505030602,
+      "fullKernelRateMmHr": 7.5603199616252255,
+      "formulaRateMmHr": 7.560319961625226,
+      "difference": -8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 420,
+      "observedRateMmHr": 7.09618839599036,
+      "fullKernelRateMmHr": 7.3081123308581795,
+      "formulaRateMmHr": 7.3081123308581795,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 450,
+      "observedRateMmHr": 7.04525881420139,
+      "fullKernelRateMmHr": 7.064318191760799,
+      "formulaRateMmHr": 7.0643181917607984,
+      "difference": 8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 480,
+      "observedRateMmHr": 7.07921186872686,
+      "fullKernelRateMmHr": 6.8286568754181065,
+      "formulaRateMmHr": 6.8286568754181065,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 510,
+      "observedRateMmHr": 6.75665785072873,
+      "fullKernelRateMmHr": 6.600857075857762,
+      "formulaRateMmHr": 6.600857075857762,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 540,
+      "observedRateMmHr": 6.07759676020239,
+      "fullKernelRateMmHr": 6.380656537708039,
+      "formulaRateMmHr": 6.380656537708038,
+      "difference": 8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 570,
+      "observedRateMmHr": 5.97573759662367,
+      "fullKernelRateMmHr": 6.167801754275344,
+      "formulaRateMmHr": 6.167801754275344,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 600,
+      "observedRateMmHr": 6.07759676020239,
+      "fullKernelRateMmHr": 5.9620476756937,
+      "formulaRateMmHr": 5.9620476756937,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 630,
+      "observedRateMmHr": 5.73806621494076,
+      "fullKernelRateMmHr": 5.763157426810156,
+      "formulaRateMmHr": 5.763157426810154,
+      "difference": 1.7763568394002505e-15,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 660,
+      "observedRateMmHr": 5.29667650609886,
+      "fullKernelRateMmHr": 5.570902034481384,
+      "formulaRateMmHr": 5.570902034481385,
+      "difference": -8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 690,
+      "observedRateMmHr": 5.12691123346689,
+      "fullKernelRateMmHr": 5.385060163967504,
+      "formulaRateMmHr": 5.385060163967504,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 720,
+      "observedRateMmHr": 5.21179386978211,
+      "fullKernelRateMmHr": 5.2054178641196165,
+      "formulaRateMmHr": 5.205417864119616,
+      "difference": 8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 750,
+      "observedRateMmHr": 4.94016943357296,
+      "fullKernelRateMmHr": 5.031768321067758,
+      "formulaRateMmHr": 5.031768321067758,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 780,
+      "observedRateMmHr": 4.71947457915278,
+      "fullKernelRateMmHr": 4.863911620125651,
+      "formulaRateMmHr": 4.86391162012565,
+      "difference": 8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 810,
+      "observedRateMmHr": 4.56668583378354,
+      "fullKernelRateMmHr": 4.701654515638172,
+      "formulaRateMmHr": 4.701654515638172,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 840,
+      "observedRateMmHr": 4.54970930652081,
+      "fullKernelRateMmHr": 4.544810208506576,
+      "formulaRateMmHr": 4.544810208506576,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 870,
+      "observedRateMmHr": 4.75342763367825,
+      "fullKernelRateMmHr": 4.393198131135326,
+      "formulaRateMmHr": 4.393198131135326,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 900,
+      "observedRateMmHr": 4.44785014294132,
+      "fullKernelRateMmHr": 4.2466437395529795,
+      "formulaRateMmHr": 4.2466437395529795,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 930,
+      "observedRateMmHr": 4.1932022339949,
+      "fullKernelRateMmHr": 4.104978312467784,
+      "formulaRateMmHr": 4.104978312467784,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 960,
+      "observedRateMmHr": 3.83669516146899,
+      "fullKernelRateMmHr": 3.9680387570266618,
+      "formulaRateMmHr": 3.9680387570266613,
+      "difference": 4.440892098500626e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 990,
+      "observedRateMmHr": 3.71785947062677,
+      "fullKernelRateMmHr": 3.8356674210539476,
+      "formulaRateMmHr": 3.835667421053947,
+      "difference": 4.440892098500626e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": -2.220446049250313e-16
+    },
+    {
+      "tauSeconds": 1020,
+      "observedRateMmHr": 3.66692988883702,
+      "fullKernelRateMmHr": 3.707711911553738,
+      "formulaRateMmHr": 3.707711911553738,
+      "difference": 0,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 1050,
+      "observedRateMmHr": 3.34437587083735,
+      "fullKernelRateMmHr": 3.5840249192668794,
+      "formulaRateMmHr": 3.58402491926688,
+      "difference": -4.440892098500626e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 1080,
+      "observedRateMmHr": 3.42925850715257,
+      "fullKernelRateMmHr": 3.464464049080635,
+      "formulaRateMmHr": 3.464464049080634,
+      "difference": 8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 1110,
+      "observedRateMmHr": 2.97089227104949,
+      "fullKernelRateMmHr": 3.3488916560957747,
+      "formulaRateMmHr": 3.348891656095774,
+      "difference": 4.440892098500626e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    },
+    {
+      "tauSeconds": 1140,
+      "observedRateMmHr": 3.32739934357462,
+      "fullKernelRateMmHr": 3.2371746871623754,
+      "formulaRateMmHr": 3.2371746871623746,
+      "difference": 8.881784197001252e-16,
+      "surfaceBalanceErrorMm": 0,
+      "receiverBalanceErrorMm": 0
+    }
+  ]
+}

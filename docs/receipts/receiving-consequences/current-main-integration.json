@@ -1,0 +1,50 @@
+{
+  "utc": "2026-10-28T20:35:55.310955+00:00",
+  "priorBase": "b28dbec5e7339eb024bb7332dca88f5ce35c0b82",
+  "base": "f3ec5c49902f4a842d41f94c6c9afe58eeb3882f",
+  "tree": "db0e461ef11321100873f1f94a024e36553110ab",
+  "runtimeFiles": [
+    {
+      "path": "continuous-sky.js",
+      "sha": "7873808ae1b9d2a4668b391e6f1ebe0c27e44ce8"
+    },
+    {
+      "path": "diffuse-sky.js",
+      "sha": "c9159fdd3763626016877ed43ded66e43eb1aee2"
+    },
+    {
+      "path": "shade-heat-benefit.js",
+      "sha": "f80067cda44a7d3cd47a6acd77102e0f6dfbb13b"
+    },
+    {
+      "path": "shade-heat-computation.js",
+      "sha": "fa40ea2be88f4405d3fdbdb11ee80cd0c142998f"
+    },
+    {
+      "path": "shade-heat-panel.js",
+      "sha": "e8801b6d168b77683d52881caad48c4ed61ffd51"
+    },
+    {
+      "path": "shade-heat-sampling-panel.js",
+      "sha": "4dc9b7340ce23a6d48e342dea957f350f5ddfc9f"
+    },
+    {
+      "path": "shade-heat-worker.js",
+      "sha": "6d24c20ce8d0a87fb5107e3ac6b6086166515550"
+    },
+    {
+      "path": "shade-heat.css",
+      "sha": "528ce020802c0cdebd365e5fd47662a78857a581"
+    },
+    {
+      "path": "shade-heat.js",
+      "sha": "565cb68e093881fa8bda2acb830f0b816dcdc98b"
+    },
+    {
+      "path": "solar-occlusion.js",
+      "sha": "551b23c7cca85fb4a914938b4187c6d40cd9a6de"
+    }
+  ],
+  "ownedOverlap": [],
+  "meaning": "Current-main API-derived runtime composition; every changed runtime file verified against Git blob SHA. Not a full git checkout or whole-repository test run."
+}

@@ -1,0 +1,5051 @@
+{
+  "schema": "experimental-earth-receiving-inverse-native/1",
+  "checks": [
+    "wet receiver accounts recover unknown initial water on unfamiliar courses and retain true non-identification",
+    "wet degeneracies and unsupported original roles cannot produce an identified drainage model",
+    "both late-retained capacity branches survive and an independent mass account explains the separating question",
+    "held receiver values change only challenge support, never generation or the prospective measurement",
+    "all original bands remain binding, including duplicate-time contradictory readings and excluded held inputs",
+    "unequally spaced original drainage triples recover the receiver and do not turn derived inventories into observations",
+    "drainage role boundaries, repeated-time provenance and wrong held values cannot alter inverse generation",
+    "post-dry domain controls preserve refusal and non-identification without clamping readings or roots",
+    "strict original-input round-trip rejects forged conclusions and keeps declared original sources",
+    "combined inverse and forward budgets reserve every trial before any model calculation",
+    "unfamiliar 162-course grid reports eligible coverage, surviving ambiguity and explicit empty-boundary gain"
+  ],
+  "sourceKind": "Authored controls through the maintained forward model; not measured field validation",
+  "prequalificationFailures": [
+    "The first fixture requested minute 78.75 on a 1.5-minute endpoint grid; it was refused before inverse execution. The fixture now supplies the original exact minute 82.5.",
+    "A fractional-minute fixture generated a disallowed dot in its reading ID; source validation refused it. The ID now uses an underscore without changing the measurement time."
+  ],
+  "wetCourses": [
+    {
+      "channel": "retained",
+      "truth": {
+        "capacityMm": 7.3,
+        "initialStoredMm": 3,
+        "drainagePerHour": 0.63,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "drained",
+      "truth": {
+        "capacityMm": 7.3,
+        "initialStoredMm": 3,
+        "drainagePerHour": 0.63,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "retained",
+      "truth": {
+        "capacityMm": 9.19,
+        "initialStoredMm": 9.19,
+        "drainagePerHour": 0.271,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [
+        {
+          "surfaceRows": [
+            0,
+            1
+          ],
+          "accountIndex": 0,
+          "accountId": "retained-82_5",
+          "channel": "retained",
+          "branch": "wet-full-central",
+          "reason": "no-resolved-full-receiver-by-storm-end"
+        }
+      ],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "drained",
+      "truth": {
+        "capacityMm": 9.19,
+        "initialStoredMm": 9.19,
+        "drainagePerHour": 0.271,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "unsupported-trials",
+      "recovered": false,
+      "refused": [
+        {
+          "surfaceRows": [
+            0,
+            1
+          ],
+          "accountIndex": 0,
+          "accountId": "drained-82_5",
+          "channel": "drained",
+          "branch": "wet-full-central",
+          "reason": "no-resolved-full-receiver-by-storm-end"
+        }
+      ],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "retained",
+      "truth": {
+        "capacityMm": 11.1,
+        "initialStoredMm": 2.3,
+        "drainagePerHour": 0.4,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "drained",
+      "truth": {
+        "capacityMm": 11.1,
+        "initialStoredMm": 2.3,
+        "drainagePerHour": 0.4,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "retained",
+      "truth": {
+        "capacityMm": 4.6,
+        "initialStoredMm": 0.7,
+        "drainagePerHour": 1.1,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "drained",
+      "truth": {
+        "capacityMm": 4.6,
+        "initialStoredMm": 0.7,
+        "drainagePerHour": 1.1,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "retained",
+      "truth": {
+        "capacityMm": 6.7,
+        "initialStoredMm": 2.1,
+        "drainagePerHour": 0.15,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "drained",
+      "truth": {
+        "capacityMm": 6.7,
+        "initialStoredMm": 2.1,
+        "drainagePerHour": 0.15,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "retained",
+      "truth": {
+        "capacityMm": 7.3,
+        "initialStoredMm": 3,
+        "drainagePerHour": 0,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "one-surviving-proposal",
+      "recovered": true,
+      "refused": [],
+      "nonIdentifying": []
+    },
+    {
+      "channel": "drained",
+      "truth": {
+        "capacityMm": 7.3,
+        "initialStoredMm": 3,
+        "drainagePerHour": 0,
+        "source": "Authored maintained-forward control; no field observations"
+      },
+      "status": "non-identifying-trials",
+      "recovered": false,
+      "refused": [],
+      "nonIdentifying": [
+        {
+          "surfaceRows": [
+            0,
+            1
+          ],
+          "accountIndex": 0,
+          "accountId": "drained-75",
+          "channel": "drained",
+          "branch": "wet-full-central",
+          "reason": "zero-drainage-does-not-identify-initial-water"
+        }
+      ]
+    }
+  ],
+  "ambiguity": {
+    "parameters": [
+      {
+        "id": "account-inferred-3",
+        "label": "Proposal from surface rows 1 and receiver rows 1 / 2",
+        "capacityMm": 11.999999999999996,
+        "initialStoredMm": 3.390981833321625,
+        "drainagePerHour": 0.6300000000000003,
+        "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2. Uniform isolated footprint: Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+      },
+      {
+        "id": "account-inferred-5",
+        "label": "Proposal from surface rows 1 and receiver rows 1 / 2",
+        "capacityMm": 19.08913651066218,
+        "initialStoredMm": 15.870012733712764,
+        "drainagePerHour": 0.6300000000000003,
+        "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2. Uniform isolated footprint: Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+      }
+    ],
+    "question": {
+      "status": "question",
+      "offers": [
+        {
+          "id": "retained-360",
+          "channel": "retained",
+          "minute": 360,
+          "uncertaintyLiters": 0.1,
+          "basis": "Hypothetical available whole-receiver measurement at original minute 360; no actual acquisition is asserted",
+          "status": "offered",
+          "predictions": [
+            {
+              "id": "account-inferred-3",
+              "modeledLiters": 7.179293722686466,
+              "numericalGuardLiters": 7.179293722686466e-9
+            },
+            {
+              "id": "account-inferred-5",
+              "modeledLiters": 7.179293722686472,
+              "numericalGuardLiters": 7.1792937226864725e-9
+            }
+          ],
+          "pairs": [
+            {
+              "ids": [
+                "account-inferred-3",
+                "account-inferred-5"
+              ],
+              "gapLiters": 6.217248937900877e-15,
+              "numericalGuardLiters": 1.4358587445372938e-8,
+              "separated": false
+            }
+          ],
+          "separatedCount": 0
+        },
+        {
+          "id": "drained-360",
+          "channel": "drained",
+          "minute": 360,
+          "uncertaintyLiters": 0.1,
+          "basis": "Hypothetical available whole-receiver measurement at original minute 360; no actual acquisition is asserted",
+          "status": "offered",
+          "predictions": [
+            {
+              "id": "account-inferred-3",
+              "modeledLiters": 126.38463361059998,
+              "numericalGuardLiters": 1.2638463361059997e-7
+            },
+            {
+              "id": "account-inferred-5",
+              "modeledLiters": 176.30075721216463,
+              "numericalGuardLiters": 1.7630075721216463e-7
+            }
+          ],
+          "pairs": [
+            {
+              "ids": [
+                "account-inferred-3",
+                "account-inferred-5"
+              ],
+              "gapLiters": 49.91612360156465,
+              "numericalGuardLiters": 3.0268539082276463e-7,
+              "separated": true
+            }
+          ],
+          "separatedCount": 1
+        }
+      ],
+      "best": {
+        "id": "drained-360",
+        "channel": "drained",
+        "minute": 360,
+        "uncertaintyLiters": 0.1,
+        "basis": "Hypothetical available whole-receiver measurement at original minute 360; no actual acquisition is asserted",
+        "status": "offered",
+        "predictions": [
+          {
+            "id": "account-inferred-3",
+            "modeledLiters": 126.38463361059998,
+            "numericalGuardLiters": 1.2638463361059997e-7
+          },
+          {
+            "id": "account-inferred-5",
+            "modeledLiters": 176.30075721216463,
+            "numericalGuardLiters": 1.7630075721216463e-7
+          }
+        ],
+        "pairs": [
+          {
+            "ids": [
+              "account-inferred-3",
+              "account-inferred-5"
+            ],
+            "gapLiters": 49.91612360156465,
+            "numericalGuardLiters": 3.0268539082276463e-7,
+            "separated": true
+          }
+        ],
+        "separatedCount": 1
+      },
+      "supportIds": [
+        "account-inferred-3",
+        "account-inferred-5"
+      ]
+    }
+  },
+  "drainage": {
+    "hypothesis": {
+      "id": "account-inferred-3",
+      "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+      "capacityMm": 12.000000000000089,
+      "initialStoredMm": 3.390981833321792,
+      "drainagePerHour": 0.6300000000000003,
+      "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+    },
+    "derivedCourse": {
+      "firstMinute": 240,
+      "secondMinute": 300,
+      "firstRetainedLiters": 25.310036354066263,
+      "secondRetainedLiters": 13.479917845362186,
+      "eventualDrainageLiters": 133.56392733328641,
+      "derivedInitialStoredMm": 3.3909818333216037,
+      "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+    },
+    "alternateRejectedByCalibration": true
+  },
+  "work": {
+    "refusedTrials": 217,
+    "refusedCalls": 0,
+    "validReserved": 5184,
+    "validCalls": {
+      "forward": 5,
+      "wet": 3,
+      "full": 0,
+      "retained": 0,
+      "drained": 1
+    }
+  },
+  "grid": {
+    "total": 162,
+    "eligible": 53,
+    "excluded": [
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "no-positive-storm-end-depth",
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-surface-dry-at-first-account"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "reasons": [
+          "not-full-at-storm-end"
+        ]
+      }
+    ],
+    "recovered": 53,
+    "withoutExplicitEmptyBoundary": 44,
+    "forwardModels": 171,
+    "maximumRateIterations": 63,
+    "worstRelativeError": 5.922322419531288e-10,
+    "oneSurvivor": 36,
+    "severalSurvivors": 17,
+    "records": [
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999999902,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.11699999999999999,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 59,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 18.870686100096894,
+              "secondRetainedLiters": 15.833211348302763,
+              "eventualDrainageLiters": 37.17999999999974,
+              "derivedInitialStoredMm": -5.240252676230739e-14,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-above-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 5,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000000195,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.41000000000000414,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-5",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000000195,
+            "initialStoredMm": 2.646771690706373e-13,
+            "drainagePerHour": 0.41000000000000414,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 2.5970965040212963,
+              "secondRetainedLiters": 1.4040965791387612,
+              "eventualDrainageLiters": 37.17999999999999,
+              "derivedInitialStoredMm": -1.7763568394002505e-15,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999999995,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.41000000000000025,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 22.19316065303568,
+              "secondRetainedLiters": 11.998530245200701,
+              "eventualDrainageLiters": 88.30249999999998,
+              "derivedInitialStoredMm": -7.105427357601002e-15,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 5,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-5",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000000287,
+            "initialStoredMm": 1.739000000000384,
+            "drainagePerHour": 0.4100000000000037,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 3.560555871901129,
+              "secondRetainedLiters": 1.92498211438346,
+              "eventualDrainageLiters": 45.99673000000001,
+              "derivedInitialStoredMm": 1.7390000000000017,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 4,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999999881,
+            "initialStoredMm": 4.699999999999881,
+            "drainagePerHour": 0.4100000000000015,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999999881,
+            "initialStoredMm": 4.6999999999998545,
+            "drainagePerHour": 0.4100000000000015,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999988084,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.8899999999996491,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 57,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 0.10242945613818018,
+              "secondRetainedLiters": 0.026955148790291,
+              "eventualDrainageLiters": 37.18000000000004,
+              "derivedInitialStoredMm": 7.993605777301127e-15,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          },
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 57,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 0.10242945613818018,
+              "secondRetainedLiters": 0.026955148790291,
+              "eventualDrainageLiters": 37.18000000000004,
+              "derivedInitialStoredMm": 7.993605777301127e-15,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-above-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 4,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.70000000000147,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.8899999999999747,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.70000000000147,
+            "initialStoredMm": 4.340527937074512e-12,
+            "drainagePerHour": 0.8899999999999747,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 5,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-5",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000006998,
+            "initialStoredMm": 1.7390000000126755,
+            "drainagePerHour": 0.8900000000001127,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 58,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 0.13114425284355166,
+              "secondRetainedLiters": 0.03451168229984732,
+              "eventualDrainageLiters": 45.996730000000035,
+              "derivedInitialStoredMm": 1.739000000000007,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999998862,
+            "initialStoredMm": 1.7389999999970827,
+            "drainagePerHour": 0.8900000000000383,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 6,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999882652,
+            "initialStoredMm": 4.699999999882652,
+            "drainagePerHour": 0.88999999999987,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-6",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999882652,
+            "initialStoredMm": 4.6999999998126185,
+            "drainagePerHour": 0.88999999999987,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.7000000000007125,
+            "initialStoredMm": 4.7000000000007125,
+            "drainagePerHour": 0.8899999999999624,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999958,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.11700000000000066,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 63,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 43.71710895787583,
+              "secondRetainedLiters": 36.68028931196482,
+              "eventualDrainageLiters": 88.30249999999971,
+              "derivedInitialStoredMm": -6.039613253960852e-14,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-above-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999989,
+            "initialStoredMm": 4.883999999999983,
+            "drainagePerHour": 0.11699999999999991,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 2,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.19999999999997,
+            "initialStoredMm": 13.19999999999997,
+            "drainagePerHour": 0.11699999999999967,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.19999999999997,
+            "initialStoredMm": 13.199999999999966,
+            "drainagePerHour": 0.11699999999999967,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000000673,
+            "initialStoredMm": 4.884000000001512,
+            "drainagePerHour": 0.41000000000001047,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 4,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999998987,
+            "initialStoredMm": 13.199999999998987,
+            "drainagePerHour": 0.40999999999999037,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999998987,
+            "initialStoredMm": 13.199999999998626,
+            "drainagePerHour": 0.40999999999999037,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 60,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 6.613501245104012,
+              "secondRetainedLiters": 3.5755292342823646,
+              "eventualDrainageLiters": 104.10399999999997,
+              "derivedInitialStoredMm": 13.199999999999996,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000001339,
+            "initialStoredMm": 13.200000000001339,
+            "drainagePerHour": 0.41000000000000725,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 2,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.09999999999997,
+            "initialStoredMm": 29.09999999999997,
+            "drainagePerHour": 0.11699999999999991,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.09999999999997,
+            "initialStoredMm": 29.099999999999966,
+            "drainagePerHour": 0.11699999999999991,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 11,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 2,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.10000000000009,
+            "initialStoredMm": 29.10000000000009,
+            "drainagePerHour": 0.11699999999999836,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.10000000000009,
+            "initialStoredMm": 29.10000000000003,
+            "drainagePerHour": 0.11699999999999836,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.69999999999773,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.8900000000001057,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 57,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 0.8723128097564377,
+              "secondRetainedLiters": 0.2295562474423896,
+              "eventualDrainageLiters": 91.26,
+              "derivedInitialStoredMm": 0,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.699999999998074,
+            "initialStoredMm": 1.7389999999971812,
+            "drainagePerHour": 0.8900000000001177,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.70000000000041,
+            "initialStoredMm": 4.70000000000041,
+            "drainagePerHour": 0.8899999999999669,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 3,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000000019,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.11699999999999852,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000000019,
+            "initialStoredMm": 8.881784197001252e-15,
+            "drainagePerHour": 0.11699999999999852,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999982,
+            "initialStoredMm": 4.883999999999981,
+            "drainagePerHour": 0.11700000000000044,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999314,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.4099999999999906,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 6.168940533145323,
+              "secondRetainedLiters": 3.3351815329496675,
+              "eventualDrainageLiters": 91.26000000000008,
+              "derivedInitialStoredMm": 1.4210854715202004e-14,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-above-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999957,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.41000000000000125,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 40.22654538071249,
+              "secondRetainedLiters": 21.748115509829212,
+              "eventualDrainageLiters": 216.7424999999999,
+              "derivedInitialStoredMm": -2.1316282072803006e-14,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 5,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-5",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999534,
+            "initialStoredMm": 4.883999999999357,
+            "drainagePerHour": 0.4099999999999957,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 8.320783714439546,
+              "secondRetainedLiters": 4.498555957049806,
+              "eventualDrainageLiters": 116.02188000000008,
+              "derivedInitialStoredMm": 4.8840000000000146,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000000065,
+            "initialStoredMm": 4.884000000000096,
+            "drainagePerHour": 0.4099999999999996,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 4,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999998841,
+            "initialStoredMm": 13.199999999998841,
+            "drainagePerHour": 0.4100000000000015,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999998841,
+            "initialStoredMm": 13.199999999998536,
+            "drainagePerHour": 0.4100000000000015,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 5,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999935821,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.8900000000001277,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 59,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 1.6669311617596756,
+              "secondRetainedLiters": 0.43866656313939045,
+              "eventualDrainageLiters": 216.74250000000004,
+              "derivedInitialStoredMm": 7.105427357601002e-15,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000003985,
+            "initialStoredMm": 4.884000000007514,
+            "drainagePerHour": 0.8900000000000365,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 55,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 0.31485849306679875,
+              "secondRetainedLiters": 0.08285758656228888,
+              "eventualDrainageLiters": 116.02187999999998,
+              "derivedInitialStoredMm": 4.883999999999997,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999979084,
+            "initialStoredMm": 4.883999999938116,
+            "drainagePerHour": 0.8900000000001064,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 5,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999907982,
+            "initialStoredMm": 13.199999999907982,
+            "drainagePerHour": 0.8899999999997232,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-5",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999907982,
+            "initialStoredMm": 13.199999999850952,
+            "drainagePerHour": 0.8899999999997232,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000001289,
+            "initialStoredMm": 13.200000000001289,
+            "drainagePerHour": 0.8899999999999815,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": false,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.099999999999895,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.11700000000000078,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 57,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 112.02217763588064,
+              "secondRetainedLiters": 93.99079634931259,
+              "eventualDrainageLiters": 216.74249999999938,
+              "derivedInitialStoredMm": -1.2789769243681803e-13,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-above-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.117,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 2,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.099999999999966,
+            "initialStoredMm": 29.099999999999966,
+            "drainagePerHour": 0.1169999999999994,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.099999999999966,
+            "initialStoredMm": 29.099999999999948,
+            "drainagePerHour": 0.1169999999999994,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.09999999999915,
+            "initialStoredMm": 10.766999999998141,
+            "drainagePerHour": 0.4099999999999956,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.10000000000112,
+            "initialStoredMm": 29.10000000000112,
+            "drainagePerHour": 0.410000000000005,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 61,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 15.527857872008541,
+              "secondRetainedLiters": 8.394994982158453,
+              "eventualDrainageLiters": 238.79699999999988,
+              "derivedInitialStoredMm": 29.099999999999973,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 27,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.10000000000469,
+            "initialStoredMm": 29.10000000000469,
+            "drainagePerHour": 0.4100000000000068,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 3,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000000081,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.8899999999999917,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000000081,
+            "initialStoredMm": 1.092459456231154e-13,
+            "drainagePerHour": 0.8899999999999917,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 1.739,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.69999999999999,
+            "initialStoredMm": 1.7389999999999857,
+            "drainagePerHour": 0.8900000000000015,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 4.7,
+          "initialStoredMm": 4.7,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 4.700000000000015,
+            "initialStoredMm": 4.700000000000015,
+            "drainagePerHour": 0.8899999999999988,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 5,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000006051,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.4100000000000058,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-5",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000006051,
+            "initialStoredMm": 7.984723993104126e-12,
+            "drainagePerHour": 0.4100000000000058,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": [
+          {
+            "surfaceRows": [
+              0
+            ],
+            "accountIndices": [
+              0,
+              1,
+              2
+            ],
+            "accountIds": [
+              "drained-420",
+              "drained-510",
+              "drained-690"
+            ],
+            "accountId": "drained-420 / drained-510 / drained-690",
+            "channel": "drained",
+            "inverseSource": "post-dry-drained-triplet",
+            "drainageRateIterations": 57,
+            "derivedCourse": {
+              "firstMinute": 420,
+              "secondMinute": 510,
+              "firstRetainedLiters": 12.510869389471964,
+              "secondRetainedLiters": 6.763887627821987,
+              "eventualDrainageLiters": 138.58000000000004,
+              "derivedInitialStoredMm": 7.105427357601002e-15,
+              "meaning": "Derived model-course values from the three original cumulative drainage centers, not additional observations. Eventual total assumes all rain eventually reaches this isolated receiving footprint and drainage starts at the original event baseline."
+            },
+            "branch": "capacity-below-storm-depth",
+            "reason": "post-dry-derived-initial-water-outside-domain"
+          }
+        ]
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 5,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.20000000000111,
+            "initialStoredMm": 4.884000000001425,
+            "drainagePerHour": 0.4099999999999968,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 4,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999399,
+            "initialStoredMm": 13.199999999999399,
+            "drainagePerHour": 0.4100000000000069,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999999399,
+            "initialStoredMm": 13.199999999999294,
+            "drainagePerHour": 0.4100000000000069,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 0,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 3,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000001527,
+            "initialStoredMm": 0,
+            "drainagePerHour": 0.889999999999959,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000000001527,
+            "initialStoredMm": 3.9968028886505635e-12,
+            "drainagePerHour": 0.889999999999959,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.200000001607155,
+            "initialStoredMm": 4.884000002892462,
+            "drainagePerHour": 0.8900000000003252,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 4.8839999999999995,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 3,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-3",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999998798,
+            "initialStoredMm": 4.8839999999973465,
+            "drainagePerHour": 0.8900000000000361,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "several-surviving-proposals",
+        "candidates": 2,
+        "survivorCount": 2,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999966806,
+            "initialStoredMm": 13.199999999966806,
+            "drainagePerHour": 0.8900000000001924,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          },
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.199999999966806,
+            "initialStoredMm": 13.19999999994881,
+            "drainagePerHour": 0.8900000000001924,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 13.2,
+          "initialStoredMm": 13.2,
+          "drainagePerHour": 0.89,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 2,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 13.20000000000006,
+            "initialStoredMm": 13.20000000000006,
+            "drainagePerHour": 0.8899999999999966,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 10.767000000000001,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-2",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.100000000000595,
+            "initialStoredMm": 10.76700000000115,
+            "drainagePerHour": 0.41000000000000064,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 40,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 4,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-4",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.1000000000011,
+            "initialStoredMm": 29.1000000000011,
+            "drainagePerHour": 0.41000000000000125,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      },
+      {
+        "weather": {
+          "rainMmHr": 41,
+          "stormMinutes": 95,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1.3,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "truth": {
+          "capacityMm": 29.1,
+          "initialStoredMm": 29.1,
+          "drainagePerHour": 0.41,
+          "source": "Authored maintained-forward control; no field observations"
+        },
+        "status": "one-surviving-proposal",
+        "candidates": 1,
+        "survivorCount": 1,
+        "recovered": true,
+        "withoutExplicitEmptyBoundary": true,
+        "matchingProposals": [
+          {
+            "id": "account-inferred-1",
+            "label": "Proposal from surface rows 1 and receiver rows 1 / 2 / 3",
+            "capacityMm": 29.10000000000083,
+            "initialStoredMm": 29.10000000000083,
+            "drainagePerHour": 0.40999999999999714,
+            "source": "Calibration-center proposal from original surface rows 1 and receiver rows 1, 2, 3. Uniform isolated footprint: Authored uniform receiver across three selected cells, with one unselected sealed cell"
+          }
+        ],
+        "centralRefusals": []
+      }
+    ],
+    "limits": "Independent selection from the maintained forward regime; truth recovery within tolerance does not mean unique identification. The no-empty comparison omits only separately enumerated empty-boundary proposals, retaining central trials where exactly duplicated."
+  },
+  "passed": true,
+  "sourceHashes": {
+    "receiving-account-inverse.js": "99715042ef4a3f3bcf812398403633d99df70074c2364b5a70273598f0ccbfd2",
+    "post-dry-receiving-inverse.js": "a03d9d63c2985330410a93b4d2f87f14a9222c615e93a925e7da7d9d2d118b48",
+    "receiving-account-proposals.js": "5fa80c92ee4ccb4a195601d47cf5c450ae5826834a146359e5076ddb53df1c75",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-proposals-panel.js": "412622dd6a4370a2713ed756d05ace98cdc94a32675f2e0febc14c67b5b79f3c",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer-evidence.js": "0f460a9df746afcea588f731a95c245d7ba6aabcacbc2ba5906b44255d65e8b6",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "tests/receiving-inverse-fixtures.mjs": "186f4e52d9e5d996bbfdcc5fc4218243f45dd71ecd4d48f399b16c65dbe5b4c2",
+    "tests/receiving-account-proposals.test.mjs": "faa21329786039fe44ead5f7af0c78000e9d0e043072ee8adbc568fee1638f9a"
+  }
+}

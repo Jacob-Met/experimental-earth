@@ -1,0 +1,60 @@
+{
+  "schema": "hamon-earth-c1-drainage-law-screen/1",
+  "frozenAtUtc": "2026-10-28T20:22:56.723147+00:00",
+  "purpose": "Diagnose the dry linear-reservoir rate law on an author-published column tail; not a whole-site validation or externally blind qualification.",
+  "source": {
+    "repository": "ChrisBogner/ViscousFlow",
+    "commit": "5a3dbeec5bc846dd4198bb96704624dfe2e5cfde",
+    "blob": "2f9c9d3ff923d27da08f911092ea67bfb4c8df3a",
+    "irrigationEndSeconds": 64410,
+    "irrigationMmPerHour": 10,
+    "columnDiameterMeters": 0.15,
+    "columnHeightMeters": 0.3,
+    "bottomSuctionHpa": -10,
+    "processing": "Author-supplied drainage rate series; article reports30s aggregation and plateau LOESS. No additional smoothing."
+  },
+  "priorExposure": [
+    "README gives author viscous-flow front estimate64830s and nominal forcing; therefore this is a development diagnosis, not independent model selection.",
+    "Only schema/timestamps inspected from exact downloaded data before this freeze."
+  ],
+  "calibration": {
+    "q0": "Median original rates at0.9*64410 <= time <=64410, prescribed by author before inspecting values",
+    "tail": "All19 original rows with0 < time-64410 <=570 seconds"
+  },
+  "heldChallenge": {
+    "rows": "All19 original rows with570 < time-64410 <=1140 seconds",
+    "mustNotInfluence": "q0, coefficient fitting, bounds, family, starts, ranking or training objective"
+  },
+  "models": [
+    {
+      "id": "maintained-linear",
+      "law": "q0*exp(-k*tauHours)",
+      "fit": "k in[0,100]/hour; exact bounded scalar least squares on original training rates. Actual maintained advanceDrainingLayer checked for every candidate evaluation output."
+    },
+    {
+      "id": "delayed-linear",
+      "law": "q0 until lagSeconds then q0*exp(-k*(tau-lag)/3600)",
+      "fit": "lagSeconds in[0,570] and k in[0,100]/hour; lag integer seconds exhaustively, bounded scalar k. Additional free lag disclosed."
+    },
+    {
+      "id": "viscous-tail",
+      "law": "q0 until lagSeconds then q0*(lagSeconds/tauSeconds)^1.5",
+      "fit": "lagSeconds in[0,570], exponent fixed1.5 from primary author model, exact bounded scalar least squares."
+    }
+  ],
+  "metrics": [
+    "Original rate RMSE in mm/hour for calibration and held separately",
+    "Maximum absolute error",
+    "Trapezoidal volume over sampled held interval only, explicitly derived and not original cumulative drainage evidence"
+  ],
+  "negativeControls": [
+    "Replace all held rates by wrong nonnegative rates and require exact same fits; score must change.",
+    "All constant-zero calibration must not fabricate informative k or comparative success.",
+    "Actual maintained kernel and declared dry exponential law must agree; no substituted kernel."
+  ],
+  "limits": [
+    "Only one short processed column course; no measurement half-widths supplied.",
+    "Bottom suction,17.9h forcing and missing surface observations exclude whole-event receiving-band admission.",
+    "A better tail fit cannot establish physical mechanism, parameter truth, whole-event prediction, or benefits on independently new data."
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "schema": "experimental-earth-receiving-band-fit-browser/1",
+  "passed": false,
+  "checks": [],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-phase-fit.js": "7ebfe286908aa580b34d27125e7dda02e10c37a660eafea545726b2cfe36bc7c",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-proposals-panel.js": "4bc0ebdb4291222bebc9ecec950b243fadc673f1d67d1dc503def824d9966220",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "receiving-account-consequences-panel.js": "a2da6d465dc62d6e1f6c67f10270b5cf311dcc2b514d427aab247862b87a1188",
+    "post-dry-receiving-inverse.js": "d7fabdf986cc9266c39d1abc35007b01b9c443b46fc1201243b5dde2977e3aeb",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "tests/receiving-account-band-fit.receiving.mjs": "c7ebfc2f93ee536fd8d7b0952355adc38d0c0f49a79beee0c20dfda4cfd87bbd"
+  },
+  "output": "/dev/shm/hamon-a755e25-earth-retained-browser-20261028/earth-receiver-bands-JavEg1",
+  "sourceKind": "Actual maintained consumer on authored originals; not field validation",
+  "unexpectedFinalState": {
+    "expected": "several-surviving-proposals",
+    "observed": "challenged",
+    "message": "Phase alternatives: Every calibration-compatible proposal contradicts an original held-aside band.",
+    "cards": [
+      {
+        "id": "account-band-1",
+        "calibration": "false",
+        "challenge": "false",
+        "capacity": "26.33518969184223",
+        "initial": "6.120025079221975",
+        "drainage": "0.2278496272744635"
+      },
+      {
+        "id": "account-band-2",
+        "calibration": "false",
+        "challenge": "false",
+        "capacity": "41.42908476957878",
+        "initial": "22.0607901412143",
+        "drainage": "0.14483752873664682"
+      },
+      {
+        "id": "account-band-3",
+        "calibration": "false",
+        "challenge": "false",
+        "capacity": "33.905659429918586",
+        "initial": "14.215289138728444",
+        "drainage": "0.17698135061526765"
+      },
+      {
+        "id": "account-phase-1",
+        "calibration": "true",
+        "challenge": "false",
+        "capacity": "38.87707667258225",
+        "initial": "0",
+        "drainage": "0.21875949148050347"
+      },
+      {
+        "id": "account-phase-2",
+        "calibration": "true",
+        "challenge": "false",
+        "capacity": "77.75415326741035",
+        "initial": "0",
+        "drainage": "0.21875949148050347"
+      },
+      {
+        "id": "account-phase-3",
+        "calibration": "true",
+        "challenge": "false",
+        "capacity": "40.08732480697282",
+        "initial": "1.8745045608443363",
+        "drainage": "0.21875949148050347"
+      },
+      {
+        "id": "account-phase-4",
+        "calibration": "true",
+        "challenge": "false",
+        "capacity": "80.174649533771",
+        "initial": "1.8745045608443363",
+        "drainage": "0.21875949148050347"
+      },
+      {
+        "id": "account-phase-5",
+        "calibration": "true",
+        "challenge": "false",
+        "capacity": "41.297572941363406",
+        "initial": "3.7490091216886725",
+        "drainage": "0.21875949148050347"
+      },
+      {
+        "id": "account-phase-6",
+        "calibration": "true",
+        "challenge": "false",
+        "capacity": "82.59514580013166",
+        "initial": "3.7490091216886725",
+        "drainage": "0.21875949148050347"
+      }
+    ],
+    "source": "Separate original source: Authored receiver that never fills: capacity remains undetermined · proposal · garden · 4 cells / 4 m².Authored original whole-receiver account over four garden cells / four square metres. Capacity was not directly measured.Inspect every copied original reading and offered measurement"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: {\"expected\":\"several-surviving-proposals\",\"observed\":\"challenged\",\"message\":\"Phase alternatives: Every calibration-compatible proposal contradicts an original held-aside band.\",\"cards\":[{\"id\":\"account-band-1\",\"calibration\":\"false\",\"challenge\":\"false\",\"capacity\":\"26.33518969184223\",\"initial\":\"6.120025079221975\",\"drainage\":\"0.2278496272744635\"},{\"id\":\"account-band-2\",\"calibration\":\"false\",\"challenge\":\"false\",\"capacity\":\"41.42908476957878\",\"initial\":\"22.0607901412143\",\"drainage\":\"0.14483752873664682\"},{\"id\":\"account-band-3\",\"calibration\":\"false\",\"challenge\":\"false\",\"capacity\":\"33.905659429918586\",\"initial\":\"14.215289138728444\",\"drainage\":\"0.17698135061526765\"},{\"id\":\"account-phase-1\",\"calibration\":\"true\",\"challenge\":\"false\",\"capacity\":\"38.87707667258225\",\"initial\":\"0\",\"drainage\":\"0.21875949148050347\"},{\"id\":\"account-phase-2\",\"calibration\":\"true\",\"challenge\":\"false\",\"capacity\":\"77.75415326741035\",\"initial\":\"0\",\"drainage\":\"0.21875949148050347\"},{\"id\":\"account-phase-3\",\"calibration\":\"true\",\"challenge\":\"false\",\"capacity\":\"40.08732480697282\",\"initial\":\"1.8745045608443363\",\"drainage\":\"0.21875949148050347\"},{\"id\":\"account-phase-4\",\"calibration\":\"true\",\"challenge\":\"false\",\"capacity\":\"80.174649533771\",\"initial\":\"1.8745045608443363\",\"drainage\":\"0.21875949148050347\"},{\"id\":\"account-phase-5\",\"calibration\":\"true\",\"challenge\":\"false\",\"capacity\":\"41.297572941363406\",\"initial\":\"3.7490091216886725\",\"drainage\":\"0.21875949148050347\"},{\"id\":\"account-phase-6\",\"calibration\":\"true\",\"challenge\":\"false\",\"capacity\":\"82.59514580013166\",\"initial\":\"3.7490091216886725\",\"drainage\":\"0.21875949148050347\"}],\"source\":\"Separate original source: Authored receiver that never fills: capacity remains undetermined · proposal · garden · 4 cells / 4 m².Authored original whole-receiver account over four garden cells / four square metres. Capacity was not directly measured.Inspect every copied original reading and offered measurement\"}\n+ actual - expected\n\n+ 'challenged'\n- 'several-surviving-proposals'\n\n    at state (file:///tmp/hamon-a755e25-earth-phase-family/tests/receiving-account-band-fit.receiving.mjs:40:12)\n    at async file:///tmp/hamon-a755e25-earth-phase-family/tests/receiving-account-band-fit.receiving.mjs:47:83",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T21:35:39.878Z",
+    "completedAt": "2026-10-28T21:35:39.970Z",
+    "durationMs": 91.58517199999994,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "909F34FAC2D5F21B2F2619EFDBE628D7",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "A66EC7D04931A42899A2A5D871EE1291"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:35253/",
+    "closed": true
+  }
+}

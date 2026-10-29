@@ -1,0 +1,720 @@
+{
+  "source": {
+    "project": {
+      "schema": "experimental-earth-site/1",
+      "title": "Authored receiver that never fills: capacity remains undetermined",
+      "width": 2,
+      "height": 2,
+      "weather": {
+        "rainMmHr": 48,
+        "stormMinutes": 60,
+        "durationMinutes": 720,
+        "stepMinutes": 5,
+        "cellSizeM": 1,
+        "mobilityPerHour": 0,
+        "boundaryExitPerHour": 0
+      },
+      "existing": [
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        },
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        },
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        },
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        }
+      ],
+      "proposal": [
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        },
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        },
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        },
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        }
+      ],
+      "observations": [
+        {
+          "cellIndex": 0,
+          "minute": 60,
+          "depthMm": 24,
+          "uncertaintyMm": 0.00001,
+          "scenario": "proposal",
+          "use": "calibration",
+          "source": "Authored original surface course from unchanged maintained model; not field measurement"
+        },
+        {
+          "cellIndex": 0,
+          "minute": 300,
+          "depthMm": 0,
+          "uncertaintyMm": 0.00001,
+          "scenario": "proposal",
+          "use": "calibration",
+          "source": "Authored original surface course from unchanged maintained model; not field measurement"
+        },
+        {
+          "cellIndex": 0,
+          "minute": 540,
+          "depthMm": 0,
+          "uncertaintyMm": 0.00001,
+          "scenario": "proposal",
+          "use": "challenge",
+          "source": "Authored original surface course from unchanged maintained model; not field measurement"
+        }
+      ],
+      "selectedIndex": 0,
+      "source": "Authored flat closed site; no field observations"
+    },
+    "selection": {
+      "target": "proposal",
+      "surface": "garden",
+      "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+    },
+    "account": {
+      "footprintBasis": "Authored original whole-receiver account over four garden cells / four square metres. Capacity was not directly measured.",
+      "readings": [
+        {
+          "id": "retained-300",
+          "channel": "retained",
+          "minute": 300,
+          "valueLiters": 58.601003691277434,
+          "uncertaintyLiters": 27.096150409968992,
+          "use": "calibration",
+          "source": "Authored increasing recorded center within a declared band containing the original model value; no measurement was corrected."
+        },
+        {
+          "id": "retained-540",
+          "channel": "retained",
+          "minute": 540,
+          "valueLiters": 58.62100369127743,
+          "uncertaintyLiters": 27.096150409968992,
+          "use": "calibration",
+          "source": "Authored increasing recorded center within a declared band containing the original model value; no measurement was corrected."
+        },
+        {
+          "id": "held-retained",
+          "channel": "retained",
+          "minute": 600,
+          "valueLiters": 24.552359222477246,
+          "uncertaintyLiters": 0.02,
+          "use": "challenge",
+          "source": "Authored original receiver reading held out of every starting point, parameter fit and prospective question."
+        },
+        {
+          "id": "held-drained",
+          "channel": "drained",
+          "minute": 600,
+          "valueLiters": 217.4476407775234,
+          "uncertaintyLiters": 0.02,
+          "use": "challenge",
+          "source": "Authored original receiver reading held out of every starting point, parameter fit and prospective question."
+        }
+      ],
+      "offers": [
+        {
+          "id": "retained-660",
+          "channel": "retained",
+          "minute": 660,
+          "uncertaintyLiters": 0.02,
+          "basis": "Authored hypothetical availability of a later whole-receiver reading; no observation is asserted."
+        },
+        {
+          "id": "drained-660",
+          "channel": "drained",
+          "minute": 660,
+          "uncertaintyLiters": 0.02,
+          "basis": "Authored hypothetical availability of a later whole-receiver reading; no observation is asserted."
+        }
+      ]
+    }
+  },
+  "native": {
+    "status": "several-surviving-proposals",
+    "calibration": 12,
+    "held": 6,
+    "ratePoints": [
+      {
+        "rateFraction": 0,
+        "drainagePerHour": 1e-10,
+        "initialIntervalMm": [
+          0,
+          -26.575711468776248
+        ]
+      },
+      {
+        "rateFraction": 0.125,
+        "drainagePerHour": 0.03125135601150029,
+        "initialIntervalMm": [
+          0,
+          -24.484111578914078
+        ]
+      },
+      {
+        "rateFraction": 0.25,
+        "drainagePerHour": 0.06250271192300057,
+        "initialIntervalMm": [
+          0,
+          -21.845220028661195
+        ]
+      },
+      {
+        "rateFraction": 0.375,
+        "drainagePerHour": 0.09375406783450085,
+        "initialIntervalMm": [
+          0,
+          -18.558553401678267
+        ]
+      },
+      {
+        "rateFraction": 0.5,
+        "drainagePerHour": 0.12500542374600115,
+        "initialIntervalMm": [
+          0,
+          -14.506262195755554
+        ]
+      },
+      {
+        "rateFraction": 0.625,
+        "drainagePerHour": 0.15625677965750145,
+        "initialIntervalMm": [
+          0,
+          -9.550174975169327
+        ]
+      },
+      {
+        "rateFraction": 0.75,
+        "drainagePerHour": 0.18750813556900173,
+        "initialIntervalMm": [
+          0,
+          -3.5283416166767054
+        ]
+      },
+      {
+        "rateFraction": 0.875,
+        "drainagePerHour": 0.218759491480502,
+        "initialIntervalMm": [
+          0,
+          3.7490091216886725
+        ]
+      },
+      {
+        "rateFraction": 1,
+        "drainagePerHour": 0.2500108473920023,
+        "initialIntervalMm": [
+          12.504196819882154,
+          12.504196819882182
+        ]
+      }
+    ],
+    "refusals": [
+      {
+        "rateFraction": 0,
+        "drainagePerHour": 1e-10,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      },
+      {
+        "rateFraction": 0.125,
+        "drainagePerHour": 0.03125135601150029,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      },
+      {
+        "rateFraction": 0.25,
+        "drainagePerHour": 0.06250271192300057,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      },
+      {
+        "rateFraction": 0.375,
+        "drainagePerHour": 0.09375406783450085,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      },
+      {
+        "rateFraction": 0.5,
+        "drainagePerHour": 0.12500542374600115,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      },
+      {
+        "rateFraction": 0.625,
+        "drainagePerHour": 0.15625677965750145,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      },
+      {
+        "rateFraction": 0.75,
+        "drainagePerHour": 0.18750813556900173,
+        "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+      }
+    ]
+  },
+  "observed": {
+    "sameOriginals": false,
+    "factorySource": {
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Authored receiver that never fills: capacity remains undetermined",
+        "width": 2,
+        "height": 2,
+        "weather": {
+          "rainMmHr": 48,
+          "stormMinutes": 60,
+          "durationMinutes": 720,
+          "stepMinutes": 5,
+          "cellSizeM": 1,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "existing": [
+          {
+            "elevationM": 0,
+            "surface": "sealed",
+            "provenance": "Authored flat closed site; no field observations"
+          },
+          {
+            "elevationM": 0,
+            "surface": "sealed",
+            "provenance": "Authored flat closed site; no field observations"
+          },
+          {
+            "elevationM": 0,
+            "surface": "sealed",
+            "provenance": "Authored flat closed site; no field observations"
+          },
+          {
+            "elevationM": 0,
+            "surface": "sealed",
+            "provenance": "Authored flat closed site; no field observations"
+          }
+        ],
+        "proposal": [
+          {
+            "elevationM": 0,
+            "surface": "garden",
+            "provenance": "Hypothetical receiving bed"
+          },
+          {
+            "elevationM": 0,
+            "surface": "garden",
+            "provenance": "Hypothetical receiving bed"
+          },
+          {
+            "elevationM": 0,
+            "surface": "garden",
+            "provenance": "Hypothetical receiving bed"
+          },
+          {
+            "elevationM": 0,
+            "surface": "garden",
+            "provenance": "Hypothetical receiving bed"
+          }
+        ],
+        "observations": [
+          {
+            "cellIndex": 0,
+            "minute": 60,
+            "depthMm": 24,
+            "uncertaintyMm": 0.00001,
+            "scenario": "proposal",
+            "use": "calibration",
+            "source": "Authored original surface course from unchanged maintained model; not field measurement"
+          },
+          {
+            "cellIndex": 0,
+            "minute": 300,
+            "depthMm": 0,
+            "uncertaintyMm": 0.00001,
+            "scenario": "proposal",
+            "use": "calibration",
+            "source": "Authored original surface course from unchanged maintained model; not field measurement"
+          },
+          {
+            "cellIndex": 0,
+            "minute": 540,
+            "depthMm": 0,
+            "uncertaintyMm": 0.00001,
+            "scenario": "proposal",
+            "use": "challenge",
+            "source": "Authored original surface course from unchanged maintained model; not field measurement"
+          }
+        ],
+        "selectedIndex": 0,
+        "source": "Authored flat closed site; no field observations"
+      },
+      "selection": {
+        "target": "proposal",
+        "surface": "garden",
+        "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+      },
+      "account": {
+        "footprintBasis": "Authored original whole-receiver account over four garden cells / four square metres. Capacity was not directly measured.",
+        "readings": [
+          {
+            "id": "retained-300",
+            "channel": "retained",
+            "minute": 300,
+            "valueLiters": 58.601003691277,
+            "uncertaintyLiters": 27.09615040996894,
+            "use": "calibration",
+            "source": "Authored increasing recorded center within a declared band containing the original model value; no measurement was corrected."
+          },
+          {
+            "id": "retained-540",
+            "channel": "retained",
+            "minute": 540,
+            "valueLiters": 58.621003691277,
+            "uncertaintyLiters": 27.09615040996894,
+            "use": "calibration",
+            "source": "Authored increasing recorded center within a declared band containing the original model value; no measurement was corrected."
+          },
+          {
+            "id": "held-retained",
+            "channel": "retained",
+            "minute": 600,
+            "valueLiters": 24.55235922247692,
+            "uncertaintyLiters": 0.02,
+            "use": "challenge",
+            "source": "Authored original receiver reading held out of every starting point, parameter fit and prospective question."
+          },
+          {
+            "id": "held-drained",
+            "channel": "drained",
+            "minute": 600,
+            "valueLiters": 217.4476407775226,
+            "uncertaintyLiters": 0.02,
+            "use": "challenge",
+            "source": "Authored original receiver reading held out of every starting point, parameter fit and prospective question."
+          }
+        ],
+        "offers": [
+          {
+            "id": "retained-660",
+            "channel": "retained",
+            "minute": 660,
+            "uncertaintyLiters": 0.02,
+            "basis": "Authored hypothetical availability of a later whole-receiver reading; no observation is asserted."
+          },
+          {
+            "id": "drained-660",
+            "channel": "drained",
+            "minute": 660,
+            "uncertaintyLiters": 0.02,
+            "basis": "Authored hypothetical availability of a later whole-receiver reading; no observation is asserted."
+          }
+        ]
+      }
+    },
+    "fixedNativeOriginals": {
+      "status": "challenged",
+      "calibration": 6,
+      "held": 0,
+      "ratePoints": [
+        {
+          "rateFraction": 0,
+          "drainagePerHour": 1e-10,
+          "initialIntervalMm": [
+            0,
+            -26.575711468776248
+          ]
+        },
+        {
+          "rateFraction": 0.125,
+          "drainagePerHour": 0.031251356011500316,
+          "initialIntervalMm": [
+            0,
+            -24.48411157891408
+          ]
+        },
+        {
+          "rateFraction": 0.25,
+          "drainagePerHour": 0.06250271192300062,
+          "initialIntervalMm": [
+            0,
+            -21.845220028661185
+          ]
+        },
+        {
+          "rateFraction": 0.375,
+          "drainagePerHour": 0.09375406783450094,
+          "initialIntervalMm": [
+            0,
+            -18.558553401678267
+          ]
+        },
+        {
+          "rateFraction": 0.5,
+          "drainagePerHour": 0.12500542374600127,
+          "initialIntervalMm": [
+            0,
+            -14.506262195755532
+          ]
+        },
+        {
+          "rateFraction": 0.625,
+          "drainagePerHour": 0.15625677965750157,
+          "initialIntervalMm": [
+            0,
+            -9.550174975169298
+          ]
+        },
+        {
+          "rateFraction": 0.75,
+          "drainagePerHour": 0.1875081355690019,
+          "initialIntervalMm": [
+            0,
+            -3.528341616676684
+          ]
+        },
+        {
+          "rateFraction": 0.875,
+          "drainagePerHour": 0.21875949148050222,
+          "initialIntervalMm": [
+            0,
+            3.749009121688715
+          ]
+        },
+        {
+          "rateFraction": 1,
+          "drainagePerHour": 0.2500108473920025,
+          "initialIntervalMm": [
+            12.504196819882281,
+            12.504196819882239
+          ]
+        }
+      ],
+      "refusals": [
+        {
+          "rateFraction": 0,
+          "drainagePerHour": 1e-10,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.125,
+          "drainagePerHour": 0.031251356011500316,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.25,
+          "drainagePerHour": 0.06250271192300062,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.375,
+          "drainagePerHour": 0.09375406783450094,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.5,
+          "drainagePerHour": 0.12500542374600127,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.625,
+          "drainagePerHour": 0.15625677965750157,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.75,
+          "drainagePerHour": 0.1875081355690019,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 1,
+          "drainagePerHour": 0.2500108473920025,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        }
+      ]
+    },
+    "browserFactoryOriginals": {
+      "status": "challenged",
+      "calibration": 6,
+      "held": 0,
+      "ratePoints": [
+        {
+          "rateFraction": 0,
+          "drainagePerHour": 1e-10,
+          "initialIntervalMm": [
+            0,
+            -26.57571146877637
+          ]
+        },
+        {
+          "rateFraction": 0.125,
+          "drainagePerHour": 0.031251356011500496,
+          "initialIntervalMm": [
+            0,
+            -24.48411157891422
+          ]
+        },
+        {
+          "rateFraction": 0.25,
+          "drainagePerHour": 0.06250271192300098,
+          "initialIntervalMm": [
+            0,
+            -21.84522002866132
+          ]
+        },
+        {
+          "rateFraction": 0.375,
+          "drainagePerHour": 0.09375406783450148,
+          "initialIntervalMm": [
+            0,
+            -18.558553401678402
+          ]
+        },
+        {
+          "rateFraction": 0.5,
+          "drainagePerHour": 0.125005423746002,
+          "initialIntervalMm": [
+            0,
+            -14.506262195755667
+          ]
+        },
+        {
+          "rateFraction": 0.625,
+          "drainagePerHour": 0.15625677965750248,
+          "initialIntervalMm": [
+            0,
+            -9.550174975169412
+          ]
+        },
+        {
+          "rateFraction": 0.75,
+          "drainagePerHour": 0.18750813556900298,
+          "initialIntervalMm": [
+            0,
+            -3.5283416166767623
+          ]
+        },
+        {
+          "rateFraction": 0.875,
+          "drainagePerHour": 0.21875949148050347,
+          "initialIntervalMm": [
+            0,
+            3.7490091216886725
+          ]
+        },
+        {
+          "rateFraction": 1,
+          "drainagePerHour": 0.25001084739200397,
+          "initialIntervalMm": [
+            12.504196819882281,
+            12.504196819882267
+          ]
+        }
+      ],
+      "refusals": [
+        {
+          "rateFraction": 0,
+          "drainagePerHour": 1e-10,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.125,
+          "drainagePerHour": 0.031251356011500496,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.25,
+          "drainagePerHour": 0.06250271192300098,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.375,
+          "drainagePerHour": 0.09375406783450148,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.5,
+          "drainagePerHour": 0.125005423746002,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.625,
+          "drainagePerHour": 0.15625677965750248,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 0.75,
+          "drainagePerHour": 0.18750813556900298,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        },
+        {
+          "rateFraction": 1,
+          "drainagePerHour": 0.25001084739200397,
+          "reason": "no-finite-nonnegative-initial-band-at-fixed-rate"
+        }
+      ]
+    }
+  },
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T21:38:59.453Z",
+    "completedAt": "2026-10-28T21:38:59.552Z",
+    "durationMs": 98.766839,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "F6BDBF76DE3C64523E002641EBF99756",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "5F80E73BFE0C259E078CE7980B778144"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  }
+}

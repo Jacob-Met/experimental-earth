@@ -1,0 +1,6 @@
+{
+  "kind": "test-harness correction",
+  "failure": "The current-main browser run completed the3new retained-band checks, then checked an existing lazy analytic detail immediately after clicking its summary. The deferred toggle handler had not yet attached the required rows.",
+  "correction": "Wait for the first required analytic candidate row to attach before checking zero calibration support and nonempty retained candidates. No product behavior or asserted candidate requirement changed.",
+  "previousOriginalRuntimePass": "12groups at f3ec5c4; final current-runtime run will independently report its own result."
+}

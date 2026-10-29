@@ -1,0 +1,25 @@
+{
+  "reviewer": "retained direct worker /root/second_ground",
+  "status": "clear",
+  "scope": [
+    "receiving-account-consequences.js",
+    "receiving-account-consequences-panel.js",
+    "receiving-account-proposals-panel.js import/mount",
+    "draining-layer.css three scoped rules"
+  ],
+  "findings": [
+    "Complete central/band reservation before inference; upper bound central trials+3 and six maintained runs each.",
+    "Union uses calibration only, exact dedup retains all origins, held failures remain compared.",
+    "Original target calibration rechecked against actual paired run.",
+    "Separate initial receiver inventory and explicit same-material/per-cell initial-water transfer declaration.",
+    "Finite conditional ranges; strict source-only replay, no refit or adoption.",
+    "Copy isolation and asynchronous generation checks preserve lifecycle."
+  ],
+  "reviewerExecution": "Source review only; reviewer did not rerun native or browser tests.",
+  "sourceHashes": {
+    "receiving-account-consequences.js": "ca5112fa8d02b56f5b84fa8fc334311c4d22ce9f4f5f045d5636f236feccf995",
+    "receiving-account-consequences-panel.js": "14f43527701a6fdccbb0077c6a45eb4d2f5622a6096d3dec1d8a60c4a14c2967",
+    "receiving-account-proposals-panel.js": "39d44228305689751be6de6c058efd1b4005acbf1bdc56722c1d47c208f86193",
+    "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38"
+  }
+}

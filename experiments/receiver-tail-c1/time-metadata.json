@@ -1,0 +1,10 @@
+{
+  "time_min": 60.0,
+  "time_max": 65550.0,
+  "time_unique": 2184,
+  "time_differences": [
+    30.0
+  ],
+  "post_stop_rows": 38,
+  "csv_sha256": "f817de4b4658be3bb01b7239885f4ca0949744f658e13bcea2fd283439c4e5f9"
+}

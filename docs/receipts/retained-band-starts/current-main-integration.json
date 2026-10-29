@@ -1,0 +1,33 @@
+{
+  "head": "d56e16eb1c49f96e08c5b0768f355a4c3ce4b115",
+  "tree": "2947805688b2179102e1dbeb34030a386cc89058",
+  "prior": "f3ec5c49902f4a842d41f94c6c9afe58eeb3882f",
+  "changedFiles": [
+    "docs/SHADE_HEAT_WINDOW.md",
+    "shade-heat-panel.js",
+    "shade-heat-sampling-panel.js",
+    "shade-heat-window-view.js",
+    "shade-heat-window.js",
+    "tests/shade-heat-sampling.browser.mjs",
+    "tests/shade-heat-window.test.mjs"
+  ],
+  "files": [
+    {
+      "path": "shade-heat-panel.js",
+      "expectedGitBlob": "03d8f625396861b04d1e1d9adf5f962ed6fd8a6c"
+    },
+    {
+      "path": "shade-heat-sampling-panel.js",
+      "expectedGitBlob": "47f83b1f987b047807bb5924fa010f2f8a966fa8"
+    },
+    {
+      "path": "shade-heat-window-view.js",
+      "expectedGitBlob": "97b11c598eb61254d63c0aa031d57990a48b235f"
+    },
+    {
+      "path": "shade-heat-window.js",
+      "expectedGitBlob": "7a24f6717f07adc5dd06b9f349558f5f0e00acf7"
+    }
+  ],
+  "evidence": "Four disjoint runtime files fetched at pinned main, each Git blob hash verified, composed for actual browser receiving. No owned production overlap; not a full repository checkout or whole-repository CI claim."
+}

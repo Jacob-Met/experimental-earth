@@ -1,0 +1,79 @@
+{
+  "schema": "experimental-earth-receiving-account-browser/1",
+  "passed": true,
+  "checks": [
+    "Maintained served consumer and consumed module hashes; keyboard comparison exposes equal surface courses but different inventories/drainage without mutating active project or parent hypotheses",
+    "Original held receiver value changes only challenge compatibility; calibration support and prospective question remain identical; already-recorded channel/time is excluded",
+    "Actual download contains only original inputs; fresh browser context recomputes the same supported question and challenge without replacing the active project",
+    "Contradictory calibration rejects every explanation; blank numbers, off-grid account times and forged saved conclusions cannot become a successful or stale result",
+    "Explicit current-source handoff starts an empty new account and freezes its original footprint and parameters; later parent edits cannot retarget measurements or saved source",
+    "A delayed original-file read cannot overwrite a newer example/source action; the file picker remains reusable and reopening recomputes again",
+    "Actual consumer remains usable at desktop and 390 px widths with all primary controls visible and zero browser exceptions"
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-layer.css": "4e388b5a15037b5d7a53c59716360ae5ba7e63e8a07e76bfddc196b49eead7b9",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "serve.py": "5049176c57e8bf023cca55a38588f9a30d2c4740f725585d90af94de4ce086bb",
+    "tests/receiving-account.receiving.mjs": "93343c085759e75c1d2d4c0159e9dfc53d3f6cccae148abaae516b744ad7a312"
+  },
+  "output": "/tmp/earth-account-zYdVXH",
+  "sourceKind": "Authored maintained-kernel control; not field validation",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T17:46:19.012Z",
+    "completedAt": "2026-10-28T17:46:19.108Z",
+    "durationMs": 94.85198200000002,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "3361543FE1A356E2C8144175679F34A9",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "4CB1FF9940B61F0272E20508F6CDCE68"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:33725/",
+    "closed": true
+  }
+}

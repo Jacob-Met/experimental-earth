@@ -1,0 +1,35 @@
+{
+  "recordedAtUtc": "2026-10-28T21:03:49.790380+00:00",
+  "native": {
+    "command": "RECEIVING_RETAINED_RECEIPT=experiments/retained-start-native.json node --test --test-isolation=none --test-reporter=tap tests/receiving-retained-starts.test.mjs",
+    "testsPassed": 9,
+    "durationMs": 2491.843292
+  },
+  "regression": {
+    "command": "RECEIVING_BAND_RECEIPT=experiments/retained-previous-band-regression.json node --test --test-isolation=none --test-reporter=tap tests/receiving-account-band-fit.test.mjs tests/receiving-account-consequences.test.mjs",
+    "testsPassed": 17,
+    "durationMs": 16679,
+    "scope": "Same production numerical method; regression run before the4disjoint current-main heat-runtime files were composed."
+  },
+  "browser": {
+    "command": "node tests/receiving-account-band-fit.receiving.mjs with provided Playwright, Chromium, Python and isolated temporary directory",
+    "groupsPassed": 12,
+    "currentMain": "d56e16eb1c49f96e08c5b0768f355a4c3ce4b115",
+    "sandbox": "unprivileged uid65534, namespace and Seccomp-BPF verified active",
+    "errors": 0,
+    "failedResources": 0,
+    "ownedServerClosed": true
+  },
+  "visualReview": {
+    "viewports": [
+      1440,
+      390
+    ],
+    "reviewed": [
+      "New original-source controls wrap without horizontal page overflow.",
+      "Calibration support and contradictory held result are separately readable.",
+      "Narrow actions remain full-width and text wraps within the panel."
+    ],
+    "screenshots": "Internal inspection only; not included in publication or durable deliverables."
+  }
+}

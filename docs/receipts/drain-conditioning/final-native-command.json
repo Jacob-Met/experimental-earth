@@ -1,0 +1,40 @@
+{
+  "schema": "experimental-earth-drain-composed-native/1",
+  "base": "412591eb7102cc5e675c53b81a53802189572e25",
+  "cwd": "/tmp/hamon-a755e25-earth-drain-conditioning",
+  "command": [
+    "node",
+    "--test",
+    "tests/receiving-account-band-fit.test.mjs",
+    "tests/receiving-retained-starts.test.mjs",
+    "tests/receiving-account-consequences.test.mjs",
+    "tests/receiving-account-phase-fit.test.mjs",
+    "tests/receiving-drain-conditioning.test.mjs"
+  ],
+  "startedUtc": "2026-10-28T23:00:08.062729+00:00",
+  "wallMs": 19450.74503700016,
+  "exitCode": 0,
+  "meaning": "Final regression on composed current-main runtime; previously consumed fixtures are not fresh qualification",
+  "counts": {
+    "tests": 5.0,
+    "pass": 5.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 19407.560983
+  },
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "ffdf2392ad39296b82adf06e4be71f8756ddd325262ffddb4359fa9ead1dc086",
+    "receiving-account-phase-fit.js": "a1ca7be9bf0b40ec1e3dadd0cc300f3c5a8de8dc5fe144296801aad52cd8747d",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91"
+  },
+  "reportedUnit": "Node file-level runner results; named behavior checks are separately enumerated by source-bound module receipts",
+  "namedBehaviorChecks": {
+    "final-band-native.json": 8,
+    "final-consequence-native.json": 8,
+    "final-drain-native.json": 7,
+    "final-phase-native.json": 9,
+    "final-retained-native.json": 8
+  }
+}

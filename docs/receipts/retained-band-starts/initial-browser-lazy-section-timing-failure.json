@@ -1,0 +1,81 @@
+{
+  "schema": "experimental-earth-receiving-band-fit-browser/1",
+  "passed": false,
+  "checks": [
+    "Actual increasing-center retained-band example gains a full-site calibration witness while both informative held receiver readings visibly reject it; computational restrictions are disclosed",
+    "New retained-band original-source download reopens on a fresh page and a second search reproduces the exact parameters and adverse held result",
+    "The actual paired-layout consumer compares the new calibration witness, retains its predicted range, and leaves the held-supported range empty at desktop and390px widths"
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-proposals-panel.js": "0531886df12917439a8c434639a13df7f0fdd3d9880a9d1555a11f856641da67",
+    "post-dry-receiving-inverse.js": "b5cbe76e669968285156d9157fc64fbde21e6b3a6f6776c553027369f7ab6468",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "tests/receiving-account-band-fit.receiving.mjs": "b7668ed335589bbe65ecd863d093aede2330c79e6563a01a9b6d0f423e8102a4"
+  },
+  "output": "/dev/shm/hamon-a755e25-earth-retained-browser-20261028/earth-receiver-bands-EhAobX",
+  "sourceKind": "Actual maintained consumer on authored originals; not field validation",
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(await page.locator('#rai-band-incumbent [data-hypothesis]').count()>0)\n\n    at file:///tmp/hamon-a755e25-earth-retained-seeds/tests/receiving-account-band-fit.receiving.mjs:77:160",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T21:00:45.585Z",
+    "completedAt": "2026-10-28T21:00:45.676Z",
+    "durationMs": 90.35992599999997,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "97990836A4AB1AC64405B7CEBF28AFB0",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "1201AB4B8186D696884E6D610A723CDE"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:35799/",
+    "closed": true
+  }
+}

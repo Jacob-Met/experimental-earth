@@ -1,0 +1,12 @@
+{
+  "status": "failed",
+  "command": "node --test --test-reporter=tap tests/receiving-account-band-fit.test.mjs",
+  "elapsedMilliseconds": 20577.554595,
+  "result": "File-level test process exited1; default isolated reporter omitted nested failure detail. Focused ordinary no-isolation rerun requested to recover exact assertion; not counted as passed.",
+  "focusedDiagnosis": {
+    "passedGroups": 6,
+    "failedGroup": "unselected original surfaces remain binding and reduced-grid success cannot replace full-grid verification",
+    "assertion": "fixture eligible false !== true",
+    "meaning": "Authored fixture was outside selected dry regime; no production failure or false support. Corrected fixture selection uses original truth only, before inverse execution."
+  }
+}

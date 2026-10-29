@@ -1,0 +1,82 @@
+{
+  "schema": "experimental-earth-receiving-band-fit-browser/1",
+  "passed": false,
+  "checks": [
+    "Actual never-filled example gains12calibration alternatives and6held survivors where original-band search findsnone, explicitly preserves different arbitrary capacities and leaves active/parent sources unchanged"
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-phase-fit.js": "dea344ede1243a7b268422e7c9be5def6cf289a3af37408cdf17fadeb61e865c",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-proposals-panel.js": "4bc0ebdb4291222bebc9ecec950b243fadc673f1d67d1dc503def824d9966220",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "receiving-account-consequences-panel.js": "a2da6d465dc62d6e1f6c67f10270b5cf311dcc2b514d427aab247862b87a1188",
+    "post-dry-receiving-inverse.js": "5e3ccbc55aecd55e727bfe6b3b5444c3891efde1e671d0a0cb0134c2b7f5f504",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "tests/receiving-account-band-fit.receiving.mjs": "c7ebfc2f93ee536fd8d7b0952355adc38d0c0f49a79beee0c20dfda4cfd87bbd"
+  },
+  "output": "/dev/shm/hamon-a755e25-earth-retained-browser-20261028/earth-receiver-bands-BHmmTm",
+  "sourceKind": "Actual maintained consumer on authored originals; not field validation",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    footprintBasis: 'Authored original whole-receiver account over four garden cells / four square metres. Capacity was not directly measured.',\n    offers: [\n      {\n        basis: 'Authored hypothetical availability of a later whole-receiver reading; no observation is asserted.',\n...\n        source: 'Authored increasing recorded center within a declared band containing the original model value; no measurement was corrected.',\n+       uncertaintyLiters: 27.09615040996894,\n-       uncertaintyLiters: 27.096150409968992,\n        use: 'calibration',\n+       valueLiters: 58.601003691277\n-       valueLiters: 58.601003691277434\n      },\n      {\n        channel: 'retained',\n        id: 'retained-540',\n        minute: 540,\n        source: 'Authored increasing recorded center within a declared band containing the original model value; no measurement was corrected.',\n+       uncertaintyLiters: 27.09615040996894,\n-       uncertaintyLiters: 27.096150409968992,\n        use: 'calibration',\n+       valueLiters: 58.621003691277\n-       valueLiters: 58.62100369127743\n      },\n      {\n        channel: 'retained',\n        id: 'held-retained',\n        minute: 600,\n...\n        use: 'challenge',\n+       valueLiters: 24.55235922247692\n-       valueLiters: 24.552359222477246\n      },\n      {\n        channel: 'drained',\n        id: 'held-drained',\n        minute: 600,\n...\n        use: 'challenge',\n+       valueLiters: 217.4476407775226\n-       valueLiters: 217.4476407775234\n      }\n    ]\n  }\n\n    at file:///tmp/hamon-a755e25-earth-phase-family/tests/receiving-account-band-fit.receiving.mjs:56:228",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T21:44:49.608Z",
+    "completedAt": "2026-10-28T21:44:49.688Z",
+    "durationMs": 80.56462499999998,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "D678CD77A78DFFAF7D58D93343C7708E",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "03CA3DD17CC5EA74E537D5CEAE73D3C6"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:34127/",
+    "closed": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "experimental-earth-phase-scoped-review/1",
+  "recordedUtc": "2026-10-28T21:51:43.211834+00:00",
+  "reviews": [
+    {
+      "reviewer": "/root/worldlaw",
+      "scope": "Initial transformed-storage mechanism, phase extrema, arbitrary capacities, original-band full-grid authority, calibration-only generation and complete reservation",
+      "result": "clear",
+      "method": "Scoped mathematical and source review, no broad rerun or edits"
+    },
+    {
+      "reviewer": "/root/worldlaw",
+      "scope": "Corrected inward rate endpoint sampling and source provenance",
+      "result": "clear",
+      "sourceHashes": {
+        "post-dry-receiving-inverse.js": "5e3ccbc55aecd55e727bfe6b3b5444c3891efde1e671d0a0cb0134c2b7f5f504",
+        "receiving-account-phase-fit.js": "dea344ede1243a7b268422e7c9be5def6cf289a3af37408cdf17fadeb61e865c"
+      },
+      "finding": "Inset remains within original nonzero interval and at most width/4; seven interior points unchanged, zero-width exact; nominal and sampled coordinates retained; nonfinite and inverted S0 intervals still refuse. No added uncertainty or continuous-coverage claim."
+    },
+    {
+      "reviewer": "/root/second_ground",
+      "scope": "Optional consumer mode, original-only persistence, explicit paired child handoff and asynchronous retirement",
+      "result": "clear",
+      "reviewedUtc": "2026-10-28T21:55:52.195671+00:00",
+      "sourceHashes": {
+        "receiving-account-proposals-panel.js": "4bc0ebdb4291222bebc9ecec950b243fadc673f1d67d1dc503def824d9966220",
+        "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+        "receiving-account-consequences-panel.js": "a2da6d465dc62d6e1f6c67f10270b5cf311dcc2b514d427aab247862b87a1188",
+        "receiving-account-phase-fit.js": "dea344ede1243a7b268422e7c9be5def6cf289a3af37408cdf17fadeb61e865c"
+      },
+      "finding": "Calibration-only generation, complete original-grid authority, incumbent/phase/paired preflight reservations, full admitted family with held failures, strict original-only replay, stale read/work guards and independent child source are clear. No edits or broad rerun."
+    }
+  ],
+  "rootVerification": "Final same-source36native tests and actual current-main16browser groups pass; desktop1440 and narrow390 screenshots visually inspected; original12/6 result and rejection distinctions readable, no horizontal overflow. Screenshots remain local internal QA."
+}

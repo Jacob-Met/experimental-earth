@@ -1,0 +1,43 @@
+{
+  "schema": "experimental-earth-phase-runtime-composition/1",
+  "completedUtc": "2026-10-28T21:46:06.203532+00:00",
+  "oldBase": "d56e16eb1c49f96e08c5b0768f355a4c3ce4b115",
+  "newBase": {
+    "sha": "72332d621b50220df45743a3e109ba9f6a7b394d",
+    "tree": "7cdfa92dd2ef801ee451e6b0ec6e5a406147dbf3",
+    "message": "Merge pull request #476: authored directional diffuse brightness\n\nInvestigate authored directional diffuse brightness"
+  },
+  "files": [
+    {
+      "path": "continuous-sky.js",
+      "oldBlob": "7873808ae1b9d2a4668b391e6f1ebe0c27e44ce8",
+      "newBlob": "83a49b9bdba2fb4760a80131a81d7ef4c1c1ee53",
+      "newSha256": "174806c1495e71235fb3adf2c2cd7ebc20587cb49cc67bd584584c1d15f95ae6"
+    },
+    {
+      "path": "shade-heat-panel.js",
+      "oldBlob": "03d8f625396861b04d1e1d9adf5f962ed6fd8a6c",
+      "newBlob": "8bc639c318d645529384a34b791e10a907cb21f5",
+      "newSha256": "7df675d8dcbe4f0ff2116b291b731741c6ff460edea90ee6608dc1f31d54ecaf"
+    },
+    {
+      "path": "shade-heat-sampling.js",
+      "oldBlob": "2374af51d96df6762ae6f9f9782c0df9e473391d",
+      "newBlob": "980ec4429ff822a9a79f3529d6b71f4f113db1f9",
+      "newSha256": "68f8fa90d9d104a0bde31cdbb92a060e8f43b01fa94a21927bff4e39fc3031d3"
+    },
+    {
+      "path": "shade-heat.css",
+      "oldBlob": "528ce020802c0cdebd365e5fd47662a78857a581",
+      "newBlob": "b1e2e986ed137fe12a0e818892a8551a4bdc75b5",
+      "newSha256": "069c792236fa8a4940724e7ba2f786c18f73c9d2c713d10cdd7fa58594aed75a"
+    },
+    {
+      "path": "shade-heat.js",
+      "oldBlob": "565cb68e093881fa8bda2acb830f0b816dcdc98b",
+      "newBlob": "c5800dd945ede57033cc98bb8851a9088bc494ee",
+      "newSha256": "fbac5ab8966b432fd7f30acefba4c60d24d1346f968f903729585be570952978"
+    }
+  ],
+  "meaning": "Five disjoint current-main runtime files received at exact native Git blob identities. Previous local bytes exactly matched previous pinned main before replacement. This is a runtime composition, not a full git checkout or whole-repository CI result. No water implementation files were overwritten."
+}

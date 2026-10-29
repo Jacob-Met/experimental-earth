@@ -1,0 +1,29 @@
+{
+  "status": "resolved-search",
+  "q0": 10.0647969688627,
+  "plateauRows": 215,
+  "trainingRows": 19,
+  "kMinimumFromCapacity": 0.00100647969688627,
+  "models": [
+    {
+      "id": "maintained-linear",
+      "q0": 10.0647969688627,
+      "k": 2.5806198536576965,
+      "trainingSse": 4.028931696134596
+    },
+    {
+      "id": "delayed-linear",
+      "q0": 10.0647969688627,
+      "k": 4.071420350471951,
+      "lagSeconds": 137,
+      "trainingSse": 0.8002048911301144
+    },
+    {
+      "id": "viscous-tail",
+      "q0": 10.0647969688627,
+      "lagSeconds": 346.1849301593956,
+      "exponent": 1.5,
+      "trainingSse": 17.673739906257616
+    }
+  ]
+}

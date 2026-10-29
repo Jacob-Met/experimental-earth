@@ -1,0 +1,109 @@
+{
+  "rule": "Frozen new authored courses before inspecting/running root drained-conditioning fitter. Garden F24, uniform rain, isolated zero-lateral/outflow. Retained bands per selected-area mean: m=(true first+true second)/2; centers m-.01,m+.01; errors abs(first-second)/2+.011. New original drained reading at second late \u00b1.02L. Future held retained+drained at maxlate+60 \u00b1.02L. Original storm/firstlate surfaces retained. Preserve all truth eligibility failures; do not retune.",
+  "cases": [
+    {
+      "rainMmHr": 17,
+      "capacityMm": 20,
+      "initialFraction": 0,
+      "drainagePerHour": 0.45,
+      "stormMinutes": 50,
+      "firstLateMinutes": 250,
+      "secondLateMinutes": 400,
+      "columns": 2,
+      "rows": 2,
+      "cellSizeM": 1.2,
+      "id": "drain-new-01"
+    },
+    {
+      "rainMmHr": 25,
+      "capacityMm": 55,
+      "initialFraction": 0.2,
+      "drainagePerHour": 0.65,
+      "stormMinutes": 80,
+      "firstLateMinutes": 300,
+      "secondLateMinutes": 480,
+      "columns": 4,
+      "rows": 3,
+      "cellSizeM": 0.6,
+      "id": "drain-new-02"
+    },
+    {
+      "rainMmHr": 31,
+      "capacityMm": 14,
+      "initialFraction": 0.8,
+      "drainagePerHour": 0.9,
+      "stormMinutes": 70,
+      "firstLateMinutes": 240,
+      "secondLateMinutes": 420,
+      "columns": 2,
+      "rows": 2,
+      "cellSizeM": 0.9,
+      "id": "drain-new-03"
+    },
+    {
+      "rainMmHr": 42,
+      "capacityMm": 36,
+      "initialFraction": 1,
+      "drainagePerHour": 1.4,
+      "stormMinutes": 100,
+      "firstLateMinutes": 300,
+      "secondLateMinutes": 500,
+      "columns": 4,
+      "rows": 3,
+      "cellSizeM": 1.1,
+      "id": "drain-new-04"
+    },
+    {
+      "rainMmHr": 52,
+      "capacityMm": 80,
+      "initialFraction": 0,
+      "drainagePerHour": 0.3,
+      "stormMinutes": 110,
+      "firstLateMinutes": 360,
+      "secondLateMinutes": 540,
+      "columns": 2,
+      "rows": 2,
+      "cellSizeM": 0.6,
+      "id": "drain-new-05"
+    },
+    {
+      "rainMmHr": 19,
+      "capacityMm": 28,
+      "initialFraction": 0.35,
+      "drainagePerHour": 1.1,
+      "stormMinutes": 40,
+      "firstLateMinutes": 240,
+      "secondLateMinutes": 390,
+      "columns": 4,
+      "rows": 3,
+      "cellSizeM": 0.9,
+      "id": "drain-new-06"
+    },
+    {
+      "rainMmHr": 10,
+      "capacityMm": 45,
+      "initialFraction": 1,
+      "drainagePerHour": 2.2,
+      "stormMinutes": 85,
+      "firstLateMinutes": 250,
+      "secondLateMinutes": 430,
+      "columns": 2,
+      "rows": 2,
+      "cellSizeM": 1.4,
+      "id": "drain-new-07"
+    },
+    {
+      "rainMmHr": 46,
+      "capacityMm": 12,
+      "initialFraction": 0,
+      "drainagePerHour": 0.55,
+      "stormMinutes": 55,
+      "firstLateMinutes": 300,
+      "secondLateMinutes": 480,
+      "columns": 4,
+      "rows": 3,
+      "cellSizeM": 0.8,
+      "id": "drain-new-08"
+    }
+  ]
+}
