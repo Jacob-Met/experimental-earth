@@ -34,6 +34,7 @@ import { mountInternalBarriers } from './internal-barrier-panel.js';
 import { mountPondingPanel } from './ponding-panel.js';
 import { mountRoutePondingPanel } from './route-ponding-panel.js';
 import { SURFACES, makeExample, validateProject, compare, chooseNextObservation } from './core.js';
+import { createRainComparisonComputation } from './rain-comparison-computation.js';
 import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -63,6 +64,67 @@ let infiltrationInquiry;
 let observationDraftProject = project;
 let observationDraftCell = project.selectedIndex;
 let observationDraftMinute = Number($('obs-minute').value);
+
+const comparisonComputation = createRainComparisonComputation(() =>
+  new Worker(new URL('./rain-comparison-worker.js', import.meta.url), { type: 'module' }));
+// This schedules work; it does not change the model or its admitted input range.
+// The ordinary 48-cell example requires 4,608 paired cell-steps. Larger jobs
+// move both complete maintained runs off the UI thread, without a fallback.
+const INLINE_COMPARISON_WORK = 10_000;
+let comparisonGeneration = 0;
+let completedComparison = null;
+let comparisonState = 'initial';
+let comparisonFocus = null;
+let comparisonInert = [];
+const comparisonStatus = document.createElement('section');
+comparisonStatus.id = 'rain-comparison-status';
+comparisonStatus.className = 'panel main-comparison-status';
+comparisonStatus.hidden = true;
+comparisonStatus.dataset.state = 'initial';
+const comparisonMessage = document.createElement('p');
+comparisonMessage.id = 'rain-comparison-message';
+comparisonMessage.setAttribute('role', 'status');
+comparisonMessage.setAttribute('aria-live', 'polite');
+comparisonMessage.tabIndex = -1;
+const comparisonActions = document.createElement('div');
+comparisonActions.className = 'obs-actions';
+const retryComparison = document.createElement('button');
+retryComparison.type = 'button'; retryComparison.id = 'retry-rain-comparison';
+retryComparison.className = 'subtle'; retryComparison.textContent = 'Retry comparison';
+const restoreComparison = document.createElement('button');
+restoreComparison.type = 'button'; restoreComparison.id = 'restore-rain-comparison';
+restoreComparison.className = 'subtle'; restoreComparison.textContent = 'Restore last completed project';
+comparisonActions.append(retryComparison, restoreComparison);
+comparisonStatus.append(comparisonMessage, comparisonActions);
+document.querySelector('.layout').before(comparisonStatus);
+retryComparison.addEventListener('click', () => { try { rerun(); } catch (error) { notice(error.message); } });
+restoreComparison.addEventListener('click', () => {
+  if (!completedComparison) return;
+  ++comparisonGeneration; ++projectRevision; ++projectImportSerial;
+  comparisonComputation.cancel();
+  project = structuredClone(completedComparison.project);
+  results = completedComparison.results;
+  try {
+    syncForm(); retireRetargetedObservationDraft(); infiltrationInquiry?.retire();
+    refreshObservationImporterForProject(true);
+    draw(); refreshComparisonPanels(); persist();
+    finishComparisonDisplay();
+    $('project-title').focus({ preventScroll: true });
+    notice('Last completed project restored.');
+  } catch (error) {
+    showComparisonDisplayFailure(error);
+  }
+});
+window.addEventListener('pagehide', () => {
+  ++comparisonGeneration; ++projectImportSerial; comparisonComputation.cancel();
+});
+window.addEventListener('pageshow', event => {
+  // A back/forward-cache return must not leave a retired calculation pending.
+  if (event.persisted && comparisonState !== 'ready') {
+    try { rerun(); } catch (error) { notice(error.message); }
+  }
+});
+
 
 function notice(message) {
   $('toast').textContent = browserSaveState === 'unsaved'
@@ -104,7 +166,150 @@ function retireRetargetedObservationDraft() {
   observationDraftCell = project.selectedIndex;
   observationDraftMinute = minute;
 }
-function rerun() { retireRetargetedObservationDraft(); infiltrationInquiry?.retire(); sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh(); infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); projectRevision++; results = compare(project); persist(); draw(); rootZonePanel.refresh(); coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh(); eventChallengePanel.refresh(); observationImporter.refresh(); interventionPanel.refresh(); outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh(); localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh(); routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh(); observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh(); proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh(); sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh(); pressureHeadPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh(); heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh(); heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh(); heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh(); }
+function setComparisonInteraction(pending) {
+  if (pending) {
+    if (!comparisonInert.length) {
+      const active = document.activeElement;
+      const cell = active?.closest('#existing-grid .cell, #proposal-grid .cell');
+      if (cell) comparisonFocus = { grid: cell.dataset.grid, index: cell.dataset.cellIndex };
+      else comparisonFocus = null;
+      const panels = [...document.querySelectorAll('.workspace, main > section.panel')]
+        .filter(node => node !== comparisonStatus && !node.inert);
+      comparisonInert = panels;
+      if (panels.some(node => node.contains(active))) comparisonMessage.focus({ preventScroll: true });
+      for (const node of panels) { node.inert = true; node.setAttribute('aria-busy', 'true'); }
+    }
+    $('map-view').disabled = true;
+  } else {
+    for (const node of comparisonInert) { node.inert = false; node.removeAttribute('aria-busy'); }
+    comparisonInert = [];
+    $('map-view').disabled = false;
+  }
+}
+function setComparisonState(state, error) {
+  comparisonState = state;
+  comparisonStatus.dataset.state = state;
+  comparisonStatus.dataset.generation = String(comparisonGeneration);
+  comparisonStatus.hidden = state === 'ready';
+  comparisonMessage.setAttribute('role', state === 'failed' ? 'alert' : 'status');
+  retryComparison.hidden = state !== 'failed';
+  restoreComparison.hidden = state === 'ready' || !completedComparison;
+  if (state === 'ready') return;
+  const retained = completedComparison
+    ? 'The displayed comparison still belongs to the last completed project, “' + completedComparison.project.title + '”.'
+    : 'No comparison has completed for this project yet.';
+  comparisonMessage.textContent = state === 'loading'
+    ? 'Reading the selected project. ' + retained
+    : state === 'pending'
+    ? 'Comparing the changed site. You can keep editing the site assumptions. ' + retained
+    : 'The changed site could not be compared: ' + (error?.message || String(error)) + '. ' + retained;
+  const saveStatus = $('project-save-status');
+  saveStatus.dataset.saveState = 'comparison-' + state;
+  saveStatus.textContent = 'These changes have not been saved in this browser. Export project retains the current input, or restore the last completed project.';
+}
+// Retire observation imports when their source project changes, before work
+// becomes asynchronous. Retrying the same input must retain its original CSV.
+let observationImporterContext = null;
+let observationImporterProject = null;
+function refreshObservationImporterForProject(force = false) {
+  const context = JSON.stringify(project);
+  if (!force && project === observationImporterProject && context === observationImporterContext) return;
+  observationImporter.refresh();
+  observationImporterContext = context;
+  observationImporterProject = project;
+}
+function refreshComparisonPanels() {
+  sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh();
+  infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); rootZonePanel.refresh();
+  coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh();
+  eventChallengePanel.refresh(); interventionPanel.refresh();
+  outletEvidencePanel.refresh(); jointEvidencePanel.refresh(); jointEventPanel.refresh();
+  localWaterBudgetPanel.refresh(); rainTracePanel.refresh(); pondingPanel.refresh();
+  routePondingPanel.refresh(); terrainImporter.refresh(); terrainSensitivity.refresh();
+  observationMap.refresh(); internalBarriersPanel.refresh(); placementPanel.refresh();
+  proposalComponentsPanel.refresh(); thresholdPanel.refresh(); solarPanel.refresh();
+  sunPathPanel.refresh(); stormIntensityPanel.refresh(); wettingFrontPanel.refresh();
+  pressureHeadPanel.refresh(); surfaceHeatPanel.refresh(); lateralHeatPanel.refresh();
+  heatEvidencePanel.refresh(); heatColumnPanel.refresh(); heatColumnEvidencePanel.refresh();
+  heatColumnSearchPanel.refresh(); heatColumnQuestionPanel.refresh();
+  heatChannelQuestionPanel.refresh(); shadeHeatPanel.refresh();
+}
+function showComparisonDisplayFailure(error) {
+  results = completedComparison?.results;
+  setComparisonState('failed', error);
+  setComparisonInteraction(true);
+  comparisonMessage.textContent = 'The comparison display could not be refreshed: ' +
+    error.message + '. The display may be incomplete. Retry or restore the last completed project.';
+}
+function finishComparisonDisplay() {
+  const restoreFocus = comparisonFocus;
+  const focusedStatus = comparisonStatus.contains(document.activeElement);
+  comparisonFocus = null;
+  setComparisonState('ready');
+  setComparisonInteraction(false);
+  if (focusedStatus && restoreFocus) {
+    const cell = $(restoreFocus.grid + '-grid')
+      .querySelector('[data-cell-index="' + restoreFocus.index + '"]');
+    if (cell) cell.focus({ preventScroll: true });
+    else $('project-title').focus({ preventScroll: true });
+  } else if (focusedStatus) {
+    $('project-title').focus({ preventScroll: true });
+  }
+}
+function acceptComparison(nextResults, source, generation, revision) {
+  if (generation !== comparisonGeneration || revision !== projectRevision) return;
+  results = nextResults;
+  try {
+    draw(); refreshComparisonPanels();
+  } catch (error) {
+    // Rendering has its own failure state; a partly updated DOM is not described
+    // as an unchanged completed view, and it remains unavailable for analysis.
+    if (generation !== comparisonGeneration || revision !== projectRevision) return;
+    showComparisonDisplayFailure(error);
+    return;
+  }
+  if (generation !== comparisonGeneration || revision !== projectRevision) return;
+  completedComparison = { project: source, results: nextResults };
+  persist();
+  finishComparisonDisplay();
+}
+function rerun() {
+  // Invalidate before validation so a queued older response cannot become
+  // eligible after a newer request is refused.
+  const generation = ++comparisonGeneration, revision = ++projectRevision;
+  comparisonComputation.cancel();
+  try {
+    validateProject(project);
+    refreshObservationImporterForProject();
+    retireRetargetedObservationDraft(); infiltrationInquiry?.retire();
+    const source = structuredClone(project);
+    const work = 2 * project.width * project.height *
+      Math.ceil(project.weather.durationMinutes / project.weather.stepMinutes);
+    if (work <= INLINE_COMPARISON_WORK) {
+      acceptComparison(compare(project), source, generation, revision);
+      return;
+    }
+    setComparisonState('pending');
+    setComparisonInteraction(true);
+    comparisonComputation.compute(source).then(nextResults => {
+      if (generation !== comparisonGeneration || revision !== projectRevision) return;
+      try {
+        acceptComparison(nextResults, source, generation, revision);
+      } catch (error) {
+        if (generation !== comparisonGeneration || revision !== projectRevision) return;
+        showComparisonDisplayFailure(error);
+      }
+    }, error => {
+      if (generation !== comparisonGeneration || revision !== projectRevision ||
+          error?.code === 'superseded') return;
+      setComparisonState('failed', error);
+    });
+  } catch (error) {
+    setComparisonState('failed', error);
+    setComparisonInteraction(true);
+    throw error;
+  }
+}
 function byName(id, value) { const el=$(id); if (el) el.value=value; }
 function syncForm() {
   byName('project-title', project.title);byName('rain', project.weather.rainMmHr);byName('storm', project.weather.stormMinutes);byName('duration', project.weather.durationMinutes);byName('cell-size', project.weather.cellSizeM);
@@ -159,6 +364,7 @@ function gridInto(target, result, snapshotIndex) {
       destination.focus();
     });
     btn.addEventListener('click', () => {
+      if (comparisonState !== 'ready') return;
       applyBrush(target, index);
       // rerun() replaces cell nodes; keep the new original-cell control focused.
       $(`${target}-grid`).querySelector(`[data-cell-index="${index}"]`)?.focus();
@@ -202,6 +408,7 @@ function drawMaps() {
   }
 }
 function showMapSnapshot(index) {
+  if (comparisonState !== 'ready') return;
   const snapshots = results.existing.snapshots;
   const next = Math.max(0, Math.min(snapshots.length - 1, Math.trunc(Number(index)) || 0));
   if (snapshots[next].minute === mapSnapshotMinute) return;
@@ -285,13 +492,13 @@ for(const [id,key] of [['rain','rainMmHr'],['storm','stormMinutes'],['duration',
 }
 $('project-title').addEventListener('change',()=>{const n=$('project-title').value.trim();project.title=n||'Untitled site';rerun();});
 $('brushes').addEventListener('click',event=>{const b=event.target.closest('[data-brush]');if(!b)return;brush=b.dataset.brush;for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush===brush;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}});
-$('map-view').addEventListener('change',()=>{view=$('map-view').value;drawMaps();});
+$('map-view').addEventListener('change',()=>{if(comparisonState!=='ready')return;view=$('map-view').value;drawMaps();});
 $('map-snapshot-index').addEventListener('input',event=>showMapSnapshot(event.target.value));
 $('map-snapshot-prev').addEventListener('click',()=>showMapSnapshot(Number($('map-snapshot-index').value)-1));
 $('map-snapshot-next').addEventListener('click',()=>showMapSnapshot(Number($('map-snapshot-index').value)+1));
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
 $('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
-$('suggest').addEventListener('click',()=>{const s=chooseNextObservation(project,results);if(!s)return;if(s.cellIndex!==project.selectedIndex || s.minute!==Number($('obs-minute').value)) clearObservationDraft('The suggested measurement changed the target cell or time.');project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
+$('suggest').addEventListener('click',()=>{if(comparisonState!=='ready')return;const s=chooseNextObservation(project,results);if(!s)return;if(s.cellIndex!==project.selectedIndex || s.minute!==Number($('obs-minute').value)) clearObservationDraft('The suggested measurement changed the target cell or time.');project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
 infiltrationInquiry=mountInfiltrationInquiry({getProject:()=>project,selectCell:index=>{
   project.selectedIndex=index;brush='inspect';
   for(const el of document.querySelectorAll('[data-brush]')) {const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}
@@ -311,19 +518,29 @@ $('export').addEventListener('click',()=>{
   try {
     const data=new Blob([serializePortableProject(project)],{type:'application/json'});
     const url=URL.createObjectURL(data);const link=document.createElement('a');link.href=url;link.download='experimental-earth-site.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
-    notice('Portable project downloaded.');
+    notice(comparisonState === 'ready' ? 'Portable project downloaded.' : 'Current input downloaded. Its changed comparison has not completed.');
   } catch(err) { notice(`Export refused: ${err.message}. Current workspace was not changed.`); }
 });
 $('import').addEventListener('change',async event=>{
   const file=event.target.files?.[0];if(!file)return;
-  const serial=++projectImportSerial, revision=projectRevision;
+  // Selecting a new source retires computation before its asynchronous read.
+  const serial=++projectImportSerial, revision=++projectRevision;
+  ++comparisonGeneration; comparisonComputation.cancel();
+  setComparisonState('loading'); setComparisonInteraction(true);
   try {
     checkProjectFileBytes(file.size);
-    const parsed=parsePortableProject(await file.text());
-    if(serial!==projectImportSerial || revision!==projectRevision) throw Error('Workspace changed while reading; select the file again');
+    const text = await file.text();
+    if(serial!==projectImportSerial || revision!==projectRevision) return;
+    const parsed = parsePortableProject(text);
     project=parsed;syncForm();rerun();notice('Validated project imported.');
-  } catch(err) { if(serial===projectImportSerial) notice(`Import refused: ${err.message}`); }
-  finally { if(serial===projectImportSerial) event.target.value=''; }
+  } catch(err) {
+    if(serial===projectImportSerial && revision===projectRevision) {
+      // A refused file did not replace the current project. Recompute that
+      // project's retired job, without admitting the refused source.
+      try { rerun(); } catch (error) { notice(error.message); }
+      notice(`Import refused: ${err.message}`);
+    }
+  } finally { if(serial===projectImportSerial) event.target.value=''; }
 });
 function prepareObservedReading(question) {
     project.selectedIndex = question.cellIndex;
@@ -352,8 +569,7 @@ const localWaterBudgetPanel = mountLocalWaterBudget({ getProject: () => project,
   saveStudy: study => {
     validateProject({ ...project, localWaterBudgetStudy: study });
     project.localWaterBudgetStudy = structuredClone(study);
-    projectRevision++;
-    persist();
+    rerun();
   },
   selectCell: cellIndex => {
     brush = 'inspect';
@@ -419,5 +635,3 @@ const drainingLayerPanel = mountDrainingLayer({getProject:()=>project});
 const measuredChangePanel = mountMeasuredChange({getProject:()=>project});
 syncForm();rerun();
 mountInvestigationNavigation();
-
-
