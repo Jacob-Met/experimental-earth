@@ -11,9 +11,9 @@ const fraction=v=>dense(v,2)&&typeof v[0]==='bigint'&&typeof v[1]==='bigint'&&v[
 const dot=(a,b)=>a.reduce((sum,v,i)=>add(sum,mul(v,b[i])),ZERO);
 const min=(a,b)=>cmp(a,b)<=0?a:b,max=(a,b)=>cmp(a,b)>=0?a:b;
 
-// Algebra-only adapter. The source-owning consumer supplies its unchanged
-// original9D matrix and all64 additive target values, never saved calculations.
-export function minimizeThreeEpochTargetExcess(model,targetRows,ceilings,options={}){
+// Shared strict admission for the original target margin and retrospective
+// hard-target conflict. Neither caller admits saved projections or constraints.
+export function prepareThreeEpochTargetProjections(model,targetRows,ceilings){
   const m=model?.rows?.length,k=targetRows?.length;
   if(!model||typeof model!=='object'||Array.isArray(model)||Object.keys(model).length!==2
       ||!Object.hasOwn(model,'rows')||!Object.hasOwn(model,'bounds')
@@ -27,6 +27,13 @@ export function minimizeThreeEpochTargetExcess(model,targetRows,ceilings,options
   if(model.rows.slice(0,3).some((row,epoch)=>row.some((v,j)=>cmp(v,Math.floor(j/3)===epoch?ONE:ZERO)))
       ||model.bounds.slice(0,3).some(v=>cmp(v,ONE)))
     throw Error('Retain all three original normalized-profile simplex constraints in their original order');
+  return projections;
+}
+
+// Algebra-only adapter. The source-owning consumer supplies its unchanged
+// original9D matrix and all64 additive target values, never saved calculations.
+export function minimizeThreeEpochTargetExcess(model,targetRows,ceilings,options={}){
+  const projections=prepareThreeEpochTargetProjections(model,targetRows,ceilings),m=model.rows.length,k=targetRows.length;
   const minimumBasisExcessC=targetRows.map((row,i)=>sub(row.reduce(min),ceilings[i]));
   // Every normalized product profile is a convex combination of these64
   // additive values. Thus max_i min64(f_i-c_i) is a valid lower bound on the
