@@ -1,0 +1,212 @@
+{
+  "schema": "experimental-earth-many-original-sky-readings-receiving/1",
+  "status": "Qualified exact candidate; normal private integration and accepted-source receiving follow",
+  "baseCommit": "28f9fd967ac9aff8e34e0e8948675b1520f7cfff",
+  "baseTree": "4dc6df103ae12e7fb1bf9c733bf5e989df0cdd3e",
+  "nativeTask": "experimental-earth-sky-many-original-readings-52d429",
+  "scope": "Three to24 distinct original instantaneous existing-temperature bands, up to three complete receiver sources, one common early/late sky pair and explicit original boundary; original bands retained whole. No physical validation.",
+  "native": {
+    "session": 37941,
+    "terminalChunk": "204e9e",
+    "exitCode": 0,
+    "groups": 26,
+    "fullTAP": "native-integration.tap",
+    "sha256": "f3a3430482612e5aa89d6f1f0f9a0e95c5d901d3e3fc1a213a1fecc7c6b4daba"
+  },
+  "independent": {
+    "linear": {
+      "status": "PASS",
+      "randomExactBoundedSystems": 160,
+      "feasible": 86,
+      "incompatible": 74,
+      "objectiveOptima": 344,
+      "method": "Independent Fraction Gauss vertex enumeration and original-matrix primal/dual/Farkas identities; frozen caller arrays",
+      "sourceSHA256": "61f84d529043c4d5a37a7ee69bf0ac34405df0a1e438f5e99fa18eecf59a839d"
+    },
+    "linearControls": {
+      "status": "PASS",
+      "groups": 5,
+      "artificialRemovalPivots": 16,
+      "scope": "Six-dimensional redundant exact equalities; original unbounded rays; atomic multiobjective pivot/arithmetic refusal; certificate tampering and sparse input refusal"
+    },
+    "marginal": {
+      "status": "PASS",
+      "sourceSHA256": "ac72e80ece65942ae974be20667ea87a20616a1efccbe7490b90c7cde022d3f4",
+      "independentUnconstrainedPairExtrema": 72,
+      "bandEndpointExtrema": 2,
+      "exactProductWitnesses": 72,
+      "incompatible": 1,
+      "refusals": 6,
+      "scope": "Adapter algebra and admission; no thermal or browser claim. Solver independently reviewed elsewhere."
+    },
+    "originalRecord": {
+      "status": "PASS",
+      "exactObjectives": 272,
+      "originalObservationStatuses": 288,
+      "rangeWitnessBindings": 136,
+      "scope": "Saved Node and actual Chromium reports; independent original-matrix primal/dual exact equalities, all observation numeric statuses at own source/time/store and pointwise proof/witness binding. Browser execution belongs to root.",
+      "coreSHA256": "9b58bb7b49061896192e8a1a66a4172f6e0952923c5cf36c69b64c05e0166c11"
+    },
+    "recordControls": {
+      "status": "PASS",
+      "unfamiliarSubsetRecords": 4,
+      "completeUniqueSources": 1,
+      "basisCourses": 64,
+      "contradictoryLastBandRetainsReference": true,
+      "refusals": 5,
+      "sourceUnchanged": true
+    }
+  },
+  "browser": {
+    "session": 42097,
+    "terminalChunk": "ba190a",
+    "exitCode": 0,
+    "status": "PASS",
+    "startedAt": "2026-10-29T04:28:45.183Z",
+    "finishedAt": "2026-10-29T04:29:01.922Z",
+    "checks": [
+      "Actual parent entry and worker retain all24 original bands across three receivers; the first-three reference06:00 width over0.012C narrows below0.00102C under the complete record",
+      "All17 original times, both first-three/all-record plots and one fixed-profile trace bind exactly to the actual worker;24 UTC/component/model/replay rows remain distinct and keyboard inspection makes no worker request",
+      "Actual source-only download and fresh reopen retain all24 original identities and recompute the same-runtime report without altering the current site",
+      "An unapplied final-record edit clears old results and blocks run/export; explicit400C admission rejects all24 bands while preserving the compatible first-three reference,192 complete basis courses and17 times",
+      "Explicit final-record UTC/store revisions use original09:30 surface/lower values from the unchanged complete source; duplicate identity refuses transactionally and Cancel restores the admitted record",
+      "Actual1440px/390px24-record editor, complete UTC hint, conditions, comparison and fixed-profile views fit the viewport; wide observation tables remain keyboard-focusable",
+      "All24 original files preserve4/16/8 bin histories and explicit first-reading order; saved-new and legacy-three inquiry intake retain the selected boundary; detached controls cannot revive retired context",
+      "Forged calculated fields,incomplete records,malformed JSON/UTF8,conflicting repeated-source declarations and unresolved original endpoints refuse without replacing accepted evidence; invalid boundary clears the attempted result",
+      "A held24-file load cannot overwrite an explicitly revised observation; a held compatible worker cannot overwrite a newer contradictory complete record"
+    ],
+    "sandboxActive": true,
+    "exceptions": [],
+    "sourceFilesVerified": 906,
+    "maximumNodeChromiumRangeDifferenceC": 3.552713678800501e-15,
+    "sourceEquivalenceSHA256": "ad1f12f3daabe270c447df44c9832dfb007d1f881d5476c7253d2d59b4f496a7",
+    "browserReceiptSHA256": "a50c59b883604ee5fdc3fa5cb3f259ade8f78fd32efc59008ae188528807a2ec",
+    "visualReview": "1440px comparison and390px original-time/editor/profile images inspected. First-pass long identity table was moved into expandable details and mobile range widths made directly visible before the final full9-group run. Source/raw reports/screenshots retained; screenshots are not included in the evidence archive."
+  },
+  "portable": {
+    "status": "PASS",
+    "scope": "Independent Fraction identities against every retained original pair course, band, objective and fixed-profile replay; no thermal reexecution or physical validation.",
+    "compatible": {
+      "exactOptima": 136,
+      "boundWitnessBindings": 68,
+      "originalObservationReplayBindings": 72,
+      "incompatible": false
+    },
+    "contradictory": {
+      "exactOptima": 68,
+      "boundWitnessBindings": 0,
+      "originalObservationReplayBindings": 0,
+      "incompatible": true
+    },
+    "negativeControlsRefused": [
+      "changed-bound",
+      "changed-dual",
+      "missing-final-record"
+    ],
+    "files": [
+      {
+        "name": "runtime-original-pair-values.json",
+        "bytes": 755211,
+        "sha256": "100134ab67f048640f28bfa66c1bd0c151d1f050447e66605381dc5c0c501b29"
+      },
+      {
+        "name": "runtime-many-course.json",
+        "bytes": 2517264,
+        "sha256": "4715aa4d422d9977e22891058df3183e5d002f68775eac29bed49fe7a6759c0a"
+      },
+      {
+        "name": "runtime-contradictory-course.json",
+        "bytes": 816272,
+        "sha256": "a194930a0ff113f44080e9aa608fe3b2377ea799eae84532d4e4e3815f1afff7"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "shade-heat-exact-linear.js",
+      "bytes": 10974,
+      "sha256": "61f84d529043c4d5a37a7ee69bf0ac34405df0a1e438f5e99fa18eecf59a839d"
+    },
+    {
+      "path": "shade-heat-sky-marginals.js",
+      "bytes": 4020,
+      "sha256": "ac72e80ece65942ae974be20667ea87a20616a1efccbe7490b90c7cde022d3f4"
+    },
+    {
+      "path": "shade-heat-many-course.js",
+      "bytes": 18614,
+      "sha256": "9b58bb7b49061896192e8a1a66a4172f6e0952923c5cf36c69b64c05e0166c11"
+    },
+    {
+      "path": "shade-heat-many-example.js",
+      "bytes": 3353,
+      "sha256": "9b3d15305d99ef856ae687a21eca4bc78b2b0f0570429996e2b981b6e350dedf"
+    },
+    {
+      "path": "shade-heat-many-inputs.js",
+      "bytes": 1317,
+      "sha256": "58781587e6ddc3caa3c55d5e213959d913629be9bc4dc4c7e77c6035110bd857"
+    },
+    {
+      "path": "shade-heat-many-worker.js",
+      "bytes": 548,
+      "sha256": "feb4671ae8fed780d6843d1495a9af600b81c53f90a7bc750edec09bcc2129e9"
+    },
+    {
+      "path": "shade-heat-many-view.js",
+      "bytes": 3383,
+      "sha256": "5513672d881ea3385c90387fc06e0a810edb7258578da718205ba6153779e7ce"
+    },
+    {
+      "path": "shade-heat-many-page.js",
+      "bytes": 34874,
+      "sha256": "6eb20deddce058840fde1dc1c2eefecd6e75a68ae3a820666dfce108c71e987a"
+    },
+    {
+      "path": "shade-heat-many-course.css",
+      "bytes": 4664,
+      "sha256": "1220ef0abd5268dd39fd990f2c11f592027c675ecc0693db4ece6ceb67abb536"
+    },
+    {
+      "path": "sky-many-readings.html",
+      "bytes": 4104,
+      "sha256": "67ac5d00c2fae0dad231a6e769d427696c325cbd1fb969242c42a9eccb46740f"
+    },
+    {
+      "path": "sky-timed-readings.html",
+      "bytes": 4160,
+      "sha256": "8344ae945242be8a1cd24b85c5b0a545c74e2c24d92b58b791e19b2ed8106d01"
+    },
+    {
+      "path": "tests/shade-heat-exact-linear.test.mjs",
+      "bytes": 4008,
+      "sha256": "eac2c3f177227553d6faf98b6b76802eefcadbe59c504167c566ad590e10fe3e"
+    },
+    {
+      "path": "tests/shade-heat-many-course.test.mjs",
+      "bytes": 12121,
+      "sha256": "92ed745c94526de0c02490b50debe110f25911cb14390b89b71e0b028bb2caa0"
+    },
+    {
+      "path": "tests/shade-heat-many-course.browser.mjs",
+      "bytes": 26532,
+      "sha256": "65e8f18edd50b01b96d0f4c9a1159e1046372bd33d4da4392cf9ae76e907c21f"
+    }
+  ],
+  "ownership": {
+    "completeInitialNativeSnapshot": 4403,
+    "records": 35,
+    "freshOwnTask": "confirmed ACTIVE revision2 via original owner",
+    "freshGitOpenRecords": 56,
+    "freshOpenPullRequests": [
+      461,
+      460,
+      459,
+      436
+    ],
+    "boardUpdated": "2026-10-29T04:06:45Z",
+    "prepublicationReconciliationSHA256": "a12caee94b1bddeb9b907633c96f70b8d936550d576bdc4e509c0443d51fffe2",
+    "readUncertainty": "A later inventory search without a stable outer operation ID returned UNKNOWN/HTTP409; empty-ID recovery also returned UNKNOWN. Neither was replayed or treated as complete ownership evidence. A distinct direct own-task get confirmed the original claim. All earlier exact denials/UNKNOWN actions remain untouched."
+  },
+  "limits": "Local native, independent exact algebra/data review and actual sandbox browser evidence are distinct. Documentation/this receipt are added after the906-file candidate browser run. No unrun CI, public deployment or physical validation is claimed."
+}
