@@ -1,3 +1,4 @@
+import {mountMixedPlacement} from './mixed-placement-panel.js';
 import { comparePlacementTradeoffs } from './placement-tradeoffs.js';
 import {comparePlacementResolution} from './placement-resolution.js';
 import { comparePlacements, adoptPlacement, placementSignature, PLACEMENT_METRICS } from './placement-search.js';
@@ -320,5 +321,6 @@ export function mountPlacementSearch({getProject,replaceProject,notice}) {
     setTimeout(()=>{try{if(request!==generation)return;const next=tradeoffs?comparePlacementTradeoffs(p,query,tradeoffs):comparePlacements(p,query);if(request!==generation||placementSignature(getProject())!==next.sourceSignature)return;report=next;show(report,p);}catch(error){invalidate(error.message);$('placement-status').dataset.state='error';notice(error.message);}finally{$('placement-run').disabled=false;}},20);
   });
   function refresh(){const source=placementSignature(getProject());if(source!==lastSource){lastSource=source;loadedStudy=null;loadedReceiving=null;invalidate('Source changed; compare the current eligible set again.');}drawEligibility();}
-  return {refresh};
+  const mixed=mountMixedPlacement({getProject,replaceProject,notice});
+  return {refresh(){refresh();mixed.refresh();}};
 }
