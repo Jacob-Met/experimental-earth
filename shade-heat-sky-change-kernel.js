@@ -113,6 +113,16 @@ export function createOriginalSkyChangeBasis(input){
       const channel=stores.indexOf(store);
       return structuredClone({constant:constant[originalIndex][channel],coefficients:intervalCoefficients[originalIndex][channel]});
     },
+    consequenceRows(originalIndex,store){
+      if(!Number.isInteger(originalIndex)||!originalTimes[originalIndex]||!stores.includes(store))throw Error('Use one unchanged original target time and component');
+      const channel=(target,side)=>channels.findIndex(v=>v[0]===target&&v[1]===side&&v[2]===store);
+      const difference=(proposalSide,existingSide)=>{
+        const p=channel('proposal',proposalSide),e=channel('existing',existingSide);
+        return {constant:sub(constant[originalIndex][p],constant[originalIndex][e]),
+          coefficients:intervalCoefficients[originalIndex][p].map((row,i)=>row.map((v,b)=>sub(v,intervalCoefficients[originalIndex][e][i][b])))};
+      };
+      return {lower:difference('lower','upper'),upper:difference('upper','lower')};
+    },
     screenPattern,replay,
     numericalBasis(){return structuredClone({channels,originalTimes,staticProfiles,steps});},
     diagnostics(){return structuredClone(geometry.diagnostics);},
