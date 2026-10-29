@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Can two requirements share one sky history? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-sky-joint.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-consequences.html" target="_blank" rel="noopener">Experimental Earth · complete sky consequences ↗</a>
+    <p class="eyebrow">Original observations / joint consequence requirements</p>
+    <h1>Can two requirements share one sky history?</h1>
+    <p class="intro">Keep every original observation and its simplest compatible sky class. Test whether one common profile can meet two requirements on that original clock, and compare the answer with meeting each requirement separately.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="joint-source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the complete record</p><h2 id="joint-source-heading">The observations stay together</h2></div>
+        <button id="joint-example" type="button" disabled>Try the original-record example</button></div>
+      <p>Open three to 24 original reading files, or original inputs from a saved sky inquiry. Every receiver, original UTC, component, temperature band and attribution stays attached.</p>
+      <label class="file-label">Open original evidence<input id="joint-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="joint-source-summary" class="quiet">No original readings loaded.</p>
+      <details id="joint-source-details"><summary>Inspect the complete original record</summary><div id="joint-sources"></div></details>
+    </section>
+    <form id="joint-form" class="card" novalidate>
+      <p class="eyebrow">02 / Fix the original model class</p><h2>Infer the minimum before applying requirements</h2>
+      <p>Four-bin sky profiles stay shared across all original receivers and both designs. Every pattern in the first compatible class is retained. The requirements do not select a class with more changes.</p>
+      <div class="question-grid">
+        <label>Maximum allowed changes<select id="joint-maximum" disabled><option value="0">0 · one fixed profile</option><option value="1">1 · up to two profiles</option><option value="2" selected>2 · up to three profiles</option></select></label>
+        <label>Basis for shared conditions<input id="joint-sharing" maxlength="400" required disabled></label>
+        <label class="joint-wide">Basis for this model comparison<textarea id="joint-search-source" maxlength="400" required disabled>Compare every original boundary under at most two shared-profile changes; this is a declared model comparison.</textarea></label>
+      </div>
+      <h3>Two requirements, one common profile</h3>
+      <p>Both thresholds concern proposal minus existing. “At most” requires the upper represented endpoint to be at or below the threshold. “At least” requires the lower endpoint to be at or above it. Equality is included.</p>
+      <fieldset class="joint-requirement"><legend>Requirement A</legend>
+        <div class="joint-target-grid">
+          <label>Original receiver<select id="joint-a-receiver" disabled></select></label>
+          <label>Original clock endpoint<select id="joint-a-time" disabled></select></label>
+          <label>Temperature component<select id="joint-a-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label>
+          <label>Entire represented interval must be<select id="joint-a-relation" disabled><option value="at-most">At most this threshold</option><option value="at-least">At least this threshold</option></select></label>
+          <label>Proposal − existing threshold · °C<input id="joint-a-limit" type="number" step="any" required disabled></label>
+          <label>Basis for this requirement<input id="joint-a-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <fieldset class="joint-requirement"><legend>Requirement B</legend>
+        <div class="joint-target-grid">
+          <label>Original receiver<select id="joint-b-receiver" disabled></select></label>
+          <label>Original clock endpoint<select id="joint-b-time" disabled></select></label>
+          <label>Temperature component<select id="joint-b-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label>
+          <label>Entire represented interval must be<select id="joint-b-relation" disabled><option value="at-most">At most this threshold</option><option value="at-least">At least this threshold</option></select></label>
+          <label>Proposal − existing threshold · °C<input id="joint-b-limit" type="number" step="any" required disabled></label>
+          <label>Basis for this requirement<input id="joint-b-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <p id="joint-clock" class="quiet">Load a complete original record to inspect its clock.</p>
+      <div class="actions"><button id="joint-run" type="submit" disabled>Test both requirements together</button>
+        <label class="file-label">Reopen this inquiry<input id="joint-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="joint-export" type="button" disabled>Download original inputs</button></div>
+      <p id="joint-status" role="status">Open original evidence or try the authored example.</p>
+    </form>
+    <section id="joint-results" class="card" aria-label="Complete minimum-class joint sky inquiry" hidden></section>
+  </main>
+  <footer>Every verdict belongs to the declared represented model. Original numerical replay retains separate requirement and observation statuses. A compatible profile does not establish a physically realizable sky history or a physical intervention benefit.</footer>
+  <script type="module" src="shade-heat-sky-joint-page.js"></script>
+</body>
+</html>
