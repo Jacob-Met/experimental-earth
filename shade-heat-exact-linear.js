@@ -8,6 +8,7 @@ import {rational as q,add,sub,mul,div,neg,cmp} from './vendor/chronos/exact-half
 export const SKY_LINEAR_LIMITS=Object.freeze({variables:6,constraints:50,objectives:100,
   pivots:2048,rationalOperations:4000000,rationalBits:4096});
 export const THREE_EPOCH_LINEAR_LIMITS=Object.freeze({...SKY_LINEAR_LIMITS,variables:9,constraints:51});
+export const THREE_EPOCH_TARGET_LINEAR_LIMITS=Object.freeze({...SKY_LINEAR_LIMITS,variables:10,constraints:101,objectives:1});
 const ZERO=q(0),ONE=q(1),MINUS_ONE=q(-1);
 const dense=(value,length)=>Array.isArray(value)&&value.length===length
   &&Array.from({length},(_,i)=>Object.hasOwn(value,i)).every(Boolean);
@@ -183,5 +184,14 @@ export function solveThreeEpochLinearObjectives(rows,bounds,objectives,options={
 }
 export function verifyThreeEpochLinearCertificate(rows,bounds,objective,certificate){
   admit(rows,bounds,objective===null?[]:[objective],THREE_EPOCH_LINEAR_LIMITS);
+  return verify(rows,bounds,objective,certificate,plainArithmetic);
+}
+
+// One shared-profile epigraph coordinate; earlier6/9-coordinate entries retain their admission.
+export function solveThreeEpochTargetLinearObjectives(rows,bounds,objectives,options={}){
+  return solveObjectives(rows,bounds,objectives,options,THREE_EPOCH_TARGET_LINEAR_LIMITS);
+}
+export function verifyThreeEpochTargetLinearCertificate(rows,bounds,objective,certificate){
+  admit(rows,bounds,objective===null?[]:[objective],THREE_EPOCH_TARGET_LINEAR_LIMITS);
   return verify(rows,bounds,objective,certificate,plainArithmetic);
 }
