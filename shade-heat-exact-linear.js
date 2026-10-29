@@ -1,12 +1,13 @@
 import {rational as q,add,sub,mul,div,neg,cmp} from './vendor/chronos/exact-halfplanes.mjs';
 
 // Bounded exact max c*x with A*x <= b and x >= 0. No tolerances, perturbations
-// or partial objective lists. The consumer's six marginal weights are the
-// intended workload. This does not replace any existing intersection API.
+// or partial objective lists. The legacy six-coordinate and separately bounded
+// three-epoch nine-coordinate entries share this same maintained algorithm. This does not replace any existing intersection API.
 // Bland's smallest-variable entering/leaving rules prevent basis cycling:
 // https://doi.org/10.1287/moor.2.2.103 . A finite work cap can still refuse.
 export const SKY_LINEAR_LIMITS=Object.freeze({variables:6,constraints:50,objectives:100,
   pivots:2048,rationalOperations:4000000,rationalBits:4096});
+export const THREE_EPOCH_LINEAR_LIMITS=Object.freeze({...SKY_LINEAR_LIMITS,variables:9,constraints:51});
 const ZERO=q(0),ONE=q(1),MINUS_ONE=q(-1);
 const dense=(value,length)=>Array.isArray(value)&&value.length===length
   &&Array.from({length},(_,i)=>Object.hasOwn(value,i)).every(Boolean);
@@ -15,11 +16,11 @@ const fraction=value=>dense(value,2)&&typeof value[0]==='bigint'&&typeof value[1
 const exactKeys=(value,allowed)=>value!==null&&typeof value==='object'&&!Array.isArray(value)
   &&Object.keys(value).every(key=>allowed.includes(key));
 
-function admit(rows,bounds,objectives){
+function admit(rows,bounds,objectives,limits=SKY_LINEAR_LIMITS){
   const m=rows?.length,n=rows?.[0]?.length,k=objectives?.length;
-  if(!Number.isInteger(m)||m<1||m>SKY_LINEAR_LIMITS.constraints||!dense(rows,m)
-      ||!Number.isInteger(n)||n<1||n>SKY_LINEAR_LIMITS.variables||!dense(bounds,m)
-      ||!Number.isInteger(k)||k<0||k>SKY_LINEAR_LIMITS.objectives||!dense(objectives,k)
+  if(!Number.isInteger(m)||m<1||m>limits.constraints||!dense(rows,m)
+      ||!Number.isInteger(n)||n<1||n>limits.variables||!dense(bounds,m)
+      ||!Number.isInteger(k)||k<0||k>limits.objectives||!dense(objectives,k)
       ||!Array.from(rows).every(row=>dense(row,n)&&Array.from(row).every(fraction))
       ||!Array.from(bounds).every(fraction)
       ||!Array.from(objectives).every(row=>dense(row,n)&&Array.from(row).every(fraction)))
@@ -27,11 +28,11 @@ function admit(rows,bounds,objectives){
   return {m,n,k};
 }
 
-function arithmetic(options,work){
+function arithmetic(options,work,bound=SKY_LINEAR_LIMITS){
   if(!exactKeys(options,['maxPivots','maxRationalOperations']))throw Error('Unsupported exact linear work allowance');
-  const limits={pivots:options.maxPivots??SKY_LINEAR_LIMITS.pivots,
-    rationalOperations:options.maxRationalOperations??SKY_LINEAR_LIMITS.rationalOperations};
-  for(const key of Object.keys(limits))if(!Number.isSafeInteger(limits[key])||limits[key]<0||limits[key]>SKY_LINEAR_LIMITS[key])
+  const limits={pivots:options.maxPivots??bound.pivots,
+    rationalOperations:options.maxRationalOperations??bound.rationalOperations};
+  for(const key of Object.keys(limits))if(!Number.isSafeInteger(limits[key])||limits[key]<0||limits[key]>bound[key])
     throw Error('Exact linear work allowances must be bounded nonnegative integers');
   const count=fn=>(...args)=>{if(++work.rationalOperations>limits.rationalOperations)
     throw Error('Exact linear arithmetic allowance exhausted; no partial inquiry is returned');return fn(...args);};
@@ -91,11 +92,11 @@ export function verifyRationalLinearCertificate(rows,bounds,objective,certificat
   return verify(rows,bounds,objective,certificate,plainArithmetic);
 }
 
-export function solveRationalLinearObjectives(originalRows,originalBounds,originalObjectives,options={}){
-  const {m,n,k}=admit(originalRows,originalBounds,originalObjectives);
+function solveObjectives(originalRows,originalBounds,originalObjectives,options,bound){
+  const {m,n,k}=admit(originalRows,originalBounds,originalObjectives,bound);
   const work={variables:n,constraints:m,objectives:k,pivots:0,phaseIPivots:0,artificialRemovalPivots:0,
     objectivePivots:0,rationalOperations:0,verifiedCertificates:0};
-  const M=arithmetic(options,work),normalize=value=>M.add(value,ZERO);
+  const M=arithmetic(options,work,bound),normalize=value=>M.add(value,ZERO);
   const A=originalRows.map(row=>row.map(normalize)),b=originalBounds.map(normalize),objectives=originalObjectives.map(row=>row.map(normalize));
   const negatives=b.map((value,index)=>value[0]<0n?index:-1).filter(index=>index>=0),real=n+m,width=real+negatives.length;
   work.artificialVariables=negatives.length;work.maximumTableauCells=m*(width+1);
@@ -171,4 +172,16 @@ export function solveRationalLinearObjectives(originalRows,originalBounds,origin
     verify(A,b,objective,certificate,M);work.verifiedCertificates++;results.push(certificate);
   }
   return structuredClone({status:'feasible',certificate:feasibility,results,work,limits:M.limits});
+}
+
+// Separate admission keeps every existing six-coordinate API limit unchanged.
+export function solveRationalLinearObjectives(rows,bounds,objectives,options={}){
+  return solveObjectives(rows,bounds,objectives,options,SKY_LINEAR_LIMITS);
+}
+export function solveThreeEpochLinearObjectives(rows,bounds,objectives,options={}){
+  return solveObjectives(rows,bounds,objectives,options,THREE_EPOCH_LINEAR_LIMITS);
+}
+export function verifyThreeEpochLinearCertificate(rows,bounds,objective,certificate){
+  admit(rows,bounds,objective===null?[]:[objective],THREE_EPOCH_LINEAR_LIMITS);
+  return verify(rows,bounds,objective,certificate,plainArithmetic);
 }

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Can two declared sky changes explain the record? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-three-epoch.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-record-boundaries.html" target="_blank" rel="noopener">Experimental Earth · original change times ↗</a>
+    <p class="eyebrow">Original observations / three declared sky profiles</p>
+    <h1>Can two declared sky changes explain the record?</h1>
+    <p class="intro">Keep the complete temperature record and declare two original change times. Compare three shared sky profiles with each single-change reference, then follow one fixed set of profiles through every original observation.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the original record</p><h2 id="source-heading">Every observation keeps its identity</h2></div>
+        <button id="three-example" type="button" disabled>Try the three-profile example</button></div>
+      <p>Open three to 24 original reading files from at most three receivers, or take the original evidence from a saved inquiry. Every receiver, original UTC and temperature component remains distinct. Repeated receivers must retain identical complete source declarations.</p>
+      <p>The first three records form an explicit reference. Every record constrains the complete result. The first record also chooses where the designs are compared; choosing another first record explicitly changes this evidence order.</p>
+      <label class="file-label">Open original evidence<input id="three-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="three-source-summary" class="quiet">No original readings loaded.</p>
+      <details id="three-source-details"><summary>Inspect and revise the original readings</summary>
+        <div id="three-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+      </details>
+    </section>
+    <form id="three-form" class="card" novalidate>
+      <p class="eyebrow">02 / Declare both changes</p><h2>Three common profiles, one complete record</h2>
+      <p>A four-bin profile applies before the first change, another between the changes, and a third afterwards. Each stays shared across every original receiver and both designs. The two single-change references join adjacent profiles while retaining every original band.</p>
+      <div class="question-grid">
+        <label>First change after original interval<input id="three-split-first" type="number" min="1" step="1" value="6" required disabled></label>
+        <label>Second change after original interval<input id="three-split-second" type="number" min="2" step="1" value="10" required disabled></label>
+        <label class="three-sharing-label">Basis for shared conditions<input id="three-sharing" required maxlength="400" placeholder="Why every original receiver shares these three sky profiles" disabled></label>
+      </div>
+      <p id="three-boundary" class="quiet">Choose two ordered original boundaries with a whole interval in each epoch.</p>
+      <div class="actions"><button id="three-run" type="submit" disabled>Compare the three-profile inquiry</button>
+        <label class="file-label">Reopen a three-profile inquiry<input id="three-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="three-export" type="button" disabled>Download original inputs</button></div>
+      <p id="three-status" role="status">Open original readings or try the authored example.</p>
+    </form>
+    <section id="three-results" class="card" aria-label="Complete original record and three-profile temperature comparison" hidden></section>
+  </main>
+  <footer>Conditional results under the declared additive model. Every displayed time is an original interval boundary. Exact compatibility and original numerical replay remain separate. The inquiry does not infer change times, recover a measured sky history, or validate a physical effect.</footer>
+  <script type="module" src="shade-heat-three-epoch-page.js"></script>
+</body>
+</html>
