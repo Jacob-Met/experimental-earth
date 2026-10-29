@@ -17,18 +17,21 @@ function locationFigure(readings) {
   const [first, second] = readings, p = first.source.project, ns = 'http://www.w3.org/2000/svg';
   const figure = node('figure'); figure.className = 'site-figure';
   const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', '0 0 ' + p.width * 24 + ' ' + p.height * 24); svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', 'Original grid: comparison point ' + point(first) + ', second observation at ' + point(second));
+  svg.setAttribute('aria-label', 'Original grid: comparison point ' + point(first) + ', second observation at ' + point(second)
+    + (readings.length === 3 ? ', additional observation at ' + point(readings[2]) : ''));
   for (let i = 0; i < p.width * p.height; i++) {
     const rect = document.createElementNS(ns, 'rect'); rect.setAttribute('x', i % p.width * 24); rect.setAttribute('y', Math.floor(i / p.width) * 24);
     rect.setAttribute('width', 24); rect.setAttribute('height', 24); rect.setAttribute('fill', '#f3f5ed'); rect.setAttribute('stroke', '#cddbd0'); svg.append(rect);
     const existing = p.solarStudy.existing.some(column => column.cellIndex === i), proposal = p.solarStudy.proposal.some(column => column.cellIndex === i);
     if (existing || proposal) { rect.setAttribute('fill', existing ? '#c7d2c1' : '#f0d4a7'); const title = document.createElementNS(ns, 'title'); title.textContent = (existing ? 'Existing mapped column' : 'Proposed mapped column') + (existing && proposal ? ' and proposed mapped column' : ''); rect.append(title); }
   }
-  [first, second].forEach((input, index) => {
-    const i = input.query.reading.cellIndex, circle = document.createElementNS(ns, 'circle'); circle.setAttribute('cx', i % p.width * 24 + 12); circle.setAttribute('cy', Math.floor(i / p.width) * 24 + 12); circle.setAttribute('r', 9); circle.setAttribute('fill', index ? '#356aa0' : '#205b4e'); svg.append(circle);
+  readings.forEach((input, index) => {
+    const i = input.query.reading.cellIndex, circle = document.createElementNS(ns, 'circle'); circle.setAttribute('cx', i % p.width * 24 + 12); circle.setAttribute('cy', Math.floor(i / p.width) * 24 + 12); circle.setAttribute('r', 9); circle.setAttribute('fill', ['#205b4e', '#356aa0', '#805a92'][index]); svg.append(circle);
     const label = document.createElementNS(ns, 'text'); label.setAttribute('x', i % p.width * 24 + 12); label.setAttribute('y', Math.floor(i / p.width) * 24 + 16); label.setAttribute('font-size', 12); label.setAttribute('font-weight', 700); label.setAttribute('text-anchor', 'middle'); label.setAttribute('fill', '#fff'); label.textContent = String(index + 1); svg.append(label);
   });
-  figure.append(svg, node('figcaption', '1 · comparison ' + point(first) + '   2 · observation ' + point(second) + '. Original mapped columns: gray-green existing, sand proposed. ' + p.weather.cellSizeM + ' m cells.'));
+  figure.append(svg, node('figcaption', '1 · comparison ' + point(first) + '   2 · observation ' + point(second)
+    + (readings.length === 3 ? '   3 · added reading ' + point(readings[2]) : '')
+    + '. Original mapped columns: gray-green existing, sand proposed. ' + p.weather.cellSizeM + ' m cells.'));
   return figure;
 }
 function phaseFigure(witness) {
@@ -56,7 +59,8 @@ function drawEpochWitness(host, { report: r, readings, witnessId, prefix = 'epoc
   host.replaceChildren();
   host.dataset.witness = String(w.id); host.dataset.support = w.support.join(',');
   host.append(node('h3', 'One early profile, one late profile'),
-    node('p', 'These same two profiles supply both original receivers and both designs. Headings follow the original grid; the change occurs at ' + r.splitUtc + '.'), phaseFigure(w));
+    node('p', 'These same two profiles supply ' + (readings.length === 3 ? 'all three original receivers' : 'both original receivers')
+      + ' and both designs. Headings follow the original grid; the change occurs at ' + r.splitUtc + '.'), phaseFigure(w));
   host.append(table('Exact additive model · approximate temperatures in °C', ['Saved point', 'Calculated existing surface', 'Original band'],
     r.readings.map((reading, i) => [point(readings[i]), number(w.observedC[i].lower),
       String(reading.temperatureC) + ' ± ' + String(reading.halfWidthC)])));
