@@ -183,3 +183,20 @@
 #water-history-export { border-top: 1px solid #d4e2d9; margin-top: 16px; padding-top: 12px; }
 #water-history-export .mini-note { color: #426157; margin: 8px 0; }
 #water-history-export .obs-actions { justify-content: flex-start; }
+#water-tradeoffs { margin-top: 1rem; padding: 1rem; border: 1px solid #c6d8d0; border-radius: 10px; background: #f7faf8; }
+#water-tradeoffs h3 { margin: 0 0 .5rem; font-size: 1rem; }
+#water-tradeoffs p { margin: .45rem 0; }
+#water-tradeoffs .mini-note { font-size: 12px; line-height: 1.5; color: #365c61; }
+#water-tradeoff-extremes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin: .9rem 0; }
+.water-tradeoff-extreme { min-width: 0; padding: .8rem; background: #edf4f0; border: 1px solid #c6d8d0; border-radius: 8px; }
+.water-tradeoff-extreme h4 { margin: 0 0 .4rem; font-size: 13px; line-height: 1.5; }
+.water-tradeoff-value { font-variant-numeric: tabular-nums; font-size: 14px; font-weight: 650; white-space: nowrap; }
+.water-tradeoff-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: end; margin-top: .5rem; }
+.water-tradeoff-actions label { min-width: 0; font-size: 13px; }
+.water-tradeoff-actions select { display: block; max-width: 100%; margin-top: .25rem; }
+#water-tradeoff-groups summary { font-size: 14px; font-weight: 650; cursor: pointer; }
+#water-tradeoff-groups ol { padding-left: 1.25rem; }
+#water-tradeoff-groups li { margin: .8rem 0; padding: .75rem; border: 1px solid #c6d8d0; border-radius: 8px; }
+#water-tradeoff-groups li strong { font-size: 14px; }
+#water-tradeoff-groups li p { font-size: 13px; line-height: 1.5; }
+@media (max-width: 640px) { #water-tradeoff-extremes { grid-template-columns: 1fr; } }
