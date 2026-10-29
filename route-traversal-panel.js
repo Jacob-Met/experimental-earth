@@ -233,6 +233,16 @@ export function mountTimedTraversal({parent, getProject, getResults, getRoute, g
     inspectionMinute=$('route-traversal-departure').valueAsNumber;
     refresh();
   });
+  $('route-traversal-departure').addEventListener('input',()=>{
+    // The visible rows describe the last submitted instant, not this draft.
+    // Remove them as soon as the field changes so they cannot be mistaken for
+    // evidence for the value currently in the control.
+    if(inspectionMinute!==null) {
+      inspectionMinute=null;
+      clearInspection();
+      $('route-traversal-inspection-error').textContent='Departure changed. Inspect the chosen departure to update the arrival evidence.';
+    }
+  });
   $('route-traversal-inspection-form').addEventListener('invalid',()=>{
     clearInspection();inspectionMinute=null;
     $('route-traversal-inspection-error').textContent='Choose a finite departure within the comparison interval, including its endpoints.';
