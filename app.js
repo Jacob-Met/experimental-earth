@@ -38,6 +38,7 @@ import { SURFACES, makeExample, validateProject, compare, chooseNextObservation 
 import { createRainComparisonComputation } from './rain-comparison-computation.js';
 import { modelNumber, readingNumber as formatReadingNumber } from './number-format.js';
 import { createWaterChart } from './water-chart.js';
+import { createWaterHistoryValues } from './water-history-values.js';
 import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -53,6 +54,7 @@ import { mountLocalWaterBudget } from './local-water-budget-panel.js';
 import { mountRainTrace } from './rain-trace-panel.js';
 const $ = id => document.getElementById(id);
 const waterChart = createWaterChart($('chart'));
+const waterHistory = createWaterHistoryValues($('chart').closest('.chart-wrap'));
 const savedProject = openSavedProject();
 let project = savedProject.project;
 const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
@@ -196,6 +198,7 @@ function setComparisonInteraction(pending) {
 }
 function setComparisonState(state, error) {
   comparisonState = state;
+  waterHistory.setAvailable(state === 'ready');
   comparisonStatus.dataset.state = state;
   comparisonStatus.dataset.generation = String(comparisonGeneration);
   comparisonStatus.hidden = state === 'ready';
@@ -258,6 +261,7 @@ function finishComparisonDisplay() {
   const restoreFocus = comparisonFocus;
   const focusedStatus = comparisonStatus.contains(document.activeElement);
   comparisonFocus = null;
+  waterHistory.update(completedComparison.results, completedComparison.project.title);
   setComparisonState('ready');
   setComparisonInteraction(false);
   if (focusedStatus && restoreFocus?.kind === 'observation') {
