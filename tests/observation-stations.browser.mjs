@@ -18,8 +18,16 @@ try{
  await page.locator('[aria-labelledby=observation-import-title] summary').click();
  const mapping={source:'Authored placement control',entries:[{station:'east',cell:'B2'}]};
  await page.locator('#observation-station-map').fill(JSON.stringify(mapping));
- await upload(body);await page.waitForFunction(()=>!document.getElementById('append-observation-table').disabled);
- await page.locator('#observation-station-map').fill(JSON.stringify({...mapping,source:'Revised placement declaration'}));assert.equal(await page.locator('#append-observation-table').isDisabled(),true);await upload(body);await page.waitForFunction(()=>!document.getElementById('append-observation-table').disabled);
+ await upload(body);await page.waitForFunction(()=>document.querySelectorAll('#observation-table-preview li').length===1);
+ assert.equal(await page.locator('input[data-observation-line]:checked').count(),0);
+ assert.equal(await page.locator('#append-observation-table').isDisabled(),true);
+ await page.locator('#select-all-observation-rows').click();
+ await page.waitForFunction(()=>!document.getElementById('append-observation-table').disabled);
+ await page.locator('#observation-station-map').fill(JSON.stringify({...mapping,source:'Revised placement declaration'}));assert.equal(await page.locator('#append-observation-table').isDisabled(),true);await upload(body);await page.waitForFunction(()=>document.querySelectorAll('#observation-table-preview li').length===1);
+ assert.equal(await page.locator('input[data-observation-line]:checked').count(),0);
+ assert.equal(await page.locator('#append-observation-table').isDisabled(),true);
+ await page.locator('#select-all-observation-rows').click();
+ await page.waitForFunction(()=>!document.getElementById('append-observation-table').disabled);
  assert.match(await page.locator('#observation-table-preview li').innerText(),/15.5 min.*original 2026-10-25T01:15:30\+02:00/);
  for(const width of [1440,390]){await page.setViewportSize({width,height:1000});await page.locator('[aria-labelledby=observation-import-title]').scrollIntoViewIfNeeded();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'horizontal overflow');await page.locator('[aria-labelledby=observation-import-title]').screenshot({path:artifacts+'/preview-'+width+'.png'});}
  await page.locator('#append-observation-table').focus();await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('experimental-earth-site-v1')).observations[0].minute),15.5);assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('experimental-earth-site-v1')).observations[0].cellIndex),9);assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('experimental-earth-site-v1')).observations[0].tableSource.stationValue),' east ');

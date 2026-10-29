@@ -12,6 +12,12 @@ export async function receiveObservationTable({ evaluate, send, delay, report, a
   async function choose(text, name = 'unit-readings.csv') {
     await evaluate(`(async()=>{const input=document.querySelector('#observation-table-file');const dt=new DataTransfer();dt.items.add(new File([${JSON.stringify(text)}],${JSON.stringify(name)},{type:'text/csv'}));input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));await new Promise(r=>setTimeout(r,120));})()`);
   }
+  async function chooseAllRows(expected) {
+    assert.equal(await evaluate("document.querySelectorAll('input[data-observation-line]:checked').length"), 0);
+    assert.equal(await evaluate("document.querySelector('#append-observation-table').disabled"), true);
+    await evaluate("document.querySelector('#select-all-observation-rows').click()");
+    assert.equal(await evaluate("document.querySelectorAll('input[data-observation-line]:checked').length"), expected);
+  }
   const stored = async () => JSON.parse(await evaluate("localStorage.getItem('experimental-earth-site-v1')"));
   const header = 'cell,minute,depth,uncertainty,unit,source,scenario,use';
   const text = `${header}\nA1,30,1,.01,cm,"Analytic fixture, calibration",existing,calibration\nB1,60,20,.2,mm,Analytic held-aside fixture,existing,challenge`;
@@ -19,6 +25,7 @@ export async function receiveObservationTable({ evaluate, send, delay, report, a
   await choose(text);
   assert.equal((await stored()).observations.length, 0);
   assert.equal(await evaluate("document.querySelectorAll('#observation-table-preview li').length"), 2);
+  await chooseAllRows(2);
   assert.equal(await evaluate("document.querySelector('#append-observation-table').disabled"), false);
   assert.ok((await evaluate("document.querySelector('#observation-table-status').textContent")).includes('1 converted'));
   await evaluate("document.querySelector('#append-observation-table').click()");
@@ -34,9 +41,14 @@ export async function receiveObservationTable({ evaluate, send, delay, report, a
   await send('Page.reload', { ignoreCache: true }); await delay(350);
   assert.equal((await stored()).observations[0].tableSource.fileName, 'unit-readings.csv');
   assert.equal(await evaluate("document.querySelectorAll('.table-origin').length"), 2);
+  const duplicateBefore = await evaluate("localStorage.getItem('experimental-earth-site-v1')");
   await choose(text);
+  await chooseAllRows(2);
+  await evaluate("document.querySelector('#append-observation-table').click()");
+  assert.equal(await evaluate("localStorage.getItem('experimental-earth-site-v1')"), duplicateBefore);
   assert.ok((await evaluate("document.querySelector('#observation-table-status').textContent")).includes('already'));
-  assert.equal(await evaluate("document.querySelector('#append-observation-table').disabled"), true);
+  assert.equal(await evaluate("document.querySelector('#append-observation-table').disabled"), false);
+  assert.equal(await evaluate("document.querySelectorAll('input[data-observation-line]:checked').length"), 2);
   assert.equal((await stored()).observations.length, 2);
   const portable = JSON.stringify(await stored());
   await importProject(portable);
@@ -51,6 +63,7 @@ export async function receiveObservationTable({ evaluate, send, delay, report, a
 
   const extra = `${header}\nA2,40,.5,.01,in,Extra authored reading,existing,unassigned`;
   await choose(extra, 'extra.csv');
+  await chooseAllRows(1);
   assert.equal(await evaluate("document.querySelector('#append-observation-table').disabled"), false);
   await evaluate("document.querySelector('#project-title').value='Changed context';document.querySelector('#project-title').dispatchEvent(new Event('change',{bubbles:true}))");
   assert.equal(await evaluate("document.querySelector('#append-observation-table').disabled"), true);
