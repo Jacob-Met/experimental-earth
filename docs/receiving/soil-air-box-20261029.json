@@ -1,0 +1,620 @@
+{
+  "schema": "experimental-earth-soil-air-box-receiving/1",
+  "recordedAt": "2026-10-29T01:09:47.665644+00:00",
+  "scopeIssue": "https://github.com/Jacob-Met/experimental-earth/issues/491",
+  "scope": "Exact static necessary connected-gas removal over every combination of six explicitly offered parameter ranges.",
+  "base": {
+    "commit": "bd812d28b824f3e215de3a5f739c808ac9f4264e",
+    "tree": "41ff5ff808c52a1eb21ac89a391a146085134968",
+    "verifiedUpstreamBlobs": 1970
+  },
+  "source": [
+    {
+      "path": "soil-air-box.js",
+      "bytes": 9445,
+      "sha256": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+      "mode": "100644",
+      "gitBlob": "de7e35615ced9f61dc29d9108ca09bf3c4a1b225",
+      "baseBlob": null
+    },
+    {
+      "path": "soil-air-box-example.js",
+      "bytes": 1031,
+      "sha256": "4e0810f38c2d8957e44f049b4a02a0ab66f74db48f672f9dbe931e57cf2172e9",
+      "mode": "100644",
+      "gitBlob": "9d8d4dcc7c6868a525d35fd05e24bd38b90818d9",
+      "baseBlob": null
+    },
+    {
+      "path": "soil-air-box-page.js",
+      "bytes": 12561,
+      "sha256": "0d2a0a2bfb45f853ba9d336709ac3299f690d949e7b9513a47c2e22f259dbc40",
+      "mode": "100644",
+      "gitBlob": "9363295cc53401f8c722382a6e54de5003731989",
+      "baseBlob": null
+    },
+    {
+      "path": "soil-air-box.html",
+      "bytes": 4137,
+      "sha256": "1133db88daca3ec3c9fab2f00961bce6dc4298c697dab519b1cb22964ca9c4d6",
+      "mode": "100644",
+      "gitBlob": "bef39e93746966aa1a88cc8054466b8eefe0b7fd",
+      "baseBlob": null
+    },
+    {
+      "path": "soil-air-box.css",
+      "bytes": 5708,
+      "sha256": "104f773cad981a9184f901903f2613ac8bf771f5a36d090a2784df0f40715250",
+      "mode": "100644",
+      "gitBlob": "8894a0b38afa7aae6e4e66cf5243618343f2c8f2",
+      "baseBlob": null
+    },
+    {
+      "path": "soil-air-boundary.html",
+      "bytes": 5312,
+      "sha256": "fc1303c493775e1577e524aab9806c2a54f20393b676d58b38b61be7692177c9",
+      "mode": "100644",
+      "gitBlob": "a6dc98943d79f33cf0740015a6a89dfbd4c74f7a",
+      "baseBlob": "d8964a1c8c7d94fe751837c774b6f142e0ca5a44"
+    },
+    {
+      "path": "tests/soil-air-box.test.mjs",
+      "bytes": 8642,
+      "sha256": "c916a41cbaefbf4b16508f4aeafcfd868939adf97d1b76f38cb73b1d2e05cfab",
+      "mode": "100644",
+      "gitBlob": "00c26c08d453e8cdd6d2913197d3d7f62094bf2b",
+      "baseBlob": null
+    },
+    {
+      "path": "tests/soil-air-box-independent.py",
+      "bytes": 8255,
+      "sha256": "99d71e8e5e18fb44cd0ad903a04f9d1b19a41480f2beff6220e71841319e6ffb",
+      "mode": "100644",
+      "gitBlob": "1ff3031940cea7e4617915a6d499526bccf76870",
+      "baseBlob": null
+    },
+    {
+      "path": "tests/soil-air-box.browser.mjs",
+      "bytes": 14990,
+      "sha256": "d3a4a881d9d5bbc7207266c7099c3bc90b1a2a455a6c291eee4998f4a8db5615",
+      "mode": "100644",
+      "gitBlob": "6579ac0ff524ebb1220e78e8e8f8fa5e65f94a23",
+      "baseBlob": null
+    },
+    {
+      "path": "docs/soil-air-box.md",
+      "bytes": 10265,
+      "sha256": "0c92c97a15cf7db2e127239172d58682bf603463d710074c638d8bf76e243790",
+      "mode": "100644",
+      "gitBlob": "2a81e225a9d424f24c42a955feb6db567095fb32",
+      "baseBlob": null
+    }
+  ],
+  "runtime": {
+    "node": "v22.23.4",
+    "browser": "Chrome/156.0.8078.47",
+    "account": "ordinary ubuntu UID 1000",
+    "host": "hamon-coord-1.tail2f596c.ts.net",
+    "providerGeneration": 2
+  },
+  "native": {
+    "exit": 0,
+    "seconds": 41.63308001300902,
+    "testFiles": 244,
+    "argsPrefix": [
+      "/exec-daemon/node",
+      "--test",
+      "--test-concurrency=2"
+    ],
+    "nodeVersion": "v22.23.4",
+    "tail": [
+      "  ---",
+      "  duration_ms: 7.43951",
+      "  type: 'test'",
+      "  ...",
+      "# Subtest: complete matched geometry, equal rain, observation roles and source inputs survive input-only replay",
+      "ok 1692 - complete matched geometry, equal rain, observation roles and source inputs survive input-only replay",
+      "  ---",
+      "  duration_ms: 6.284584",
+      "  type: 'test'",
+      "  ...",
+      "# Subtest: bounded declarations and aggregate work are admitted before simulations or imports",
+      "ok 1693 - bounded declarations and aggregate work are admitted before simulations or imports",
+      "  ---",
+      "  duration_ms: 31.77738",
+      "  type: 'test'",
+      "  ...",
+      "1..1693",
+      "# tests 1702",
+      "# suites 0",
+      "# pass 1702",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0",
+      "# todo 0",
+      "# duration_ms 41554.169358"
+    ],
+    "failures": [],
+    "tests": 1702,
+    "suites": 0,
+    "pass": 1702,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "logSHA256": "a53cc13bcf9a696ed29abbe7a5fdaac7d793f2a9d66ba8aafc4e7e2399ce50c7"
+  },
+  "independentOracle": {
+    "status": "passed",
+    "coreSHA256": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+    "inputSHA256": "a82b2aef0cabcaf34d49b2223d134017b940168092603324bcffaf24a8f5f3d9",
+    "boxes": 104,
+    "exhaustiveCorners": 6656,
+    "rationalInteriorPoints": 1248,
+    "classifications": {
+      "all-require-removal": 54,
+      "mixed-requirement": 44,
+      "none-forced": 6
+    },
+    "independentArithmetic": "Python Fraction.from_float and original gas-amount balance",
+    "checks": [
+      "exact endpoint decoding and unit factors",
+      "all 64 corners per box",
+      "rational interior membership",
+      "attained source witnesses",
+      "unclipped balance and drive state",
+      "classification and outward decimal display"
+    ],
+    "limits": "Computational controls of declared endpoints; analytic whole-box proof remains separate. No physical range coverage, probability or dynamic sufficiency claim."
+  },
+  "browser": {
+    "originalBaseCommit": "77867b0c1cfd3cf0463accf873893d8fa4231183",
+    "receipt": {
+      "status": "passed",
+      "groups": [
+        "existing static inquiry opens a blank explicit range inquiry; the authored whole-box bounds and attained fractions agree without changing the working site",
+        "actual source-only download retains every original range, mixed unit, literal source and explicit assumption without exporting derived conclusions",
+        "a fresh page independently reopens the actual download; imported conclusions refuse atomically while the previous original inquiry remains available",
+        "zero and positive drive at zero removal, mixed requirements, positive below display and outward100% remain distinct; a base-touching box refuses as a whole and edits retire old results",
+        "late failed and successful file reads cannot replace a newer accepted original or subsequent endpoint edits",
+        "desktop and390px bound displays and original witnesses remain readable; positive-zero and outward100% notices fit without page/control/value overflow"
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "page": 1425,
+          "badControls": 0,
+          "clippedBounds": 0
+        },
+        {
+          "width": 390,
+          "page": 390,
+          "badControls": 0,
+          "clippedBounds": 0
+        }
+      ],
+      "sourceHashes": {
+        "soil-air-box.js": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+        "soil-air-box-example.js": "4e0810f38c2d8957e44f049b4a02a0ab66f74db48f672f9dbe931e57cf2172e9",
+        "soil-air-box-page.js": "0d2a0a2bfb45f853ba9d336709ac3299f690d949e7b9513a47c2e22f259dbc40",
+        "soil-air-box.html": "1133db88daca3ec3c9fab2f00961bce6dc4298c697dab519b1cb22964ca9c4d6",
+        "soil-air-box.css": "104f773cad981a9184f901903f2613ac8bf771f5a36d090a2784df0f40715250",
+        "soil-air-boundary.html": "fc1303c493775e1577e524aab9806c2a54f20393b676d58b38b61be7692177c9",
+        "soil-air-boundary.js": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+        "tests/soil-air-box.browser.mjs": "d3a4a881d9d5bbc7207266c7099c3bc90b1a2a455a6c291eee4998f4a8db5615"
+      },
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-29T00:52:24.078Z",
+        "completedAt": "2026-10-29T00:52:24.192Z",
+        "durationMs": 113.60555899999997,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "3A690A334404D7EAD7551CCEC1923B27",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "F7E4D0D41C24CDDF692C9B788EDD5830"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      },
+      "sourceDownloadSHA256": "23705a4edb3799aadcd5292fb22dca7a300f14083562df2ae369555a99b7693e"
+    },
+    "currentDependencyClosure": [
+      {
+        "path": "soil-air-boundary.js",
+        "sameAsBrowserReceived": true,
+        "sha256": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+        "browserSourceSHA256": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0"
+      },
+      {
+        "path": "soil-air-boundary-example.js",
+        "sameAsBrowserReceived": true,
+        "sha256": "f38e0a1d37f3fb033be23506d96a5c2969ad0d15f907f8dd3887251baf10481e",
+        "browserSourceSHA256": "f38e0a1d37f3fb033be23506d96a5c2969ad0d15f907f8dd3887251baf10481e"
+      },
+      {
+        "path": "soil-air-boundary-page.js",
+        "sameAsBrowserReceived": true,
+        "sha256": "feafa77c50a05a5005714896603109a3b546c3238093ff131470e8adc57cc51e",
+        "browserSourceSHA256": "feafa77c50a05a5005714896603109a3b546c3238093ff131470e8adc57cc51e"
+      },
+      {
+        "path": "soil-air-boundary.css",
+        "sameAsBrowserReceived": true,
+        "sha256": "b8f70cb23b23df1f8ad0a9d0e21625f69792600915ba81de84f05951d412eb08",
+        "browserSourceSHA256": "b8f70cb23b23df1f8ad0a9d0e21625f69792600915ba81de84f05951d412eb08"
+      },
+      {
+        "path": "tests/support/browser-session.mjs",
+        "sameAsBrowserReceived": true,
+        "sha256": "3224fff20b68149ce08e541d68cf145c7d5c0e1751a1ac1758d2a80f56c9255b",
+        "browserSourceSHA256": "3224fff20b68149ce08e541d68cf145c7d5c0e1751a1ac1758d2a80f56c9255b"
+      },
+      {
+        "path": "tests/support/chromium-session.mjs",
+        "sameAsBrowserReceived": true,
+        "sha256": "c38f888fadff89877cebc9f05bb57c12153c12bf419e2b6d660cc425945927ff",
+        "browserSourceSHA256": "c38f888fadff89877cebc9f05bb57c12153c12bf419e2b6d660cc425945927ff"
+      },
+      {
+        "path": "tests/support/chromium-sandbox.mjs",
+        "sameAsBrowserReceived": true,
+        "sha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "browserSourceSHA256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead"
+      },
+      {
+        "path": "serve.py",
+        "sameAsBrowserReceived": true,
+        "sha256": "c11e0699659afc150176146b3203c58ec7925dbc56bc84761a4f0230acf8eb28",
+        "browserSourceSHA256": "c11e0699659afc150176146b3203c58ec7925dbc56bc84761a4f0230acf8eb28"
+      },
+      {
+        "path": "pressure-batches.css",
+        "sameAsBrowserReceived": true,
+        "sha256": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6",
+        "browserSourceSHA256": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6"
+      }
+    ],
+    "currentBaseQualification": "The received runtime files and browser helper closure are byte-identical. The six-group browser course was not rerun merely because unrelated main paths advanced.",
+    "visualImages": [
+      {
+        "name": "desktop-gas-box.png",
+        "bytes": 138551,
+        "sha256": "1711e372c61f65488d009ee5ba1d5ba41fa45ec039aa2872ac2145c95093d473"
+      },
+      {
+        "name": "mobile-gas-box.png",
+        "bytes": 71835,
+        "sha256": "8398c02ca064b7782293733cb60d0aafb0bf54a21fccd94d704acc2d60857927"
+      },
+      {
+        "name": "mobile-gas-witness.png",
+        "bytes": 75455,
+        "sha256": "eea223568f0a50acd3c27792f9cae87076968c32820ae0d18e8db2c850ab7e04"
+      },
+      {
+        "name": "mobile-positive-below-display.png",
+        "bytes": 72377,
+        "sha256": "848f017d61d0a50634d0cc3f8efc4db16a6c4cd62fc0ec26da4c100d995b7de5"
+      },
+      {
+        "name": "mobile-outward-100.png",
+        "bytes": 73619,
+        "sha256": "154b2b9d23f562b71feac6e2e8cb33d1e22c7c921299a25b31eec9e854c98daa"
+      }
+    ]
+  },
+  "maintainedServer": {
+    "server": "python3 serve.py --port 0",
+    "sourceSHA256": "c11e0699659afc150176146b3203c58ec7925dbc56bc84761a4f0230acf8eb28",
+    "routes": [
+      {
+        "path": "soil-air-boundary.html",
+        "status": 200,
+        "bytes": 5312,
+        "sha256": "fc1303c493775e1577e524aab9806c2a54f20393b676d58b38b61be7692177c9",
+        "mime": "text/html",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/html; charset=utf-8",
+          "Content-Length": "5312",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      },
+      {
+        "path": "soil-air-boundary.js",
+        "status": 200,
+        "bytes": 8994,
+        "sha256": "8f30801f14d7db54c20c7097a388308e04651385d342a8f09979f0cf7d3e90b0",
+        "mime": "text/javascript",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/javascript; charset=utf-8",
+          "Content-Length": "8994",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      },
+      {
+        "path": "soil-air-box.html",
+        "status": 200,
+        "bytes": 4137,
+        "sha256": "1133db88daca3ec3c9fab2f00961bce6dc4298c697dab519b1cb22964ca9c4d6",
+        "mime": "text/html",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/html; charset=utf-8",
+          "Content-Length": "4137",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      },
+      {
+        "path": "soil-air-box.js",
+        "status": 200,
+        "bytes": 9445,
+        "sha256": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+        "mime": "text/javascript",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/javascript; charset=utf-8",
+          "Content-Length": "9445",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      },
+      {
+        "path": "soil-air-box-example.js",
+        "status": 200,
+        "bytes": 1031,
+        "sha256": "4e0810f38c2d8957e44f049b4a02a0ab66f74db48f672f9dbe931e57cf2172e9",
+        "mime": "text/javascript",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/javascript; charset=utf-8",
+          "Content-Length": "1031",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      },
+      {
+        "path": "soil-air-box-page.js",
+        "status": 200,
+        "bytes": 12561,
+        "sha256": "0d2a0a2bfb45f853ba9d336709ac3299f690d949e7b9513a47c2e22f259dbc40",
+        "mime": "text/javascript",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/javascript; charset=utf-8",
+          "Content-Length": "12561",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      },
+      {
+        "path": "soil-air-box.css",
+        "status": 200,
+        "bytes": 5708,
+        "sha256": "104f773cad981a9184f901903f2613ac8bf771f5a36d090a2784df0f40715250",
+        "mime": "text/css",
+        "headers": {
+          "Server": "BaseHTTP/0.6 Python/3.12.3",
+          "Date": "Thu, 29 Oct 2026 01:08:03 GMT",
+          "Content-Type": "text/css; charset=utf-8",
+          "Content-Length": "5708",
+          "X-Content-Type-Options": "nosniff",
+          "Cache-Control": "no-store"
+        }
+      }
+    ],
+    "serverExit": -15,
+    "log": [
+      "Serving Experimental Earth at http://127.0.0.1:43983/\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-boundary.html HTTP/1.1\" 200 -\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-boundary.js HTTP/1.1\" 200 -\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-box.html HTTP/1.1\" 200 -\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-box.js HTTP/1.1\" 200 -\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-box-example.js HTTP/1.1\" 200 -\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-box-page.js HTTP/1.1\" 200 -\n",
+      "127.0.0.1 - - [29/Oct/2026 01:08:03] \"GET /soil-air-box.css HTTP/1.1\" 200 -\n"
+    ]
+  },
+  "independentReviews": {
+    "OPTIMIZER_MATH_REVIEW.json": {
+      "sha256": "c849155215161dc7b8502a5a632c7b028c7cccb2d70b2e4cb26b8f1f3aa34797",
+      "record": {
+        "status": "accepted-mathematical-direction",
+        "theoremSha256": "7530ffcb711e0edeefbe8cbd160ef5d67744db198afbe450c1ec5703780d70ad",
+        "review": "OPTIMIZER_MATH_REVIEW.md",
+        "implementationReviewed": false,
+        "numericalCornerValuesVerified": false
+      }
+    },
+    "OPTIMIZER_CORE_SOURCE_REVIEW.json": {
+      "sha256": "7422be57cdb6da984def2064a532373c369d5f490f62e8162a91fd8216b6df2a",
+      "record": {
+        "status": "accepted-source",
+        "sourceSHA256": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+        "scope": "Exact static whole-Cartesian-box gas-removal extrema, canonical declared data records; no physical or time-course qualification",
+        "findings": [
+          "IEEE754 decoder handles normal, subnormal, sign and signed zero exactly; nonfinite values refuse. Unit conversion uses integer rational factors before all range/order/gap checks.",
+          "Whole-box initialFront.upper <= targetFront.lower and targetFront.upper <= (99999999/100000000)*columnDepth.lower ensure every pair has positive gas denominator and target before base. Fixed intervals admitted.",
+          "Minimum uses upper L,z0,h,psi and lower H,z; maximum opposite, agreeing with accepted monotonicity theorem for clipped removal.",
+          "Rational gas balance and clipping are exact; attained corner witnesses retain original endpoint/unit and exact mm. R remains strictly below one on admitted interior domain.",
+          "driveAtRequiredRemoval correctly distinguishes negative unclipped balance (positive drive at zero removal) from zero or positive balance (zero drive at threshold).",
+          "Percent floor/ceil are outward for nonnegative fractions; positive subdisplay lower and rounded100 upper flags prevent interpreting formatting as exact endpoints.",
+          "Represented binary64 1e-6 cutoff versus exact decimal relative-gap threshold are explicit, not silently interchangeable."
+        ],
+        "limitations": [
+          "No execution rerun: root is implementing independent Fraction oracle.",
+          "Source review only; UI, physical parameters and source-data applicability not qualified."
+        ],
+        "theorem": "THEOREM.md and OPTIMIZER_MATH_REVIEW.md"
+      }
+    },
+    "OPTIMIZER_ORACLE_REVIEW.json": {
+      "sha256": "e6085e753664ed0c08f9ce9075a0515ceb9750a0e788625bd4c86e06887078df",
+      "record": {
+        "status": "accepted-source-and-receipt-review",
+        "scriptSHA256": "99d71e8e5e18fb44cd0ad903a04f9d1b19a41480f2beff6220e71841319e6ffb",
+        "receiptSHA256": "2dcfa99b1698ccb21c634177cbb298a83eb1277cabac4b076e24f97f5fe000d8",
+        "coreSHA256": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+        "findings": [
+          "Actual Node API outputs are obtained from all 104 authored inputs and compared with independently decoded Fraction.from_float endpoints and original gas-amount difference, not JS-selected corner output.",
+          "Every 64 endpoint combination is enumerated independently of the implementation monotonicity branch. Fixed ranges cause duplicate coordinates; 6656 is corner evaluations, not necessarily distinct physical states.",
+          "1248 exact rational interior points are formula membership checks between extrema, not 1248 additional Node API invocations or a mathematical proof. Receipt describes this distinction adequately.",
+          "Witness input value/unit/exact-mm, attained extrema, unclipped balance, drive label, three classifications and exact floor/ceiling percentages are independently checked.",
+          "96 mixed-unit seeded boxes plus eight controls cover fixed intervals, adjacent floats around equilibrium, minimum positive cutoff, near-base margin, subnormal capillary input and nonmonotone unclipped-but-flat-clipped region.",
+          "Counts match:104*64=6656,104*12=1248; classifications54+44+6=104. Before/after core hashes bind unchanged reviewed code."
+        ],
+        "limits": [
+          "No redundant rerun.",
+          "This receiving covers authored admitted inputs, not all malformed-input refusal paths.",
+          "Not a physical parameter coverage, confidence, time/dynamic sufficiency or certified real-world result."
+        ]
+      }
+    },
+    "OPTIMIZER_DOC_REVIEW.json": {
+      "sha256": "98c282b474e87ca566de00f94bca9f56169ff6d970c2f8c57d04b60f57e29034",
+      "record": {
+        "status": "accepted-documentation-review",
+        "pins": {
+          "product/docs/soil-air-box.md": "0c92c97a15cf7db2e127239172d58682bf603463d710074c638d8bf76e243790",
+          "product/soil-air-box.js": "9598eb144e56b525703ffe3e968624695607955ecd42d9d5cebeeac6074861c6",
+          "product/soil-air-box-page.js": "0d2a0a2bfb45f853ba9d336709ac3299f690d949e7b9513a47c2e22f259dbc40",
+          "product/soil-air-box-example.js": "4e0810f38c2d8957e44f049b4a02a0ab66f74db48f672f9dbe931e57cf2172e9",
+          "INDEPENDENT_ORACLE.json": "2dcfa99b1698ccb21c634177cbb298a83eb1277cabac4b076e24f97f5fe000d8"
+        },
+        "findings": [
+          "Physical model and moles/mass versus volume distinction match declared sharp-front gas balance; positive-threshold equality and clipped-zero positive-drive caveat correct.",
+          "Derivative signs, unique interior zero argument, attained corners and whole-box admission inequalities agree with independently accepted theorem.",
+          "Exact stored-binary64 semantics, integer unit factors, represented scalar cutoff versus exact relative gap, outward rounding and rounded100/tiny-positive distinctions are explicit and accurate.",
+          "Example fractions and integer17/198/contact12 controls match reviewed source/oracle; authored ranges are not relabeled measurement uncertainty.",
+          "Oracle counts and fixed-range duplicate caveat are accurate; rational interior probes remain computational controls rather than continuum proof.",
+          "Consumer documentation matches corrected actual page: exact endpoints attained, displayed percentages outward bounds, edit/file epochs, input-only saved declarations and refusal retaining prior accepted result.",
+          "Receiving commands are repo-relative; browser/native/physical claims remain separate and no performance/cloud claim added."
+        ],
+        "limits": [
+          "Review only, no duplicate execution.",
+          "Final current-base composition and immutable receiving manifest remain separate gates."
+        ]
+      }
+    },
+    "MICRO_FINAL_CONSUMER_REVIEW.json": {
+      "sha256": "f51a4d6a99fde2abd32dd1595802b1fef57a4052af5dfaf0b7bfb4847456cc7a",
+      "record": {
+        "reviewer": "microverse",
+        "status": "accepted",
+        "supersedesFinding": "MICRO_CONSUMER_REVIEW.json wording finding resolved; preserve original receipt",
+        "pageSHA256": "0d2a0a2bfb45f853ba9d336709ac3299f690d949e7b9513a47c2e22f259dbc40",
+        "verifiedCorrection": "host.append(node('p', 'The exact minimum and maximum are attained by the corner conditions below. The percentages shown are outward-rounded bounds on the necessary removed fraction of the initial connected gas amount; they are not a probability interval.'));",
+        "scope": "Source custody, async lifecycle, input-only replay and truthful range display; mathematical core separately reviewed by Togishi; actual browser receiving remains root gate.",
+        "testsRerun": false
+      }
+    },
+    "ROOT_VISUAL_REVIEW.json": {
+      "sha256": "1053242eb6b8dd3734cbf5a17179a4aa64c390586302da43aa74b316debf3071",
+      "record": {
+        "reviewer": "root",
+        "reviewedAt": "2026-10-29T00:58:22.979982+00:00",
+        "decision": "accepted",
+        "scope": "Independent visual inspection of all five actual Chrome captures, received by exact image hashes from the qualified host.",
+        "images": [
+          {
+            "name": "desktop-gas-box.png",
+            "bytes": 138551,
+            "sha256": "1711e372c61f65488d009ee5ba1d5ba41fa45ec039aa2872ac2145c95093d473"
+          },
+          {
+            "name": "mobile-gas-box.png",
+            "bytes": 71835,
+            "sha256": "8398c02ca064b7782293733cb60d0aafb0bf54a21fccd94d704acc2d60857927"
+          },
+          {
+            "name": "mobile-gas-witness.png",
+            "bytes": 75455,
+            "sha256": "eea223568f0a50acd3c27792f9cae87076968c32820ae0d18e8db2c850ab7e04"
+          },
+          {
+            "name": "mobile-positive-below-display.png",
+            "bytes": 72377,
+            "sha256": "848f017d61d0a50634d0cc3f8efc4db16a6c4cd62fc0ec26da4c100d995b7de5"
+          },
+          {
+            "name": "mobile-outward-100.png",
+            "bytes": 73619,
+            "sha256": "154b2b9d23f562b71feac6e2e8cb33d1e22c7c921299a25b31eec9e854c98daa"
+          }
+        ],
+        "browserReceiptSHA256": "dbe25c1c40facbeb3527ad368a53949f9f12a7556fac93c3f5ef0915197d3c24",
+        "findings": [
+          "Desktop and 390px bounds, original mixed-unit corner witnesses and exact fractions are readable with no visible clipped percentages or page overflow.",
+          "The corrected result distinguishes attained exact extrema from outward-rounded displayed bounds.",
+          "The positive-below-display notice visibly distinguishes a true positive requirement from displayed 0.0000%.",
+          "The outward 100% notice visibly states that the exact maximum stays below full removal and the target remains inside the packed column.",
+          "The range bar uses the declared 0–100% scale; exact fractions and outward-rounding labels remain authoritative."
+        ],
+        "reruns": "No new browser execution in this visual review; actual six-group receiving and sandbox status belong to receipt.json."
+      }
+    }
+  },
+  "preservedReceivingFailure": {
+    "operation": "hamon-04e9-air-box-final-native-20261029-01",
+    "outcome": "failed before overlay or tests",
+    "reason": "Transcribed SHA256 preflight literal contained an extra character; changed to compare the already verified Git blob preimage. No product change."
+  },
+  "operations": {
+    "functionalReceiving": "hamon-04e9-air-box-receiving-20261029-01",
+    "currentSource": "hamon-04e9-air-box-current-source-20261029-01",
+    "currentFullNativeAndRoutes": "hamon-04e9-air-box-final-native-20261029-02"
+  },
+  "limits": [
+    "The ranges and the all-combinations assumption are user declarations, not inferred distributions or measured uncertainty.",
+    "These static necessary bounds do not establish a release history, sufficient dynamics, conductivity, elapsed time, field applicability or physical validation.",
+    "The independent oracle checks authored boxes; the continuum extrema rest separately on the reviewed mathematical proof.",
+    "Browser interaction used the maintained browser-session static server; current serve.py receiving independently verifies exact asset bytes and MIME, with no Content-Security-Policy header.",
+    "Repository publication, CI status and merge outcome are separate from this source receiving record."
+  ]
+}
