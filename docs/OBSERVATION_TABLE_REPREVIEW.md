@@ -9,12 +9,14 @@ chooser.
    mapping still receive an immediate first preview.
 2. If the station map is missing or needs correction, edit **Optional station map
    JSON**. Changing the map clears the previous preview and disables **Add
-   previewed readings**.
+   selected readings**.
 3. Choose **Preview selected table**. The panel reinterprets the same original
    CSV using the current station map and current project, then shows its original
    filename, source rows, supplied quantities and interpreted cells.
-4. Check the preview, then choose **Add previewed readings** to append the whole
-   validated table. Previewing alone never changes the notebook.
+4. Check the preview and explicitly choose its original source rows, or choose
+   **Choose all rows**. No rows are selected automatically. Choose **Add selected
+   readings** to append only those rows in original table order. Previewing alone
+   never changes the notebook.
 
 A failed mapping can be corrected and retried. A selected file that has invalid
 CSV content remains available for another preview; choose another CSV to replace
@@ -24,13 +26,18 @@ Only one CSV is available for preview at a time. Each selected file is limited
 to 128,000 bytes and decoded strictly as UTF-8. The panel does not reconstruct
 the original CSV from interpreted readings, send
 its contents over the network, or persist the selected file in browser storage.
-The unchanged observation importer still validates the full preview before any
-append, enforces the notebook limit, and preserves the supplied filename, source
-line, original quantities, station token and declared station placement.
+The unchanged observation parser still validates the complete original source
+before row selection, including its source-row limit. Notebook-capacity and
+duplicate checks apply atomically to the selected rows at append. The supplied
+filename, physical source line, original quantities, station token and declared
+station placement remain attached to each selected reading.
 
-Adding readings, resetting the project, or changing an input that reruns the site
-clears the selected table and preview. If the project changes after a preview,
-adding its readings is refused until you make a fresh preview. Selecting a
+Adding readings clears the actionable table selection and preview, while the
+complete original CSV and the exact map used for that preview remain available
+for download. [Save the original table and map](ORIGINAL_OBSERVATION_SOURCE.md)
+before changing the project. Resetting the project or changing an input that
+reruns the site clears this tab-only source. If the project changes after a
+preview, adding its readings is refused until you make a fresh preview. Selecting a
 different CSV immediately replaces the prior selection; a late read from an older
 selection cannot restore it. If the station map changes while a file is being
 read, the latest file becomes available for an explicit preview after reading

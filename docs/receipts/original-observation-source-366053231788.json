@@ -1,0 +1,236 @@
+{
+  "schema": "experimental-earth/original-observation-source-qualification/v1",
+  "source": {
+    "base": "426317a66fd19f5bb919c7cc635b1ee5ff16fd98",
+    "base_tree": "a4eab7d686dc11730ec8d0fcad9ca90fd1be6631",
+    "feature_paths": [
+      {
+        "path": "observation-source-file.js",
+        "bytes": 4897,
+        "git_blob": "39c30c977eeac758c8fd648626c16eef75484854",
+        "sha256": "d52a3acddee6e32a124e81122582e7e3d792ed52d8d3be25db7ad15c92499022"
+      },
+      {
+        "path": "observation-import-panel.js",
+        "bytes": 12279,
+        "git_blob": "100d3aebbfea64d7ec5467f5673315f009883d2c",
+        "sha256": "b9a13f8df8c4c0a20f2948e14e8f261a8f4edbd35f960a2ec4870043f88129da"
+      },
+      {
+        "path": "tests/observation-source-file.test.mjs",
+        "bytes": 7097,
+        "git_blob": "2d8efcd68199d07654d18d7398c3330a741375c0",
+        "sha256": "1e911be0e3fb9a3e903163d5ff88802462849e1a75940fae8774c696989bddca"
+      },
+      {
+        "path": "tests/browser.observation-source.mjs",
+        "bytes": 17044,
+        "git_blob": "084621a38829b5fee36711bf53780e5fe4a31bfb",
+        "sha256": "2d714d85024e4d92d4767246f96c37dca83664ed5f726475fe57eab679a65e3e"
+      },
+      {
+        "path": "docs/ORIGINAL_OBSERVATION_SOURCE.md",
+        "bytes": 3551,
+        "git_blob": "a9432bb9cce9d998160637795cbefddc0afe1280",
+        "sha256": "246d4e85dbf5df62768068ee084f4e7dcb1474d2bfdc5820aa5ad60a5a4baddd"
+      }
+    ],
+    "preserved_upstream": [
+      {
+        "path": "docs/SHADE_HEAT_SPATIAL_EVIDENCE.md",
+        "status": "modified",
+        "sha": "fdc538ddc583916f562d96647cc50b34c605bd87"
+      },
+      {
+        "path": "docs/receipts/spatial-sky-launcher-52d429.json",
+        "status": "added",
+        "sha": "a5c92bcba6348faf74ebcdc75c8016a3f73070a1"
+      },
+      {
+        "path": "shade-heat-spatial-evidence-page.js",
+        "status": "modified",
+        "sha": "8bbbd4db2fa0024389d17518d0f330480d4f0f5d"
+      },
+      {
+        "path": "shade-heat-spatial-example.js",
+        "status": "added",
+        "sha": "c7557d363d331cc79151430d48d7e3847eab8e67"
+      },
+      {
+        "path": "tests/shade-heat-spatial-evidence.browser.mjs",
+        "status": "modified",
+        "sha": "be8dbf5baa95e7b0471d22b805fe46d09dae3f5a"
+      },
+      {
+        "path": "tests/shade-heat-spatial-evidence.test.mjs",
+        "status": "modified",
+        "sha": "fb5ed550b9415b14539a100300a9d6460cba0822"
+      }
+    ]
+  },
+  "native": {
+    "scope": "8 original-source codec controls plus 24 maintained observation table, station and clock controls",
+    "command": "node --test tests/observation-source-file.test.mjs tests/observation-table.test.mjs tests/observation-stations.test.mjs tests/observation-clock.test.mjs",
+    "exit_code": 0,
+    "passed": 32,
+    "failed": 0,
+    "skipped": 0,
+    "tool_chunk": "a66d28",
+    "base": "5055c34b6516fc9a533cdb0e333cf97cb28340ea",
+    "binding": "Native source codec39c30c97 and test file are unchanged in final source. Final browser-only panel compatibility correction was verified separately in actual current-main browser courses. No full native suite rerun is claimed."
+  },
+  "actual_main_browser": {
+    "state": "passed",
+    "qualification": "Authored logger bytes and placement declarations; software receiving only",
+    "startedAt": "2026-10-29T00:15:06.271Z",
+    "groups": [
+      {
+        "name": "ordinary CSV intake and actual raw/source downloads preserve every original byte and supplied map",
+        "passed": true,
+        "seconds": 2.6453342159999997,
+        "originalBytes": 183,
+        "originalSha256": "c086453fadf3ad843f7273eecada62d30e35988f9714abb55bf1002c68ee191a",
+        "sourcePacketSha256": "8a68f3c9eb7f2fb77df15b45b0f53763fe82cd760daa9bc96d101b871fcd5fb9",
+        "previewRows": 2
+      },
+      {
+        "name": "corrected mapping requires repreview and keyboard append retains the exact map actually used",
+        "passed": true,
+        "seconds": 0.5966655049999999,
+        "keyboardAppend": true,
+        "rows": 2,
+        "originalRowLines": [
+          2,
+          4
+        ],
+        "retainedPreviewMap": true
+      },
+      {
+        "name": "fresh narrow browser restores original source without adding readings and explicitly previews in the current site",
+        "passed": true,
+        "seconds": 1.7749500179999995,
+        "freshContext": true,
+        "explicitPreviewRequired": true,
+        "originalSha256": "c086453fadf3ad843f7273eecada62d30e35988f9714abb55bf1002c68ee191a",
+        "viewport": 390,
+        "noHorizontalOverflow": true
+      },
+      {
+        "name": "failed replacement identities, UTF-8 and byte limits preserve accepted original source and notebook",
+        "passed": true,
+        "seconds": 0.44646720000000006,
+        "refused": 4,
+        "priorOriginalPreserved": true,
+        "notebookUnchanged": true
+      },
+      {
+        "name": "a delayed saved source cannot overwrite a newer station-map edit",
+        "passed": true,
+        "seconds": 0.09682820400000038,
+        "newerMapPreserved": true,
+        "oldOriginalPreserved": true,
+        "appendDisabled": true
+      },
+      {
+        "name": "newest original-file intent wins and a replaced project retires actual late hashing",
+        "passed": true,
+        "seconds": 0.31979821400000036,
+        "latestFilename": "newest.csv",
+        "actualLateHashRetired": true,
+        "originalProjectImportPreserved": true
+      },
+      {
+        "name": "a pending source save is retired by map changes and by actual project replacement",
+        "passed": true,
+        "seconds": 0.40888085600000157,
+        "retiredSaves": 2,
+        "staleDownloads": 0
+      }
+    ],
+    "pageErrors": [],
+    "failedAssets": [],
+    "externalRequests": [],
+    "browserVersion": "156.0.8078.73",
+    "finishedAt": "2026-10-29T00:15:14.603Z",
+    "source": [
+      {
+        "path": "observation-source-file.js",
+        "sha256": "d52a3acddee6e32a124e81122582e7e3d792ed52d8d3be25db7ad15c92499022"
+      },
+      {
+        "path": "observation-import-panel.js",
+        "sha256": "b9a13f8df8c4c0a20f2948e14e8f261a8f4edbd35f960a2ec4870043f88129da"
+      },
+      {
+        "path": "tests/observation-source-file.test.mjs",
+        "sha256": "1e911be0e3fb9a3e903163d5ff88802462849e1a75940fae8774c696989bddca"
+      },
+      {
+        "path": "tests/browser.observation-source.mjs",
+        "sha256": "2d714d85024e4d92d4767246f96c37dca83664ed5f726475fe57eab679a65e3e"
+      },
+      {
+        "path": "docs/ORIGINAL_OBSERVATION_SOURCE.md",
+        "sha256": "246d4e85dbf5df62768068ee084f4e7dcb1474d2bfdc5820aa5ad60a5a4baddd"
+      }
+    ],
+    "sourceChangedDuringRun": []
+  },
+  "maintained_final_heldback": {
+    "mappingDuringReadRequiresExplicitPreview": true,
+    "currentMappingAndOriginalProvenance": true,
+    "resetDuringReadForgetsSource": true,
+    "oversizeReplacementForgetsSource": true,
+    "invalidUtf8ReplacementForgetsSource": true,
+    "exceptions": []
+  },
+  "maintained_final_station": {
+    "consumer": "full maintained app with explicit station mapping importer",
+    "stationMappingPreview": true,
+    "mappingEditRetiresPreview": true,
+    "keyboardAppend": true,
+    "invalidCalendarRefused": true,
+    "priorNotebookPreserved": true,
+    "desktopAnd390Preview": true,
+    "noHorizontalOverflow": true,
+    "pageErrors": [],
+    "externalRequests": [],
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
+  },
+  "earlier_repreview": {
+    "panel": "f37fb48bd83ab9a0732ca9d81e67f2b7c04fdf9b",
+    "result": "course-completed",
+    "receipt_sha256": "96e3577e84eb8a8af7232af152dfa0b6ee94559bc7019f4d99023da071bce0ce",
+    "qualification": "Executed before the final failed-replacement compatibility correction; not labeled a final-head rerun."
+  },
+  "compatibility_correction": {
+    "before_panel_sha256": "8f8755fd97f17ea98686f286902c50e47c99d50ca5e467a944349a9a80fa71ba",
+    "failure": "Existing heldback browser course exited1: oversized.csv must retire cached previous file. Original selected source was still actionable.",
+    "actual_receipt": "maintained-browser-receiving-01/heldback-before-correction/session.json",
+    "correction": "Retain exact prior source/map only for download after failed admission; clear actionable selectedTable/preview, hide selected label and require explicit re-selection/reopen. Show separate retained-source label.",
+    "after_panel_sha256": "b9a13f8df8c4c0a20f2948e14e8f261a8f4edbd35f960a2ec4870043f88129da",
+    "negative_run_claim": "Actual sandboxed browser failure and owner cleanup retained, not inferred from source."
+  },
+  "independent_review": {
+    "reviewer": "hamon-366053231788-20261022/estate_log_recovery",
+    "kind": "independent bounded exact-source review",
+    "codec_git_blob": "39c30c977eeac758c8fd648626c16eef75484854",
+    "final_panel_git_blob": "100d3aebbfea64d7ec5467f5673315f009883d2c",
+    "finding": "No blocking source/lifecycle finding in exact final codec/controller.",
+    "reasoning": [
+      "Raw byte copy occurs before asynchronous hashing, including Uint8Array subclasses; metadata is snapshotted before identity checking.",
+      "Canonical base64/count/digest, full field set, UTF-8 and bounds precede source admission; frozen original bytes remain distinct from unchanged parser interpretation.",
+      "The actual app rerun calls importer.refresh, retiring source/file/save generations on project changes.",
+      "Raw-file map edits defer preview; saved-map edits during receive refuse restoration; late file/save completion cannot overwrite newer work.",
+      "After append, retainedSource binds exact preview map even when the empty map editor is changed.",
+      "Final correction captures priorSource before await; a failed receive clears actionable selectedTable, hides selected label and leaves only a separate retained-download label. Later map edits cannot relabel that saved snapshot."
+    ],
+    "qualification": "Source review only. Executed native/browser courses are recorded independently."
+  },
+  "limits": [
+    "Authored CSV and supplied mapping establish software receiving only, not field accuracy or source authenticity.",
+    "The saved original-source file is separate from the site project; reopening never adopts a site or adds readings automatically.",
+    "No Git object, branch, pull request or merge mutation has been dispatched for this CSV outcome.",
+    "No installed shared runtime or merged main claim is made. Native writer capability read returned TCP timeout; direct GitHub writes had repeated unresolved stalls on separate operations."
+  ]
+}

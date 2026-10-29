@@ -26,6 +26,13 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || 
  await wait(`!!document.querySelector('#investigation-navigation')`);
  const receivingOrigin=await evaluate('location.origin');
  await evaluate(`window.q=id=>document.getElementById(id);window.stored=()=>localStorage.getItem('experimental-earth-site-v1');window.setMap=value=>{q('observation-station-map').value=value;q('observation-station-map').dispatchEvent(new Event('input',{bubbles:true}));};window.upload=(name,body,defer=false)=>{const file=new File([body],name,{type:'text/csv'});if(defer)file.arrayBuffer=()=>new Promise(resolve=>window.pendingFiles[name]=()=>resolve(new TextEncoder().encode(body).buffer));const transfer=new DataTransfer();transfer.items.add(file);q('observation-table-file').files=transfer.files;q('observation-table-file').dispatchEvent(new Event('change',{bubbles:true}));};window.pendingFiles={};q('reset').click();window.before=stored();`);
+ const chooseAll = async () => {
+  await wait("q('observation-table-preview').children.length===1");
+  assert.equal(await evaluate("document.querySelectorAll('input[data-observation-line]:checked').length"),0);
+  assert.equal(await evaluate("q('append-observation-table').disabled"),true);
+  await evaluate("q('select-all-observation-rows').click()");
+  await wait("!q('append-observation-table').disabled");
+ };
  const csv='station,minute,depth,uncertainty,unit,source,scenario,use\neast,15,1,.1,cm,logger,existing,calibration';
  const mapping=JSON.stringify({source:'Independent receiving placement',entries:[{station:'east',cell:'B2'}]});
  await evaluate(`setMap('{');upload('original.csv',${JSON.stringify(csv)});`);
@@ -38,7 +45,7 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || 
  }
  assert.equal(retryPresent,true,'Corrected mapping must offer retry without reselecting CSV');
  await evaluate(`q('preview-observation-table').click()`);
- await wait(`!q('append-observation-table').disabled`);
+ await chooseAll();
  assert.equal(await evaluate(`stored()===before`),true,'Preview must not mutate notebook');
  assert.match(await evaluate(`q('observation-table-preview').textContent`),/B2.*10 ± 1 mm/);
  for(const width of [1440,390]) {
@@ -52,11 +59,13 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || 
  await send('Emulation.clearDeviceMetricsOverride');
  await evaluate(`setMap(${JSON.stringify(mapping)})`);
  assert.equal(await evaluate(`q('append-observation-table').disabled`),true);
- await evaluate(`q('preview-observation-table').click()`);await wait(`!q('append-observation-table').disabled`);
+ await evaluate(`q('preview-observation-table').click()`);await chooseAll();
  await evaluate(`q('append-observation-table').click();q('append-observation-table').click()`);
  const observations=await evaluate(`JSON.parse(stored()).observations`);
  assert.equal(observations.length,1);assert.equal(observations[0].tableSource.fileName,'original.csv');assert.equal(observations[0].tableSource.stationValue,'east');assert.equal(observations[0].depthMm,10);
- assert.equal(await evaluate(`q('preview-observation-table').disabled`),true,'Commit refresh forgets selected source');
+ assert.equal(await evaluate(`q('preview-observation-table').disabled && q('append-observation-table').disabled`),true,'Commit retires actionable source and choices');
+ assert.equal(await evaluate(`document.querySelectorAll('input[data-observation-line]:checked').length`),0);
+ assert.equal(await evaluate(`!q('download-observation-csv').disabled && !q('save-observation-source').disabled`),true,'Complete original remains available for download');
  await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:runDirectory});
  await evaluate(`q('export').click()`);
  let portable;
@@ -70,10 +79,11 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN || 
  assert.equal(await evaluate(`q('append-observation-table').disabled && JSON.parse(stored()).observations.length===1`),true,'Invalid replacement must not revive original source');
  const cell='cell,minute,depth,uncertainty,unit,source\nA1,20,2,.1,mm,ordering';
  await evaluate(`setMap('');upload('late-A.csv',${JSON.stringify(cell)},true);upload('latest-B.csv',${JSON.stringify(cell)},true);pendingFiles['latest-B.csv']();`);
- await wait(`!q('append-observation-table').disabled`);
+ await chooseAll();
  await evaluate(`pendingFiles['late-A.csv']()`);await delay(50);
+ assert.equal(await evaluate(`document.querySelectorAll('input[data-observation-line]:checked').length`),1,'Late prior source must not clear newer choice');
  assert.match(await evaluate(`q('observation-table-status').textContent`),/latest-B.csv/);
- await evaluate(`setMap('');q('preview-observation-table').click()`);await wait(`!q('append-observation-table').disabled`);
+ await evaluate(`setMap('');q('preview-observation-table').click()`);await chooseAll();
  assert.match(await evaluate(`q('observation-table-status').textContent`),/latest-B.csv/,'Retained retry source is latest intent');
  await evaluate(`q('reset').click()`);
  assert.equal(await evaluate(`q('preview-observation-table').disabled && q('append-observation-table').disabled`),true,'External project refresh forgets source');
