@@ -1,0 +1,72 @@
+{
+  "base": "426317a66fd19f5bb919c7cc635b1ee5ff16fd98",
+  "head": "fcfb13abf6216911f2591f0d797f4f48e1e2c99b",
+  "files": [
+    {
+      "path": "docs/SHADE_HEAT_EPOCH_EVIDENCE.md",
+      "sha": "a2523d0a7e5bc99353cf53614fbb8846ac11ff62"
+    },
+    {
+      "path": "docs/receipts/two-epoch-sky-evidence-52d429.json",
+      "sha": "138fcc2485c8e3d75c5696bc64a2e62de9fddfb4"
+    },
+    {
+      "path": "shade-heat-epoch-evidence-page.js",
+      "sha": "c0c33b2af5cb4edcecaf3f2d3ed14c15fd50abb7"
+    },
+    {
+      "path": "shade-heat-epoch-evidence-worker.js",
+      "sha": "1d17e99f7d0b2f3db3ee991cee8088c80bca1945"
+    },
+    {
+      "path": "shade-heat-epoch-evidence.css",
+      "sha": "422ecfc6c1a60be3924fc1def30f0f2e63011628"
+    },
+    {
+      "path": "shade-heat-epoch-evidence.js",
+      "sha": "5089c469b65404c7857f3ecffd924730bf034f96"
+    },
+    {
+      "path": "shade-heat-epoch-example.js",
+      "sha": "7904fde64f26afb2524b385eb164e3632fb22604"
+    },
+    {
+      "path": "shade-heat-profile-basis.js",
+      "sha": "e7418cffb6c0a15da07ded00e5eec9b9095baf90"
+    },
+    {
+      "path": "shade-heat-profile-range.js",
+      "sha": "852134591fbfa340740c5657aeee94a4a567f739"
+    },
+    {
+      "path": "shade-heat-profile-two-bands.js",
+      "sha": "00aff2d8dc4a128efb593e1422e1fcd10790690d"
+    },
+    {
+      "path": "shade-heat-spatial-evidence.js",
+      "sha": "a2aef6fc0ad6fc93d1357428d49c81cae4210af8"
+    },
+    {
+      "path": "sky-epoch-evidence.html",
+      "sha": "5d411bac4f3c982346527653e5b91919c921d469"
+    },
+    {
+      "path": "sky-spatial-evidence.html",
+      "sha": "1cac1fa9eaf42a8552da4a34efa7f55197ce8b3a"
+    },
+    {
+      "path": "tests/shade-heat-epoch-evidence.browser.mjs",
+      "sha": "747ec8d8f1ad1b739fd64307b5a6cb04fa3f7570"
+    },
+    {
+      "path": "tests/shade-heat-epoch-evidence.test.mjs",
+      "sha": "47508771e346a3014720825762f5f0aadb2dc947"
+    },
+    {
+      "path": "tests/shade-heat-rational-bands-independent.py",
+      "sha": "d20db194a85fce8784eaadb4087d2f6392f9b292"
+    }
+  ],
+  "overlapWithOwnPublication": [],
+  "frozenNumericalSourceUnchanged": true
+}

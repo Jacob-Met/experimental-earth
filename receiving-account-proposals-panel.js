@@ -106,8 +106,9 @@ export function mountReceivingAccountProposals({host,getSource}){
           details.append(node('p',search.seedId+' · '+search.status+' · '+search.modelTrials+' trials. '+(search.origin??search.reason??'')));
           if(search.calibrationStart){const start=search.calibrationStart;details.append(node('p','Conditional retained-band rate start: '+fmt(start.ratePerHour)+' /hour within '+fmt(start.minimumRatePerHour)+' to '+fmt(start.maximumRatePerHour)+' /hour. '+start.meaning));if(start.parameterization)details.append(node('p',start.parameterization+'. '+start.restriction));}
         }
-        for(const refused of report.refusals)details.append(node('p','Unresolved '+refused.phase+': '+refused.reason));
+        for(const refused of report.refusals)details.append(node('p','Unresolved '+(refused.phase??refused.family??'proposal')+': '+refused.reason));
         if(report.schema===RECEIVING_ACCOUNT_PHASE_SCHEMA)details.append(node('p','Phase work reserves '+report.reservation.maximumPhaseProposals+' possible extra models, '+report.reservation.phaseRootEvaluations+' bounded inverse root evaluations, '+report.reservation.phaseBandIntersections+' band intersections and '+report.reservation.finalGridChecks+' final original-grid checks.'));
+        if(report.reservation.filledDrain?.maximumProposals)details.append(node('p','The filled-course drainage search additionally reserves '+report.reservation.filledDrain.qEvaluations+' full-store-rate points and '+report.reservation.filledDrain.modelEvaluations+' monotone original-band model evaluations before any fitting.'));
       }));
     }else results.append(node('p','Complete work reserved: '+report.trialCount+' model trials / '+report.reservedCellSteps+' cell-steps. '+report.candidates.length+' distinct parameter proposals were forwarded through the maintained rain model.'));
     for(const candidate of report.candidates){
@@ -118,6 +119,7 @@ export function mountReceivingAccountProposals({host,getSource}){
         if(candidate.phaseOrigins)for(const origin of candidate.phaseOrigins){
           details.append(node('p',origin.family+' · '+origin.meaning));
           if(origin.targetLiters)details.append(node('p','Computational targets inside original bands: '+origin.targetLiters.map(fmt).join(' / ')+' L. These are not additional observations.'));
+          if(origin.family==='filled-drain')details.append(node('p','Conditional full-store drainage '+fmt(origin.fullStoreRateMmHr)+' mm/hour; fill minute '+fmt(origin.fillMinute)+'; surface dry minute '+fmt(origin.dryMinute)+'. Computational decay-rate intersection '+origin.rateInterval.map(fmt).join(' to ')+' /hour; this is not a certified parameter enclosure.'));
           if(origin.family==='unfilled')details.append(node('p','Capacity choice: '+origin.capacityChoice+'; maximum modeled inventory '+fmt(origin.maximumModeledStorageMm)+' mm. Other untested capacities may reproduce the same course.'));
         }
         else if(candidate.search)details.append(node('p',candidate.search.origin+'. All original calibration readings then constrain the fit. '+candidate.search.iterations+' iterations / '+candidate.search.modelTrials+' model trials; final full-site bands below determine support.'));

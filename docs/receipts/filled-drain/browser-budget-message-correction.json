@@ -1,0 +1,6 @@
+{
+  "finding": "The second21browser groups passed and the enlarged1minute source correctly refused before the unchanged incumbent search. The test expected the later combined-phase refusal wording.",
+  "correction": "Assert the exact observed complete-incumbent budget message, then verify stale results are cleared and Save is disabled. No production or original-band change.",
+  "firstHarnessSha256": "b86fb0ad8383eea121882c90692586c3d23e7238897a03ebc7672261d4b7afb6",
+  "correctedHarnessSha256": "ded5426764fea3c604353861f175a25b66a6cabc0c86bb8177d14ad55e063c3b"
+}

@@ -1,0 +1,321 @@
+TAP version 13
+# {"groups":8,"independent":{"total":144,"eligible":70,"baseline":2,"calibration":70,"surviving":62},"development":{"courses":184,"calibration":181,"surviving":165}}
+# Subtest: actual noisy original example gains witnesses while preserving the analytic incumbent and every original source
+ok 1 - actual noisy original example gains witnesses while preserving the analytic incumbent and every original source
+  ---
+  duration_ms: 104.244595
+  type: 'test'
+  ...
+# Subtest: held values only challenge frozen parameters and do not change starts, trials or prospective questions
+ok 2 - held values only challenge frozen parameters and do not change starts, trials or prospective questions
+  ---
+  duration_ms: 117.780845
+  type: 'test'
+  ...
+# Subtest: contradictory original bands cannot become a witness or a fallback success
+ok 3 - contradictory original bands cannot become a witness or a fallback success
+  ---
+  duration_ms: 154.413933
+  type: 'test'
+  ...
+# Subtest: source-only replay is strict and saved conclusions never supply parameters
+ok 4 - source-only replay is strict and saved conclusions never supply parameters
+  ---
+  duration_ms: 48.025561
+  type: 'test'
+  ...
+# Subtest: complete expanded budget refuses before the incumbent, inverse, kernel or forward model runs
+ok 5 - complete expanded budget refuses before the incumbent, inverse, kernel or forward model runs
+  ---
+  duration_ms: 34.056798
+  type: 'test'
+  ...
+# Subtest: unselected original surfaces remain binding and reduced-grid success cannot replace full-grid verification
+ok 6 - unselected original surfaces remain binding and reduced-grid success cannot replace full-grid verification
+  ---
+  duration_ms: 523.595779
+  type: 'test'
+  ...
+# Subtest: frozen method receives a new mixed-surface parameter grid without selecting on held values
+ok 7 - frozen method receives a new mixed-surface parameter grid without selecting on held values
+  ---
+  duration_ms: 3416.319076
+  type: 'test'
+  ...
+# Subtest: development noisy grid remains separate from unfamiliar-grid evidence
+ok 8 - development noisy grid remains separate from unfamiliar-grid evidence
+  ---
+  duration_ms: 10135.080299
+  type: 'test'
+  ...
+# Subtest: write exact-source receipt after every native group executes
+ok 9 - write exact-source receipt after every native group executes
+  ---
+  duration_ms: 2.886871
+  type: 'test'
+  ...
+# Subtest: inferred original-band family reaches both maintained layouts with original evidence and separate initial-water balances
+ok 10 - inferred original-band family reaches both maintained layouts with original evidence and separate initial-water balances
+  ---
+  duration_ms: 95.318386
+  type: 'test'
+  ...
+# Subtest: the retained analytic family and searched family both contribute; exact duplicate parameters retain every origin
+ok 11 - the retained analytic family and searched family both contribute; exact duplicate parameters retain every origin
+  ---
+  duration_ms: 110.692085
+  type: 'test'
+  ...
+# Subtest: wrong held values change challenge results while all fitted parameters, compared family and consequences stay identical
+ok 12 - wrong held values change challenge results while all fitted parameters, compared family and consequences stay identical
+  ---
+  duration_ms: 86.764723
+  type: 'test'
+  ...
+# Subtest: source scenarios remain distinct; identical layouts have zero change and swapping layouts reverses every consequence
+ok 13 - source scenarios remain distinct; identical layouts have zero change and swapping layouts reverses every consequence
+  ---
+  duration_ms: 168.80228
+  type: 'test'
+  ...
+# Subtest: contradictory original calibration has no consequence range and no default receiver
+ok 14 - contradictory original calibration has no consequence range and no default receiver
+  ---
+  duration_ms: 157.60801
+  type: 'test'
+  ...
+# Subtest: combined full-family reservation refuses before inference even when the inverse and each consumer fit their individual budgets
+ok 15 - combined full-family reservation refuses before inference even when the inverse and each consumer fit their individual budgets
+  ---
+  duration_ms: 7.625585
+  type: 'test'
+  ...
+# Subtest: a corrupt paired receiving run cannot report successful consequences from the earlier fit
+ok 16 - a corrupt paired receiving run cannot report successful consequences from the earlier fit
+  ---
+  duration_ms: 32.016467
+  type: 'test'
+  ...
+# Subtest: source-only replay recomputes exact consequences and refuses saved parameters, verdicts or altered option contracts
+ok 17 - source-only replay recomputes exact consequences and refuses saved parameters, verdicts or altered option contracts
+  ---
+  duration_ms: 101.890405
+  type: 'test'
+  ...
+# {"passed":true,"groups":9,"development":{"calibration":15,"held":2,"total":15}}
+# Subtest: independent piecewise exponential oracle validates never-filled proposals below and above infiltration rate
+ok 18 - independent piecewise exponential oracle validates never-filled proposals below and above infiltration rate
+  ---
+  duration_ms: 82.483278
+  type: 'test'
+  ...
+# Subtest: rate endpoint starts stay inside original broad and narrow intervals and never enlarge an exact point
+ok 19 - rate endpoint starts stay inside original broad and narrow intervals and never enlarge an exact point
+  ---
+  duration_ms: 2.089886
+  type: 'test'
+  ...
+# Subtest: actual never-filled example preserves the old search and adds supported but nonidentifying capacity alternatives
+ok 20 - actual never-filled example preserves the old search and adds supported but nonidentifying capacity alternatives
+  ---
+  duration_ms: 443.071029
+  type: 'test'
+  ...
+# Subtest: held changes alter only challenge support and cannot select phase parameters or prospective measurements
+ok 21 - held changes alter only challenge support and cannot select phase parameters or prospective measurements
+  ---
+  duration_ms: 313.875868
+  type: 'test'
+  ...
+# Subtest: contradictory originals, zero inventories and nonfinite amplitude points cannot become fallback support
+ok 22 - contradictory originals, zero inventories and nonfinite amplitude points cannot become fallback support
+  ---
+  duration_ms: 3.724063
+  type: 'test'
+  ...
+# Subtest: complete enlarged reservation refuses before any inverse, incumbent or model and counts actual original-grid work
+ok 23 - complete enlarged reservation refuses before any inverse, incumbent or model and counts actual original-grid work
+  ---
+  duration_ms: 148.530728
+  type: 'test'
+  ...
+# Subtest: all original surfaces and final full-map receiver checks bind the extra phase models
+ok 24 - all original surfaces and final full-map receiver checks bind the extra phase models
+  ---
+  duration_ms: 464.208512
+  type: 'test'
+  ...
+# Subtest: strict original-source phase replay and paired consumer retain every generated calibration-compatible parameter set
+ok 25 - strict original-source phase replay and paired consumer retain every generated calibration-compatible parameter set
+  ---
+  duration_ms: 408.73479
+  type: 'test'
+  ...
+# Subtest: all15consumed development cases retain incumbent coverage and expose only2held-supported courses
+ok 26 - all15consumed development cases retain incumbent coverage and expose only2held-supported courses
+  ---
+  duration_ms: 1042.986449
+  type: 'test'
+  ...
+# Subtest: write receipt after every phase-family native group passes
+ok 27 - write receipt after every phase-family native group passes
+  ---
+  duration_ms: 1.033891
+  type: 'test'
+  ...
+# {"passed":true,"groups":7,"development":{"calibration":14,"held":14,"total":16,"currentCalibration":16,"currentHeld":16,"records":[{"id":"phase-01","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-02","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-03","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-04","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-05","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-06","calibration":7,"held":5,"rateEvaluations":409,"currentCalibration":7,"currentHeld":5},{"id":"phase-07","calibration":0,"held":0,"rateEvaluations":0,"currentCalibration":3,"currentHeld":3},{"id":"phase-08","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-09","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-10","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-11","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-12","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4},{"id":"phase-13","calibration":6,"held":2,"rateEvaluations":409,"currentCalibration":6,"currentHeld":2},{"id":"phase-14","calibration":0,"held":0,"rateEvaluations":0,"currentCalibration":4,"currentHeld":4},{"id":"phase-15","calibration":54,"held":36,"rateEvaluations":409,"currentCalibration":54,"currentHeld":36},{"id":"phase-16","calibration":6,"held":4,"rateEvaluations":409,"currentCalibration":6,"currentHeld":4}]}}
+# Subtest: independent ODE originals constrain cumulative drainage before during and after the storm and ponded phase
+ok 28 - independent ODE originals constrain cumulative drainage before during and after the storm and ponded phase
+  ---
+  duration_ms: 49.68077
+  type: 'test'
+  ...
+# Subtest: new original drainage constrains generated initial water and reaches the actual original-map consumer
+ok 29 - new original drainage constrains generated initial water and reaches the actual original-map consumer
+  ---
+  duration_ms: 369.761623
+  type: 'test'
+  ...
+# Subtest: held observations cannot change original-drainage constraints rate searches or candidate parameters
+ok 30 - held observations cannot change original-drainage constraints rate searches or candidate parameters
+  ---
+  duration_ms: 313.507808
+  type: 'test'
+  ...
+# Subtest: conflicting drainage original and impossible timezero drainage cannot report success or silently become retained evidence
+ok 31 - conflicting drainage original and impossible timezero drainage cannot report success or silently become retained evidence
+  ---
+  duration_ms: 278.907517
+  type: 'test'
+  ...
+# Subtest: complete positive-time drainage search and extra-model work refuses before any producer when the prior fixed-grid work fits
+ok 32 - complete positive-time drainage search and extra-model work refuses before any producer when the prior fixed-grid work fits
+  ---
+  duration_ms: 6.902755
+  type: 'test'
+  ...
+# Subtest: source-only replay and paired layouts retain every admitted drain-conditioned model and original row
+ok 33 - source-only replay and paired layouts retain every admitted drain-conditioned model and original row
+  ---
+  duration_ms: 409.860009
+  type: 'test'
+  ...
+# Subtest: frozen predecessor retains14of16 and its two filled failures while current filled mechanism supports16of16
+ok 34 - frozen predecessor retains14of16 and its two filled failures while current filled mechanism supports16of16
+  ---
+  duration_ms: 3248.216206
+  type: 'test'
+  ...
+# Subtest: write final source-bound native receipt
+ok 35 - write final source-bound native receipt
+  ---
+  duration_ms: 0.969114
+  type: 'test'
+  ...
+# {"passed":true,"groups":6,"paired":[{"id":"drain-new-03","models":3,"held":3,"reserved":594486,"runs":18},{"id":"drain-new-08","models":3,"held":3,"reserved":986022,"runs":18}]}
+# Subtest: independently integrated filled originals constrain retained and drainage values before fill during full storage and after dry
+ok 36 - independently integrated filled originals constrain retained and drainage values before fill during full storage and after dry
+  ---
+  duration_ms: 270.942691
+  type: 'test'
+  ...
+# Subtest: filled original drainage improves both unresolved consumed courses while retaining exact predecessor failures
+ok 37 - filled original drainage improves both unresolved consumed courses while retaining exact predecessor failures
+  ---
+  duration_ms: 597.939901
+  type: 'test'
+  ...
+# Subtest: held values do not select full-store rates decay intersections parameters questions or complete work
+ok 38 - held values do not select full-store rates decay intersections parameters questions or complete work
+  ---
+  duration_ms: 190.012944
+  type: 'test'
+  ...
+# Subtest: contradictory original drainage timezero contradiction and held-role injection cannot become success
+ok 39 - contradictory original drainage timezero contradiction and held-role injection cannot become success
+  ---
+  duration_ms: 194.42668
+  type: 'test'
+  ...
+# Subtest: complete nested filled work refuses before every producer and all final original-grid readings remain authoritative
+ok 40 - complete nested filled work refuses before every producer and all final original-grid readings remain authoritative
+  ---
+  duration_ms: 104.933175
+  type: 'test'
+  ...
+# Subtest: every admitted filled alternative reaches paired layouts within the unchanged combined limit and source-only replay
+ok 41 - every admitted filled alternative reaches paired layouts within the unchanged combined limit and source-only replay
+  ---
+  duration_ms: 673.148457
+  type: 'test'
+  ...
+# Subtest: write source-bound filled native receipt
+ok 42 - write source-bound filled native receipt
+  ---
+  duration_ms: 3.115236
+  type: 'test'
+  ...
+# {"passed":true,"groups":8,"independent":{"summary":{"baselineCalibration":0,"currentCalibration":8,"baselineHeld":0,"currentHeld":1},"eligible":15,"total":18,"excluded":[{"id":"p","reasons":["late surface is not dry","truth retained pair is not positive decreasing"]},{"id":"q","reasons":["no positive storm-end surface depth"]},{"id":"r","reasons":["late pair is not increasing in time","truth retained pair is not positive decreasing"]}],"allAdverseResultsRetained":true}}
+# Subtest: valid increasing-center retained bands gain a full-grid witness while informative held failures remain failures
+ok 43 - valid increasing-center retained bands gain a full-grid witness while informative held failures remain failures
+  ---
+  duration_ms: 302.013158
+  type: 'test'
+  ...
+# Subtest: held-only changes cannot affect projected starts, parameters, work, calibration support or offered questions
+ok 44 - held-only changes cannot affect projected starts, parameters, work, calibration support or offered questions
+  ---
+  duration_ms: 232.172168
+  type: 'test'
+  ...
+# Subtest: contradictory same-time bands, increasing disjoint bands and all-zero nonidentifying bands supply no fallback
+ok 45 - contradictory same-time bands, increasing disjoint bands and all-zero nonidentifying bands supply no fallback
+  ---
+  duration_ms: 3.651335
+  type: 'test'
+  ...
+# Subtest: the extra projected work alone can refuse before any incumbent, forward model or kernel runs
+ok 46 - the extra projected work alone can refuse before any incumbent, forward model or kernel runs
+  ---
+  duration_ms: 112.221983
+  type: 'test'
+  ...
+# Subtest: projected reduced-grid success cannot survive corrupt original-grid verification
+ok 47 - projected reduced-grid success cannot survive corrupt original-grid verification
+  ---
+  duration_ms: 217.859312
+  type: 'test'
+  ...
+# Subtest: source-only replay recomputes projected search and rejects saved conclusions
+ok 48 - source-only replay recomputes projected search and rejects saved conclusions
+  ---
+  duration_ms: 199.871183
+  type: 'test'
+  ...
+# Subtest: the paired consumer retains the calibration witness and its consequences while held support stays empty
+ok 49 - the paired consumer retains the calibration witness and its consequences while held support stays empty
+  ---
+  duration_ms: 107.483767
+  type: 'test'
+  ...
+# Subtest: the frozen independently authored comparison reproduces8of15calibration and1of15held without changing eligibility
+ok 50 - the frozen independently authored comparison reproduces8of15calibration and1of15held without changing eligibility
+  ---
+  duration_ms: 985.473808
+  type: 'test'
+  ...
+# Subtest: write receipt after every retained-start group completes
+ok 51 - write receipt after every retained-start group completes
+  ---
+  duration_ms: 1.050126
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14669.836738

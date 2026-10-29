@@ -1,0 +1,76 @@
+{
+  "base": "412591eb7102cc5e675c53b81a53802189572e25",
+  "head": "426317a66fd19f5bb919c7cc635b1ee5ff16fd98",
+  "incomingFiles": [
+    {
+      "path": "docs/SHADE_HEAT_PROFILE_EVIDENCE.md",
+      "sha": "c0fa69b86e8bdadbe2ad8f127a7cd53da2620ec8"
+    },
+    {
+      "path": "docs/SHADE_HEAT_SPATIAL_EVIDENCE.md",
+      "sha": "fdc538ddc583916f562d96647cc50b34c605bd87"
+    },
+    {
+      "path": "docs/receipts/spatial-sky-evidence-52d429.json",
+      "sha": "8940454a4d84c6e98bcbba773949212cfefd2369"
+    },
+    {
+      "path": "docs/receipts/spatial-sky-launcher-52d429.json",
+      "sha": "a5c92bcba6348faf74ebcdc75c8016a3f73070a1"
+    },
+    {
+      "path": "examples/shared-sky-two-points.json",
+      "sha": "befbbb41fbabbef26f77b4c2ad4189d2f2eeadf7"
+    },
+    {
+      "path": "shade-heat-profile-evidence-panel.js",
+      "sha": "fb520fa8a13186c40428949a059eb4b102cea61e"
+    },
+    {
+      "path": "shade-heat-profile-two-bands.js",
+      "sha": "2ed4cc64c36ca37e0f76740368bc1ae36e7eb39d"
+    },
+    {
+      "path": "shade-heat-spatial-evidence-page.js",
+      "sha": "8bbbd4db2fa0024389d17518d0f330480d4f0f5d"
+    },
+    {
+      "path": "shade-heat-spatial-evidence-worker.js",
+      "sha": "02486522b66f1b99fea274c0a99308de5c96e373"
+    },
+    {
+      "path": "shade-heat-spatial-evidence.css",
+      "sha": "04de80beeb7eb82c2abae287ecf80e9ae81ea354"
+    },
+    {
+      "path": "shade-heat-spatial-evidence.js",
+      "sha": "7b33ac3c575978c607372bd4c283607495ccd76f"
+    },
+    {
+      "path": "shade-heat-spatial-example.js",
+      "sha": "c7557d363d331cc79151430d48d7e3847eab8e67"
+    },
+    {
+      "path": "sky-spatial-evidence.html",
+      "sha": "3bd88885ef843fd7f35f9f8c094ab15cd233dad3"
+    },
+    {
+      "path": "tests/shade-heat-spatial-evidence-independent.py",
+      "sha": "9c5ea7f11d102637f11f623806e1a8b2dbfa024b"
+    },
+    {
+      "path": "tests/shade-heat-spatial-evidence.browser.mjs",
+      "sha": "be8dbf5baa95e7b0471d22b805fe46d09dae3f5a"
+    },
+    {
+      "path": "tests/shade-heat-spatial-evidence.test.mjs",
+      "sha": "fb5ed550b9415b14539a100300a9d6460cba0822"
+    }
+  ],
+  "overlapWithQualified161": [],
+  "frozenNumericalSourceUnchanged": true,
+  "sources": [
+    "/dev/shm/hamon-a755e25-earth-drain-integration426",
+    "/dev/shm/hamon-a755e25-earth-filled-conditioning"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "experimental-earth-filled-drain-development/1",
+  "recordedUtc": "2026-10-28T23:13:22.673Z",
+  "methodSha256": "371827c83cd8b4f040953a4777dbc9dc6fee11647b1bdb970902ef81f36c8d00",
+  "meaning": "First filled prototype on already consumed independently authored inputs, not fresh qualification; held values only challenge frozen proposals.",
+  "summary": {
+    "courses": 0,
+    "oldCalibration": 0,
+    "oldHeld": 0,
+    "combinedCalibration": 0,
+    "combinedHeld": 0
+  }
+}

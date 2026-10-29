@@ -1,0 +1,27 @@
+{
+  "schema": "experimental-earth-filled-independent-method-freeze/1",
+  "frozenAtUtc": "2026-10-28T23:27:14.946227+00:00",
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "0964a82560342ccd72c9f7f73c18e6464abfa0f81603325baa5e97e2acdcc02c",
+    "receiving-account-phase-fit.js": "a568428305170cdeb0aa3cce7d5f5cb8c2e44da53e80a7aedfb864f7d2af6b2d",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+  },
+  "independentTupleSha256": "7571761d099e6d44f96091f4a5913cd0aa04d0a8ca06abcb37f8058c8da5147d",
+  "independentOracleSha256": "18c7dd0a5549dc20581140c292311952f403195c85c1e500e213f9523875a733",
+  "inputCount": 12,
+  "predeclaredOracleCounts": {
+    "eligible": 7,
+    "ineligible": 5
+  },
+  "freshness": "Root has received path/hash/count and eligibility counts only, has not read tuple values or oracle contents and has run no fitter on this set. Values remain with independent author until release after this freeze.",
+  "baselinePacketSha256": "936f54ac984cc2d1df5250cb1110ef266ccb2aeb6ec71b2cda1338574e93dc90",
+  "method": "Fixed9full-store q points plus one best bounded scalar point over8gaps\u00d748golden updates. At each q all originalcal retained/drained bands constrain k by64-bisection monotone inverses. Physical boundary constraints remain in feasibility score with separate positive domain violation. One k-midpoint at each fixedq;3interior kfractions at refinedq;max12newmodels. Full original-map validation; complete producer+paired work before all producers.",
+  "native": "Independent conservative ODE at two step sizes across8filled courses plus custody/held/refusal/fullgrid/budget/source-replay/paired controls pass7tests. First calibration-score failure and two combined-work sampling failures preserved.",
+  "metrics": "Every independently truth-eligible original case counted. Calibration-witness coverage primary; unchanged later retained+drainage challenge support secondary. Preserve every exclusion/refusal and complete costs. No held-based tuning, selected predictor, completeness, physical identification or measured-field claim."
+}

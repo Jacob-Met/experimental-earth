@@ -1,0 +1,460 @@
+{
+  "schema": "experimental-earth-filled-first-integration/1",
+  "records": [
+    {
+      "id": "drain-new-01",
+      "calibration": 6,
+      "held": 4,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 92,
+          "fullGridCellSteps": 368,
+          "reducedCellSteps": 232944,
+          "totalCellEquivalentSteps": 275358,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 90,
+        "finalGridChecks": 93,
+        "finalGridCellSteps": 34224,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 409,
+        "phaseBandIntersections": 1227,
+        "filledDrain": {
+          "status": "inactive",
+          "reason": "unresolved-interior-filled-surface-excess",
+          "qEvaluations": 0,
+          "maximumProposals": 0,
+          "bandIntersections": 0,
+          "modelEvaluations": 0
+        },
+        "unfilledPossible": true,
+        "maximumCandidates": 93,
+        "totalCellEquivalentSteps": 312119,
+        "fullGridCellSteps": 368,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 6,
+        "phaseBandIntersections": 1227,
+        "phaseRateEvaluations": 409,
+        "phaseUniqueParameters": 7,
+        "finalOriginalGridChecks": 10,
+        "filledDrainQEvaluations": 0,
+        "filledDrainModelEvaluations": 0,
+        "filledDrainBandIntersections": 0,
+        "incumbent": {
+          "reducedTrials": 633,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 36714
+        }
+      }
+    },
+    {
+      "id": "drain-new-02",
+      "calibration": 6,
+      "held": 4,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 108,
+          "fullGridCellSteps": 1296,
+          "reducedCellSteps": 273456,
+          "totalCellEquivalentSteps": 329790,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 90,
+        "finalGridChecks": 93,
+        "finalGridCellSteps": 120528,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 409,
+        "phaseBandIntersections": 1227,
+        "filledDrain": {
+          "status": "inactive",
+          "reason": "unresolved-interior-filled-surface-excess",
+          "qEvaluations": 0,
+          "maximumProposals": 0,
+          "bandIntersections": 0,
+          "modelEvaluations": 0
+        },
+        "unfilledPossible": true,
+        "maximumCandidates": 93,
+        "totalCellEquivalentSteps": 452855,
+        "fullGridCellSteps": 1296,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 6,
+        "phaseBandIntersections": 1227,
+        "phaseRateEvaluations": 409,
+        "phaseUniqueParameters": 8,
+        "finalOriginalGridChecks": 11,
+        "filledDrainQEvaluations": 0,
+        "filledDrainModelEvaluations": 0,
+        "filledDrainBandIntersections": 0,
+        "incumbent": {
+          "reducedTrials": 633,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 36714
+        }
+      }
+    },
+    {
+      "id": "drain-new-03",
+      "calibration": 3,
+      "held": 2,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 96,
+          "fullGridCellSteps": 384,
+          "reducedCellSteps": 243072,
+          "totalCellEquivalentSteps": 285726,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 60,
+        "finalGridChecks": 63,
+        "finalGridCellSteps": 24192,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 0,
+        "phaseBandIntersections": 0,
+        "filledDrain": {
+          "status": "active",
+          "qEvaluations": 409,
+          "maximumProposals": 30,
+          "bandIntersections": 1227,
+          "modelEvaluations": 159510
+        },
+        "unfilledPossible": false,
+        "maximumCandidates": 63,
+        "totalCellEquivalentSteps": 472374,
+        "fullGridCellSteps": 384,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 7,
+        "phaseBandIntersections": 0,
+        "phaseRateEvaluations": 0,
+        "phaseUniqueParameters": 6,
+        "finalOriginalGridChecks": 9,
+        "filledDrainQEvaluations": 409,
+        "filledDrainModelEvaluations": 113405,
+        "filledDrainBandIntersections": 1227,
+        "incumbent": {
+          "reducedTrials": 633,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 36714
+        }
+      },
+      "paired": {
+        "models": 3,
+        "held": 2,
+        "reservation": {
+          "inverseCellEquivalentSteps": 472374,
+          "maximumCandidates": 74,
+          "comparisonRuns": 444,
+          "comparisonCellSteps": 170496,
+          "totalCellEquivalentSteps": 642870,
+          "fullGridCellSteps": 384,
+          "limit": 1000000,
+          "inverse": {
+            "incumbent": {
+              "centralTrials": 11,
+              "originalGridTrials": 15,
+              "reducedTrials": 633,
+              "seedKernelCalls": 180,
+              "projectedKernelCalls": 36714,
+              "maximumDrainageRateBisections": 128,
+              "maximumRetainedRatePairs": 21,
+              "stepsPerCourse": 96,
+              "fullGridCellSteps": 384,
+              "reducedCellSteps": 243072,
+              "totalCellEquivalentSteps": 285726,
+              "limit": 1000000
+            },
+            "maximumPhaseProposals": 60,
+            "finalGridChecks": 63,
+            "finalGridCellSteps": 24192,
+            "phaseRootEvaluations": 1310,
+            "phaseRateEvaluations": 0,
+            "phaseBandIntersections": 0,
+            "filledDrain": {
+              "status": "active",
+              "qEvaluations": 409,
+              "maximumProposals": 30,
+              "bandIntersections": 1227,
+              "modelEvaluations": 159510
+            },
+            "unfilledPossible": false,
+            "maximumCandidates": 63,
+            "totalCellEquivalentSteps": 472374,
+            "fullGridCellSteps": 384,
+            "limit": 1000000
+          }
+        },
+        "runs": 18
+      }
+    },
+    {
+      "id": "drain-new-04",
+      "calibration": 6,
+      "held": 4,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 112,
+          "fullGridCellSteps": 1344,
+          "reducedCellSteps": 283584,
+          "totalCellEquivalentSteps": 340638,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 90,
+        "finalGridChecks": 93,
+        "finalGridCellSteps": 124992,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 409,
+        "phaseBandIntersections": 1227,
+        "filledDrain": {
+          "status": "inactive",
+          "reason": "unresolved-interior-filled-surface-excess",
+          "qEvaluations": 0,
+          "maximumProposals": 0,
+          "bandIntersections": 0,
+          "modelEvaluations": 0
+        },
+        "unfilledPossible": true,
+        "maximumCandidates": 93,
+        "totalCellEquivalentSteps": 468167,
+        "fullGridCellSteps": 1344,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 6,
+        "phaseBandIntersections": 1227,
+        "phaseRateEvaluations": 409,
+        "phaseUniqueParameters": 8,
+        "finalOriginalGridChecks": 11,
+        "filledDrainQEvaluations": 0,
+        "filledDrainModelEvaluations": 0,
+        "filledDrainBandIntersections": 0,
+        "incumbent": {
+          "reducedTrials": 633,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 36714
+        }
+      }
+    },
+    {
+      "id": "drain-new-05",
+      "calibration": 6,
+      "held": 4,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 120,
+          "fullGridCellSteps": 480,
+          "reducedCellSteps": 303840,
+          "totalCellEquivalentSteps": 347934,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 90,
+        "finalGridChecks": 93,
+        "finalGridCellSteps": 44640,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 409,
+        "phaseBandIntersections": 1227,
+        "filledDrain": {
+          "status": "inactive",
+          "reason": "unresolved-interior-filled-surface-excess",
+          "qEvaluations": 0,
+          "maximumProposals": 0,
+          "bandIntersections": 0,
+          "modelEvaluations": 0
+        },
+        "unfilledPossible": true,
+        "maximumCandidates": 93,
+        "totalCellEquivalentSteps": 395111,
+        "fullGridCellSteps": 480,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 6,
+        "phaseBandIntersections": 1227,
+        "phaseRateEvaluations": 409,
+        "phaseUniqueParameters": 6,
+        "finalOriginalGridChecks": 9,
+        "filledDrainQEvaluations": 0,
+        "filledDrainModelEvaluations": 0,
+        "filledDrainBandIntersections": 0,
+        "incumbent": {
+          "reducedTrials": 633,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 36714
+        }
+      }
+    },
+    {
+      "id": "drain-new-06",
+      "calibration": 7,
+      "held": 5,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 90,
+          "fullGridCellSteps": 1080,
+          "reducedCellSteps": 227880,
+          "totalCellEquivalentSteps": 280974,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 90,
+        "finalGridChecks": 93,
+        "finalGridCellSteps": 100440,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 409,
+        "phaseBandIntersections": 1227,
+        "filledDrain": {
+          "status": "inactive",
+          "reason": "unsupported-original-filled-source",
+          "qEvaluations": 0,
+          "maximumProposals": 0,
+          "bandIntersections": 0,
+          "modelEvaluations": 0
+        },
+        "unfilledPossible": true,
+        "maximumCandidates": 93,
+        "totalCellEquivalentSteps": 383951,
+        "fullGridCellSteps": 1080,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 6,
+        "phaseBandIntersections": 1227,
+        "phaseRateEvaluations": 409,
+        "phaseUniqueParameters": 6,
+        "finalOriginalGridChecks": 9,
+        "filledDrainQEvaluations": 0,
+        "filledDrainModelEvaluations": 0,
+        "filledDrainBandIntersections": 0,
+        "incumbent": {
+          "reducedTrials": 479,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 27782
+        }
+      }
+    },
+    {
+      "id": "drain-new-08",
+      "calibration": 3,
+      "held": 2,
+      "reservation": {
+        "incumbent": {
+          "centralTrials": 11,
+          "originalGridTrials": 15,
+          "reducedTrials": 633,
+          "seedKernelCalls": 180,
+          "projectedKernelCalls": 36714,
+          "maximumDrainageRateBisections": 128,
+          "maximumRetainedRatePairs": 21,
+          "stepsPerCourse": 108,
+          "fullGridCellSteps": 1296,
+          "reducedCellSteps": 273456,
+          "totalCellEquivalentSteps": 329790,
+          "limit": 1000000
+        },
+        "maximumPhaseProposals": 60,
+        "finalGridChecks": 63,
+        "finalGridCellSteps": 81648,
+        "phaseRootEvaluations": 1310,
+        "phaseRateEvaluations": 0,
+        "phaseBandIntersections": 0,
+        "filledDrain": {
+          "status": "active",
+          "qEvaluations": 409,
+          "maximumProposals": 30,
+          "bandIntersections": 1227,
+          "modelEvaluations": 159510
+        },
+        "unfilledPossible": false,
+        "maximumCandidates": 63,
+        "totalCellEquivalentSteps": 573894,
+        "fullGridCellSteps": 1296,
+        "limit": 1000000
+      },
+      "counts": {
+        "phaseInverseCalls": 7,
+        "phaseBandIntersections": 0,
+        "phaseRateEvaluations": 0,
+        "phaseUniqueParameters": 5,
+        "finalOriginalGridChecks": 8,
+        "filledDrainQEvaluations": 409,
+        "filledDrainModelEvaluations": 84145,
+        "filledDrainBandIntersections": 1227,
+        "incumbent": {
+          "reducedTrials": 633,
+          "originalGridChecks": 3,
+          "seedKernelCalls": 0,
+          "seedInverseCalls": 0,
+          "seedRetainedRatePairs": 1,
+          "projectedKernelCalls": 36714
+        }
+      },
+      "paired": {
+        "refused": "Error: The complete inverse and every possible paired six-run comparison exceed one million cell-equivalent steps; no parameters or partial consequences were computed."
+      }
+    }
+  ]
+}

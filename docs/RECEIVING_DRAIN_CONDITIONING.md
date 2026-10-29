@@ -161,3 +161,8 @@ new courses and two unresolved development courses remain the next mechanism
 question. They must be investigated through the filled-course inverse and actual
 original observations, without counting a larger search, a fallback or a merely
 plausible curve as an identified physical receiver.
+
+
+## Subsequent filled-course increment
+
+[Filled-course original-drainage conditioning](RECEIVING_FILLED_DRAIN_CONDITIONING.md) extends this qualified predecessor. Its consumed and separately frozen independent comparisons retain the failures and denominators recorded here; they do not relabel this original5/7 result.

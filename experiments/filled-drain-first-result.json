@@ -1,0 +1,3286 @@
+{
+  "schema": "experimental-earth-filled-drain-development/1",
+  "recordedUtc": "2026-10-28T23:13:22.673Z",
+  "methodSha256": "371827c83cd8b4f040953a4777dbc9dc6fee11647b1bdb970902ef81f36c8d00",
+  "meaning": "First filled prototype on already consumed independently authored inputs, not fresh qualification; held values only challenge frozen proposals.",
+  "summary": {
+    "courses": 7,
+    "oldCalibration": 5,
+    "oldHeld": 5,
+    "combinedCalibration": 7,
+    "combinedHeld": 7
+  },
+  "records": [
+    {
+      "id": "drain-new-01",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-01",
+          "width": 2,
+          "height": 2,
+          "weather": {
+            "rainMmHr": 17,
+            "stormMinutes": 50,
+            "durationMinutes": 460,
+            "stepMinutes": 5,
+            "cellSizeM": 1.2,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 50,
+              "depthMm": 2.220446049250313e-16,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 250,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 400,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 4 garden cells / 5.76 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-250",
+              "channel": "retained",
+              "minute": 250,
+              "valueLiters": 9.998553558323936,
+              "uncertaintyLiters": 5.190288504517993,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-400",
+              "channel": "retained",
+              "minute": 400,
+              "valueLiters": 10.113753558323937,
+              "uncertaintyLiters": 5.190288504517993,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-400",
+              "channel": "drained",
+              "minute": 400,
+              "valueLiters": 76.67077494619414,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 460,
+              "valueLiters": 3.143012659986022,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 460,
+              "valueLiters": 78.45698734001408,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 20,
+        "initialStoredMm": 0,
+        "drainagePerHour": 0.45,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": true,
+        "held": true
+      },
+      "prototype": {
+        "status": "unresolved",
+        "reason": "unresolved-interior-filled-surface-excess",
+        "proposals": [],
+        "excess": 2.220446049250313e-16,
+        "computationalExcessGuard": 1.4210854715202004e-14
+      },
+      "results": [],
+      "milliseconds": 1.0697449999999975,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    },
+    {
+      "id": "drain-new-02",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-02",
+          "width": 4,
+          "height": 3,
+          "weather": {
+            "rainMmHr": 25,
+            "stormMinutes": 80,
+            "durationMinutes": 540,
+            "stepMinutes": 5,
+            "cellSizeM": 0.6,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 80,
+              "depthMm": 1.3333333333333357,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 300,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 480,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 12 garden cells / 4.32 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-300",
+              "channel": "retained",
+              "minute": 300,
+              "valueLiters": 6.189159017129135,
+              "uncertaintyLiters": 4.727356527103015,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-480",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 6.275559017129135,
+              "uncertaintyLiters": 4.727356527103015,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-480",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 189.967477509974,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 540,
+              "valueLiters": 0.8104878092446323,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 540,
+              "valueLiters": 190.70951219075556,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 55,
+        "initialStoredMm": 11,
+        "drainagePerHour": 0.65,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": true,
+        "held": true
+      },
+      "prototype": {
+        "status": "unresolved",
+        "reason": "unresolved-interior-filled-surface-excess",
+        "proposals": [],
+        "excess": 2.4424906541753444e-15,
+        "computationalExcessGuard": 1.894780628693604e-14
+      },
+      "results": [],
+      "milliseconds": 0.21880999999999773,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    },
+    {
+      "id": "drain-new-03",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-03",
+          "width": 2,
+          "height": 2,
+          "weather": {
+            "rainMmHr": 31,
+            "stormMinutes": 70,
+            "durationMinutes": 480,
+            "stepMinutes": 5,
+            "cellSizeM": 0.9,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 70,
+              "depthMm": 18.936964872926232,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 240,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 420,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 4 garden cells / 3.24 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-240",
+              "channel": "retained",
+              "minute": 240,
+              "valueLiters": 7.2770453012628264,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-420",
+              "channel": "retained",
+              "minute": 420,
+              "valueLiters": 7.341845301262825,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-420",
+              "channel": "drained",
+              "minute": 420,
+              "valueLiters": 152.54739939692885,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 0.37428827394761816,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 153.0937117260524,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 14,
+        "initialStoredMm": 11.200000000000001,
+        "drainagePerHour": 0.9,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": false,
+        "held": false
+      },
+      "prototype": {
+        "status": "proposals",
+        "proposals": [
+          {
+            "capacityMm": 14.003806873788216,
+            "initialStoredMm": 11.206340066047149,
+            "drainagePerHour": 0.8998827089336073,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 12.601783664967611,
+            "fillMinute": 13.305349417748403,
+            "dryMinute": 160.16325962920698,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "rateFraction": 0,
+            "endpointInsetPerHour": 1.279884668122125e-14,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          {
+            "capacityMm": 13.997926519898147,
+            "initialStoredMm": 11.200338555321974,
+            "drainagePerHour": 0.9002607384067983,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 12.601783664967611,
+            "fillMinute": 13.305349417748403,
+            "dryMinute": 160.16325962920698,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "rateFraction": 0.5,
+            "endpointInsetPerHour": 1.279884668122125e-14,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          {
+            "capacityMm": 13.992051102386931,
+            "initialStoredMm": 11.194341974093257,
+            "drainagePerHour": 0.9006387678799893,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 12.601783664967611,
+            "fillMinute": 13.305349417748403,
+            "dryMinute": 160.16325962920698,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "rateFraction": 1,
+            "endpointInsetPerHour": 1.279884668122125e-14,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          }
+        ],
+        "refusals": [
+          {
+            "q": 6.683634661032788,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0
+            },
+            "score": 1.6441203118330396,
+            "fillHours": 0.5446944458552335,
+            "dryHours": 4,
+            "physicalRateInterval": [
+              0.0006683634661032789,
+              0.5992383530399965
+            ],
+            "emptyRate": 0.5992383530399965,
+            "rateInterval": [
+              0.43131145048713426,
+              0.5992383530399965
+            ],
+            "violation": 1.6441203118330396
+          },
+          {
+            "q": 7.694219806304451,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.125
+            },
+            "score": 1.0441218048279084,
+            "fillHours": 0.5061464046295407,
+            "dryHours": 3.627860309381391,
+            "physicalRateInterval": [
+              0.0007694219806304451,
+              0.763680565049857
+            ],
+            "emptyRate": 0.763680565049857,
+            "rateInterval": [
+              0.42785518303642334,
+              0.17683170697838446
+            ],
+            "violation": 0.7930983287698694
+          },
+          {
+            "q": 8.704804951576113,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.25
+            },
+            "score": 0.21357319083669632,
+            "fillHours": 0.4625044659126854,
+            "dryHours": 3.34212780316203,
+            "physicalRateInterval": [
+              0.0008704804951576113,
+              0.9740772978416634
+            ],
+            "emptyRate": 0.9740772978416634,
+            "rateInterval": [
+              0.42804763340055274,
+              0.3278397490785697
+            ],
+            "violation": 0.1133653065147133
+          },
+          {
+            "q": 9.715390096847775,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.375
+            },
+            "score": 0.5053521663317971,
+            "fillHours": 0.41268750452777964,
+            "dryHours": 3.115838515059091,
+            "physicalRateInterval": [
+              0.0009715390096847775,
+              1.2572978282358138
+            ],
+            "emptyRate": 1.2572978282358138,
+            "rateInterval": [
+              0.9724033824578207,
+              0.4670512161260235
+            ],
+            "violation": 0
+          },
+          {
+            "q": 10.72597524211944,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.5
+            },
+            "score": 0.32770813320779135,
+            "fillHours": 0.35528516009945765,
+            "dryHours": 2.932190495079337,
+            "physicalRateInterval": [
+              0.0010725975242119438,
+              1.666956003226369
+            ],
+            "emptyRate": 1.666956003226369,
+            "rateInterval": [
+              0.9347852953636508,
+              0.6070771621558595
+            ],
+            "violation": 0
+          },
+          {
+            "q": 11.736560387391101,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.625
+            },
+            "score": 0.15483543008609302,
+            "fillHours": 0.2884221817192409,
+            "dryHours": 2.780168770168023,
+            "physicalRateInterval": [
+              0.0011736560387391101,
+              2.327946413511749
+            ],
+            "emptyRate": 2.327946413511749,
+            "rateInterval": [
+              0.9121743449496569,
+              0.7573389148635639
+            ],
+            "violation": 0
+          },
+          {
+            "q": 12.747145532662763,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.75
+            },
+            "score": 0.02578125643614193,
+            "fillHours": 0.2095496758158876,
+            "dryHours": 2.65225140596402,
+            "physicalRateInterval": [
+              0.0012747145532662763,
+              3.6145701514573023
+            ],
+            "emptyRate": 3.6145701514573023,
+            "rateInterval": [
+              0.9256937151064399,
+              0.899912458670298
+            ],
+            "violation": 0
+          },
+          {
+            "q": 13.757730677934426,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.875
+            },
+            "score": 0.2258923220097322,
+            "fillHours": 0.1151127709829804,
+            "dryHours": 2.543126587000666,
+            "physicalRateInterval": [
+              0.0013757730677934426,
+              7.397360123770788
+            ],
+            "emptyRate": 7.397360123770788,
+            "rateInterval": [
+              1.1218717147942305,
+              0.8959793927844983
+            ],
+            "violation": 0
+          },
+          {
+            "q": 14.76831582320609,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 1
+            },
+            "score": 0.45564908985647445,
+            "fillHours": 0,
+            "dryHours": 2.4489364325373133,
+            "physicalRateInterval": [
+              0.001476831582320609,
+              100
+            ],
+            "emptyRate": null,
+            "rateInterval": [
+              1.3492453266615652,
+              0.8935962368050907
+            ],
+            "violation": 0
+          }
+        ],
+        "points": [
+          {
+            "q": 6.683634661032788,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0
+            },
+            "score": 1.6441203118330396,
+            "fillHours": 0.5446944458552335,
+            "dryHours": 4,
+            "physicalRateInterval": [
+              0.0006683634661032789,
+              0.5992383530399965
+            ],
+            "emptyRate": 0.5992383530399965,
+            "rateInterval": [
+              0.43131145048713426,
+              0.5992383530399965
+            ],
+            "violation": 1.6441203118330396
+          },
+          {
+            "q": 7.694219806304451,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.125
+            },
+            "score": 1.0441218048279084,
+            "fillHours": 0.5061464046295407,
+            "dryHours": 3.627860309381391,
+            "physicalRateInterval": [
+              0.0007694219806304451,
+              0.763680565049857
+            ],
+            "emptyRate": 0.763680565049857,
+            "rateInterval": [
+              0.42785518303642334,
+              0.17683170697838446
+            ],
+            "violation": 0.7930983287698694
+          },
+          {
+            "q": 8.704804951576113,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.25
+            },
+            "score": 0.21357319083669632,
+            "fillHours": 0.4625044659126854,
+            "dryHours": 3.34212780316203,
+            "physicalRateInterval": [
+              0.0008704804951576113,
+              0.9740772978416634
+            ],
+            "emptyRate": 0.9740772978416634,
+            "rateInterval": [
+              0.42804763340055274,
+              0.3278397490785697
+            ],
+            "violation": 0.1133653065147133
+          },
+          {
+            "q": 9.715390096847775,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.375
+            },
+            "score": 0.5053521663317971,
+            "fillHours": 0.41268750452777964,
+            "dryHours": 3.115838515059091,
+            "physicalRateInterval": [
+              0.0009715390096847775,
+              1.2572978282358138
+            ],
+            "emptyRate": 1.2572978282358138,
+            "rateInterval": [
+              0.9724033824578207,
+              0.4670512161260235
+            ],
+            "violation": 0
+          },
+          {
+            "q": 10.72597524211944,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.5
+            },
+            "score": 0.32770813320779135,
+            "fillHours": 0.35528516009945765,
+            "dryHours": 2.932190495079337,
+            "physicalRateInterval": [
+              0.0010725975242119438,
+              1.666956003226369
+            ],
+            "emptyRate": 1.666956003226369,
+            "rateInterval": [
+              0.9347852953636508,
+              0.6070771621558595
+            ],
+            "violation": 0
+          },
+          {
+            "q": 11.736560387391101,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.625
+            },
+            "score": 0.15483543008609302,
+            "fillHours": 0.2884221817192409,
+            "dryHours": 2.780168770168023,
+            "physicalRateInterval": [
+              0.0011736560387391101,
+              2.327946413511749
+            ],
+            "emptyRate": 2.327946413511749,
+            "rateInterval": [
+              0.9121743449496569,
+              0.7573389148635639
+            ],
+            "violation": 0
+          },
+          {
+            "q": 12.747145532662763,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.75
+            },
+            "score": 0.02578125643614193,
+            "fillHours": 0.2095496758158876,
+            "dryHours": 2.65225140596402,
+            "physicalRateInterval": [
+              0.0012747145532662763,
+              3.6145701514573023
+            ],
+            "emptyRate": 3.6145701514573023,
+            "rateInterval": [
+              0.9256937151064399,
+              0.899912458670298
+            ],
+            "violation": 0
+          },
+          {
+            "q": 13.757730677934426,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.875
+            },
+            "score": 0.2258923220097322,
+            "fillHours": 0.1151127709829804,
+            "dryHours": 2.543126587000666,
+            "physicalRateInterval": [
+              0.0013757730677934426,
+              7.397360123770788
+            ],
+            "emptyRate": 7.397360123770788,
+            "rateInterval": [
+              1.1218717147942305,
+              0.8959793927844983
+            ],
+            "violation": 0
+          },
+          {
+            "q": 14.76831582320609,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 1
+            },
+            "score": 0.45564908985647445,
+            "fillHours": 0,
+            "dryHours": 2.4489364325373133,
+            "physicalRateInterval": [
+              0.001476831582320609,
+              100
+            ],
+            "emptyRate": null,
+            "rateInterval": [
+              1.3492453266615652,
+              0.8935962368050907
+            ],
+            "violation": 0
+          },
+          {
+            "q": 12.601783664967611,
+            "origin": {
+              "method": "original-drained-and-retained-q-refinement"
+            },
+            "score": -0.0007560589464075118,
+            "fillHours": 0.22175582362914004,
+            "dryHours": 2.669387660486783,
+            "physicalRateInterval": [
+              0.0012601783664967611,
+              3.357733460355203
+            ],
+            "emptyRate": 3.357733460355203,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "violation": 0
+          }
+        ],
+        "refinements": [
+          {
+            "bracket": [
+              6.683634661032788,
+              7.694219806304451
+            ],
+            "finalBracket": [
+              7.694219806210443,
+              7.694219806304451
+            ],
+            "q": 7.694219806268543,
+            "score": 1.0441218048608403,
+            "rateInterval": [
+              0.42785518303646675,
+              0.1768317069725926
+            ]
+          },
+          {
+            "bracket": [
+              7.694219806304451,
+              8.704804951576113
+            ],
+            "finalBracket": [
+              8.704804951482105,
+              8.704804951576113
+            ],
+            "q": 8.704804951540206,
+            "score": 0.21357319086290083,
+            "rateInterval": [
+              0.42804763340050533,
+              0.327839749073506
+            ]
+          },
+          {
+            "bracket": [
+              8.704804951576113,
+              9.715390096847775
+            ],
+            "finalBracket": [
+              9.715390096753767,
+              9.715390096847775
+            ],
+            "q": 9.715390096811868,
+            "score": 0.5053521663384276,
+            "rateInterval": [
+              0.972403382459551,
+              0.46705121612112344
+            ]
+          },
+          {
+            "bracket": [
+              9.715390096847775,
+              10.72597524211944
+            ],
+            "finalBracket": [
+              10.72597524202543,
+              10.72597524211944
+            ],
+            "q": 10.725975242083532,
+            "score": 0.3277081332139151,
+            "rateInterval": [
+              0.9347852953646696,
+              0.6070771621507545
+            ]
+          },
+          {
+            "bracket": [
+              10.72597524211944,
+              11.736560387391101
+            ],
+            "finalBracket": [
+              11.736560387297093,
+              11.736560387391101
+            ],
+            "q": 11.736560387355194,
+            "score": 0.15483543009234046,
+            "rateInterval": [
+              0.9121743449502799,
+              0.7573389148579395
+            ]
+          },
+          {
+            "bracket": [
+              11.736560387391101,
+              12.747145532662763
+            ],
+            "finalBracket": [
+              12.60178366490951,
+              12.601783665003518
+            ],
+            "q": 12.601783664967611,
+            "score": -0.0007560589464075118,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ]
+          },
+          {
+            "bracket": [
+              12.747145532662763,
+              13.757730677934426
+            ],
+            "finalBracket": [
+              12.747145532662763,
+              12.747145532756772
+            ],
+            "q": 12.74714553269867,
+            "score": 0.025781256442760192,
+            "rateInterval": [
+              0.9256937151128846,
+              0.8999124586701244
+            ]
+          },
+          {
+            "bracket": [
+              13.757730677934426,
+              14.76831582320609
+            ],
+            "finalBracket": [
+              13.757730677934426,
+              13.757730678028434
+            ],
+            "q": 13.757730677970333,
+            "score": 0.22589232201736742,
+            "rateInterval": [
+              1.1218717148017565,
+              0.8959793927843891
+            ]
+          }
+        ],
+        "qInterval": [
+          6.683634661032788,
+          14.76831582320609
+        ],
+        "counts": {
+          "qEvaluations": 409,
+          "modelEvaluations": 113405,
+          "bandIntersections": 1227
+        },
+        "reservation": {
+          "qEvaluations": 409,
+          "maximumProposals": 30,
+          "bandIntersections": 1227,
+          "modelEvaluations": 159510
+        },
+        "meaning": "Finite conditional filled-course witnesses from original calibration bands; exact physical forward validation remains required. No exhaustive coverage, parameter identification or original-source replacement."
+      },
+      "results": [
+        {
+          "hypothesis": {
+            "capacityMm": 14.003806873788216,
+            "initialStoredMm": 11.206340066047149,
+            "drainagePerHour": 0.8998827089336073,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 12.601783664967611,
+            "fillMinute": 13.305349417748403,
+            "dryMinute": 160.16325962920698,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "rateFraction": 0,
+            "endpointInsetPerHour": 1.279884668122125e-14,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          "calibration": {
+            "count": 5,
+            "compatible": true
+          },
+          "challenge": {
+            "count": 3,
+            "compatible": false
+          },
+          "originalAccountRows": [
+            {
+              "id": "original-retained-240",
+              "channel": "retained",
+              "minute": 240,
+              "valueLiters": 7.2770453012628264,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 13.701529999454115,
+              "numericalGuardLiters": 1.3701529999454115e-8,
+              "residualLiters": -6.424484698191288,
+              "withinBand": true
+            },
+            {
+              "id": "original-retained-420",
+              "channel": "retained",
+              "minute": 420,
+              "valueLiters": 7.341845301262825,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 0.9211424172428127,
+              "numericalGuardLiters": 7.341845301262825e-9,
+              "residualLiters": 6.420702884020012,
+              "withinBand": true
+            },
+            {
+              "id": "new-original-drained-420",
+              "channel": "drained",
+              "minute": 420,
+              "valueLiters": 152.54739939692885,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol",
+              "modeledLiters": 152.56739939675,
+              "numericalGuardLiters": 1.5256739939675e-7,
+              "residualLiters": -0.019999999821152414,
+              "withinBand": true
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 0.37428827394761816,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 0.3745524882355138,
+              "numericalGuardLiters": 1e-9,
+              "residualLiters": -0.0002642142878956366,
+              "withinBand": true
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 153.0937117260524,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 153.1139893257573,
+              "numericalGuardLiters": 1.5311398932575732e-7,
+              "residualLiters": -0.02027759970491161,
+              "withinBand": false
+            }
+          ]
+        },
+        {
+          "hypothesis": {
+            "capacityMm": 13.997926519898147,
+            "initialStoredMm": 11.200338555321974,
+            "drainagePerHour": 0.9002607384067983,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 12.601783664967611,
+            "fillMinute": 13.305349417748403,
+            "dryMinute": 160.16325962920698,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "rateFraction": 0.5,
+            "endpointInsetPerHour": 1.279884668122125e-14,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          "calibration": {
+            "count": 5,
+            "compatible": true
+          },
+          "challenge": {
+            "count": 3,
+            "compatible": true
+          },
+          "originalAccountRows": [
+            {
+              "id": "original-retained-240",
+              "channel": "retained",
+              "minute": 240,
+              "valueLiters": 7.2770453012628264,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 13.688889185426302,
+              "numericalGuardLiters": 1.3688889185426302e-8,
+              "residualLiters": -6.411843884163475,
+              "withinBand": true
+            },
+            {
+              "id": "original-retained-420",
+              "channel": "retained",
+              "minute": 420,
+              "valueLiters": 7.341845301262825,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 0.9192494843065926,
+              "numericalGuardLiters": 7.341845301262825e-9,
+              "residualLiters": 6.422595816956232,
+              "withinBand": true
+            },
+            {
+              "id": "new-original-drained-420",
+              "channel": "drained",
+              "minute": 420,
+              "valueLiters": 152.54739939692885,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol",
+              "modeledLiters": 152.54984743493674,
+              "numericalGuardLiters": 1.5254984743493675e-7,
+              "residualLiters": -0.002448038007884179,
+              "withinBand": true
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 0.37428827394761816,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 0.37364151465598483,
+              "numericalGuardLiters": 1e-9,
+              "residualLiters": 0.0006467592916333254,
+              "withinBand": true
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 153.0937117260524,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 153.09545540458737,
+              "numericalGuardLiters": 1.5309545540458737e-7,
+              "residualLiters": -0.0017436785349786987,
+              "withinBand": true
+            }
+          ]
+        },
+        {
+          "hypothesis": {
+            "capacityMm": 13.992051102386931,
+            "initialStoredMm": 11.194341974093257,
+            "drainagePerHour": 0.9006387678799893,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 12.601783664967611,
+            "fillMinute": 13.305349417748403,
+            "dryMinute": 160.16325962920698,
+            "rateInterval": [
+              0.8998827089335946,
+              0.9006387678800021
+            ],
+            "rateFraction": 1,
+            "endpointInsetPerHour": 1.279884668122125e-14,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          "calibration": {
+            "count": 5,
+            "compatible": true
+          },
+          "challenge": {
+            "count": 3,
+            "compatible": true
+          },
+          "originalAccountRows": [
+            {
+              "id": "original-retained-240",
+              "channel": "retained",
+              "minute": 240,
+              "valueLiters": 7.2770453012628264,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 13.676262445084248,
+              "numericalGuardLiters": 1.3676262445084249e-8,
+              "residualLiters": -6.399217143821422,
+              "withinBand": true
+            },
+            {
+              "id": "original-retained-420",
+              "channel": "retained",
+              "minute": 420,
+              "valueLiters": 7.341845301262825,
+              "uncertaintyLiters": 6.424484698191699,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 0.9173606030711904,
+              "numericalGuardLiters": 7.341845301262825e-9,
+              "residualLiters": 6.424484698191634,
+              "withinBand": true
+            },
+            {
+              "id": "new-original-drained-420",
+              "channel": "drained",
+              "minute": 420,
+              "valueLiters": 152.54739939692885,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol",
+              "modeledLiters": 152.53230739299102,
+              "numericalGuardLiters": 1.5254739939692886e-7,
+              "residualLiters": 0.015092003937837717,
+              "withinBand": true
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 0.37428827394761816,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 0.37273282243705647,
+              "numericalGuardLiters": 1e-9,
+              "residualLiters": 0.0015554515105616895,
+              "withinBand": true
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 153.0937117260524,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 153.07693517362517,
+              "numericalGuardLiters": 1.530937117260524e-7,
+              "residualLiters": 0.016776552427216984,
+              "withinBand": true
+            }
+          ]
+        }
+      ],
+      "milliseconds": 18.768276999999998,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    },
+    {
+      "id": "drain-new-04",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-04",
+          "width": 4,
+          "height": 3,
+          "weather": {
+            "rainMmHr": 42,
+            "stormMinutes": 100,
+            "durationMinutes": 560,
+            "stepMinutes": 5,
+            "cellSizeM": 1.1,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 100,
+              "depthMm": 30,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 300,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 500,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 12 garden cells / 14.520000000000003 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-300",
+              "channel": "retained",
+              "minute": 300,
+              "valueLiters": 6.778989447180667,
+              "uncertaintyLiters": 6.954898512405717,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-500",
+              "channel": "retained",
+              "minute": 500,
+              "valueLiters": 7.069389447180668,
+              "uncertaintyLiters": 6.954898512405717,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-500",
+              "channel": "drained",
+              "minute": 500,
+              "valueLiters": 1538.990989065225,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 560,
+              "valueLiters": 0.031813704830771165,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 560,
+              "valueLiters": 1539.0881862951687,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 36,
+        "initialStoredMm": 36,
+        "drainagePerHour": 1.4,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": true,
+        "held": true
+      },
+      "prototype": {
+        "status": "unresolved",
+        "reason": "unresolved-interior-filled-surface-excess",
+        "proposals": [],
+        "excess": 0,
+        "computationalExcessGuard": 4.263256414560601e-13
+      },
+      "results": [],
+      "milliseconds": 0.08347600000000455,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    },
+    {
+      "id": "drain-new-05",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-05",
+          "width": 2,
+          "height": 2,
+          "weather": {
+            "rainMmHr": 52,
+            "stormMinutes": 110,
+            "durationMinutes": 600,
+            "stepMinutes": 5,
+            "cellSizeM": 0.6,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 110,
+              "depthMm": 51.33333333333334,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 360,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 540,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 4 garden cells / 1.44 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-360",
+              "channel": "retained",
+              "minute": 360,
+              "valueLiters": 30.68820150994262,
+              "uncertaintyLiters": 12.969237035632206,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-540",
+              "channel": "retained",
+              "minute": 540,
+              "valueLiters": 30.717001509942623,
+              "uncertaintyLiters": 12.969237035632206,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-540",
+              "channel": "drained",
+              "minute": 540,
+              "valueLiters": 119.53079552568924,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 600,
+              "valueLiters": 13.148934077174621,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 600,
+              "valueLiters": 124.13106592282503,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 80,
+        "initialStoredMm": 0,
+        "drainagePerHour": 0.3,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": true,
+        "held": true
+      },
+      "prototype": {
+        "status": "unresolved",
+        "reason": "unresolved-interior-filled-surface-excess",
+        "proposals": [],
+        "excess": 1.4210854715202004e-14,
+        "computationalExcessGuard": 7.294905420470363e-13
+      },
+      "results": [],
+      "milliseconds": 0.05100699999999847,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    },
+    {
+      "id": "drain-new-06",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-06",
+          "width": 4,
+          "height": 3,
+          "weather": {
+            "rainMmHr": 19,
+            "stormMinutes": 40,
+            "durationMinutes": 450,
+            "stepMinutes": 5,
+            "cellSizeM": 0.9,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 40,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 240,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 390,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 12 garden cells / 9.72 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-240",
+              "channel": "retained",
+              "minute": 240,
+              "valueLiters": 1.7113633003775435,
+              "uncertaintyLiters": 1.6981422796828756,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-390",
+              "channel": "retained",
+              "minute": 390,
+              "valueLiters": 1.9057633003775436,
+              "uncertaintyLiters": 1.6981422796828756,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-390",
+              "channel": "drained",
+              "minute": 390,
+              "valueLiters": 218.15865897930536,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 450,
+              "valueLiters": 0.07234654109068096,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 450,
+              "valueLiters": 218.30365345890937,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 28,
+        "initialStoredMm": 9.799999999999999,
+        "drainagePerHour": 1.1,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": true,
+        "held": true
+      },
+      "prototype": {
+        "status": "unresolved",
+        "reason": "unsupported-original-filled-source",
+        "proposals": []
+      },
+      "results": [],
+      "milliseconds": 0.06343600000001004,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    },
+    {
+      "id": "drain-new-08",
+      "original": {
+        "project": {
+          "schema": "experimental-earth-site/1",
+          "title": "Independently authored phase-family source drain-new-08",
+          "width": 4,
+          "height": 3,
+          "weather": {
+            "rainMmHr": 46,
+            "stormMinutes": 55,
+            "durationMinutes": 540,
+            "stepMinutes": 5,
+            "cellSizeM": 0.8,
+            "mobilityPerHour": 0,
+            "boundaryExitPerHour": 0
+          },
+          "existing": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "proposal": [
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            },
+            {
+              "elevationM": 0,
+              "surface": "garden",
+              "provenance": "Frozen independently authored phase-family control; not field evidence"
+            }
+          ],
+          "observations": [
+            {
+              "cellIndex": 0,
+              "minute": 55,
+              "depthMm": 25.94293019427058,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 300,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence"
+            },
+            {
+              "cellIndex": 0,
+              "minute": 480,
+              "depthMm": 0,
+              "uncertaintyMm": 0.00001,
+              "scenario": "proposal",
+              "use": "challenge",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; original held role fixed before method execution"
+            }
+          ],
+          "selectedIndex": 0,
+          "source": "Authored flat closed site; no field observations"
+        },
+        "selection": {
+          "target": "proposal",
+          "surface": "garden",
+          "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+        },
+        "account": {
+          "footprintBasis": "Independent original whole-receiver account over 12 garden cells / 7.6800000000000015 square metres; frozen mean-mm bands are converted once to total litres.",
+          "readings": [
+            {
+              "id": "original-retained-300",
+              "channel": "retained",
+              "minute": 300,
+              "valueLiters": 50.43116112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "original-retained-480",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 50.58476112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres"
+            },
+            {
+              "id": "new-original-drained-480",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 307.5654308742351,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol"
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 540,
+              "valueLiters": 9.389609571134182,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 540,
+              "valueLiters": 314.45039042886583,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release"
+            }
+          ],
+          "offers": []
+        }
+      },
+      "knownModelForEvaluationOnly": {
+        "capacityMm": 12,
+        "initialStoredMm": 0,
+        "drainagePerHour": 0.55,
+        "source": "Frozen independent parameter tuple; never supplied to either inverse"
+      },
+      "old": {
+        "calibration": false,
+        "held": false
+      },
+      "prototype": {
+        "status": "proposals",
+        "proposals": [
+          {
+            "capacityMm": 12.002546077432786,
+            "initialStoredMm": 0.0033211155426986494,
+            "drainagePerHour": 0.5499174507605606,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 6.600409541538005,
+            "fillMinute": 35.081381082870045,
+            "dryMinute": 290.83018627258195,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "rateFraction": 0,
+            "endpointInsetPerHour": 7.816646613958177e-15,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          {
+            "capacityMm": 12.001125856756952,
+            "initialStoredMm": 0.0016603928717930927,
+            "drainagePerHour": 0.5499825283326897,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 6.600409541538005,
+            "fillMinute": 35.081381082870045,
+            "dryMinute": 290.83018627258195,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "rateFraction": 0.5,
+            "endpointInsetPerHour": 7.816646613958177e-15,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          {
+            "capacityMm": 11.999705972141168,
+            "initialStoredMm": 2.007283228522283e-13,
+            "drainagePerHour": 0.5500476059048187,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 6.600409541538005,
+            "fillMinute": 35.081381082870045,
+            "dryMinute": 290.83018627258195,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "rateFraction": 1,
+            "endpointInsetPerHour": 7.816646613958177e-15,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          }
+        ],
+        "refusals": [
+          {
+            "q": 6.353370659821367,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0
+            },
+            "score": 0.10340909424348234,
+            "fillHours": 0.5893371004218392,
+            "dryHours": 5,
+            "physicalRateInterval": [
+              0.0006353370659821368,
+              0.5217880177811419
+            ],
+            "emptyRate": 0.5217880177811419,
+            "rateInterval": [
+              0.49292706076011383,
+              0.4932719727526912
+            ],
+            "violation": 0.10340909424348234
+          },
+          {
+            "q": 7.77152702812498,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.125
+            },
+            "score": 0.032466960708111704,
+            "fillHours": 0.5607327758061679,
+            "dryHours": 4.254869068895174,
+            "physicalRateInterval": [
+              0.000777152702812498,
+              0.6978128564822267
+            ],
+            "emptyRate": 0.6978128564822267,
+            "rateInterval": [
+              0.4891489877485583,
+              0.5211317985691537
+            ],
+            "violation": 0.032466960708111704
+          },
+          {
+            "q": 9.189683396428594,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.25
+            },
+            "score": 0.04780376613776718,
+            "fillHours": 0.5266504582210614,
+            "dryHours": 3.739716066208857,
+            "physicalRateInterval": [
+              0.0009189683396428593,
+              0.9166038253123351
+            ],
+            "emptyRate": 0.9166038253123351,
+            "rateInterval": [
+              0.4640309411097028,
+              0.5048914856930804
+            ],
+            "violation": 0.04780376613776718
+          },
+          {
+            "q": 10.607839764732208,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.375
+            },
+            "score": 0.05200977701434464,
+            "fillHours": 0.4853498793725358,
+            "dryHours": 3.3623041168591943,
+            "physicalRateInterval": [
+              0.001060783976473221,
+              1.2019872188441083
+            ],
+            "emptyRate": 1.2019872188441083,
+            "rateInterval": [
+              0.4557368223236251,
+              0.4977989549315266
+            ],
+            "violation": 0.05200977701434464
+          },
+          {
+            "q": 12.025996133035822,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.5
+            },
+            "score": 0.05277528886652184,
+            "fillHours": 0.4342663274167014,
+            "dryHours": 3.073904196704155,
+            "physicalRateInterval": [
+              0.0012025996133035821,
+              1.6011277665351025
+            ],
+            "emptyRate": 1.6011277665351025,
+            "rateInterval": [
+              0.45429225723473343,
+              0.49519271674622745
+            ],
+            "violation": 0.05277528886652184
+          },
+          {
+            "q": 13.444152501339435,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.625
+            },
+            "score": 0.05284410973479295,
+            "fillHours": 0.3694568354961361,
+            "dryHours": 2.846348005202948,
+            "physicalRateInterval": [
+              0.0013444152501339436,
+              2.223193022251825
+            ],
+            "emptyRate": 2.223193022251825,
+            "rateInterval": [
+              0.4561533782204863,
+              0.49502395932592613
+            ],
+            "violation": 0.05284410973479295
+          },
+          {
+            "q": 14.862308869643048,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.75
+            },
+            "score": 0.052845704112853026,
+            "fillHours": 0.28453066587603004,
+            "dryHours": 2.662218479767538,
+            "physicalRateInterval": [
+              0.0014862308869643048,
+              3.393820786869466
+            ],
+            "emptyRate": 3.393820786869466,
+            "rateInterval": [
+              0.4597568632772451,
+              0.49626599606859045
+            ],
+            "violation": 0.052845704112853026
+          },
+          {
+            "q": 16.28046523794666,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.875
+            },
+            "score": 0.052845705596540615,
+            "fillHours": 0.1684009089945719,
+            "dryHours": 2.510167209501435,
+            "physicalRateInterval": [
+              0.001628046523794666,
+              6.735710269512249
+            ],
+            "emptyRate": 6.735710269512249,
+            "rateInterval": [
+              0.4643185560212668,
+              0.49835643654137973
+            ],
+            "violation": 0.052845705596540615
+          },
+          {
+            "q": 17.698621606250274,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 1
+            },
+            "score": 0.05726481652613399,
+            "fillHours": 0,
+            "dryHours": 2.3824830885008295,
+            "physicalRateInterval": [
+              0.0017698621606250275,
+              100
+            ],
+            "emptyRate": null,
+            "rateInterval": [
+              0.4694104316019303,
+              0.5009668768291269
+            ],
+            "violation": 0.05726481652613399
+          }
+        ],
+        "points": [
+          {
+            "q": 6.353370659821367,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0
+            },
+            "score": 0.10340909424348234,
+            "fillHours": 0.5893371004218392,
+            "dryHours": 5,
+            "physicalRateInterval": [
+              0.0006353370659821368,
+              0.5217880177811419
+            ],
+            "emptyRate": 0.5217880177811419,
+            "rateInterval": [
+              0.49292706076011383,
+              0.4932719727526912
+            ],
+            "violation": 0.10340909424348234
+          },
+          {
+            "q": 7.77152702812498,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.125
+            },
+            "score": 0.032466960708111704,
+            "fillHours": 0.5607327758061679,
+            "dryHours": 4.254869068895174,
+            "physicalRateInterval": [
+              0.000777152702812498,
+              0.6978128564822267
+            ],
+            "emptyRate": 0.6978128564822267,
+            "rateInterval": [
+              0.4891489877485583,
+              0.5211317985691537
+            ],
+            "violation": 0.032466960708111704
+          },
+          {
+            "q": 9.189683396428594,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.25
+            },
+            "score": 0.04780376613776718,
+            "fillHours": 0.5266504582210614,
+            "dryHours": 3.739716066208857,
+            "physicalRateInterval": [
+              0.0009189683396428593,
+              0.9166038253123351
+            ],
+            "emptyRate": 0.9166038253123351,
+            "rateInterval": [
+              0.4640309411097028,
+              0.5048914856930804
+            ],
+            "violation": 0.04780376613776718
+          },
+          {
+            "q": 10.607839764732208,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.375
+            },
+            "score": 0.05200977701434464,
+            "fillHours": 0.4853498793725358,
+            "dryHours": 3.3623041168591943,
+            "physicalRateInterval": [
+              0.001060783976473221,
+              1.2019872188441083
+            ],
+            "emptyRate": 1.2019872188441083,
+            "rateInterval": [
+              0.4557368223236251,
+              0.4977989549315266
+            ],
+            "violation": 0.05200977701434464
+          },
+          {
+            "q": 12.025996133035822,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.5
+            },
+            "score": 0.05277528886652184,
+            "fillHours": 0.4342663274167014,
+            "dryHours": 3.073904196704155,
+            "physicalRateInterval": [
+              0.0012025996133035821,
+              1.6011277665351025
+            ],
+            "emptyRate": 1.6011277665351025,
+            "rateInterval": [
+              0.45429225723473343,
+              0.49519271674622745
+            ],
+            "violation": 0.05277528886652184
+          },
+          {
+            "q": 13.444152501339435,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.625
+            },
+            "score": 0.05284410973479295,
+            "fillHours": 0.3694568354961361,
+            "dryHours": 2.846348005202948,
+            "physicalRateInterval": [
+              0.0013444152501339436,
+              2.223193022251825
+            ],
+            "emptyRate": 2.223193022251825,
+            "rateInterval": [
+              0.4561533782204863,
+              0.49502395932592613
+            ],
+            "violation": 0.05284410973479295
+          },
+          {
+            "q": 14.862308869643048,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.75
+            },
+            "score": 0.052845704112853026,
+            "fillHours": 0.28453066587603004,
+            "dryHours": 2.662218479767538,
+            "physicalRateInterval": [
+              0.0014862308869643048,
+              3.393820786869466
+            ],
+            "emptyRate": 3.393820786869466,
+            "rateInterval": [
+              0.4597568632772451,
+              0.49626599606859045
+            ],
+            "violation": 0.052845704112853026
+          },
+          {
+            "q": 16.28046523794666,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 0.875
+            },
+            "score": 0.052845705596540615,
+            "fillHours": 0.1684009089945719,
+            "dryHours": 2.510167209501435,
+            "physicalRateInterval": [
+              0.001628046523794666,
+              6.735710269512249
+            ],
+            "emptyRate": 6.735710269512249,
+            "rateInterval": [
+              0.4643185560212668,
+              0.49835643654137973
+            ],
+            "violation": 0.052845705596540615
+          },
+          {
+            "q": 17.698621606250274,
+            "origin": {
+              "method": "fixed-full-rate",
+              "fraction": 1
+            },
+            "score": 0.05726481652613399,
+            "fillHours": 0,
+            "dryHours": 2.3824830885008295,
+            "physicalRateInterval": [
+              0.0017698621606250275,
+              100
+            ],
+            "emptyRate": null,
+            "rateInterval": [
+              0.4694104316019303,
+              0.5009668768291269
+            ],
+            "violation": 0.05726481652613399
+          },
+          {
+            "q": 6.600409541538005,
+            "origin": {
+              "method": "original-drained-and-retained-q-refinement"
+            },
+            "score": -0.00013015514427361374,
+            "fillHours": 0.5846896847145008,
+            "dryHours": 4.847169771209699,
+            "physicalRateInterval": [
+              0.0006600409541538004,
+              0.5500476059048265
+            ],
+            "emptyRate": 0.5500476059048265,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "violation": 0
+          }
+        ],
+        "refinements": [
+          {
+            "bracket": [
+              6.353370659821367,
+              7.77152702812498
+            ],
+            "finalBracket": [
+              6.600409541487615,
+              6.600409541619537
+            ],
+            "q": 6.600409541538005,
+            "score": -0.00013015514427361374,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ]
+          },
+          {
+            "bracket": [
+              7.77152702812498,
+              9.189683396428594
+            ],
+            "finalBracket": [
+              7.77152702812498,
+              7.7715270282569024
+            ],
+            "q": 7.77152702817537,
+            "score": 0.03246696070901704,
+            "rateInterval": [
+              0.48914898774708715,
+              0.521131798568307
+            ]
+          },
+          {
+            "bracket": [
+              9.189683396428594,
+              10.607839764732208
+            ],
+            "finalBracket": [
+              9.189683396428594,
+              9.189683396560515
+            ],
+            "q": 9.189683396478983,
+            "score": 0.04780376613804767,
+            "rateInterval": [
+              0.46403094110920506,
+              0.5048914856927067
+            ]
+          },
+          {
+            "bracket": [
+              10.607839764732208,
+              12.025996133035822
+            ],
+            "finalBracket": [
+              10.607839764732208,
+              10.60783976486413
+            ],
+            "q": 10.607839764782598,
+            "score": 0.0520097770144062,
+            "rateInterval": [
+              0.4557368223234831,
+              0.49779895493137116
+            ]
+          },
+          {
+            "bracket": [
+              12.025996133035822,
+              13.444152501339435
+            ],
+            "finalBracket": [
+              12.025996133035822,
+              12.025996133167743
+            ],
+            "q": 12.025996133086212,
+            "score": 0.05277528886652946,
+            "rateInterval": [
+              0.45429225723475375,
+              0.49519271674618626
+            ]
+          },
+          {
+            "bracket": [
+              13.444152501339435,
+              14.862308869643048
+            ],
+            "finalBracket": [
+              13.444152501339435,
+              13.444152501471356
+            ],
+            "q": 13.444152501389825,
+            "score": 0.05284410973479331,
+            "rateInterval": [
+              0.45615337822058966,
+              0.49502395932594956
+            ]
+          },
+          {
+            "bracket": [
+              14.862308869643048,
+              16.28046523794666
+            ],
+            "finalBracket": [
+              14.862308902866012,
+              14.862308902997935
+            ],
+            "q": 14.862308902916402,
+            "score": 0.052845704112853206,
+            "rateInterval": [
+              0.45975686337520816,
+              0.496265996109312
+            ]
+          },
+          {
+            "bracket": [
+              16.28046523794666,
+              17.698621606250274
+            ],
+            "finalBracket": [
+              17.606361379986883,
+              17.606361380118805
+            ],
+            "q": 17.606361380037274,
+            "score": 0.052845705596540615,
+            "rateInterval": [
+              0.46906854080181304,
+              0.5007856468503062
+            ]
+          }
+        ],
+        "qInterval": [
+          6.353370659821367,
+          17.698621606250274
+        ],
+        "counts": {
+          "qEvaluations": 409,
+          "modelEvaluations": 84145,
+          "bandIntersections": 1227
+        },
+        "reservation": {
+          "qEvaluations": 409,
+          "maximumProposals": 30,
+          "bandIntersections": 1227,
+          "modelEvaluations": 159510
+        },
+        "meaning": "Finite conditional filled-course witnesses from original calibration bands; exact physical forward validation remains required. No exhaustive coverage, parameter identification or original-source replacement."
+      },
+      "results": [
+        {
+          "hypothesis": {
+            "capacityMm": 12.002546077432786,
+            "initialStoredMm": 0.0033211155426986494,
+            "drainagePerHour": 0.5499174507605606,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 6.600409541538005,
+            "fillMinute": 35.081381082870045,
+            "dryMinute": 290.83018627258195,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "rateFraction": 0,
+            "endpointInsetPerHour": 7.816646613958177e-15,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          "calibration": {
+            "count": 5,
+            "compatible": true
+          },
+          "challenge": {
+            "count": 3,
+            "compatible": false
+          },
+          "originalAccountRows": [
+            {
+              "id": "original-retained-300",
+              "channel": "retained",
+              "minute": 300,
+              "valueLiters": 50.43116112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 84.74903313390031,
+              "numericalGuardLiters": 8.474903313390032e-8,
+              "residualLiters": -34.31787200406697,
+              "withinBand": true
+            },
+            {
+              "id": "original-retained-480",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 50.58476112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 16.280075293380914,
+              "numericalGuardLiters": 5.058476112983334e-8,
+              "residualLiters": 34.30468583645242,
+              "withinBand": true
+            },
+            {
+              "id": "new-original-drained-480",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 307.5654308742351,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol",
+              "modeledLiters": 307.58543087398687,
+              "numericalGuardLiters": 3.0758543087398687e-7,
+              "residualLiters": -0.0199999997517466,
+              "withinBand": true
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 540,
+              "valueLiters": 9.389609571134182,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 9.393561752869743,
+              "numericalGuardLiters": 9.393561752869744e-9,
+              "residualLiters": -0.003952181735561666,
+              "withinBand": true
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 540,
+              "valueLiters": 314.45039042886583,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 314.471944414498,
+              "numericalGuardLiters": 3.1447194441449805e-7,
+              "residualLiters": -0.02155398563218114,
+              "withinBand": false
+            }
+          ]
+        },
+        {
+          "hypothesis": {
+            "capacityMm": 12.001125856756952,
+            "initialStoredMm": 0.0016603928717930927,
+            "drainagePerHour": 0.5499825283326897,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 6.600409541538005,
+            "fillMinute": 35.081381082870045,
+            "dryMinute": 290.83018627258195,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "rateFraction": 0.5,
+            "endpointInsetPerHour": 7.816646613958177e-15,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          "calibration": {
+            "count": 5,
+            "compatible": true
+          },
+          "challenge": {
+            "count": 3,
+            "compatible": true
+          },
+          "originalAccountRows": [
+            {
+              "id": "original-retained-300",
+              "channel": "retained",
+              "minute": 300,
+              "valueLiters": 50.43116112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 84.73816227277335,
+              "numericalGuardLiters": 8.473816227277336e-8,
+              "residualLiters": -34.30700114294001,
+              "withinBand": true
+            },
+            {
+              "id": "original-retained-480",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 50.58476112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 16.274809342984156,
+              "numericalGuardLiters": 5.058476112983334e-8,
+              "residualLiters": 34.30995178684918,
+              "withinBand": true
+            },
+            {
+              "id": "new-original-drained-480",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 307.5654308742351,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol",
+              "modeledLiters": 307.5779424742715,
+              "numericalGuardLiters": 3.075779424742715e-7,
+              "residualLiters": -0.01251160003636187,
+              "withinBand": true
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 540,
+              "valueLiters": 9.389609571134182,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 9.389912220402504,
+              "numericalGuardLiters": 9.389912220402504e-9,
+              "residualLiters": -0.0003026492683222415,
+              "withinBand": true
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 540,
+              "valueLiters": 314.45039042886583,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 314.4628395968532,
+              "numericalGuardLiters": 3.1446283959685324e-7,
+              "residualLiters": -0.012449167987369947,
+              "withinBand": true
+            }
+          ]
+        },
+        {
+          "hypothesis": {
+            "capacityMm": 11.999705972141168,
+            "initialStoredMm": 2.007283228522283e-13,
+            "drainagePerHour": 0.5500476059048187,
+            "phase": "filled-drain-during-storm",
+            "fullStoreRateMmHr": 6.600409541538005,
+            "fillMinute": 35.081381082870045,
+            "dryMinute": 290.83018627258195,
+            "rateInterval": [
+              0.5499174507605529,
+              0.5500476059048265
+            ],
+            "rateFraction": 1,
+            "endpointInsetPerHour": 7.816646613958177e-15,
+            "qOrigin": {
+              "method": "original-drained-and-retained-q-refinement"
+            }
+          },
+          "calibration": {
+            "count": 5,
+            "compatible": true
+          },
+          "challenge": {
+            "count": 3,
+            "compatible": true
+          },
+          "originalAccountRows": [
+            {
+              "id": "original-retained-300",
+              "channel": "retained",
+              "minute": 300,
+              "valueLiters": 50.43116112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 84.72729399234753,
+              "numericalGuardLiters": 8.472729399234753e-8,
+              "residualLiters": -34.296132862514185,
+              "withinBand": true
+            },
+            {
+              "id": "original-retained-480",
+              "channel": "retained",
+              "minute": 480,
+              "valueLiters": 50.58476112983334,
+              "uncertaintyLiters": 34.317872004068455,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; independent predeclared increasing-center bands use per-selected-area mean, converted to litres",
+              "modeledLiters": 16.269545323703685,
+              "numericalGuardLiters": 5.058476112983334e-8,
+              "residualLiters": 34.31521580612966,
+              "withinBand": true
+            },
+            {
+              "id": "new-original-drained-480",
+              "channel": "drained",
+              "minute": 480,
+              "valueLiters": 307.5654308742351,
+              "uncertaintyLiters": 0.02,
+              "use": "calibration",
+              "source": "Independent authored original from unchanged maintained forward model; not measured field evidence; additional original cumulative drainage fixed by independent protocol",
+              "modeledLiters": 307.57045467629786,
+              "numericalGuardLiters": 3.075704546762979e-7,
+              "residualLiters": -0.005023802062737559,
+              "withinBand": true
+            },
+            {
+              "id": "held-retained",
+              "channel": "retained",
+              "minute": 540,
+              "valueLiters": 9.389609571134182,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 9.386264237249376,
+              "numericalGuardLiters": 9.389609571134182e-9,
+              "residualLiters": 0.0033453338848055125,
+              "withinBand": true
+            },
+            {
+              "id": "held-drained",
+              "channel": "drained",
+              "minute": 540,
+              "valueLiters": 314.45039042886583,
+              "uncertaintyLiters": 0.02,
+              "use": "challenge",
+              "source": "Original receiver value held out of all numerical starts/fitting; time and ±0.02L fixed before tuple release",
+              "modeledLiters": 314.4537357627522,
+              "numericalGuardLiters": 3.144537357627522e-7,
+              "residualLiters": -0.00334533388638647,
+              "withinBand": true
+            }
+          ]
+        }
+      ],
+      "milliseconds": 9.595491999999993,
+      "combined": {
+        "calibration": true,
+        "held": true
+      }
+    }
+  ],
+  "completedUtc": "2026-10-28T23:13:22.707Z"
+}

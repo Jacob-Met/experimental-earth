@@ -1,0 +1,248 @@
+{
+  "schema": "experimental-earth-filled-current-integration/1",
+  "base": "77867b0c1cfd3cf0463accf873893d8fa4231183",
+  "preReceiptTree": "595da9c9f28f1beb9cd89ba286897b90ee8693cb",
+  "qualifiedDeltaSha256": "4396f27a22a3c6d7567b2d7bdfe77cb685ed11d5ece3c66588fae186278f40a7",
+  "predecessorMerge": "76e7f21064f771161dcded205991e016ecb1bca1",
+  "predecessorPostmerge": {
+    "schema": "experimental-earth-original-account-postmerge/1",
+    "pr": 487,
+    "url": "https://github.com/Jacob-Met/experimental-earth/pull/487",
+    "head": "32a3023443d9315cbe71e8aba119ea5d9829819b",
+    "merge": "76e7f21064f771161dcded205991e016ecb1bca1",
+    "tree": "f120f2c1216b452190fe7ab6af35c9d8c162c4be",
+    "observedMain": "77867b0c1cfd3cf0463accf873893d8fa4231183",
+    "exactPublishedFiles": 157,
+    "allUnownedUpdatedBaseBlobsPreserved": true,
+    "freshSource": "/tmp/hamon-a755e25-earth-integration-v2/merged-source",
+    "native": {
+      "command": [
+        "/exec-daemon/node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/receiving-drain-conditioning.test.mjs",
+        "tests/receiving-account-consequences.test.mjs"
+      ],
+      "exitCode": 0,
+      "wallMilliseconds": 4301.208931981819,
+      "counts": {
+        "tests": 16.0,
+        "pass": 16.0,
+        "fail": 0.0,
+        "cancelled": 0.0,
+        "skipped": 0.0,
+        "duration_ms": 4269.197003
+      }
+    },
+    "premergeReceiving": {
+      "base": "fcfb13abf6216911f2591f0d797f4f48e1e2c99b",
+      "nativeTests": 63,
+      "sandboxedBrowserGroups": 19
+    },
+    "checkRunListing": "HTTP403 for this token; not retried, no check run claimed passed. No required branch contexts/rules were present; normal exact-head merge succeeded.",
+    "verifiedUtc": "2026-10-29T00:34:27Z",
+    "meaning": "Merged source and fresh native receiving verified; no persistent installation, deployment or physical-validation claim."
+  },
+  "native": {
+    "command": [
+      "/exec-daemon/node",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/receiving-account-band-fit.test.mjs",
+      "tests/receiving-retained-starts.test.mjs",
+      "tests/receiving-account-consequences.test.mjs",
+      "tests/receiving-account-phase-fit.test.mjs",
+      "tests/receiving-drain-conditioning.test.mjs",
+      "tests/receiving-filled-drain.test.mjs"
+    ],
+    "base": "77867b0c1cfd3cf0463accf873893d8fa4231183",
+    "exitCode": 0,
+    "wallMilliseconds": 25123.864899011096,
+    "counts": {
+      "tests": 51.0,
+      "pass": 51.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 25066.389411
+    },
+    "node": "v22.23.4",
+    "candidateTreeBeforeTest": "595da9c9f28f1beb9cd89ba286897b90ee8693cb"
+  },
+  "browser": {
+    "schema": "experimental-earth-receiving-band-fit-browser/1",
+    "passed": true,
+    "checks": [
+      "Actual never-filled example gains12calibration alternatives and6held survivors where original-band search findsnone, explicitly preserves different arbitrary capacities and leaves active/parent sources unchanged",
+      "Actual phase source-only download reopens fresh and recomputes; changed held values cannot alter phase parameters, calibration support or measurement ranking",
+      "Explicit phase handoff carries all12supported models into paired consequences; original-only comparison reopens fresh and Compare again retains the reopened sources/options, with desktop/narrow controls usable",
+      "Forged phase conclusions, expanded work refusal, queued phase work and delayed phase files cannot retain stale success or overwrite newer original-source intent",
+      "Actual increasing-center retained-band example gains a full-site calibration witness while both informative held receiver readings visibly reject it; computational restrictions are disclosed",
+      "New retained-band original-source download reopens on a fresh page and a second search reproduces the exact parameters and adverse held result",
+      "The actual paired-layout consumer compares the new calibration witness, retains its predicted range, and leaves the held-supported range empty at desktop and390px widths",
+      "Actual keyboard band search finds full-site witnesses where the analytic incumbent fails, retains that incumbent, receives exact modules and leaves the active site and original parent untouched",
+      "Actual band-search download contains only original inputs and reopens on a fresh page to the identical frozen candidates and prospective question",
+      "Changing both original held channels changes only their challenge result; fitted parameters, calibration support and prospective question remain identical",
+      "Contradictory calibration is visibly unresolved and forged cached success cannot replace original-source recomputation or keep a stale result",
+      "Missing uniformity basis and complete expanded-work refusal leave no successful result; a later valid original source remains reusable",
+      "Explicit parent handoff fits the copied original account without offered parameters; later parent edits cannot retarget the child or alter its saved original source",
+      "A delayed band file and a queued numerical search retire on newer source intent without overwriting that source or resurrecting old support",
+      "An unfamiliar original48-cell mixed-surface site receives the actual full-grid checked witnesses within the complete bounded work reservation",
+      "Desktop and390px controls and complete results remain usable with no overflow, failed local resources or browser exceptions",
+      "An additional original entered through the existing account form changes the explicitly recopied phase inference from12calibration/6held to12/10; oldbandsearch findsnone and original values and roles remain exact",
+      "All12drain-conditioned models reach the paired consumer and exact fresh-page source replay; changed held values cannot change their parameters calibration support or offered question",
+      "A contradictory new original drainage row and complete expanded40cell work refusal cannot preserve a successful result or accept a partial calibration family",
+      "A new original drainage value entered through the ordinary parent form changes filled-course alternatives from3calibration/0held to4/4 after explicit handoff; original bands and roles remain exact and bounded provenance is visible",
+      "All4filled models reach paired layouts within the unchanged budget; both original-only files recompute on a fresh page and Compare again preserves source/options, at desktop and390px widths",
+      "Wrong held readings cannot alter filled parameters/calibration/question; a contradictory original and complete144cell work refusal cannot retain success or publish a partial family"
+    ],
+    "errors": [],
+    "httpFailures": [],
+    "sourceHashes": {
+      "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+      "receiving-account-phase-fit.js": "a568428305170cdeb0aa3cce7d5f5cb8c2e44da53e80a7aedfb864f7d2af6b2d",
+      "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+      "receiving-account-proposals-panel.js": "09e89cb2c439a17e4cf3fa2c27abe8815359d6b1641990d756188e28a626d0f5",
+      "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+      "receiving-account-consequences-panel.js": "a2da6d465dc62d6e1f6c67f10270b5cf311dcc2b514d427aab247862b87a1188",
+      "post-dry-receiving-inverse.js": "0964a82560342ccd72c9f7f73c18e6464abfa0f81603325baa5e97e2acdcc02c",
+      "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+      "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+      "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+      "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+      "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38",
+      "core.js": "ab91ec14f560ac75b6901be14a17e744b81d487432853837b56b1e2a0074e67e",
+      "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+      "continuous-sky.js": "174806c1495e71235fb3adf2c2cd7ebc20587cb49cc67bd584584c1d15f95ae6",
+      "shade-heat-panel.js": "e5e5acf88f20a8b9d6a6c72f864adb323c85add15c4cc64c2e2788a16b1d9082",
+      "shade-heat-sampling.js": "68f8fa90d9d104a0bde31cdbb92a060e8f43b01fa94a21927bff4e39fc3031d3",
+      "shade-heat.css": "069c792236fa8a4940724e7ba2f786c18f73c9d2c713d10cdd7fa58594aed75a",
+      "shade-heat.js": "fbac5ab8966b432fd7f30acefba4c60d24d1346f968f903729585be570952978",
+      "tests/receiving-account-band-fit.receiving.mjs": "ded5426764fea3c604353861f175a25b66a6cabc0c86bb8177d14ad55e063c3b"
+    },
+    "output": "/dev/shm/hamon-a755e25-earth-filled778-browser/earth-receiver-bands-MOm8GO",
+    "sourceKind": "Actual maintained consumer on authored originals; not field validation",
+    "unfamiliar48cell": {
+      "status": "one-surviving-proposal",
+      "calibrationWitnesses": 2,
+      "survivingWitnesses": 1,
+      "reservation": {
+        "centralTrials": 9,
+        "originalGridTrials": 13,
+        "reducedTrials": 633,
+        "seedKernelCalls": 180,
+        "projectedKernelCalls": 0,
+        "maximumDrainageRateBisections": 128,
+        "maximumRetainedRatePairs": 21,
+        "stepsPerCourse": 144,
+        "fullGridCellSteps": 6912,
+        "reducedCellSteps": 364608,
+        "totalCellEquivalentSteps": 454644,
+        "limit": 1000000
+      },
+      "counts": {
+        "reducedTrials": 255,
+        "originalGridChecks": 3,
+        "seedKernelCalls": 174,
+        "seedInverseCalls": 1,
+        "seedRetainedRatePairs": 0,
+        "projectedKernelCalls": 0
+      }
+    },
+    "drainConditioning": {
+      "calibration": 12,
+      "held": 10,
+      "pairedModels": 12,
+      "originalFieldEntry": true,
+      "freshSourceReplay": true,
+      "wrongHeldParametersUnchanged": true
+    },
+    "filledDrain": {
+      "independentCase": "fresh-filled-8",
+      "before": {
+        "calibration": 3,
+        "held": 0
+      },
+      "after": {
+        "calibration": 4,
+        "held": 4
+      },
+      "pairedModels": 4,
+      "ordinaryFieldEntry": true,
+      "freshSourceReplay": true,
+      "heldIndependent": true,
+      "wholeBudgetRefusal": true
+    },
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-29T00:46:59.657Z",
+      "completedAt": "2026-10-29T00:46:59.739Z",
+      "durationMs": 81.49002099999996,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.73",
+        "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      },
+      "target": {
+        "targetId": "5AB12737FC437DB3C6AF2B731AFE7385",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "98DF5F96C215E4665D4DDE3422E6A4C6"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "maintainedServer": {
+      "baseUrl": "http://127.0.0.1:39265/",
+      "closed": true
+    }
+  },
+  "localComposition": {
+    "base": "77867b0c1cfd3cf0463accf873893d8fa4231183",
+    "currentIncomingFiles": 54,
+    "exactQualifiedFiles": 59,
+    "runtimeHashes": {
+      "core.js": "ab91ec14f560ac75b6901be14a17e744b81d487432853837b56b1e2a0074e67e",
+      "app.js": "3cd6db7b8720255d4f053fa27eee2831418f0393098097accc80f89f2277df2e",
+      "post-dry-receiving-inverse.js": "0964a82560342ccd72c9f7f73c18e6464abfa0f81603325baa5e97e2acdcc02c",
+      "receiving-account-phase-fit.js": "a568428305170cdeb0aa3cce7d5f5cb8c2e44da53e80a7aedfb864f7d2af6b2d",
+      "receiving-account-proposals-panel.js": "09e89cb2c439a17e4cf3fa2c27abe8815359d6b1641990d756188e28a626d0f5"
+    },
+    "transferReconciliation": "All four local files existed after interrupted return; assembled exact compressed+JSON hashes verified. No write replay."
+  },
+  "rootReview": "Incoming core adds an explicit pressure-head option; draining-layer path remains separate and received unchanged. All59 qualified files match;54 incoming current-main paths preserved. WORLD mathematics and SECOND consumer/preflight reviews apply to unchanged numerical and consumer hashes. Current Node22 native51 and sandboxed browser22 pass. Historical freeze/comparison remains bound to its original core; current receiving is additional composition evidence, not a rerun labelled as fresh data.",
+  "recordedUtc": "2026-10-29T00:53:22Z",
+  "meaning": "Current composed source qualification. Historical independent comparison is unchanged and source-bound; no new fresh-input claim, persistent installation or deployment."
+}

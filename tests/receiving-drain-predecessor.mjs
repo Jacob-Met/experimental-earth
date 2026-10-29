@@ -1,0 +1,11 @@
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const root=new URL('../',import.meta.url),sha=b=>createHash('sha256').update(b).digest('hex');
+const inverse=readFileSync(new URL('../experiments/pre-filled-baseline/post-dry-receiving-inverse.js.txt',import.meta.url),'utf8');
+const phase=readFileSync(new URL('../experiments/pre-filled-baseline/receiving-account-phase-fit.js.txt',import.meta.url),'utf8');
+assert.equal(sha(inverse),'ffdf2392ad39296b82adf06e4be71f8756ddd325262ffddb4359fa9ead1dc086');
+assert.equal(sha(phase),'a1ca7be9bf0b40ec1e3dadd0cc300f3c5a8de8dc5fe144296801aad52cd8747d');
+const inverseURL='data:text/javascript;base64,'+Buffer.from(inverse).toString('base64');
+const relocated=phase.replace(/from '(\.[^']+)';/g,(_,path)=>"from '"+(path==='./post-dry-receiving-inverse.js'?inverseURL:new URL(path,root).href)+"';");
+export const predecessor=await import('data:text/javascript;base64,'+Buffer.from(relocated).toString('base64'));
