@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Can both temperature limits hold? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-joint-course.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-course-evidence.html" target="_blank" rel="noopener">Experimental Earth · the original time course ↗</a>
+    <p class="eyebrow">Original evidence / two consequences together</p>
+    <h1>Can both temperature limits hold?</h1>
+    <p class="intro">A favorable range at each time does not establish that both goals can happen together. Keep the same three final readings, then ask whether one shared pair of sky profiles can meet two limits at two original times.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="joint-source-heading">
+      <p class="eyebrow">01 / Keep the original evidence</p><h2 id="joint-source-heading">Three final readings, one shared course</h2>
+      <div class="actions"><button id="joint-example" type="button" disabled>Try competing limits</button><button id="joint-example-feasible" type="button" disabled>Try a shared-profile case</button></div>
+      <p>The two authored examples use identical original readings and differ only in the second desired limit. These invented numerical controls are not field measurements.</p>
+      <label class="file-label">Open three original readings or one saved three-reading inquiry<input id="joint-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p class="quiet">Evidence intake retains the originals and sharing statement. Choose this inquiry’s change boundary and desired limits separately.</p>
+      <div id="joint-sources" class="source-grid"><p>No original readings loaded.</p></div>
+    </section>
+    <form id="joint-form" class="card" novalidate>
+      <p class="eyebrow">02 / Ask about two consequences</p><h2>One profile pair must meet both limits</h2>
+      <div class="question-grid"><label>Sky change after original interval<input id="joint-split" type="number" min="1" step="1" value="8" disabled required></label><label>Basis for shared sky conditions<input id="joint-sharing" maxlength="400" disabled required></label></div>
+      <p id="joint-boundary" class="quiet">Choose a whole original interval on each side of the sky change.</p>
+      <div class="joint-limit-grid">
+        <fieldset><legend>First consequence</legend><label>Original time<select id="joint-first-time" aria-describedby="joint-first-time-hint" disabled><option value="">Choose an original time</option></select></label><p id="joint-first-time-hint" class="quiet joint-time-hint">Choose an original time.</p><label>Temperature component<select id="joint-first-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label><label>Maximum proposal − existing temperature, °C<input id="joint-first-ceiling" type="number" step="any" value="-0.010676" disabled required></label></fieldset>
+        <fieldset><legend>Second consequence</legend><label>Different original time<select id="joint-second-time" aria-describedby="joint-second-time-hint" disabled><option value="">Choose an original time</option></select></label><p id="joint-second-time-hint" class="quiet joint-time-hint">Choose a different original time.</p><label>Temperature component<select id="joint-second-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label><label>Maximum proposal − existing temperature, °C<input id="joint-second-ceiling" type="number" step="any" value="-2.464896" disabled required></label></fieldset>
+      </div>
+      <p>Both differences must be at or below their ceilings. A negative ceiling requires cooling; a positive ceiling permits that amount of warming. These are desired consequences, separate from the original observations.</p>
+      <label class="joint-purpose">Basis for these desired limits<input id="joint-purpose" maxlength="400" placeholder="Describe the goals you want to test" disabled required></label>
+      <div class="actions"><button id="joint-run" type="submit" disabled>Check both limits together</button><label class="file-label">Reopen a joint inquiry<input id="joint-reopen" type="file" accept=".json,application/json" disabled></label><button id="joint-export" type="button" disabled>Download original inputs and limits</button></div>
+      <p id="joint-status" role="status">Open original evidence or try an authored example.</p>
+    </form>
+    <section id="joint-results" class="card" aria-label="Joint original-time temperature consequences" hidden></section>
+  </main>
+  <footer>Conditional consequences of the declared represented model. The selected geometry endpoints must be resolved. Original numerical replays remain separate. No interpolation in time, reconstructed physical sky history or validated intervention effect is inferred.</footer>
+  <script type="module" src="shade-heat-joint-page.js"></script>
+</body>
+</html>

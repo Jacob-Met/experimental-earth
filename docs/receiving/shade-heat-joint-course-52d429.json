@@ -1,0 +1,186 @@
+{
+  "status": "qualified-private-source-and-actual-browser",
+  "scope": "Two original-time ceilings under one common three-final-band profile family; represented additive coefficients, not physical validation",
+  "baseCommit": "57388acdb93c72623d78487de7fca77fd32d88dc",
+  "baseTree": "e7649727c5788b620a26ce942d99a7602d024718",
+  "native": {
+    "firstCombined": {
+      "cli": 6174,
+      "exitCode": 1,
+      "passed": 8,
+      "failed": 1,
+      "tapSHA256": "784fa1ed99beff25c217e92347c8a2b441308b2f947c42522a4856c83bd96fd1",
+      "failure": "Test supplied999C outside accepted source range; product refused correctly"
+    },
+    "correctedEmptyFamily": {
+      "cli": 48620,
+      "terminalChunk": "7b5f84",
+      "exitCode": 0,
+      "passed": 1,
+      "tapSHA256": "27a2c48e5c470f565f8261ee4fde8add27467fc3d7119a0a545bab3c2e776330",
+      "correction": "Valid but incompatible400C band; all192 original bases complete"
+    },
+    "distinctPassingGroups": 9
+  },
+  "independentProjection": {
+    "cases": 163,
+    "additionalAdmissionAndBoundaryControls": 11,
+    "sourceSHA256": "776d2532dfb58fbb2e34f434e7e95e6baf31ed35b896d490cfeedbb03c4bd902",
+    "receiptSHA256": "a868a28d9b62704ca263309fe4006559c6534b38993b2502fbdaa3f969526915",
+    "scope": "Fraction rectangle/segment/triangle oracle, exact objectives, lex witness, at-most-three-candidate construction; no browser claim"
+  },
+  "independentWrapper": {
+    "sourceSHA256": "804bfe4da9c6beaece8a00d69ddf07ec903c2a38639aab814c381717e7bebe87",
+    "receiptSHA256": "3e196bcb5893a9d757bada1ff7651115f9f0ccd49f6e7d7b191c352a4069fdfe",
+    "unfamiliarCourses": 2,
+    "malformedOrSourceTimeControls": 8,
+    "scope": "37/41minute partial-final courses, swapped primary, mixed components, reversed axes, full source replay and work"
+  },
+  "independentConsumer": {
+    "receiptSHA256": "41095e4799a01e10f7599aff1a7ed24f8db5c9a0edd93517d054831627284e5c",
+    "sourceHashes": {
+      "shade-heat-joint-page.js": "8f68e22630eabb942a2d7120e259fb3981f2b8156fd3e9a2b547a6b927c52859",
+      "sky-joint-course.html": "7a2c07cb2251625a74b03953ad758f02d45c6a2eaf27327a6c851c0eeef5b202",
+      "shade-heat-joint-inputs.js": "c01201297e20296bde13f80d98bb442019f5b9903956d57ffcbbac35193bf654",
+      "shade-heat-joint-example.js": "6c1f48038440dbc492ba7fbc51c3f4f66a1f4216d94ad5b4511e47186727be60"
+    },
+    "scope": "Prior-source extraction, source/time binding, retirement and exact versus original replay statuses; no browser claim"
+  },
+  "directOriginalRuntimeCertificate": {
+    "status": "PASS",
+    "incompatibleExactFarkasCertificate": {
+      "alpha": [
+        "0",
+        "0",
+        "0",
+        "253314475619174957018098637142/503761215053633475189018925507",
+        "0",
+        "0",
+        "34416610052446137125659692295/503761215053633475189018925507",
+        "216030129382012381045260596070/503761215053633475189018925507"
+      ],
+      "lambdaValue": "-921642976319427437226673608426631035069457449/70898088137476625593390324232278023178551296",
+      "combinedUpper": "-1887571291315575255703378891041323906241358461711/145199284505552129215263384027705391469673054208",
+      "positiveContradiction": "46475813387864263151340983583546419109606159/145199284505552129215263384027705391469673054208",
+      "sixteenCoefficientSlacks": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "feasibleExactEightConstraintSlacks": [
+      "14340800802018336398933503335017146173211625/15871859938053334011361579660206611181724499968",
+      "17402919074088332284588568992361909002903467/15871859938053334011361579660206611181724499968",
+      "1152921504606847/576460752303423488",
+      "0",
+      "783807742925350680203723713142711112461551/15871859938053334011361579660206611181724499968",
+      "30959912133181318003318348614236344063653541/15871859938053334011361579660206611181724499968",
+      "3088277191819874260948703618239932845147121/9919912461283333757100987287629131988577812480",
+      "0"
+    ],
+    "feasibleMassSum": "1",
+    "sourceHashes": {
+      "runtime-original-pair-values.json": "f70cb37de4bb5e8bce20294167ff1ea60c92bd57c06a7217cf12d9e28d06b25c",
+      "runtime-joint-courses.json": "e5732d62ee70cbed8350d22211ed5807af6359a76d264c5d523fba6fe58ec2d3"
+    },
+    "scope": "Original binary64 additive coefficients independently reconstructed. Numerical LP only selects a candidate dual support; all final certificate equations, nonnegative multipliers,16 inequalities and strict contradiction checked with Python Fraction. No numerical tolerance in the proof; numerical thermal/physical uncertainty unchanged."
+  },
+  "browser": {
+    "first": {
+      "cli": 34097,
+      "terminalChunk": "772095",
+      "exitCode": 0,
+      "groups": 9,
+      "startedAt": "2026-10-29T03:15:08.590Z",
+      "finishedAt": "2026-10-29T03:15:27.397Z"
+    },
+    "currentMainComposed": {
+      "cli": 30066,
+      "terminalChunk": "c3f2c8",
+      "exitCode": 0,
+      "groups": 9,
+      "startedAt": "2026-10-29T03:18:15.805Z",
+      "finishedAt": "2026-10-29T03:18:35.063Z",
+      "receiptSHA256": "e83328e4c4fd0e1923d69ac3ddaef0b839b1524bb20b6eda57f085bced0510a6"
+    },
+    "sandbox": "Active Linux namespace, PID/network namespaces, Seccomp-BPF andTSYNC; no no-sandbox flag",
+    "pageExceptions": [],
+    "sameRuntimeBinding": "Displayed objectives, witnesses, original times and numerical statuses bind to actual worker report",
+    "separateNodeComparisonMaximumRangeDifferenceC": 0,
+    "rawNumericalEvidenceIdenticalAcrossQualifiedRuns": true,
+    "visualInspection": [
+      "desktop1440",
+      "390px limits/region/witness/time",
+      "UTC-first/fulltimestamp hints",
+      "incompatible region"
+    ]
+  },
+  "sourceEquivalence": {
+    "matchedExecutedFiles": 877,
+    "receiptSHA256": "21d40cd884d1ab27703ff7ff5dc56845aaf89a82bad30d40be1e33534bdb0611",
+    "baseFilesUnchangedAndMatchedToAcceptedGit": 866
+  },
+  "composition": {
+    "preservedOtherContribution": "PR497 notebook CSV export",
+    "preservedPaths": [
+      "README.md",
+      "app.js",
+      "docs/OBSERVATION_CSV_EXPORT.md",
+      "observation-export-panel.js",
+      "observation-export.js",
+      "tests/observation-export.browser.mjs",
+      "tests/observation-export.test.mjs"
+    ],
+    "overlappingEdits": []
+  },
+  "limits": {
+    "originalIntervals": 24,
+    "basisCourses": 192,
+    "witnessCourses": 12,
+    "thermalCourses": 204,
+    "courseIntervals": 4896,
+    "candidates": 22016,
+    "hullVertices": 242,
+    "clippedVertices": 244
+  },
+  "authoredControl": {
+    "comparisonCell": 7,
+    "originalReadingOrder": [
+      7,
+      5,
+      1
+    ],
+    "firstOriginalIndex": 8,
+    "secondOriginalIndex": 10,
+    "incompatibleCeilingsC": [
+      -0.010676,
+      -2.464896
+    ],
+    "feasibleCeilingsC": [
+      -0.010676,
+      -2.4641
+    ],
+    "originalReadingsAndBandsUnchanged": true,
+    "originalNumericalReplayCanExceedExactBoundary": true
+  },
+  "nonClaims": [
+    "continuous-time envelope/interpolation",
+    "physical sky/change-time inference",
+    "physical validation/uniform numerical error bound",
+    "CI checks not run",
+    "held or unknown operations retried"
+  ]
+}
