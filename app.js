@@ -40,6 +40,7 @@ import { modelNumber, readingNumber as formatReadingNumber } from './number-form
 import { createWaterChart } from './water-chart.js';
 import { createWaterHistoryValues } from './water-history-values.js';
 import { createWaterHistoryCsv } from './water-history-csv.js';
+import { createWaterTradeoffs } from './water-tradeoffs.js';
 import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -57,6 +58,7 @@ const $ = id => document.getElementById(id);
 const waterChart = createWaterChart($('chart'));
 const waterHistory = createWaterHistoryValues($('chart').closest('.chart-wrap'));
 const waterHistoryCsv = createWaterHistoryCsv($('water-history-values'));
+const waterTradeoffs = createWaterTradeoffs($('chart').closest('.chart-wrap'), minute => waterHistory.selectMinute(minute));
 const savedProject = openSavedProject();
 let project = savedProject.project;
 const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
@@ -202,6 +204,7 @@ function setComparisonState(state, error) {
   comparisonState = state;
   waterHistory.setAvailable(state === 'ready');
   waterHistoryCsv.setAvailable(state === 'ready');
+  waterTradeoffs.setAvailable(state === 'ready');
   comparisonStatus.dataset.state = state;
   comparisonStatus.dataset.generation = String(comparisonGeneration);
   comparisonStatus.hidden = state === 'ready';
@@ -266,6 +269,7 @@ function finishComparisonDisplay() {
   comparisonFocus = null;
   waterHistory.update(completedComparison.results, completedComparison.project.title);
   waterHistoryCsv.update(completedComparison.results, serializePortableProject(completedComparison.project));
+  waterTradeoffs.update(completedComparison.results, completedComparison.project.title);
   setComparisonState('ready');
   setComparisonInteraction(false);
   if (focusedStatus && restoreFocus?.kind === 'observation') {

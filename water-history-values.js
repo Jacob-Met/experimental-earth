@@ -93,6 +93,11 @@ export function createWaterHistoryValues(chartWrap) {
   next.addEventListener('click', () => select(selected + 1));
   draw();
   return {
+    selectMinute(value) {
+      const index = available && Number.isFinite(value) ? course.findIndex(row => row.minute === value) : -1;
+      if (index < 0) return false;
+      select(index); slider.focus(); return true;
+    },
     update(comparison, projectTitle) {
       const values = retainedWaterValues(comparison);
       const previousMinute = course[selected]?.minute;
