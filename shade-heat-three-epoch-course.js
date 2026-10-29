@@ -116,7 +116,7 @@ function evaluate(investigation){
     }
   }
   if(profiles.length>work.reservedWitnessProfiles)throw Error('The complete three-epoch witness allowance was exhausted');
-  const witnesses=profiles.map((result,id)=>{
+  const witnessFor=(result,id)=>{
     const replay=replayThreeEpochWitness(result,id,bases,splits,THREE_EPOCH_SKY_LIMITS.numericalConsistencyScreenC);
     const originalObservations=locations.map((at,index)=>{
       const r=investigation.readings[index].query.reading,row=replay.originalReplays[at.sourceIndex].originalCourse[at.originalIndex];
@@ -135,7 +135,8 @@ function evaluate(investigation){
     ]]));
     return {id,masses:result.masses.map(profileFraction),observedC:result.observedC.map(profileFraction),finalC,differenceC,...replay,originalObservations,
       originalReplays:replay.originalReplays.map((r,i)=>({...r,representativeReadingIndex:representatives[i]}))};
-  });
+  };
+  const witnesses=profiles.map(witnessFor);
   const executedBasisCourses=bases.reduce((sum,b)=>sum+b.executedCourses,0),executedWitnessCourses=witnesses.length*work.uniqueSources*4;
   const executedThermalCourses=executedBasisCourses+executedWitnessCourses;
   const actualReplayEndpointRows=witnesses.length*work.uniqueSources*originalTimes.length;
@@ -149,7 +150,7 @@ function evaluate(investigation){
     throw Error('The complete three-epoch inquiry exceeded its admitted work');
   const evidence=solved=>serialize({status:solved.status,linearModel:solved.linearModel,certificate:solved.certificate,
     objectives:solved.results.map((r,i)=>({...axes[i],projection:r.objective,maximumValue:r.value,certificate:r.linearCertificate}))});
-  return {status:'compared',compatibility:family.status==='feasible'?'compatible':'incompatible',model:{...THREE_EPOCH_SKY_MODEL},
+  const report={status:'compared',compatibility:family.status==='feasible'?'compatible':'incompatible',model:{...THREE_EPOCH_SKY_MODEL},
     query:structuredClone(investigation.query),cellIndex:investigation.readings[0].query.reading.cellIndex,
     finalUtc:originalTimes.at(-1).utc,splitUtcs:splits.map(i=>originalTimes[i].utc),intervalCount:work.intervals,
     originalTimes,pointwiseCourse,witnesses,rangeChanges,
@@ -177,13 +178,22 @@ function evaluate(investigation){
       +'The embedded references use identical represented three-epoch coefficients with adjacent profiles equal; they are not separately rounded legacy evaluator results. '
       +'Pointwise extremes can require different profiles and do not form one realizable trajectory. Each displayed witness retains one fixed three-profile course and separate original numerical band statuses. '
       +'This does not infer change times, reconstruct measured sky history, verify shared physical conditions or validate an intervention.'};
+  return {report,context:{work,bases,locations,bands,observedRows,family,axes,objectiveRows,representatives,witnessFor}};
 }
 
-export function prepareThreeEpochSkyEvidence(originals,query){
-  const investigation=prepareThreeEpochSkySource(originals,query),report=evaluate(investigation);
+// Private consumer seam: derive this context afresh from admitted originals.
+// The public evidence shape remains source/report only; no saved calculations are accepted.
+export function prepareThreeEpochSkyExecution(originals,query){
+  const investigation=prepareThreeEpochSkySource(originals,query),{report,context}=evaluate(investigation);
   if(new Blob([JSON.stringify({investigation,report})]).size>THREE_EPOCH_SKY_LIMITS.maxReportBytes)
     throw Error('The complete three-epoch report exceeds its bounded output allowance; no partial result is accepted');
-  return {investigation,report};
+  return {investigation,report,context};
+}
+export function prepareThreeEpochSkyEvidence(originals,query){
+  const {investigation,report}=prepareThreeEpochSkyExecution(originals,query);return {investigation,report};
+}
+export function inspectThreeEpochSkyWork(originals,query){
+  return preflight(prepareThreeEpochSkySource(originals,query));
 }
 export function parseThreeEpochSkySource(text){
   if(typeof text!=='string')throw TypeError('Three-epoch original inputs must be JSON text');

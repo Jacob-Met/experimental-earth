@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Can one sky history meet every temperature target? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-course-target.css">
+</head>
+<body class="course-target-page">
+  <header class="page-heading">
+    <a class="brand" href="sky-three-epochs.html" target="_blank" rel="noopener">Experimental Earth · three-profile record ↗</a>
+    <p class="eyebrow">Complete original record / one common set of targets</p>
+    <h1>Can one sky history meet every temperature target?</h1>
+    <p class="intro">Keep every temperature observation. Choose the original times and desired cooling limits, then find the best single set of sky profiles for all of them together.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="target-source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Keep the original evidence</p><h2 id="target-source-heading">One record, three declared sky profiles</h2></div>
+        <button id="target-example" type="button" disabled>Try the shared-target example</button></div>
+      <p>Open a saved three-profile inquiry, or reopen a saved target comparison. The original observations, receiver order, source declarations and both change times stay together.</p>
+      <label class="file-label">Open original inquiry or target comparison<input id="target-open" type="file" accept=".json,application/json" disabled></label>
+      <p id="target-source-summary" class="quiet">No original inquiry loaded.</p>
+      <details id="target-original-details"><summary>Inspect every original observation and the shared conditions</summary><div id="target-originals"></div></details>
+    </section>
+    <section class="card" aria-labelledby="target-goal-heading">
+      <p class="eyebrow">02 / State the desired result</p><h2 id="target-goal-heading">All selected ceilings belong to the same profile</h2>
+      <p>Each ceiling is a desired proposal-minus-existing temperature difference. Negative means cooler. These targets are separate from the original observation bands.</p>
+      <p id="target-editor-summary" class="quiet">Load original evidence to choose its times and temperature components.</p>
+      <div id="target-editor" class="target-editor" tabindex="0" role="region" aria-label="Original-time target editor"></div>
+      <label class="target-source-label">Basis for these desired targets<textarea id="target-attribution" maxlength="400" disabled></textarea></label>
+      <div class="target-adjustment"><label>Raise every selected ceiling by, °C<input id="target-shift" type="number" step="any" value="0.0002" disabled></label>
+        <button id="target-shift-apply" type="button" disabled>Change selected draft ceilings</button></div>
+      <div class="actions"><button id="target-apply" type="button" disabled>Apply target edits</button><button id="target-cancel" type="button" disabled>Cancel target edits</button></div>
+      <div class="actions"><button id="target-run" type="button" disabled>Find the best common profile</button><button id="target-export" type="button" disabled>Download original inputs and targets</button></div>
+      <p id="target-status" role="status">Open a saved original inquiry or try the authored example.</p>
+    </section>
+    <section id="target-results" class="card" aria-label="One common profile across all declared original-time targets" hidden></section>
+  </main>
+  <footer>Every selected time belongs to the original course. Exact target compatibility and the separate numerical replay remain visible. This inquiry does not interpolate between times, reconstruct measured sky history or validate a physical intervention.</footer>
+  <script type="module" src="shade-heat-course-target-page.js"></script>
+</body>
+</html>
