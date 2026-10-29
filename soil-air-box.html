@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gas release across offered ranges · Experimental Earth</title>
+  <link rel="stylesheet" href="soil-air-box.css">
+  <script type="module" src="soil-air-box-page.js"></script>
+</head>
+<body>
+  <main>
+    <nav aria-label="Soil investigations"><a href="soil-air-boundary.html">← Single-condition air balance</a><a href="index.html">Earth workbench</a></nav>
+    <header>
+      <p class="eyebrow">Experimental Earth · Static column inquiry</p>
+      <h1>Does every offered condition require gas release?</h1>
+      <p class="lede">Declare a range for each quantity. Inspect the smallest and largest amount of initial gas that the model requires to leave across <strong>every combination</strong> in those ranges.</p>
+      <p class="quiet">The offered ranges are declarations. This inquiry does not establish measurement uncertainty, probability, a release schedule or arrival time.</p>
+    </header>
+    <section class="source-tools" aria-label="Original range files">
+      <button id="example" type="button">Open authored example</button>
+      <label class="file-control">Reopen original ranges<input id="reopen" type="file" accept="application/json,.json"></label>
+      <button id="export" type="button" disabled>Save original ranges</button>
+    </section>
+    <p id="status" class="status" role="status" aria-live="polite">Offer original ranges below, or inspect the explicitly authored example.</p>
+    <section id="results" class="results" aria-label="Whole-range gas balance" hidden></section>
+    <form id="form">
+      <section class="form-intro">
+        <h2>Original ranges and their sources</h2>
+        <label class="title-label">Inquiry title<input id="title" type="text" maxlength="160" required></label>
+        <p>Equal endpoints are allowed. Every target must be at or below every initial front, and every combination must leave a positive gas region. An incompatible box is refused as a whole.</p>
+      </section>
+      <div id="ranges" class="range-grid"></div>
+      <fieldset class="assumptions"><legend>Explicit model and range assumptions</legend><div id="assumptions"></div></fieldset>
+      <div class="run-row"><button id="inspect" class="primary" type="submit">Inspect every offered combination</button><span class="quiet">Inputs only are saved. Reopening recomputes the result.</span></div>
+    </form>
+    <details class="method-note">
+      <summary>What the exact bound means</summary>
+      <p>The same static sharp-front and ideal-gas assumptions as the single-condition inquiry apply. At target depth z, the necessary removed fraction is max(0, 1 − (H + z + h + ψ)(L − z) / (H(L − z₀))). It refers to initial connected gas amount, not pore volume.</p>
+      <p>The extrema occur at two admitted corner conditions. The minimum uses the largest column depth, initial front, ponding head and capillary head, with the smallest atmospheric head and target depth. The maximum reverses those choices. The result covers the complete Cartesian box; no correlations are inferred.</p>
+      <p>Stored finite binary64 endpoints are decoded exactly, then mm, cm and m use exact integer scale factors. The result can therefore differ from the single-condition inquiry’s rounded unit conversion and numerical-contact convention. Exact stored-number arithmetic does not certify the physical model or the offered ranges.</p>
+      <p>The remaining gas-region margin is exactly 1/100000000 of column depth. Scalar software bounds remain 1–100000 mm for packed depth, 1000–20000 mm for atmospheric head, 0–100000 mm for capillary head, and the represented binary64 value 0.000001–100000 mm for other depths. Admission and comparison use exact arithmetic after unit conversion.</p>
+      <p>At a positive removal threshold, equality gives zero water drive. A zero threshold can leave positive drive, or be exactly at pressure balance. No finite arrival time or dynamically sufficient release history follows.</p>
+    </details>
+  </main>
+</body>
+</html>
