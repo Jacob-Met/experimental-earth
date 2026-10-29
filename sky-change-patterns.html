@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How many sky changes does the record require? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-sky-change.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-three-epochs.html" target="_blank" rel="noopener">Experimental Earth · original sky observations ↗</a>
+    <p class="eyebrow">Original observations / possible times of change</p>
+    <h1>How many sky changes does the record require?</h1>
+    <p class="intro">Keep every original temperature observation. Compare a fixed shared sky profile with every allowed one- and two-change pattern on the original clock. Inspect all patterns in the simplest compatible class.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="change-source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the complete record</p><h2 id="change-source-heading">The observations stay together</h2></div>
+        <button id="change-example" type="button" disabled>Try the original-record example</button></div>
+      <p>Open three to 24 original reading files, or the original inputs from a saved sky inquiry. Every receiver, original UTC, temperature component, band and attribution stays attached.</p>
+      <label class="file-label">Open original evidence<input id="change-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="change-source-summary" class="quiet">No original readings loaded.</p>
+      <details id="change-source-details"><summary>Inspect the complete original record</summary><div id="change-sources"></div></details>
+    </section>
+    <form id="change-form" class="card" novalidate>
+      <p class="eyebrow">02 / Choose the model class</p><h2>One clock, all possible original boundaries</h2>
+      <p>Each profile has four directional bins and stays shared across every original receiver and both designs. The search checks simpler classes first and retains every compatible pattern in the first class that succeeds.</p>
+      <div class="question-grid">
+        <label>Maximum allowed changes<select id="change-maximum" disabled><option value="0">0 · one fixed profile</option><option value="1">1 · up to two profiles</option><option value="2" selected>2 · up to three profiles</option></select></label>
+        <label>Basis for shared conditions<input id="change-sharing" maxlength="400" required disabled></label>
+        <label class="change-wide">Basis for this model comparison<textarea id="change-search-source" maxlength="400" required disabled>Compare every original boundary under at most two shared-profile changes; this is a declared model comparison.</textarea></label>
+      </div>
+      <p id="change-clock" class="quiet">Load a complete original record to inspect its clock.</p>
+      <div class="actions"><button id="change-run" type="submit" disabled>Find the simplest compatible class</button>
+        <label class="file-label">Reopen this inquiry<input id="change-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="change-export" type="button" disabled>Download original inputs</button></div>
+      <p id="change-status" role="status">Open original evidence or try the authored example.</p>
+    </form>
+    <section id="change-results" class="card" aria-label="Minimum original-clock sky-change comparison" hidden></section>
+  </main>
+  <footer>Compatibility concerns the same represented response model across every pattern. Original thermal replays have separate numerical statuses. The search does not establish a measured sky history or physical time of change.</footer>
+  <script type="module" src="shade-heat-sky-change-page.js"></script>
+</body>
+</html>
