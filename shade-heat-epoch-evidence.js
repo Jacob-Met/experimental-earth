@@ -69,16 +69,25 @@ export function prepareEpochSkySource(originals, query) {
   return investigation;
 }
 
-function buildBasis(input, splitAfterInterval) {
-  const source = input.source, geometry = sampleProfileBasisGeometry(source, BINS), pairs = [];
+function buildBasis(input, splitAfterInterval, reuse = null) {
+  const source = input.source, freshGeometry = !reuse?.geometry;
+  const geometry = reuse?.geometry ?? sampleProfileBasisGeometry(source, BINS), pairs = [];
+  if (reuse && freshGeometry) reuse.geometry = geometry;
+  const diagonal = reuse ? (reuse.diagonal ??= []) : [];
+  let executedCourses = 0, reusedCompleteCourses = 0;
   if (splitAfterInterval >= geometry.sampled.intervals.length)
     throw Error('The declared split is not an original interval boundary');
   for (let early = 0; early < BINS; early++) for (let late = 0; late < BINS; late++) {
-    const final = evaluateProfileThermalCourse(source, geometry,
+    // A diagonal course has the same profile on every original interval.
+    // Its complete result is identical at every offered boundary in this inquiry.
+    const prior = early === late ? diagonal[early] : null;
+    const final = prior ?? evaluateProfileThermalCourse(source, geometry,
       (target, _row, index) => bounds.map(bound =>
         geometry.transmissions[target][bound][index < splitAfterInterval ? early : late].transmission),
       'Two-epoch one-bin sky pair ' + (early + 1) + '/' + (late + 1),
       'Complete two-epoch inquiry refused at pair ' + (early + 1) + '/' + (late + 1));
+    if (prior) reusedCompleteCourses += 4; else executedCourses += 4;
+    if (early === late) diagonal[early] = final;
     pairs.push({ early, late, final });
   }
   const coefficients = pairs.map(({ early, late }) => ({ early, late, final: mapFinal((target, bound, store) =>
@@ -94,6 +103,7 @@ function buildBasis(input, splitAfterInterval) {
       return profileFraction(delta);
     }) }));
   return { input, geometry, pairs, coefficients, maximumDiscrepancyC, nonzeroDiscrepancies, discrepancies,
+    geometryExecutions: Number(freshGeometry), executedCourses, reusedCompleteCourses,
     splitUtc: new Date(Date.parse(source.declaration.path.startUtc)
       + geometry.sampled.intervals[splitAfterInterval].fromMinute * 60000).toISOString() };
 }
@@ -189,10 +199,10 @@ function inspectWitness(item, bases, bands, splitAfterInterval) {
     originalReplays, maximumReplayResidualC: profileFraction(maximumReplayResidualC), exactMarginalEqualities };
 }
 
-function evaluate(investigation) {
+function evaluate(investigation, reuse = null) {
   const work = preflight(investigation), split = investigation.query.splitAfterInterval;
   // Both complete original pair bases are prerequisites. Neither band filters a basis.
-  const bases = investigation.readings.map(input => buildBasis(input, split));
+  const bases = investigation.readings.map((input, index) => buildBasis(input, split, reuse?.[index]));
   for (let i = 0; i < bases.length; i++) {
     if (!bases[i].pairs.every(pair => pair.final.existing.lower.surfaceC === pair.final.existing.upper.surfaceC))
       throw Error('Original reading ' + (i + 1) + ' has unresolved existing observation endpoints; no favorable endpoint is selected');
@@ -222,11 +232,15 @@ function evaluate(investigation) {
       points: bases.map(basis => ({ cellIndex: basis.input.query.reading.cellIndex,
         maximumAdditivePairDiscrepancyC: profileFraction(basis.maximumDiscrepancyC),
         nonzeroDiscrepancies: basis.nonzeroDiscrepancies, pairs: basis.discrepancies })) },
-    diagnostics: bases.map(basis => basis.geometry.diagnostics),
-    work: { ...work, executedBasisCourses: bases.length * BINS * BINS * 4,
+    diagnostics: bases.map(basis => reuse ? structuredClone(basis.geometry.diagnostics) : basis.geometry.diagnostics),
+    work: { ...work, ...(reuse ? {
+      geometryPasses: bases.reduce((sum, basis) => sum + basis.geometryExecutions, 0),
+      completeBasisCourses: bases.length * BINS * BINS * 4,
+      reusedCompleteBasisCourses: bases.reduce((sum, basis) => sum + basis.reusedCompleteCourses, 0),
+    } : {}), executedBasisCourses: bases.reduce((sum, basis) => sum + basis.executedCourses, 0),
       executedWitnessCourses: witnesses.length * bases.length * 4,
-      executedThermalCourses: bases.length * BINS * BINS * 4 + witnesses.length * bases.length * 4,
-      actualSkyFaceTests: bases.reduce((sum, basis) => sum + basis.geometry.sampled.diffuseSky.estimatedFaceTests, 0),
+      executedThermalCourses: bases.reduce((sum, basis) => sum + basis.executedCourses, 0) + witnesses.length * bases.length * 4,
+      actualSkyFaceTests: bases.reduce((sum, basis) => sum + basis.geometryExecutions * basis.geometry.sampled.diffuseSky.estimatedFaceTests, 0),
       profileIntersection: family.work,
       exactWitnessMarginalEqualities: witnesses.reduce((sum, witness) => sum + witness.exactMarginalEqualities, 0) },
     semantics: 'Each exact early and late profile supplies both original receivers and both designs. The exact additive surrogate uses all sixteen complete original one-bin pair courses as a validity gate and seven reference courses for its coefficients. '
@@ -249,4 +263,127 @@ export function parseEpochSkyEvidence(text) {
   if (!exactKeys(raw, ['kind', 'model', 'readings', 'query']) || raw.kind !== EPOCH_SKY_KIND || !sameModel(raw.model))
     throw Error('Unsupported two-epoch input model or saved results');
   return prepareEpochSkyEvidence(raw.readings, raw.query);
+}
+
+
+export const SKY_BOUNDARY_KIND = 'experimental-earth/offered-sky-boundary-reading-inputs/1';
+export const SKY_BOUNDARY_MODEL = Object.freeze({ ...EPOCH_SKY_MODEL,
+  name: 'two-original-points-offered-sky-change-boundaries',
+  boundary: 'every explicitly offered existing original interval boundary, in supplied order',
+  inference: 'complete finite alternative comparison; no interpolation or change-time identification',
+});
+// The original course has at most24 intervals, hence at most23 internal boundaries.
+// Two receivers require32 static-diagonal courses once,96 other pair courses per
+// boundary, and at most32 full witness courses per boundary. Admission reserves all.
+export const SKY_BOUNDARY_LIMITS = Object.freeze({ maxBoundaries: 23,
+  maxGeometryChecks: EPOCH_SKY_LIMITS.maxGeometryChecks,
+  maxCompleteBasisCourses: 128 * 23, maxExecutedBasisCourses: 32 + 96 * 23,
+  maxWitnessCourses: 32 * 23, maxCourses: 32 + 128 * 23,
+  maxCourseIntervals: (32 + 128 * 23) * 24,
+  maxCandidates: EPOCH_SKY_LIMITS.maxCandidates * 23 });
+const sameBoundaryModel = value => exactKeys(value, Object.keys(SKY_BOUNDARY_MODEL))
+  && Object.keys(SKY_BOUNDARY_MODEL).every(key => value[key] === SKY_BOUNDARY_MODEL[key]);
+
+function boundaryInput(investigation, splitAfterInterval) {
+  return { kind: EPOCH_SKY_KIND, model: { ...EPOCH_SKY_MODEL }, readings: investigation.readings,
+    query: { bins: BINS, splitAfterInterval, sharingSource: investigation.query.sharingSource } };
+}
+function preflightBoundaries(investigation) {
+  // Every offered boundary is admitted before any geometry or thermal evaluation.
+  const inputs = investigation.query.splitAfterIntervals.map(split => boundaryInput(investigation, split));
+  const perBoundary = inputs.map(preflight), first = perBoundary[0], count = inputs.length;
+  const intervalCount = first.sources[0].intervals;
+  const work = { offeredBoundaries: count, geometryPasses: first.geometryPasses,
+    estimatedRayTests: first.estimatedRayTests, estimatedSkyFaceTests: first.estimatedSkyFaceTests,
+    completeBasisCourses: 128 * count, reservedExecutedBasisCourses: 32 + 96 * count,
+    reservedWitnessCourses: 32 * count, reservedThermalCourses: 32 + 128 * count,
+    reservedCourseIntervals: (32 + 128 * count) * intervalCount,
+    reservedCandidates: EPOCH_SKY_LIMITS.maxCandidates * count };
+  if (work.estimatedRayTests + work.estimatedSkyFaceTests > SKY_BOUNDARY_LIMITS.maxGeometryChecks
+      || work.completeBasisCourses > SKY_BOUNDARY_LIMITS.maxCompleteBasisCourses
+      || work.reservedExecutedBasisCourses > SKY_BOUNDARY_LIMITS.maxExecutedBasisCourses
+      || work.reservedWitnessCourses > SKY_BOUNDARY_LIMITS.maxWitnessCourses
+      || work.reservedThermalCourses > SKY_BOUNDARY_LIMITS.maxCourses
+      || work.reservedCourseIntervals > SKY_BOUNDARY_LIMITS.maxCourseIntervals
+      || work.reservedCandidates > SKY_BOUNDARY_LIMITS.maxCandidates)
+    throw Error('All offered boundaries and their complete witness reserve exceed the whole inquiry allowance');
+  return { inputs, work, intervalCount };
+}
+
+export function prepareSkyBoundarySource(originals, query) {
+  if (!exactKeys(query, ['bins', 'splitAfterIntervals', 'sharingSource']) || query.bins !== BINS
+      || !Array.isArray(query.splitAfterIntervals) || !query.splitAfterIntervals.length
+      || query.splitAfterIntervals.length > SKY_BOUNDARY_LIMITS.maxBoundaries
+      || !Array.from(query.splitAfterIntervals).every(value => Number.isInteger(value) && value >= 1)
+      || new Set(query.splitAfterIntervals).size !== query.splitAfterIntervals.length)
+    throw Error('Offer 1 to 23 distinct integer original interval boundaries in a dense list, using four bins');
+  const first = prepareEpochSkySource(originals, { bins: BINS,
+    splitAfterInterval: query.splitAfterIntervals[0], sharingSource: query.sharingSource });
+  const investigation = { kind: SKY_BOUNDARY_KIND, model: { ...SKY_BOUNDARY_MODEL }, readings: first.readings,
+    query: { bins: BINS, splitAfterIntervals: Array.from(query.splitAfterIntervals), sharingSource: query.sharingSource } };
+  checkShadeHeatBytes(new Blob([JSON.stringify(investigation)]).size);
+  preflightBoundaries(investigation);
+  return investigation;
+}
+const exactFraction = value => [BigInt(value.exact.numerator), BigInt(value.exact.denominator)];
+function boundaryRanges(reports) {
+  const compatible = reports.map((report, boundaryIndex) => ({ report, boundaryIndex }))
+    .filter(({ report }) => report.compatibility === 'compatible');
+  if (!compatible.length) return null;
+  return Object.fromEntries(stores.map(store => [store, Object.fromEntries(bounds.map((bound, side) => {
+    let best = compatible[0];
+    for (const item of compatible) {
+      const order = cmp(exactFraction(item.report.ranges[store][bound].differenceC),
+        exactFraction(best.report.ranges[store][bound].differenceC));
+      if (side === 0 ? order < 0 : order > 0) best = item;
+    }
+    const chosen = best.report.ranges[store][bound];
+    return [bound, { differenceC: structuredClone(chosen.differenceC), boundaryIndex: best.boundaryIndex,
+      splitAfterInterval: best.report.query.splitAfterInterval, splitUtc: best.report.splitUtc, witnessId: chosen.witnessId }];
+  }))]));
+}
+export function prepareSkyBoundaryEvidence(originals, query) {
+  const investigation = prepareSkyBoundarySource(originals, query);
+  const admitted = preflightBoundaries(investigation), reuse = [{}, {}];
+  // This private context lives for exactly one normalized original pair. It cannot
+  // be supplied by a caller, reused across inquiries or populated from saved results.
+  const reports = admitted.inputs.map(input => evaluate(input, reuse));
+  const sum = key => reports.reduce((total, report) => total + report.work[key], 0);
+  const work = { ...admitted.work,
+    geometryPasses: sum('geometryPasses'), actualSkyFaceTests: sum('actualSkyFaceTests'),
+    completeBasisCourses: sum('completeBasisCourses'),
+    reusedCompleteBasisCourses: sum('reusedCompleteBasisCourses'), executedBasisCourses: sum('executedBasisCourses'),
+    executedWitnessCourses: sum('executedWitnessCourses'), executedThermalCourses: sum('executedThermalCourses'),
+    executedCourseIntervals: sum('executedThermalCourses') * admitted.intervalCount,
+    candidates: reports.reduce((total, report) => total + report.work.profileIntersection.candidates, 0) };
+  if (work.geometryPasses !== admitted.work.geometryPasses
+      || work.completeBasisCourses !== admitted.work.completeBasisCourses
+      || work.executedBasisCourses !== admitted.work.reservedExecutedBasisCourses
+      || work.executedBasisCourses + work.reusedCompleteBasisCourses !== work.completeBasisCourses
+      || work.executedWitnessCourses > admitted.work.reservedWitnessCourses
+      || work.executedThermalCourses > admitted.work.reservedThermalCourses
+      || work.executedCourseIntervals > admitted.work.reservedCourseIntervals
+      || work.candidates > admitted.work.reservedCandidates)
+    throw Error('The complete offered-boundary inquiry exceeded its admitted work; no partial result is accepted');
+  const compatibleBoundaries = reports.filter(report => report.compatibility === 'compatible')
+    .map(report => report.query.splitAfterInterval);
+  const report = { status: 'compared', compatibility: compatibleBoundaries.length ? 'compatible' : 'incompatible',
+    model: { ...SKY_BOUNDARY_MODEL }, query: { ...investigation.query,
+      splitAfterIntervals: [...investigation.query.splitAfterIntervals] },
+    finalUtc: reports[0].finalUtc, cellIndex: reports[0].cellIndex, intervalCount: admitted.intervalCount,
+    compatibleBoundaries, boundaries: reports, ranges: boundaryRanges(reports), work,
+    semantics: 'Every explicitly offered original boundary is retained in supplied order. Each uses the same two original readings, weather, geometry, thermal assumptions and complete two-epoch model. '
+      + 'The displayed outer bounds enclose the union over compatible offered alternatives; they do not assert that every intermediate difference is attainable. '
+      + 'Each extreme remains attached to its original boundary and exact profile witness. Ties retain the first supplied boundary. '
+      + 'No unoffered boundary, interpolated time or physical change time is inferred. Original static, additive static and original replay evidence remain separate at every boundary.' };
+  return { investigation, report };
+}
+export function parseSkyBoundaryEvidence(text) {
+  if (typeof text !== 'string') throw TypeError('Offered sky-boundary inputs must be JSON text');
+  checkShadeHeatBytes(new Blob([text]).size);
+  let raw;
+  try { raw = JSON.parse(text); } catch { throw Error('Invalid offered sky-boundary input JSON'); }
+  if (!exactKeys(raw, ['kind', 'model', 'readings', 'query']) || raw.kind !== SKY_BOUNDARY_KIND || !sameBoundaryModel(raw.model))
+    throw Error('Unsupported offered sky-boundary model or saved results');
+  return prepareSkyBoundaryEvidence(raw.readings, raw.query);
 }
