@@ -1,0 +1,11 @@
+@import url('./shade-heat-spatial-evidence.css');
+#epoch-run{background:#205b4e;color:white;border-color:#205b4e}
+#epoch-status{font-size:.94rem;margin-bottom:0}#epoch-status[data-state=refused],#epoch-status[data-state=file-refused]{color:#8a3c24}
+#epoch-witness{padding:20px;border:1px solid #d5e4da;border-radius:12px;margin-top:16px;min-width:0}
+.range-card strong{font-size:1.13rem}.profile-row>span:last-child{white-space:nowrap}
+.question-grid{grid-template-columns:190px minmax(0,1fr)}.model-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.model-card{border:1px solid #d9e2dd;background:#f7f9f5;border-radius:10px;padding:16px;min-width:0}.model-card h3{font-size:.92rem}.model-card strong{font-size:1.03rem}.model-card p{font-size:.82rem;margin-bottom:0}.model-card[data-status=compatible]{background:#edf6ee;border-color:#82a890}
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}.phase-profile{margin:0;background:#f5f8f4;border:1px solid #dce5db;border-radius:10px;padding:16px;min-width:0}.phase-profile figcaption{font-weight:700;margin-bottom:12px}.profile-row{display:grid;grid-template-columns:75px minmax(20px,1fr) 110px;gap:8px;align-items:center;font-size:.82rem;margin:9px 0}.profile-row>span:last-child{text-align:right;font-variant-numeric:tabular-nums}.profile-track{display:block;height:12px;background:#e0e9df;border-radius:6px;overflow:hidden}.profile-fill{display:block;height:100%;background:#3d7968;border-radius:6px}.phase-profile[data-phase="1"] .profile-fill{background:#4c78a0}
+.replay-note{padding:14px;border:1px solid #b5d1bf;background:#f0f7f0;border-radius:9px;font-size:.9rem}.replay-note.outside{border-color:#dfc594;background:#fcf5e6;color:#6b4b1b}pre{max-width:100%;overflow:auto;padding:14px;background:#f4f7f3;border-radius:8px;font-size:.75rem}#epoch-results>p{overflow-wrap:anywhere}
+@media(max-width:800px){.phase-grid{grid-template-columns:1fr}.model-grid{grid-template-columns:1fr}.model-card p{font-size:.88rem}}
+@media(max-width:540px){.question-grid{grid-template-columns:1fr}#epoch-witness{padding:14px}.phase-profile{padding:11px}.profile-row{grid-template-columns:65px minmax(20px,1fr) 95px;gap:6px;font-size:.76rem}}

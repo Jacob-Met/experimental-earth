@@ -1,0 +1,161 @@
+{
+  "status": "Qualified source before private publication; accepted receiving is separate",
+  "qualifiedAt": "2026-10-29T00:15:16.545689+00:00",
+  "baseCommit": "426317a66fd19f5bb919c7cc635b1ee5ff16fd98",
+  "baseTree": "a4eab7d686dc11730ec8d0fcad9ca90fd1be6631",
+  "canonicalBaseMaterializedFiles": 715,
+  "scope": "Two original receiver readings under two explicitly declared four-bin sky epochs at an original interval boundary; exact additive rational surrogate with separate original static and numerical replay evidence.",
+  "native": {
+    "passed": 32,
+    "failed": 0,
+    "tapSHA256": "ad05712b9795ab136e3c78fad1a39db94183f47ee34c95a8547c70167d3a4958",
+    "command": "node --test --test-isolation=none --test-reporter=tap tests/shade-heat-profile-range.test.mjs tests/shade-heat-profile-evidence.test.mjs tests/shade-heat-spatial-evidence.test.mjs tests/shade-heat-epoch-evidence.test.mjs"
+  },
+  "independentRationalOracle": {
+    "sourceSha256": "dcf88e4afd40b25a6e6c66a14d0eb5f087e212285bd93083503a534bf708a98e",
+    "cases": 160,
+    "exactCandidateWitnesses": 359,
+    "objectivePairs": 348,
+    "method": "Full-dimensional inequality active-set enumeration and exact Gaussian elimination using Python Fraction; no pair/triangle support enumeration",
+    "status": "PASS",
+    "script": "tests/shade-heat-rational-bands-independent.py",
+    "scriptSHA256": "863017f9d3cbacbb444de4335aa0eb41fbe51d8cb9164a91b57b15bcb97fd216"
+  },
+  "independentSourceReview": {
+    "status": "passed",
+    "exactMarginalIdentities": 80,
+    "pairedDiscrepancyIdentities": 256,
+    "completeInquiries": 3,
+    "zeroWidthSurrogateCompatible": true,
+    "sourceReversal": true,
+    "refusals": 4,
+    "scope": "Source admission and exact additive surrogate only; no own browser or physical accuracy claim",
+    "reviewer": "WORLDLAW retained worker",
+    "harnessSHA256": "94ef3f7d5b73e65b6bd8bd96bd707fee4a9a13377ef07286630c3c3470497ba5"
+  },
+  "browser": [
+    {
+      "course": "two-epoch",
+      "groups": 9,
+      "checks": [
+        "Ordinary spatial-inquiry link opens the two-epoch consumer; the actual worker completes 128 original basis courses and 308 vertices while both static comparisons reject",
+        "Real keyboard and extremum buttons inspect noncontiguous witness IDs, exact early/late profiles and original replay endpoints that remain explicitly outside their bands",
+        "Actual source-only download reopens on a fresh document and recomputes the same result without parent state or stored result fields",
+        "Two actual original files retain distinct receivers and original 4/16-bin histories while point selection and original-boundary changes recompute the chosen consequence",
+        "A malformed member, incomplete pair and invalid UTF-8 refuse transactionally without mixing new inputs into the prior accepted pair",
+        "A delayed two-file read cannot reverse or replace a newer comparison after a common-input edit retires the whole batch",
+        "A held compatible response from the actual old worker cannot replace a newer incompatible inquiry at a different original boundary",
+        "Mismatched original orientation refuses, incompatible common skies remain an exportable completed empty result, and forged results cannot replace it",
+        "Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation"
+      ],
+      "launcher": "python3 serve.py --port 0",
+      "sandboxActive": true,
+      "exceptions": [],
+      "sourceFilesRehashedEqual": 724,
+      "laterUnconsumedFilesExcluded": [
+        "docs/SHADE_HEAT_EPOCH_EVIDENCE.md",
+        "docs/receipts/two-epoch-sky-evidence-52d429.json",
+        "tests/shade-heat-rational-bands-independent.py"
+      ],
+      "receiptSHA256": "51c5c400c0ca9580881934c5848d698e147554497e6b7ae8b4024f26454ee711",
+      "finishedAt": "2026-10-29T00:10:58.672Z"
+    },
+    {
+      "course": "maintained-spatial",
+      "groups": 9,
+      "checks": [
+        "Ordinary reading-panel link opens the independent consumer; actual authored-source worker evaluates both original bases and all 64 three-bin vertices",
+        "Real keyboard and extremum-button selection inspect noncontiguous witness IDs, both observation bands and the same shared mixture",
+        "Actual source-only download reopens on a fresh document and recomputes the same result without parent state or stored result fields",
+        "Two actual original files retain distinct receivers and original 4/16-bin histories while point selection and common-bin changes recompute the chosen consequence",
+        "A malformed member, incomplete pair and invalid UTF-8 refuse transactionally without mixing new inputs into the prior accepted pair",
+        "A delayed two-file read cannot reverse or replace a newer comparison after a common-input edit retires the whole batch",
+        "A held response from the actual old worker cannot replace a newer complete 16-bin inquiry",
+        "Mismatched original orientation refuses, incompatible common skies remain an exportable completed empty result, and forged results cannot replace it",
+        "Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation"
+      ],
+      "launcher": "python3 serve.py --port 0",
+      "sandboxActive": true,
+      "exceptions": [],
+      "sourceFilesRehashedEqual": 721,
+      "laterUnconsumedFilesExcluded": [
+        "docs/SHADE_HEAT_EPOCH_EVIDENCE.md",
+        "docs/receipts/two-epoch-sky-evidence-52d429.json",
+        "shade-heat-epoch-evidence-page.js",
+        "shade-heat-epoch-evidence.css",
+        "tests/shade-heat-epoch-evidence.browser.mjs",
+        "tests/shade-heat-rational-bands-independent.py"
+      ],
+      "receiptSHA256": "9b962e2cec457d20152693b9458b817c2e9742ce156b8d81e005aedfdf7600fd",
+      "finishedAt": "2026-10-29T00:08:56.914Z"
+    }
+  ],
+  "visualInspection": [
+    "1440px comparison and ranges",
+    "390px phase profiles",
+    "390px explicit outside-original-band replay notice"
+  ],
+  "authoredResult": {
+    "originalStatic": "incompatible",
+    "additiveStatic": "incompatible",
+    "twoEpoch": "compatible",
+    "vertices": 308,
+    "basisCourses": 128,
+    "displayedWitnessCourses": 16,
+    "geometryPasses": 2,
+    "surfaceDifferenceC": [
+      1.6366829698817351,
+      1.6406829698817353
+    ],
+    "lowerStoreDifferenceC": [
+      1.1406642635642863,
+      1.156550420628798
+    ],
+    "originalReplayOutsideBandRetained": true
+  },
+  "negativeFindings": [
+    "Earlier receiver pairing did not distinguish changing from static skies.",
+    "The80-control exploratory family had32static rejections admitted by the changing model, and0equal-thermal gains.",
+    "Independently rounded original pair coefficients do not satisfy exact marginal closure; those raw-pair coefficients are not used as the exact changing model.",
+    "Computed original witness endpoints can lie just outside original bands and remain labeled outside."
+  ],
+  "limits": {
+    "basisCourses": 128,
+    "reservedWitnessCourses": 32,
+    "totalCourses": 160,
+    "courseIntervals": 3840,
+    "exactCandidates": 2736,
+    "geometry": "Existing shared shade-heat maximum, unchanged",
+    "numericalConsistencyScreenC": 1e-09
+  },
+  "nativeTask": {
+    "taskId": "experimental-earth-two-epoch-sky-52d429",
+    "owner": "estate-52d429-20261025",
+    "revision": 2,
+    "reconciliationSHA256": "0a6f6aa2cf0bc99a275d6c88cbb4dab8ed2c3e974df95cf848e6063bf710ed73"
+  },
+  "limitations": [
+    "Exact additive surrogate, not exact original floating-course or physical equivalence.",
+    "Numerical consistency screen is not a certified continuum error bound and never widens original bands.",
+    "Original4/8/16static source formats, models and work budgets remain unchanged.",
+    "All geometry, thermal, channel-weight, initial-state, heat-planning, lateral-transfer and longwave owners and exact action holds preserved.",
+    "No public deployment, credential/access changes or CI success claim."
+  ],
+  "sha256": {
+    "shade-heat-profile-basis.js": "ac83a5d37b672bf3cc3e31c99d1b806945a07750bdeda363feb0845eff5311e8",
+    "shade-heat-profile-range.js": "43dd7b87c87bb7e6eec29b7735e6584f757d87be6b7637e7870140b2f1cdc79d",
+    "shade-heat-profile-two-bands.js": "dcf88e4afd40b25a6e6c66a14d0eb5f087e212285bd93083503a534bf708a98e",
+    "shade-heat-spatial-evidence.js": "76acbf29b1d43f567a4139bb864be5cc02a48ab3070b771718e2c92a8c30d9c4",
+    "sky-spatial-evidence.html": "e3462e3a6830d9ba5eb6ba278c8496b2e7d8fc1a29435807bb478868b1dc4a00",
+    "shade-heat-epoch-evidence.js": "1a1878c7deafeedb53b6c2ad53bd86e28942018ee6c0544461143cb19feb6f03",
+    "shade-heat-epoch-evidence-worker.js": "98784dd2e1d57e7363703bfe5fe95699ff32d7c40730aed447fbf08ac02c94c7",
+    "shade-heat-epoch-evidence-page.js": "951ae83fd3f84ec8abfb0908f8bffe1071780efa624d20678676764c3dc5e0d0",
+    "shade-heat-epoch-evidence.css": "e608ced8e6897de5a20ebb1528faa8c4c67cfc7f856aa86dc373af5fdabbbbed",
+    "shade-heat-epoch-example.js": "b70ecb66b386d08ef8021a02ea607aae7a2d398b1733700f969a8ff97690cb68",
+    "sky-epoch-evidence.html": "6f5ccd62c696190351d67530bfc25914f434ef2483de3489343794a0a70ddeb9",
+    "tests/shade-heat-epoch-evidence.test.mjs": "ff252542495b4b7a5b2dae604e8e2b9245d1b39766222ebcb6c840f8c3872424",
+    "tests/shade-heat-epoch-evidence.browser.mjs": "55c6b3e7ce538fe12a581afd6a6ffae9faa804e8ed7e3666146bc79416ae3035",
+    "tests/shade-heat-rational-bands-independent.py": "863017f9d3cbacbb444de4335aa0eb41fbe51d8cb9164a91b57b15bcb97fd216",
+    "docs/SHADE_HEAT_EPOCH_EVIDENCE.md": "dec6e044302b79a8d7b0652f5a576d12dcf6f2edd1dfbb38f3bf34d73e912127"
+  }
+}
