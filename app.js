@@ -39,6 +39,7 @@ import { createRainComparisonComputation } from './rain-comparison-computation.j
 import { modelNumber, readingNumber as formatReadingNumber } from './number-format.js';
 import { createWaterChart } from './water-chart.js';
 import { createWaterHistoryValues } from './water-history-values.js';
+import { createWaterHistoryCsv } from './water-history-csv.js';
 import {mountInfiltrationInquiry} from './infiltration-inquiry-panel.js';
 import { checkProjectFileBytes, serializePortableProject, parsePortableProject } from './project-portability.js';
 import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.js';
@@ -55,6 +56,7 @@ import { mountRainTrace } from './rain-trace-panel.js';
 const $ = id => document.getElementById(id);
 const waterChart = createWaterChart($('chart'));
 const waterHistory = createWaterHistoryValues($('chart').closest('.chart-wrap'));
+const waterHistoryCsv = createWaterHistoryCsv($('water-history-values'));
 const savedProject = openSavedProject();
 let project = savedProject.project;
 const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
@@ -199,6 +201,7 @@ function setComparisonInteraction(pending) {
 function setComparisonState(state, error) {
   comparisonState = state;
   waterHistory.setAvailable(state === 'ready');
+  waterHistoryCsv.setAvailable(state === 'ready');
   comparisonStatus.dataset.state = state;
   comparisonStatus.dataset.generation = String(comparisonGeneration);
   comparisonStatus.hidden = state === 'ready';
@@ -262,6 +265,7 @@ function finishComparisonDisplay() {
   const focusedStatus = comparisonStatus.contains(document.activeElement);
   comparisonFocus = null;
   waterHistory.update(completedComparison.results, completedComparison.project.title);
+  waterHistoryCsv.update(completedComparison.results, serializePortableProject(completedComparison.project));
   setComparisonState('ready');
   setComparisonInteraction(false);
   if (focusedStatus && restoreFocus?.kind === 'observation') {

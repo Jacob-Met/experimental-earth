@@ -180,3 +180,6 @@
 #water-history-values tbody tr:last-child { background: #eaf3ed; }
 #water-history-values th:first-child, #water-history-values td:first-child { padding-left: 0; }
 #water-history-values th:last-child, #water-history-values td:last-child { padding-right: 0; }
+#water-history-export { border-top: 1px solid #d4e2d9; margin-top: 16px; padding-top: 12px; }
+#water-history-export .mini-note { color: #426157; margin: 8px 0; }
+#water-history-export .obs-actions { justify-content: flex-start; }
