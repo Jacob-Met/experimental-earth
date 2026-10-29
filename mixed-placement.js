@@ -49,7 +49,7 @@ export function compareMixedResolution(project,input,baseline,stepMinutes){
  const q=admitMixed(project,input),c=contexts.get(baseline);
  if(!c||c.signature!==JSON.stringify(project)||c.query!==JSON.stringify(q)||c.query!==JSON.stringify(baseline.query))throw Error('Resolution requires unchanged original in-memory comparison');
  if(JSON.stringify(c.support.receiving?baseline.hypothesisIds:baseline.ratesMmHr)!==JSON.stringify(c.support.receiving?c.support.receiving.ids:c.support.rates))throw Error('Original support was altered');
- if(!Number.isFinite(stepMinutes)||stepMinutes<=0||stepMinutes>=project.weather.stepMinutes)throw Error('Choose a positive finer timestep');
+ if(!Number.isFinite(stepMinutes)||stepMinutes<1||stepMinutes>=project.weather.stepMinutes)throw Error('Choose a supported finer timestep of at least1 minute');
  const changed={...project,weather:{...project.weather,stepMinutes}},count=q.receivingStudy?q.receivingStudy.hypotheses.length:q.study.ratesMmHr.length;
  const total=enumerateMixed(q).length*count*project.width*project.height*(Math.ceil(project.weather.durationMinutes/project.weather.stepMinutes)+Math.ceil(project.weather.durationMinutes/stepMinutes))*(q.durationGoal?5:3);
  if(total>3000000)throw Error('Combined resolution comparison exceeds3M work bound');
