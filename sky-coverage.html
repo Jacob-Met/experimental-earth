@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How much relaxation covers one profile—or every profile? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-sky-coverage.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-relaxation.html" target="_blank" rel="noopener">Experimental Earth · one-profile relaxation ↗</a>
+    <p class="eyebrow">Original observations / one profile and every profile</p>
+    <h1>How much relaxation covers one profile—or every profile?</h1>
+    <p class="intro">Keep every original observation and its simplest compatible sky class. Compare the smallest shared Celsius adjustment that permits one common profile with the amount that covers every represented profile. Both whole-interval requirements keep their original thresholds.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="coverage-source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Retain the complete record</p><h2 id="coverage-source-heading">The observations stay together</h2></div>
+        <button id="coverage-example" type="button" disabled>Try the original-record example</button></div>
+      <p>Open three to 24 original reading files, or original inputs from a saved sky inquiry. Every receiver, original UTC, component, temperature band and attribution stays attached.</p>
+      <label class="file-label">Open original evidence<input id="coverage-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <p id="coverage-source-summary" class="quiet">No original readings loaded.</p>
+      <details id="coverage-source-details"><summary>Inspect the complete original record</summary><div id="coverage-sources"></div></details>
+    </section>
+    <form id="coverage-form" class="card" novalidate>
+      <p class="eyebrow">02 / Fix the original model class</p><h2>Infer the minimum before applying requirements</h2>
+      <p>Four-bin sky profiles stay shared across all original receivers and both designs. Every pattern in the first compatible class is retained. The requirements do not select a class with more changes.</p>
+      <div class="question-grid">
+        <label>Maximum allowed changes<select id="coverage-maximum" disabled><option value="0">0 · one fixed profile</option><option value="1">1 · up to two profiles</option><option value="2" selected>2 · up to three profiles</option></select></label>
+        <label>Basis for shared conditions<input id="coverage-sharing" maxlength="400" required disabled></label>
+        <label class="coverage-wide">Basis for this model comparison<textarea id="coverage-search-source" maxlength="400" required disabled>Compare every original boundary under at most two shared-profile changes; this is a declared model comparison.</textarea></label>
+      </div>
+      <h3>Two original requirements, two coverage questions</h3>
+      <p>Both thresholds concern proposal minus existing. “At most” constrains the upper represented endpoint; “at least” constrains the lower. The same nonnegative Celsius amount raises an “at most” limit and lowers an “at least” limit. Equality is included.</p>
+      <fieldset class="coverage-requirement"><legend>Requirement A</legend>
+        <div class="coverage-target-grid">
+          <label>Original receiver<select id="coverage-a-receiver" disabled></select></label>
+          <label>Original clock endpoint<select id="coverage-a-time" disabled></select></label>
+          <label>Temperature component<select id="coverage-a-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label>
+          <label>Entire represented interval must be<select id="coverage-a-relation" disabled><option value="at-most">At most this threshold</option><option value="at-least">At least this threshold</option></select></label>
+          <label>Proposal − existing threshold · °C<input id="coverage-a-limit" type="number" step="any" required disabled></label>
+          <label>Basis for this requirement<input id="coverage-a-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <fieldset class="coverage-requirement"><legend>Requirement B</legend>
+        <div class="coverage-target-grid">
+          <label>Original receiver<select id="coverage-b-receiver" disabled></select></label>
+          <label>Original clock endpoint<select id="coverage-b-time" disabled></select></label>
+          <label>Temperature component<select id="coverage-b-store" disabled><option value="surfaceC">Ground surface</option><option value="subsurfaceC">Lower heat store</option></select></label>
+          <label>Entire represented interval must be<select id="coverage-b-relation" disabled><option value="at-most">At most this threshold</option><option value="at-least">At least this threshold</option></select></label>
+          <label>Proposal − existing threshold · °C<input id="coverage-b-limit" type="number" step="any" required disabled></label>
+          <label>Basis for this requirement<input id="coverage-b-source" maxlength="400" required disabled></label>
+        </div>
+      </fieldset>
+      <p id="coverage-clock" class="quiet">Load a complete original record to inspect its clock.</p>
+      <div class="actions"><button id="coverage-run" type="submit" disabled>Compare one profile and every profile</button>
+        <label class="file-label">Reopen this inquiry<input id="coverage-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="coverage-export" type="button" disabled>Download original inputs</button></div>
+      <p id="coverage-status" role="status">Open original evidence or try the authored example.</p>
+    </form>
+    <section id="coverage-results" class="card" aria-label="Complete minimum-class profile-coverage comparison" hidden></section>
+  </main>
+  <footer>Every profile refers to the complete represented original minimum family. The comparison is conditional on this model. It does not adopt relaxed thresholds, estimate physical tolerance or recommend weakening requirements. Original and relaxed exact and numerical statuses remain separate.</footer>
+  <script type="module" src="shade-heat-sky-coverage-page.js"></script>
+</body>
+</html>
