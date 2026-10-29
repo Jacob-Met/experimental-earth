@@ -55,7 +55,14 @@ export function createInterventionBatch() {
       return result;
     };
   }
-  return (project, options = {}) => compareInterventionWithSource(project, options, prepare);
+  const compare = (project, options = {}) => compareInterventionWithSource(project, options, prepare);
+  // Explicit finite evaluation only: callers retain original evidence support.
+  // This method never screens evidence on a hypothetical proposal.
+  compare.fixedRates = (project, options, ratesMmHr) => {
+    if (!Array.isArray(ratesMmHr)) throw Error('Fixed rates require an explicit array');
+    return compareInterventionWithSource(project, options, prepare, ratesMmHr);
+  };
+  return compare;
 }
 
 export function summarizeEffects(values) {
@@ -69,10 +76,16 @@ export function summarizeEffects(values) {
 export function compareIntervention(project, options = {}) {
   return compareInterventionWithSource(project, options);
 }
-function compareInterventionWithSource(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null, drainingLayer = null } = {}, prepareExisting = null) {
+function compareInterventionWithSource(project, { study = project.infiltrationStudy ?? DEFAULT_STUDY, subset = 'all', allowAbsentSurface = false, exposureRequest = null, drainingLayer = null } = {}, prepareExisting = null, fixedRates = null) {
   validateProject(project); validateStudy(study);
   exposureRequest=validateExposureRequest(project.proposal.length,exposureRequest);
   if (!['all', 'calibration', 'surviving'].includes(subset)) throw Error('Unknown hypothesis subset');
+  if (fixedRates !== null) {
+    if (subset !== 'all' || !Array.isArray(fixedRates) || !fixedRates.length || fixedRates.length > study.ratesMmHr.length ||
+        !Array.from({length:fixedRates.length}, (_, i) => Object.hasOwn(fixedRates,i) && Number.isFinite(fixedRates[i]) && study.ratesMmHr.includes(fixedRates[i])).every(Boolean) ||
+        new Set(fixedRates).size !== fixedRates.length) throw Error('Fixed rates must be a nonempty unique declared subset without evidence filtering');
+    fixedRates = [...fixedRates];
+  }
   if (typeof allowAbsentSurface !== 'boolean') throw Error('Absent-surface evaluation must be an explicit boolean');
   if (allowAbsentSurface && subset !== 'all') throw Error('Absent-surface evaluation cannot filter evidence');
   if (drainingLayer !== null) {
@@ -86,7 +99,7 @@ function compareInterventionWithSource(project, { study = project.infiltrationSt
   const evidence = subset === 'all' ? null : compareInfiltration(project, study);
   if (subset !== 'all' && !evidence.counts.calibration) return { status: 'need-calibration', candidates: [], metrics: {}, cells: [], subset };
   if (subset === 'surviving' && !evidence.counts.challenge) return { status: 'need-challenge', candidates: [], metrics: {}, cells: [], subset };
-  const rates = subset === 'all' ? study.ratesMmHr : subset === 'calibration' ? evidence.compatibleRatesMmHr : evidence.survivingRatesMmHr;
+  const rates = fixedRates ?? (subset === 'all' ? study.ratesMmHr : subset === 'calibration' ? evidence.compatibleRatesMmHr : evidence.survivingRatesMmHr);
   if (!rates.length) return { status: 'no-compatible-rates', candidates: [], metrics: {}, cells: [], subset };
   const affected = Object.fromEntries(['existing', 'proposal'].map(target => [target, project[target].filter(c => c.surface === study.surface).length]));
   if (!affected.existing && !affected.proposal && !allowAbsentSurface) return { status: 'surface-absent', candidates: [], metrics: {}, cells: [], subset };
