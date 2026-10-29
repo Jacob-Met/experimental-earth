@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How does the heat difference change? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-course-evidence.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-third-receiver.html" target="_blank" rel="noopener">Experimental Earth · three original readings ↗</a>
+    <p class="eyebrow">Original evidence / the course through time</p>
+    <h1>How does the heat difference change?</h1>
+    <p class="intro">A final temperature comparison can hide an earlier reversal. Keep the same three final readings and one declared sky change, then inspect the proposal’s possible effects at every original interval end.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Keep the original evidence</p><h2 id="source-heading">Three final readings, one course</h2></div>
+        <button type="button" id="course-example" disabled>Try the courtyard course</button></div>
+      <p>Open three original temperature-band files, or reuse the original evidence from a saved three-reading boundary inquiry. Choose the comparison point below; all three readings continue to constrain the same shared sky profiles.</p>
+      <label class="file-label">Open original evidence<input id="course-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <div id="course-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+    </section>
+    <form id="course-form" class="card" novalidate>
+      <p class="eyebrow">02 / Declare the shared conditions</p><h2>Choose one original sky change</h2>
+      <p>One four-bin sky profile applies before this boundary; another applies afterwards. Both profiles stay shared by all three points and both designs throughout the original course. The three bands remain final readings.</p>
+      <div class="question-grid"><label>Change after original interval<input id="course-split" type="number" min="1" step="1" value="8" required disabled></label>
+        <label>Basis for shared conditions<input id="course-sharing" required maxlength="400" placeholder="Why all three points share these sky profiles" disabled></label></div>
+      <p id="course-boundary" class="quiet">Choose an existing boundary with a whole interval on each side.</p>
+      <div class="actions"><button id="course-run" type="submit" disabled>Compare the original time course</button>
+        <label class="file-label">Reopen a course inquiry<input id="course-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="course-export" type="button" disabled>Download original inputs</button></div>
+      <p id="course-status" role="status">Open original readings or try the authored example.</p>
+    </form>
+    <section id="course-results" class="card" aria-label="Original interval-end temperature comparison" hidden></section>
+  </main>
+  <footer>Conditional consequences under the declared model. Each marker concerns an original interval end; no curve between these times, continuous-time peak, measured history, physical change time or validated intervention effect is inferred. Original numerical replays remain separate from the exact additive model.</footer>
+  <script type="module" src="shade-heat-course-page.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { sampleProfileBasisGeometry, evaluateProfileThermalCourse } from './shade-heat-profile-basis.js';
+import { sampleProfileBasisGeometry, evaluateProfileThermalCourse, evaluateProfileOriginalBoundaryCourse } from './shade-heat-profile-basis.js';
 import { intersectTwoProfileBands, intersectTwoRationalProfileBands } from './shade-heat-profile-two-bands.js';
 import { profileFraction } from './shade-heat-profile-band.js';
 import { rational as q, add, sub, mul, cmp } from './vendor/chronos/exact-halfplanes.mjs';
@@ -15,7 +15,13 @@ const mapFinal = getter => Object.fromEntries(targets.map(target => [target,
   Object.fromEntries(bounds.map(bound => [bound,
     Object.fromEntries(stores.map(store => [store, getter(target, bound, store)]))]))]));
 
-export function buildBasis(input, splitAfterInterval, reuse = null) {
+const coefficientsAt = (pairs, at) => pairs.map(({ early, late }) => ({ early, late,
+  final: mapFinal((target, bound, store) => sub(add(
+    q(at(pairs[early * BINS], target, bound, store)), q(at(pairs[late], target, bound, store))),
+  q(at(pairs[0], target, bound, store)))) }));
+
+export function buildBasis(input, splitAfterInterval, reuse = null, retainOriginalBoundaries = false) {
+  if (retainOriginalBoundaries && reuse) throw Error('Original-course bases use their own complete inquiry context');
   const source = input.source, freshGeometry = !reuse?.geometry;
   const geometry = reuse?.geometry ?? sampleProfileBasisGeometry(source, BINS), pairs = [];
   if (reuse && freshGeometry) reuse.geometry = geometry;
@@ -27,18 +33,17 @@ export function buildBasis(input, splitAfterInterval, reuse = null) {
     // A diagonal course has the same profile on every original interval.
     // Its complete result is identical at every offered boundary in this inquiry.
     const prior = early === late ? diagonal[early] : null;
-    const final = prior ?? evaluateProfileThermalCourse(source, geometry,
+    const evaluated = prior ?? (retainOriginalBoundaries ? evaluateProfileOriginalBoundaryCourse : evaluateProfileThermalCourse)(source, geometry,
       (target, _row, index) => bounds.map(bound =>
         geometry.transmissions[target][bound][index < splitAfterInterval ? early : late].transmission),
       'Two-epoch one-bin sky pair ' + (early + 1) + '/' + (late + 1),
       'Complete two-epoch inquiry refused at pair ' + (early + 1) + '/' + (late + 1));
+    const final = retainOriginalBoundaries ? evaluated.final : evaluated;
     if (prior) reusedCompleteCourses += 4; else executedCourses += 4;
-    if (early === late) diagonal[early] = final;
-    pairs.push({ early, late, final });
+    if (early === late) diagonal[early] = evaluated;
+    pairs.push({ early, late, final, ...(retainOriginalBoundaries ? { trace: evaluated } : {}) });
   }
-  const coefficients = pairs.map(({ early, late }) => ({ early, late, final: mapFinal((target, bound, store) =>
-    sub(add(q(pairs[early * BINS].final[target][bound][store]), q(pairs[late].final[target][bound][store])),
-      q(pairs[0].final[target][bound][store]))) }));
+  const coefficients = coefficientsAt(pairs, (pair, target, bound, store) => pair.final[target][bound][store]);
   let maximumDiscrepancyC = ZERO, nonzeroDiscrepancies = 0;
   const discrepancies = pairs.map((pair, index) => ({ earlyBin: pair.early, lateBin: pair.late,
     originalFinalC: mapFinal((target, bound, store) => pair.final[target][bound][store]),
@@ -52,6 +57,30 @@ export function buildBasis(input, splitAfterInterval, reuse = null) {
     geometryExecutions: Number(freshGeometry), executedCourses, reusedCompleteCourses,
     splitUtc: new Date(Date.parse(source.declaration.path.startUtc)
       + geometry.sampled.intervals[splitAfterInterval].fromMinute * 60000).toISOString() };
+}
+
+// Each retained time is an original interval index, with its original clock and
+// unchanged thermal accumulator clock. Complete all pairs before screening.
+export function buildOriginalBoundaryBasis(input, splitAfterInterval) {
+  const basis = buildBasis(input, splitAfterInterval, null, true);
+  const originalBoundaries = basis.pairs[0].trace.originalBoundaries;
+  for (const pair of basis.pairs) if (JSON.stringify(pair.trace.originalBoundaries) !== JSON.stringify(originalBoundaries))
+    throw Error('Original pair courses lost a common interval boundary');
+  const courseCoefficients = originalBoundaries.map((_, time) => coefficientsAt(basis.pairs,
+    (pair, target, bound, store) => pair.trace.states[target][bound][time][store]));
+  let maximumCourseDiscrepancyC = ZERO;
+  const courseScreens = originalBoundaries.map((boundary, time) => {
+    let maximumDiscrepancyC = ZERO, nonzeroDiscrepancies = 0;
+    basis.pairs.forEach((pair, index) => mapFinal((target, bound, store) => {
+      const delta = sub(courseCoefficients[time][index].final[target][bound][store],
+        q(pair.trace.states[target][bound][time][store]));
+      maximumDiscrepancyC = max(maximumDiscrepancyC, abs(delta));
+      if (cmp(delta, ZERO)) nonzeroDiscrepancies++;
+    }));
+    maximumCourseDiscrepancyC = max(maximumCourseDiscrepancyC, maximumDiscrepancyC);
+    return { index: boundary.index, maximumDiscrepancyC: profileFraction(maximumDiscrepancyC), nonzeroDiscrepancies };
+  });
+  return { ...basis, originalBoundaries, courseCoefficients, courseScreens, maximumCourseDiscrepancyC };
 }
 
 export function consequences(candidates, coefficients) {
@@ -99,7 +128,7 @@ export function staticComparison(bases, bands, additive, numeric = intersectTwoP
   return { compatibility: family.status, ranges: result.ranges, witnesses: result.witnesses, work: family.work };
 }
 
-export function inspectWitness(item, bases, bands, splitAfterInterval, consistencyScreenC = 1e-9) {
+export function inspectWitness(item, bases, bands, splitAfterInterval, consistencyScreenC = 1e-9, retainOriginalBoundaries = false) {
   const phases = [Array.from({ length: BINS }, () => ZERO), Array.from({ length: BINS }, () => ZERO)];
   item.candidate.support.forEach((pair, index) => {
     const weight = item.candidate.weights[index];
@@ -116,11 +145,12 @@ export function inspectWitness(item, bases, bands, splitAfterInterval, consisten
   });
   let maximumReplayResidualC = ZERO, exactMarginalEqualities = 0;
   const originalReplays = bases.map((basis, sourceIndex) => {
-    const final = evaluateProfileThermalCourse(basis.input.source, basis.geometry,
+    const evaluated = (retainOriginalBoundaries ? evaluateProfileOriginalBoundaryCourse : evaluateProfileThermalCourse)(basis.input.source, basis.geometry,
       (target, _row, index) => bounds.map(bound => approximate[index < splitAfterInterval ? 0 : 1].weights.reduce(
         (sum, weight, bin) => sum + weight * basis.geometry.transmissions[target][bound][bin].transmission, 0)),
       'Normalized approximate replay of exact two-epoch witness ' + item.id,
       'Complete two-epoch witness replay refused at witness ' + item.id);
+    const final = retainOriginalBoundaries ? evaluated.final : evaluated;
     const residualC = mapFinal((target, bound, store) => {
       const row = basis.coefficients.map(v => v.final[target][bound][store]);
       const expected = mixture(item.candidate, row);
@@ -130,9 +160,29 @@ export function inspectWitness(item, bases, bands, splitAfterInterval, consisten
       maximumReplayResidualC = max(maximumReplayResidualC, abs(residual));
       return profileFraction(residual);
     });
+    const originalCourse = retainOriginalBoundaries ? evaluated.originalBoundaries.map((boundary, time) => {
+      if (JSON.stringify(boundary) !== JSON.stringify(basis.originalBoundaries[time]))
+        throw Error('An original witness replay lost its exact interval identity');
+      const exactC = mapFinal((target, bound, store) => {
+        const row = basis.courseCoefficients[time].map(v => v.final[target][bound][store]);
+        const expected = mixture(item.candidate, row);
+        if (cmp(expected, mixture(product, row))) throw Error('Exact original-course marginal equivalence was lost');
+        exactMarginalEqualities++;
+        return expected;
+      });
+      const originalC = mapFinal((target, bound, store) => evaluated.states[target][bound][time][store]);
+      const originalMinusAdditiveC = mapFinal((target, bound, store) => {
+        const residual = sub(q(originalC[target][bound][store]), exactC[target][bound][store]);
+        maximumReplayResidualC = max(maximumReplayResidualC, abs(residual));
+        return profileFraction(residual);
+      });
+      return { ...boundary, originalC, additiveC: mapFinal((target, bound, store) => profileFraction(exactC[target][bound][store])),
+        originalMinusAdditiveC };
+    }) : null;
     const reading = bands[sourceIndex], lower = sub(q(reading.temperatureC), q(reading.halfWidthC)),
       upper = add(q(reading.temperatureC), q(reading.halfWidthC));
     return { cellIndex: basis.input.query.reading.cellIndex, originalFinalC: final,
+      ...(retainOriginalBoundaries ? { originalCourse } : {}),
       originalMinusAdditiveC: residualC,
       originalObservationEndpointStatus: Object.fromEntries(bounds.map(bound => {
         const value = q(final.existing[bound].surfaceC);
