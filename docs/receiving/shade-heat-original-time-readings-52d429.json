@@ -1,0 +1,155 @@
+{
+  "schema": "experimental-earth-original-time-sky-readings-receiving/1",
+  "status": "qualified candidate; normal private integration and accepted-source receiving follow",
+  "baseCommit": "c72bd3b226e1402730f46b251b9014bab28bd8bc",
+  "baseTree": "e22117f13c21cb6841adcebade19d318d84c7622",
+  "nativeTask": "experimental-earth-sky-original-time-readings-52d429",
+  "nativeSnapshot": 4395,
+  "scope": "Three original instantaneous existing-temperature bands at exact receiver/UTC/component identities; complete original sources, shared early/late sky, retained first-two reference. No physical validation.",
+  "native": {
+    "nativeCore": {
+      "session": 54944,
+      "terminalChunk": "2e1717",
+      "groups": 8,
+      "exitCode": 0,
+      "fullTAP": "native-core-first.tap"
+    },
+    "nativeInputs": {
+      "terminalChunk": "99c217",
+      "groups": 3,
+      "exitCode": 0,
+      "scope": "Observed original terminal; fullTAP not separately copied"
+    },
+    "legacyRegression": {
+      "session": 9248,
+      "terminalChunk": "2083ba",
+      "groups": 24,
+      "exitCode": 0,
+      "scope": "Observed original terminal summary retained in native-regression-receipt.json"
+    }
+  },
+  "browser": {
+    "status": "PASS",
+    "session": 84573,
+    "terminalChunk": "6bb2ec",
+    "exitCode": 0,
+    "checks": [
+      "Actual parent entry and worker preserve three same-receiver observations at 10:00,12:00,06:00 UTC; the third unchanged band narrows the modeled 06:00 surface-difference width from over2.58C to under0.0124C",
+      "All17 original times, both first-two/all-three plots and one fixed-profile trace bind exactly to the actual worker; original UTC/component replay tables and keyboard inspection remain distinct and require no recomputation",
+      "Actual source-only download and fresh reopen preserve all reading/source identities and recompute the complete same-runtime report without writing the current site",
+      "An unapplied reading edit clears old results and blocks run/export; explicit400C admission yields an empty three-band family while retaining the unchanged first-two family, all192 basis courses and all17 times",
+      "Explicit UTC and component revisions use original08:00 surface/lower values while retaining every source byte; duplicate identity is refused transactionally and Cancel restores the admitted original lower-store inquiry",
+      "Actual1440px/390px source editor, complete UTC hint, conditions, two-family comparison, original-time detail and fixed-profile views fit the viewport; wide exact tables remain keyboard-focusable",
+      "Three files preserve4/16/8 histories and explicit first-reading order; new and legacy inquiry intake does not adopt its boundary; detached time,comparison and reading-edit controls cannot revive retired context",
+      "Forged calculated fields,incomplete originals,malformed JSON/UTF8,conflicting repeated-source declarations and unresolved observation geometry refuse without replacing accepted evidence; an invalid new boundary clears the attempted result",
+      "A held actual file read cannot overwrite an explicitly revised observation; a held older compatible worker cannot overwrite the newer contradictory original-time family"
+    ],
+    "startedAt": "2026-10-29T03:50:10.953Z",
+    "finishedAt": "2026-10-29T03:50:42.006Z",
+    "sandboxActive": true,
+    "pageExceptions": [],
+    "matchedExecutedFiles": 891,
+    "unchangedAcceptedFiles": 876,
+    "newOrChangedExecutedFiles": 15,
+    "maximumNodeChromiumRangeDifferenceC": 3.552713678800501e-15,
+    "scope": "Exact actual-worker DOM bindings. Cross-runtime ranges compared numerically. Only guide/this receiving receipt added after execution; production/test bytes remain unchanged."
+  },
+  "independentReview": {
+    "coreSource": {
+      "status": "no scoped blocker",
+      "files": {
+        "shade-heat-timed-reading-source.js": "2437afd5682872f5c0ae3f1e81e58176ebbade574e15b0252bf958f97932eb58",
+        "shade-heat-timed-course.js": "fe50061eeec24607812139e1a51a48b8fdb97c68743a3fb3bf0840c1ecae8146",
+        "shade-heat-epoch-kernel.js": "28e8998c776896db6b2b16f28a559d74bb70ab45d41324af00ec83552ba0973d"
+      },
+      "executed": {
+        "asynchronousMixedStoreReadings": 3,
+        "intervals": 8,
+        "partialFinalMinute": 122.3,
+        "witnessEndpointStatuses": 18,
+        "strictTypedFullReplay": true,
+        "repeatedReceiverIdenticalSourceAdmitted": true,
+        "malformedOrConflictRefusals": 5,
+        "legacyWholeReportExactAgainstFrozenModule": true
+      },
+      "scope": "No browser claim. All bases before screening, own receiver/time/component binding, source-only strict identity, prior-two no rescue/widening, selected original observation numeric statuses separated from exact additive values."
+    },
+    "consumerSource": {
+      "status": "no scoped blocker",
+      "files": {
+        "shade-heat-timed-page.js": "1b815390ba897316863596f81998c04bcd970b19a1e76fe47a71e1a72398f9a9",
+        "shade-heat-timed-inputs.js": "0f01965ee6f92389cd62424534f27a71042a15071d6a375ceae30729c6ba8db0",
+        "shade-heat-timed-view.js": "72f4e40d7e8ad47339ac1bd970ee2b96f461245b3f18273904d6dd063b5007c0",
+        "shade-heat-timed-worker.js": "02288b0d1ffccb12d4a8d58e2f1676c097fc40cb2555d34fe48505d7d9c92872",
+        "sky-timed-readings.html": "6528bba4e5a49f247e87ba22ce478722c41cad350a7a7609ad869c2e5255e244",
+        "shade-heat-epoch-view.js": "629103d1d1b0055254c79bae7d7b3d053b0b0ac0012a07a7a7cbb23c2542bb4f"
+      },
+      "executed": "Timed inquiry, three separate originals and legacy joint intake retain exact readings without adopting split/goals. Explicit component/time revision retains exact complete source and old input; malformed saved outputs/models refused.",
+      "sourceReview": "Edit starts retire/cancel and set editing index; run/export disabled until Apply/Cancel; whole three-reading admission occurs before original-array assignment; refused edit retains originals; stale cards/selectors guard object identity. File reads and worker continuations guard generation. UTC original dropdown and full timestamp hint; final observation bands versus exact additive and original numerical replay notices remain distinct. phaseFigure change is export only.",
+      "qualification": "Source and native intake review, no independent browser execution or DOM lifecycle harness claim."
+    },
+    "runtimeCertificate": {
+      "status": "PASS",
+      "certifiedExactExtrema": 4,
+      "dualInequalities": 64,
+      "exactWidths": {
+        "2": "727801684087971/281474976710656",
+        "3": "839098212674100662212116937437/68195553765909635409822095507456"
+      },
+      "sourceHashes": {
+        "runtime-original-pair-values.json": "8cc9ab062bbf77d13b6dd5083bc48afe1c3880e08998c052b9928c747c007f58",
+        "runtime-timed-course.json": "8162dcdaffd2ff9cca14147000d6b678146b422a383adb7fae1662330f799968"
+      },
+      "reviewerScriptSHA256": "3670ed12936ddd9effdfd5a5b899a9851fa5e7a226ebbffaa785995e3988a6fd",
+      "certificateSHA256": "627ecad2b19527baf10a70e7f7fa867b12290c5717ee0599f3d14e21734fe8da",
+      "portableVerifierSHA256": "1caf2f6585a73407754c50421caa42b50ea92816a88f6037d8dd6e356ff5342e",
+      "portableNegativeControls": [
+        {
+          "control": "changed claimed bound",
+          "exitCode": 1,
+          "result": "refused"
+        },
+        {
+          "control": "changed dual multiplier",
+          "exitCode": 1,
+          "result": "refused"
+        }
+      ],
+      "scope": "Fraction primal attainment and dual equality/all16 inequalities; first-two attainment independently enumerated; no production intersection oracle."
+    }
+  },
+  "receivingHashes": {
+    "browser.json": "7b98a58f4c41b9417a2ad1e02ef2979dea426ceab4db7d56104b05c314be1afd",
+    "source-equivalence.json": "eab61434d43f7f6245c4123339f77593069f4b2b29d0dd0d47e24dbb5a79f4eb",
+    "runtime-timed-course.json": "8162dcdaffd2ff9cca14147000d6b678146b422a383adb7fae1662330f799968",
+    "runtime-original-pair-values.json": "8cc9ab062bbf77d13b6dd5083bc48afe1c3880e08998c052b9928c747c007f58",
+    "runtime-contradictory-course.json": "24acb456b21d260b456621d4f9d2e78eda627054e6f5654bfed15c0ac85fdcc8",
+    "runtime-revised-observations.json": "1f29ccb785a9de8384bc2ba5d1c15f109ea1df76c7b935e0a442a210fbf3ba51"
+  },
+  "sourceSHA256": {
+    "docs/original-time-sky-readings.md": "d8fd8e6d45a37203435a9b4fc7310072e3713ff15defc3d89346e63de3e8b7c0",
+    "shade-heat-epoch-kernel.js": "28e8998c776896db6b2b16f28a559d74bb70ab45d41324af00ec83552ba0973d",
+    "shade-heat-epoch-view.js": "629103d1d1b0055254c79bae7d7b3d053b0b0ac0012a07a7a7cbb23c2542bb4f",
+    "shade-heat-timed-course.css": "7240f28a76cc9320e1f21bddc01e13952aa388cce1d026cdd7c7f0c4e973c3ff",
+    "shade-heat-timed-course.js": "fe50061eeec24607812139e1a51a48b8fdb97c68743a3fb3bf0840c1ecae8146",
+    "shade-heat-timed-example.js": "97d0b27c1c5aa8e24530e543c7b3301036285efebbdb79bb110f1876c7444b21",
+    "shade-heat-timed-inputs.js": "0f01965ee6f92389cd62424534f27a71042a15071d6a375ceae30729c6ba8db0",
+    "shade-heat-timed-page.js": "1b815390ba897316863596f81998c04bcd970b19a1e76fe47a71e1a72398f9a9",
+    "shade-heat-timed-reading-source.js": "2437afd5682872f5c0ae3f1e81e58176ebbade574e15b0252bf958f97932eb58",
+    "shade-heat-timed-view.js": "72f4e40d7e8ad47339ac1bd970ee2b96f461245b3f18273904d6dd063b5007c0",
+    "shade-heat-timed-worker.js": "02288b0d1ffccb12d4a8d58e2f1676c097fc40cb2555d34fe48505d7d9c92872",
+    "sky-course-evidence.html": "3105f06d223b3c67d3c922552bdf4100a8041c35e398ac38bfc5417f7e3de14b",
+    "sky-timed-readings.html": "6528bba4e5a49f247e87ba22ce478722c41cad350a7a7609ad869c2e5255e244",
+    "tests/shade-heat-timed-course.browser.mjs": "366212adebedc588f7c82d6e49546210805bd12564eff2a1221cf14143fbd398",
+    "tests/shade-heat-timed-course.test.mjs": "37469a910ea361fccd3ac4a84ebcb697b561b29bbb99fcc5599d1add006eb870",
+    "tests/shade-heat-timed-inputs.test.mjs": "f8ec5ac426e49c015d3f859bfbf51dc9f09ee7e5b5eb0568a1d68c11f85370b1"
+  },
+  "nonClaims": [
+    "No deployment or public release",
+    "No unrun GitHub Actions pass",
+    "No actual measured sky history",
+    "No continuous-time or interval-mean inference",
+    "No every-profile solver or physical error enclosure",
+    "No independent peer browser execution"
+  ]
+}

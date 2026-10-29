@@ -128,7 +128,16 @@ export function staticComparison(bases, bands, additive, numeric = intersectTwoP
   return { compatibility: family.status, ranges: result.ranges, witnesses: result.witnesses, work: family.work };
 }
 
-export function inspectWitness(item, bases, bands, splitAfterInterval, consistencyScreenC = 1e-9, retainOriginalBoundaries = false) {
+export function inspectWitness(item, bases, bands, splitAfterInterval, consistencyScreenC = 1e-9, retainOriginalBoundaries = false, observationLocations = null) {
+  if (observationLocations !== null && (!retainOriginalBoundaries
+      || !Array.isArray(observationLocations) || observationLocations.length !== bases.length
+      || !Array.from(observationLocations).every((location, index) => location
+        && Number.isInteger(location.originalIndex) && location.originalIndex >= 0
+        && ['surfaceC', 'subsurfaceC'].includes(location.store)
+        && bases[index].originalBoundaries[location.originalIndex]?.utc === location.utc
+        && bases[index].input.query.reading.utc === location.utc
+        && bases[index].input.query.reading.store === location.store)))
+    throw Error('Each original observation must retain its exact admitted course time and component');
   const phases = [Array.from({ length: BINS }, () => ZERO), Array.from({ length: BINS }, () => ZERO)];
   item.candidate.support.forEach((pair, index) => {
     const weight = item.candidate.weights[index];
@@ -181,11 +190,16 @@ export function inspectWitness(item, bases, bands, splitAfterInterval, consisten
     }) : null;
     const reading = bands[sourceIndex], lower = sub(q(reading.temperatureC), q(reading.halfWidthC)),
       upper = add(q(reading.temperatureC), q(reading.halfWidthC));
+    const location = observationLocations?.[sourceIndex];
+    const originalObservation = location ? { ...location,
+      originalC: Object.fromEntries(bounds.map(bound => [bound,
+        evaluated.states.existing[bound][location.originalIndex][location.store]])) } : null;
     return { cellIndex: basis.input.query.reading.cellIndex, originalFinalC: final,
+      ...(originalObservation ? { originalObservation } : {}),
       ...(retainOriginalBoundaries ? { originalCourse } : {}),
       originalMinusAdditiveC: residualC,
       originalObservationEndpointStatus: Object.fromEntries(bounds.map(bound => {
-        const value = q(final.existing[bound].surfaceC);
+        const value = q(originalObservation ? originalObservation.originalC[bound] : final.existing[bound].surfaceC);
         return [bound, cmp(value, lower) >= 0 && cmp(value, upper) <= 0 ? 'within-original-band' : 'outside-original-band'];
       })) };
   });

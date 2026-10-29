@@ -91,4 +91,4 @@ function drawEpochWitness(host, { report: r, readings, witnessId, prefix = 'epoc
   host.append(exact);
 }
 
-export { node, number, signed, point, table, locationFigure, drawEpochWitness };
+export { node, number, signed, point, table, locationFigure, phaseFigure, drawEpochWitness };
