@@ -9,6 +9,7 @@ import {fitReceivingAccountBands} from '../receiving-account-band-fit.js';
 import {fitReceivingAccountPhases,reserveReceivingAccountPhaseWork,makeUnfilledReceivingPhaseExample,serializeReceivingAccountPhases,parseReceivingAccountPhases} from '../receiving-account-phase-fit.js';
 import {compareReceivingAccountConsequences} from '../receiving-account-consequences.js';
 import {phaseIndependentCourses} from './receiving-phase-independent-fixtures.mjs';
+import {predecessor} from './receiving-drain-predecessor.mjs';
 
 const clone=x=>structuredClone(x),fit=e=>fitReceivingAccountPhases(e.project,e.selection,e.account);
 const receipt={schema:'experimental-earth-drain-conditioning-native/1',checks:[],sourceHashes:{},meaning:'Independent ODE controls and consumed authored-case comparison; no field or fresh-input qualification claim.'};
@@ -87,13 +88,13 @@ group('source-only replay and paired layouts retain every admitted drain-conditi
   receipt.paired={models:c.candidates.length,held:c.survivingIds.length,reservation:c.reservation.totalCellEquivalentSteps,runs:c.counts.comparisonRuns};
 });
 
-group('frozen added-reading development course retains14of16support and the two unresolved filled cases',()=>{
-  const records=[];let cal=0,held=0;
+group('frozen predecessor retains14of16 and its two filled failures while current filled mechanism supports16of16',()=>{
+  const records=[];let cal=0,held=0,currentCal=0,currentHeld=0;
   for(const e of phaseIndependentCourses().filter(c=>c.eligible)){
     const minute=Math.max(...e.account.readings.filter(x=>x.channel==='retained'&&x.use==='calibration').map(x=>x.minute));e.account.readings.push({id:'additional-drained-'+minute,channel:'drained',minute,valueLiters:e.result.drainingLayer.snapshots.find(x=>x.minute===minute).drainedLiters,uncertaintyLiters:.02,use:'calibration',source:'Authored additional original under predeclared development rule'});
-    const r=fit(e);cal+=!!r.compatibleIds.length;held+=!!r.survivingIds.length;records.push({id:e.id,calibration:r.compatibleIds.length,held:r.survivingIds.length,rateEvaluations:r.counts.phaseRateEvaluations});
+    const r=predecessor.fitReceivingAccountPhases(e.project,e.selection,e.account),current=fit(e);cal+=!!r.compatibleIds.length;held+=!!r.survivingIds.length;currentCal+=!!current.compatibleIds.length;currentHeld+=!!current.survivingIds.length;records.push({id:e.id,calibration:r.compatibleIds.length,held:r.survivingIds.length,rateEvaluations:r.counts.phaseRateEvaluations,currentCalibration:current.compatibleIds.length,currentHeld:current.survivingIds.length});
   }
-  assert.equal(cal,14);assert.equal(held,14);assert.deepEqual(records.filter(r=>!r.calibration).map(r=>r.id),['phase-07','phase-14']);receipt.consumed={calibration:cal,held,total:16,records};
+  assert.equal(cal,14);assert.equal(held,14);assert.deepEqual(records.filter(r=>!r.calibration).map(r=>r.id),['phase-07','phase-14']);assert.equal(currentCal,16);assert.equal(currentHeld,16);receipt.consumed={calibration:cal,held,total:16,currentCalibration:currentCal,currentHeld,records};
 });
 
 test('write final source-bound native receipt',()=>{assert.equal(receipt.checks.length,groups);receipt.passed=true;if(process.env.RECEIVING_DRAIN_RECEIPT)writeFileSync(process.env.RECEIVING_DRAIN_RECEIPT,JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify({passed:true,groups,development:receipt.consumed}));});

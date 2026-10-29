@@ -1,0 +1,87 @@
+TAP version 13
+# Subtest: independently integrated filled originals constrain retained and drainage values before fill during full storage and after dry
+not ok 1 - independently integrated filled originals constrain retained and drainage values before fill during full storage and after dry
+  ---
+  duration_ms: 42.669304
+  type: 'test'
+  location: '/dev/shm/hamon-a755e25-earth-filled-conditioning/tests/receiving-filled-drain.test.mjs:19:47'
+  failureType: 'testCodeFailure'
+  error: '{"c":{"R":31,"C":14,"k":0.9,"S0":11.2,"T":70,"u":240,"v":420},"r":{"status":"unresolved","proposals":[],"refusals":[{"q":6.6836380092042615,"origin":{"method":"fixed-full-rate","fraction":0},"score":4.793040179639561,"fillHours":0.5446937777613525,"dryHours":4,"physicalRateInterval":[0.0006683638009204262,0.5992394430111626],"emptyRate":0.5992394430111626,"rateInterval":[0.0006683638009204262,0.5992394430111626],"violation":4.793040179639561},{"q":7.694221719545293,"origin":{"method":"fixed-full-rate","fraction":0.125},"score":2.5168768256529708,"fillHours":0.5061457453405453,"dryHours":3.6278609303187404,"physicalRateInterval":[0.0007694221719545294,0.7636817916161875],"emptyRate":0.7636817916161875,"rateInterval":[0.17648207513440556,0.17679530356003925],"violation":2.5168768256529708},{"q":8.704805429886324,"origin":{"method":"fixed-full-rate","fraction":0.25},"score":1.6328855006851404,"fillHours":0.46250382366562104,"dryHours":3.342128773423873,"physicalRateInterval":[0.0008704805429886324,0.9740787180898388],"emptyRate":0.9740787180898388,"rateInterval":[0.9459816754287094,0.32779967541133925],"violation":1.0147035006677703},{"q":9.715389140227355,"origin":{"method":"fixed-full-rate","fraction":0.375},"score":1.0621357970987932,"fillHours":0.412686890915406,"dryHours":3.1158396834223208,"physicalRateInterval":[0.0009715389140227355,1.2572995354015026],"emptyRate":1.2572995354015026,"rateInterval":[0.9719116494322881,0.46700532038068243],"violation":0.5572294680471875},{"q":10.725972850568386,"origin":{"method":"fixed-full-rate","fraction":0.5},"score":1.1154938734787263,"fillHours":0.3552845916189612,"dryHours":2.932191773175637,"physicalRateInterval":[0.0010725972850568386,1.666958163365789],"emptyRate":1.666958163365789,"rateInterval":[0.9343452906078455,0.046932014696221894],"violation":0.22808059756710258},{"q":11.736556560909417,"origin":{"method":"fixed-full-rate","fraction":0.625},"score":0.5866661418271908,"fillHours":0.2884216821940109,"dryHours":2.780170104505058,"physicalRateInterval":[0.0011736556560909418,2.3279493635135746],"emptyRate":2.3279493635135746,"rateInterval":[0.911768218380113,0.3803935280546179],"violation":0.05529145150169565},{"q":12.74714027125045,"origin":{"method":"fixed-full-rate","fraction":0.75},"score":0.7198039933379412,"fillHours":0.2095492802987635,"dryHours":2.6522527633476614,"physicalRateInterval":[0.001274714027125045,3.6145747425589247],"emptyRate":3.6145747425589247,"rateInterval":[1.618659248594378,0.8988552552564368],"violation":0},{"q":13.757723981591482,"origin":{"method":"fixed-full-rate","fraction":0.875},"score":6.328795773815733,"fillHours":0.11511253227428665,"dryHours":2.5431279465084984,"physicalRateInterval":[0.0013757723981591482,7.397369784052889],"emptyRate":7.397369784052889,"rateInterval":[7.152561500227078,0.8903904966544196],"violation":0.06662477024307491},{"q":14.768307691932511,"origin":{"method":"fixed-full-rate","fraction":1},"score":1.926169372088809,"fillHours":0,"dryHours":2.448937780895738,"physicalRateInterval":[0.0014768307691932511,100],"emptyRate":null,"rateInterval":[2.0251575644911863,0.8855411171094454],"violation":0.786552924707068},{"q":12.380084723036246,"origin":{"method":"original-drained-and-retained-q-refinement"},"score":0.32503327303123,"fillHours":0.23978317087239712,"dryHours":2.696298715482544,"physicalRateInterval":[0.0012380084723036247,3.024955285439301],"emptyRate":3.024955285439301,"rateInterval":[0.9021722508020449,0.5771389777722109],"violation":1.3959906951836e-12}],"points":[{"q":6.6836380092042615,"origin":{"method":"fixed-full-rate","fraction":0},"score":4.793040179639561,"fillHours":0.5446937777613525,"dryHours":4,"physicalRateInterval":[0.0006683638009204262,0.5992394430111626],"emptyRate":0.5992394430111626,"rateInterval":[0.0006683638009204262,0.5992394430111626],"violation":4.793040179639561},{"q":7.694221719545293,"origin":{"method":"fixed-full-rate","fraction":0.125},"score":2.5168768256529708,"fillHours":0.5061457453405453,"dryHours":3.6278609303187404,"physicalRateInterval":[0.0007694221719545294,0.7636817916161875],"emptyRate":0.7636817916161875,"rateInterval":[0.17648207513440556,0.17679530356003925],"violation":2.5168768256529708},{"q":8.704805429886324,"origin":{"method":"fixed-full-rate","fraction":0.25},"score":1.6328855006851404,"fillHours":0.46250382366562104,"dryHours":3.342128773423873,"physicalRateInterval":[0.0008704805429886324,0.9740787180898388],"emptyRate":0.9740787180898388,"rateInterval":[0.9459816754287094,0.32779967541133925],"violation":1.0147035006677703},{"q":9.715389140227355,"origin":{"method":"fixed-full-rate","fraction":0.375},"score":1.0621357970987932,"fillHours":0.412686890915406,"dryHours":3.1158396834223208,"physicalRateInterval":[0.0009715389140227355,1.2572995354015026],"emptyRate":1.2572995354015026,"rateInterval":[0.9719116494322881,0.46700532038068243],"violation":0.5572294680471875},{"q":10.725972850568386,"origin":{"method":"fixed-full-rate","fraction":0.5},"score":1.1154938734787263,"fillHours":0.3552845916189612,"dryHours":2.932191773175637,"physicalRateInterval":[0.0010725972850568386,1.666958163365789],"emptyRate":1.666958163365789,"rateInterval":[0.9343452906078455,0.046932014696221894],"violation":0.22808059756710258},{"q":11.736556560909417,"origin":{"method":"fixed-full-rate","fraction":0.625},"score":0.5866661418271908,"fillHours":0.2884216821940109,"dryHours":2.780170104505058,"physicalRateInterval":[0.0011736556560909418,2.3279493635135746],"emptyRate":2.3279493635135746,"rateInterval":[0.911768218380113,0.3803935280546179],"violation":0.05529145150169565},{"q":12.74714027125045,"origin":{"method":"fixed-full-rate","fraction":0.75},"score":0.7198039933379412,"fillHours":0.2095492802987635,"dryHours":2.6522527633476614,"physicalRateInterval":[0.001274714027125045,3.6145747425589247],"emptyRate":3.6145747425589247,"rateInterval":[1.618659248594378,0.8988552552564368],"violation":0},{"q":13.757723981591482,"origin":{"method":"fixed-full-rate","fraction":0.875},"score":6.328795773815733,"fillHours":0.11511253227428665,"dryHours":2.5431279465084984,"physicalRateInterval":[0.0013757723981591482,7.397369784052889],"emptyRate":7.397369784052889,"rateInterval":[7.152561500227078,0.8903904966544196],"violation":0.06662477024307491},{"q":14.768307691932511,"origin":{"method":"fixed-full-rate","fraction":1},"score":1.926169372088809,"fillHours":0,"dryHours":2.448937780895738,"physicalRateInterval":[0.0014768307691932511,100],"emptyRate":null,"rateInterval":[2.0251575644911863,0.8855411171094454],"violation":0.786552924707068},{"q":12.380084723036246,"origin":{"method":"original-drained-and-retained-q-refinement"},"score":0.32503327303123,"fillHours":0.23978317087239712,"dryHours":2.696298715482544,"physicalRateInterval":[0.0012380084723036247,3.024955285439301],"emptyRate":3.024955285439301,"rateInterval":[0.9021722508020449,0.5771389777722109],"violation":1.3959906951836e-12}],"refinements":[{"bracket":[6.6836380092042615,7.694221719545293],"finalBracket":[7.694221719451285,7.694221719545293],"q":7.694221719509385,"score":2.5168768257189607,"rateInterval":[0.17648207512861436,0.17679530355424738]},{"bracket":[7.694221719545293,8.704805429886324],"finalBracket":[8.597181569829996,8.597181569924002],"q":8.597181569865903,"score":1.1158583554255852,"rateInterval":[0.31221740332995485,0.31255671854519096]},{"bracket":[8.704805429886324,9.715389140227355],"finalBracket":[9.715389140133347,9.715389140227355],"q":9.715389140191448,"score":1.0621357971176848,"rateInterval":[0.9719116494340163,0.4670053203757828]},{"bracket":[9.715389140227355,10.725972850568386],"finalBracket":[10.533756388432945,10.533756388526953],"q":10.533756388491046,"score":0.6378941873868029,"rateInterval":[0.9400612433778426,0.5798730947918866]},{"bracket":[10.725972850568386,11.736556560909417],"finalBracket":[11.736556560815409,11.736556560909417],"q":11.73655656087351,"score":0.5866661418495728,"rateInterval":[0.9117682183807352,0.3803935280388021]},{"bracket":[11.736556560909417,12.74714027125045],"finalBracket":[12.380084723000339,12.380084723094347],"q":12.380084723036246,"score":0.32503327303123,"rateInterval":[0.9021722508020449,0.5771389777722109]},{"bracket":[12.74714027125045,13.757723981591482],"finalBracket":[13.174182157195187,13.174182157289195],"q":13.174182157231094,"score":1.574506952715,"rateInterval":[2.4692472319279597,0.894740279212991]},{"bracket":[13.757723981591482,14.768307691932511],"finalBracket":[14.350131104119404,14.350131104213412],"q":14.350131104155311,"score":1.1772474651132039,"rateInterval":[1.7886365833270186,0.8871934285605392]}],"qInterval":[6.6836380092042615,14.768307691932511],"counts":{"qEvaluations":409,"modelEvaluations":173377,"bandIntersections":3272},"reservation":{"status":"active","qEvaluations":409,"maximumProposals":12,"bandIntersections":3272,"modelEvaluations":425360},"meaning":"Finite conditional filled-course witnesses from original calibration bands; exact physical forward validation remains required. No exhaustive coverage, parameter identification or original-source replacement."}}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///dev/shm/hamon-a755e25-earth-filled-conditioning/tests/receiving-filled-drain.test.mjs:51:44
+    TestContext.<anonymous> (file:///dev/shm/hamon-a755e25-earth-filled-conditioning/tests/receiving-filled-drain.test.mjs:19:73)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: filled original drainage improves both unresolved consumed courses while retaining exact predecessor failures
+ok 2 - filled original drainage improves both unresolved consumed courses while retaining exact predecessor failures
+  ---
+  duration_ms: 579.802013
+  type: 'test'
+  ...
+# Subtest: held values do not select full-store rates decay intersections parameters questions or complete work
+ok 3 - held values do not select full-store rates decay intersections parameters questions or complete work
+  ---
+  duration_ms: 208.874211
+  type: 'test'
+  ...
+# Subtest: contradictory original drainage timezero contradiction and held-role injection cannot become success
+ok 4 - contradictory original drainage timezero contradiction and held-role injection cannot become success
+  ---
+  duration_ms: 215.179649
+  type: 'test'
+  ...
+# Subtest: complete nested filled work refuses before every producer and all final original-grid readings remain authoritative
+ok 5 - complete nested filled work refuses before every producer and all final original-grid readings remain authoritative
+  ---
+  duration_ms: 106.357113
+  type: 'test'
+  ...
+# Subtest: every admitted filled alternative reaches paired layouts within the unchanged combined limit and source-only replay
+ok 6 - every admitted filled alternative reaches paired layouts within the unchanged combined limit and source-only replay
+  ---
+  duration_ms: 739.625385
+  type: 'test'
+  ...
+# Subtest: write source-bound filled native receipt
+not ok 7 - write source-bound filled native receipt
+  ---
+  duration_ms: 0.644703
+  type: 'test'
+  location: '/dev/shm/hamon-a755e25-earth-filled-conditioning/tests/receiving-filled-drain.test.mjs:103:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    5 !== 6
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 6
+  actual: 5
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///dev/shm/hamon-a755e25-earth-filled-conditioning/tests/receiving-filled-drain.test.mjs:103:61)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 5
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2013.128011

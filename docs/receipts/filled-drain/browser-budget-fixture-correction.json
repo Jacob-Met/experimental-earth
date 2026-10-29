@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-filled-browser-fixture-correction/1",
+  "firstHarnessSha256": "d103ac16db63c0c225fbd803c95ee30e9b70ef7584311a6f5d7779434eb69773",
+  "firstBrowserReceiptSha256": "2bcc6562fb1d9458d4bb4b4d73314580c385cec54050461a5758d102955fa720",
+  "finding": "The first21browser groups passed. The last workload control enlarged the fresh12cell345minute source to144cells but retained5minute steps; its complete work still fit the unchanged cap. The product correctly returned no-band-witness, not a budget refusal. The test expectation was wrong.",
+  "correction": "Declare1minute integration steps for that same synthetic144cell work-refusal input so its actual complete reservation exceeds the existing cap. No product, original fresh comparison, original tolerances or numerical source changed.",
+  "newHarnessSha256": "b86fb0ad8383eea121882c90692586c3d23e7238897a03ebc7672261d4b7afb6"
+}

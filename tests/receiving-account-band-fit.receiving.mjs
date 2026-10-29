@@ -203,6 +203,47 @@ try{
   const drainOver=structuredClone(drainRaw);drainOver.project.width=8;drainOver.project.height=5;for(const side of ['existing','proposal'])drainOver.project[side]=Array.from({length:40},()=>({...drainOver.project[side][0]}));const drainOverFile=join(output,'drain-complete-budget.json');await writeFile(drainOverFile,JSON.stringify(drainOver));await open(drainOverFile,'refused');assert.match(await page.locator('#rai-status').textContent(),/complete original-band incumbent/);assert.equal(await page.locator('#rai-save').isDisabled(),true);assert.equal(await page.locator('#rai-results').textContent(),'');
   checks.push('A contradictory new original drainage row and complete expanded40cell work refusal cannot preserve a successful result or accept a partial calibration family');
   receipt.drainConditioning={calibration:12,held:10,pairedModels:12,originalFieldEntry:true,freshSourceReplay:true,wrongHeldParametersUnchanged:true};
+  // This original was independently authored before method freeze and has now
+  // been consumed by the frozen comparison. Browser reuse is receiving proof.
+  await page.setViewportSize({width:1440,height:1000});
+  const filledRecord=JSON.parse(await readFile(join(root,'experiments/filled-independent-comparison.json'),'utf8')).records.find(row=>row.id==='fresh-filled-8');
+  assert.equal(filledRecord.baseline.result.compatibleIds.length,0);assert.equal(filledRecord.current.result.compatibleIds.length,4);
+  const filledSource=structuredClone(filledRecord.source),newDrain=filledSource.account.readings.find(row=>row.channel==='drained'&&row.use==='calibration');
+  filledSource.account.readings=filledSource.account.readings.filter(row=>row!==newDrain);
+  const filledBasis='Authored uniform isolated receiving layer across all12garden cells and1.47square metres; no measured field evidence or inferred material identity.';
+  const filledParent=join(output,'filled-original-parent.json');await writeFile(filledParent,serializeReceivingAccounts(filledSource.project,parent.study,filledSource.account));
+  await page.locator('#ra-open').setInputFiles(filledParent);await page.waitForFunction(()=>document.querySelector('#ra-status').textContent.startsWith('Recomputed from original inputs.'));
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(filledBasis);await page.locator('#rai-phase-run').click();await state('challenged');
+  const filledBefore=await candidates();assert.equal(filledBefore.filter(row=>row.calibration==='true').length,3);assert.equal(filledBefore.filter(row=>row.calibration==='true'&&row.challenge==='true').length,0);
+  await page.locator('#ra-add-reading').click();const filledRow=page.locator('#ra-readings > fieldset').last(),filledId=await filledRow.getAttribute('data-id');
+  for(const key of ['channel','use'])await filledRow.locator('[data-field="'+key+'"]').selectOption(newDrain[key]);
+  for(const key of ['minute','valueLiters','uncertaintyLiters','source'])await filledRow.locator('[data-field="'+key+'"]').fill(String(newDrain[key]));
+  assert.deepEqual(await candidates(),filledBefore);
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(filledBasis);await page.locator('#rai-phase-run').click();await state('several-surviving-proposals');
+  const filledAfter=await candidates(),filledQuestion=await page.locator('#rai-band-question').textContent();
+  assert.equal(filledAfter.filter(row=>row.calibration==='true').length,4);assert.equal(filledAfter.filter(row=>row.calibration==='true'&&row.challenge==='true').length,4);
+  await page.locator('#rai-band-results [data-calibration="true"] summary').first().click();await page.locator('#rai-band-results').getByText(/Conditional full-store drainage/).first().waitFor({state:'attached'});
+  assert.match(await page.locator('#rai-band-results').textContent(),/not a certified parameter enclosure/);
+  const filledDownload=page.waitForEvent('download');await page.locator('#rai-save').click();const filledFile=join(output,'filled-conditioned-originals.json');await(await filledDownload).saveAs(filledFile);
+  const filledRaw=JSON.parse(await readFile(filledFile,'utf8'));assert.deepEqual(Object.keys(filledRaw).sort(),['schema','project','selection','account'].sort());
+  assert.deepEqual(filledRaw.account.readings.slice(0,-1),filledSource.account.readings);assert.deepEqual(filledRaw.account.readings.at(-1),{...newDrain,id:filledId});assert.equal(filledRaw.selection.uniformReceiverBasis,filledBasis);
+  checks.push('A new original drainage value entered through the ordinary parent form changes filled-course alternatives from3calibration/0held to4/4 after explicit handoff; original bands and roles remain exact and bounded provenance is visible');
+
+  await page.locator('#rac-current').click();await page.locator('#rac-basis').fill('Authored common receiver and initial water across both original layouts; conditional comparison, no physical adoption.');await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');
+  const filledConsequences=await consequenceRows();assert.equal(filledConsequences.length,4);assert.equal(await page.locator('#rac-ranges').getAttribute('data-surviving-count'),'4');assert.deepEqual(await candidates(),filledAfter);
+  const filledPairDownload=page.waitForEvent('download');await page.locator('#rac-save').click();const filledPairFile=join(output,'filled-paired-originals.json');await(await filledPairDownload).saveAs(filledPairFile);
+  for(const [name,width,height]of [['desktop',1440,1000],['narrow',390,844]]){await page.setViewportSize({width,height});await page.locator('#rai-status').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:join(output,'filled-'+name+'.png')});}
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await open(filledFile,'several-surviving-proposals');assert.deepEqual(await candidates(),filledAfter);assert.equal(await page.locator('#rai-band-question').textContent(),filledQuestion);
+  await page.locator('#rac-open').setInputFiles(filledPairFile);await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.deepEqual(await consequenceRows(),filledConsequences);
+  await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.deepEqual(await consequenceRows(),filledConsequences);
+  checks.push('All4filled models reach paired layouts within the unchanged budget; both original-only files recompute on a fresh page and Compare again preserves source/options, at desktop and390px widths');
+
+  const filledWrong=structuredClone(filledRaw);filledWrong.account.readings.filter(row=>row.use==='challenge').forEach(row=>row.valueLiters=100000);filledWrong.project.observations.filter(row=>row.use==='challenge').forEach(row=>row.depthMm=500);
+  const filledWrongFile=join(output,'filled-wrong-held.json');await writeFile(filledWrongFile,JSON.stringify(filledWrong));await open(filledWrongFile,'challenged');assert.deepEqual((await candidates()).map(({challenge,...row})=>row),filledAfter.map(({challenge,...row})=>row));assert.equal(await page.locator('#rai-band-question').textContent(),filledQuestion);
+  const filledConflict=structuredClone(filledRaw);filledConflict.account.readings.push({...filledConflict.account.readings.at(-1),id:'filled-contradiction',valueLiters:newDrain.valueLiters+50});const filledConflictFile=join(output,'filled-contradictory-original.json');await writeFile(filledConflictFile,JSON.stringify(filledConflict));await open(filledConflictFile,'no-band-witness');assert.equal(await page.locator('#rai-band-results [data-calibration="true"]').count(),0);
+  const filledOver=structuredClone(filledRaw);filledOver.project.weather.stepMinutes=1;filledOver.project.width=12;filledOver.project.height=12;for(const side of ['existing','proposal'])filledOver.project[side]=Array.from({length:144},()=>({...filledOver.project[side][0]}));const filledOverFile=join(output,'filled-whole-budget-refusal.json');await writeFile(filledOverFile,JSON.stringify(filledOver));await open(filledOverFile,'refused');assert.match(await page.locator('#rai-status').textContent(),/complete original-band search, unchanged central family and full-grid checks/);assert.equal(await page.locator('#rai-save').isDisabled(),true);assert.equal(await page.locator('#rai-results').textContent(),'');
+  checks.push('Wrong held readings cannot alter filled parameters/calibration/question; a contradictory original and complete144cell work refusal cannot retain success or publish a partial family');
+  receipt.filledDrain={independentCase:'fresh-filled-8',before:{calibration:3,held:0},after:{calibration:4,held:4},pairedModels:4,ordinaryFieldEntry:true,freshSourceReplay:true,heldIndependent:true,wholeBudgetRefusal:true};
   assert.deepEqual(errors,[]);assert.deepEqual(httpFailures,[]);receipt.passed=true;
 }catch(error){failure=error;receipt.failure=String(error.stack||error);}
 finally{

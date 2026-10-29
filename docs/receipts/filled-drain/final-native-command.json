@@ -1,0 +1,45 @@
+{
+  "schema": "experimental-earth-filled-composed-native/1",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=2",
+    "tests/receiving-account-band-fit.test.mjs",
+    "tests/receiving-retained-starts.test.mjs",
+    "tests/receiving-account-consequences.test.mjs",
+    "tests/receiving-account-phase-fit.test.mjs",
+    "tests/receiving-drain-conditioning.test.mjs",
+    "tests/receiving-filled-drain.test.mjs"
+  ],
+  "cwd": "/dev/shm/hamon-a755e25-earth-filled-conditioning",
+  "exitCode": 0,
+  "wallMilliseconds": 14714.115737006068,
+  "counts": {
+    "tests": 51.0,
+    "pass": 51.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 14669.836738
+  },
+  "namedBehaviorChecks": {
+    "final-band-native.json": 8,
+    "final-retained-native.json": 8,
+    "final-consequence-native.json": 8,
+    "final-phase-native.json": 9,
+    "final-drain-native.json": 7,
+    "final-filled-native.json": 6
+  },
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "0964a82560342ccd72c9f7f73c18e6464abfa0f81603325baa5e97e2acdcc02c",
+    "receiving-account-phase-fit.js": "a568428305170cdeb0aa3cce7d5f5cb8c2e44da53e80a7aedfb864f7d2af6b2d",
+    "receiving-account-proposals-panel.js": "09e89cb2c439a17e4cf3fa2c27abe8815359d6b1641990d756188e28a626d0f5",
+    "tests/receiving-account-band-fit.test.mjs": "7b3af39c5c4da21370dee5e57cd770648816807666a7621507494c0f14518f36",
+    "tests/receiving-retained-starts.test.mjs": "ef99937cb17e31e6d715e9883de0d44f4f289d103208d758ea1b6dfd5b8fd025",
+    "tests/receiving-account-consequences.test.mjs": "1eb87814ec544ea94c0143a097a6a7d5ad8a3748a80e6e54168da13ecbc88b73",
+    "tests/receiving-account-phase-fit.test.mjs": "fabbedde7f1bc8bb36069d5f982a3a0a68cb99d491701f9ee4c3115a2ecad9a8",
+    "tests/receiving-drain-conditioning.test.mjs": "70192a56037763e8f60d0bb06ac4d4c219b0ac79cf910af4f1a12bc3ca8ae152",
+    "tests/receiving-filled-drain.test.mjs": "f9015f565e40f2fe04fabed55dd7a8e2f9c67edbaa3b9ffe5984774bf7aa1bd9"
+  }
+}

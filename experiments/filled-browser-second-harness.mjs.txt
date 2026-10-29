@@ -1,0 +1,254 @@
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {mkdtemp,readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {join} from 'node:path';
+import {tmpdir} from 'node:os';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
+import {makeNoisyReceivingAccountBandExample,makeUncertainRetainedBandExample,fitReceivingAccountBands,serializeReceivingAccountBandSearch,RECEIVING_ACCOUNT_BAND_SCHEMA} from '../receiving-account-band-fit.js';
+import {makeUnfilledReceivingPhaseExample,RECEIVING_ACCOUNT_PHASE_SCHEMA} from '../receiving-account-phase-fit.js';
+import {runRain} from '../core.js';
+import {hypothesisLayer} from '../draining-layer-evidence.js';
+import {makeReceivingAccountExample,serializeReceivingAccounts} from '../receiving-account-evidence.js';
+import {independentBandGrid,independentBandCourse} from './receiving-band-fixtures.mjs';
+
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const root=fileURLToPath(new URL('../',import.meta.url)),output=await mkdtemp(join(process.env.HAMON_BROWSER_TMPDIR||tmpdir(),'earth-receiver-bands-'));
+const checks=[],errors=[],httpFailures=[],sourceHashes={},requested=new Set(),hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+for(const path of ['receiving-account-band-fit.js','receiving-account-phase-fit.js','receiving-account-proposals.js','receiving-account-proposals-panel.js','receiving-account-consequences.js','receiving-account-consequences-panel.js','post-dry-receiving-inverse.js','receiving-account-evidence.js','receiving-account-panel.js','draining-evidence-panel.js','draining-infiltration.js','draining-layer.css','core.js','vendor/worldlaw-linear-fit.mjs','continuous-sky.js','shade-heat-panel.js','shade-heat-sampling.js','shade-heat.css','shade-heat.js','tests/receiving-account-band-fit.receiving.mjs'])sourceHashes[path]=hash(await readFile(join(root,path)));
+const example=makeNoisyReceivingAccountBandExample(),parent=makeReceivingAccountExample();
+const saveOriginal=async(name,e)=>{const path=join(output,name);await writeFile(path,serializeReceivingAccountBandSearch(e.project,e.selection,e.account));return path;};
+const originalFile=await saveOriginal('original-bands.json',example),parentFile=join(output,'parent-original.json');
+await writeFile(parentFile,serializeReceivingAccounts(example.project,parent.study,example.account));
+let server,browser,sandbox,failure=null,serverClosed=false,baseUrl='';const serverLog=[];
+const receipt={schema:'experimental-earth-receiving-band-fit-browser/1',passed:false,checks,errors,httpFailures,sourceHashes,output,sourceKind:'Actual maintained consumer on authored originals; not field validation'};
+try{
+  server=spawn(process.env.PYTHON_BIN||'python3',[join(root,'serve.py'),'--port','0'],{cwd:root,stdio:['ignore','pipe','pipe']});
+  server.once('close',()=>{serverClosed=true;});server.stderr.on('data',bytes=>serverLog.push(bytes.toString()));
+  baseUrl=await new Promise((resolve,reject)=>{let text='';const timer=setTimeout(()=>reject(Error('Maintained server did not become ready')),15000);
+    server.once('error',error=>{clearTimeout(timer);reject(error);});server.once('exit',()=>{clearTimeout(timer);reject(Error('Maintained server exited before readiness'));});
+    server.stdout.on('data',bytes=>{text+=bytes.toString();const match=text.match(/http:\/\/127\.0\.0\.1:\d+\//);if(match){clearTimeout(timer);resolve(match[0]);}});
+  });
+  browser=await chromium.launch({executablePath:process.env.CHROME_BIN,headless:true,chromiumSandbox:true,args:['--allow-chrome-scheme-url','--disable-background-networking'],timeout:30000});
+  let context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true}),page=await context.newPage();
+  const observe=p=>{p.on('pageerror',error=>errors.push(String(error)));p.on('request',r=>requested.add(new URL(r.url()).pathname));p.on('response',r=>{if(r.url().startsWith(baseUrl)&&r.status()>=400)httpFailures.push({url:r.url(),status:r.status()});});};observe(page);
+  const cdp=await context.newCDPSession(page);sandbox=await requireChromiumSandbox({send:(method,params)=>cdp.send(method,params)});assert.equal(sandbox.admitted,true);
+  const show=async()=>{await page.goto(baseUrl,{waitUntil:'networkidle'});await page.locator('#rai-open').waitFor({state:'attached'});await page.locator('#rai-open').evaluate(input=>{let p=input.parentElement;while(p){if(p.tagName==='DETAILS')p.open=true;p=p.parentElement;}});};
+  const state=async expected=>{
+    await page.waitForFunction(()=>{const value=document.querySelector('#rai-status').dataset.state;return value&&!['pending','opening','draft'].includes(value);});
+    const observed=await page.locator('#rai-status').getAttribute('data-state');
+    if(observed!==expected){receipt.unexpectedFinalState={expected,observed,message:await page.locator('#rai-status').textContent(),cards:await page.locator('#rai-band-results [data-hypothesis]').evaluateAll(rows=>rows.map(r=>({id:r.dataset.hypothesis,calibration:r.dataset.calibration,challenge:r.dataset.challenge,capacity:r.dataset.capacity,initial:r.dataset.initial,drainage:r.dataset.drainage}))),source:await page.locator('#rai-source').textContent()};}
+    assert.equal(observed,expected,JSON.stringify(receipt.unexpectedFinalState??{}));
+  };
+  const open=async(path,expected)=>{await page.locator('#rai-open').setInputFiles(path);await state(expected);};
+  const search=async expected=>{await page.locator('#rai-band-run').focus();await page.keyboard.press('Enter');await state(expected);};
+  const candidates=()=>page.locator('#rai-band-results [data-hypothesis]').evaluateAll(rows=>rows.map(r=>({id:r.dataset.hypothesis,calibration:r.dataset.calibration,challenge:r.dataset.challenge,capacity:Number(r.dataset.capacity),initial:Number(r.dataset.initial),drainage:Number(r.dataset.drainage)})));
+  await show();const active=await page.evaluate(()=>localStorage.getItem('experimental-earth-site-v1')),parentBefore=await page.locator('#ra-source').textContent();
+  const browserPhaseOriginals=await page.evaluate(async()=>{const m=await import('/receiving-account-phase-fit.js');return m.makeUnfilledReceivingPhaseExample();});
+  await page.locator('#rai-phase-example').click();await search('no-band-witness');assert.equal(await page.locator('#rai-band-results [data-calibration="true"]').count(),0);
+  await page.locator('#rai-phase-run').focus();await page.keyboard.press('Enter');await state('several-surviving-proposals');
+  const phaseCandidates=await candidates(),phaseQuestion=await page.locator('#rai-band-question').textContent();
+  assert.equal(phaseCandidates.filter(row=>row.calibration==='true').length,12);assert.equal(phaseCandidates.filter(row=>row.calibration==='true'&&row.challenge==='true').length,6);
+  assert.match(await page.locator('#rai-band-results').textContent(),/never-filled receiver does not identify capacity/);
+  const sameCoursePair=phaseCandidates.some(a=>a.calibration==='true'&&phaseCandidates.some(b=>b.calibration==='true'&&a.capacity!==b.capacity&&a.initial===b.initial&&a.drainage===b.drainage));assert.ok(sameCoursePair);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('experimental-earth-site-v1')),active);assert.equal(await page.locator('#ra-source').textContent(),parentBefore);
+  checks.push('Actual never-filled example gains12calibration alternatives and6held survivors where original-band search findsnone, explicitly preserves different arbitrary capacities and leaves active/parent sources unchanged');
+
+  const phaseDownload=page.waitForEvent('download');await page.locator('#rai-save').click();const phaseFile=join(output,'phase-originals.json');await(await phaseDownload).saveAs(phaseFile);
+  const phaseRaw=JSON.parse(await readFile(phaseFile,'utf8'));assert.equal(phaseRaw.schema,RECEIVING_ACCOUNT_PHASE_SCHEMA);assert.deepEqual(Object.keys(phaseRaw).sort(),['schema','project','selection','account'].sort());assert.deepEqual({project:phaseRaw.project,selection:phaseRaw.selection,account:phaseRaw.account},browserPhaseOriginals);
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await open(phaseFile,'several-surviving-proposals');
+  assert.deepEqual(await candidates(),phaseCandidates);assert.equal(await page.locator('#rai-band-question').textContent(),phaseQuestion);
+  await page.locator('#rai-phase-run').click();await state('several-surviving-proposals');assert.deepEqual(await candidates(),phaseCandidates);
+  const phaseWrong=structuredClone(phaseRaw);phaseWrong.account.readings.filter(r=>r.use==='challenge').forEach(r=>r.valueLiters=100000);phaseWrong.project.observations.filter(r=>r.use==='challenge').forEach(r=>r.depthMm=500);
+  const wrongPhaseFile=join(output,'phase-wrong-held.json');await writeFile(wrongPhaseFile,JSON.stringify(phaseWrong));await open(wrongPhaseFile,'challenged');
+  assert.deepEqual((await candidates()).map(({challenge,...row})=>row),phaseCandidates.map(({challenge,...row})=>row));assert.equal(await page.locator('#rai-band-question').textContent(),phaseQuestion);assert.equal(await page.locator('#rai-band-results [data-challenge="true"]').count(),0);
+  checks.push('Actual phase source-only download reopens fresh and recomputes; changed held values cannot alter phase parameters, calibration support or measurement ranking');
+
+  await open(phaseFile,'several-surviving-proposals');await page.locator('#rac-current').click();assert.equal(await page.locator('#rac-mode').inputValue(),'phases');
+  await page.locator('#rac-basis').fill('Authored common garden receiver and per-cell initial water in both original layouts, with arbitrary never-filled capacities kept as alternatives.');await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');
+  const consequenceRows=()=>page.locator('#rac-results [data-consequence]').evaluateAll(rows=>rows.map(r=>({id:r.dataset.consequence,capacity:r.dataset.capacity,initial:r.dataset.initial,drainage:r.dataset.drainage,challenge:r.dataset.challenge,surface:r.dataset.surfaceChange,peak:r.dataset.peakChange})));
+  const phaseConsequences=await consequenceRows();assert.equal(phaseConsequences.length,12);assert.equal(await page.locator('#rac-ranges').getAttribute('data-surviving-count'),'6');assert.deepEqual(await candidates(),phaseCandidates);
+  const comparisonDownload=page.waitForEvent('download');await page.locator('#rac-save').click();const phaseComparisonFile=join(output,'phase-comparison-originals.json');await(await comparisonDownload).saveAs(phaseComparisonFile);
+  const comparisonRaw=JSON.parse(await readFile(phaseComparisonFile,'utf8'));assert.deepEqual(Object.keys(comparisonRaw).sort(),['schema','project','selection','account','options'].sort());assert.equal(comparisonRaw.options.mode,'phases');
+  for(const [name,width,height]of [['desktop',1440,1000],['narrow',390,844]]){await page.setViewportSize({width,height});await page.locator('#rai-status').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);for(const id of ['rai-phase-example','rai-phase-run'])assert.equal(await page.locator('#'+id).isVisible(),true);await page.screenshot({path:join(output,'phase-'+name+'.png')});}
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await page.locator('#rac-open').setInputFiles(phaseComparisonFile);await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.deepEqual(await consequenceRows(),phaseConsequences);
+  await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.deepEqual(await consequenceRows(),phaseConsequences);
+  checks.push('Explicit phase handoff carries all12supported models into paired consequences; original-only comparison reopens fresh and Compare again retains the reopened sources/options, with desktop/narrow controls usable');
+
+  const forgedPhase=join(output,'phase-forged.json');await writeFile(forgedPhase,JSON.stringify({...phaseRaw,candidates:phaseCandidates}));await open(forgedPhase,'refused');assert.match(await page.locator('#rai-status').textContent(),/saved conclusions/);assert.equal(await page.locator('#rai-save').isDisabled(),true);
+  const phaseOver=structuredClone(phaseRaw);phaseOver.project.width=8;phaseOver.project.height=6;for(const side of ['existing','proposal'])phaseOver.project[side]=Array.from({length:48},()=>({...phaseOver.project[side][0]}));
+  const phaseOverFile=join(output,'phase-budget-refused.json');await writeFile(phaseOverFile,JSON.stringify(phaseOver));await open(phaseOverFile,'refused');assert.match(await page.locator('#rai-status').textContent(),/complete original-band incumbent/);assert.equal(await page.locator('#rai-results').textContent(),'');
+  await page.locator('#rai-phase-example').click();await page.evaluate(()=>{document.querySelector('#rai-phase-run').click();document.querySelector('#rai-retained-band-example').click();});await page.waitForTimeout(50);assert.equal(await page.locator('#rai-status').getAttribute('data-state'),'draft');assert.equal(await page.locator('#rai-results').textContent(),'');assert.equal(await page.locator('#rai-save').isDisabled(),true);
+  await page.evaluate(()=>{const original=File.prototype.arrayBuffer;window.__releasePhaseRead=null;File.prototype.arrayBuffer=function(){if(this.name==='delayed-phase-source.json')return new Promise(resolve=>{window.__releasePhaseRead=async()=>resolve(await original.call(this));});return original.call(this);};});
+  await page.locator('#rai-open').setInputFiles({name:'delayed-phase-source.json',mimeType:'application/json',buffer:Buffer.from(await readFile(phaseFile))});await page.waitForFunction(()=>document.querySelector('#rai-status').dataset.state==='opening'&&typeof window.__releasePhaseRead==='function');
+  await page.locator('#rai-example').click();const newerPhaseSource=await page.locator('#rai-source').textContent();await page.evaluate(async()=>{await window.__releasePhaseRead();});await page.waitForTimeout(50);assert.equal(await page.locator('#rai-source').textContent(),newerPhaseSource);assert.equal(await page.locator('#rai-status').getAttribute('data-state'),'draft');assert.equal(await page.locator('#rai-results').textContent(),'');
+  checks.push('Forged phase conclusions, expanded work refusal, queued phase work and delayed phase files cannot retain stale success or overwrite newer original-source intent');
+
+  await page.locator('#rai-retained-band-example').click();await page.locator('#rai-run').click();await state('unsupported-trials');
+  assert.equal(await page.locator('#rai-results [data-calibration="true"]').count(),0);await search('challenged');
+  const retainedAccepted=await candidates();assert.equal(retainedAccepted.filter(row=>row.calibration==='true').length,1);
+  assert.equal(retainedAccepted.filter(row=>row.calibration==='true'&&row.challenge==='true').length,0);
+  assert.match(await page.locator('#rai-status').textContent(),/Every calibration-compatible proposal contradicts/);
+  await page.locator('#rai-band-results summary').filter({hasText:'Inspect the bounded search and its work reservation'}).click();
+  await page.locator('#rai-band-results').getByText(/Conditional retained-band rate start:/).first().waitFor({state:'attached'});
+  assert.match(await page.locator('#rai-band-results').textContent(),/conditional on a positive dry exponential retained course/);
+  assert.match(await page.locator('#rai-band-results').textContent(),/computational search restrictions only/);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('experimental-earth-site-v1')),active);assert.equal(await page.locator('#ra-source').textContent(),parentBefore);
+  checks.push('Actual increasing-center retained-band example gains a full-site calibration witness while both informative held receiver readings visibly reject it; computational restrictions are disclosed');
+
+  const retainedDownload=page.waitForEvent('download');await page.locator('#rai-save').click();const retainedFile=join(output,'retained-originals.json');await(await retainedDownload).saveAs(retainedFile);
+  const retainedRaw=JSON.parse(await readFile(retainedFile,'utf8')),retainedExample=makeUncertainRetainedBandExample();
+  assert.deepEqual(Object.keys(retainedRaw).sort(),['schema','project','selection','account'].sort());assert.deepEqual(retainedRaw.account,retainedExample.account);
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await open(retainedFile,'challenged');
+  assert.deepEqual(await candidates(),retainedAccepted);await search('challenged');assert.deepEqual(await candidates(),retainedAccepted);
+  checks.push('New retained-band original-source download reopens on a fresh page and a second search reproduces the exact parameters and adverse held result');
+
+  await page.locator('#rac-current').click();await page.locator('#rac-basis').fill('Authored same garden receiver and per-cell initial water in both original layouts; no physical adoption.');
+  await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='challenged');
+  assert.equal(await page.locator('#rac-ranges').getAttribute('data-calibration-count'),'1');assert.equal(await page.locator('#rac-ranges').getAttribute('data-surviving-count'),'0');
+  assert.equal(await page.locator('#rac-results [data-consequence]').count(),1);assert.equal(await page.locator('#rac-results [data-challenge="true"]').count(),0);
+  assert.match(await page.locator('#rac-status').textContent(),/every member contradicts/);assert.match(await page.locator('#rac-ranges').textContent(),/No compatible models/);
+  assert.deepEqual(await candidates(),retainedAccepted);
+  for(const [name,width,height]of [['desktop',1440,1000],['narrow',390,844]]){
+    await page.setViewportSize({width,height});await page.locator('#rai-status').scrollIntoViewIfNeeded();
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+    assert.equal(await page.locator('#rai-retained-band-example').isVisible(),true);
+    await page.screenshot({path:join(output,'retained-'+name+'.png')});
+  }
+  await page.setViewportSize({width:1440,height:1000});
+  checks.push('The actual paired-layout consumer compares the new calibration witness, retains its predicted range, and leaves the held-supported range empty at desktop and390px widths');
+
+  await page.locator('#rai-band-example').click();await page.locator('#rai-run').click();await state('no-compatible-proposal');assert.equal(await page.locator('#rai-results [data-calibration="true"]').count(),0);
+  await search('several-surviving-proposals');const accepted=await candidates(),question=await page.locator('#rai-band-question').textContent();
+  assert.equal(accepted.length,3);assert.ok(accepted.every(row=>row.calibration==='true'&&row.challenge==='true'));
+  assert.equal(await page.evaluate(()=>localStorage.getItem('experimental-earth-site-v1')),active);assert.equal(await page.locator('#ra-source').textContent(),parentBefore);
+  await page.locator('#rai-band-incumbent summary').click();await page.locator('#rai-band-incumbent [data-hypothesis]').first().waitFor({state:'attached'});assert.equal(await page.locator('#rai-band-incumbent [data-calibration="true"]').count(),0);assert.ok(await page.locator('#rai-band-incumbent [data-hypothesis]').count()>0);
+  for(const path of ['receiving-account-band-fit.js','receiving-account-phase-fit.js','receiving-account-proposals.js','receiving-account-proposals-panel.js','receiving-account-consequences.js','receiving-account-consequences-panel.js','post-dry-receiving-inverse.js','vendor/worldlaw-linear-fit.mjs','continuous-sky.js','shade-heat-panel.js','shade-heat-sampling.js','shade-heat.css','shade-heat.js']){assert.ok(requested.has('/'+path),path+' was requested by maintained page');const response=await fetch(baseUrl+path);assert.equal(response.status,200);assert.equal(hash(Buffer.from(await response.arrayBuffer())),sourceHashes[path]);}
+  checks.push('Actual keyboard band search finds full-site witnesses where the analytic incumbent fails, retains that incumbent, receives exact modules and leaves the active site and original parent untouched');
+
+  const download=page.waitForEvent('download');await page.locator('#rai-save').click();const saved=await download,savedPath=join(output,'downloaded-bands.json');await saved.saveAs(savedPath);
+  const raw=JSON.parse(await readFile(savedPath,'utf8'));assert.equal(raw.schema,RECEIVING_ACCOUNT_BAND_SCHEMA);assert.deepEqual(Object.keys(raw).sort(),['schema','project','selection','account'].sort());assert.deepEqual(raw.account,example.account);
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await open(savedPath,'several-surviving-proposals');
+  assert.deepEqual(await candidates(),accepted);assert.equal(await page.locator('#rai-band-question').textContent(),question);assert.match(await page.locator('#rai-status').textContent(),/Recomputed band search from original inputs/);
+  checks.push('Actual band-search download contains only original inputs and reopens on a fresh page to the identical frozen candidates and prospective question');
+
+  const wrong=structuredClone(example);wrong.account.readings.filter(r=>r.use==='challenge').forEach(r=>r.valueLiters=100000);wrong.project.observations.filter(r=>r.use==='challenge').forEach(r=>r.depthMm=500);
+  await open(await saveOriginal('wrong-held.json',wrong),'challenged');
+  assert.deepEqual((await candidates()).map(({challenge,...row})=>row),accepted.map(({challenge,...row})=>row));assert.equal(await page.locator('#rai-band-results [data-challenge="true"]').count(),0);assert.equal(await page.locator('#rai-band-question').textContent(),question);
+  checks.push('Changing both original held channels changes only their challenge result; fitted parameters, calibration support and prospective question remain identical');
+
+  const contradiction=structuredClone(example);contradiction.account.readings.push({...contradiction.account.readings[0],id:'independent-contradiction',valueLiters:contradiction.account.readings[0].valueLiters+10});
+  await open(await saveOriginal('contradictory.json',contradiction),'no-band-witness');assert.equal(await page.locator('#rai-band-results [data-calibration="true"]').count(),0);assert.equal(await page.locator('#rai-band-question [data-best]').count(),0);assert.match(await page.locator('#rai-status').textContent(),/not proof that no receiver fits/);
+  const forged=join(output,'forged-band-result.json');await writeFile(forged,JSON.stringify({...raw,result:{status:'several-surviving-proposals',candidates:accepted}}));await open(forged,'refused');
+  assert.match(await page.locator('#rai-status').textContent(),/saved conclusions/);assert.equal(await page.locator('#rai-results').textContent(),'');assert.equal(await page.locator('#rai-save').isDisabled(),true);
+  checks.push('Contradictory calibration is visibly unresolved and forged cached success cannot replace original-source recomputation or keep a stale result');
+
+  await page.locator('#rai-band-example').click();await page.locator('#rai-basis').fill('');await search('refused');assert.match(await page.locator('#rai-status').textContent(),/uniform receiving layer/);assert.equal(await page.locator('#rai-save').isDisabled(),true);
+  const over=structuredClone(example);over.project.weather.stepMinutes=1;await open(await saveOriginal('budget-refusal.json',over),'refused');assert.match(await page.locator('#rai-status').textContent(),/complete original-band search/);assert.equal(await page.locator('#rai-results').textContent(),'');assert.equal(await page.locator('#rai-save').isDisabled(),true);
+  await open(originalFile,'several-surviving-proposals');
+  checks.push('Missing uniformity basis and complete expanded-work refusal leave no successful result; a later valid original source remains reusable');
+
+  await page.locator('#ra-open').setInputFiles(parentFile);await page.waitForFunction(()=>document.querySelector('#ra-status').textContent.startsWith('Recomputed from original inputs.'));
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(example.selection.uniformReceiverBasis);await search('several-surviving-proposals');const copied=await candidates();assert.deepEqual(copied,accepted);
+  await page.locator('#ra-readings fieldset').first().locator('[data-field="valueLiters"]').fill('100');assert.deepEqual(await candidates(),copied);
+  const copiedDownload=page.waitForEvent('download');await page.locator('#rai-save').click();const copiedFile=join(output,'copied-source-bands.json');await(await copiedDownload).saveAs(copiedFile);assert.deepEqual(JSON.parse(await readFile(copiedFile,'utf8')).account,example.account);
+  checks.push('Explicit parent handoff fits the copied original account without offered parameters; later parent edits cannot retarget the child or alter its saved original source');
+
+  await page.evaluate(()=>{const original=File.prototype.arrayBuffer;window.__releaseBandRead=null;File.prototype.arrayBuffer=function(){if(this.name==='delayed-band-source.json')return new Promise(resolve=>{window.__releaseBandRead=async()=>resolve(await original.call(this));});return original.call(this);};});
+  await page.locator('#rai-open').setInputFiles({name:'delayed-band-source.json',mimeType:'application/json',buffer:Buffer.from(await readFile(savedPath))});await page.waitForFunction(()=>document.querySelector('#rai-status').dataset.state==='opening'&&typeof window.__releaseBandRead==='function');
+  await page.locator('#rai-example').click();const newer=await page.locator('#rai-source').textContent();await page.evaluate(async()=>{await window.__releaseBandRead();});await page.waitForTimeout(50);
+  assert.equal(await page.locator('#rai-source').textContent(),newer);assert.equal(await page.locator('#rai-status').getAttribute('data-state'),'draft');assert.equal(await page.locator('#rai-results').textContent(),'');
+  await page.evaluate(()=>{document.querySelector('#rai-band-run').click();document.querySelector('#rai-late-example').click();});await page.waitForTimeout(50);assert.equal(await page.locator('#rai-status').getAttribute('data-state'),'draft');assert.equal(await page.locator('#rai-results').textContent(),'');assert.equal(await page.locator('#rai-save').isDisabled(),true);
+  checks.push('A delayed band file and a queued numerical search retire on newer source intent without overwriting that source or resurrecting old support');
+
+  const eligible=independentBandGrid().find(c=>c.eligible),large=independentBandCourse({rainMmHr:eligible.project.weather.rainMmHr,capacityMm:eligible.truth.capacityMm,drainagePerHour:eligible.truth.drainagePerHour,fraction:eligible.truth.initialStoredMm/eligible.truth.capacityMm,stormMinutes:eligible.project.weather.stormMinutes,width:8,height:6,index:0});
+  assert.equal(large.eligible,true);const expected=fitReceivingAccountBands(large.project,large.selection,large.account);assert.ok(expected.compatibleIds.length>0);await open(await saveOriginal('unfamiliar48cell-original.json',large),expected.status);
+  assert.equal((await candidates()).filter(c=>c.calibration==='true').length,expected.compatibleIds.length);assert.match(await page.locator('#rai-source').textContent(),/32 cells/);receipt.unfamiliar48cell={status:expected.status,calibrationWitnesses:expected.compatibleIds.length,survivingWitnesses:expected.survivingIds.length,reservation:expected.reservation,counts:expected.counts};
+  checks.push('An unfamiliar original48-cell mixed-surface site receives the actual full-grid checked witnesses within the complete bounded work reservation');
+
+  await open(originalFile,'several-surviving-proposals');
+  for(const [name,width,height]of [['desktop',1440,1000],['narrow',390,844]]){
+    await page.setViewportSize({width,height});await page.locator('#receiving-account-proposals').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+    for(const id of ['rai-band-example','rai-retained-band-example','rai-phase-example','rai-band-run','rai-phase-run','rai-basis','rai-run','rai-save','rai-open'])assert.equal(await page.locator('#'+id).isVisible(),true);
+    await page.locator('#receiving-account-proposals').screenshot({path:join(output,name+'.png')});
+  }
+  checks.push('Desktop and390px controls and complete results remain usable with no overflow, failed local resources or browser exceptions');
+
+  // Exercise an actual additional original through the maintained account form.
+  // Offered parent parameters are never handed to the inference producer.
+  await page.setViewportSize({width:1440,height:1000});
+  const drainSource=makeUnfilledReceivingPhaseExample(),drainTruth=runRain(drainSource.project.proposal,2,2,drainSource.project.weather,{drainingLayer:hypothesisLayer(drainSource.selection,{capacityMm:50,initialStoredMm:12.5,drainagePerHour:.25,source:'Authored model only to create an additional original measurement'})}),drainValue=drainTruth.drainingLayer.snapshots.find(x=>x.minute===540).drainedLiters;
+  const drainParentFile=join(output,'drain-original-parent.json');await writeFile(drainParentFile,serializeReceivingAccounts(drainSource.project,parent.study,drainSource.account));
+  await page.locator('#ra-open').setInputFiles(drainParentFile);await page.waitForFunction(()=>document.querySelector('#ra-status').textContent.startsWith('Recomputed from original inputs.'));
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(drainSource.selection.uniformReceiverBasis);await page.locator('#rai-phase-run').click();await state('several-surviving-proposals');
+  const beforeDrain=await candidates();assert.equal(beforeDrain.filter(x=>x.calibration==='true').length,12);assert.equal(beforeDrain.filter(x=>x.calibration==='true'&&x.challenge==='true').length,6);
+  await page.locator('#ra-add-reading').click();const newRow=page.locator('#ra-readings > fieldset').last(),newId=await newRow.getAttribute('data-id');
+  const newSource='Authored new original cumulative drainage at minute540 from the unchanged model; not a physical acquisition or a derived retained reading.';
+  await newRow.locator('[data-field="channel"]').selectOption('drained');await newRow.locator('[data-field="minute"]').fill('540');await newRow.locator('[data-field="valueLiters"]').fill(String(drainValue));await newRow.locator('[data-field="uncertaintyLiters"]').fill('0.02');await newRow.locator('[data-field="use"]').selectOption('calibration');await newRow.locator('[data-field="source"]').fill(newSource);
+  assert.deepEqual(await candidates(),beforeDrain);
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(drainSource.selection.uniformReceiverBasis);await search('no-band-witness');await page.locator('#rai-phase-run').click();await state('several-surviving-proposals');
+  const afterDrain=await candidates(),drainQuestion=await page.locator('#rai-band-question').textContent();assert.equal(afterDrain.filter(x=>x.calibration==='true').length,12);assert.equal(afterDrain.filter(x=>x.calibration==='true'&&x.challenge==='true').length,10);assert.notDeepEqual(afterDrain,beforeDrain);
+  const drainDownload=page.waitForEvent('download');await page.locator('#rai-save').click();const drainFile=join(output,'drain-conditioned-originals.json');await(await drainDownload).saveAs(drainFile);const drainRaw=JSON.parse(await readFile(drainFile,'utf8'));
+  assert.deepEqual(drainRaw.account.readings.slice(0,-1),drainSource.account.readings);assert.deepEqual(drainRaw.account.readings.at(-1),{id:newId,channel:'drained',minute:540,valueLiters:drainValue,uncertaintyLiters:.02,use:'calibration',source:newSource});
+  checks.push('An additional original entered through the existing account form changes the explicitly recopied phase inference from12calibration/6held to12/10; oldbandsearch findsnone and original values and roles remain exact');
+
+  await page.locator('#rac-current').click();await page.locator('#rac-basis').fill('Authored common receiver and per-cell initial water in both original layouts; no material identification or physical adoption.');await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.equal(await page.locator('#rac-results [data-consequence]').count(),12);assert.equal(await page.locator('#rac-ranges').getAttribute('data-surviving-count'),'10');
+  for(const [name,width,height]of [['desktop',1440,1000],['narrow',390,844]]){await page.setViewportSize({width,height});await page.locator('#rai-status').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:join(output,'drain-'+name+'.png')});}
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await open(drainFile,'several-surviving-proposals');assert.deepEqual(await candidates(),afterDrain);assert.equal(await page.locator('#rai-band-question').textContent(),drainQuestion);
+  const drainWrong=structuredClone(drainRaw);drainWrong.account.readings.filter(x=>x.use==='challenge').forEach(x=>x.valueLiters=100000);drainWrong.project.observations.filter(x=>x.use==='challenge').forEach(x=>x.depthMm=500);const drainWrongFile=join(output,'drain-wrong-held.json');await writeFile(drainWrongFile,JSON.stringify(drainWrong));await open(drainWrongFile,'challenged');assert.deepEqual((await candidates()).map(({challenge,...x})=>x),afterDrain.map(({challenge,...x})=>x));assert.equal(await page.locator('#rai-band-question').textContent(),drainQuestion);
+  checks.push('All12drain-conditioned models reach the paired consumer and exact fresh-page source replay; changed held values cannot change their parameters calibration support or offered question');
+
+  const drainConflict=structuredClone(drainRaw);drainConflict.account.readings.push({...drainConflict.account.readings.at(-1),id:'incompatible-new-original',valueLiters:drainValue+50});const conflictFile=join(output,'drain-conflicting-original.json');await writeFile(conflictFile,JSON.stringify(drainConflict));await open(conflictFile,'no-band-witness');assert.equal(await page.locator('#rai-band-results [data-calibration="true"]').count(),0);
+  const drainOver=structuredClone(drainRaw);drainOver.project.width=8;drainOver.project.height=5;for(const side of ['existing','proposal'])drainOver.project[side]=Array.from({length:40},()=>({...drainOver.project[side][0]}));const drainOverFile=join(output,'drain-complete-budget.json');await writeFile(drainOverFile,JSON.stringify(drainOver));await open(drainOverFile,'refused');assert.match(await page.locator('#rai-status').textContent(),/complete original-band incumbent/);assert.equal(await page.locator('#rai-save').isDisabled(),true);assert.equal(await page.locator('#rai-results').textContent(),'');
+  checks.push('A contradictory new original drainage row and complete expanded40cell work refusal cannot preserve a successful result or accept a partial calibration family');
+  receipt.drainConditioning={calibration:12,held:10,pairedModels:12,originalFieldEntry:true,freshSourceReplay:true,wrongHeldParametersUnchanged:true};
+  // This original was independently authored before method freeze and has now
+  // been consumed by the frozen comparison. Browser reuse is receiving proof.
+  await page.setViewportSize({width:1440,height:1000});
+  const filledRecord=JSON.parse(await readFile(join(root,'experiments/filled-independent-comparison.json'),'utf8')).records.find(row=>row.id==='fresh-filled-8');
+  assert.equal(filledRecord.baseline.result.compatibleIds.length,0);assert.equal(filledRecord.current.result.compatibleIds.length,4);
+  const filledSource=structuredClone(filledRecord.source),newDrain=filledSource.account.readings.find(row=>row.channel==='drained'&&row.use==='calibration');
+  filledSource.account.readings=filledSource.account.readings.filter(row=>row!==newDrain);
+  const filledBasis='Authored uniform isolated receiving layer across all12garden cells and1.47square metres; no measured field evidence or inferred material identity.';
+  const filledParent=join(output,'filled-original-parent.json');await writeFile(filledParent,serializeReceivingAccounts(filledSource.project,parent.study,filledSource.account));
+  await page.locator('#ra-open').setInputFiles(filledParent);await page.waitForFunction(()=>document.querySelector('#ra-status').textContent.startsWith('Recomputed from original inputs.'));
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(filledBasis);await page.locator('#rai-phase-run').click();await state('challenged');
+  const filledBefore=await candidates();assert.equal(filledBefore.filter(row=>row.calibration==='true').length,3);assert.equal(filledBefore.filter(row=>row.calibration==='true'&&row.challenge==='true').length,0);
+  await page.locator('#ra-add-reading').click();const filledRow=page.locator('#ra-readings > fieldset').last(),filledId=await filledRow.getAttribute('data-id');
+  for(const key of ['channel','use'])await filledRow.locator('[data-field="'+key+'"]').selectOption(newDrain[key]);
+  for(const key of ['minute','valueLiters','uncertaintyLiters','source'])await filledRow.locator('[data-field="'+key+'"]').fill(String(newDrain[key]));
+  assert.deepEqual(await candidates(),filledBefore);
+  await page.locator('#rai-current').click();await page.locator('#rai-basis').fill(filledBasis);await page.locator('#rai-phase-run').click();await state('several-surviving-proposals');
+  const filledAfter=await candidates(),filledQuestion=await page.locator('#rai-band-question').textContent();
+  assert.equal(filledAfter.filter(row=>row.calibration==='true').length,4);assert.equal(filledAfter.filter(row=>row.calibration==='true'&&row.challenge==='true').length,4);
+  await page.locator('#rai-band-results [data-calibration="true"] summary').first().click();await page.locator('#rai-band-results').getByText(/Conditional full-store drainage/).first().waitFor({state:'attached'});
+  assert.match(await page.locator('#rai-band-results').textContent(),/not a certified parameter enclosure/);
+  const filledDownload=page.waitForEvent('download');await page.locator('#rai-save').click();const filledFile=join(output,'filled-conditioned-originals.json');await(await filledDownload).saveAs(filledFile);
+  const filledRaw=JSON.parse(await readFile(filledFile,'utf8'));assert.deepEqual(Object.keys(filledRaw).sort(),['schema','project','selection','account'].sort());
+  assert.deepEqual(filledRaw.account.readings.slice(0,-1),filledSource.account.readings);assert.deepEqual(filledRaw.account.readings.at(-1),{...newDrain,id:filledId});assert.equal(filledRaw.selection.uniformReceiverBasis,filledBasis);
+  checks.push('A new original drainage value entered through the ordinary parent form changes filled-course alternatives from3calibration/0held to4/4 after explicit handoff; original bands and roles remain exact and bounded provenance is visible');
+
+  await page.locator('#rac-current').click();await page.locator('#rac-basis').fill('Authored common receiver and initial water across both original layouts; conditional comparison, no physical adoption.');await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');
+  const filledConsequences=await consequenceRows();assert.equal(filledConsequences.length,4);assert.equal(await page.locator('#rac-ranges').getAttribute('data-surviving-count'),'4');assert.deepEqual(await candidates(),filledAfter);
+  const filledPairDownload=page.waitForEvent('download');await page.locator('#rac-save').click();const filledPairFile=join(output,'filled-paired-originals.json');await(await filledPairDownload).saveAs(filledPairFile);
+  for(const [name,width,height]of [['desktop',1440,1000],['narrow',390,844]]){await page.setViewportSize({width,height});await page.locator('#rai-status').scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:join(output,'filled-'+name+'.png')});}
+  await context.close();context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});page=await context.newPage();observe(page);await show();await open(filledFile,'several-surviving-proposals');assert.deepEqual(await candidates(),filledAfter);assert.equal(await page.locator('#rai-band-question').textContent(),filledQuestion);
+  await page.locator('#rac-open').setInputFiles(filledPairFile);await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.deepEqual(await consequenceRows(),filledConsequences);
+  await page.locator('#rac-run').click();await page.waitForFunction(()=>document.querySelector('#rac-status').dataset.state==='compared');assert.deepEqual(await consequenceRows(),filledConsequences);
+  checks.push('All4filled models reach paired layouts within the unchanged budget; both original-only files recompute on a fresh page and Compare again preserves source/options, at desktop and390px widths');
+
+  const filledWrong=structuredClone(filledRaw);filledWrong.account.readings.filter(row=>row.use==='challenge').forEach(row=>row.valueLiters=100000);filledWrong.project.observations.filter(row=>row.use==='challenge').forEach(row=>row.depthMm=500);
+  const filledWrongFile=join(output,'filled-wrong-held.json');await writeFile(filledWrongFile,JSON.stringify(filledWrong));await open(filledWrongFile,'challenged');assert.deepEqual((await candidates()).map(({challenge,...row})=>row),filledAfter.map(({challenge,...row})=>row));assert.equal(await page.locator('#rai-band-question').textContent(),filledQuestion);
+  const filledConflict=structuredClone(filledRaw);filledConflict.account.readings.push({...filledConflict.account.readings.at(-1),id:'filled-contradiction',valueLiters:newDrain.valueLiters+50});const filledConflictFile=join(output,'filled-contradictory-original.json');await writeFile(filledConflictFile,JSON.stringify(filledConflict));await open(filledConflictFile,'no-band-witness');assert.equal(await page.locator('#rai-band-results [data-calibration="true"]').count(),0);
+  const filledOver=structuredClone(filledRaw);filledOver.project.weather.stepMinutes=1;filledOver.project.width=12;filledOver.project.height=12;for(const side of ['existing','proposal'])filledOver.project[side]=Array.from({length:144},()=>({...filledOver.project[side][0]}));const filledOverFile=join(output,'filled-whole-budget-refusal.json');await writeFile(filledOverFile,JSON.stringify(filledOver));await open(filledOverFile,'refused');assert.match(await page.locator('#rai-status').textContent(),/complete original-band incumbent/);assert.equal(await page.locator('#rai-save').isDisabled(),true);assert.equal(await page.locator('#rai-results').textContent(),'');
+  checks.push('Wrong held readings cannot alter filled parameters/calibration/question; a contradictory original and complete144cell work refusal cannot retain success or publish a partial family');
+  receipt.filledDrain={independentCase:'fresh-filled-8',before:{calibration:3,held:0},after:{calibration:4,held:4},pairedModels:4,ordinaryFieldEntry:true,freshSourceReplay:true,heldIndependent:true,wholeBudgetRefusal:true};
+  assert.deepEqual(errors,[]);assert.deepEqual(httpFailures,[]);receipt.passed=true;
+}catch(error){failure=error;receipt.failure=String(error.stack||error);}
+finally{
+  await browser?.close();if(server&&!serverClosed){server.kill('SIGTERM');await new Promise(resolve=>{if(serverClosed)return resolve();const timer=setTimeout(resolve,3000);server.once('close',()=>{clearTimeout(timer);resolve();});});}
+  receipt.sandbox=sandbox;receipt.maintainedServer={baseUrl,closed:serverClosed};if(!serverClosed){receipt.passed=false;receipt.failure=receipt.failure||'Owned server exit not confirmed';}
+  await writeFile(join(output,'server.log'),serverLog.join(''));await writeFile(join(output,'browser.json'),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify({passed:receipt.passed,checks:checks.length,output,failure:receipt.failure||null}));
+}
+if(failure)throw failure;if(!receipt.passed)throw Error(receipt.failure);

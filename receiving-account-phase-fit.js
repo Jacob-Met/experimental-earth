@@ -2,13 +2,13 @@ import {runRain,SURFACES} from './core.js';
 import {hypothesisLayer} from './draining-layer-evidence.js';
 import {evaluateReadings} from './infiltration-study.js';
 import {evaluateReceivingAccountRows,receivingAccountVerdict,chooseReceivingAccountQuestion} from './receiving-account-evidence.js';
-import {inferPostDryRetainedReceivers,proposeUnfilledReceivingBandWitnesses,UNFILLED_RECEIVING_RATE_POINTS,UNFILLED_RECEIVING_MAXIMUM_PROPOSALS,UNFILLED_DRAIN_RATE_EVALUATIONS,UNFILLED_DRAIN_MAXIMUM_PROPOSALS} from './post-dry-receiving-inverse.js';
+import {inferPostDryRetainedReceivers,proposeUnfilledReceivingBandWitnesses,UNFILLED_RECEIVING_RATE_POINTS,UNFILLED_RECEIVING_MAXIMUM_PROPOSALS,UNFILLED_DRAIN_RATE_EVALUATIONS,UNFILLED_DRAIN_MAXIMUM_PROPOSALS,proposeFilledDrainBandWitnesses,reserveFilledDrainBandWork,unfilledReceivingSurfaceCourse,FILLED_DRAIN_MAXIMUM_PROPOSALS} from './post-dry-receiving-inverse.js';
 import {fitReceivingAccountBands,reserveReceivingAccountBandWork,RECEIVING_ACCOUNT_BAND_SEEDS,RECEIVING_ACCOUNT_BAND_STEP_LIMIT} from './receiving-account-band-fit.js';
 import {serializeReceivingAccountProposals,parseReceivingAccountProposals,makePostDryReceivingAccountProposalExample,RECEIVING_ACCOUNT_PROPOSAL_SCHEMA} from './receiving-account-proposals.js';
 
 export const RECEIVING_ACCOUNT_PHASE_SCHEMA='experimental-earth-receiving-account-phase-search/1';
 const filledTargets=[[0,0],[0,1],[1,0],[1,1],[.5,.5]];
-export const RECEIVING_ACCOUNT_PHASE_MAXIMUM_PROPOSALS=filledTargets.length*6+UNFILLED_DRAIN_MAXIMUM_PROPOSALS;
+export const RECEIVING_ACCOUNT_PHASE_MAXIMUM_PROPOSALS=filledTargets.length*6+UNFILLED_DRAIN_MAXIMUM_PROPOSALS+FILLED_DRAIN_MAXIMUM_PROPOSALS;
 const clone=x=>structuredClone(x),exact=(v,keys)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===keys.length&&keys.every(k=>Object.hasOwn(v,k));
 function sources(project,selection,account){
   const originals=project.observations.map((reading,index)=>({reading,index})).filter(row=>row.reading.scenario===selection.target);
@@ -20,36 +20,47 @@ function sources(project,selection,account){
   return {originals,calibration,storm,retained,drained,hasPhaseSource};
 }
 
+
+function phaseInput(project,selection,source){
+  const w=project.weather;
+  return {rainMmHr:w.rainMmHr,infiltrationMmHr:SURFACES[selection.surface].infiltrationMmHr,stormMinutes:w.stormMinutes,
+    stormEndDepthMm:source.storm?.reading.depthMm,stormUncertaintyMm:source.storm?.reading.uncertaintyMm,
+    areaM2:project[selection.target].filter(cell=>cell.surface===selection.surface).length*w.cellSizeM**2,
+    readings:source.retained.map(row=>row.reading),drainedReadings:source.drained.map(row=>row.reading)};
+}
+
 /** Reserve the complete old method, every optional phase proposal, every final
  * original-grid check and all bounded arithmetic before any producer runs. */
 export function reserveReceivingAccountPhaseWork(project,selection,account){
   const incumbent=reserveReceivingAccountBandWork(project,selection,account),source=sources(project,selection,account);
-  const refineDrain=source.drained.some(row=>row.reading.minute>0);
-  const maximumPhaseProposals=source.hasPhaseSource?filledTargets.length*6+(refineDrain?UNFILLED_DRAIN_MAXIMUM_PROPOSALS:UNFILLED_RECEIVING_MAXIMUM_PROPOSALS):0;
+  const refineDrain=source.drained.some(row=>row.reading.minute>0),input=phaseInput(project,selection,source);
+  const unfilledPossible=source.hasPhaseSource&&unfilledReceivingSurfaceCourse(input).possible;
+  const filledDrain=reserveFilledDrainBandWork(input);
+  const maximumPhaseProposals=source.hasPhaseSource?filledTargets.length*6+(unfilledPossible?(refineDrain?UNFILLED_DRAIN_MAXIMUM_PROPOSALS:UNFILLED_RECEIVING_MAXIMUM_PROPOSALS):0)+filledDrain.maximumProposals:0;
   const finalGridChecks=RECEIVING_ACCOUNT_BAND_SEEDS+maximumPhaseProposals;
   const finalGridCellSteps=finalGridChecks*incumbent.fullGridCellSteps;
   const phaseRootEvaluations=source.hasPhaseSource?filledTargets.length*2*(2+128+1):0;
-  const phaseRateEvaluations=source.hasPhaseSource?(refineDrain?UNFILLED_DRAIN_RATE_EVALUATIONS:UNFILLED_RECEIVING_RATE_POINTS):0;
+  const phaseRateEvaluations=unfilledPossible?(refineDrain?UNFILLED_DRAIN_RATE_EVALUATIONS:UNFILLED_RECEIVING_RATE_POINTS):0;
   const phaseBandIntersections=phaseRateEvaluations*(source.retained.length+source.drained.length);
-  const totalCellEquivalentSteps=incumbent.totalCellEquivalentSteps+finalGridCellSteps+phaseRootEvaluations+phaseBandIntersections;
+  const totalCellEquivalentSteps=incumbent.totalCellEquivalentSteps+finalGridCellSteps+phaseRootEvaluations+phaseBandIntersections+filledDrain.qEvaluations+filledDrain.bandIntersections+filledDrain.modelEvaluations;
   if(totalCellEquivalentSteps>RECEIVING_ACCOUNT_BAND_STEP_LIMIT)throw Error('The complete original-band incumbent, phase alternatives and final original-grid checks exceed one million cell-equivalent steps; no partial phase family was computed.');
-  return {incumbent,maximumPhaseProposals,finalGridChecks,finalGridCellSteps,phaseRootEvaluations,phaseRateEvaluations,phaseBandIntersections,
+  return {incumbent,maximumPhaseProposals,finalGridChecks,finalGridCellSteps,phaseRootEvaluations,phaseRateEvaluations,phaseBandIntersections,filledDrain,unfilledPossible,
     maximumCandidates:RECEIVING_ACCOUNT_BAND_SEEDS+maximumPhaseProposals,totalCellEquivalentSteps,fullGridCellSteps:incumbent.fullGridCellSteps,limit:RECEIVING_ACCOUNT_BAND_STEP_LIMIT};
 }
 
 export function fitReceivingAccountPhases(project,selection,account){
   const reservation=reserveReceivingAccountPhaseWork(project,selection,account),source=sources(project,selection,account),w=project.weather;
-  const phases=[],refusals=[],counts={phaseInverseCalls:0,phaseBandIntersections:0,phaseRateEvaluations:0,phaseUniqueParameters:0,finalOriginalGridChecks:0};
+  const phases=[],refusals=[],counts={phaseInverseCalls:0,phaseBandIntersections:0,phaseRateEvaluations:0,phaseUniqueParameters:0,finalOriginalGridChecks:0,filledDrainQEvaluations:0,filledDrainModelEvaluations:0,filledDrainBandIntersections:0};
   const areaM2=project[selection.target].filter(cell=>cell.surface===selection.surface).length*w.cellSizeM**2;
-  let unfilled=null;
+  let unfilled=null,filledDrain=null;
   const keep=(h,origin)=>{
     const previous=phases.find(row=>row.hypothesis.capacityMm===h.capacityMm&&row.hypothesis.initialStoredMm===h.initialStoredMm&&row.hypothesis.drainagePerHour===h.drainagePerHour);
     if(previous){previous.phaseOrigins.push(origin);return;}
     if(phases.length>=reservation.maximumPhaseProposals)throw Error('The generated phase family exceeded its complete reservation.');
     const id='account-phase-'+(phases.length+1);
-    phases.push({hypothesis:{id,label:origin.family==='unfilled'?'Never-filled receiver witness '+(phases.length+1):'Filled receiver band-point witness '+(phases.length+1),
+    phases.push({hypothesis:{id,label:origin.family==='unfilled'?'Never-filled receiver witness '+(phases.length+1):origin.family==='filled-drain'?'Filled receiver from original drainage '+(phases.length+1):'Filled receiver band-point witness '+(phases.length+1),
       capacityMm:h.capacityMm,initialStoredMm:h.initialStoredMm,drainagePerHour:h.drainagePerHour,
-      source:origin.family==='unfilled'?'Explicit arbitrary never-filled capacity witness, not an estimate; generated from original calibration bands.':'Conditional filled receiver from computational points inside original calibration bands, not substituted observations.'},phaseOrigins:[origin]});
+      source:origin.family==='unfilled'?'Explicit arbitrary never-filled capacity witness, not an estimate; generated from original calibration bands.':origin.family==='filled-drain'?'Conditional filled receiver generated from original retained and drainage calibration bands; no observations are replaced.':'Conditional filled receiver from computational points inside original calibration bands, not substituted observations.'},phaseOrigins:[origin]});
   };
   if(source.hasPhaseSource&&areaM2>0){
     const first=source.retained[0],last=source.retained.at(-1),storm=source.storm;
@@ -73,6 +84,22 @@ export function fitReceivingAccountPhases(project,selection,account){
     for(const h of unfilled.proposals)keep(h,{family:'unfilled',surfaceRows:[storm.index],accountIndices:[...source.retained,...source.drained].map(row=>row.index).sort((a,b)=>a-b),phase:h.phase,
       rateFraction:h.rateFraction,sampledRateFraction:h.sampledRateFraction,endpointInsetPerHour:h.endpointInsetPerHour,rateMethod:h.rateMethod??'fixed-rate-grid',initialFraction:h.initialFraction,capacityChoice:h.capacityChoice,initialIntervalMm:h.initialIntervalMm,maximumModeledStorageMm:h.maximumModeledStorageMm,meaning:h.meaning});
     if(!unfilled.proposals.length)refusals.push({family:'unfilled',reason:unfilled.reason??unfilled.status});
+    if(reservation.filledDrain.maximumProposals){
+      counts.phaseInverseCalls++;
+      filledDrain=proposeFilledDrainBandWitnesses(phaseInput(project,selection,source));
+      counts.filledDrainQEvaluations=filledDrain.counts?.qEvaluations??0;
+      counts.filledDrainModelEvaluations=filledDrain.counts?.modelEvaluations??0;
+      counts.filledDrainBandIntersections=filledDrain.counts?.bandIntersections??0;
+      if(counts.filledDrainQEvaluations>reservation.filledDrain.qEvaluations||counts.filledDrainModelEvaluations>reservation.filledDrain.modelEvaluations||counts.filledDrainBandIntersections>reservation.filledDrain.bandIntersections)
+        throw Error('The complete original-drainage filled-course reservation was exceeded.');
+      for(const h of filledDrain.proposals)keep(h,{family:'filled-drain',surfaceRows:[storm.index],
+        accountIndices:[...source.retained,...source.drained].map(row=>row.index).sort((a,b)=>a-b),
+        phase:h.phase,fullStoreRateMmHr:h.fullStoreRateMmHr,fillMinute:h.fillMinute,dryMinute:h.dryMinute,
+        rateInterval:h.rateInterval,rateFraction:h.rateFraction,endpointInsetPerHour:h.endpointInsetPerHour,qOrigin:h.qOrigin,
+        meaning:'Original retained and cumulative-drainage bands constrain the same conditional filled course. Bounded computational parameters are not additional observations, an exhaustive enclosure or identified physical properties.'});
+      if(!filledDrain.proposals.length)refusals.push({family:'filled-drain',reason:filledDrain.reason??filledDrain.status});
+    }
+
   }
   counts.phaseUniqueParameters=phases.length;
   // This unchanged incumbent keeps its own analytic family and every local
@@ -95,7 +122,7 @@ export function fitReceivingAccountPhases(project,selection,account){
   const emptyStatus=['surface-absent','need-calibration-account'].includes(incumbent.status)?incumbent.status:'no-search-starts';
   const status=!candidates.length?emptyStatus:!compatibleIds.length?'no-band-witness':!hasChallenge?'needs-challenge':!survivingIds.length?'challenged':survivingIds.length===1?'one-surviving-proposal':'several-surviving-proposals';
   return {schema:RECEIVING_ACCOUNT_PHASE_SCHEMA,project:clone(project),selection:clone(selection),account:clone(account),status,reservation,counts:{...counts,incumbent:clone(incumbent.counts)},
-    baseline:incumbent.baseline,bandIncumbent:incumbent,searches:incumbent.searches,refusals:[...incumbent.refusals,...refusals],unfilled,candidates,compatibleIds,survivingIds,question:chooseReceivingAccountQuestion(account,courses),
+    baseline:incumbent.baseline,bandIncumbent:incumbent,searches:incumbent.searches,refusals:[...incumbent.refusals,...refusals],unfilled,filledDrain,candidates,compatibleIds,survivingIds,question:chooseReceivingAccountQuestion(account,courses),
     meaning:'The unchanged original-band incumbent plus finite filled and never-filled alternatives. Every final model is checked on the complete original map, including all original calibration and held bands. Never-filled capacities are explicit arbitrary witnesses, not capacity estimates. Computational targets are never added as measurements. Held values do not fit or select parameters or offered questions. These generated alternatives are not a complete parameter enclosure, physical identification or automatic adoption.'};
 }
 

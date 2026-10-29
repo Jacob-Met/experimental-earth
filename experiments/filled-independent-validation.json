@@ -1,0 +1,288 @@
+{
+  "sourceSha256": "7571761d099e6d44f96091f4a5913cd0aa04d0a8ca06abcb37f8058c8da5147d",
+  "method": "Truth-only unchanged maintained forward; no fitter read/run",
+  "results": [
+    {
+      "id": "fresh-filled-1",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 3.1493259730092236,
+        "secondMeanRetainedMm": 0.9807102611530498,
+        "area": 1.9599999999999997,
+        "secondDrainedLiters": 27.477807888140028,
+        "futureMinute": 320,
+        "futureRetainedLiters": 0.9545323538134383,
+        "futureDrainedLiters": 28.445467646186565
+      },
+      "bands": {
+        "firstMeanMm": 2.055018117081137,
+        "secondMeanMm": 2.0750181170811364,
+        "errorMm": 1.0953078559280869
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-2",
+      "eligible": false,
+      "reasons": [
+        "late surface not dry"
+      ],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 22.70298568790657,
+        "firstDepthMm": 6.502985687906559,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 18,
+        "secondMeanRetainedMm": 8.890489180064563,
+        "area": 1.9200000000000004,
+        "secondDrainedLiters": 77.17026077427606,
+        "futureMinute": 450,
+        "futureRetainedLiters": 11.442188383603645,
+        "futureDrainedLiters": 82.79781161639636
+      },
+      "bands": {
+        "firstMeanMm": 13.435244590032282,
+        "secondMeanMm": 13.455244590032281,
+        "errorMm": 4.565755409967719
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-3",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 28,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 4.047980500962363,
+        "secondMeanRetainedMm": 0.3672245060027568,
+        "area": 4.840000000000001,
+        "secondDrainedLiters": 385.4226333909473,
+        "futureMinute": 500,
+        "futureRetainedLiters": 0.7986222973024779,
+        "futureDrainedLiters": 386.40137770269826
+      },
+      "bands": {
+        "firstMeanMm": 2.1976025034825604,
+        "secondMeanMm": 2.21760250348256,
+        "errorMm": 1.851377997479803
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-4",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 39.67378164621863,
+        "secondMeanRetainedMm": 18.740567470424082,
+        "area": 5.07,
+        "secondDrainedLiters": 315.6553229249508,
+        "futureMinute": 420,
+        "futureRetainedLiters": 73.99750490932576,
+        "futureDrainedLiters": 336.6724950906752
+      },
+      "bands": {
+        "firstMeanMm": 29.197174558321354,
+        "secondMeanMm": 29.217174558321357,
+        "errorMm": 10.477607087897272
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-5",
+      "eligible": false,
+      "reasons": [
+        "late surface not dry"
+      ],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 61.64142741261544,
+        "firstDepthMm": 2.8414274126155066,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 9,
+        "secondMeanRetainedMm": 0.11605072112400337,
+        "area": 0.81,
+        "secondDrainedLiters": 75.88399891588955,
+        "futureMinute": 660,
+        "futureRetainedLiters": 0.02318038194885476,
+        "futureDrainedLiters": 75.95481961805113
+      },
+      "bands": {
+        "firstMeanMm": 4.548025360562002,
+        "secondMeanMm": 4.568025360562001,
+        "errorMm": 4.452974639437999
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-6",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 2.220446049250313e-16,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 9.956722242608693,
+        "secondMeanRetainedMm": 2.759127735711547,
+        "area": 7.6800000000000015,
+        "secondDrainedLiters": 332.3458989897356,
+        "futureMinute": 390,
+        "futureRetainedLiters": 12.225624759815567,
+        "futureDrainedLiters": 341.31037524018467
+      },
+      "bands": {
+        "firstMeanMm": 6.34792498916012,
+        "secondMeanMm": 6.3679249891601195,
+        "errorMm": 3.609797253448573
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-7",
+      "eligible": false,
+      "reasons": [
+        "Unchanged forward admission refusal: Weather or modeling parameters out of bounds"
+      ],
+      "truthWithinBands": null
+    },
+    {
+      "id": "fresh-filled-8",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 7.875,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 3.3749602093593585,
+        "secondMeanRetainedMm": 0.3113150681054961,
+        "area": 1.4699999999999998,
+        "secondDrainedLiters": 51.35986684988492,
+        "futureMinute": 345,
+        "futureRetainedLiters": 0.1523328426149724,
+        "futureDrainedLiters": 51.66516715738501
+      },
+      "bands": {
+        "firstMeanMm": 1.8331376387324272,
+        "secondMeanMm": 1.8531376387324272,
+        "errorMm": 1.5428225706269312
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-9",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 1.0954961567250183,
+        "secondMeanRetainedMm": 0.1558606986246456,
+        "area": 6.760000000000001,
+        "secondDrainedLiters": 151.04638167729732,
+        "futureMinute": 480,
+        "futureRetainedLiters": 0.4283692429576584,
+        "futureDrainedLiters": 151.67163075704224
+      },
+      "bands": {
+        "firstMeanMm": 0.6156784276748319,
+        "secondMeanMm": 0.635678427674832,
+        "errorMm": 0.4808177290501864
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-10",
+      "eligible": false,
+      "reasons": [
+        "late surface not dry",
+        "not strictly decreasing positive inventory"
+      ],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 49.765858580219245,
+        "firstDepthMm": 26.16585858021933,
+        "secondDepthMm": 11.76585858021936,
+        "firstMeanRetainedMm": 24,
+        "secondMeanRetainedMm": 24,
+        "area": 3.630000000000001,
+        "secondDrainedLiters": 156.5769333538039,
+        "futureMinute": 600,
+        "futureRetainedLiters": 87.12000000000002,
+        "futureDrainedLiters": 174.0009333538038
+      },
+      "bands": {
+        "firstMeanMm": 23.99,
+        "secondMeanMm": 24.01,
+        "errorMm": 0.011
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-11",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 31.500000000000007,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 4.279552188052673,
+        "secondMeanRetainedMm": 0.3542266588484991,
+        "area": 1.44,
+        "secondDrainedLiters": 160.40991361125816,
+        "futureMinute": 700,
+        "futureRetainedLiters": 0.2662884450259547,
+        "futureDrainedLiters": 160.65371155497402
+      },
+      "bands": {
+        "firstMeanMm": 2.306889423450586,
+        "secondMeanMm": 2.3268894234505857,
+        "errorMm": 1.9736627646020868
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "fresh-filled-12",
+      "eligible": false,
+      "reasons": [
+        "late surface not dry",
+        "not strictly decreasing positive inventory"
+      ],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 52.29999999999999,
+        "firstDepthMm": 27.99999999999987,
+        "secondDepthMm": 9.999999999999897,
+        "firstMeanRetainedMm": 12,
+        "secondMeanRetainedMm": 12,
+        "area": 12,
+        "secondDrainedLiters": 540.0000000000006,
+        "futureMinute": 560,
+        "futureRetainedLiters": 144,
+        "futureDrainedLiters": 604.800000000001
+      },
+      "bands": {
+        "firstMeanMm": 11.99,
+        "secondMeanMm": 12.01,
+        "errorMm": 0.011
+      },
+      "truthWithinBands": true
+    }
+  ]
+}

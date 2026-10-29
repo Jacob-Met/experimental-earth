@@ -1,0 +1,191 @@
+{
+  "schema": "experimental-earth-receiving-consequence-native/1",
+  "checks": [
+    "inferred original-band family reaches both maintained layouts with original evidence and separate initial-water balances",
+    "the retained analytic family and searched family both contribute; exact duplicate parameters retain every origin",
+    "wrong held values change challenge results while all fitted parameters, compared family and consequences stay identical",
+    "source scenarios remain distinct; identical layouts have zero change and swapping layouts reverses every consequence",
+    "contradictory original calibration has no consequence range and no default receiver",
+    "combined full-family reservation refuses before inference even when the inverse and each consumer fit their individual budgets",
+    "a corrupt paired receiving run cannot report successful consequences from the earlier fit",
+    "source-only replay recomputes exact consequences and refuses saved parameters, verdicts or altered option contracts"
+  ],
+  "sourceKind": "Authored maintained-consumer controls; not field validation",
+  "sourceHashes": {
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "draining-layer-study.js": "764954af0f389afd4bc647dd9e2a1a4a9575f669bc24ea27c1b72a616d816a17",
+    "draining-layer-evidence.js": "0f460a9df746afcea588f731a95c245d7ba6aabcacbc2ba5906b44255d65e8b6",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3"
+  },
+  "example": {
+    "status": "compared",
+    "counts": {
+      "comparedCandidates": 3,
+      "comparisonRuns": 18,
+      "comparisonCellSteps": 10368
+    },
+    "reservation": {
+      "inverseCellEquivalentSteps": 372276,
+      "maximumCandidates": 12,
+      "comparisonRuns": 72,
+      "comparisonCellSteps": 41472,
+      "totalCellEquivalentSteps": 413748,
+      "fullGridCellSteps": 576,
+      "limit": 1000000,
+      "inverse": {
+        "centralTrials": 9,
+        "originalGridTrials": 13,
+        "reducedTrials": 633,
+        "seedKernelCalls": 180,
+        "projectedKernelCalls": 0,
+        "maximumDrainageRateBisections": 128,
+        "maximumRetainedRatePairs": 21,
+        "stepsPerCourse": 144,
+        "fullGridCellSteps": 576,
+        "reducedCellSteps": 364608,
+        "totalCellEquivalentSteps": 372276,
+        "limit": 1000000
+      }
+    },
+    "effects": {
+      "calibration": {
+        "count": 3,
+        "ids": [
+          "consequence-1",
+          "consequence-2",
+          "consequence-3"
+        ],
+        "metrics": {
+          "absorbedLiters": {
+            "minimum": 71.99999999999993,
+            "maximum": 72.0000000000001
+          },
+          "storedLiters": {
+            "minimum": -72.00000000000065,
+            "maximum": -72.00000000000065
+          },
+          "exitLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "maxDepthMm": {
+            "minimum": -14.000522020539341,
+            "maximum": -13.997190209746176
+          }
+        },
+        "receiverMetrics": {
+          "initialLiters": {
+            "minimum": 13.551563781045637,
+            "maximum": 13.57749986571497,
+            "minimumIds": [
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-3"
+            ]
+          },
+          "retainedLiters": {
+            "minimum": 0.16379225211394144,
+            "maximum": 0.16401878975458486,
+            "minimumIds": [
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-3"
+            ]
+          },
+          "drainedLiters": {
+            "minimum": 133.38777152893175,
+            "maximum": 133.41348107596036,
+            "minimumIds": [
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-3"
+            ]
+          }
+        }
+      },
+      "surviving": {
+        "count": 3,
+        "ids": [
+          "consequence-1",
+          "consequence-2",
+          "consequence-3"
+        ],
+        "metrics": {
+          "absorbedLiters": {
+            "minimum": 71.99999999999993,
+            "maximum": 72.0000000000001
+          },
+          "storedLiters": {
+            "minimum": -72.00000000000065,
+            "maximum": -72.00000000000065
+          },
+          "exitLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "maxDepthMm": {
+            "minimum": -14.000522020539341,
+            "maximum": -13.997190209746176
+          }
+        },
+        "receiverMetrics": {
+          "initialLiters": {
+            "minimum": 13.551563781045637,
+            "maximum": 13.57749986571497,
+            "minimumIds": [
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-3"
+            ]
+          },
+          "retainedLiters": {
+            "minimum": 0.16379225211394144,
+            "maximum": 0.16401878975458486,
+            "minimumIds": [
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-3"
+            ]
+          },
+          "drainedLiters": {
+            "minimum": 133.38777152893175,
+            "maximum": 133.41348107596036,
+            "minimumIds": [
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "mixedFamily": {
+    "analytic": 2,
+    "searched": 2,
+    "distinct": 2,
+    "origins": 4
+  },
+  "wrongHeld": {
+    "status": "challenged",
+    "compared": 3,
+    "survivors": 0
+  },
+  "combinedBudget": {
+    "inverseIndividuallyAdmitted": true,
+    "consumerIndividuallyAdmitted": true,
+    "refusedCalls": {
+      "central": 0,
+      "bands": 0,
+      "comparison": 0
+    }
+  }
+}

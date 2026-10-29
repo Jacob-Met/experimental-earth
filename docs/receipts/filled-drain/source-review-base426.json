@@ -1,0 +1,30 @@
+{
+  "schema": "experimental-earth-filled-drain-scoped-review/1",
+  "recordedUtc": "2026-10-29T00:14:44.480197+00:00",
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "0964a82560342ccd72c9f7f73c18e6464abfa0f81603325baa5e97e2acdcc02c",
+    "receiving-account-phase-fit.js": "a568428305170cdeb0aa3cce7d5f5cb8c2e44da53e80a7aedfb864f7d2af6b2d",
+    "receiving-account-proposals-panel.js": "09e89cb2c439a17e4cf3fa2c27abe8815359d6b1641990d756188e28a626d0f5"
+  },
+  "mathematicalReview": {
+    "reviewer": "/root/worldlaw",
+    "result": "clear",
+    "scope": "Previously completed q/k monotonicity, conservation, physical-domain admission and bounded-work review; subsequent score correction separately reviewed before independent tuple release. No new browser rerun by this reviewer.",
+    "finding": "Original filled retained and cumulative-drainage expressions are monotone in the conditional decay-rate domain. Out-of-domain bands retain a positive violation and boundary rather than disappear. A degenerate rate width can zero the score penalty but the separately checked positive violation still refuses; finite search is not complete."
+  },
+  "consumerReview": {
+    "reviewer": "/root/second_ground",
+    "result": "clear",
+    "scope": "Previously completed phase/panel preflight, source custody and paired-consumer review on the unchanged production hashes; no additional whole-browser rerun claimed."
+  },
+  "rootReceiving": {
+    "nativeTests": 51,
+    "nativeBehaviorGroups": 46,
+    "browserGroups": 22,
+    "browserFullSandbox": true,
+    "browserErrors": 0,
+    "browserHttpFailures": 0,
+    "currentMain": "426317a66fd19f5bb919c7cc635b1ee5ff16fd98",
+    "visualReview": "The actual390px filled result was inspected; controls, retained alternatives and qualification text are readable without horizontal overflow. Screenshots remain internal QA."
+  }
+}

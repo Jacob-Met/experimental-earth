@@ -1,0 +1,301 @@
+{
+  "schema": "experimental-earth-drain-conditioning-native/1",
+  "checks": [
+    "independent ODE originals constrain cumulative drainage before during and after the storm and ponded phase",
+    "new original drainage constrains generated initial water and reaches the actual original-map consumer",
+    "held observations cannot change original-drainage constraints rate searches or candidate parameters",
+    "conflicting drainage original and impossible timezero drainage cannot report success or silently become retained evidence",
+    "complete positive-time drainage search and extra-model work refuses before any producer when the prior fixed-grid work fits",
+    "source-only replay and paired layouts retain every admitted drain-conditioned model and original row",
+    "frozen predecessor retains14of16 and its two filled failures while current filled mechanism supports16of16"
+  ],
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "0964a82560342ccd72c9f7f73c18e6464abfa0f81603325baa5e97e2acdcc02c",
+    "receiving-account-phase-fit.js": "a568428305170cdeb0aa3cce7d5f5cb8c2e44da53e80a7aedfb864f7d2af6b2d",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "tests/receiving-drain-conditioning.test.mjs": "70192a56037763e8f60d0bb06ac4d4c219b0ac79cf910af4f1a12bc3ca8ae152"
+  },
+  "meaning": "Independent ODE controls and consumed authored-case comparison; no field or fresh-input qualification claim.",
+  "odeOriginals": [
+    {
+      "rainMmHr": 12,
+      "initialMm": 0,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 12,
+      "initialMm": 7,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 24,
+      "initialMm": 0,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 24,
+      "initialMm": 7,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 39,
+      "initialMm": 0,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 39,
+      "initialMm": 7,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 72,
+      "initialMm": 0,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    },
+    {
+      "rainMmHr": 72,
+      "initialMm": 7,
+      "proposals": 12,
+      "rateEvaluations": 409,
+      "bandIntersections": 2863
+    }
+  ],
+  "example": {
+    "status": "several-surviving-proposals",
+    "oldCalibration": 0,
+    "calibration": 12,
+    "held": 10,
+    "counts": {
+      "phaseInverseCalls": 6,
+      "phaseBandIntersections": 1227,
+      "phaseRateEvaluations": 409,
+      "phaseUniqueParameters": 12,
+      "finalOriginalGridChecks": 15,
+      "filledDrainQEvaluations": 0,
+      "filledDrainModelEvaluations": 0,
+      "filledDrainBandIntersections": 0,
+      "incumbent": {
+        "reducedTrials": 633,
+        "originalGridChecks": 3,
+        "seedKernelCalls": 0,
+        "seedInverseCalls": 0,
+        "seedRetainedRatePairs": 1,
+        "projectedKernelCalls": 36714
+      }
+    },
+    "reservation": {
+      "incumbent": {
+        "centralTrials": 11,
+        "originalGridTrials": 15,
+        "reducedTrials": 633,
+        "seedKernelCalls": 180,
+        "projectedKernelCalls": 36714,
+        "maximumDrainageRateBisections": 128,
+        "maximumRetainedRatePairs": 21,
+        "stepsPerCourse": 144,
+        "fullGridCellSteps": 576,
+        "reducedCellSteps": 364608,
+        "totalCellEquivalentSteps": 410142,
+        "limit": 1000000
+      },
+      "maximumPhaseProposals": 90,
+      "finalGridChecks": 93,
+      "finalGridCellSteps": 53568,
+      "phaseRootEvaluations": 1310,
+      "phaseRateEvaluations": 409,
+      "phaseBandIntersections": 1227,
+      "filledDrain": {
+        "status": "inactive",
+        "reason": "unresolved-interior-filled-surface-excess",
+        "qEvaluations": 0,
+        "maximumProposals": 0,
+        "bandIntersections": 0,
+        "modelEvaluations": 0
+      },
+      "unfilledPossible": true,
+      "maximumCandidates": 93,
+      "totalCellEquivalentSteps": 466247,
+      "fullGridCellSteps": 576,
+      "limit": 1000000
+    }
+  },
+  "wrongHeld": {
+    "status": "challenged",
+    "calibration": 12,
+    "held": 0,
+    "parametersAndSearchUnchanged": true
+  },
+  "refusals": {
+    "conflictingOriginal": "no-band-witness",
+    "timezeroOriginal": "no-band-witness",
+    "heldRole": "need-original-drained-calibration-bands"
+  },
+  "budget": {
+    "fixedGridReserved": 990359,
+    "positiveTimeRefusedBeforeAllProducers": true,
+    "calls": {
+      "forward": 0,
+      "filled": 0,
+      "unfilled": 0,
+      "incumbent": 0
+    }
+  },
+  "paired": {
+    "models": 12,
+    "held": 10,
+    "reservation": 825671,
+    "runs": 72
+  },
+  "consumed": {
+    "calibration": 14,
+    "held": 14,
+    "total": 16,
+    "currentCalibration": 16,
+    "currentHeld": 16,
+    "records": [
+      {
+        "id": "phase-01",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-02",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-03",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-04",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-05",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-06",
+        "calibration": 7,
+        "held": 5,
+        "rateEvaluations": 409,
+        "currentCalibration": 7,
+        "currentHeld": 5
+      },
+      {
+        "id": "phase-07",
+        "calibration": 0,
+        "held": 0,
+        "rateEvaluations": 0,
+        "currentCalibration": 3,
+        "currentHeld": 3
+      },
+      {
+        "id": "phase-08",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-09",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-10",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-11",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-12",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-13",
+        "calibration": 6,
+        "held": 2,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 2
+      },
+      {
+        "id": "phase-14",
+        "calibration": 0,
+        "held": 0,
+        "rateEvaluations": 0,
+        "currentCalibration": 4,
+        "currentHeld": 4
+      },
+      {
+        "id": "phase-15",
+        "calibration": 54,
+        "held": 36,
+        "rateEvaluations": 409,
+        "currentCalibration": 54,
+        "currentHeld": 36
+      },
+      {
+        "id": "phase-16",
+        "calibration": 6,
+        "held": 4,
+        "rateEvaluations": 409,
+        "currentCalibration": 6,
+        "currentHeld": 4
+      }
+    ]
+  },
+  "passed": true
+}

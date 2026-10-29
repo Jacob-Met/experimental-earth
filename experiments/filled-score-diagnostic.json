@@ -1,0 +1,391 @@
+{
+  "schema": "experimental-earth-filled-feasibility-score-diagnostic/1",
+  "before": {
+    "knownPhysicalFullRateUsedOnlyForDiagnostic": {
+      "q": 12.6,
+      "origin": {
+        "method": "diagnostic-only"
+      },
+      "score": -0.0006978168794564699,
+      "fillHours": 0.22190283396970154,
+      "dryHours": 2.669601139635879,
+      "physicalRateInterval": [
+        0.00126,
+        3.3548038194462233
+      ],
+      "emptyRate": 3.3548038194462233,
+      "rateInterval": [
+        0.8996517194820639,
+        0.9003495363615204
+      ],
+      "violation": 0
+    },
+    "around": [
+      {
+        "q": 12.379,
+        "score": 0.3265787461694455,
+        "rateInterval": [
+          0.9021860572204499,
+          0.5756948946261831
+        ],
+        "violation": 0.0000875835751786625
+      },
+      {
+        "q": 12.38,
+        "score": 0.3251540534572963,
+        "rateInterval": [
+          0.9021733289013916,
+          0.5770261162204409
+        ],
+        "violation": 0.000006840776345591032
+      },
+      {
+        "q": 12.380084723,
+        "score": 0.3250332730829061,
+        "rateInterval": [
+          0.9021722508025061,
+          0.5771389777239229
+        ],
+        "violation": 4.3228792313751e-12
+      },
+      {
+        "q": 12.381,
+        "score": 0.8974960723516804,
+        "rateInterval": [
+          0.9021606067292003,
+          0.004664534377519874
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.59,
+        "score": 0.03001984474984165,
+        "rateInterval": [
+          0.8996324451015967,
+          0.869612600351755
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.599,
+        "score": -0.000644495049540339,
+        "rateInterval": [
+          0.8995292374119583,
+          0.9001737324614987
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.6,
+        "score": -0.0006978168794564699,
+        "rateInterval": [
+          0.8996517194820639,
+          0.9003495363615204
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.601,
+        "score": -0.0006477094163728214,
+        "rateInterval": [
+          0.8998273754547363,
+          0.9004750848711092
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.61,
+        "score": 0.030461852327358985,
+        "rateInterval": [
+          0.9308338060145713,
+          0.9003719536872123
+        ],
+        "violation": 0
+      }
+    ],
+    "actualProducer": {
+      "proposals": 0,
+      "best": {
+        "q": 12.380084723036246,
+        "origin": {
+          "method": "original-drained-and-retained-q-refinement"
+        },
+        "score": 0.32503327303123,
+        "fillHours": 0.23978317087239712,
+        "dryHours": 2.696298715482544,
+        "physicalRateInterval": [
+          0.0012380084723036247,
+          3.024955285439301
+        ],
+        "emptyRate": 3.024955285439301,
+        "rateInterval": [
+          0.9021722508020449,
+          0.5771389777722109
+        ],
+        "violation": 1.3959906951836e-12
+      }
+    },
+    "originalInput": {
+      "rainMmHr": 31,
+      "infiltrationMmHr": 24,
+      "stormMinutes": 70,
+      "stormEndDepthMm": 18.936974359412073,
+      "stormUncertaintyMm": 0.005,
+      "areaM2": 4,
+      "readings": [
+        {
+          "minute": 240,
+          "valueLiters": 16.911404660132884,
+          "uncertaintyLiters": 0.02,
+          "channel": "retained",
+          "use": "calibration"
+        },
+        {
+          "minute": 420,
+          "valueLiters": 1.1365281138706704,
+          "uncertaintyLiters": 0.02,
+          "channel": "retained",
+          "use": "calibration"
+        }
+      ],
+      "drainedReadings": [
+        {
+          "minute": 0,
+          "valueLiters": 0,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 5,
+          "valueLiters": 3.5297142113780455,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 20,
+          "valueLiters": 15.718769229068815,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 75,
+          "valueLiters": 61.91876922888417,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 240,
+          "valueLiters": 172.5552620071389,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 420,
+          "valueLiters": 188.33013855339544,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        }
+      ]
+    }
+  },
+  "after": {
+    "knownPhysicalFullRateUsedOnlyForDiagnostic": {
+      "q": 12.6,
+      "origin": {
+        "method": "diagnostic-only"
+      },
+      "score": -0.0006978168794564699,
+      "fillHours": 0.22190283396970154,
+      "dryHours": 2.669601139635879,
+      "physicalRateInterval": [
+        0.00126,
+        3.3548038194462233
+      ],
+      "emptyRate": 3.3548038194462233,
+      "rateInterval": [
+        0.8996517194820639,
+        0.9003495363615204
+      ],
+      "violation": 0
+    },
+    "around": [
+      {
+        "q": 12.379,
+        "score": 0.9012128555580569,
+        "rateInterval": [
+          0.9021860572204499,
+          0.0012379
+        ],
+        "violation": 0.0000875835751786625
+      },
+      {
+        "q": 12.38,
+        "score": 0.9009560126838745,
+        "rateInterval": [
+          0.9021733289013916,
+          0.0012380000000000002
+        ],
+        "violation": 0.000006840776345591032
+      },
+      {
+        "q": 12.380084723,
+        "score": 0.9009342423432772,
+        "rateInterval": [
+          0.9021722508025061,
+          0.0012380084723
+        ],
+        "violation": 4.3228792313751e-12
+      },
+      {
+        "q": 12.381,
+        "score": 0.8974960723516804,
+        "rateInterval": [
+          0.9021606067292003,
+          0.004664534377519874
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.59,
+        "score": 0.03001984474984165,
+        "rateInterval": [
+          0.8996324451015967,
+          0.869612600351755
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.599,
+        "score": -0.000644495049540339,
+        "rateInterval": [
+          0.8995292374119583,
+          0.9001737324614987
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.6,
+        "score": -0.0006978168794564699,
+        "rateInterval": [
+          0.8996517194820639,
+          0.9003495363615204
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.601,
+        "score": -0.0006477094163728214,
+        "rateInterval": [
+          0.8998273754547363,
+          0.9004750848711092
+        ],
+        "violation": 0
+      },
+      {
+        "q": 12.61,
+        "score": 0.030461852327358985,
+        "rateInterval": [
+          0.9308338060145713,
+          0.9003719536872123
+        ],
+        "violation": 0
+      }
+    ],
+    "actualProducer": {
+      "proposals": 3,
+      "best": {
+        "q": 12.60073158187719,
+        "origin": {
+          "method": "original-drained-and-retained-q-refinement"
+        },
+        "score": -0.0006979439406689103,
+        "fillHours": 0.22184220094722382,
+        "dryHours": 2.6695138812401353,
+        "physicalRateInterval": [
+          0.001260073158187719,
+          3.3560100272928644
+        ],
+        "emptyRate": 3.3560100272928644,
+        "rateInterval": [
+          0.89978022368483,
+          0.9004781676254989
+        ],
+        "violation": 0
+      }
+    },
+    "originalInput": {
+      "rainMmHr": 31,
+      "infiltrationMmHr": 24,
+      "stormMinutes": 70,
+      "stormEndDepthMm": 18.936974359412073,
+      "stormUncertaintyMm": 0.005,
+      "areaM2": 4,
+      "readings": [
+        {
+          "minute": 240,
+          "valueLiters": 16.911404660132884,
+          "uncertaintyLiters": 0.02,
+          "channel": "retained",
+          "use": "calibration"
+        },
+        {
+          "minute": 420,
+          "valueLiters": 1.1365281138706704,
+          "uncertaintyLiters": 0.02,
+          "channel": "retained",
+          "use": "calibration"
+        }
+      ],
+      "drainedReadings": [
+        {
+          "minute": 0,
+          "valueLiters": 0,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 5,
+          "valueLiters": 3.5297142113780455,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 20,
+          "valueLiters": 15.718769229068815,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 75,
+          "valueLiters": 61.91876922888417,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 240,
+          "valueLiters": 172.5552620071389,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        },
+        {
+          "minute": 420,
+          "valueLiters": 188.33013855339544,
+          "uncertaintyLiters": 0.02,
+          "channel": "drained",
+          "use": "calibration"
+        }
+      ]
+    }
+  }
+}
