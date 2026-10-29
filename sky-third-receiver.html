@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>What can a third reading resolve? · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-third-receiver.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-boundary-evidence.html" target="_blank" rel="noopener">Experimental Earth · offered sky changes ↗</a>
+    <p class="eyebrow">Original evidence / an additional receiver</p>
+    <h1>What can a third reading resolve?</h1>
+    <p class="intro">Two temperature readings can leave several sky-change alternatives open. Add an original reading from another ground point, then compare what remains possible and how the proposal’s consequences change.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Keep the original evidence</p><h2 id="source-heading">Three readings, explicit roles</h2></div>
+        <button type="button" id="third-example" disabled>Try the third courtyard reading</button></div>
+      <p>Open three original temperature-band files. The first two form the baseline; the added reading challenges that same family. Each retains its ground point, original band, material properties and starting temperatures. You can change these roles explicitly below.</p>
+      <label class="file-label">Open three original reading inputs<input id="third-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <div id="third-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+    </section>
+    <form id="third-form" class="card">
+      <p class="eyebrow">02 / Shared conditions</p><h2>Keep the same offered changes</h2>
+      <p>Each offered original boundary separates one four-bin sky profile before the change from another afterwards. The same two profiles supply all three points and both designs. Original time intervals, total diffuse light and direct forcing stay as supplied.</p>
+      <div class="question-grid"><label>Change after these original intervals<input id="third-splits" type="text" maxlength="256" value="8" placeholder="3, 8, 13" required disabled></label>
+        <label>Basis for shared conditions<input id="third-sharing" required maxlength="400" placeholder="Why all three points share the same sky profiles" disabled></label></div>
+      <button type="button" id="third-all" disabled>Offer every original internal boundary</button>
+      <p id="third-boundary" class="quiet">Use distinct whole interval numbers separated by commas.</p>
+      <div class="actions"><button id="third-run" type="submit" disabled>Compare the first two and all three</button>
+        <label class="file-label">Reopen a three-reading inquiry<input id="third-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="third-export" type="button" disabled>Download original inputs</button></div>
+      <p id="third-status" role="status">Open three original readings or try the authored example.</p>
+    </form>
+    <section id="third-results" class="card" aria-label="First-two and all-three boundary comparison" hidden></section>
+  </main>
+  <footer>These are conditional comparisons under the declared additive model. Original thermal replays remain separate, including endpoints outside original bands. Even one compatible offered boundary does not identify the actual sky or a physical change time, or establish intervention performance.</footer>
+  <script type="module" src="shade-heat-third-receiver-page.js"></script>
+</body>
+</html>

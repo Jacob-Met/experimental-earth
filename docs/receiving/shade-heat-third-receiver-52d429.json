@@ -1,0 +1,479 @@
+{
+  "schema": "experimental-earth/three-receiver-qualification/1",
+  "status": "qualified on composed source; private publication and accepted-source receiving are separate steps",
+  "at": "2026-10-29T01:46:28.247311+00:00",
+  "baseCommit": "d85738e5c13945b0d95469dd18f08fc3ea141ba6",
+  "baseTree": "375e3208c84bb8e71c66bc39041462ba9e9c30b3",
+  "ownership": {
+    "task": "experimental-earth-third-sky-reading-52d429",
+    "owner": "estate-52d429-20261025",
+    "revision": 2,
+    "prepublicationSnapshot": 4016,
+    "records": 30,
+    "nextOffset": null,
+    "conflictingScopeObserved": false
+  },
+  "composition": {
+    "incomingFiles": 29,
+    "incomingOverlap": [],
+    "materializedBaseFiles": 830,
+    "materializedExecutedFiles": 842,
+    "sourceManifest": [
+      {
+        "path": "docs/SHADE_HEAT_THIRD_RECEIVER.md",
+        "bytes": 11035,
+        "sha256": "5e51f93d08a8f50f3c971d18a84a9b522ec35532f55c53b09f867a376122681a",
+        "gitBlob": "81f60940458ef808f2022503179643a877cae5a4"
+      },
+      {
+        "path": "shade-heat-epoch-evidence.js",
+        "bytes": 14396,
+        "sha256": "7ba3096f8e9f7518ef7af0a7cac18a8ae0547bfbad9aee7b7b556bcac00a4120",
+        "gitBlob": "659aedf4ea9e6d5413215f0f27201a9b221a316f"
+      },
+      {
+        "path": "shade-heat-epoch-kernel.js",
+        "bytes": 14757,
+        "sha256": "9f24db7c3b7e63a5ac7f1b904d9a19d7b530f79a9401468051d7650d1f755b60",
+        "gitBlob": "8c0b3402479c860c1ee3d005f9d0c6c6b7798a55"
+      },
+      {
+        "path": "shade-heat-epoch-view.js",
+        "bytes": 8708,
+        "sha256": "61acc83a2f5d1fa87cbd7a863c149d3982ef9f42437fc09f69c0d713e67dcfcf",
+        "gitBlob": "9eb864fc906424d15f064f1b158066739a6f02d4"
+      },
+      {
+        "path": "shade-heat-profile-three-bands.js",
+        "bytes": 7555,
+        "sha256": "1eb32ecfecfd92528729449cf565f176c826a1ea33d5a5639aba7895be02d303",
+        "gitBlob": "98f7f182d28c1e69276cfbb6a067396ab719fc31"
+      },
+      {
+        "path": "shade-heat-third-example.js",
+        "bytes": 50457,
+        "sha256": "22765957bca9692cb191eab8cb537143fccd985192fde33789060fcf4a060fb0",
+        "gitBlob": "d88b890b98776dd60edf2cded301248f06604680"
+      },
+      {
+        "path": "shade-heat-third-receiver-page.js",
+        "bytes": 23059,
+        "sha256": "9d9475923a87bfc52bd8dfc3c1c61e891d0e95cc12c9b4cd58d178120a28aeaa",
+        "gitBlob": "c731b6836db00f51b69f41b28e8ae96c8e74f685"
+      },
+      {
+        "path": "shade-heat-third-receiver-worker.js",
+        "bytes": 597,
+        "sha256": "d15346017fbfd96175e81d18a9e6ca52fae4170ea5e50872e941b8e161aa88f8",
+        "gitBlob": "d04e6aad94940174f6f38f12896a5be403c1128d"
+      },
+      {
+        "path": "shade-heat-third-receiver.css",
+        "bytes": 2055,
+        "sha256": "f929f86376bb38a5b0c954f4618075ba392ead2e0c815d8ad9f8f75d10c1f169",
+        "gitBlob": "fb7a5185a714f652acb6e93d7266c7e75710154f"
+      },
+      {
+        "path": "shade-heat-third-receiver.js",
+        "bytes": 14986,
+        "sha256": "334e6eed3bda418770587e55cbfe700e829d64f63596dac2673ca2967223f404",
+        "gitBlob": "3c4cfdb488c81e556d91e5d0dd327cab15e84dd9"
+      },
+      {
+        "path": "sky-boundary-evidence.html",
+        "bytes": 3702,
+        "sha256": "28de48c8a64aecc02785806554616d2a3a19f59187008d143cd543ce141e76b6",
+        "gitBlob": "75e77f1c0be6a38156441807f51e3e393e9c17e2"
+      },
+      {
+        "path": "sky-third-receiver.html",
+        "bytes": 3691,
+        "sha256": "9a80814e997d2ca7c09543baed51a591ca7614d7e26d390c2c963ecdd7991375",
+        "gitBlob": "8807fb2867764052709cd4d5bb3810fdcac1e171"
+      },
+      {
+        "path": "tests/shade-heat-profile-three-bands.test.mjs",
+        "bytes": 4878,
+        "sha256": "4168535489cdc8815c1c9bc4666172997bda6e5c9cae7f4b00ab43fb72ec5ade",
+        "gitBlob": "e705818ef05107ca30281401e589db1658ce4bad"
+      },
+      {
+        "path": "tests/shade-heat-third-receiver.browser.mjs",
+        "bytes": 17755,
+        "sha256": "8bd1516476e3e8cde11f39a1f2d5932c5376c0ef98e020aa394d71a95a6f53e4",
+        "gitBlob": "35786214597f9bbd75c27f26acccbfb432d91cb4"
+      },
+      {
+        "path": "tests/shade-heat-third-receiver.test.mjs",
+        "bytes": 7666,
+        "sha256": "cda2f556cde7fb406c2b45e300eb81ec1fe3db04efe97e7a85108dee0df15fb2",
+        "gitBlob": "dfcc1b3a670a03036bfde514ebd41cbc637e4f4e"
+      }
+    ]
+  },
+  "native": {
+    "startedAt": "2026-10-29T01:42:18.241862+00:00",
+    "finishedAt": "2026-10-29T01:43:12.814915+00:00",
+    "sourceBase": "d85738e5c13945b0d95469dd18f08fc3ea141ba6",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-isolation=none",
+      "--test-reporter=tap",
+      "tests/shade-heat-epoch-evidence.test.mjs",
+      "tests/shade-heat-boundary-evidence.test.mjs",
+      "tests/shade-heat-profile-three-bands.test.mjs",
+      "tests/shade-heat-third-receiver.test.mjs"
+    ],
+    "exitCode": 0,
+    "logSha256": "444e5a1951e6d25550ccf1f346efc8005dcf0662c92c30c7fad45c1a4b9eb658",
+    "tests": 34,
+    "passed": 34,
+    "failed": 0,
+    "skipped": 0
+  },
+  "independentThreeBandOracle": {
+    "sourceSha256": "1eb32ecfecfd92528729449cf565f176c826a1ea33d5a5639aba7895be02d303",
+    "cases": 121,
+    "exactCandidateWitnesses": 273,
+    "objectivePairs": 234,
+    "method": "Full-dimensional inequality active-set enumeration and exact Gaussian elimination using Python Fraction; no pair/triangle support enumeration",
+    "status": "PASS"
+  },
+  "independentThreeSourceReview": {
+    "status": "no scoped blocker found",
+    "time": "2026-10-29T01:39:39.233940+00:00",
+    "root": "/tmp/hamon-52d429-earth/third-receiver-experiment/candidate",
+    "files": {
+      "shade-heat-third-receiver.js": "334e6eed3bda418770587e55cbfe700e829d64f63596dac2673ca2967223f404",
+      "shade-heat-epoch-kernel.js": "9f24db7c3b7e63a5ac7f1b904d9a19d7b530f79a9401468051d7650d1f755b60",
+      "shade-heat-epoch-evidence.js": "7ba3096f8e9f7518ef7af0a7cac18a8ae0547bfbad9aee7b7b556bcac00a4120",
+      "shade-heat-third-receiver-page.js": "9d9475923a87bfc52bd8dfc3c1c61e891d0e95cc12c9b4cd58d178120a28aeaa",
+      "shade-heat-epoch-view.js": "61acc83a2f5d1fa87cbd7a863c149d3982ef9f42437fc09f69c0d713e67dcfcf",
+      "sky-third-receiver.html": "9a80814e997d2ca7c09543baed51a591ca7614d7e26d390c2c963ecdd7991375"
+    },
+    "executed": {
+      "roleOrders": 4,
+      "frozenPriorWholeReports": 12,
+      "strictRefusals": 4,
+      "thermalCourses": 2180,
+      "harness": "review.mjs",
+      "exit": 0
+    },
+    "sourceReview": [
+      "all three complete bases precede leading-two emptiness shortcut",
+      "third source shares original geometry forcing time transitively with first; all three receivers distinct",
+      "exact joint subset range checks and separate original/additive static outcomes",
+      "complete basis, private diagonal reuse, both prior and joint witness reserves accounted",
+      "before/after roles and exact boundary/scope/witness routing; no band widening",
+      "source-only parsing and download; pending generation cancellation and retained accepted-input cards",
+      "latest witnessLabel shadowing repair inspected"
+    ],
+    "browserClaim": false,
+    "qualification": "Independent local source/native review; browser evidence belongs to root; no physical or floating-point enclosure claim."
+  },
+  "frozenAcceptedTwoReadingParity": {
+    "status": "PASS",
+    "fullBoundaryReports": 8,
+    "queries": [
+      [
+        8
+      ],
+      [
+        12,
+        8,
+        1
+      ],
+      [
+        9,
+        3,
+        11,
+        8
+      ]
+    ],
+    "singleReports": 1,
+    "scope": "Whole source and report deep equality against frozen accepted4540839, including work counters, exact witnesses and semantics"
+  },
+  "actualBrowser": [
+    {
+      "course": "tests/shade-heat-third-receiver.browser.mjs",
+      "groups": 9,
+      "checks": [
+        "Ordinary parent entry runs the real15-boundary3-receiver worker: first-two5 versus joint1, all15 retained, original roles and all3 mapped points visible",
+        "All8 before/after extrema bind the exact scope,boundary,witness; keyboard selects noncontiguous2/30; original outside-band replay and a third-excluded prior-compatible boundary remain inspectable",
+        "Actual source-only download reopens in a fresh document and recomputes the complete before/after inquiry with no saved derived results",
+        "Full15-alternative before/after ranges, source roles, all3point diagram and exact witness fit desktop/390px with units together",
+        "Three actual files preserve4/16/8 histories; comparison reversal and explicit added-reading reassignment preserve source records and nonmonotone offers through actual save/reopen; detached old controls cannot alter newer results",
+        "Malformed member,incomplete triple and invalidUTF8 retain prior results; a missing interior offer refuses the whole new query",
+        "A delayed third original file cannot restore older roles or boundaries after a newer complete query",
+        "A held old actual-worker result cannot replace a newer incompatible joint result; the compatible first-two family and all original source inputs remain inspectable/exportable",
+        "Mismatched third-source and forged-result files refuse; explicit offer-all invalidates prior output and ordinary working-project storage remains unchanged"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeNamespaceAndSeccomp": true,
+      "exceptions": [],
+      "startedAt": "2026-10-29T01:38:10.600Z",
+      "finishedAt": "2026-10-29T01:38:48.125Z",
+      "directChildExit": {
+        "code": 0,
+        "signal": null
+      },
+      "materializedSourceFilesVerified": 842,
+      "receiptSha256": "fef746e610e84d819dabee1a4f53e9dbf48100be9868cecfcda210f77cf0c536"
+    },
+    {
+      "course": "tests/shade-heat-epoch-evidence.browser.mjs",
+      "groups": 9,
+      "checks": [
+        "Ordinary spatial-inquiry link opens the two-epoch consumer; the actual worker completes 128 original basis courses and 308 vertices while both static comparisons reject",
+        "Real keyboard and extremum buttons inspect noncontiguous witness IDs, exact early/late profiles and original replay endpoints that remain explicitly outside their bands",
+        "Actual source-only download reopens on a fresh document and recomputes the same result without parent state or stored result fields",
+        "Two actual original files retain distinct receivers and original 4/16-bin histories while point selection and original-boundary changes recompute the chosen consequence",
+        "A malformed member, incomplete pair and invalid UTF-8 refuse transactionally without mixing new inputs into the prior accepted pair",
+        "A delayed two-file read cannot reverse or replace a newer comparison after a common-input edit retires the whole batch",
+        "A held compatible response from the actual old worker cannot replace a newer incompatible inquiry at a different original boundary",
+        "Mismatched original orientation refuses, incompatible common skies remain an exportable completed empty result, and forged results cannot replace it",
+        "Actual original-file controls, paired ranges and witness tables fit desktop and 390px with no application exceptions or project-storage mutation"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeNamespaceAndSeccomp": true,
+      "exceptions": [],
+      "startedAt": "2026-10-29T01:43:42.316Z",
+      "finishedAt": "2026-10-29T01:43:49.006Z",
+      "directChildExit": {
+        "code": 0,
+        "signal": null
+      },
+      "materializedSourceFilesVerified": 842,
+      "receiptSha256": "c564be1a36f194a546f830da3e16b419c0c58488d737d650f00220b47a41188d"
+    },
+    {
+      "course": "tests/shade-heat-boundary-evidence.browser.mjs",
+      "groups": 9,
+      "checks": [
+        "Ordinary epoch-inquiry entry opens the actual15-boundary worker inquiry; all15 outcomes and compatible8\u201312 remain visible with1472new+448reused complete basis courses",
+        "All four union-extremum buttons select the exact original boundary and witness; keyboard inspection retains noncontiguous IDs and outside-band replay, and incompatible alternatives remain inspectable",
+        "Actual compact source-only download reopens on a fresh document and recomputes all original boundary alternatives without saved results",
+        "Two actual original files preserve4/16-bin history and receiver reversal; nonmonotone and changed offered lists retain exact original order and recompute all consequences",
+        "Malformed original member, incomplete pair and invalid UTF8 retain the prior inquiry; a missing interior offer refuses the entire new query without partial results",
+        "Delayed two-file acquisition cannot restore old original order or boundaries after a newer complete query",
+        "A held compatible actual-worker result cannot replace a newer all-incompatible offered list",
+        "Mismatched source and forged-result files refuse; an all-incompatible completed inquiry stays downloadable with every original offered boundary",
+        "Explicit offer-all action, complete alternatives, union bounds and exact-witness inspection fit desktop/390px without exceptions or working-project storage changes"
+      ],
+      "browser": "Chrome/156.0.8078.73",
+      "activeNamespaceAndSeccomp": true,
+      "exceptions": [],
+      "startedAt": "2026-10-29T01:43:54.360Z",
+      "finishedAt": "2026-10-29T01:44:11.736Z",
+      "directChildExit": {
+        "code": 0,
+        "signal": null
+      },
+      "materializedSourceFilesVerified": 842,
+      "receiptSha256": "26bf8d446dd2221d1590364fd4abf26d8a5b53946b76ae824fe5e1b6e1d6eb10"
+    }
+  ],
+  "authoredCase": {
+    "scope": "Numerical authored control, not field measurements or fitted thermal properties",
+    "offeredBoundaries": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "firstTwoCompatible": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "allThreeCompatible": [
+      8
+    ],
+    "excludedByThird": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "jointVertexCountAt8": 78,
+    "firstTwoRanges": {
+      "surfaceC": {
+        "lower": {
+          "differenceC": {
+            "exact": {
+              "numerator": "25533611539134818786538986964344396834757269463",
+              "denominator": "15600829243662249310814245463370333087298748416"
+            },
+            "lower": 1.6366829698817265,
+            "upper": 1.6366829698817267
+          },
+          "boundaryIndex": 10,
+          "splitAfterInterval": 11,
+          "splitUtc": "2026-06-21T09:30:00.000Z",
+          "witnessId": 33
+        },
+        "upper": {
+          "differenceC": {
+            "exact": {
+              "numerator": "2927465762729622605914472754902523206922461061",
+              "denominator": "1784297037556647621732449173427411804412182528"
+            },
+            "lower": 1.6406829698817351,
+            "upper": 1.6406829698817353
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 52
+        }
+      },
+      "subsurfaceC": {
+        "lower": {
+          "differenceC": {
+            "exact": {
+              "numerator": "41738427996782565364161899603261",
+              "denominator": "36627797468794677825985048477696"
+            },
+            "lower": 1.1395287426807992,
+            "upper": 1.1395287426807994
+          },
+          "boundaryIndex": 8,
+          "splitAfterInterval": 9,
+          "splitUtc": "2026-06-21T08:30:00.000Z",
+          "witnessId": 1
+        },
+        "upper": {
+          "differenceC": {
+            "exact": {
+              "numerator": "2063629489312858705943259624194611084193629803",
+              "denominator": "1784297037556647621732449173427411804412182528"
+            },
+            "lower": 1.1565504206287978,
+            "upper": 1.156550420628798
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 52
+        }
+      }
+    },
+    "allThreeRanges": {
+      "surfaceC": {
+        "lower": {
+          "differenceC": {
+            "exact": {
+              "numerator": "452974750322342707640397609682921",
+              "denominator": "276703607855202370393738523443200"
+            },
+            "lower": 1.6370395522973524,
+            "upper": 1.6370395522973527
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 2
+        },
+        "upper": {
+          "differenceC": {
+            "exact": {
+              "numerator": "10748882893504525731146462869062317948777525993",
+              "denominator": "6551468559632415940286573419655504188984524800"
+            },
+            "lower": 1.6406829698817351,
+            "upper": 1.6406829698817353
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 30
+        }
+      },
+      "subsurfaceC": {
+        "lower": {
+          "differenceC": {
+            "exact": {
+              "numerator": "4209473831405297009911304961953",
+              "denominator": "3689381438069364938583180312576"
+            },
+            "lower": 1.1409700791491197,
+            "upper": 1.14097007914912
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 2
+        },
+        "upper": {
+          "differenceC": {
+            "exact": {
+              "numerator": "643750918023785866910357197972740368680281343",
+              "denominator": "561554447968492794881706293113328930484387840"
+            },
+            "lower": 1.1463731083471087,
+            "upper": 1.146373108347109
+          },
+          "boundaryIndex": 7,
+          "splitAfterInterval": 8,
+          "splitUtc": "2026-06-21T08:00:00.000Z",
+          "witnessId": 30
+        }
+      }
+    },
+    "work": {
+      "offeredBoundaries": 15,
+      "geometryPasses": 3,
+      "estimatedRayTests": 4320,
+      "estimatedSkyFaceTests": 11520,
+      "completeBasisCourses": 2880,
+      "reservedExecutedBasisCourses": 2208,
+      "reservedJointWitnessCourses": 720,
+      "reservedPriorWitnessCourses": 480,
+      "reservedWitnessCourses": 1200,
+      "reservedThermalCourses": 3408,
+      "reservedCourseIntervals": 54528,
+      "reservedJointCandidates": 330240,
+      "reservedPriorCandidates": 41040,
+      "reservedStaticCandidates": 4200,
+      "reservedCandidates": 375480,
+      "actualSkyFaceTests": 92,
+      "executedBasisCourses": 2208,
+      "reusedCompleteBasisCourses": 672,
+      "executedJointWitnessCourses": 24,
+      "executedPriorWitnessCourses": 120,
+      "executedWitnessCourses": 144,
+      "executedThermalCourses": 2352,
+      "candidates": 1538,
+      "jointIntersectionsExcludedByLeadingTwo": 10,
+      "executedCourseIntervals": 37632
+    },
+    "reportSha256": "f6a2bb734e6a93e9b4602a6b18e3495192c82f499aecb30a371c229c1bbc4fa4"
+  },
+  "informativeControls": [
+    "The independently enumerated four-bin three-reading exact-quarter control requires support four; pairwise compatibility alone does not establish a common three-band witness.",
+    "The separately retained B3 / 0.3-capacity original control leaves the same five compatible boundaries and both ranges unchanged. It is not counted as an information gain.",
+    "A receiver in a declared column footprint was refused by unchanged original-ground-point admission; no admission gate was relaxed.",
+    "The first browser attempt failed before any successful group due to a temporal-dead-zone label collision; the failure was preserved and the corrected source completed all nine groups."
+  ],
+  "limits": [
+    "Exactness applies to the declared additive represented-coefficient model. The 1e-9 degree C screen is a bounded numerical check, not a certified every-profile or physical error bound.",
+    "All three complete original bases precede any leading-two subset emptiness proof. Whole admission and work reserves apply before any accepted result.",
+    "Original replay endpoints outside their original bands remain explicit. One compatible offered boundary does not identify a measured or physical change time.",
+    "Outer bounds enclose the finite union; intermediate values need not be attainable and separate objective extrema can use different witnesses.",
+    "No public deployment, release, source adoption, access change or original held-action retry is part of this qualification."
+  ]
+}
