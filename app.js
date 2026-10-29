@@ -41,6 +41,7 @@ import { evidenceControls, mountInfiltrationPanel } from './infiltration-panel.j
 import { mountInterventionPanel } from './intervention-panel.js';
 import { mountTerrainImport } from './terrain-panel.js';
 import { mountObservationImport } from './observation-import-panel.js';
+import { mountObservationExport } from './observation-export-panel.js';
 import { mountOutletEvidence } from './outlet-evidence-panel.js';
 import { mountJointEvidence } from './joint-evidence-panel.js';
 import { mountJointEventChallenge } from './joint-event-panel.js';
@@ -219,6 +220,7 @@ function refreshObservationImporterForProject(force = false) {
   observationImporterProject = project;
 }
 function refreshComparisonPanels() {
+  observationExporter.refresh();
   sharedObservedPanel.refresh(); measuredChangePanel.refresh(); drainingLayerPanel.refresh();
   infiltrationStoragePanel.refresh(); connectivityPanel.refresh(); rootZonePanel.refresh();
   coolingPanel.refresh(); infiltrationPanel.refresh(); clockPanel.refresh();
@@ -562,6 +564,7 @@ function prepareObservedReading(question) {
 const infiltrationPanel = mountInfiltrationPanel({ getProject: () => project, changed: rerun, notice, prepareReading: prepareObservedReading });
 const observationImporter = mountObservationImport({ getProject: () => project,
   replaceProject: next => { project = next; syncForm(); rerun(); }, notice });
+const observationExporter = mountObservationExport({ getProject: () => project });
 const eventChallengePanel = mountEventChallengePanel({ getProject: () => project });
 const interventionPanel = mountInterventionPanel({ getProject: () => project, notice, prepareReading: prepareObservedReading,
   prepareCollection: question => outletEvidencePanel.prepareReading(question) });
