@@ -114,7 +114,7 @@ function evaluate(investigation){
       ||actualReplayEndpointRows>reservation.replayEndpointRows||actualObservationReplayRows>reservation.observationReplayRows
       ||linearPivots>reservation.maxLinearPivots||linearRationalOperations>reservation.maxLinearRationalOperations)
     throw Error('The complete original target inquiry exceeded its reserved work; no partial result is returned');
-  return {status:'compared',observationCompatibility:original.compatibility,
+  const report={status:'compared',observationCompatibility:original.compatibility,
     targetCompatibility:solved?.targetCompatibility??'not-evaluated-original-incompatible',
     model:{...SKY_COURSE_TARGET_MODEL},query:structuredClone(investigation.query),cellIndex:original.cellIndex,
     originalTimes:original.originalTimes,splitUtcs:original.splitUtcs,targets,witness,original,
@@ -130,13 +130,20 @@ function evaluate(investigation){
       +'The optimum is the smallest possible largest excess across every explicitly selected original time/component, using one common profile. Positive optimum proves that the targets cannot all hold in this exact coefficient family; the displayed best compromise still retains every original observation. '
       +'The auxiliary lower anchor follows from all64 retained additive target values. Its exact primal/dual proof concerns the represented additive model with resolved selected geometry endpoints. '
       +'The complete original numerical replay and its band/ceiling statuses remain separate. No unselected times, interpolation, continuous-time guarantee, measured sky history or validated physical intervention is inferred.'};
+  return {report,context:{original:context,targetRows,ceilings,solved}};
 }
 
-export function prepareSkyCourseTargetEvidence(originals,query){
-  const investigation=prepareSkyCourseTargetSource(originals,query),report=evaluate(investigation);
+export function prepareSkyCourseTargetExecution(originals,query){
+  const investigation=prepareSkyCourseTargetSource(originals,query),{report,context}=evaluate(investigation);
   if(new Blob([JSON.stringify({investigation,report})]).size>SKY_COURSE_TARGET_LIMITS.maxReportBytes)
     throw Error('The complete original target report exceeds its output allowance; no partial result is accepted');
-  return {investigation,report};
+  return {investigation,report,context};
+}
+export function prepareSkyCourseTargetEvidence(originals,query){
+  const {investigation,report}=prepareSkyCourseTargetExecution(originals,query);return {investigation,report};
+}
+export function inspectSkyCourseTargetWork(originals,query){
+  return preflight(prepareSkyCourseTargetSource(originals,query));
 }
 export function parseSkyCourseTargetSource(text){
   if(typeof text!=='string')throw TypeError('Original course target inputs must be JSON text');

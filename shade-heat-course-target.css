@@ -53,3 +53,5 @@
 #target-results pre { max-height:420px;overflow:auto;padding:14px;font-size:.75rem;background:#fafcf9;border:1px solid #d7e3dc; }
 @media(max-width:700px){.target-inspection-controls,.target-time-cards,#target-profile .phase-grid{grid-template-columns:1fr;}#target-profile .phase-profile figcaption{min-height:0;}.target-edit-row{grid-template-columns:1fr;gap:10px;}.target-adjustment{display:grid;grid-template-columns:1fr;}.target-adjustment input{max-width:none;}}
 @media(max-width:540px){#target-profile{padding:12px;}.target-figure{padding:6px;}.target-editor{max-height:460px;}.target-margin{font-size:1.25rem;}}
+
+.target-next{max-width:1120px;margin:1.5rem auto;padding:0 1.25rem}
