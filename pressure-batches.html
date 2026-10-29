@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Water batches and soil pressure · Experimental Earth</title>
+  <link rel="stylesheet" href="pressure-batches.css">
+  <script type="module" src="pressure-batches-page.js"></script>
+</head>
+<body>
+<main>
+  <a href="/#pressure-head-study">← Return to the Earth workbench</a>
+  <header><p class="eyebrow">LOCAL SOIL TEST</p><h1>What changes when water arrives in batches?</h1>
+  <p>Compare declared soil explanations through separately timed additions. Inspect the water before and after each batch, and preserve readings on their recorded side of the addition.</p>
+  <p><a id="batch-initial-range-open" href="./pressure-initial-range.html">Question an uncertain starting-water amount</a> using a saved batch course.</p>
+  <p>For a different test with constant surface water depth, <a id="batch-air-boundary-open" href="./soil-air-boundary.html">inspect the effect of confined air</a>.</p></header>
+  <div class="actions"><button type="button" id="batch-example">Try the authored example</button>
+  <label class="file-label">Open saved inputs <input type="file" id="batch-import" accept=".json,application/json"></label></div>
+  <p id="batch-import-status" role="status" aria-live="polite"></p>
+  <details><summary>When this comparison applies</summary><p>Each batch is an explicit idealization as an instantaneous addition. Finite pouring duration, unrecorded refills, overflow, rainfall, evaporation and leakage need another protocol. A measured head value or a final water total cannot supply the missing delivery history.</p>
+  <p>The homogeneous wetting front keeps its accumulated infiltration through dry gaps. Zero moisture deficit selects a mathematical control that neglects head; when A is positive, it does not imply a physically dry deficit of zero. This local comparison does not adopt properties into the site or establish field accuracy.</p></details>
+  <form id="batch-form">
+    <section><h2>Original local test</h2><div class="fields">
+      <label>Title<input name="title" maxlength="160" required></label>
+      <label>Place or test reference<input name="place" maxlength="240" required></label>
+      <label>Test area · m²<input name="areaM2" type="number" min="0.0001" max="100" step="any" required></label>
+      <label>Course duration · minutes<input name="durationMinutes" type="number" min="0" max="720" step="any" required></label>
+    </div><label>Original test source<textarea name="source" rows="2" maxlength="1000" required></textarea></label>
+    <label>Area source<input name="areaSource" maxlength="1000" required></label>
+    <h3>Surface water at minute zero, before any batch</h3><div class="fields">
+      <label>Original amount<input name="initialVolume" type="number" min="0" max="1000000000" step="any" required></label>
+      <label>Original unit<select name="initialUnit"><option value="L">L</option><option value="mL">mL</option></select></label>
+      <label>Initial inventory source<input name="initialSource" maxlength="1000" required></label>
+    </div>
+    <label class="check"><input name="assumptions" type="checkbox" required><span>I explicitly assume ideal instantaneous batches, a fixed area, and no other water input or loss.</span></label>
+    <label>Source or basis for those assumptions<textarea name="assumptionsSource" maxlength="1000" rows="2" required></textarea></label></section>
+    <section><h2>Timed water additions</h2><p>Keep original time order. Each distinct time has one declared batch; simultaneous records are not silently combined.</p>
+      <div id="batch-additions"></div><button type="button" id="batch-add-addition" class="secondary">Add a batch</button></section>
+    <section><h2>Declared soil explanations</h2><p>K is conductivity; A is capillary drive. Moisture deficit and initial cumulative infiltration must be declared separately.</p>
+      <div id="batch-hypotheses"></div><button type="button" id="batch-add-hypothesis" class="secondary">Add an explanation</button></section>
+    <section><h2>Original surface-water readings</h2><p>Readings are optional for a prediction-only course. At an addition time, explicitly choose before or after. Enter original units and uncertainty; no measurement bounds are inferred.</p>
+      <div id="batch-readings"></div><button type="button" id="batch-add-reading" class="secondary">Add a reading</button></section>
+    <div class="actions"><button type="submit" id="batch-run">Compare the batch course</button><button type="button" id="batch-download" class="secondary" disabled>Save inputs</button></div>
+  </form>
+  <p id="batch-status" role="status" aria-live="polite"></p>
+  <section id="batch-results" aria-live="polite"></section>
+</main>
+</body></html>

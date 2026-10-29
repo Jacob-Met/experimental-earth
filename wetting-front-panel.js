@@ -1,3 +1,4 @@
+import { mountWettingFrontEvents } from './wetting-front-events-panel.js';
 import {mountSoilSearch} from './wetting-front-search-panel.js';
 import { SURFACES, validateProject } from './core.js';
 import { DEFAULT_WETTING_FRONT_STUDY } from './wetting-front-contract.js';
@@ -111,9 +112,10 @@ export function mountWettingFrontPanel({ getProject, replaceProject, prepareRead
         `Explanation ${index + 1}, ${input.dataset.parameter === 'conductivityMmHr' ? 'conductivity in millimeters per hour' : 'capillary drive in millimeters'}`));
     });
   }
-  let soilSearch;
+  let soilSearch, twoEventStudy;
   function refresh() {
     soilSearch?.refresh();
+    twoEventStudy?.refresh();
     clear('Choose soil explanations and compare. Use a site map to choose the cell shown in the depth curve.');
     const study = getProject().wettingFrontStudy ?? DEFAULT_WETTING_FRONT_STUDY;
     $('target').value = study.target; $('surface').value = study.surface; $('basis').value = study.basis;
@@ -271,11 +273,12 @@ export function mountWettingFrontPanel({ getProject, replaceProject, prepareRead
     $('target').value = study.target; $('surface').value = study.surface; $('basis').value = study.basis;
     $('hypotheses').replaceChildren(); study.hypotheses.forEach(addHypothesis); updateButtons();
   }});
+  twoEventStudy = mountWettingFrontEvents({ host, getProject });
   refresh();
   return { refresh };
 }
 
-function drawDetail(container, candidate, report, project) {
+export function drawDetail(container, candidate, report, project) {
   container.replaceChildren();
   const cell = labelCell(report.selectedIndex, project.width);
   container.append(node('h3', `Explanation ${candidate.id} · modeled water depth at ${cell}`));

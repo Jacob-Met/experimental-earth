@@ -1,0 +1,166 @@
+{
+  "schema": "experimental-earth-pressure-initial-range-receiving/1",
+  "upstreamCommit": "412591eb7102cc5e675c53b81a53802189572e25",
+  "upstreamTree": "3d652ca3f7c9d0897b7f40466c1c2da3dd4944bd",
+  "localReceivingCommit": "7ac6b7ba381f44d4de2023eefb3a497b0dbb8219",
+  "scope": "One common initial-water interval per original explanation in the instantaneous-batch soil course; unchanged pressure kernel. Composes prior soil-event, pressure-head and batch-course changes.",
+  "native": {
+    "files": 231,
+    "tests": 1599,
+    "pass": 1599,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "node": "v24.22.1",
+    "command": "node --test --test-concurrency=4 tests/*.test.mjs",
+    "elapsedSeconds": 22.033611724007642,
+    "logSha256": "752b0156bdf6e6157b0231fc913cd9823215345c83c3c07feccac3ee0a6cad50",
+    "focusedTests": 25,
+    "focusedLogSha256": "f025906a7fbdd577c0c9929a50fd90c2d347ad641b9fcf99db0f8cfd8dfa6121"
+  },
+  "browser": {
+    "groups": [
+      "actual workbench to batch download to initial-water entry preserves the source and leaves physical uncertainty undeclared",
+      "a shared calibration range keeps the pressure explanation while held-aside evidence rejects the head-neglected control; original mL/source precision and site are preserved",
+      "actual inquiry download contains original course/range/resolution only, including the unchanged nominal point and reading roles",
+      "two individually fitting but jointly incompatible readings reject the fast pressure explanation without inventing a different start for each row",
+      "range admission retains the original nominal declaration and edits cancel queued work without retaining a partial result",
+      "fresh replay recomputes the actual download; forged conclusions and compact-under-limit/normalized-over-limit inputs refuse before changing the accepted source, editor or result",
+      "late failed and successful file reads cannot erase newer acceptance or edits; explicit stop retires asynchronous work without a partial answer",
+      "desktop and390px range/reading/contradiction views retain readable labels without overflow, script exceptions or site adoption"
+    ],
+    "ordinarySandboxAdmitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "javascriptExceptions": 0,
+    "layouts": [
+      {
+        "width": 1440,
+        "page": 1425,
+        "badControls": 0,
+        "minimumChartFontPx": 28.5
+      },
+      {
+        "width": 390,
+        "page": 390,
+        "badControls": 0,
+        "minimumChartFontPx": 13.1564453125
+      }
+    ],
+    "importSizeControl": {
+      "compactBytes": 230254,
+      "normalizedBytes": 245547
+    },
+    "sourceHashes": {
+      "pressure-initial-range.js": "3dd6e50b2748b9abfeafb59806970ffcbe5a070dea748c3170988f4cec73878b",
+      "pressure-initial-range-example.js": "096f42ed0dd0ea1efeb84e30464a56b7c566ca82e3108d08d3d4ae96f61584d3",
+      "pressure-initial-range-page.js": "6d377337ae54386698475dc7c057a367eb085984ac29a70e7aa8586cb5672475",
+      "pressure-initial-range.html": "70ebb1191c6449b47dab10479e3c61f6ae19280e6b930c4b51307ab428d06520",
+      "pressure-initial-range.css": "6b0f25cc13264064922af11405a0223a9c5d8674529189cd3adbeba6a984fecf",
+      "pressure-batches.js": "473c7f74c174970ebf4682c047fc311e61fd4815bfaf22a1cd42e5d86b57017c",
+      "pressure-batches.html": "174634f837dddc93735ec57226fbf7b38bb381312c810c45a908fdc59c2ed315",
+      "pressure-batches.css": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6",
+      "pressure-head.js": "f6436a1fce84f9730e289decad120a5022e28db2ae47fd8cda180097dff9227b",
+      "tests/pressure-initial-range.browser.mjs": "144a8509c89419e293ef0e632865669a6c25c54a1d3b755891808210d0e9096b"
+    },
+    "captureHashes": {
+      "mobile-comparison.png": "0f6b0cd4866baa79f9141261a26a389e375070149f3a6905c9a3bf575f26a633",
+      "conflict-mobile.png": "96611e0ac1fc1681cd0410389334672c9623c6f4702071fd46f64f32f66b1c96",
+      "mobile-original-reading.png": "671eb0e0eed65cfa3b2b5ac8ed0fdedbb224808a1ec515b330cd923b47cd7b94",
+      "desktop-comparison.png": "03b9dc9a36f822f4d432d6ad3f759ed533d1be44307a0bd71e5b4dacbb3c00a3"
+    },
+    "receiptSha256": "dc9c79d0671fc2f8e4c5f71f6b893ca106a0e3a6260fbe15a31342dbfec3588e",
+    "elapsedSeconds": 6.96411135600647
+  },
+  "maintainedServer": {
+    "serverSha256": "5049176c57e8bf023cca55a38588f9a30d2c4740f725585d90af94de4ce086bb",
+    "assets": [
+      {
+        "path": "pressure-initial-range.html",
+        "bytes": 3427,
+        "sha256": "70ebb1191c6449b47dab10479e3c61f6ae19280e6b930c4b51307ab428d06520",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "path": "pressure-initial-range.css",
+        "bytes": 682,
+        "sha256": "6b0f25cc13264064922af11405a0223a9c5d8674529189cd3adbeba6a984fecf",
+        "status": 200,
+        "contentType": "text/css"
+      },
+      {
+        "path": "pressure-initial-range.js",
+        "bytes": 13652,
+        "sha256": "3dd6e50b2748b9abfeafb59806970ffcbe5a070dea748c3170988f4cec73878b",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-initial-range-example.js",
+        "bytes": 3746,
+        "sha256": "096f42ed0dd0ea1efeb84e30464a56b7c566ca82e3108d08d3d4ae96f61584d3",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-initial-range-page.js",
+        "bytes": 18158,
+        "sha256": "6d377337ae54386698475dc7c057a367eb085984ac29a70e7aa8586cb5672475",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-batches.html",
+        "bytes": 4659,
+        "sha256": "174634f837dddc93735ec57226fbf7b38bb381312c810c45a908fdc59c2ed315",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "path": "pressure-batches.js",
+        "bytes": 16370,
+        "sha256": "473c7f74c174970ebf4682c047fc311e61fd4815bfaf22a1cd42e5d86b57017c",
+        "status": 200,
+        "contentType": "text/javascript"
+      }
+    ],
+    "receiptSha256": "65eee9d6194177e723416352f87974598f5a84e7062b06fdfa38ee0b554d4b66"
+  },
+  "composition": {
+    "upstreamChangedPaths": 49,
+    "overlap": [],
+    "ownedSourceUnchangedByRefresh": true,
+    "receivedFiles": 740,
+    "sourceUnchangedDuringReceiving": true,
+    "completeNativeInventory": true,
+    "scope": "Partial local receiving checkout. All other paths/modes preserved by overlay on the complete verified upstream tree."
+  },
+  "independentReviewHashes": {
+    "API_SOURCE_REVIEW.json": "f35df1c38663e61087054f8687eac2a690a4fb21f567b9884086f74d37c2055d",
+    "CONSUMER_SOURCE_REVIEW.json": "f42455dbf5027f2df11d9cc9240e71afc6566cb77e60170cae3319eea13f6f1a",
+    "BROWSER_SOURCE_REVIEW.json": "87ba11d64bc14fc4910a6d2334ec9c5ab7ef24f4d4deec86969d3984111e5054",
+    "BETA1_CONTROLS.json": "846c96eaeacefedc3e920c03335549c4f3b0c4fde0b6674643232d0a871b1a21",
+    "API_ORACLE_RECEIPT.txt": "24bbab7095e59cd55ee1fd556befee0a21d284b7e349e1ee43648ea25640e037",
+    "REVIEW.md": "b2234f7b4f64dcd7fc372edc7473cd3c09b66bf7db5310093d5d2e20017aeeb9"
+  },
+  "finalVisualReviewSha256": "cda990fc8e9de259eb27051cbee5752183303ad39c4ac2b3a9d31f642538ff39",
+  "reviewEvolution": [
+    "Initial API review precedes nominal/calibration-envelope presentation queries; consumer review accepts final core3dd6e50b and page6d377337.",
+    "Subsequent CSS change increases mobile range-chart text from25 to28 source pixels; actual final layouts pass minimum12 effective pixels.",
+    "Receiver peer review added proof of newer-file acceptance before an older failed read completes. Browser01 then exposed a rounded expected-value assertion; it was replaced with the exact original input value. Product code did not change."
+  ],
+  "earlierReceiving": {
+    "browser01": "Failed a receiver assertion that hard-coded a rounded decimal; original full value was correctly preserved by the product. Failed logs and receipt retained.",
+    "browser02": "Eight groups passed after asserting the exact original value; all four captures were visually inspected.",
+    "browser03": "Eight groups passed after refresh to current upstream; all four captures are byte-identical to the inspected browser02 images."
+  },
+  "qualification": "Independent mathematical controls and actual-browser receiving. Arithmetic allowance is a comparison convention, not a certified solver-error enclosure. No physical validation, unique soil identification, remote integration or deployment is established.",
+  "laterChange": "Only this receiving record is added after final execution."
+}

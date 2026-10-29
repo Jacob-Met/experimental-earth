@@ -5,7 +5,7 @@ import { planWettingFrontQuestion } from './wetting-front-question.js';
 
 export const WETTING_FRONT_MEANING = 'Declared homogeneous sharp-front event hypotheses. K is conductivity; A is wetting-front suction × initial moisture deficit. No moisture recovery, ponding-head correction or field calibration. Held-aside readings never rank the hypotheses; agreement cannot identify suction and deficit separately.';
 
-function summary(result, cellIndex) {
+export function summarizeWettingFront(result, cellIndex) {
   return {
     rainLiters: result.rainLiters, absorbedLiters: result.absorbedLiters,
     exitLiters: result.exitLiters, storedLiters: result.storedLiters,
@@ -17,7 +17,7 @@ function summary(result, cellIndex) {
   };
 }
 
-function admittedWork(project, study) {
+export function wettingFrontWork(project, study) {
   validateProject(project);
   if (!validateWettingFrontStudy(study, SURFACES)) throw new Error('Choose a wetting-front study first');
   if (study.question?.toMinute > project.weather.durationMinutes) {
@@ -33,7 +33,7 @@ function admittedWork(project, study) {
 
 /** Same site/rain and finite declared explanations; no fitted parameter is adopted. */
 export function compareWettingFront(project, study = project.wettingFrontStudy) {
-  const cellSteps = admittedWork(project, study);
+  const cellSteps = wettingFrontWork(project, study);
   const { target, surface } = study;
   const { width, height, weather } = project;
   const selectedIndex = project.selectedIndex ?? 0;
@@ -56,7 +56,7 @@ export function compareWettingFront(project, study = project.wettingFrontStudy) 
       supportedRuns.push({ id, conductivityMmHr: model.conductivityMmHr,
         capillaryDriveMm: model.capillaryDriveMm, snapshots: scored.snapshots });
     }
-    return { existing: summary(existing, selectedIndex), proposal: summary(proposal, selectedIndex),
+    return { existing: summarizeWettingFront(existing, selectedIndex), proposal: summarizeWettingFront(proposal, selectedIndex),
       calibration: scoredCalibration, challenge: evaluateReadings(scored, challenge),
       change: { exitLiters: proposal.exitLiters - existing.exitLiters,
         storedLiters: proposal.storedLiters - existing.storedLiters,
@@ -89,7 +89,7 @@ export function compareWettingFront(project, study = project.wettingFrontStudy) 
 
 export const WETTING_FRONT_FILE_LIMIT = 5 * 1024 * 1024;
 export function serializeWettingFrontInvestigation(project, study = project.wettingFrontStudy) {
-  admittedWork(project, study);
+  wettingFrontWork(project, study);
   const text = JSON.stringify({ schema: 'experimental-earth-wetting-front-investigation/1', project, study }, null, 2);
   if (new TextEncoder().encode(text).byteLength > WETTING_FRONT_FILE_LIMIT) throw new Error('Soil investigation exceeds the 5 MiB file limit');
   return text;
@@ -105,6 +105,6 @@ export function parseWettingFrontInvestigation(text) {
       Object.keys(bundle).some(key => !['schema', 'project', 'study'].includes(key))) {
     throw new Error('Unsupported soil investigation; saved conclusions are not accepted');
   }
-  admittedWork(bundle.project, bundle.study);
+  wettingFrontWork(bundle.project, bundle.study);
   return bundle;
 }

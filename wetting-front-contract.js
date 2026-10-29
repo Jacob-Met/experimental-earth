@@ -12,6 +12,9 @@ export const DEFAULT_WETTING_FRONT_STUDY = Object.freeze({
 });
 
 export function validateWettingFrontModel(model, surfaces) {
+  if (model && (own(model, 'moistureDeficit') || model.schema === 'experimental-earth-pressure-head-model/1')) {
+    throw Error('Pressure-head assumptions require the separate versioned pressure-head model');
+  }
   if (!model || Array.isArray(model) || !own(surfaces, model.surface) ||
       !bounded(model.conductivityMmHr, 2000) || !bounded(model.capillaryDriveMm, 5000)) {
     throw new Error('A soil hypothesis needs a known surface, conductivity 0–2000 mm/h and capillary drive 0–5000 mm');

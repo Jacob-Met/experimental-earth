@@ -1,0 +1,76 @@
+{
+  "schema": "experimental-earth-pressure-initial-conflict-receiving/1",
+  "upstreamCommit": "412591eb7102cc5e675c53b81a53802189572e25",
+  "upstreamTree": "3d652ca3f7c9d0897b7f40466c1c2da3dd4944bd",
+  "parentExpectedTree": "1b0623859ede50a363afb08c436277def39e39e9",
+  "localReceivingCommit": "4c6da480852eaac8dadd710e362065efde3b8f33",
+  "scope": "Verified opposite original-reading requirements at one common numerical separator; pressure kernel, input schema and admitted work bound unchanged.",
+  "sourceHashes": {
+    "pressure-initial-range.js": "2a9fa127cafc362bb640e41be81426876a71010ea0061bd01400dc0278ed7ea0",
+    "pressure-initial-range-page.js": "fcbbe44de9b2edf139ecf7edc294e1fbd7c60f0241393986d0f104cd88f9c765",
+    "docs/pressure-initial-range.md": "46f5e1c6c2e7365a9f91409e5e1144397eadb2ee93f07b6dbb6a07ba530e6e32",
+    "tests/pressure-initial-conflict.test.mjs": "61d5b2430d76b3ce502ac72f62660a0f02c098a4295893ec3615e2b42d5a5a72",
+    "tests/pressure-initial-conflict.browser.mjs": "51a74b8a388502c9b3b1ec5369ea131098b8c2edbc8a5486f3abc1d6b182398e"
+  },
+  "native": {
+    "files": 5,
+    "tests": 29,
+    "pass": 29,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "command": "node --test --test-isolation=none tests/pressure-batches.test.mjs tests/pressure-batches-oracle.test.mjs tests/pressure-initial-range.test.mjs tests/pressure-initial-range-oracle.test.mjs tests/pressure-initial-conflict.test.mjs",
+    "logSha256": "2e81e732ed41fba9d382145cb917b32e3dcbc10dae045975408b499c0154c02b",
+    "meaning": "All directly affected batch/range tests plus four independent separator controls. The parent1599-test full composition is historical qualification of the preserved parent, not a rerun against this changed core."
+  },
+  "browser": {
+    "groups": [
+      "visible workbench entry exposes the two original readings and opposite requirements at one shared numerical separator",
+      "literal original sources and full mL readings survive actual input-only download and fresh certificate recomputation",
+      "held-aside roles remain separate; retained explanations and single-row endpoint refusals receive no fabricated pair",
+      "desktop and390px captures retain original bands, fixed allowance and literal source with no overflow, script exceptions or site adoption"
+    ],
+    "ordinarySandboxAdmitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "javascriptExceptions": 0,
+    "layouts": [
+      {
+        "width": 1440,
+        "page": 1425
+      },
+      {
+        "width": 390,
+        "page": 390
+      }
+    ],
+    "sourceHashes": {
+      "pressure-initial-range.js": "2a9fa127cafc362bb640e41be81426876a71010ea0061bd01400dc0278ed7ea0",
+      "pressure-initial-range-page.js": "fcbbe44de9b2edf139ecf7edc294e1fbd7c60f0241393986d0f104cd88f9c765",
+      "pressure-initial-range-example.js": "096f42ed0dd0ea1efeb84e30464a56b7c566ca82e3108d08d3d4ae96f61584d3",
+      "pressure-initial-range.html": "70ebb1191c6449b47dab10479e3c61f6ae19280e6b930c4b51307ab428d06520",
+      "pressure-initial-range.css": "6b0f25cc13264064922af11405a0223a9c5d8674529189cd3adbeba6a984fecf",
+      "tests/pressure-initial-conflict.browser.mjs": "51a74b8a388502c9b3b1ec5369ea131098b8c2edbc8a5486f3abc1d6b182398e"
+    },
+    "captureHashes": {
+      "mobile-conflict-readings.png": "5132886ccaacfe45be4f6bc3245e425587b00be08d0109c1cfc7462025cbfe98",
+      "desktop-conflict-readings.png": "6815b8eaa4e7a496f7dc240ead219719e491085ba2231c85c5d4cc3085fdd932",
+      "mobile-requires-less.png": "315104d032d79c1f114986fd33692576c5a78ce0337ebba78e71cb118516fa5d"
+    },
+    "receiptSha256": "376d8f360fb41bfe4db6fcf2cf81e986588c6ab2c2b0e237aa9c82361ac0548e"
+  },
+  "review": {
+    "mathematicalSourceSha256": "7db5aa586ad10181222ede71100e1948565ecb57013a8257e0a53ce712bfa92f",
+    "rootVisualSha256": "afd6fa62831282764b0f5e4e18e98b36ab17c572b8a2c13dde83265595517003"
+  },
+  "earlierReceiving": "Browser01 timed out before the example activated because the receiver clicked a static control before page-module loading completed. Browser02 added document readiness checks and passed without any product-source change; original timeout receipt/log retained.",
+  "inheritedRouting": "Same HTML/module paths and byte-identical maintained serve.py as parent; no new route. This delta does not claim a new server-byte route run.",
+  "interpretation": "Two original rows impose opposite strict requirements under the model monotonicity and fixed numerical comparison convention. No physical error, exhaustive conflict inventory or certified numerical enclosure is asserted.",
+  "publication": "No remote write, PR, integration or deployment established."
+}

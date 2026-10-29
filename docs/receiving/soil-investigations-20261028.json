@@ -1,0 +1,103 @@
+{
+  "schema": "hamon-soil-investigations-receiving/1",
+  "sourceBase": "6e7344181992372c3ed6064ca6ad2e4d1245a66e",
+  "receivedAt": "2026-10-28T20:27:19.848944+00:00",
+  "native": {
+    "node": "v24.22.1",
+    "command": "node --test --test-concurrency=4 tests/*.test.mjs",
+    "files": 211,
+    "tests": 1499,
+    "passed": 1499,
+    "failed": 0,
+    "skipped": 0,
+    "changedDuringRun": [],
+    "sourceCommitDuringRun": "77aeeac4481efa874bf4126ab09b126b726ea021",
+    "laterChange": "Only this receiving record was updated after the run; all application, native-test and browser-receiver source hashes remain identical.",
+    "elapsedSeconds": 23.51345739599492
+  },
+  "browser": {
+    "version": "Chrome/156.0.8078.73",
+    "ordinarySandboxAdmitted": true,
+    "exceptions": [],
+    "twoEventGroups": 9,
+    "pressureHeadGroups": 8,
+    "twoEventChecks": [
+      "real first-event file import leaves every second-event A blank and refuses an undeclared start without adopting a site",
+      "keyboard comparison keeps original IDs/order, reaches the analytic one-survivor case, renders source text literally and preserves the working site",
+      "actual downloaded JSON contains complete original inputs and explicit starts, with no saved conclusions",
+      "changed declarations retire live findings and export; duplicate event identities are refused",
+      "a changed working site invalidates the comparison and incompatible event geometry is refused without adoption",
+      "fresh-document file replay recomputes at390px without adoption; labels stay on one line, the last table column is reachable and every chart tick fits",
+      "forged saved findings are refused and retire the previous replay while preserving the working project",
+      "a malformed first-event replacement preserves the accepted source and explicit starting declarations",
+      "a delayed older file failure cannot overwrite a newer accepted source, its controls or its status"
+    ],
+    "pressureHeadChecks": [
+      "maintained investigation search finds standing water and navigation focuses the new panel heading",
+      "actual portable source import; blank deficit and basis cannot silently become zero/default assumptions",
+      "real kernel comparison retains both explicit hydraulic choices, held-aside scores and literal original sources without project adoption",
+      "actual downloaded file retains full original inputs and explicit deficit/basis only",
+      "changed draft and project retire live results/export, including a queued comparison",
+      "fresh reopen recomputes saved inputs independently; forged conclusions refuse atomically and preserve prior replay",
+      "old failed asynchronous import cannot erase a newer accepted replay; live drafts remain independent",
+      "desktop and390px actual result viewports retain readable result choices, bounded controls and sandbox admission without browser exceptions"
+    ],
+    "commands": [
+      "CHROME_BIN=/path/to/chrome BROWSER_RUN_DIRECTORY=/fresh/output node tests/wetting-front-events.browser.mjs",
+      "CHROME_BIN=/path/to/chrome BROWSER_RUN_DIRECTORY=/fresh/output node tests/pressure-head.browser.mjs"
+    ],
+    "mobileWidth": 390,
+    "twoEventMinimumEffectiveChartFontPx": 11.660869565217391,
+    "pressureHeadMinimumEffectiveChartFontPx": 10.709677419354838
+  },
+  "reviews": {
+    "source": "Independent retained team reviewers accepted kernel/core/study/contract, exact event recovery, thin parent integration, source-only replay and final presentation delta.",
+    "visual": "Root inspected the actual desktop and mobile captures, including both complete event curves, saved-site/rain context and literal original readings; no remaining blocking finding.",
+    "earlierCaptureFailure": "First composed event course failed its screenshot-position assertion while expanded details changed layout. Product source was unchanged; receiver settled and checked its actual viewport before capture. The failed receipt is retained separately."
+  },
+  "inputKind": "Authored mathematical controls and original local fixture files; no field observations or field-accuracy claim.",
+  "productSourceSHA256": {
+    "app.js": "3cd6db7b8720255d4f053fa27eee2831418f0393098097accc80f89f2277df2e",
+    "core.js": "ab91ec14f560ac75b6901be14a17e744b81d487432853837b56b1e2a0074e67e",
+    "docs/pressure-head.md": "9e681a539886744bdb500f4e081182af73101ae81237c2512fff4a281ae455aa",
+    "docs/soil-events.md": "df1ec658dd808371e3bd0992174e86652042b227c94d0ee58f11c6393ff6c58e",
+    "pressure-head-contract.js": "ce57cdd3f9ebeafd8f42cd43615387964c513e9445add43a866ac13953abaf92",
+    "pressure-head-panel.js": "9035f2ff74eb667eaffebc6fb41441a074795ad1473e5a03acd37aad81dd578a",
+    "pressure-head-study.js": "e0592f6ac25f25d8daa62ba6c2c9cb08cfd17f6354e74238cb1c474b114cc02f",
+    "pressure-head.js": "f6436a1fce84f9730e289decad120a5022e28db2ae47fd8cda180097dff9227b",
+    "tests/pressure-head-integration.test.mjs": "7b79819869c503677c3693703b3c07af6ea95e01aea3c22cf1b938f385ed4ca5",
+    "tests/pressure-head-routing.test.mjs": "0831b75312721d4072101a24b2d4a0a85088b85e9a1560ec6fb8fd336c23253f",
+    "tests/pressure-head.browser.mjs": "538ca0312f13ba96045d335ff63b98ed8bee1f165677644012af3cdec5b159ce",
+    "tests/pressure-head.test.mjs": "b2ab5b44096615632a0b51203761ff4b93aab04521ea9933952ebd98fd1246a5",
+    "tests/wetting-front-events-fixture.mjs": "69c2304930e070b7bc361400e45c63fa51fff1ff0a1c706e46db0b39c2baad0e",
+    "tests/wetting-front-events.browser.mjs": "6e5a32d4de128ce9d7ec18f045e440cdd575e627c9a0cf277434013bda83a24e",
+    "tests/wetting-front-events.test.mjs": "1ea282d56989bbe62e6159903f8a51e52ca986c27034c68527e6ab7385b4ffd3",
+    "wetting-front-contract.js": "075d6faff6354bb66e0a0096eefdf1619890c5b4d0cce1b2495fcb4cf7afd8f5",
+    "wetting-front-events-panel.js": "b217a89966c8c779e84c7d5453fb98aec62455db62ce9b8ef57badc32087dd30",
+    "wetting-front-events.js": "37a7eb9f765056fdfe58f409f884400e52d770609aa15a88f13ac5c7fbd45566",
+    "wetting-front-panel.js": "ae89dd3d6c15770e1421119a918be624620f864dabf922cdf5594c8ed42bf64d",
+    "wetting-front-study.js": "ca55f21e4185cb20c636534eb2aead54530226568d96d9054498e22e292d9058"
+  },
+  "eventCaptureSHA256": {
+    "desktop.png": "d11d7a27ff2efb9873d50b1cbb5a4d75cf404e625329846d2403de0e8b3945f5",
+    "mobile-curves.png": "3af6e98281dd81abb3846e2f4690e5f1ec91ce0c43091ca03ca6b77ebbaf2c9a",
+    "mobile-first-curve.png": "41cd65cf8a1e50f29041898791eaa362acd393c309a5930c3cbfbb6d6675d918",
+    "mobile-second-curve.png": "e213482bed80df1d16097295ee3671261f796eecc1626edf11a9951bfae1f47a",
+    "mobile.png": "3522504d3b3f0528e35075a136750f30dd281257dc816f55840aaf0ce8372688"
+  },
+  "publication": "This receipt covers source and receiving qualification. Branch publication and merge are recorded separately in Git history and the pull request.",
+  "sourceBaseTree": "4f686651c3c975fb94dc1e9865d6801aae39f76a",
+  "pressureCaptureSHA256": {
+    "desktop.png": "272397d489f53d4a1656fe5eb12be6252c4752828e2aee1fe63109c3f060b2c5",
+    "mobile-curve.png": "938a6c015af6eeffb175d44bc0fcd43fe1244f5ca7f337781d932a63c256ed15",
+    "mobile-evidence.png": "a9671ba7649203e38317d5bb39d54b215e0020b076c48fe5db1dde6126c8faa1",
+    "mobile.png": "0182025f8e3c2af052a42e3cb8998ea88dc635f720dfe4a7d128fca3cbf6c319"
+  },
+  "freshComposition": {
+    "upstreamChangedFiles": 28,
+    "overlapWithOwnPatch": [],
+    "upstreamBytesPreserved": true,
+    "completeNativeTestInventoryVerified": true,
+    "sourceUnchangedDuringReceiving": true
+  }
+}

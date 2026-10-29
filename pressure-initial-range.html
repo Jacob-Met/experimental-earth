@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uncertain starting water · Experimental Earth</title>
+<link rel="stylesheet" href="pressure-batches.css"><link rel="stylesheet" href="pressure-initial-range.css">
+<script type="module" src="pressure-initial-range-page.js"></script>
+</head><body><main>
+<a href="./pressure-batches.html">← Return to the batch-water comparison</a>
+<header><p class="eyebrow">LOCAL SOIL TEST</p><h1>Could uncertain starting water change the comparison?</h1>
+<p>Offer an explicit range for the water present before the first batch. For each soil explanation, one shared starting amount must account for every calibration reading. Held-aside readings challenge that retained range separately.</p></header>
+<section><h2>Open the original batch course</h2>
+<p>Use the original inputs saved from the batch-water comparison. The batches, soil explanations and reading roles stay connected to their sources.</p>
+<label class="file-label">Original batch-course inputs<input type="file" id="range-study-file" accept=".json,application/json"></label>
+<div class="actions"><button type="button" id="range-example">Try the initial-water ambiguity</button>
+<button type="button" id="range-conflict-example" class="secondary">Try incompatible starting amounts</button></div>
+<p class="small">Both examples are authored mathematical controls with fictional readings and uncertainty.</p>
+<div id="range-source"></div></section>
+<form id="range-form">
+<section><h2>Declare the starting-water range</h2>
+<p>This range is a separate declaration about the original nominal starting amount. It does not estimate missing instrument uncertainty or change the source course.</p>
+<div class="fields">
+<label>Lower original amount<input name="lower" type="number" min="0" max="1000000000" step="any" required></label>
+<label>Upper original amount<input name="upper" type="number" min="0" max="1000000000" step="any" required></label>
+<label>Original range unit<select name="unit"><option value="L">L</option><option value="mL">mL</option></select></label>
+</div><label>Range source and basis<textarea name="rangeSource" rows="2" maxlength="1000" required></textarea></label>
+<details><summary>Numerical search width</summary><p>The requested width controls the computed boundary brackets. It is separate from the original measurement bands.</p>
+<div class="fields"><label>Requested numerical width<input name="resolutionVolume" type="number" min="0" max="1000000000" step="any" value="0.001" required></label>
+<label>Width unit<select name="resolutionUnit"><option value="mL">mL</option><option value="L">L</option></select></label></div></details>
+<div class="actions"><button type="submit" id="range-run" disabled>Inspect the shared starting range</button>
+<button type="button" id="range-cancel" class="secondary" disabled>Stop calculation</button>
+<button type="button" id="range-download" class="secondary" disabled>Save original inquiry inputs</button></div></section>
+</form>
+<label class="file-label">Reopen a saved initial-water inquiry<input type="file" id="range-inquiry-file" accept=".json,application/json"></label>
+<p id="range-import-status" role="status" aria-live="polite"></p>
+<p id="range-status" role="status" aria-live="polite"></p>
+<section id="range-results" aria-live="polite"></section>
+</main></body></html>

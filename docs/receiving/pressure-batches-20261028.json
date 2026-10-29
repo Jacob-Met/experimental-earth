@@ -1,0 +1,168 @@
+{
+  "schema": "experimental-earth-pressure-batch-receiving/1",
+  "upstreamCommit": "24b4d0f7ead010778f3a9f944eaa0e7ace06c105",
+  "upstreamTree": "eb6951a73674599b24bbac037d3839e9b85765bd",
+  "localReceivingCommit": "1623ba32211cee719761baf60bdc8992c22d30b7",
+  "scope": "New instantaneous-batch consumer composed with the separately qualified soil-event and pressure investigations. One existing panel gains a navigation link; the pressure kernel is unchanged.",
+  "native": {
+    "files": 222,
+    "tests": 1548,
+    "pass": 1548,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "node": "v24.22.1",
+    "command": "node --test --test-concurrency=4 tests/*.test.mjs",
+    "elapsedSeconds": 23.508566916003474,
+    "logSha256": "8d189201dc6b5ef9fdfc7876c2cd32a426e45e9c05ab505308b5ce83a8096990"
+  },
+  "browser": {
+    "groups": [
+      "visible maintained-workbench entry, blank moisture/front admission and explicit instantaneous closed-account assumptions",
+      "actual editable L/mL declarations compare both soil explanations and exact before/after readings without source markup execution or site adoption",
+      "actual input-only download preserves original quantities, phases, sources and assumptions; a contradicted alternative remains inspectable",
+      "ambiguous batch-side reading refuses; edits retire export and an already queued comparison",
+      "fresh page recomputes actual downloaded inputs; forged conclusions refuse atomically and preserve the previous accepted view",
+      "compact input within the raw byte limit but beyond the saved-format limit refuses before changing any accepted editor field, view or export",
+      "late failed file read cannot replace or erase a newer accepted original course",
+      "desktop and390px source/curve/phase views captured with no horizontal overflow and ordinary Chromium sandbox admission"
+    ],
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "ordinarySandboxAdmitted": true,
+    "javascriptExceptions": 0,
+    "layouts": [
+      {
+        "width": 1440,
+        "page": 1425,
+        "chart": {
+          "x": 216.1875,
+          "y": 168.5625,
+          "width": 838.125,
+          "height": 419.0625,
+          "top": 168.5625,
+          "right": 1054.3125,
+          "bottom": 587.625,
+          "left": 216.1875
+        },
+        "badControls": 0
+      },
+      {
+        "width": 390,
+        "page": 390,
+        "chart": {
+          "x": 34.984375,
+          "y": 291.46875,
+          "width": 320.03125,
+          "height": 160.015625,
+          "top": 291.46875,
+          "right": 355.015625,
+          "bottom": 451.484375,
+          "left": 34.984375
+        },
+        "badControls": 0
+      }
+    ],
+    "sourceHashes": {
+      "pressure-batches.js": "03551ce87416025bbfd128de08355f17f6750a82a7e083d97c3260f344070eb9",
+      "pressure-batches-example.js": "6c575463f6c21bdd3ab10b055f80080f416c2c6447d7fb9c199ee0ee4f9c16d2",
+      "pressure-batches.html": "820c4f0e0e3e895098cd4314f4a3d6575fb8d392f9891f81073e33a6f6f97da8",
+      "pressure-batches-page.js": "93631ac30b419d62205e1cbe9edfa3bf5943f53bfae9933c02ed2d489139c39f",
+      "pressure-batches.css": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6",
+      "pressure-head-panel.js": "0a1a52630ec6f66574479dc264845b9fc4bea93eff32715d7f0a86d8389f43e3",
+      "pressure-head.js": "f6436a1fce84f9730e289decad120a5022e28db2ae47fd8cda180097dff9227b",
+      "wetting-front.js": "8bc57f051eb7c505aa569e05abd78c1b81d4acca689a9e5dffd8a57c61186694",
+      "tests/pressure-batches.browser.mjs": "ad5931bd3440205afacbeaf291ede72c76b366a4670861a2df8837d8b33044cd"
+    },
+    "captureHashes": {
+      "desktop-course.png": "351fccc0760e9e48e1a7deb199da3cd6e07d8dee067896c338f22ab6c22a2d01",
+      "mobile-course.png": "b7e827f2cba9c5aaa6e6ba1ec6136c9091939f6d859d9eea2b00c2cf8e9ad2e8",
+      "mobile-phases.png": "d0b49b60cbaeb2a0821ae847f41b8702c0aece6cea054f9fbe5052b1244fb283"
+    },
+    "receiptSha256": "b076bf4fec86666d590e209a0d934c74997bc6d5116bdf47982d1b1c26024cc7"
+  },
+  "maintainedServer": {
+    "serverSha256": "5049176c57e8bf023cca55a38588f9a30d2c4740f725585d90af94de4ce086bb",
+    "assets": [
+      {
+        "path": "pressure-batches.html",
+        "bytes": 4504,
+        "sha256": "820c4f0e0e3e895098cd4314f4a3d6575fb8d392f9891f81073e33a6f6f97da8",
+        "status": 200,
+        "contentType": "text/html"
+      },
+      {
+        "path": "pressure-batches.css",
+        "bytes": 3087,
+        "sha256": "b896b8f72367137f60f93b3d3a025001e921be9f4677dc7f18ff56002316d0a6",
+        "status": 200,
+        "contentType": "text/css"
+      },
+      {
+        "path": "pressure-batches.js",
+        "bytes": 14484,
+        "sha256": "03551ce87416025bbfd128de08355f17f6750a82a7e083d97c3260f344070eb9",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-batches-example.js",
+        "bytes": 2642,
+        "sha256": "6c575463f6c21bdd3ab10b055f80080f416c2c6447d7fb9c199ee0ee4f9c16d2",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-batches-page.js",
+        "bytes": 18730,
+        "sha256": "93631ac30b419d62205e1cbe9edfa3bf5943f53bfae9933c02ed2d489139c39f",
+        "status": 200,
+        "contentType": "text/javascript"
+      },
+      {
+        "path": "pressure-head-panel.js",
+        "bytes": 17897,
+        "sha256": "0a1a52630ec6f66574479dc264845b9fc4bea93eff32715d7f0a86d8389f43e3",
+        "status": 200,
+        "contentType": "text/javascript"
+      }
+    ],
+    "receiptSha256": "9ad03eb903dbfdc386ac964e29fb92ccafd0423497776cbf2ee7d271cdd4f1b9"
+  },
+  "composition": {
+    "upstreamChangedPaths": 33,
+    "overlap": [],
+    "ownedSourceUnchangedByRefresh": true,
+    "sourceUnchangedDuringReceiving": true,
+    "completeNativeInventory": true,
+    "remoteTreePreservation": "Only the31 declared blobs change; all other paths and modes in the complete upstream tree are retained."
+  },
+  "independentReviewHashes": {
+    "MICRO_API_REVIEW.json": "ed7126bb9d4cef500ad1c01077eb90c654b4cb6ca9735e944c09fe7d20eaf3a1",
+    "MICRO_INSTANTANEOUS_REVIEW.json": "28c42cd35f8001fc8025065babf4aad981ec431b9b4305c21c9020762a450d3c",
+    "CONSUMER_SOURCE_REVIEW.json": "0c07cff1fcc36df9a87a5da4f3277db5320fcb83641b3195a002502fb02814ae",
+    "CONSUMER_POSTFIX_REVIEW.json": "3846514e28254fa9c8871bb88f7f831fbe13f686a6b57762a7ffd4ff2f0bdfac",
+    "CONSUMER_DISPLAY_REVIEW.json": "4e347db789b25b6a1962398f52e36af76350b36c72857968928ebd81d3322630",
+    "ROOT_FINAL_VISUAL_REVIEW.json": "65218026c10189506890239272dce1591bacd43061bda2f13a4516fbbead23dc"
+  },
+  "earlierReceiving": {
+    "browser01": "Seven groups passed before independent review found the compact-import serialization edge.",
+    "browser02": "Eight groups passed after the atomicity fix and mobile chart spacing correction.",
+    "browser03": "Eight groups passed on the fresh composition, including full original-number display and download.",
+    "nativePreliminary": "The initial focused combined invocation rejected seven oracle fixtures for the newly required instantaneous flag; the independent fixture was corrected without changing its mathematical assertions. Subsequent12focused tests and the final1548-test suite passed."
+  },
+  "sourceBasis": {
+    "swigDoi": "10.1594/PANGAEA.885492",
+    "archiveSha256": "4446a24ec076ba9f4acca3c9e02c40aae550b00e55f94a0cc9d85fa9754fa9c2",
+    "originalMethodsDoi": "10.1515/johh-2017-0015",
+    "empiricalComparison": "Not admitted: original run, complete refill history and compiled head semantics remain unresolved. No original dataset or media is distributed."
+  },
+  "qualification": "Independent mathematical and actual-browser receiving. No physical calibration, platform integration, remote publication or deployment is established by this receipt.",
+  "laterChange": "Only this generated receiving record is added after the final source and browser run."
+}
