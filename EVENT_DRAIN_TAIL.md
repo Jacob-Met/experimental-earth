@@ -1,0 +1,9 @@
+# Receiver-only relaxation after surface water disappears
+
+The optional event research model now advances an exactly dry, zero-rain interval by the independent receiver equation S' = -d S. This extends the empty-interval shortcut to positive receiving inventory. The surface remains exactly zero: drainage leaves the receiving layer and never feeds surface flow in this declared process. The first admitted, charged flux evaluation still runs before this shortcut. No positive-depth tolerance or future rain interval is skipped.
+
+For the remaining interval T, retained storage is S exp(-d T) and drainage is S [-expm1(-d T)]. Computing retained storage directly avoids cancelling a tiny positive residue to zero. The existing receiver-absorption and full mass ledger remain in force. Floating-point grouping differs from repeated short steps, so parity is numerical, not bitwise; derived ledger terms can differ by cancellation roundoff. The event model identifier, maintained default, calibration/prediction dispatch and raw/adoption declarations remain unchanged because the governing process is unchanged.
+
+Forty-eight independent scalar exponential controls cover empty/full capacity, zero and positive drainage, and short/long intervals. Four positive-water/rain controls retain exact old-path results. A tiny retained-storage control and exhausted-work/nonfinite-rate refusals remain. The complete nine-layout, two-rate, 12-hour mixed consumer receives the same report in the exercised case while charged work falls from 71,100 to 37,020. Work accounting and long-interval refusal behavior deliberately change. This is not a universal runtime gain, graph accuracy or convergence claim.
+
+Run `node tests/event-drain-tail.test.mjs`, `node tests/event-empty.test.mjs`, the existing event model tests and the maintained browser receiver. Existing event root/tolerance and snapshot limitations continue to apply.
