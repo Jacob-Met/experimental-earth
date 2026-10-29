@@ -1,0 +1,24 @@
+{
+  "schema": "experimental-earth-drain-independent-method-freeze/1",
+  "frozenAtUtc": "2026-10-28T22:03:44.409847+00:00",
+  "independentTuplesSha256": "9f99c2ddd1be7b196a4e2b9d85ba42ed2682bd5663de598ff2458220395b1010",
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "ffdf2392ad39296b82adf06e4be71f8756ddd325262ffddb4359fa9ead1dc086",
+    "receiving-account-phase-fit.js": "a1ca7be9bf0b40ec1e3dadd0cc300f3c5a8de8dc5fe144296801aad52cd8747d",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+  },
+  "baselinePacketSha256": "b21db4294df63cc3cc69cab6632c13825e1b83960f3bc20b9bd93334f0c11ae4",
+  "baseline": "Frozen qualified phasev2 before drainage conditioning, with identical original augmented sources; also retain original-band result.",
+  "priorEvidence": "Independent scoped math/source review clear;7substantivenewnativegroups+receipt and10previousphasegroups pass18/18. Development16support1\u219214forcalibrationandfutureheld afteraddingoneoriginalD;2unresolved preserved; firstdirectintersection1\u21922failure retained.",
+  "primary": "Complete calibration-witness coverage on every independently truth-eligible authoredtuple. No selection by either fitter outcome.",
+  "secondary": "Any generatedcandidate that also satisfies unchanged later original retainedanddrained bands; finitefamily support is not a selectedpredictor or parameteridentification.",
+  "sourceRule": "Independent per-area increasing-center retained calibration bands, original storm+firstlate surfacecalibration/secondlate heldsurface; add one original drainedcalibration value at secondlate with\u00b1.02L; futureheldretained+drained atmin(720,secondlate+60), each\u00b1.02L. Preserve original rows/times/roles and everyfailure.",
+  "freshness": "SECOND suppliedonlypath,hashandcount8. Root has not readtuplevalues or independently validated originaloracles and has not runanyfitter ontheseeight. Nativecontrols and numericalmethod are fixed before release.",
+  "resourceRule": "Complete oldincumbent+allphase inverse/rateintersections/fullmap reservation beforeproducer; preserveevery budgetrefusal. No tuning usingheldnewcourse values."
+}

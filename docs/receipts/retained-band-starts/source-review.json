@@ -1,0 +1,16 @@
+{
+  "reviewer": "Retained SECOND GROUND direct worker",
+  "reviewedAtUtc": "2026-10-28T21:03:01.652019+00:00",
+  "scope": "Independent source review against the qualified consequences predecessor; no reviewer test execution or parameter tuning claimed.",
+  "mechanism": "clear",
+  "sourceSha256": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+  "findings": [
+    "Calibration-only retained groups and all ordered pairs stay within the central preflight limit.",
+    "Conditional log-rate restrictions are computational only, not certified feasibility or physical exclusion.",
+    "Projected fraction/log-rate/original-storm-band coordinates solve capacity through a bracketed unchanged kernel; no invalid root repair.",
+    "Every original band on the complete original grid remains the support authority.",
+    "Held values never enter start, projection or ranking.",
+    "Complete reduced-trials times58 reservation precedes producer; seed allowance includes possible failed drainage endpoints.",
+    "Zero-width coordinates use a zero derivative column."
+  ]
+}

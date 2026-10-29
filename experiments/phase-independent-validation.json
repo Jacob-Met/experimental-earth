@@ -1,0 +1,326 @@
+{
+  "sourceSha256": "08987915280ae5acf0579fd2dce9b6ad4cae21289f20fbe107f4b589f0f1f567",
+  "method": "Truth-only unchanged maintained forward; no fitter read/run",
+  "results": [
+    {
+      "id": "phase-01",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 4.559888499057277,
+        "secondMeanRetainedMm": 2.5025198675739557,
+        "area": 4
+      },
+      "bands": {
+        "firstMeanMm": 3.521204183315617,
+        "secondMeanMm": 3.5412041833156165,
+        "errorMm": 1.0396843157416606
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-02",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 2.3814790168035773,
+        "secondMeanRetainedMm": 0.29162741435718936,
+        "area": 3
+      },
+      "bands": {
+        "firstMeanMm": 1.3265532155803834,
+        "secondMeanMm": 1.3465532155803834,
+        "errorMm": 1.0559258012231938
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-03",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.5604167612511927,
+        "secondMeanRetainedMm": 0.004612088187128378,
+        "area": 9
+      },
+      "bands": {
+        "firstMeanMm": 0.2725144247191605,
+        "secondMeanMm": 0.2925144247191605,
+        "errorMm": 0.2889023365320322
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-04",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.47372500326502615,
+        "secondMeanRetainedMm": 0.0021396173217859407,
+        "area": 12
+      },
+      "bands": {
+        "firstMeanMm": 0.22793231029340602,
+        "secondMeanMm": 0.24793231029340604,
+        "errorMm": 0.24679269297162013
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-05",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 2.220446049250313e-16,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 6.488077430128416,
+        "secondMeanRetainedMm": 0.8780657966675026,
+        "area": 2.25
+      },
+      "bands": {
+        "firstMeanMm": 3.6730716133979597,
+        "secondMeanMm": 3.6930716133979593,
+        "errorMm": 2.8160058167304567
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-06",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.7733205964548711,
+        "secondMeanRetainedMm": 0.08150739120406172,
+        "area": 6.75
+      },
+      "bands": {
+        "firstMeanMm": 0.41741399382946637,
+        "secondMeanMm": 0.4374139938294664,
+        "errorMm": 0.3569066026254047
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-07",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 11.526311058537768,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 8.548379498666483,
+        "secondMeanRetainedMm": 2.5747224262272774,
+        "area": 4
+      },
+      "bands": {
+        "firstMeanMm": 5.55155096244688,
+        "secondMeanMm": 5.57155096244688,
+        "errorMm": 2.997828536219603
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-08",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 18.75,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 5.329762974501876,
+        "secondMeanRetainedMm": 0.21725288552298969,
+        "area": 3
+      },
+      "bands": {
+        "firstMeanMm": 2.763507930012433,
+        "secondMeanMm": 2.7835079300124326,
+        "errorMm": 2.5672550444894435
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-09",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 34.5,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 4.699067829260475,
+        "secondMeanRetainedMm": 0.09511811487771893,
+        "area": 9
+      },
+      "bands": {
+        "firstMeanMm": 2.387092972069097,
+        "secondMeanMm": 2.407092972069097,
+        "errorMm": 2.312974857191378
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-10",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 30.999999999999993,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 2.607056045460943,
+        "secondMeanRetainedMm": 0.004787349470262021,
+        "area": 12
+      },
+      "bands": {
+        "firstMeanMm": 1.2959216974656025,
+        "secondMeanMm": 1.3159216974656025,
+        "errorMm": 1.3121343479953405
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-11",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 9.999999999999988,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 6.498436218355169,
+        "secondMeanRetainedMm": 1.074184282073001,
+        "area": 2.25
+      },
+      "bands": {
+        "firstMeanMm": 3.7763102502140855,
+        "secondMeanMm": 3.796310250214085,
+        "errorMm": 2.723125968141084
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-12",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 30.000000000000007,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 17.01710968610215,
+        "secondMeanRetainedMm": 4.196367583654093,
+        "area": 6.75
+      },
+      "bands": {
+        "firstMeanMm": 10.59673863487812,
+        "secondMeanMm": 10.61673863487812,
+        "errorMm": 6.421371051224028
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-13",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 2.220446049250313e-16,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 7.229521251108285,
+        "secondMeanRetainedMm": 2.6595922377947896,
+        "area": 12
+      },
+      "bands": {
+        "firstMeanMm": 4.9345567444515375,
+        "secondMeanMm": 4.954556744451537,
+        "errorMm": 2.2959645066567482
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-14",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 22.6875,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 4.620754071293329,
+        "secondMeanRetainedMm": 0.708615587401757,
+        "area": 4
+      },
+      "bands": {
+        "firstMeanMm": 2.654684829347543,
+        "secondMeanMm": 2.6746848293475427,
+        "errorMm": 1.967069241945786
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-15",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 2.220446049250313e-16,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.05032092294938783,
+        "secondMeanRetainedMm": 0.0004141284671466894,
+        "area": 3
+      },
+      "bands": {
+        "firstMeanMm": 0.015367525708267259,
+        "secondMeanMm": 0.03536752570826726,
+        "errorMm": 0.035953397241120566
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "phase-16",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 42.5,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 3.114149466664821,
+        "secondMeanRetainedMm": 0.025628662383492137,
+        "area": 6.25
+      },
+      "bands": {
+        "firstMeanMm": 1.5598890645241565,
+        "secondMeanMm": 1.5798890645241566,
+        "errorMm": 1.5552604021406642
+      },
+      "truthWithinBands": true
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "sourceSha256": "1ad5021b5a0f584fcc67744ec9fc182ced524b1f13e6d3eb0697eeb0bea553cd",
+  "method": "Unchanged maintained runRain only; no root new inverse run, no parameter or perturbation retuning",
+  "eligible": 15,
+  "total": 18,
+  "results": [
+    {
+      "id": "a",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 12.172536722894465,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 6.72510144690033,
+        "secondRetainedLiters": 2.4740265621069524,
+        "initialStoredMm": 0
+      },
+      "recorded": {
+        "firstRetainedLiters": 4.589564004503641,
+        "secondRetainedLiters": 4.609564004503641,
+        "uncertaintyLiters": 2.1365374423966887
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "b",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 15.54477776786716,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 8.42044839231095,
+        "secondRetainedLiters": 1.1395837681526837,
+        "initialStoredMm": 7.5
+      },
+      "recorded": {
+        "firstRetainedLiters": 4.770016080231818,
+        "secondRetainedLiters": 4.790016080231817,
+        "uncertaintyLiters": 3.6514323120791334
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "c",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 21,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 12.113791079679338,
+        "secondRetainedLiters": 0.6031101446780165,
+        "initialStoredMm": 15
+      },
+      "recorded": {
+        "firstRetainedLiters": 6.348450612178677,
+        "secondRetainedLiters": 6.368450612178677,
+        "uncertaintyLiters": 5.766340467500661
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "d",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 24.416481061543887,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 1.1394293424392405,
+        "secondRetainedLiters": 0.15420499278712185,
+        "initialStoredMm": 0
+      },
+      "recorded": {
+        "firstRetainedLiters": 0.6368171676131812,
+        "secondRetainedLiters": 0.6568171676131812,
+        "uncertaintyLiters": 0.5036121748260594
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "e",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 6,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 9.243136431884748,
+        "secondRetainedLiters": 1.8661570609470757,
+        "initialStoredMm": 5
+      },
+      "recorded": {
+        "firstRetainedLiters": 5.544646746415912,
+        "secondRetainedLiters": 5.564646746415912,
+        "uncertaintyLiters": 3.699489685468836
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "f",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 21.76153684825831,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 3.269582872773259,
+        "secondRetainedLiters": 0.7295425500204611,
+        "initialStoredMm": 9
+      },
+      "recorded": {
+        "firstRetainedLiters": 1.9895627113968601,
+        "secondRetainedLiters": 2.00956271139686,
+        "uncertaintyLiters": 1.281020161376399
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "g",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 12,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 54.77514906521994,
+        "secondRetainedLiters": 40.57842846807206,
+        "initialStoredMm": 0
+      },
+      "recorded": {
+        "firstRetainedLiters": 47.666788766646,
+        "secondRetainedLiters": 47.686788766645996,
+        "uncertaintyLiters": 7.10936029857394
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "h",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 12,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 58.53990785002934,
+        "secondRetainedLiters": 32.127382603968094,
+        "initialStoredMm": 20
+      },
+      "recorded": {
+        "firstRetainedLiters": 45.323645226998714,
+        "secondRetainedLiters": 45.34364522699871,
+        "uncertaintyLiters": 13.21726262303062
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "i",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 18,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 12.898481375285087,
+        "secondRetainedLiters": 4.745086120300136,
+        "initialStoredMm": 5
+      },
+      "recorded": {
+        "firstRetainedLiters": 8.811783747792612,
+        "secondRetainedLiters": 8.831783747792612,
+        "uncertaintyLiters": 4.087697627492475
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "j",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 12.995579250407419,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 0.31354365101972953,
+        "secondRetainedLiters": 0.0021126405024706908,
+        "initialStoredMm": 4
+      },
+      "recorded": {
+        "firstRetainedLiters": 0.1478281457611001,
+        "secondRetainedLiters": 0.1678281457611001,
+        "uncertaintyLiters": 0.16671550525862944
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "k",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 30,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 29.591635672992798,
+        "secondRetainedLiters": 8.912829385720071,
+        "initialStoredMm": 30
+      },
+      "recorded": {
+        "firstRetainedLiters": 19.242232529356432,
+        "secondRetainedLiters": 19.262232529356435,
+        "uncertaintyLiters": 10.350403143636363
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "l",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 12,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 19.10898312464719,
+        "secondRetainedLiters": 8.586219592731187,
+        "initialStoredMm": 2.5
+      },
+      "recorded": {
+        "firstRetainedLiters": 13.837601358689188,
+        "secondRetainedLiters": 13.857601358689188,
+        "uncertaintyLiters": 5.272381765958001
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "m",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 3,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 4.21513809591293,
+        "secondRetainedLiters": 0.11517326340973442,
+        "initialStoredMm": 16.2
+      },
+      "recorded": {
+        "firstRetainedLiters": 2.1551556796613323,
+        "secondRetainedLiters": 2.175155679661332,
+        "uncertaintyLiters": 2.0609824162515977
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "n",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 24,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 85.69615410124642,
+        "secondRetainedLiters": 31.525853281308436,
+        "initialStoredMm": 12.5
+      },
+      "recorded": {
+        "firstRetainedLiters": 58.601003691277434,
+        "secondRetainedLiters": 58.62100369127743,
+        "uncertaintyLiters": 27.096150409968992
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "o",
+      "eligible": true,
+      "reasons": [],
+      "truth": {
+        "stormDepthMm": 27.68223383328066,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 1.9700399669735749,
+        "secondRetainedLiters": 0.26661591691781616,
+        "initialStoredMm": 0
+      },
+      "recorded": {
+        "firstRetainedLiters": 1.1083279419456955,
+        "secondRetainedLiters": 1.1283279419456955,
+        "uncertaintyLiters": 0.8627120250278794
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "p",
+      "eligible": false,
+      "reasons": [
+        "late surface is not dry",
+        "truth retained pair is not positive decreasing"
+      ],
+      "truth": {
+        "stormDepthMm": 35,
+        "firstDepthMm": 31.99999999999992,
+        "secondDepthMm": 30.999999999999932,
+        "firstRetainedLiters": 8,
+        "secondRetainedLiters": 8,
+        "initialStoredMm": 2
+      },
+      "recorded": {
+        "firstRetainedLiters": 7.99,
+        "secondRetainedLiters": 8.01,
+        "uncertaintyLiters": 0.011
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "q",
+      "eligible": false,
+      "reasons": [
+        "no positive storm-end surface depth"
+      ],
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 13.895930978209183,
+        "secondRetainedLiters": 8.428308183534433,
+        "initialStoredMm": 0
+      },
+      "recorded": {
+        "firstRetainedLiters": 11.152119580871808,
+        "secondRetainedLiters": 11.172119580871808,
+        "uncertaintyLiters": 2.744811397337375
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "r",
+      "eligible": false,
+      "reasons": [
+        "late pair is not increasing in time",
+        "truth retained pair is not positive decreasing"
+      ],
+      "truth": {
+        "stormDepthMm": 15.54477776786716,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstRetainedLiters": 3.097709848976324,
+        "secondRetainedLiters": 8.42044839231095,
+        "initialStoredMm": 7.5
+      },
+      "recorded": {
+        "firstRetainedLiters": 5.749079120643637,
+        "secondRetainedLiters": 5.769079120643637,
+        "uncertaintyLiters": 2.6723692716673133
+      },
+      "truthWithinBands": true
+    }
+  ]
+}

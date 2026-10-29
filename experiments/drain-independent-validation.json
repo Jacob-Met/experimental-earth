@@ -1,0 +1,200 @@
+{
+  "sourceSha256": "9f99c2ddd1be7b196a4e2b9d85ba42ed2682bd5663de598ff2458220395b1010",
+  "method": "Truth-only unchanged maintained forward; no fitter read/run",
+  "results": [
+    {
+      "id": "drain-new-01",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 2.220446049250313e-16,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 2.6359517470211684,
+        "secondMeanRetainedMm": 0.8557682385079765,
+        "area": 5.76,
+        "secondDrainedLiters": 76.67077494619414,
+        "futureMinute": 460,
+        "futureRetainedLiters": 3.143012659986022,
+        "futureDrainedLiters": 78.45698734001408
+      },
+      "bands": {
+        "firstMeanMm": 1.7358599927645724,
+        "secondMeanMm": 1.7558599927645724,
+        "errorMm": 0.901091754256596
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-02",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 1.3333333333333357,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 2.525971190794479,
+        "secondMeanRetainedMm": 0.3593802060245648,
+        "area": 4.32,
+        "secondDrainedLiters": 189.967477509974,
+        "futureMinute": 540,
+        "futureRetainedLiters": 0.8104878092446323,
+        "futureDrainedLiters": 190.70951219075556
+      },
+      "bands": {
+        "firstMeanMm": 1.432675698409522,
+        "secondMeanMm": 1.452675698409522,
+        "errorMm": 1.094295492384957
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-03",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 18.936964872926232,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 4.227867283782261,
+        "secondMeanRetainedMm": 0.28413598860219963,
+        "area": 3.24,
+        "secondDrainedLiters": 152.54739939692885,
+        "futureMinute": 480,
+        "futureRetainedLiters": 0.37428827394761816,
+        "futureDrainedLiters": 153.0937117260524
+      },
+      "bands": {
+        "firstMeanMm": 2.24600163619223,
+        "secondMeanMm": 2.2660016361922297,
+        "errorMm": 1.9828656475900304
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-04",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 30,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.9448600523131117,
+        "secondMeanRetainedMm": 0.008885050604335367,
+        "area": 14.520000000000003,
+        "secondDrainedLiters": 1538.990989065225,
+        "futureMinute": 560,
+        "futureRetainedLiters": 0.031813704830771165,
+        "futureDrainedLiters": 1539.0881862951687
+      },
+      "bands": {
+        "firstMeanMm": 0.46687255145872353,
+        "secondMeanMm": 0.48687255145872355,
+        "errorMm": 0.4789875008543881
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-05",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 51.33333333333334,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 30.31666565664919,
+        "secondMeanRetainedMm": 12.325836440493344,
+        "area": 1.44,
+        "secondDrainedLiters": 119.53079552568924,
+        "futureMinute": 600,
+        "futureRetainedLiters": 13.148934077174621,
+        "futureDrainedLiters": 124.13106592282503
+      },
+      "bands": {
+        "firstMeanMm": 21.311251048571265,
+        "secondMeanMm": 21.331251048571268,
+        "errorMm": 9.006414608077922
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-06",
+      "eligible": true,
+      "reasons": [],
+      "phase": "never-full-in-snapshots",
+      "truth": {
+        "stormDepthMm": 0,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.3497721790185616,
+        "secondMeanRetainedMm": 0.022360187314266283,
+        "area": 9.72,
+        "secondDrainedLiters": 218.15865897930536,
+        "futureMinute": 450,
+        "futureRetainedLiters": 0.07234654109068096,
+        "futureDrainedLiters": 218.30365345890937
+      },
+      "bands": {
+        "firstMeanMm": 0.17606618316641393,
+        "secondMeanMm": 0.19606618316641394,
+        "errorMm": 0.1747059958521477
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-07",
+      "eligible": false,
+      "reasons": [
+        "negative recorded centre"
+      ],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 1.1102230246251565e-16,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 0.014943604029965534,
+        "secondMeanRetainedMm": 0.000020328801288137058,
+        "area": 7.839999999999999,
+        "secondDrainedLiters": 463.8665072888649,
+        "futureMinute": 490,
+        "futureRetainedLiters": 0.00001765956384541561,
+        "futureDrainedLiters": 463.86664900710315
+      },
+      "bands": {
+        "firstMeanMm": -0.0025180335843731647,
+        "secondMeanMm": 0.017481966415626837,
+        "errorMm": 0.018461637614338697
+      },
+      "truthWithinBands": true
+    },
+    {
+      "id": "drain-new-08",
+      "eligible": true,
+      "reasons": [],
+      "phase": "full-by-storm",
+      "truth": {
+        "stormDepthMm": 25.94293019427058,
+        "firstDepthMm": 0,
+        "secondDepthMm": 0,
+        "firstMeanRetainedMm": 11.034030355976794,
+        "secondMeanRetainedMm": 2.1190845215839706,
+        "area": 7.6800000000000015,
+        "secondDrainedLiters": 307.5654308742351,
+        "futureMinute": 540,
+        "futureRetainedLiters": 9.389609571134182,
+        "futureDrainedLiters": 314.45039042886583
+      },
+      "bands": {
+        "firstMeanMm": 6.566557438780382,
+        "secondMeanMm": 6.586557438780382,
+        "errorMm": 4.468472917196412
+      },
+      "truthWithinBands": true
+    }
+  ]
+}

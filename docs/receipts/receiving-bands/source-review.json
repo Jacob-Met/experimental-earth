@@ -1,0 +1,18 @@
+{
+  "reviewer": "Retained SECOND GROUND direct contributor",
+  "scope": "Independent source review; no independent native or browser rerun claimed",
+  "numerical": "clear",
+  "consumer": "clear",
+  "findings": [
+    "Original source admission and combined complete-work reservation precede all model evaluations.",
+    "Uniform zero-flow4-cell course and selected-count scaling are conditional on original admission; unselected calibration remains binding.",
+    "All search parameters freeze before held values; final support comes only from complete original-grid runs.",
+    "Original copied sources, strict source-only replay and generation retirement are preserved; analytic and searched families remain separately rendered."
+  ],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "6f800e07593a2972c7d6442fd6f4aac9bcb3bdbd563ce1a0b20215f065f0e276",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "post-dry-receiving-inverse.js": "b5cbe76e669968285156d9157fc64fbde21e6b3a6f6776c553027369f7ab6468",
+    "receiving-account-proposals-panel.js": "b11a57209cff836fea66610f37c2d79c35ea0832219b09e7657a2ec49046ee61"
+  }
+}

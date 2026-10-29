@@ -1,0 +1,116 @@
+{
+  "status": "no-band-witness",
+  "baseline": "unsupported-trials",
+  "counts": {
+    "reducedTrials": 633,
+    "originalGridChecks": 3,
+    "seedKernelCalls": 174,
+    "seedInverseCalls": 0,
+    "seedRetainedRatePairs": 1
+  },
+  "reservation": {
+    "centralTrials": 10,
+    "originalGridTrials": 14,
+    "reducedTrials": 633,
+    "seedKernelCalls": 180,
+    "maximumDrainageRateBisections": 128,
+    "maximumRetainedRatePairs": 21,
+    "stepsPerCourse": 144,
+    "fullGridCellSteps": 576,
+    "reducedCellSteps": 364608,
+    "totalCellEquivalentSteps": 372852,
+    "limit": 1000000
+  },
+  "models": [
+    {
+      "hypothesis": {
+        "id": "account-band-1",
+        "label": "Original-band search 1",
+        "capacityMm": 12.563166561230734,
+        "initialStoredMm": 1.5206033784762634,
+        "drainagePerHour": 0.40499113357305155,
+        "source": "Conditional numerical witness sought from original calibration bands; not an identified physical material"
+      },
+      "calibration": {
+        "count": 4,
+        "compatible": false
+      },
+      "challenge": {
+        "count": 1,
+        "compatible": true
+      },
+      "start": {
+        "kind": "conditional-post-dry-retained-band-rate",
+        "minimumRatePerHour": 1e-10,
+        "maximumRatePerHour": 0.6301136964180021,
+        "ratePerHour": 0.31505684825900104,
+        "originalAccountIndices": [
+          0,
+          1
+        ],
+        "pairChecks": 1,
+        "meaning": "Computational rate-start interval conditional on a positive dry exponential retained course; not a certified feasible region, inferred measurement, physical exclusion or parameter uncertainty."
+      }
+    },
+    {
+      "hypothesis": {
+        "id": "account-band-2",
+        "label": "Original-band search 2",
+        "capacityMm": 19.30723098019394,
+        "initialStoredMm": 9.654117843629159,
+        "drainagePerHour": 0.3151161148478612,
+        "source": "Conditional numerical witness sought from original calibration bands; not an identified physical material"
+      },
+      "calibration": {
+        "count": 4,
+        "compatible": false
+      },
+      "challenge": {
+        "count": 1,
+        "compatible": true
+      },
+      "start": {
+        "kind": "conditional-post-dry-retained-band-rate",
+        "minimumRatePerHour": 1e-10,
+        "maximumRatePerHour": 0.6301136964180021,
+        "ratePerHour": 0.31505684825900104,
+        "originalAccountIndices": [
+          0,
+          1
+        ],
+        "pairChecks": 1,
+        "meaning": "Computational rate-start interval conditional on a positive dry exponential retained course; not a certified feasible region, inferred measurement, physical exclusion or parameter uncertainty."
+      }
+    },
+    {
+      "hypothesis": {
+        "id": "account-band-3",
+        "label": "Original-band search 3",
+        "capacityMm": 47.61025142427493,
+        "initialStoredMm": 47.61025142427493,
+        "drainagePerHour": 0.31505840369680504,
+        "source": "Conditional numerical witness sought from original calibration bands; not an identified physical material"
+      },
+      "calibration": {
+        "count": 4,
+        "compatible": false
+      },
+      "challenge": {
+        "count": 1,
+        "compatible": true
+      },
+      "start": {
+        "kind": "conditional-post-dry-retained-band-rate",
+        "minimumRatePerHour": 1e-10,
+        "maximumRatePerHour": 0.6301136964180021,
+        "ratePerHour": 0.31505684825900104,
+        "originalAccountIndices": [
+          0,
+          1
+        ],
+        "pairChecks": 1,
+        "meaning": "Computational rate-start interval conditional on a positive dry exponential retained course; not a certified feasible region, inferred measurement, physical exclusion or parameter uncertainty."
+      }
+    }
+  ]
+}

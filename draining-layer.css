@@ -25,6 +25,16 @@
 #dl-evidence textarea { display: block; box-sizing: border-box; width: 100%; min-height: 5rem; margin-top: 0.4rem; padding: 0.65rem; border: 1px solid #c9dcd6; border-radius: 0.5rem; background: #f8fbfa; color: inherit; font: inherit; line-height: 1.4; resize: vertical; }
 #dl-evidence .de-candidate { border: 1px solid #c9dcd6; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; }
 #dl-evidence .de-candidate h4 { margin-top: 0; }
+#receiving-account-consequences { border-top: 1px solid #c9dcd6; margin-top: 2rem; padding-top: 1rem; min-width: 0; }
+#receiving-account-consequences .rac-table table { min-width: 630px; }
+#receiving-account-consequences .rac-table:focus { outline: 2px solid #16856d; outline-offset: 2px; }
+#receiving-accounts { border-top: 1px solid #c9dcd6; margin-top: 2rem; padding-top: 1rem; min-width: 0; }
+#receiving-accounts p, #receiving-accounts summary { overflow-wrap: anywhere; }
+#receiving-accounts input, #receiving-accounts select { min-width: 0; max-width: 100%; }
+#receiving-accounts #ra-status { min-height: 3em; }
+#receiving-accounts .mini-note { color: #3c5f56; }
+#receiving-account-proposals { border-top: 1px solid #c9dcd6; margin-top: 2rem; padding-top: 1rem; min-width: 0; }
+#receiving-account-proposals #rai-status { min-height: 3em; }
 #dl-evidence .de-effects { padding: 0.75rem 1rem; background: #edf7f3; margin: 0.8rem 0; border-left: 3px solid #16856d; }
 #de-status[data-state="refused"], #de-status[data-state="challenged"], #de-status[data-state="calibration-rejected"] { color: #963f27; }
 @media (max-width: 600px) {

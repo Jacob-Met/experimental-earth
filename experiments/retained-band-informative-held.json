@@ -1,0 +1,235 @@
+{
+  "source": {
+    "project": {
+      "schema": "experimental-earth-site/1",
+      "title": "Authored valid retained-water bands with increasing central values",
+      "width": 2,
+      "height": 2,
+      "weather": {
+        "rainMmHr": 30,
+        "stormMinutes": 60,
+        "durationMinutes": 720,
+        "stepMinutes": 5,
+        "cellSizeM": 1,
+        "mobilityPerHour": 0,
+        "boundaryExitPerHour": 0
+      },
+      "existing": [
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        },
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        },
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        },
+        {
+          "elevationM": 0,
+          "surface": "sealed",
+          "provenance": "Authored flat closed site; no field observations"
+        }
+      ],
+      "proposal": [
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        },
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        },
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        },
+        {
+          "elevationM": 0,
+          "surface": "garden",
+          "provenance": "Hypothetical receiving bed"
+        }
+      ],
+      "observations": [
+        {
+          "cellIndex": 0,
+          "minute": 60,
+          "depthMm": 15,
+          "uncertaintyMm": 0.00001,
+          "scenario": "proposal",
+          "use": "calibration",
+          "source": "Authored maintained-forward original surface control; not a field observation"
+        },
+        {
+          "cellIndex": 0,
+          "minute": 240,
+          "depthMm": 0,
+          "uncertaintyMm": 0.00001,
+          "scenario": "proposal",
+          "use": "calibration",
+          "source": "Authored maintained-forward original surface control; not a field observation"
+        },
+        {
+          "cellIndex": 0,
+          "minute": 300,
+          "depthMm": 0,
+          "uncertaintyMm": 0.00001,
+          "scenario": "proposal",
+          "use": "challenge",
+          "source": "Authored maintained-forward original surface control; not a field observation"
+        }
+      ],
+      "selectedIndex": 0,
+      "source": "Authored flat closed site; no field observations"
+    },
+    "selection": {
+      "target": "proposal",
+      "surface": "garden",
+      "uniformReceiverBasis": "Authored uniform isolated receiver across all four garden cells; synthetic late-water control"
+    },
+    "account": {
+      "footprintBasis": "Authored whole-receiver account across four garden cells (4 square metres), not a point probe or surface outlet.",
+      "readings": [
+        {
+          "id": "retained-240",
+          "channel": "retained",
+          "minute": 240,
+          "valueLiters": 19.29497709971426,
+          "uncertaintyLiters": 6.01605925435205,
+          "use": "calibration",
+          "source": "Authored perturbed center within an explicitly declared uncertainty band; no field measurement"
+        },
+        {
+          "id": "retained-300",
+          "channel": "retained",
+          "minute": 300,
+          "valueLiters": 19.494977099714262,
+          "uncertaintyLiters": 6.016059254352048,
+          "use": "calibration",
+          "source": "Authored perturbed center within an explicitly declared uncertainty band; no field measurement"
+        },
+        {
+          "id": "held-retained",
+          "channel": "retained",
+          "minute": 540,
+          "valueLiters": 1.084588888853846,
+          "uncertaintyLiters": 0.001,
+          "use": "challenge",
+          "source": "New authored original receiver reading from the unchanged known model, held out of all starts and fitting."
+        },
+        {
+          "id": "held-drained",
+          "channel": "drained",
+          "minute": 600,
+          "valueLiters": 132.98628418361963,
+          "uncertaintyLiters": 0.001,
+          "use": "challenge",
+          "source": "New authored original receiver reading from the unchanged known model, held out of all starts and fitting."
+        }
+      ],
+      "offers": [
+        {
+          "id": "retained-360",
+          "channel": "retained",
+          "minute": 360,
+          "uncertaintyLiters": 0.1,
+          "basis": "Hypothetical available whole-receiver measurement at original minute 360; no actual acquisition is asserted"
+        },
+        {
+          "id": "drained-360",
+          "channel": "drained",
+          "minute": 360,
+          "uncertaintyLiters": 0.1,
+          "basis": "Hypothetical available whole-receiver measurement at original minute 360; no actual acquisition is asserted"
+        }
+      ]
+    }
+  },
+  "truth": {
+    "capacityMm": 12,
+    "initialStoredMm": 3.390981833321632,
+    "drainagePerHour": 0.63,
+    "source": "Authored known model, not field data"
+  },
+  "before": {
+    "status": "one-surviving-proposal",
+    "support": [
+      "account-band-1"
+    ]
+  },
+  "after": {
+    "status": "challenged",
+    "support": [
+      "account-band-1"
+    ],
+    "survivors": []
+  },
+  "parametersUnchanged": true,
+  "heldReceiverRows": [
+    {
+      "id": "account-band-1",
+      "calibration": true,
+      "challenge": false,
+      "rows": [
+        {
+          "id": "held-retained",
+          "observed": 1.084588888853846,
+          "predicted": 1.1195895615730187,
+          "withinBand": false
+        },
+        {
+          "id": "held-drained",
+          "observed": 132.98628418361963,
+          "predicted": 160.1235301419887,
+          "withinBand": false
+        }
+      ]
+    },
+    {
+      "id": "account-band-2",
+      "calibration": false,
+      "challenge": false,
+      "rows": [
+        {
+          "id": "held-retained",
+          "observed": 1.084588888853846,
+          "predicted": 6.6484915922393695,
+          "withinBand": false
+        },
+        {
+          "id": "held-drained",
+          "observed": 132.98628418361963,
+          "predicted": 139.0290914924399,
+          "withinBand": false
+        }
+      ]
+    },
+    {
+      "id": "account-band-3",
+      "calibration": false,
+      "challenge": false,
+      "rows": [
+        {
+          "id": "held-retained",
+          "observed": 1.084588888853846,
+          "predicted": 19.553542410294305,
+          "withinBand": false
+        },
+        {
+          "id": "held-drained",
+          "observed": 132.98628418361963,
+          "predicted": 136.73643340758937,
+          "withinBand": false
+        }
+      ]
+    }
+  ]
+}

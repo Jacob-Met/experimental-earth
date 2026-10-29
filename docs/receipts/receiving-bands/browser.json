@@ -1,0 +1,109 @@
+{
+  "schema": "experimental-earth-receiving-band-fit-browser/1",
+  "passed": true,
+  "checks": [
+    "Actual keyboard band search finds full-site witnesses where the analytic incumbent fails, retains that incumbent, receives exact modules and leaves the active site and original parent untouched",
+    "Actual band-search download contains only original inputs and reopens on a fresh page to the identical frozen candidates and prospective question",
+    "Changing both original held channels changes only their challenge result; fitted parameters, calibration support and prospective question remain identical",
+    "Contradictory calibration is visibly unresolved and forged cached success cannot replace original-source recomputation or keep a stale result",
+    "Missing uniformity basis and complete expanded-work refusal leave no successful result; a later valid original source remains reusable",
+    "Explicit parent handoff fits the copied original account without offered parameters; later parent edits cannot retarget the child or alter its saved original source",
+    "A delayed band file and a queued numerical search retire on newer source intent without overwriting that source or resurrecting old support",
+    "An unfamiliar original48-cell mixed-surface site receives the actual full-grid checked witnesses within the complete bounded work reservation",
+    "Desktop and390px controls and complete results remain usable with no overflow, failed local resources or browser exceptions"
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "6f800e07593a2972c7d6442fd6f4aac9bcb3bdbd563ce1a0b20215f065f0e276",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-proposals-panel.js": "b11a57209cff836fea66610f37c2d79c35ea0832219b09e7657a2ec49046ee61",
+    "post-dry-receiving-inverse.js": "b5cbe76e669968285156d9157fc64fbde21e6b3a6f6776c553027369f7ab6468",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer.css": "4e388b5a15037b5d7a53c59716360ae5ba7e63e8a07e76bfddc196b49eead7b9",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "tests/receiving-account-band-fit.receiving.mjs": "dc2e5345d6f9866e6abf0c8197341c4666994f8405ea1fb8d54b4fea5d863d19"
+  },
+  "output": "/tmp/earth-receiver-bands-kO8Qmv",
+  "sourceKind": "Actual maintained consumer on authored originals; not field validation",
+  "unfamiliar48cell": {
+    "status": "one-surviving-proposal",
+    "calibrationWitnesses": 2,
+    "survivingWitnesses": 1,
+    "reservation": {
+      "centralTrials": 9,
+      "originalGridTrials": 13,
+      "reducedTrials": 633,
+      "seedKernelCalls": 174,
+      "maximumDrainageRateBisections": 128,
+      "stepsPerCourse": 144,
+      "fullGridCellSteps": 6912,
+      "reducedCellSteps": 364608,
+      "totalCellEquivalentSteps": 454638,
+      "limit": 1000000
+    },
+    "counts": {
+      "reducedTrials": 255,
+      "originalGridChecks": 3,
+      "seedKernelCalls": 174,
+      "seedInverseCalls": 1
+    }
+  },
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T20:06:05.686Z",
+    "completedAt": "2026-10-28T20:06:05.773Z",
+    "durationMs": 87.11442799999998,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "84723A1BF035363E2AAAE49373212E3B",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "5DF0F8B109E735A4B8B41FC25470DFE2"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:34421/",
+    "closed": true
+  }
+}

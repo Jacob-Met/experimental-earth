@@ -1,5 +1,6 @@
 import {mountReceivingProposals} from './receiving-proposal-panel.js';
 import {mountDrainingEvent} from './draining-event-panel.js';
+import {mountReceivingAccounts} from './receiving-account-panel.js';
 import {SURFACES} from './core.js';
 import {DRAINING_HYPOTHESES_SCHEMA, compareDrainingHypotheses,
   serializeDrainingEvidence, parseDrainingEvidence, makeDrainingEvidenceExample} from './draining-layer-evidence.js';
@@ -231,5 +232,6 @@ export function mountDrainingEvidence({host, getProject, getLayer}) {
       invalidate(); addRow({...hypothesis, id});
     }});
   mountDrainingEvent({host: panel, getFirst: () => ({project: source(), study: readStudy()})});
+  mountReceivingAccounts({host: panel, getSource: () => ({project: source(), study: readStudy()})});
   refresh(); return {refresh};
 }

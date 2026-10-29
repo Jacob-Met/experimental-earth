@@ -1,0 +1,233 @@
+{
+  "schema": "experimental-earth-receiving-consequences-browser/1",
+  "passed": true,
+  "checks": [
+    "Actual explicit inverse-source handoff and keyboard comparison carry all three calibrated receivers into both original layouts, with initial-water accounting and unchanged active site",
+    "Actual original-only download reopens on a fresh page to identical fitted parameters, evidence and paired consequences",
+    "The analytic-only incumbent visibly retains its original failure; the original-band union adds supported consequences without a default model",
+    "Wrong held observations challenge every receiver while retaining the entire original calibration family and identical predicted changes",
+    "Contradictory original calibration gives no consequence range and a forged saved effect cannot restore stale success",
+    "Missing transfer basis and a complete combined-work overflow refuse before publishing any family or partial consequence range",
+    "Later parent edits cannot retarget the separate comparison; explicit copying retires results and requires a new transfer declaration",
+    "A delayed original file and a queued complete-family comparison retire on newer intent without resurrecting parameters or effects",
+    "A previously qualified mixed48-cell original source reaches complete paired comparisons inside the combined reservation; no model family is truncated",
+    "Desktop and390px actual results remain usable without page overflow; wide numeric tables expose keyboard horizontal scrolling and all original controls"
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-consequences.js": "ca5112fa8d02b56f5b84fa8fc334311c4d22ce9f4f5f045d5636f236feccf995",
+    "receiving-account-consequences-panel.js": "14f43527701a6fdccbb0077c6a45eb4d2f5622a6096d3dec1d8a60c4a14c2967",
+    "receiving-account-proposals-panel.js": "39d44228305689751be6de6c058efd1b4005acbf1bdc56722c1d47c208f86193",
+    "draining-layer-study.js": "764954af0f389afd4bc647dd9e2a1a4a9575f669bc24ea27c1b72a616d816a17",
+    "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "tests/receiving-account-consequences.receiving.mjs": "e46ccdcaf761cc0150ca79bc4236fe18f995bf5f2d390bf92ab88bd43ff5777f"
+  },
+  "output": "/tmp/earth-receiver-consequences-Vxa0mN",
+  "sourceKind": "Actual maintained consumer on authored originals, not field validation",
+  "mixed48": {
+    "status": "compared",
+    "reservation": {
+      "inverseCellEquivalentSteps": 454638,
+      "maximumCandidates": 12,
+      "comparisonRuns": 72,
+      "comparisonCellSteps": 497664,
+      "totalCellEquivalentSteps": 952302,
+      "fullGridCellSteps": 6912,
+      "limit": 1000000,
+      "inverse": {
+        "centralTrials": 9,
+        "originalGridTrials": 13,
+        "reducedTrials": 633,
+        "seedKernelCalls": 174,
+        "maximumDrainageRateBisections": 128,
+        "stepsPerCourse": 144,
+        "fullGridCellSteps": 6912,
+        "reducedCellSteps": 364608,
+        "totalCellEquivalentSteps": 454638,
+        "limit": 1000000
+      }
+    },
+    "counts": {
+      "comparedCandidates": 2,
+      "comparisonRuns": 12,
+      "comparisonCellSteps": 82944
+    },
+    "effects": {
+      "calibration": {
+        "count": 2,
+        "ids": [
+          "consequence-1",
+          "consequence-2"
+        ],
+        "metrics": {
+          "absorbedLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "storedLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "exitLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "maxDepthMm": {
+            "minimum": 0,
+            "maximum": 0
+          }
+        },
+        "receiverMetrics": {
+          "initialLiters": {
+            "minimum": 0,
+            "maximum": 0,
+            "minimumIds": [
+              "consequence-1",
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-1",
+              "consequence-2"
+            ]
+          },
+          "retainedLiters": {
+            "minimum": 0,
+            "maximum": 0,
+            "minimumIds": [
+              "consequence-1",
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-1",
+              "consequence-2"
+            ]
+          },
+          "drainedLiters": {
+            "minimum": 0,
+            "maximum": 0,
+            "minimumIds": [
+              "consequence-1",
+              "consequence-2"
+            ],
+            "maximumIds": [
+              "consequence-1",
+              "consequence-2"
+            ]
+          }
+        }
+      },
+      "surviving": {
+        "count": 1,
+        "ids": [
+          "consequence-1"
+        ],
+        "metrics": {
+          "absorbedLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "storedLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "exitLiters": {
+            "minimum": 0,
+            "maximum": 0
+          },
+          "maxDepthMm": {
+            "minimum": 0,
+            "maximum": 0
+          }
+        },
+        "receiverMetrics": {
+          "initialLiters": {
+            "minimum": 0,
+            "maximum": 0,
+            "minimumIds": [
+              "consequence-1"
+            ],
+            "maximumIds": [
+              "consequence-1"
+            ]
+          },
+          "retainedLiters": {
+            "minimum": 0,
+            "maximum": 0,
+            "minimumIds": [
+              "consequence-1"
+            ],
+            "maximumIds": [
+              "consequence-1"
+            ]
+          },
+          "drainedLiters": {
+            "minimum": 0,
+            "maximum": 0,
+            "minimumIds": [
+              "consequence-1"
+            ],
+            "maximumIds": [
+              "consequence-1"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T20:36:41.292Z",
+    "completedAt": "2026-10-28T20:36:41.387Z",
+    "durationMs": 95.51711699999998,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "BDAC32D082F6DAB13BB626D458274A6E",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "BEC5F66ADADD28E1136AF6571A2E1877"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:37523/",
+    "closed": true
+  }
+}

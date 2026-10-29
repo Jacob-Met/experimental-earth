@@ -1,0 +1,308 @@
+{
+  "schema": "experimental-earth-drain-current-main-composition/1",
+  "base": "72332d621b50220df45743a3e109ba9f6a7b394d",
+  "head": "412591eb7102cc5e675c53b81a53802189572e25",
+  "composedAtUtc": "2026-10-28T22:58:06.583451+00:00",
+  "incomingFiles": 41,
+  "incomingCommits": 15,
+  "overlapWithDrainageMechanism": false,
+  "status": "Exact incoming41files composed;5native file-level runner units and40named behavior checks pass; maintained browser19groups fullsandbox pass with no errors or HTTP failures",
+  "checks": [
+    {
+      "path": "docs/RAIN_PROPOSAL_COMPARISON.md",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "c5b98d523fcb5ef62ab3e33029451d6b26c4f89e"
+    },
+    {
+      "path": "docs/SHADE_HEAT_PROFILE_EVIDENCE.md",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "90b338227ecadbbb9166e1051311e901d598f26d"
+    },
+    {
+      "path": "docs/SHADE_HEAT_PROFILE_RANGE.md",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "7de95c2a42ed25c22911a8cc2224a4bd146d892c"
+    },
+    {
+      "path": "docs/SHADE_HEAT_SAMPLING.md",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "179c9f1768d64f7161673d8c77dc458b2acaefbd"
+    },
+    {
+      "path": "docs/SHADE_HEAT_WEIGHTED_SKY.md",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "ffaeb83a41681ff748ff582cbf1f185be2fca6c2"
+    },
+    {
+      "path": "docs/receipts/shared-sky-range-52d429.json",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "ecc41da41b0417fe46d41feea506d8eb3d218f01"
+    },
+    {
+      "path": "docs/receipts/sky-evidence-52d429.json",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "4a4b222fb9d8fbf425ee04ee19b8f0d40fe47de1"
+    },
+    {
+      "path": "proposal-comparison-page.js",
+      "oldPresent": true,
+      "priorExact": true,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "c7f6e4563ce8d8cf14a080e1d13d1954366322f5"
+    },
+    {
+      "path": "proposal-comparison-worker.js",
+      "oldPresent": true,
+      "priorExact": true,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "dab56ca273c5261495f71988d87b6d52bdda01d0"
+    },
+    {
+      "path": "proposal-comparison.css",
+      "oldPresent": true,
+      "priorExact": true,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "2384d7050b88b28ca4f294d38c2a4284a3bcb258"
+    },
+    {
+      "path": "proposal-file-intake.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "7112abb9dcdeb233502c1374f09535e1edd07005"
+    },
+    {
+      "path": "proposal-local-depth-worker.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "f6cbaf023ed3f6dbd43877319c46507ff01f1104"
+    },
+    {
+      "path": "proposal-local-inspection.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "e4dad790681d12b6b8eed713b17979ace1c0a45c"
+    },
+    {
+      "path": "proposal-local-timing.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "6abc5f81fdbf4534fe58370b69169918136085c9"
+    },
+    {
+      "path": "rain-proposal-local-depth.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "82d1bbf57ee4bf2718301e7fe62fe30727a8af97"
+    },
+    {
+      "path": "shade-heat-panel.js",
+      "oldPresent": true,
+      "priorExact": true,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "b6aabf8ff79f4d15e081d01d8968e2c7aa40c882"
+    },
+    {
+      "path": "shade-heat-profile-band.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "6113c146016eab88ad40e708f4efa59cdf757214"
+    },
+    {
+      "path": "shade-heat-profile-evidence-panel.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "f038ec3d964eddd062fff92dd8dc0732e5f3b542"
+    },
+    {
+      "path": "shade-heat-profile-evidence-worker.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "04db1b0c198fd795fbe3066ecfe482d88be7acd6"
+    },
+    {
+      "path": "shade-heat-profile-evidence.css",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "b5f7b91e261aff3c7d3bae5f9b167bbf672713ab"
+    },
+    {
+      "path": "shade-heat-profile-evidence.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "77eb6a0002edf11d014291a9400159d86b499713"
+    },
+    {
+      "path": "shade-heat-profile-range-panel.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "ab6761df46b202e8e07fe709499a99b37e759aaa"
+    },
+    {
+      "path": "shade-heat-profile-range-worker.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "80dc4842b14af5622c2cb2f469afc28398c48fbe"
+    },
+    {
+      "path": "shade-heat-profile-range.css",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "639cf9d8d3174a202e96836ef37c633133a14bb8"
+    },
+    {
+      "path": "shade-heat-profile-range.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "1a612da6c081d4979a1606c6ea64647cafc7efce"
+    },
+    {
+      "path": "shade-heat-sampling-panel.js",
+      "oldPresent": true,
+      "priorExact": true,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "b8ff6f67c93a7e133b1efd63eda916e9e3237878"
+    },
+    {
+      "path": "shade-heat-source-label.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "7f55fa2c99b29f27862a8d06b759b536c7c3e6cd"
+    },
+    {
+      "path": "shade-heat-window-search-view.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "fad5bf6fdc02a7e760676602856b359ccdc75359"
+    },
+    {
+      "path": "shade-heat-window-search.js",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "4c0a27099afe0631af500ad0ce769a7784551bc7"
+    },
+    {
+      "path": "shade-heat-window-view.js",
+      "oldPresent": true,
+      "priorExact": true,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "a016fb6409567977fac8d6bfca7f31e1015803ae"
+    },
+    {
+      "path": "tests/proposal-comparison.browser.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "3d704bef0895af7e1792269dd8e0c9fac0cb7dd3"
+    },
+    {
+      "path": "tests/proposal-local-depth.test.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "46e5a6e23c79635fb4550a09ec2251526fc8b1ab"
+    },
+    {
+      "path": "tests/proposal-local-timing.test.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "e9fda0fb825a29c39353906a8071783c4b217c1b"
+    },
+    {
+      "path": "tests/shade-heat-profile-band-independent.py",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "73475b603120527325b9b1056d4cbc80afc96738"
+    },
+    {
+      "path": "tests/shade-heat-profile-evidence.browser.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "5df167ed471d91c5a2446f5593e2f51f5480e430"
+    },
+    {
+      "path": "tests/shade-heat-profile-evidence.test.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "c158976c4307ed7631cece514b380b531d5e1a85"
+    },
+    {
+      "path": "tests/shade-heat-profile-range.browser.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "206a6826ab42f4a4532555a745035f1fd73392bf"
+    },
+    {
+      "path": "tests/shade-heat-profile-range.test.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "8cfba2785bc53c896d0f10a319ccb72dacadc3ca"
+    },
+    {
+      "path": "tests/shade-heat-source-identity.browser.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "606acc51405319158ccc69c7e07bf161ca4f218b"
+    },
+    {
+      "path": "tests/shade-heat-window-search.browser.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "7aa2483786e03423ad8f63f8e6addcff6bd0e230"
+    },
+    {
+      "path": "tests/shade-heat-window-search.test.mjs",
+      "oldPresent": false,
+      "priorExact": false,
+      "alreadyCurrent": false,
+      "nativeGitBlob": "055d8aa57b382dd86f8849573c26fae2952cd1fb"
+    }
+  ],
+  "nativeReceipt": "docs/receipts/drain-conditioning/final-native-command.json",
+  "browserReceipt": "docs/receipts/drain-conditioning/browser-qualified.json",
+  "numericalSourceHashes": {
+    "post-dry-receiving-inverse.js": "ffdf2392ad39296b82adf06e4be71f8756ddd325262ffddb4359fa9ead1dc086",
+    "receiving-account-phase-fit.js": "a1ca7be9bf0b40ec1e3dadd0cc300f3c5a8de8dc5fe144296801aad52cd8747d",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91"
+  },
+  "scope": "Runtime composition and changed ordinary journey, not whole-repository CI or publication"
+}

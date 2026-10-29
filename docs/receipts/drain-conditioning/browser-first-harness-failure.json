@@ -1,0 +1,90 @@
+{
+  "schema": "experimental-earth-receiving-band-fit-browser/1",
+  "passed": false,
+  "checks": [
+    "Actual never-filled example gains12calibration alternatives and6held survivors where original-band search findsnone, explicitly preserves different arbitrary capacities and leaves active/parent sources unchanged",
+    "Actual phase source-only download reopens fresh and recomputes; changed held values cannot alter phase parameters, calibration support or measurement ranking",
+    "Explicit phase handoff carries all12supported models into paired consequences; original-only comparison reopens fresh and Compare again retains the reopened sources/options, with desktop/narrow controls usable",
+    "Forged phase conclusions, expanded work refusal, queued phase work and delayed phase files cannot retain stale success or overwrite newer original-source intent"
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-phase-fit.js": "a1ca7be9bf0b40ec1e3dadd0cc300f3c5a8de8dc5fe144296801aad52cd8747d",
+    "receiving-account-proposals.js": "ddb7a1744c60f9e5717198185cf0034497d91664ec3609b52aefa21797a006cb",
+    "receiving-account-proposals-panel.js": "4bc0ebdb4291222bebc9ecec950b243fadc673f1d67d1dc503def824d9966220",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "receiving-account-consequences-panel.js": "a2da6d465dc62d6e1f6c67f10270b5cf311dcc2b514d427aab247862b87a1188",
+    "post-dry-receiving-inverse.js": "ffdf2392ad39296b82adf06e4be71f8756ddd325262ffddb4359fa9ead1dc086",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer.css": "24a1fe9d134de37c7f850e4d13317516636adec4d3089c4bd328d69fbce4fe38",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "vendor/worldlaw-linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "continuous-sky.js": "174806c1495e71235fb3adf2c2cd7ebc20587cb49cc67bd584584c1d15f95ae6",
+    "shade-heat-panel.js": "7df675d8dcbe4f0ff2116b291b731741c6ff460edea90ee6608dc1f31d54ecaf",
+    "shade-heat-sampling.js": "68f8fa90d9d104a0bde31cdbb92a060e8f43b01fa94a21927bff4e39fc3031d3",
+    "shade-heat.css": "069c792236fa8a4940724e7ba2f786c18f73c9d2c713d10cdd7fa58594aed75a",
+    "shade-heat.js": "fbac5ab8966b432fd7f30acefba4c60d24d1346f968f903729585be570952978",
+    "tests/receiving-account-band-fit.receiving.mjs": "df7af14849fa2f085ca06abe7553ec82e5b2d974e6f6ac766e74440a9be0ac21"
+  },
+  "output": "/dev/shm/hamon-a755e25-earth-retained-browser-20261028/earth-receiver-bands-w4Kpl2",
+  "sourceKind": "Actual maintained consumer on authored originals; not field validation",
+  "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /conditional on a positive dry exponential retained course/. Input:\n\n'Calibration-compatible: account-band-1. Compatible with both original roles: none.Searched 3 calibration-only starts. Every receiver below was checked on the complete original site after fitting. The original analytic proposals remain separately available.Inspect the bounded search and its work reservationOriginal-band search 115.898006 mm storage · 10.18087 mm initial water · 0.62287991 /hour drainage.All original calibration readings: compatible with every original band. All held-aside readings: contradicted by an original band.Inspect original bands and the source of this proposalOriginal-band search 215.568604 mm storage · 5.8713383 mm initial water · 0.40007978 /hour drainage.All original calibration readings: contradicted by an original band. All held-aside readings: contradicted by an original band.Inspect original bands and the source of this proposalOriginal-band search 318.662713 mm storage · 7.9235497 mm initial water · 0.26792589 /hour drainage.All original calibration readings: contradicted by an original band. All held-aside readings: contradicted by an original band.Inspect original bands and the source of this proposalA measurement to distinguish the calibration-compatible proposalsFewer than two calibration-compatible proposals remain.Only calibration support ranks the offers. Held-aside values never choose the question. Ties keep original offer order; a recorded channel and time is excluded.Inspect every offered measurementretained-360 · retained · 360 min · 0/0 pairs · offereddrained-360 · drained · 360 min · 0/0 pairs · offeredRetained water · minute 360 · ±0.1 L. Hypothetical available whole-receiver measurement at original minute 360; no actual acquisition is assertedaccount-band-1: modeled 7.2543584 L; hypothetical interval 7.1543584 to 7.3543584 L.Inspect all 0 pairs and numerical guardsAt most three finite local searches from calibration-only starts. Original uncertainty bands are never enlarged or replaced by derived readings. The unchanged central family is retained separately. Four-cell reduction is used only under the original uniform isolated receiver declaration; every final candidate is checked on the complete original map. Held values only challenge frozen candidates. Search failure is unresolved, not proof that no receiver fits; surviving witnesses are not a continuous parameter enclosure, unique identification or automatic adoption.'\n\n    at file:///tmp/hamon-a755e25-earth-drain-conditioning/tests/receiving-account-band-fit.receiving.mjs:94:10",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T22:05:29.464Z",
+    "completedAt": "2026-10-28T22:05:29.547Z",
+    "durationMs": 82.23691800000006,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "50368F08109855D1BC29875E0D0F8490",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "80A7DD31A03501512A26F1EF051EEA68"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:42097/",
+    "closed": true
+  }
+}

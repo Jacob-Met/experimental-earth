@@ -23,6 +23,7 @@ MIME = {
 # remain outside the served surface.
 NESTED_BROWSER_ASSETS = frozenset({
     'vendor/chronos/exact-halfplanes.mjs',
+    'vendor/worldlaw-linear-fit.mjs',
     'vendor/suncalc/index.js',
     'research/usda-er2-rate-comparison.json',
     'examples/noaa-tucson-hourly/tucson-hourly-excerpt.txt',

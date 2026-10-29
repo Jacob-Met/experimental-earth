@@ -1,0 +1,77 @@
+{
+  "schema": "experimental-earth-receiving-inverse-browser/1",
+  "passed": false,
+  "checks": [],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "receiving-account-inverse.js": "99715042ef4a3f3bcf812398403633d99df70074c2364b5a70273598f0ccbfd2",
+    "post-dry-receiving-inverse.js": "a03d9d63c2985330410a93b4d2f87f14a9222c615e93a925e7da7d9d2d118b48",
+    "receiving-account-proposals.js": "5fa80c92ee4ccb4a195601d47cf5c450ae5826834a146359e5076ddb53df1c75",
+    "receiving-account-proposals-panel.js": "1f032b922df8f0b0e69a4a8a39cc6158c63eb2b0ccbfe71dca367a15f8df8745",
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "receiving-account-panel.js": "d71a197cba3949fd7bf40cc9e9a444a9a0ee80ff9a76de904743689c5015fd17",
+    "draining-evidence-panel.js": "61edb2786e7db0470f52baec61878aff54d17d7de5c01d905213e99b9ece3c08",
+    "draining-layer.css": "1c18db9d1a8b34f6ec3f6fd9ccc78c16548e1e78e397c7c9fad19d0ac06df52a",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "serve.py": "5049176c57e8bf023cca55a38588f9a30d2c4740f725585d90af94de4ce086bb",
+    "tests/receiving-account-proposals.receiving.mjs": "c006323ee19f5e3f73815ff13516708c0bbe262b7944165a9320b9c64d811365"
+  },
+  "output": "/tmp/earth-receiver-inverse-Gm52CY",
+  "sourceKind": "Authored controls in the maintained consumer; not field validation",
+  "failure": "locator.focus: Error: strict mode violation: locator('#rp-run') resolved to 2 elements:\n    1) <button id=\"rp-run\" type=\"button\">Find proposals from original calibration</button> aka getByRole('button', { name: 'Find proposals from original' })\n    2) <button id=\"rp-run\" type=\"submit\" class=\"primary\">Propose and challenge receivers</button> aka getByRole('button', { name: 'Propose and challenge' })\n\nCall log:\n\u001b[2m  - waiting for locator('#rp-run')\u001b[22m\n\n    at run (/tmp/hamon-a755e25-earth-20261028/inference/tests/receiving-account-proposals.receiving.mjs:35:60)\n    at /tmp/hamon-a755e25-earth-20261028/inference/tests/receiving-account-proposals.receiving.mjs:39:51",
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T17:42:17.528Z",
+    "completedAt": "2026-10-28T17:42:17.616Z",
+    "durationMs": 88.00502300000005,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "8B6272F286EE8DE2C4C7E8A2090C969A",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "8D0CCFDE8C09EFBB1608298A74C5B7EE"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "maintainedServer": {
+    "baseUrl": "http://127.0.0.1:46685/",
+    "closed": true
+  }
+}

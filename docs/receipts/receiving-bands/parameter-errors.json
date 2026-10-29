@@ -1,0 +1,18 @@
+{
+  "scoreMeaning": "Absolute parameter errors across every calibration-compatible numerical witness, scored only after fitting against authored truth. This does not select a returned model or establish field accuracy.",
+  "calibrationWitnessCount": 176,
+  "absoluteErrors": {
+    "capacityMm": {
+      "median": 0.0023093387523562825,
+      "maximum": 0.0089312444074654
+    },
+    "initialStoredMm": {
+      "median": 0.00039894583745264266,
+      "maximum": 0.00473148046633054
+    },
+    "drainagePerHour": {
+      "median": 5.708597673037552e-05,
+      "maximum": 0.0006156256937444038
+    }
+  }
+}

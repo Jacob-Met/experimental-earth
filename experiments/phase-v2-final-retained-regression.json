@@ -1,0 +1,172 @@
+{
+  "schema": "experimental-earth-retained-start-native/1",
+  "checks": [
+    "valid increasing-center retained bands gain a full-grid witness while informative held failures remain failures",
+    "held-only changes cannot affect projected starts, parameters, work, calibration support or offered questions",
+    "contradictory same-time bands, increasing disjoint bands and all-zero nonidentifying bands supply no fallback",
+    "the extra projected work alone can refuse before any incumbent, forward model or kernel runs",
+    "projected reduced-grid success cannot survive corrupt original-grid verification",
+    "source-only replay recomputes projected search and rejects saved conclusions",
+    "the paired consumer retains the calibration witness and its consequences while held support stays empty",
+    "the frozen independently authored comparison reproduces8of15calibration and1of15held without changing eligibility"
+  ],
+  "sourceHashes": {
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-proposals-panel.js": "4bc0ebdb4291222bebc9ecec950b243fadc673f1d67d1dc503def824d9966220",
+    "tests/receiving-retained-starts.test.mjs": "ef99937cb17e31e6d715e9883de0d44f4f289d103208d758ea1b6dfd5b8fd025",
+    "tests/receiving-retained-fixtures.mjs": "2df3c99348526aa8f6a7dd8d5ddf7a38004130e2d13b17001ab54c891fde313c",
+    "experiments/independent-retained-tuples.json": "1ad5021b5a0f584fcc67744ec9fc182ced524b1f13e6d3eb0697eeb0bea553cd"
+  },
+  "interpretation": "Original-band calibration coverage, not identified soil parameters. Held failures and unresolved searches remain explicit.",
+  "example": {
+    "baseline": "no-search-starts",
+    "status": "challenged",
+    "support": [
+      "account-band-1"
+    ],
+    "heldSupport": [],
+    "counts": {
+      "reducedTrials": 556,
+      "originalGridChecks": 3,
+      "seedKernelCalls": 0,
+      "seedInverseCalls": 0,
+      "seedRetainedRatePairs": 1,
+      "projectedKernelCalls": 32248
+    },
+    "reservation": {
+      "centralTrials": 10,
+      "originalGridTrials": 14,
+      "reducedTrials": 633,
+      "seedKernelCalls": 180,
+      "projectedKernelCalls": 36714,
+      "maximumDrainageRateBisections": 128,
+      "maximumRetainedRatePairs": 21,
+      "stepsPerCourse": 144,
+      "fullGridCellSteps": 576,
+      "reducedCellSteps": 364608,
+      "totalCellEquivalentSteps": 409566,
+      "limit": 1000000
+    }
+  },
+  "refusals": [
+    {
+      "name": "same-time-contradiction",
+      "status": "no-search-starts",
+      "counts": {
+        "reducedTrials": 0,
+        "originalGridChecks": 0,
+        "seedKernelCalls": 0,
+        "seedInverseCalls": 0,
+        "seedRetainedRatePairs": 0,
+        "projectedKernelCalls": 0
+      },
+      "refusals": [
+        {
+          "phase": "retained-band-numerical-starts",
+          "reason": "No positive conditional retained-band rate and original storm-center start resolved. Original bands remain unchanged; no physical exclusion is claimed."
+        }
+      ]
+    },
+    {
+      "name": "increasing-disjoint",
+      "status": "no-search-starts",
+      "counts": {
+        "reducedTrials": 0,
+        "originalGridChecks": 0,
+        "seedKernelCalls": 0,
+        "seedInverseCalls": 0,
+        "seedRetainedRatePairs": 1,
+        "projectedKernelCalls": 0
+      },
+      "refusals": [
+        {
+          "phase": "retained-band-numerical-starts",
+          "reason": "No positive conditional retained-band rate and original storm-center start resolved. Original bands remain unchanged; no physical exclusion is claimed."
+        }
+      ]
+    },
+    {
+      "name": "all-zero",
+      "status": "no-search-starts",
+      "counts": {
+        "reducedTrials": 0,
+        "originalGridChecks": 0,
+        "seedKernelCalls": 0,
+        "seedInverseCalls": 0,
+        "seedRetainedRatePairs": 0,
+        "projectedKernelCalls": 0
+      },
+      "refusals": [
+        {
+          "phase": "retained-band-numerical-starts",
+          "reason": "No positive conditional retained-band rate and original storm-center start resolved. Original bands remain unchanged; no physical exclusion is claimed."
+        }
+      ]
+    }
+  ],
+  "budget": {
+    "oldReserved": 981678,
+    "newRefusedBeforeAnyCalculation": true,
+    "validCalls": {
+      "forward": 559,
+      "kernel": 32248,
+      "incumbent": 1
+    },
+    "validReservation": {
+      "centralTrials": 10,
+      "originalGridTrials": 14,
+      "reducedTrials": 633,
+      "seedKernelCalls": 180,
+      "projectedKernelCalls": 36714,
+      "maximumDrainageRateBisections": 128,
+      "maximumRetainedRatePairs": 21,
+      "stepsPerCourse": 144,
+      "fullGridCellSteps": 576,
+      "reducedCellSteps": 364608,
+      "totalCellEquivalentSteps": 409566,
+      "limit": 1000000
+    }
+  },
+  "fullGridNegative": {
+    "reducedWitness": true,
+    "corruptedFullSiteSupport": 0,
+    "originalDimensions": [
+      4,
+      3
+    ]
+  },
+  "independent": {
+    "summary": {
+      "baselineCalibration": 0,
+      "currentCalibration": 8,
+      "baselineHeld": 0,
+      "currentHeld": 1
+    },
+    "eligible": 15,
+    "total": 18,
+    "excluded": [
+      {
+        "id": "p",
+        "reasons": [
+          "late surface is not dry",
+          "truth retained pair is not positive decreasing"
+        ]
+      },
+      {
+        "id": "q",
+        "reasons": [
+          "no positive storm-end surface depth"
+        ]
+      },
+      {
+        "id": "r",
+        "reasons": [
+          "late pair is not increasing in time",
+          "truth retained pair is not positive decreasing"
+        ]
+      }
+    ],
+    "allAdverseResultsRetained": true
+  },
+  "passed": true
+}

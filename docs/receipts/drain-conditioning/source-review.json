@@ -1,0 +1,13 @@
+{
+  "schema": "experimental-earth-drain-scoped-review/1",
+  "recordedUtc": "2026-10-28T23:02:32.845742+00:00",
+  "reviewer": "/root/worldlaw",
+  "result": "clear",
+  "scope": "Previously completed mathematical/source review, resent for continuity; no new independent browser rerun",
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "ffdf2392ad39296b82adf06e4be71f8756ddd325262ffddb4359fa9ead1dc086",
+    "receiving-account-phase-fit.js": "a1ca7be9bf0b40ec1e3dadd0cc300f3c5a8de8dc5fe144296801aad52cd8747d"
+  },
+  "finding": "Never-filled cumulative-drainage relation follows conservation, with piecewise rainfall/ponded/zero input and time-zero handling. Original drainage bands intersect initial-water interval; no invalid-water clipping or uncertainty widening. Nine fixed rates plus48golden updates in each of8gaps reserve409rate evaluations and60never-filled proposals before work. Calibration-only generation; unchanged complete original-map checks bind every witness. Bounded proposal search, no global-optimum or completeness claim.",
+  "rootVisualReview": "Current-main desktop/narrow browser course passes19groups; narrow screenshot inspected, controls and distinctions readable, no horizontal overflow. Screenshots are internal QA only."
+}

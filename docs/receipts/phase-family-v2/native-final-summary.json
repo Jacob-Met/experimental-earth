@@ -1,0 +1,19 @@
+{
+  "schema": "experimental-earth-native-final-composition/1",
+  "completedUtc": "2026-10-28T21:50:39.129020+00:00",
+  "command": "RECEIVING_PHASE_RECEIPT=experiments/phase-v2-final-native.json RECEIVING_BAND_RECEIPT=experiments/phase-v2-final-band-regression.json RECEIVING_RETAINED_RECEIPT=experiments/phase-v2-final-retained-regression.json node --test --test-isolation=none --test-reporter=tap tests/receiving-account-phase-fit.test.mjs tests/receiving-account-band-fit.test.mjs tests/receiving-retained-starts.test.mjs tests/receiving-account-consequences.test.mjs",
+  "exitCode": 0,
+  "tests": 36,
+  "passed": 36,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 21161.057257,
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "5e3ccbc55aecd55e727bfe6b3b5444c3891efde1e671d0a0cb0134c2b7f5f504",
+    "receiving-account-phase-fit.js": "dea344ede1243a7b268422e7c9be5def6cf289a3af37408cdf17fadeb61e865c",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "receiving-account-proposals-panel.js": "4bc0ebdb4291222bebc9ecec950b243fadc673f1d67d1dc503def824d9966220",
+    "receiving-account-consequences-panel.js": "a2da6d465dc62d6e1f6c67f10270b5cf311dcc2b514d427aab247862b87a1188"
+  }
+}

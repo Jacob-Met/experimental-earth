@@ -1,0 +1,23 @@
+{
+  "schema": "experimental-earth-retained-band-seed-experiment/1",
+  "utc": "2026-10-28T20:43:20.864001+00:00",
+  "gap": "Authored complete original retained-water bands admit a known unchanged model while their increasing centers produce no analytic candidate and no numerical starts.",
+  "incumbent": "Preserve existing central and drainage-triple seeds; use new seed only when those produce zero starts.",
+  "proposal": "Derive a conditional post-dry positive drainage-rate starting interval from all original retained calibration bands; use its midpoint with the existing fractions0,0.5,1 and unchanged maintained-kernel storm-depth bisection. Forward original bands remain authoritative; no interval exclusion claim.",
+  "freeze": [
+    "same three seeds and30iteration cap",
+    "same1M cell-equivalent budget and bounded extra pair arithmetic",
+    "do not change original readings, half-widths, roles or analytic refusal",
+    "all held values stay out of initialization/fitting",
+    "record unresolved or held-failed outcomes without selecting on them"
+  ],
+  "nextProof": [
+    "retained startgap originalpositive",
+    "contradictory retainedbands",
+    "allzero nonidentifying",
+    "held mutation",
+    "preflight/no-extra-work bounds",
+    "unchanged184development/70unfamiliaroldcontrols only if algorithm bytes could affect them",
+    "actual current maintained source-only comparison path"
+  ]
+}

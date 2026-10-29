@@ -1,0 +1,74 @@
+{
+  "base": "b28dbec5e7339eb024bb7332dca88f5ce35c0b82",
+  "baseTree": "3a47f38c4b2a49b1fb41ebf9424b23e219492386",
+  "originalBase": "3b7f6bff95515339f0198b1edc714edb5b013b00",
+  "incomingRuntimeFiles": [
+    {
+      "path": "compare-rain-proposals.mjs",
+      "gitBlob": "c2735aaa01e6edc8de6131e8cbd9898b689db100"
+    },
+    {
+      "path": "index.html",
+      "gitBlob": "535fd0df697f87771ea22868d9fabc8ddefff7de"
+    },
+    {
+      "path": "inspect-rain-project.mjs",
+      "gitBlob": "d2a1da750c2d8ea423f2a899caf6f5db092fa816"
+    },
+    {
+      "path": "observation-import-panel.js",
+      "gitBlob": "225afaefb09beb18717aef4b773c5099df042c71"
+    },
+    {
+      "path": "proposal-comparison-page.js",
+      "gitBlob": "e2389078c18aa14638b470a53e1898fe8cbffdee"
+    },
+    {
+      "path": "proposal-comparison-worker.js",
+      "gitBlob": "6d6cfb08f4daa7490c87c89255736c85bef5e4fc"
+    },
+    {
+      "path": "proposal-comparison.css",
+      "gitBlob": "9f224554914444845948a3767f6cbfd640501cb9"
+    },
+    {
+      "path": "proposal-comparison.html",
+      "gitBlob": "e29a22edd4f770082d5d783fd11780344f8a897f"
+    },
+    {
+      "path": "rain-comparison-receipt.js",
+      "gitBlob": "dd9ca21f511dbeb9e7c1143a8e8a0b2e3dd85116"
+    },
+    {
+      "path": "rain-proposal-comparison.js",
+      "gitBlob": "f9787d792fcfc45618ff45a277626e63884abac8"
+    },
+    {
+      "path": "shade-heat-benefit.js",
+      "gitBlob": "3b406ab91d808ce8c9151384a2fe8eab088c16f1"
+    },
+    {
+      "path": "shade-heat-panel.js",
+      "gitBlob": "8b0dc42efb131fe99558e69c0d072907efcd6f2b"
+    },
+    {
+      "path": "shade-heat-sampling-panel.js",
+      "gitBlob": "eb4991e45ab4d6923acecfba7aa3524c640c4bc1"
+    },
+    {
+      "path": "shade-heat-sampling.js",
+      "gitBlob": "2374af51d96df6762ae6f9f9782c0df9e473391d"
+    },
+    {
+      "path": "shade-heat.css",
+      "gitBlob": "835f436558c0537a989edfe4e08c600c25111dd9"
+    },
+    {
+      "path": "shade-heat.js",
+      "gitBlob": "d08e62b4370ecb389e6977fa9f652a2466317aba"
+    }
+  ],
+  "ownedOverlap": [],
+  "maintainedCoreUnchanged": true,
+  "scope": "All current changed runtime modules preserved; this remains an API-derived runtime snapshot, not a full repository test run."
+}

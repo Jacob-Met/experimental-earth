@@ -1,0 +1,42 @@
+{
+  "schema": "experimental-earth-retained-phase-start-diagnostic/1",
+  "frozenAtUtc": "2026-10-28T21:17:33.335Z",
+  "dataset": "Previously consumed independent18tuple course;15truth-eligible. This is development diagnosis, not another independent qualification.",
+  "fixedRules": {
+    "filled": "First original calibration storm center and earliest/latest retained calibration rows.5fixed points in each original retained band,25pairs; existing maintained post-dry inverse only. Every resulting boundary/interior model rechecked on all original bands.",
+    "unfilled": "For a storm-center band admitting the unlimited-intake surface course,9fixed rate fractions inside the pair-derived positive interval; intersect all retained calibration bands to obtain possible initial-water intervals.3fixed interval points and2explicit arbitrary capacities above the computed maximum inventory. All predictions use maintained forward model.",
+    "targetFractions": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "rateFractions": [
+      0,
+      0.125,
+      0.25,
+      0.375,
+      0.5,
+      0.625,
+      0.75,
+      0.875,
+      1
+    ],
+    "initialFractions": [
+      0,
+      0.5,
+      1
+    ],
+    "maximumFullGridCourses": 204,
+    "wholeSiteStepLimit": 1000000
+  },
+  "meaning": "Computational proposal targets are not substituted observations. Future/held values cannot supply starts, choose models or tune any rule. Arbitrary never-filled capacities are witnesses, not estimates or certified bounds.",
+  "sourceHashes": {
+    "experiments/retained-phase-start-diagnostic.mjs": "a1497be08a8ada1f7c6d740df6185ff6f39b19435466beddc5051642a3bc0a7d",
+    "post-dry-receiving-inverse.js": "b5cbe76e669968285156d9157fc64fbde21e6b3a6f6776c553027369f7ab6468",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "tests/receiving-retained-fixtures.mjs": "2df3c99348526aa8f6a7dd8d5ddf7a38004130e2d13b17001ab54c891fde313c"
+  }
+}

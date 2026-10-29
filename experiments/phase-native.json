@@ -1,0 +1,498 @@
+{
+  "schema": "experimental-earth-phase-family-native/1",
+  "checks": [
+    "independent piecewise exponential oracle validates never-filled proposals below and above infiltration rate",
+    "actual never-filled example preserves the old search and adds supported but nonidentifying capacity alternatives",
+    "held changes alter only challenge support and cannot select phase parameters or prospective measurements",
+    "contradictory originals, zero inventories and nonfinite amplitude points cannot become fallback support",
+    "complete enlarged reservation refuses before any inverse, incumbent or model and counts actual original-grid work",
+    "all original surfaces and final full-map receiver checks bind the extra phase models",
+    "strict original-source phase replay and paired consumer retain every generated calibration-compatible parameter set",
+    "all15consumed development cases retain incumbent coverage and expose only2held-supported courses"
+  ],
+  "sourceHashes": {
+    "post-dry-receiving-inverse.js": "d7fabdf986cc9266c39d1abc35007b01b9c443b46fc1201243b5dde2977e3aeb",
+    "receiving-account-phase-fit.js": "7ebfe286908aa580b34d27125e7dda02e10c37a660eafea545726b2cfe36bc7c",
+    "receiving-account-band-fit.js": "b314605aff792e118f367691f2227ae6d0f75659ad0b940afc8a67eeb7abefc3",
+    "receiving-account-consequences.js": "c979a1d4d1bff879f3ce82ad97f22413da3f77d05e4f0d35bfb855aca3c1ea91",
+    "tests/receiving-account-phase-fit.test.mjs": "d83f3540f991c526282a0d630f8a79dacd6a48b497fecb5178342ce8267afc3c"
+  },
+  "meaning": "Authored controls and consumed-course development comparison; independent heldback tuples will be reported separately.",
+  "exponentialOracle": [
+    {
+      "rainMmHr": 12,
+      "knownInitialMm": 0,
+      "conditionalDryMinute": 30,
+      "proposals": 30
+    },
+    {
+      "rainMmHr": 12,
+      "knownInitialMm": 7,
+      "conditionalDryMinute": 30,
+      "proposals": 42
+    },
+    {
+      "rainMmHr": 24,
+      "knownInitialMm": 0,
+      "conditionalDryMinute": 30,
+      "proposals": 30
+    },
+    {
+      "rainMmHr": 24,
+      "knownInitialMm": 7,
+      "conditionalDryMinute": 30,
+      "proposals": 48
+    },
+    {
+      "rainMmHr": 39,
+      "knownInitialMm": 0,
+      "conditionalDryMinute": 48.75,
+      "proposals": 30
+    },
+    {
+      "rainMmHr": 39,
+      "knownInitialMm": 7,
+      "conditionalDryMinute": 48.75,
+      "proposals": 54
+    }
+  ],
+  "example": {
+    "status": "several-surviving-proposals",
+    "oldCalibration": 0,
+    "calibration": 12,
+    "held": 6,
+    "counts": {
+      "phaseInverseCalls": 6,
+      "phaseBandIntersections": 18,
+      "phaseUniqueParameters": 12,
+      "finalOriginalGridChecks": 15,
+      "incumbent": {
+        "reducedTrials": 633,
+        "originalGridChecks": 3,
+        "seedKernelCalls": 0,
+        "seedInverseCalls": 0,
+        "seedRetainedRatePairs": 1,
+        "projectedKernelCalls": 36714
+      }
+    },
+    "reservation": {
+      "incumbent": {
+        "centralTrials": 10,
+        "originalGridTrials": 14,
+        "reducedTrials": 633,
+        "seedKernelCalls": 180,
+        "projectedKernelCalls": 36714,
+        "maximumDrainageRateBisections": 128,
+        "maximumRetainedRatePairs": 21,
+        "stepsPerCourse": 144,
+        "fullGridCellSteps": 576,
+        "reducedCellSteps": 364608,
+        "totalCellEquivalentSteps": 409566,
+        "limit": 1000000
+      },
+      "maximumPhaseProposals": 84,
+      "finalGridChecks": 87,
+      "finalGridCellSteps": 50112,
+      "phaseRootEvaluations": 1310,
+      "phaseBandIntersections": 18,
+      "maximumCandidates": 87,
+      "totalCellEquivalentSteps": 461006,
+      "fullGridCellSteps": 576,
+      "limit": 1000000
+    }
+  },
+  "refusals": {
+    "contradictoryStatus": "no-search-starts",
+    "contradictorySupport": 0,
+    "zeroSupport": 0,
+    "overflowStatus": "unresolved",
+    "absentSurface": "surface-absent"
+  },
+  "budget": {
+    "old48cellReserved": 498270,
+    "phase48cellRefusedBeforeAnyCalculation": true,
+    "actualCalls": {
+      "forward": 15,
+      "filled": 5,
+      "unfilled": 1,
+      "incumbent": 1
+    },
+    "actualReservation": {
+      "incumbent": {
+        "centralTrials": 10,
+        "originalGridTrials": 14,
+        "reducedTrials": 633,
+        "seedKernelCalls": 180,
+        "projectedKernelCalls": 36714,
+        "maximumDrainageRateBisections": 128,
+        "maximumRetainedRatePairs": 21,
+        "stepsPerCourse": 144,
+        "fullGridCellSteps": 576,
+        "reducedCellSteps": 364608,
+        "totalCellEquivalentSteps": 409566,
+        "limit": 1000000
+      },
+      "maximumPhaseProposals": 84,
+      "finalGridChecks": 87,
+      "finalGridCellSteps": 50112,
+      "phaseRootEvaluations": 1310,
+      "phaseBandIntersections": 18,
+      "maximumCandidates": 87,
+      "totalCellEquivalentSteps": 461006,
+      "fullGridCellSteps": 576,
+      "limit": 1000000
+    },
+    "paired8cellRefused": true
+  },
+  "fullMap": {
+    "extraModelsWereGenerated": true,
+    "corruptedFinalSupport": 0,
+    "contradictoryUnselectedSurfaceSupport": 0
+  },
+  "paired": {
+    "models": 12,
+    "held": 6,
+    "runs": 72,
+    "completeReservation": 796238
+  },
+  "consumedDevelopment": {
+    "oldCal": 8,
+    "newCal": 15,
+    "oldHeld": 1,
+    "newHeld": 2,
+    "records": [
+      {
+        "id": "a",
+        "oldCalibration": 0,
+        "newCalibration": 1,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 5,
+          "finalOriginalGridChecks": 8,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "b",
+        "oldCalibration": 0,
+        "newCalibration": 2,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 5,
+          "finalOriginalGridChecks": 8,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "c",
+        "oldCalibration": 1,
+        "newCalibration": 2,
+        "oldHeld": 1,
+        "newHeld": 1,
+        "status": "one-surviving-proposal",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 3,
+          "finalOriginalGridChecks": 6,
+          "incumbent": {
+            "reducedTrials": 535,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 31030
+          }
+        }
+      },
+      {
+        "id": "d",
+        "oldCalibration": 3,
+        "newCalibration": 3,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 2,
+          "finalOriginalGridChecks": 5,
+          "incumbent": {
+            "reducedTrials": 423,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 24534
+          }
+        }
+      },
+      {
+        "id": "e",
+        "oldCalibration": 3,
+        "newCalibration": 9,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 9,
+          "finalOriginalGridChecks": 12,
+          "incumbent": {
+            "reducedTrials": 325,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 18850
+          }
+        }
+      },
+      {
+        "id": "f",
+        "oldCalibration": 2,
+        "newCalibration": 3,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 3,
+          "finalOriginalGridChecks": 6,
+          "incumbent": {
+            "reducedTrials": 528,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 30624
+          }
+        }
+      },
+      {
+        "id": "g",
+        "oldCalibration": 0,
+        "newCalibration": 6,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 8,
+          "finalOriginalGridChecks": 11,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "h",
+        "oldCalibration": 3,
+        "newCalibration": 21,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 19,
+          "finalOriginalGridChecks": 22,
+          "incumbent": {
+            "reducedTrials": 276,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 16008
+          }
+        }
+      },
+      {
+        "id": "i",
+        "oldCalibration": 0,
+        "newCalibration": 2,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 2,
+          "finalOriginalGridChecks": 5,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "j",
+        "oldCalibration": 3,
+        "newCalibration": 3,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 2,
+          "finalOriginalGridChecks": 5,
+          "incumbent": {
+            "reducedTrials": 255,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 14790
+          }
+        }
+      },
+      {
+        "id": "k",
+        "oldCalibration": 0,
+        "newCalibration": 1,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 3,
+          "finalOriginalGridChecks": 6,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "l",
+        "oldCalibration": 0,
+        "newCalibration": 2,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 6,
+          "finalOriginalGridChecks": 9,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "m",
+        "oldCalibration": 3,
+        "newCalibration": 15,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 13,
+          "finalOriginalGridChecks": 16,
+          "incumbent": {
+            "reducedTrials": 234,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 13572
+          }
+        }
+      },
+      {
+        "id": "n",
+        "oldCalibration": 0,
+        "newCalibration": 12,
+        "oldHeld": 0,
+        "newHeld": 6,
+        "status": "several-surviving-proposals",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 18,
+          "phaseUniqueParameters": 12,
+          "finalOriginalGridChecks": 15,
+          "incumbent": {
+            "reducedTrials": 633,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 36714
+          }
+        }
+      },
+      {
+        "id": "o",
+        "oldCalibration": 3,
+        "newCalibration": 3,
+        "oldHeld": 0,
+        "newHeld": 0,
+        "status": "challenged",
+        "counts": {
+          "phaseInverseCalls": 6,
+          "phaseBandIntersections": 0,
+          "phaseUniqueParameters": 2,
+          "finalOriginalGridChecks": 5,
+          "incumbent": {
+            "reducedTrials": 353,
+            "originalGridChecks": 3,
+            "seedKernelCalls": 0,
+            "seedInverseCalls": 0,
+            "seedRetainedRatePairs": 1,
+            "projectedKernelCalls": 20474
+          }
+        }
+      }
+    ],
+    "meaning": "Previously consumed15-case set used to diagnose this mechanism; not independent qualification."
+  },
+  "passed": true
+}

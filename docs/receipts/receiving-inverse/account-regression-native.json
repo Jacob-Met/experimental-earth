@@ -1,0 +1,101 @@
+{
+  "schema": "experimental-earth-receiving-account-native/1",
+  "checks": [
+    "Independent full-store mass account agrees for both surface-equivalent explanations; explicit retained/drained offers separate them",
+    "A changed original held-aside inventory changes only challenge compatibility; candidate parameters, calibration support and offered-question choice remain fixed",
+    "Every original calibration band constrains support, including contradictory repeated readings; no closest-fit fallback or unsupported no-calibration winner",
+    "No offers, zero cumulative drainage, touching/overlapping bands and stable original-order ties behave explicitly",
+    "Original footprint changes cannot silently preserve old inventory support; no invented interpolation, surface-outlet substitution, future values or partial over-budget comparison",
+    "Strict original-input export/reopen is deterministic and rejects derived results or unassigned receiving roles"
+  ],
+  "limits": "Authored controls; numerical guards are not measurement calibration or certified error bounds; receiver totals are not point soil probes or surface outlet collections.",
+  "control": {
+    "surfaceStatus": "no-separation",
+    "footprint": {
+      "scenario": "proposal",
+      "surface": "garden",
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "areaM2": 4,
+      "basis": "Authored whole-receiver account across the four selected garden cells (4 square metres). This is not a point-probe or surface-boundary collection."
+    },
+    "offers": [
+      {
+        "id": "retained-180",
+        "channel": "retained",
+        "minute": 180,
+        "uncertaintyLiters": 0.1,
+        "basis": "Hypothetical whole-receiver measurement offered at original minute 180; no actual sensor or acquisition is asserted",
+        "status": "offered",
+        "predictions": [
+          {
+            "id": "initial-water",
+            "modeledLiters": 29.199999999999996,
+            "numericalGuardLiters": 2.9199999999999997e-8
+          },
+          {
+            "id": "empty-fit",
+            "modeledLiters": 17.941104748991222,
+            "numericalGuardLiters": 1.7941104748991225e-8
+          }
+        ],
+        "pairs": [
+          {
+            "ids": [
+              "initial-water",
+              "empty-fit"
+            ],
+            "gapLiters": 11.258895251008774,
+            "numericalGuardLiters": 4.714110474899122e-8,
+            "separated": true
+          }
+        ],
+        "separatedCount": 1
+      },
+      {
+        "id": "drained-180",
+        "channel": "drained",
+        "minute": 180,
+        "uncertaintyLiters": 0.1,
+        "basis": "Hypothetical whole-receiver measurement offered at original minute 180; no actual sensor or acquisition is asserted",
+        "status": "offered",
+        "predictions": [
+          {
+            "id": "initial-water",
+            "modeledLiters": 54.0884136500156,
+            "numericalGuardLiters": 5.408841365001561e-8
+          },
+          {
+            "id": "empty-fit",
+            "modeledLiters": 53.34730890102439,
+            "numericalGuardLiters": 5.3347308901024396e-8
+          }
+        ],
+        "pairs": [
+          {
+            "ids": [
+              "initial-water",
+              "empty-fit"
+            ],
+            "gapLiters": 0.7411047489912121,
+            "numericalGuardLiters": 1.0743572255104e-7,
+            "separated": true
+          }
+        ],
+        "separatedCount": 1
+      }
+    ]
+  },
+  "passed": true,
+  "sourceHashes": {
+    "receiving-account-evidence.js": "c2b56982c5de5596354bf5ff99a36e441d344ab0bd30f904e5937214158f7a7a",
+    "tests/receiving-account-evidence.test.mjs": "d67e1842b8d0c433d5fbcef7b500518c39f950e4ae7f4ae747a2d8196c0b8a31",
+    "draining-infiltration.js": "b00f3a3872538f331ef95204479b9d4564b1c177639e34722db54767b5fe135a",
+    "draining-layer-evidence.js": "0f460a9df746afcea588f731a95c245d7ba6aabcacbc2ba5906b44255d65e8b6",
+    "core.js": "9e043881ab538e731f8fb8cb0ab5920c5fd04ab084ec347faf887c47ecb90e14"
+  }
+}

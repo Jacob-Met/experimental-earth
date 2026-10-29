@@ -1,0 +1,13 @@
+✔ tests/receiving-account-band-fit.test.mjs (19392.052033ms)
+✔ tests/receiving-account-consequences.test.mjs (1110.258082ms)
+✔ tests/receiving-account-phase-fit.test.mjs (4064.025018ms)
+✔ tests/receiving-drain-conditioning.test.mjs (4421.683186ms)
+✔ tests/receiving-retained-starts.test.mjs (2899.327693ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19407.560983
