@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Let the sky change once · Experimental Earth</title>
+  <link rel="stylesheet" href="shade-heat-epoch-evidence.css">
+</head>
+<body>
+  <header class="page-heading">
+    <a class="brand" href="sky-spatial-evidence.html" target="_blank" rel="noopener">Experimental Earth · shared-sky investigations ↗</a>
+    <p class="eyebrow">Original readings / changing conditions</p>
+    <h1>Let the sky change once</h1>
+    <p class="intro">Two temperature readings may disagree with a static sky. Ask whether one declared change in directional brightness could alter that model’s conclusion, while keeping the original place, weather and thermal assumptions.</p>
+  </header>
+  <main>
+    <section class="card" aria-labelledby="source-heading">
+      <div class="section-heading"><div><p class="eyebrow">01 / Original evidence</p><h2 id="source-heading">Keep both original readings</h2></div>
+        <button type="button" id="epoch-example" disabled>Try the changing-sky control</button></div>
+      <p>Choose exactly two original temperature-band input files. Each keeps its own saved point, original observation, material properties and starting temperatures.</p>
+      <label class="file-label">Open two original reading inputs<input id="epoch-originals" type="file" multiple accept=".json,application/json" disabled></label>
+      <div id="epoch-sources" class="source-grid"><p class="quiet">No original readings loaded.</p></div>
+    </section>
+    <form id="epoch-form" class="card">
+      <p class="eyebrow">02 / A declared change</p><h2>Choose an original boundary</h2>
+      <p>Four equal directional bins describe the sky before the boundary, and four describe it afterwards. Each profile is shared by both points and designs. Original intervals, total diffuse light and direct forcing stay fixed.</p>
+      <div class="question-grid"><label>Change after interval<input id="epoch-split" type="number" min="1" step="1" value="8" required disabled></label>
+        <label>Basis for shared conditions<input id="epoch-sharing" required maxlength="400" placeholder="Why both original points share these two sky profiles" disabled></label></div>
+      <p id="epoch-boundary" class="quiet">Choose a boundary between two existing original intervals.</p>
+      <div class="actions"><button id="epoch-run" type="submit" disabled>Compare static and changing sky</button>
+        <label class="file-label">Reopen a two-epoch inquiry<input id="epoch-reopen" type="file" accept=".json,application/json" disabled></label>
+        <button id="epoch-export" type="button" disabled>Download original inputs</button></div>
+      <p id="epoch-status" role="status">Open both original readings or try the authored example.</p>
+    </form>
+    <section id="epoch-results" class="card" aria-label="Static and two-epoch comparison" hidden></section>
+  </main>
+  <footer>Compatibility applies to the explicitly declared additive coefficient model. Full original thermal replays are shown separately, including endpoints outside original bands. A compatible profile does not identify the actual sky or establish intervention performance.</footer>
+  <script type="module" src="shade-heat-epoch-evidence-page.js"></script>
+</body>
+</html>

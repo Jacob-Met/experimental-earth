@@ -1,7 +1,7 @@
 import { prepareShadeHeatSource, parseShadeHeatSource, checkShadeHeatBytes,
-  sampleShadeHeatForcing, mappedSkyHorizontalIrradiance, SHADE_HEAT_LIMITS } from './shade-heat.js';
+  SHADE_HEAT_LIMITS } from './shade-heat.js';
 import { WEIGHTED_CONTINUOUS_SKY_MODEL } from './continuous-sky.js';
-import { evaluateHeatColumnTarget } from './heat-column.js';
+import { sampleProfileBasisGeometry, evaluateProfileThermalCourse } from './shade-heat-profile-basis.js';
 import { HEAT_COLUMN_MODEL } from './heat-column-contract.js';
 
 export const SHADE_HEAT_PROFILE_RANGE_KIND = 'experimental-earth/shared-sky-final-range-inputs/1';
@@ -22,7 +22,7 @@ export const SHADE_HEAT_PROFILE_RANGE_SEMANTICS = 'The final paired temperature 
   + 'No off-map objects, reflection, nonlinear radiation, moisture, lateral heat flow or human comfort is inferred.';
 
 const targets = ['existing', 'proposal'], bounds = ['lower', 'upper'];
-const stores = ['surfaceC', 'subsurfaceC'], TAU = 2 * Math.PI;
+const stores = ['surfaceC', 'subsurfaceC'];
 const exactKeys = (value, keys) => value !== null && typeof value === 'object' && !Array.isArray(value)
   && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
 
@@ -31,44 +31,6 @@ export function normalizeProfileRangeQuery(query) {
     throw Error('Choose exactly 4, 8 or 16 equal azimuth bins for the shared-profile inquiry');
   return { bins: query.bins };
 }
-
-function binAtStart(angle, bins, step) {
-  // Use the same explicit cut comparisons as the maintained sky integrator.
-  // A midpoint or angle/step quotient can round a narrow sector into its neighbour.
-  for (let i = 1; i < bins; i++) if (angle < i * step) return i - 1;
-  return bins - 1;
-}
-
-function binTransmissions(skyline, bins) {
-  const step = TAU / bins;
-  const classified = skyline.arcs.map(arc => {
-    const bin = binAtStart(arc.headingStartRad, bins, step);
-    if (arc.headingStartRad < bin * step || arc.headingEndRad > (bin + 1) * step)
-      throw Error('A continuous sky sector crosses an unresolved profile boundary');
-    return { arc, bin };
-  });
-  return Array.from({ length: bins }, (_, bin) => {
-    let integral = 0, correction = 0;
-    // Include zero contributions in the original arc order, matching a complete
-    // maintained one-hot integration without repeating its geometry work.
-    for (const entry of classified) {
-      const value = entry.bin === bin ? entry.arc.projectedIntegral : 0;
-      const adjusted = value - correction, total = integral + adjusted;
-      correction = (total - integral) - adjusted; integral = total;
-    }
-    const rawTransmission = integral / step;
-    if (!(rawTransmission >= 0 && rawTransmission <= 1 + 1e-14))
-      throw Error('A one-bin continuous sky integral is outside its supported range');
-    return { transmission: Math.min(1, rawTransmission), rawTransmission,
-      transmissionClamped: rawTransmission > 1, projectedIntegral: integral };
-  });
-}
-
-const geometryDiagnostics = skyline => ({
-  activeColumns: skyline.activeColumns, angularSectors: skyline.angularSectors,
-  collapsedSectors: skyline.collapsedSectors, omittedAngularWidthRad: skyline.omittedAngularWidthRad,
-  estimatedFaceTests: skyline.estimatedFaceTests,
-});
 
 function evaluateSourceRange(source, query) {
   const { project, declaration } = source, { bins } = query;
@@ -85,46 +47,19 @@ function evaluateSourceRange(source, query) {
       || work.thermalCourses > SHADE_HEAT_PROFILE_RANGE_LIMITS.maxCourses
       || work.courseIntervals > SHADE_HEAT_PROFILE_RANGE_LIMITS.maxCourseIntervals)
     throw Error('The complete shared-profile inquiry exceeds its geometry or thermal-course work budget');
-  // A positive nonuniform scaffold requests every profile cut. Only its original
-  // unweighted arc integrals, direct-ray status and weather are reused below.
-  // It is never saved as an authored declaration or used as a thermal result.
-  const sampled = sampleShadeHeatForcing(project, { ...declaration, diffuseSky: {
-    method: 'weighted-continuous-columns', azimuthWeights: Array.from({ length: bins }, (_, i) => 1 + i % 2),
-  } });
-  const transmissions = {}, diagnostics = {};
-  for (const target of targets) {
-    const skyline = sampled.diffuseSky[target];
-    transmissions[target] = { lower: binTransmissions(skyline.maximumRoofs, bins),
-      upper: binTransmissions(skyline.minimumRoofs, bins) };
-    diagnostics[target] = { maximumRoofs: geometryDiagnostics(skyline.maximumRoofs),
-      minimumRoofs: geometryDiagnostics(skyline.minimumRoofs) };
-  }
+  const geometry = sampleProfileBasisGeometry(source, bins);
+  const { sampled, transmissions, diagnostics } = geometry;
   const vertices = [];
   for (let bin = 0; bin < bins; bin++) {
     const vertex = { bin, headingStartDeg: bin * 360 / bins, headingEndDeg: (bin + 1) * 360 / bins,
       profile: Array.from({ length: bins }, (_, i) => i === bin ? 1 : 0), targets: {}, difference: {} };
-    for (const target of targets) {
-      vertex.targets[target] = { transmission: bounds.map(bound => transmissions[target][bound][bin]), final: {} };
-      const pair = vertex.targets[target].transmission.map(value => value.transmission);
-      for (const bound of bounds) {
-        try {
-          const study = structuredClone(project.heatColumnStudy);
-          study.heatStudy.schedule = sampled.intervals.map(row => ({
-            minutes: row.toMinute - row.fromMinute,
-            incidentWm2: mappedSkyHorizontalIrradiance(row[target].status, row.elevationDeg,
-              row.weather.directNormalWm2, row.weather.diffuseHorizontalWm2, pair)[bound],
-            reservoirC: row.weather.reservoirC,
-            source: 'Shared one-bin sky profile ' + (bin + 1) + '; original midpoint ' + row.sampleUtc,
-          }));
-          const final = evaluateHeatColumnTarget(study, target).summary.final;
-          vertex.targets[target].final[bound] = { minute: final.minute,
-            surfaceC: final.surfaceC, subsurfaceC: final.subsurfaceC };
-        } catch (error) {
-          throw Error('Complete shared-profile inquiry refused at bin ' + (bin + 1) + ', ' + target + ' ' + bound
-            + ': ' + error.message + '. No partial profile range is accepted.');
-        }
-      }
-    }
+    const final = evaluateProfileThermalCourse(source, geometry,
+      target => bounds.map(bound => transmissions[target][bound][bin].transmission),
+      'Shared one-bin sky profile ' + (bin + 1),
+      'Complete shared-profile inquiry refused at bin ' + (bin + 1));
+    for (const target of targets) vertex.targets[target] = {
+      transmission: bounds.map(bound => transmissions[target][bound][bin]), final: final[target],
+    };
     for (const store of stores) vertex.difference[store] = [
       vertex.targets.proposal.final.lower[store] - vertex.targets.existing.final.upper[store],
       vertex.targets.proposal.final.upper[store] - vertex.targets.existing.final.lower[store],

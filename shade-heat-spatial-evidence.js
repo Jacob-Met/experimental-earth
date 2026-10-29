@@ -137,6 +137,10 @@ function evaluate(investigation) {
       + 'Original bin choices remain in each source while this inquiry uses the explicitly chosen common bins. '
       + 'Exact fractions concern represented thermal coefficients, not certified geometry or thermal integration, authenticated common conditions, an identified sky or a physically validated intervention.' };
 }
+export function prepareSharedSkyOriginalReadings(originals, query) {
+  return normalize(originals, query);
+}
+
 export function prepareSpatialProfileEvidenceSource(originals, query) {
   const normalized = normalize(originals, query);
   const investigation = { kind: SPATIAL_PROFILE_KIND, model: { ...SPATIAL_PROFILE_MODEL }, ...normalized };

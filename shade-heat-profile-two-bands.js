@@ -6,18 +6,34 @@ const exactKeys = (v, keys) => v !== null && typeof v === 'object' && !Array.isA
 const choose2 = n => n * (n - 1) / 2;
 const choose3 = n => n * (n - 1) * (n - 2) / 6;
 
-// Isolated mechanism experiment. Exactness concerns the represented coefficients.
+// Exactness concerns the supplied represented coefficients, not physical accuracy.
 // Two independent slabs can introduce vertices supported by three original bins.
 export function intersectTwoProfileBands(observed, readings) {
   if (!Array.isArray(observed) || observed.length !== 2
       || !Array.from(observed).every(row => Array.isArray(row) && row.length >= 2 && row.length <= 16
         && Array.from(row).every(Number.isFinite)) || observed[0].length !== observed[1].length)
     throw Error('Provide two complete finite observation rows with 2 to 16 common bins');
+  return intersectRows(observed.map(row => row.map(q)), readings);
+}
+
+export function intersectTwoRationalProfileBands(observed, readings) {
+  const boundedFraction = value => Array.isArray(value) && value.length === 2
+    && Array.from(value).every(part => typeof part === 'bigint') && value[1] > 0n
+    && (value[0] < 0n ? -value[0] : value[0]).toString(2).length <= 4096
+    && value[1].toString(2).length <= 4096;
+  if (!Array.isArray(observed) || observed.length !== 2
+      || !Array.from(observed).every(row => Array.isArray(row) && row.length >= 2 && row.length <= 16
+        && Array.from(row).every(boundedFraction)) || observed[0].length !== observed[1].length)
+    throw Error('Provide two complete rows of 2 to 16 bounded exact rational coefficients');
+  return intersectRows(observed.map(row => row.map(value => add(value, ZERO))), readings);
+}
+
+function intersectRows(rows, readings) {
   if (!Array.isArray(readings) || readings.length !== 2 || !Array.from(readings).every(reading =>
     exactKeys(reading, ['temperatureC', 'halfWidthC']) && Number.isFinite(reading.temperatureC)
       && Number.isFinite(reading.halfWidthC) && reading.halfWidthC >= 0))
     throw Error('Provide two finite original bands with nonnegative half-widths');
-  const rows = observed.map(row => row.map(q)), bins = rows[0].length;
+  const bins = rows[0].length;
   const bands = readings.map(reading => ({ lower: sub(q(reading.temperatureC), q(reading.halfWidthC)),
     upper: add(q(reading.temperatureC), q(reading.halfWidthC)) }));
   const planes = bands.map(band => cmp(band.lower, band.upper) === 0 ? [band.lower] : [band.lower, band.upper]);
