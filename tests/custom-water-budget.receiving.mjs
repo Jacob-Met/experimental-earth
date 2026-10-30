@@ -164,7 +164,8 @@ export async function receiveCustomWaterBudget({ evaluate, send, delay, report, 
     assert.deepEqual(await row('storedLiters'), ['42', '12', '-30']);
     report.push('empty custom area shows no-area with tracing disabled; selecting cells again reuses the current ledger without a new trace');
 
-    // Suspend only this file read so a real picker edit can win the import race.
+    // Suspend this read while an allowed source edit and a later native picker edit supersede it.
+    const beforeRead = await saved();
     const delayed = { ...portable, title: 'Delayed import must not replace this workspace',
       localWaterBudgetStudy: { ...portable.localWaterBudgetStudy, cellIndices: [2] } };
     await evaluate(`(()=>{
@@ -174,14 +175,36 @@ export async function receiveCustomWaterBudget({ evaluate, send, delay, report, 
       finally {File.prototype.text=originalText;}
     })()`);
     assert.equal(await evaluate('window.__customBudgetPendingRead.started'), true);
+    const locked = await evaluate(`(()=>{const button=document.querySelector('#local-budget-area-grid [data-cell-index="1"]');const panel=button.closest('[inert]');const status=document.querySelector('#rain-comparison-status');const title=document.querySelector('#project-title');const focusInStatus=status.contains(document.activeElement);button.focus();return {state:status.dataset.state,inert:!!panel,busy:panel?.getAttribute('aria-busy'),focusInStatus,focusInInert:!!document.activeElement.closest('[inert]'),pickerFocused:document.activeElement===button,titleEnabled:!title.disabled&&!title.closest('[inert]')};})()`);
+    assert.deepEqual(locked, { state: 'loading', inert: true, busy: 'true', focusInStatus: true,
+      focusInInert: false, pickerFocused: false, titleEnabled: true });
+    assert.deepEqual(await saved(), beforeRead, 'pending file read preserves the complete accepted source');
+
+    // The title is an enabled source control. Commit a real keyboard edit;
+    // do not dispatch synthetic changes into the inert result picker.
+    const newerTitle = 'Native source edit supersedes delayed custom-area import';
+    const titleFocused = await evaluate("(()=>{const title=document.querySelector('#project-title');title.scrollIntoView({block:'center',behavior:'instant'});title.focus();return document.activeElement===title})()");
+    assert.equal(titleFocused, true);
+    await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'a', code: 'KeyA', modifiers: 2, windowsVirtualKeyCode: 65, nativeVirtualKeyCode: 65 });
+    await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'a', code: 'KeyA', modifiers: 2, windowsVirtualKeyCode: 65, nativeVirtualKeyCode: 65 });
+    await send('Input.insertText', { text: newerTitle });
+    await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 });
+    await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 });
+    await waitFor("document.querySelector('#rain-comparison-status').dataset.state==='ready' && !document.querySelector('#local-budget-area-grid').closest('[inert]')", 'native source edit did not complete and unlock the picker');
+    const afterTitle = await expectStudy('custom', [0, 3]);
+    assert.deepEqual(afterTitle, { ...beforeRead, title: newerTitle }, 'native title edit changes only the intended source field');
     await focusCell(1); await press('Enter');
     const duringRead = await expectStudy('custom', [0, 1, 3]);
-    await evaluate('window.__customBudgetPendingRead.release()');
-    await waitFor("document.querySelector('#toast').textContent.includes('Import refused: Workspace changed while reading')", 'pending import overwrote or failed to acknowledge the newer custom selection');
-    assert.deepEqual(await saved(), duringRead);
+    assert.equal(duringRead.title, newerTitle);
     unchangedGeometry(duringRead);
     assert.deepEqual(await row('storedLiters'), ['63', '18', '-45']);
-    report.push('an ordinary import suspended during File.text is refused after a custom-area edit, preserving the newer saved selection');
+    await evaluate('window.__customBudgetPendingRead.release()');
+    await waitFor("document.querySelector('#import').value===''", 'superseded import did not finish clearing its input');
+    assert.deepEqual(await saved(), duringRead, 'late file cannot replace the newer title or native picker edit');
+    assert.equal(await evaluate("document.querySelector('#rain-comparison-status').dataset.state"), 'ready');
+    assert.equal(await evaluate("!!document.querySelector('#local-budget-area-grid').closest('[inert]')"), false);
+    assert.deepEqual(await row('storedLiters'), ['63', '18', '-45']);
+    report.push('pending ordinary import locks obsolete result controls; a native source-title edit restores interaction, native custom-area selection works after completion, and the late original file cannot replace either accepted edit');
 
     await importJson(exported.json); await reload();
     unchangedGeometry(await expectStudy('custom', [0, 3]));
