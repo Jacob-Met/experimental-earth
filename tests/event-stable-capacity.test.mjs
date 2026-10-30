@@ -1,0 +1,5 @@
+import assert from'node:assert/strict';import{advance as event}from'../event-graph.mjs';import{advance as fill}from'../fill-event-graph.mjs';
+const budget=()=>({used:0,limit:3000000});let received=0;
+for(const run of[event,fill])for(const capacity of[.1,1,100])for(const water of[1e-17,1e-12,.01])for(const d of[.1,2]){const r=run([water],[0],[],[],1,0,0,0,[3],budget(),[{capacityMm:capacity,storedMm:capacity,drainagePerHour:d}]);assert.ok(r.water[0]>=0);assert.ok(r.stores[0]>=0&&r.stores[0]<=capacity);assert.ok(Math.abs(r.balance)<=1e-10*Math.max(1,capacity+water));received++;}
+for(const run of[event,fill]){assert.throws(()=>run([0],[0],[],[],1,0,0,1,[3],{used:0,limit:0},[{capacityMm:1,storedMm:1,drainagePerHour:2}]),/work/);assert.throws(()=>run([1],[0],[],[],1,0,0,0,[3],budget(),[{capacityMm:1e308,storedMm:1e308,drainagePerHour:1e308}]),/nonfinite rates/);assert.throws(()=>run([0],[0],[],[],1,0,0,0,[3],budget(),[{capacityMm:1,storedMm:2,drainagePerHour:1}]),/receiver/);}
+console.log({passed:true,received,refusals:6});
