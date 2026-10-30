@@ -18,10 +18,14 @@ MIME = {
     '.mjs': 'text/javascript', '.json': 'application/json',
     '.txt': 'text/plain', '.md': 'text/markdown',
 }
-# These nested files are consumed by the actual maintained browser experience.
+# These named modules and nested files serve the maintained browser experience.
+# Keep this exported set name for the existing package builder.
 # Other research, original projects, tests, documentation and vendor internals
 # remain outside the served surface.
 NESTED_BROWSER_ASSETS = frozenset({
+    'event-graph.mjs',
+    'fill-event-graph.mjs',
+    'crest-event-graph.mjs',
     'vendor/chronos/exact-halfplanes.mjs',
     'vendor/worldlaw-linear-fit.mjs',
     'vendor/suncalc/index.js',
@@ -125,8 +129,8 @@ class WorkbenchHandler(BaseHTTPRequestHandler):
             return
         if name == '':
             name = 'index.html'
-        # No directory browsing or arbitrary documents. The six known nested
-        # modules/examples are explicit rather than granting their directories.
+        # No directory browsing or arbitrary documents. Named modules and nested
+        # assets are explicit rather than granting suffixes or directories.
         if (name.startswith('.') or '\\' in name or '\x00' in name or
                 (('/' in name or Path(name).suffix.lower() not in ('.html', '.js', '.css'))
                  and name not in NESTED_BROWSER_ASSETS)):
