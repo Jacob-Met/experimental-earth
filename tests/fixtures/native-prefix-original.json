@@ -1,0 +1,230 @@
+{
+  "f": {
+    "source": {
+      "project": {
+        "schema": "experimental-earth-site/1",
+        "title": "Example courtyard \u00b7 fictional",
+        "width": 2,
+        "height": 2,
+        "weather": {
+          "rainMmHr": 90,
+          "stormMinutes": 60,
+          "durationMinutes": 120,
+          "stepMinutes": 5,
+          "cellSizeM": 2,
+          "mobilityPerHour": 0,
+          "boundaryExitPerHour": 0
+        },
+        "existing": [
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          }
+        ],
+        "proposal": [
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          },
+          {
+            "surface": "sealed",
+            "elevationM": 0,
+            "provenance": "Authored"
+          }
+        ],
+        "observations": [
+          {
+            "cellIndex": 0,
+            "scenario": "existing",
+            "minute": 30.5,
+            "depthMm": 42.99256427351911,
+            "uncertaintyMm": 0.0001,
+            "use": "calibration",
+            "source": "Authored independent scalar balance, not field evidence"
+          },
+          {
+            "cellIndex": 1,
+            "scenario": "existing",
+            "minute": 60,
+            "depthMm": 38.62017698922034,
+            "uncertaintyMm": 0.0001,
+            "use": "calibration",
+            "source": "Authored independent scalar balance, not field evidence"
+          },
+          {
+            "cellIndex": 2,
+            "scenario": "existing",
+            "minute": 45,
+            "depthMm": 40.811802579982015,
+            "uncertaintyMm": 0.0001,
+            "use": "challenge",
+            "source": "Authored independent scalar balance, not field evidence"
+          },
+          {
+            "cellIndex": 3,
+            "scenario": "existing",
+            "minute": 90,
+            "depthMm": 34.94378608818684,
+            "uncertaintyMm": 0.0001,
+            "use": "challenge",
+            "source": "Authored independent scalar balance, not field evidence"
+          }
+        ],
+        "selectedIndex": 0,
+        "source": "Illustrative geometry and rates; no site measurements"
+      },
+      "request": {
+        "target": "existing",
+        "surface": "sealed",
+        "rainRatesMmHr": [
+          90
+        ],
+        "ratesMmHr": [
+          10,
+          24.595279111565404
+        ]
+      },
+      "gauge": {
+        "schema": "experimental-earth-interval-rain-gauge/1",
+        "eventRef": "Original authored event",
+        "sameEventBasis": "Same clock",
+        "siteCoverageBasis": "Uniform authored input",
+        "intervalBasis": "Original interval totals",
+        "readings": [
+          {
+            "id": "rain",
+            "startMinute": 0,
+            "endMinute": 60,
+            "depth": 51.0118,
+            "uncertainty": 10,
+            "unit": "mm",
+            "source": "Authored rainfall control",
+            "use": "calibration"
+          }
+        ]
+      },
+      "durations": [
+        60
+      ],
+      "capacities": [
+        {
+          "remainingCapacityMm": 5,
+          "source": "Authored"
+        }
+      ],
+      "layers": [
+        {
+          "schema": "experimental-earth-draining-layer/1",
+          "surface": "sealed",
+          "capacityMm": 5,
+          "initialStoredMm": 0,
+          "drainagePerHour": 1,
+          "source": "Authored"
+        }
+      ]
+    },
+    "fronts": [
+      {
+        "conductivityMmHr": 3,
+        "capillaryDriveMm": 7,
+        "source": "Authored unfamiliar soil"
+      }
+    ],
+    "study": {
+      "schema": "experimental-earth-pressure-head-study/1",
+      "target": "existing",
+      "surface": "sealed",
+      "basis": "Explicit unfamiliar authored pressure hypotheses",
+      "hypotheses": [
+        {
+          "conductivityMmHr": 3,
+          "capillaryDriveMm": 7,
+          "moistureDeficit": 0
+        },
+        {
+          "conductivityMmHr": 3,
+          "capillaryDriveMm": 7,
+          "moistureDeficit": 0.4
+        },
+        {
+          "conductivityMmHr": 3,
+          "capillaryDriveMm": 7,
+          "moistureDeficit": 0.37
+        }
+      ]
+    },
+    "counter": {
+      "schema": "experimental-earth-cumulative-rain-counter/2",
+      "eventRef": "Original authored event",
+      "sameEventBasis": "Same authored storm",
+      "siteCoverageBasis": "Uniform authored source",
+      "clockBasis": "Original elapsed minutes",
+      "noResetBasis": "Original counter was not reset",
+      "readings": [
+        {
+          "id": "0",
+          "minute": 0,
+          "depth": 10.05,
+          "uncertainty": 10,
+          "unit": "mm",
+          "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+          "use": "calibration"
+        },
+        {
+          "id": "1",
+          "minute": 30,
+          "depth": 59.73,
+          "uncertainty": 10,
+          "unit": "mm",
+          "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+          "use": "calibration"
+        },
+        {
+          "id": "2",
+          "minute": 60,
+          "depth": 61.101800000000004,
+          "uncertainty": 10,
+          "unit": "mm",
+          "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+          "use": "calibration"
+        }
+      ]
+    }
+  },
+  "request": {
+    "earlyIndex": 0,
+    "lateIndex": 1,
+    "minimumMmHr": 0,
+    "maximumMmHr": 250,
+    "minimumMinutes": 0,
+    "maximumMinutes": 120,
+    "basis": "Authored three-calibration finite proposals"
+  }
+}

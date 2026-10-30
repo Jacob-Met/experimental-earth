@@ -1,0 +1,31 @@
+{
+  "truth": {
+    "R": 99.6,
+    "K": 3.0,
+    "A": 7.0,
+    "beta": 0.37,
+    "T": 30.73
+  },
+  "rows": [
+    {
+      "minute": 30.5,
+      "depthMm": 42.99256436013515,
+      "halfStepDepthMm": 42.99256427351911
+    },
+    {
+      "minute": 60,
+      "depthMm": 38.620176950156505,
+      "halfStepDepthMm": 38.62017698922034
+    },
+    {
+      "minute": 45,
+      "depthMm": 40.811802534469855,
+      "halfStepDepthMm": 40.811802579982015
+    },
+    {
+      "minute": 90,
+      "depthMm": 34.94378605598874,
+      "halfStepDepthMm": 34.94378608818684
+    }
+  ]
+}
