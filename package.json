@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test tests/*.test.mjs; a=$?; PYTHONPATH=. python3 -m unittest discover -s tests -p 'test_*.py'; b=$?; exit $((a || b))",
     "serve": "python3 serve.py",
     "browser-receive": "node tests/browser.receiving.mjs"
   },

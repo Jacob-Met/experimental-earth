@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a31">
+  <title>Experimental Earth — Rain Experiment Lab</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./rain-trace.css">
+  <link rel="stylesheet" href="./local-water-budget-area.css">
+  <link rel="stylesheet" href="./map-snapshot.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#maps">Skip to site editor</a>
+  <header class="masthead">
+    <div class="brand"><div class="mark" aria-hidden="true">◎</div><div><span class="eyebrow">EXPERIMENTAL EARTH <span class="sep">/</span> FIELD LAB 01</span><h1>Make a change. Test the assumptions.</h1></div></div>
+    <p>Explore an illustrative courtyard storm, compare a proposed change under identical rain, then bring real observations back to the model.</p>
+    <div class="header-actions"><button type="button" id="reset" class="ghost">Reset fictional example</button><button type="button" id="export" class="light">Export project ↗</button><label class="light file-label">Import project <input type="file" id="import" accept="application/json,.json"></label></div>
+    <p id="project-save-status" class="project-save-status" data-save-state="pending" role="status" aria-live="polite" aria-atomic="true">Browser save not yet confirmed.</p>
+  </header>
+  <main>
+    <section class="disclosure" aria-label="Model status"><span class="pulse" aria-hidden="true"></span><strong>Conceptual model · not a real-site forecast</strong><span>The example geometry and infiltration rates are invented; imported elevations retain their supplied sources. Surface movement conserves water in this bounded grid; it does not model full soil, sewer or flood physics.</span></section>
+    <p><a href="./rate-events.html">Compare original rainfall and runoff rate observations</a></p>
+    <p><a href="./proposal-comparison.html" target="_blank" rel="noopener">Compare saved proposals</a> <span class="mini-note">Open your exported alternatives in a new tab while keeping this workspace open.</span></p>
+    <div class="layout">
+      <aside class="controls panel" aria-labelledby="site-controls-title">
+        <div class="panel-title"><span class="eyebrow">01 / FIELD ASSUMPTIONS</span><h2 id="site-controls-title">Describe the site</h2></div>
+        <label class="input-label">Workspace name<input id="project-title" type="text" maxlength="120"></label>
+        <label class="input-label">Hypothetical rain intensity <span class="unit">mm / hour</span><input id="rain" type="number" min="0" max="250" step="1"></label>
+        <div class="input-pair"><label class="input-label">Storm length <span class="unit">minutes</span><input id="storm" type="number" min="0" max="720" step="5"></label><label class="input-label">Run duration <span class="unit">minutes</span><input id="duration" type="number" min="5" max="720" step="5"></label></div>
+        <label class="input-label">Grid cell width <span class="unit">metres</span><input id="cell-size" type="number" min="0.25" max="100" step="0.25"></label>
+        <div class="mini-note">The numerical model treats each cell as a uniform square. All runs start dry. Outflow exits at the grid boundary, not into a modeled drain network.</div>
+        <div class="panel-title divider"><span class="eyebrow">02 / SITE EDITOR</span><h2>Choose a brush</h2></div>
+        <div class="brushes" id="brushes" role="group" aria-label="Site editing brush">
+          <button type="button" class="brush active" data-brush="inspect" aria-pressed="true">Inspect</button>
+          <button type="button" class="brush" data-brush="sealed" aria-pressed="false">◻ Sealed</button>
+          <button type="button" class="brush" data-brush="turf" aria-pressed="false">✿ Turf</button>
+          <button type="button" class="brush" data-brush="garden" aria-pressed="false">▨ Garden</button>
+          <button type="button" class="brush" data-brush="raise" aria-pressed="false">↑ Raise 2.5 cm</button>
+          <button type="button" class="brush" data-brush="lower" aria-pressed="false">↓ Lower 2.5 cm</button>
+        </div>
+        <button type="button" id="copy-existing" class="full subtle">Copy existing site → proposed</button>
+        <label class="input-label" for="map-view">Cell visualization<select id="map-view"><option value="peak">Per-cell peak water depth (mm)</option><option value="snapshot">Water depth at the same time (mm)</option><option value="final">Final water depth (mm)</option><option value="surface">Surface / elevation</option></select></label>
+        <p class="mini-note" id="grid-keyboard-help">Click a cell, or Tab into either grid and move with arrow keys. Enter or Space selects the focused cell and applies the active brush; arrows alone do not edit either site. The two scenarios remain separate and use the same rain for comparison.</p>
+        <div class="legend"><span><i style="background:#aeb8bb"></i>Sealed · 1 mm/h</span><span><i style="background:#b6c990"></i>Turf · 9 mm/h</span><span><i style="background:#478e79"></i>Garden · 24 mm/h</span></div>
+      </aside>
+      <div class="workspace">
+        <section class="panel" id="maps" aria-labelledby="maps-title"><div class="section-heading"><div><span class="eyebrow">03 / EDITABLE FIELD</span><h2 id="maps-title">Same storm, two different places</h2></div><div class="site-area" id="site-area"></div></div>
+          <fieldset id="map-snapshot-controls" class="map-snapshot-controls" hidden>
+            <legend>Inspect the same modeled time</legend>
+            <label for="map-snapshot-index">Event snapshot <output id="map-snapshot-time" for="map-snapshot-index" aria-live="polite"></output></label>
+            <div class="map-snapshot-actions">
+              <button type="button" id="map-snapshot-prev" class="subtle">Previous</button>
+              <input type="range" id="map-snapshot-index" min="0" max="0" step="1" value="0" aria-describedby="map-view-context">
+              <button type="button" id="map-snapshot-next" class="subtle">Next</button>
+            </div>
+          </fieldset>
+          <p id="map-view-context" class="mini-note"></p>
+          <div class="maps"><div class="map-col"><div class="map-heading"><strong>Existing site</strong><span>Editable reference</span></div><div class="grid" id="existing-grid" role="group" aria-label="Existing-site cells" aria-describedby="grid-keyboard-help map-view-context"></div></div><div class="map-col"><div class="map-heading"><strong>Proposed change</strong><span>Independent alternative</span></div><div class="grid" id="proposal-grid" role="group" aria-label="Proposed-site cells" aria-describedby="grid-keyboard-help map-view-context"></div></div></div>
+          <div class="selection" id="selection" aria-live="polite"></div><p id="terrain-origin" class="mini-note" style="overflow-wrap:anywhere"></p>
+          <p class="caption">Each square is one modeled cell. Overlaid blue indicates simulated depth, not observed water. Elevations use a local model datum; inspect a cell for its supplied source.</p>
+        </section>
+        <section class="panel" aria-labelledby="terrain-title">
+          <h2 id="terrain-title">Bring in terrain elevations</h2>
+          <p class="mini-note">CSV columns: <code>cell,elevation,uncertainty,unit,source</code>. Supply every current grid cell exactly once. Units are m, cm or mm for both elevation and ± uncertainty. Values must be relative to one common local datum (−10 to 10 m). Cell labels refer to this grid, not geographic coordinates.</p>
+          <div class="input-pair"><label class="input-label">Common local elevation datum<input id="terrain-datum" maxlength="160" placeholder="e.g. marked courtyard reference point"></label><label class="input-label">Survey cell spacing (m)<input id="terrain-spacing" type="number" min="0.25" max="100" step="any" placeholder="Must match grid cell width"></label></div>
+          <label class="input-label">Grid to receive elevations<select id="terrain-target"><option value="existing">Existing site only</option><option value="proposal">Proposed site only</option></select></label>
+          <div class="obs-actions"><label class="light file-label">Preview elevation CSV<input id="terrain-file" type="file" accept=".csv,text/csv"></label><button id="apply-terrain" type="button" class="subtle" disabled>Apply previewed elevations</button></div>
+          <p id="terrain-status" class="mini-note" style="overflow-wrap:anywhere" role="status"></p><ol id="terrain-preview" style="max-height:16rem;overflow:auto;overflow-wrap:anywhere"></ol>
+          <p class="mini-note">Registration, datum and survey accuracy are supplied by you and are not verified. The solver uses the central elevations; retained ± uncertainty is not propagated. Applying changes only the selected grid's elevations and source, retaining surfaces and notebook readings. Check whether those readings still describe the changed geometry. Height-brush edits discard that cell's survey origin; changing grid spacing requires a new consistent survey.</p>
+        </section>
+        <section class="panel results" aria-labelledby="results-title"><div class="section-heading"><div><span class="eyebrow">04 / COMPARISON</span><h2 id="results-title">What changed in the simulation?</h2></div><span id="storm-total" class="summary-tag"></span></div>
+          <div class="metrics" id="metrics"></div>
+          <div class="chart-wrap"><div class="chart-title"><strong>Water still on the surface</strong><span>litres · modeled over time</span></div><svg id="chart" viewBox="0 0 700 215" role="img" aria-label="Surface water over time for existing and proposed scenarios" preserveAspectRatio="xMidYMid meet"></svg><div class="chart-key"><span><i class="swatch existing"></i>Existing</span><span><i class="swatch proposal"></i>Proposed</span></div></div>
+          <div class="balance" id="balance"></div>
+          <div class="nemotron-review" id="nemotron-review">
+            <div class="nemotron-review-head"><button type="button" id="nemotron-review-run" class="subtle">Ask Nemotron to read this comparison</button><span class="mini-note">Sends only the summary figures above to NVIDIA Nemotron on Nebius Token Factory, through this machine's local server.</span></div>
+            <p id="nemotron-review-status" class="mini-note" role="status" aria-live="polite"></p>
+            <div id="nemotron-review-output" class="nemotron-review-output" hidden></div>
+          </div>
+        </section>
+        <section class="panel study" aria-labelledby="study-title">
+          <div class="section-heading"><div><span class="eyebrow">05 / CHALLENGE AN ASSUMPTION</span><h2 id="study-title">Which infiltration rates survive the readings?</h2></div></div>
+          <p class="muted">Compare explicit alternatives using the current storm and geometry. Use calibration readings to order the candidates; keep other readings aside to challenge their predictions. Rates are hypothetical capacities, not measured soil properties.</p>
+          <form id="infiltration-form">
+            <div class="study-fields"><label class="input-label">Observed scenario<select id="study-target"><option value="existing">Existing site</option><option value="proposal">Proposed site</option></select></label><label class="input-label">Surface to investigate<select id="study-surface"><option value="sealed">Sealed paving</option><option value="turf">Turf</option><option value="garden">Rain garden</option></select></label><label class="input-label">Candidate rates <span class="unit">mm / hour</span><input id="study-rates" type="text" required maxlength="140" aria-describedby="study-rates-help"></label></div>
+            <p id="study-rates-help" class="mini-note">Enter 2–9 distinct rates separated by commas. Each rate applies to every cell of that surface in the chosen scenario. Nothing is automatically applied to the site.</p>
+            <button id="compare-infiltration" class="primary" type="submit">Compare rate hypotheses</button>
+          </form>
+          <p id="study-status" class="next-reading" role="status" aria-live="polite"></p>
+          <div id="study-results"></div>
+          <div class="obs-actions study-question-actions"><button id="find-infiltration-reading" type="button" class="subtle" disabled>Find a separating depth reading</button><button id="prepare-infiltration-reading" type="button" class="subtle" hidden>Prepare held-aside reading</button></div>
+          <p id="infiltration-question" class="mini-note" role="status" aria-live="polite"></p>
+          <section class="resolution-check" aria-labelledby="resolution-title">
+            <h3 id="resolution-title">Does the calculation interval change the conclusion?</h3>
+            <p class="mini-note">After comparing rates, repeat their reading predictions at finer supported intervals. This can expose numerical sensitivity before a modeled fit is treated as evidence about the place.</p>
+            <button id="compare-resolution" type="button" class="subtle" disabled>Check finer calculation intervals</button>
+            <p id="resolution-status" class="mini-note" role="status" aria-live="polite" data-state="not-compared"></p>
+            <div id="resolution-results"></div>
+          </section>
+          <p class="mini-note">Readings must describe this same place, scenario and weather event. Assign their roles in the notebook below; legacy or unassigned readings remain excluded. A ± band is your stated tolerance, not a probability or confidence interval. Off-step predictions interpolate between solver snapshots; changing assumptions or roles clears the comparison. Reusing held-aside readings to tune candidates no longer provides an independent challenge.</p>
+        </section>
+        <section class="panel observations" aria-labelledby="observations-title"><div class="section-heading"><div><span class="eyebrow">06 / CLOSE THE LOOP</span><h2 id="observations-title">Test it against a reading</h2></div><div class="obs-actions"><button type="button" id="suggest" class="subtle">Suggest a location ↗</button><button type="button" id="suggest-infiltration" class="subtle">Probe infiltration assumption ↗</button></div></div>
+          <p class="muted">Record a manually obtained ponding-depth observation and its source. This changes the evidence record, <em>not</em> the model parameters. A discrepancy is useful evidence, not a failed measurement.</p>
+          <form id="observe-form"><div class="obs-fields"><label class="input-label">Selected cell <input id="obs-cell" type="text" readonly></label><label class="input-label">Time after start <span class="unit">min</span><input id="obs-minute" type="number" min="0" max="720" step="any" required value="60"></label><label class="input-label">Observed depth <span class="unit">mm</span><input id="obs-depth" type="number" min="0" max="1000" step="any" required placeholder="e.g. 12"></label><label class="input-label">± uncertainty <span class="unit">mm</span><input id="obs-uncertainty" type="number" min="0" max="1000" step="any" required value="2"></label></div><div class="input-pair"><label class="input-label">Observed scenario<select id="obs-scenario"><option value="unassigned">Unassigned</option><option value="existing">Existing site</option><option value="proposal">Proposed site</option></select></label><label class="input-label">Evidence role<select id="obs-use"><option value="unassigned">Notebook only</option><option value="calibration">Calibration</option><option value="challenge">Held aside</option></select></label></div><label class="input-label">Source / measurement method <input id="obs-source" type="text" maxlength="200" required placeholder="e.g. ruler reading after rain, 2026-10-24"></label><button type="submit" class="primary">Retain observation</button></form>
+          <p id="observation-draft-status" class="mini-note" role="status" aria-live="polite"></p>
+          <div id="next-reading" class="next-reading"></div><div id="infiltration-reading" class="next-reading" role="status" aria-live="polite">Compare assumed infiltration ranges to find a consequential missing material measurement.</div>
+          <div class="observation-import" aria-labelledby="observation-import-title">
+            <h3 id="observation-import-title">Bring in a measurement table</h3>
+            <p class="mini-note">CSV columns: <code>cell,minute,depth,uncertainty,unit,source</code>. For timestamped logger readings, replace <code>minute</code> with <code>timestamp,event_start</code>; both require ISO dates, seconds and explicit UTC offsets (for example <code>2026-10-25T12:30:00Z</code>). The declared event start converts original timestamps to minutes; it does not verify sensor synchronization. Original clock tokens are retained. Units must be <code>mm</code>, <code>cm</code> or <code>in</code>; both depth and ± uncertainty use that row's unit. Optional <code>scenario</code> and <code>use</code> columns assign evidence explicitly. Every reading must describe this site's event.</p>
+            <details><summary>Map original logger station IDs</summary><label for="observation-station-map">Optional station map JSON</label><p class="mini-note">For tables with a <code>station</code> column instead of <code>cell</code>, declare each station's placement and its source. Names do not establish physical location. Clear this map for ordinary cell tables. Changing it retires the preview.</p><textarea id="observation-station-map" rows="5" style="width:100%;box-sizing:border-box" placeholder='{"source":"placement notebook", "entries":[{"station":"logger-east","cell":"B2"}]}'></textarea></details>
+            <div class="obs-actions"><label class="light file-label">Preview CSV<input id="observation-table-file" type="file" accept=".csv,text/csv"></label><button type="button" id="append-observation-table" class="subtle" disabled>Add previewed readings</button></div>
+            <p id="observation-table-status" class="mini-note" role="status" aria-live="polite"></p>
+            <ol id="observation-table-preview" tabindex="0" aria-label="Interpreted table readings"></ol>
+            <p class="mini-note">Import keeps the supplied filename, row and original quantities. That records provenance supplied by you; it does not independently verify a physical measurement. The notebook holds up to 100 readings.</p>
+          </div>
+          <div id="observation-map"></div>
+          <div id="observation-list" class="history" aria-live="polite"></div>
+        </section>
+      </div>
+    </div>
+    <footer><p><strong>Scientific boundary.</strong> This numerical sandbox uses a finite-volume surface-water transfer approximation, constant infiltration capacities and a simplified open-edge outlet. It omits infiltration decline, subsurface storage, drainage infrastructure, site-specific slopes, rainfall variability and calibrated roughness. Passing conservation checks means internal arithmetic is coherent, <em>not</em> that physical runoff or intervention effectiveness has been validated. Data stays in your browser except when you press the Nemotron reading button, which sends only the summary figures shown above.</p></footer>
+  <section class="panel"><h2>Investigate a ponded soil test</h2><p>Compare original net infiltrated-volume readings with declared soil explanations, independently of surface ponding observations. <a href="./ponded-uptake.html">Open the sourced soil-test investigation</a>.</p></section>
+  </main>
+  <div class="toast" id="toast" aria-live="polite" role="status"></div>
+</body>
+</html>
+
+

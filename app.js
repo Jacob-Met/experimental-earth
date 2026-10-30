@@ -54,6 +54,7 @@ import { mountJointEventChallenge } from './joint-event-panel.js';
 import { mountEventChallengePanel } from './event-challenge-panel.js';
 import { mountLocalWaterBudget } from './local-water-budget-panel.js';
 import { mountRainTrace } from './rain-trace-panel.js';
+import { summaryFigures, requestNemotronReview } from './nemotron-review.js';
 const $ = id => document.getElementById(id);
 const waterChart = createWaterChart($('chart'));
 const waterHistory = createWaterHistoryValues($('chart').closest('.chart-wrap'));
@@ -487,8 +488,13 @@ function observations() {
   }
   observationFocus.restore(restoreFocus);
 }
+function clearNemotronReview() {
+  const out=$('nemotron-review-output');out.hidden=true;out.replaceChildren();
+  $('nemotron-review-status').textContent='';
+}
 function draw() {
   const a=results.existing,b=results.proposal;
+  clearNemotronReview();
   $('site-area').textContent=`${project.width*project.weather.cellSizeM} × ${project.height*project.weather.cellSizeM} m site`;
   $('storm-total').textContent=`${numeric(a.rainLiters)} L hypothetical rain`;
   drawMaps();
@@ -496,6 +502,21 @@ function draw() {
   $('balance').innerHTML=`<strong>Mass balance (both scenarios)</strong> · rain = infiltrated + edge outflow + water still stored. Rounding residual: existing ${numeric(Math.abs(a.massErrorLiters))} L; proposal ${numeric(Math.abs(b.massErrorLiters))} L. These are accounting checks, not field validation.`;
   chart();observations();
 }
+$('nemotron-review-run').addEventListener('click',async()=>{
+  const button=$('nemotron-review-run'),status=$('nemotron-review-status'),out=$('nemotron-review-output');
+  const figures=summaryFigures(results,project.weather);
+  button.disabled=true;out.hidden=true;out.replaceChildren();status.textContent='Asking Nemotron on Nebius Token Factory…';
+  const reply=await requestNemotronReview(figures);
+  button.disabled=false;
+  if(reply.status!=='ok'){status.textContent=reply.message;return;}
+  const {check}=reply;
+  status.textContent=check.noFigures?`Draft from ${reply.model}. It quotes no figures, so none could be checked.`
+    :check.verified?`Draft from ${reply.model}. All ${check.checked} numbers it quotes match the comparison shown above. This is a reading aid, not a result.`
+    :`Draft from ${reply.model}. ${check.matched} of ${check.checked} numbers it quotes match the comparison. Treat the flagged sentences as unverified.`;
+  for(const paragraph of reply.text.split(/\n\s*\n/)){if(!paragraph.trim())continue;const p=document.createElement('p');p.textContent=paragraph.trim();out.append(p);}
+  for(const item of check.unmatched){const flag=document.createElement('p');flag.className='nemotron-flag';flag.textContent=`Unverified number "${item.token}" in: ${item.sentence}`;out.append(flag);}
+  out.hidden=false;
+});
 for(const [id,key] of [['rain','rainMmHr'],['storm','stormMinutes'],['duration','durationMinutes'],['cell-size','cellSizeM']]) {
   $(id).addEventListener('change',()=>{
     const prev=project.weather[key];const n=Number($(id).value);project.weather[key]=n;

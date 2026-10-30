@@ -1,16 +1,25 @@
 """Serve the local Experimental Earth workbench, not the source checkout.
 
-Only top-level browser HTML/CSS/JS is intentionally published. This is not an
-API, documentation server, or a way to serve saved investigations.
+Only top-level browser HTML/CSS/JS is intentionally published. Saved
+investigations are not served. The one POST route, /api/nemotron-review, sends
+a short list of summary figures to Nemotron on Nebius Token Factory when
+NEBIUS_API_KEY is set; it is the only outbound call this server makes.
 """
 
 import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import json
 import os
 from pathlib import Path
 import shutil
 import stat
 from urllib.parse import unquote, urlsplit
+
+import nebius_nemotron
+from nebius_nemotron import NemotronError
+
+REVIEW_PATH = '/api/nemotron-review'
+MAX_REVIEW_BYTES = 8192
 
 ROOT = Path(__file__).resolve().parent
 MIME = {
@@ -24,6 +33,7 @@ MIME = {
 # remain outside the served surface.
 NESTED_BROWSER_ASSETS = frozenset({
     'event-graph.mjs',
+    'outlet-event-graph.mjs',
     'fill-event-graph.mjs',
     'crest-event-graph.mjs',
     'vendor/chronos/exact-halfplanes.mjs',
@@ -76,7 +86,54 @@ class WorkbenchHandler(BaseHTTPRequestHandler):
         self._serve(send_body=False)
 
     def do_POST(self):
-        self._method_not_allowed()
+        parsed = urlsplit(self.path)
+        if parsed.path != REVIEW_PATH or parsed.query or parsed.fragment or not self._admitted_caller():
+            self._method_not_allowed()
+            return
+        self._nemotron_review()
+
+    def _json(self, status, body):
+        data = json.dumps(body).encode('utf-8')
+        self.send_response(status)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(data)))
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        self.end_headers()
+        self.wfile.write(data)
+
+    def _nemotron_review(self):
+        media = self.headers.get('Content-Type', '').split(';')[0].strip().lower()
+        if media != 'application/json':
+            self._json(415, {'error': 'Send the summary as application/json.'})
+            return
+        try:
+            length = int(self.headers.get('Content-Length', ''))
+        except ValueError:
+            length = -1
+        if length <= 0 or length > MAX_REVIEW_BYTES:
+            self._json(413 if length > MAX_REVIEW_BYTES else 400,
+                       {'error': f'Request body must be 1 to {MAX_REVIEW_BYTES} bytes.'})
+            return
+        try:
+            payload = json.loads(self.rfile.read(length).decode('utf-8'))
+            figures = nebius_nemotron.validate_figures(payload)
+        except (ValueError, UnicodeDecodeError):
+            self._json(400, {'error': 'Body is not valid JSON.'})
+            return
+        except NemotronError as error:
+            self._json(400, {'error': str(error)})
+            return
+        key = nebius_nemotron.load_key()
+        if key is None:
+            self._json(503, {'code': 'no_key', 'error': 'Nemotron reading is off: NEBIUS_API_KEY is not set where serve.py runs. Set it and restart the server.'})
+            return
+        try:
+            result = nebius_nemotron.call_nemotron(figures, key, model=nebius_nemotron.model_name())
+        except NemotronError as error:
+            self._json(502, {'code': 'upstream', 'error': str(error)})
+            return
+        self._json(200, result)
 
     def do_OPTIONS(self):
         self._method_not_allowed()

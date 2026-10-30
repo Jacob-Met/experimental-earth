@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:4409/",
+  "width": 1440,
+  "height": 900,
+  "steps": [
+    {
+      "say": "Experimental Earth is a local workbench for testing a change to an outdoor place, like a courtyard or a schoolyard, before anyone builds it. This is the rain experiment lab.",
+      "do": [{"wait": 300}]
+    },
+    {
+      "say": "The two grids show the same courtyard under the same storm. The left grid is the existing site. The right grid is a proposed change, and each cell can be edited.",
+      "do": [{"scroll": "#maps"}]
+    },
+    {
+      "say": "The model routes the rain over both sites and reports where the water goes: out past the edges, into the ground, or left standing on the surface.",
+      "do": [{"scroll": "#metrics"}]
+    },
+    {
+      "say": "The button below asks NVIDIA Nemotron to read this comparison. Only the summary figures on this panel are sent, through the local server to Nemotron 3 Super on Nebius Token Factory. The API key stays on the server and never reaches the page.",
+      "do": [{"scroll": "#nemotron-review-run"}, {"click": "#nemotron-review-run"}]
+    },
+    {
+      "say": "When the draft arrives, the app checks every number it quotes against the figures it computed. The status line counts how many numbers match.",
+      "do": [{"eval": "(async()=>{while(document.getElementById('nemotron-review-output').hidden){await new Promise(r=>setTimeout(r,200));}})()"}, {"scroll": "#nemotron-review"}]
+    },
+    {
+      "say": "Read the draft as a reading aid. It describes the comparison the workbench already computed, and it says what the comparison cannot show about a real site.",
+      "do": [{"wait": 200}]
+    },
+    {
+      "say": "The model writes the words. The workbench does the arithmetic and decides which numbers may stand. The model is not a forecast of this courtyard.",
+      "do": [{"scroll": 0}]
+    }
+  ]
+}
