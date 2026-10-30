@@ -35,9 +35,13 @@ test('real local workbench serves exact browser bytes but not checkout internals
   const dir=await mkdtemp(join(tmpdir(),'earth-server-fixture-'));
   const outside=join(dir,'synthetic-private.txt');
   const link=join(root,'server-synthetic-private.js');
+  const privateModule=join(root,'server-synthetic-private.mjs');
+  let privateModuleCreated=false;
   try {
     await writeFile(outside,'fixture-private-bytes-only');
     await symlink(outside,link);
+    await writeFile(privateModule,'export const privateFixture = true;\n',{flag:'wx'});
+    privateModuleCreated=true;
     const sourceFiles=(await readdir(root)).filter(name=>name!=='server-synthetic-private.js'&&/\.(?:html|js|css)$/.test(name));
     assert.ok(sourceFiles.length>300, 'complete maintained browser module set');
     for(const name of sourceFiles){
@@ -46,6 +50,21 @@ test('real local workbench serves exact browser bytes but not checkout internals
       assert.deepEqual(response.body,await readFile(join(root,name)),`/${name}`);
       assert.match(response.headers['content-type'],name.endsWith('.js')?/javascript/:name.endsWith('.css')?/css/:/html/);
       assert.equal(response.headers['x-content-type-options'],'nosniff');
+    }
+    for(const name of ['event-graph.mjs','fill-event-graph.mjs','crest-event-graph.mjs']){
+      const bytes=await readFile(join(root,name));
+      for(const method of ['GET','HEAD']){
+        const response=await get(port,`/${name}`,{method});
+        assert.equal(response.status,200,`${method} /${name}`);
+        assert.equal(response.headers['content-type'],'text/javascript; charset=utf-8');
+        assert.equal(Number(response.headers['content-length']),bytes.length);
+        assert.equal(response.headers['x-content-type-options'],'nosniff');
+        assert.deepEqual(response.body,method==='GET'?bytes:Buffer.alloc(0));
+      }
+    }
+    for(const method of ['GET','HEAD']){
+      assert.equal((await get(port,'/server-synthetic-private.mjs',{method})).status,404,
+        `${method} refuses an existing unrelated root module`);
     }
     const nestedBrowserFiles=[
       'vendor/chronos/exact-halfplanes.mjs', 'vendor/suncalc/index.js',
@@ -84,6 +103,7 @@ test('real local workbench serves exact browser bytes but not checkout internals
     child.kill('SIGTERM');
     await Promise.race([new Promise(ok=>child.once('exit',ok)),new Promise(ok=>setTimeout(ok,3000))]);
     await unlink(link).catch(()=>{});
+    if(privateModuleCreated)await unlink(privateModule).catch(()=>{});
     await rm(dir,{recursive:true,force:true});
   }
 });
