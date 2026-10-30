@@ -36,6 +36,10 @@ refuses differing original evidence or weather and reports each proposal's
 source SHA-256, conceptual water-accounting changes and explicitly limited
 absorption/depth tradeoffs. The receipt additionally preserves the original two-metric frontier and distinguishes a separate footprint-aware three-metric tradeoff; modeled changed cells are not physical cost or safety. See [the multiple-proposal guide](docs/RAIN_PROPOSAL_COMPARISON.md).
 
+## Export a saved project's complete water history
+
+Run `node export-water-history.mjs ORIGINAL_PROJECT.json NEW_OUTPUT_DIRECTORY` to recompute the ordinary base-rain comparison and save every paired stored-water snapshot as CSV. The fresh output also retains the exact original project and a byte-identity receipt; reopening that original reproduces all three files. Optional investigation inputs remain preserved without running their analyses. See [the native water-history guide](docs/NATIVE_WATER_HISTORY.md) for a usable committed example, file limits and the distinction between model results and measurements.
+
 ## Run the Rain Experiment Lab
 
 The workbench also includes **How does a surface warm up and cool down?**, a
