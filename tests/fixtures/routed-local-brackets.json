@@ -1,0 +1,962 @@
+[
+  {
+    "input": {
+      "f": {
+        "source": {
+          "project": {
+            "schema": "experimental-earth-site/1",
+            "title": "Example courtyard \u00b7 fictional",
+            "width": 2,
+            "height": 2,
+            "weather": {
+              "rainMmHr": 90,
+              "stormMinutes": 60,
+              "durationMinutes": 120,
+              "stepMinutes": 5,
+              "cellSizeM": 2,
+              "mobilityPerHour": 3.356338369008154,
+              "boundaryExitPerHour": 0.06080263224430382
+            },
+            "existing": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.08850053071975708,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.09422446039505303,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.07826723238453269,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.033313021017238494,
+                "provenance": "Authored"
+              }
+            ],
+            "proposal": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.08850053071975708,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.09422446039505303,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.07826723238453269,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.033313021017238494,
+                "provenance": "Authored"
+              }
+            ],
+            "observations": [
+              {
+                "cellIndex": 0,
+                "scenario": "existing",
+                "minute": 30.5,
+                "depthMm": 28.570083737220507,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 1,
+                "scenario": "existing",
+                "minute": 60,
+                "depthMm": 14.76734396350939,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 2,
+                "scenario": "existing",
+                "minute": 45,
+                "depthMm": 33.86105704658342,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 3,
+                "scenario": "existing",
+                "minute": 90,
+                "depthMm": 68.70609773948333,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              }
+            ],
+            "selectedIndex": 0,
+            "source": "Illustrative geometry and rates; no site measurements"
+          },
+          "request": {
+            "target": "existing",
+            "surface": "sealed",
+            "rainRatesMmHr": [
+              90
+            ],
+            "ratesMmHr": [
+              10,
+              24.595279111565404
+            ]
+          },
+          "gauge": {
+            "schema": "experimental-earth-interval-rain-gauge/1",
+            "eventRef": "Original authored event",
+            "sameEventBasis": "Same clock",
+            "siteCoverageBasis": "Uniform authored input",
+            "intervalBasis": "Original interval totals",
+            "readings": [
+              {
+                "id": "rain",
+                "startMinute": 0,
+                "endMinute": 60,
+                "depth": 52.371134061857546,
+                "uncertainty": 100,
+                "unit": "mm",
+                "source": "Authored rainfall control",
+                "use": "calibration"
+              }
+            ]
+          },
+          "durations": [
+            60
+          ],
+          "capacities": [
+            {
+              "remainingCapacityMm": 5,
+              "source": "Authored"
+            }
+          ],
+          "layers": [
+            {
+              "schema": "experimental-earth-draining-layer/1",
+              "surface": "sealed",
+              "capacityMm": 5,
+              "initialStoredMm": 0,
+              "drainagePerHour": 1,
+              "source": "Authored"
+            }
+          ]
+        },
+        "fronts": [
+          {
+            "conductivityMmHr": 3,
+            "capillaryDriveMm": 7,
+            "source": "Authored unfamiliar soil"
+          }
+        ],
+        "study": {
+          "schema": "experimental-earth-pressure-head-study/1",
+          "target": "existing",
+          "surface": "sealed",
+          "basis": "Explicit unfamiliar authored pressure hypotheses",
+          "hypotheses": [
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.4
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.37
+            }
+          ]
+        },
+        "counter": {
+          "schema": "experimental-earth-cumulative-rain-counter/2",
+          "eventRef": "Original authored event",
+          "sameEventBasis": "Same authored storm",
+          "siteCoverageBasis": "Uniform authored source",
+          "clockBasis": "Original elapsed minutes",
+          "noResetBasis": "Original counter was not reset",
+          "readings": [
+            {
+              "id": "0",
+              "minute": 0,
+              "depth": 10,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "1",
+              "minute": 30,
+              "depth": 62.371134061857546,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "2",
+              "minute": 60,
+              "depth": 62.371134061857546,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            }
+          ]
+        }
+      },
+      "request": {
+        "earlyIndex": 0,
+        "lateIndex": 1,
+        "minimumMmHr": 0,
+        "maximumMmHr": 250,
+        "minimumMinutes": 0,
+        "maximumMinutes": 120,
+        "basis": "Authored three-calibration finite proposals"
+      }
+    },
+    "truth": {
+      "R": 106.25392419286072,
+      "T": 29.573195226257667
+    },
+    "counts": {
+      "compatible": 35,
+      "surviving": 0
+    }
+  },
+  {
+    "input": {
+      "f": {
+        "source": {
+          "project": {
+            "schema": "experimental-earth-site/1",
+            "title": "Example courtyard \u00b7 fictional",
+            "width": 2,
+            "height": 2,
+            "weather": {
+              "rainMmHr": 90,
+              "stormMinutes": 60,
+              "durationMinutes": 120,
+              "stepMinutes": 5,
+              "cellSizeM": 2,
+              "mobilityPerHour": 3.3568375765345992,
+              "boundaryExitPerHour": 0.24948422354646027
+            },
+            "existing": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.1155919973552227,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.07772585880942642,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.10346291726455092,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.08068793336860836,
+                "provenance": "Authored"
+              }
+            ],
+            "proposal": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.1155919973552227,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.07772585880942642,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.10346291726455092,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.08068793336860836,
+                "provenance": "Authored"
+              }
+            ],
+            "observations": [
+              {
+                "cellIndex": 0,
+                "scenario": "existing",
+                "minute": 30.5,
+                "depthMm": 14.74778082127889,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 1,
+                "scenario": "existing",
+                "minute": 60,
+                "depthMm": 36.7283316145615,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 2,
+                "scenario": "existing",
+                "minute": 45,
+                "depthMm": 18.996940317948756,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 3,
+                "scenario": "existing",
+                "minute": 90,
+                "depthMm": 23.04176566275864,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              }
+            ],
+            "selectedIndex": 0,
+            "source": "Illustrative geometry and rates; no site measurements"
+          },
+          "request": {
+            "target": "existing",
+            "surface": "sealed",
+            "rainRatesMmHr": [
+              90
+            ],
+            "ratesMmHr": [
+              10,
+              24.595279111565404
+            ]
+          },
+          "gauge": {
+            "schema": "experimental-earth-interval-rain-gauge/1",
+            "eventRef": "Original authored event",
+            "sameEventBasis": "Same clock",
+            "siteCoverageBasis": "Uniform authored input",
+            "intervalBasis": "Original interval totals",
+            "readings": [
+              {
+                "id": "rain",
+                "startMinute": 0,
+                "endMinute": 60,
+                "depth": 52.30176477074215,
+                "uncertainty": 100,
+                "unit": "mm",
+                "source": "Authored rainfall control",
+                "use": "calibration"
+              }
+            ]
+          },
+          "durations": [
+            60
+          ],
+          "capacities": [
+            {
+              "remainingCapacityMm": 5,
+              "source": "Authored"
+            }
+          ],
+          "layers": [
+            {
+              "schema": "experimental-earth-draining-layer/1",
+              "surface": "sealed",
+              "capacityMm": 5,
+              "initialStoredMm": 0,
+              "drainagePerHour": 1,
+              "source": "Authored"
+            }
+          ]
+        },
+        "fronts": [
+          {
+            "conductivityMmHr": 3,
+            "capillaryDriveMm": 7,
+            "source": "Authored unfamiliar soil"
+          }
+        ],
+        "study": {
+          "schema": "experimental-earth-pressure-head-study/1",
+          "target": "existing",
+          "surface": "sealed",
+          "basis": "Explicit unfamiliar authored pressure hypotheses",
+          "hypotheses": [
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.4
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.37
+            }
+          ]
+        },
+        "counter": {
+          "schema": "experimental-earth-cumulative-rain-counter/2",
+          "eventRef": "Original authored event",
+          "sameEventBasis": "Same authored storm",
+          "siteCoverageBasis": "Uniform authored source",
+          "clockBasis": "Original elapsed minutes",
+          "noResetBasis": "Original counter was not reset",
+          "readings": [
+            {
+              "id": "0",
+              "minute": 0,
+              "depth": 10,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "1",
+              "minute": 30,
+              "depth": 62.30176477074215,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "2",
+              "minute": 60,
+              "depth": 62.30176477074215,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            }
+          ]
+        }
+      },
+      "request": {
+        "earlyIndex": 0,
+        "lateIndex": 1,
+        "minimumMmHr": 0,
+        "maximumMmHr": 250,
+        "minimumMinutes": 0,
+        "maximumMinutes": 120,
+        "basis": "Authored three-calibration finite proposals"
+      }
+    },
+    "truth": {
+      "R": 145.05065211094916,
+      "T": 21.63455207250081
+    },
+    "counts": {
+      "compatible": 35,
+      "surviving": 0
+    }
+  },
+  {
+    "input": {
+      "f": {
+        "source": {
+          "project": {
+            "schema": "experimental-earth-site/1",
+            "title": "Example courtyard \u00b7 fictional",
+            "width": 2,
+            "height": 2,
+            "weather": {
+              "rainMmHr": 90,
+              "stormMinutes": 60,
+              "durationMinutes": 120,
+              "stepMinutes": 5,
+              "cellSizeM": 2,
+              "mobilityPerHour": 2.419377651344985,
+              "boundaryExitPerHour": 0.15308897499926388
+            },
+            "existing": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.07946143470704556,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.01293390174396336,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.11112852735444903,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.08032282101921737,
+                "provenance": "Authored"
+              }
+            ],
+            "proposal": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.07946143470704556,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.01293390174396336,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.11112852735444903,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.08032282101921737,
+                "provenance": "Authored"
+              }
+            ],
+            "observations": [
+              {
+                "cellIndex": 0,
+                "scenario": "existing",
+                "minute": 30.5,
+                "depthMm": 33.7936771193398,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 1,
+                "scenario": "existing",
+                "minute": 60,
+                "depthMm": 84.53429869265908,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 2,
+                "scenario": "existing",
+                "minute": 45,
+                "depthMm": 0,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 3,
+                "scenario": "existing",
+                "minute": 90,
+                "depthMm": 9.526458000597554,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              }
+            ],
+            "selectedIndex": 0,
+            "source": "Illustrative geometry and rates; no site measurements"
+          },
+          "request": {
+            "target": "existing",
+            "surface": "sealed",
+            "rainRatesMmHr": [
+              90
+            ],
+            "ratesMmHr": [
+              10,
+              24.595279111565404
+            ]
+          },
+          "gauge": {
+            "schema": "experimental-earth-interval-rain-gauge/1",
+            "eventRef": "Original authored event",
+            "sameEventBasis": "Same clock",
+            "siteCoverageBasis": "Uniform authored input",
+            "intervalBasis": "Original interval totals",
+            "readings": [
+              {
+                "id": "rain",
+                "startMinute": 0,
+                "endMinute": 60,
+                "depth": 57.3566948448858,
+                "uncertainty": 100,
+                "unit": "mm",
+                "source": "Authored rainfall control",
+                "use": "calibration"
+              }
+            ]
+          },
+          "durations": [
+            60
+          ],
+          "capacities": [
+            {
+              "remainingCapacityMm": 5,
+              "source": "Authored"
+            }
+          ],
+          "layers": [
+            {
+              "schema": "experimental-earth-draining-layer/1",
+              "surface": "sealed",
+              "capacityMm": 5,
+              "initialStoredMm": 0,
+              "drainagePerHour": 1,
+              "source": "Authored"
+            }
+          ]
+        },
+        "fronts": [
+          {
+            "conductivityMmHr": 3,
+            "capillaryDriveMm": 7,
+            "source": "Authored unfamiliar soil"
+          }
+        ],
+        "study": {
+          "schema": "experimental-earth-pressure-head-study/1",
+          "target": "existing",
+          "surface": "sealed",
+          "basis": "Explicit unfamiliar authored pressure hypotheses",
+          "hypotheses": [
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.4
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.37
+            }
+          ]
+        },
+        "counter": {
+          "schema": "experimental-earth-cumulative-rain-counter/2",
+          "eventRef": "Original authored event",
+          "sameEventBasis": "Same authored storm",
+          "siteCoverageBasis": "Uniform authored source",
+          "clockBasis": "Original elapsed minutes",
+          "noResetBasis": "Original counter was not reset",
+          "readings": [
+            {
+              "id": "0",
+              "minute": 0,
+              "depth": 10,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "1",
+              "minute": 30,
+              "depth": 67.3566948448858,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "2",
+              "minute": 60,
+              "depth": 67.3566948448858,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            }
+          ]
+        }
+      },
+      "request": {
+        "earlyIndex": 0,
+        "lateIndex": 1,
+        "minimumMmHr": 0,
+        "maximumMmHr": 250,
+        "minimumMinutes": 0,
+        "maximumMinutes": 120,
+        "basis": "Authored three-calibration finite proposals"
+      }
+    },
+    "truth": {
+      "R": 170.680032921955,
+      "T": 20.16288391663693
+    },
+    "counts": {
+      "compatible": 32,
+      "surviving": 0
+    }
+  },
+  {
+    "input": {
+      "f": {
+        "source": {
+          "project": {
+            "schema": "experimental-earth-site/1",
+            "title": "Example courtyard \u00b7 fictional",
+            "width": 2,
+            "height": 2,
+            "weather": {
+              "rainMmHr": 90,
+              "stormMinutes": 60,
+              "durationMinutes": 120,
+              "stepMinutes": 5,
+              "cellSizeM": 2,
+              "mobilityPerHour": 2.2617306302301587,
+              "boundaryExitPerHour": 0.6715247437823564
+            },
+            "existing": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.11522547595202923,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.07368720819242298,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.06854464961215853,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.11122383492998779,
+                "provenance": "Authored"
+              }
+            ],
+            "proposal": [
+              {
+                "surface": "sealed",
+                "elevationM": 0.11522547595202923,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.07368720819242298,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.06854464961215853,
+                "provenance": "Authored"
+              },
+              {
+                "surface": "sealed",
+                "elevationM": 0.11122383492998779,
+                "provenance": "Authored"
+              }
+            ],
+            "observations": [
+              {
+                "cellIndex": 0,
+                "scenario": "existing",
+                "minute": 30.5,
+                "depthMm": 0,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 1,
+                "scenario": "existing",
+                "minute": 60,
+                "depthMm": 6.780116239694049,
+                "uncertaintyMm": 0.001,
+                "use": "calibration",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 2,
+                "scenario": "existing",
+                "minute": 45,
+                "depthMm": 17.806296888625727,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              },
+              {
+                "cellIndex": 3,
+                "scenario": "existing",
+                "minute": 90,
+                "depthMm": 0,
+                "uncertaintyMm": 0.001,
+                "use": "challenge",
+                "source": "Authored unchanged native routed control; not independent field evidence"
+              }
+            ],
+            "selectedIndex": 0,
+            "source": "Illustrative geometry and rates; no site measurements"
+          },
+          "request": {
+            "target": "existing",
+            "surface": "sealed",
+            "rainRatesMmHr": [
+              90
+            ],
+            "ratesMmHr": [
+              10,
+              24.595279111565404
+            ]
+          },
+          "gauge": {
+            "schema": "experimental-earth-interval-rain-gauge/1",
+            "eventRef": "Original authored event",
+            "sameEventBasis": "Same clock",
+            "siteCoverageBasis": "Uniform authored input",
+            "intervalBasis": "Original interval totals",
+            "readings": [
+              {
+                "id": "rain",
+                "startMinute": 0,
+                "endMinute": 60,
+                "depth": 37.32185821576175,
+                "uncertainty": 100,
+                "unit": "mm",
+                "source": "Authored rainfall control",
+                "use": "calibration"
+              }
+            ]
+          },
+          "durations": [
+            60
+          ],
+          "capacities": [
+            {
+              "remainingCapacityMm": 5,
+              "source": "Authored"
+            }
+          ],
+          "layers": [
+            {
+              "schema": "experimental-earth-draining-layer/1",
+              "surface": "sealed",
+              "capacityMm": 5,
+              "initialStoredMm": 0,
+              "drainagePerHour": 1,
+              "source": "Authored"
+            }
+          ]
+        },
+        "fronts": [
+          {
+            "conductivityMmHr": 3,
+            "capillaryDriveMm": 7,
+            "source": "Authored unfamiliar soil"
+          }
+        ],
+        "study": {
+          "schema": "experimental-earth-pressure-head-study/1",
+          "target": "existing",
+          "surface": "sealed",
+          "basis": "Explicit unfamiliar authored pressure hypotheses",
+          "hypotheses": [
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.4
+            },
+            {
+              "conductivityMmHr": 3,
+              "capillaryDriveMm": 7,
+              "moistureDeficit": 0.37
+            }
+          ]
+        },
+        "counter": {
+          "schema": "experimental-earth-cumulative-rain-counter/2",
+          "eventRef": "Original authored event",
+          "sameEventBasis": "Same authored storm",
+          "siteCoverageBasis": "Uniform authored source",
+          "clockBasis": "Original elapsed minutes",
+          "noResetBasis": "Original counter was not reset",
+          "readings": [
+            {
+              "id": "0",
+              "minute": 0,
+              "depth": 10,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "1",
+              "minute": 30,
+              "depth": 47.32185821576175,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            },
+            {
+              "id": "2",
+              "minute": 60,
+              "depth": 47.32185821576175,
+              "uncertainty": 100,
+              "unit": "mm",
+              "source": "Authored off-center original counter band, retained actual forcing within uncertainty",
+              "use": "calibration"
+            }
+          ]
+        }
+      },
+      "request": {
+        "earlyIndex": 0,
+        "lateIndex": 1,
+        "minimumMmHr": 0,
+        "maximumMmHr": 250,
+        "minimumMinutes": 0,
+        "maximumMinutes": 120,
+        "basis": "Authored three-calibration finite proposals"
+      }
+    },
+    "truth": {
+      "R": 95.60916337184608,
+      "T": 23.421515406807885
+    },
+    "counts": {
+      "compatible": 0,
+      "surviving": 0
+    }
+  }
+]
