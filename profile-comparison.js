@@ -1,6 +1,6 @@
 import{internalEdgeClosed,internalEdgeCrest}from'./internal-barriers.js';
 import{validateProject}from'./core.js';import{validateStudy}from'./study-contract.js';import{evaluateReadings}from'./infiltration-study.js';import{selectPondingExposure,validateExposureRequest}from'./ponding-exposure-request.js';import{INTERVENTION_METRICS}from'./intervention-study.js';import{runProfile}from'./profile-model.js';import{validateDrainingLayer}from'./draining-infiltration.js';import{SURFACES}from'./core.js';
-export function createProfileComparison(budget,{model=runProfile,allowFinite=false}={}){
+export function createProfileComparison(budget,{model=runProfile,allowFinite=false,allowCrests=false}={}){
  let signature=null;const existingRuns=new Map();
  function compare(project,{study,subset='all',allowAbsentSurface=false,drainingLayer=null,exposureRequest=null},fixed=null){
   validateProject(project);validateStudy(study);if(drainingLayer!==null){if(!allowFinite)throw Error('Profile model refuses finite receiving layers');validateDrainingLayer(drainingLayer,SURFACES);}if(!['all','calibration','surviving'].includes(subset))throw Error('Unknown profile subset');if(allowAbsentSurface&&subset!=='all')throw Error('Absent-surface filtering refused');
@@ -10,7 +10,7 @@ export function createProfileComparison(budget,{model=runProfile,allowFinite=fal
   if(subset!=='all'&&!calibration.length)return{status:'need-calibration',candidates:[]};if(subset==='surviving'&&!challenge.length)return{status:'need-challenge',candidates:[]};
   const affected=['existing','proposal'].map(k=>project[k].some(c=>c.surface===study.surface));if(!affected.some(Boolean)&&!allowAbsentSurface)return{status:'surface-absent',candidates:[]};
   // Unsupported geometry admission is independent of calibration rate rejection.
-  for(const cells of[project.existing,project.proposal])for(let y=0;y<project.height;y++)for(let x=0;x<project.width;x++){const i=y*project.width+x;for(const j of[x+1<project.width?i+1:null,y+1<project.height?i+project.width:null])if(j!==null&&!internalEdgeClosed(cells,i,j,project.width)&&internalEdgeCrest(cells,i,j)!==null)throw Error('Profile model does not support declared crests');}
+  if(!allowCrests)for(const cells of[project.existing,project.proposal])for(let y=0;y<project.height;y++)for(let x=0;x<project.width;x++){const i=y*project.width+x;for(const j of[x+1<project.width?i+1:null,y+1<project.height?i+project.width:null])if(j!==null&&!internalEdgeClosed(cells,i,j,project.width)&&internalEdgeCrest(cells,i,j)!==null)throw Error('Profile model does not support declared crests');}
   const candidates=[];for(const rateMmHr of fixed??study.ratesMmHr){const options={surfaceInfiltrationOverride:{surface:study.surface,rateMmHr},...(drainingLayer?{drainingLayer}:{})};let existing,proposal;
    const getExisting=()=>{if(!existing){existing=existingRuns.get(rateMmHr);if(!existing){existing=model(project.existing,project.width,project.height,project.weather,options,budget);if(existingRuns.size===9)existingRuns.delete(existingRuns.keys().next().value);existingRuns.set(rateMmHr,existing);}}return existing;};
    const getProposal=()=>proposal??(proposal=model(project.proposal,project.width,project.height,project.weather,options,budget));
