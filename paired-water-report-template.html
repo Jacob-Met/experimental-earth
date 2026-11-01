@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Two investigations · Water field sheet · Experimental Earth</title>
+<style>
+:root { color-scheme: light; --ink:#142c31; --paper:#f5f0e3; --line:#b7c1b9; --accent:#b34d30; --green:#397765; --blue:#315e98; --fog:#dbe5dc }
+* { box-sizing:border-box }
+body { margin:0; color:var(--ink); background:var(--paper); font-family:system-ui,-apple-system,'Segoe UI',sans-serif; font-size:16px; line-height:1.52 }
+body::before { content:''; height:9px; display:block; background:repeating-linear-gradient(90deg,var(--ink) 0 18px,transparent 18px 25px,var(--accent) 25px 31px,transparent 31px 38px) }
+main { max-width:1152px; padding:0 32px 82px; margin:auto }
+header { border-bottom:2px solid var(--ink); padding:36px 0 30px }
+.kicker { font-size:.75rem; font-weight:750; letter-spacing:.2em; text-transform:uppercase; color:var(--accent) }
+h1,h2,.hero-number { font-family:Georgia,'Times New Roman',serif; font-weight:400; letter-spacing:-.035em }
+h1 { font-size:clamp(2.7rem,6vw,5.4rem); line-height:.98; margin:16px 0 24px; max-width:950px }
+.dek { max-width:780px; margin:0; font-size:1.1rem }
+.head-meta { margin-top:24px; display:flex; flex-wrap:wrap; gap:12px 28px; color:#40585a; font-size:.82rem }
+.head-meta strong { font-weight:750;color:var(--ink) }
+section { margin-top:40px }
+.section-head { display:flex; gap:16px; align-items:baseline; border-bottom:1px solid var(--ink); margin-bottom:20px }
+.section-head span { color:var(--accent); font-size:.8rem; letter-spacing:.12em; font-weight:700 }
+h2 { margin:0 0 8px; font-size:2rem }
+.summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; border:1px solid var(--line); background:var(--line) }
+.stat { background:#fcfaf3; padding:24px }
+.stat .label { text-transform:uppercase; letter-spacing:.1em; font-weight:700; font-size:.74rem; color:#536c6b }
+.hero-number { font-size:clamp(2rem,4vw,3.7rem); line-height:1.15; margin:12px 0 8px; overflow-wrap:anywhere }
+.stat small { color:#56696a; font-size:.78rem }
+.chart-frame { padding:18px 14px 10px; background:#fffdf6; border:1px solid var(--line); min-width:0 }
+.legend { display:flex; flex-wrap:wrap; gap:8px 22px; font-size:.82rem; padding:0 8px 12px }
+.legend i { display:inline-block; width:22px; border-top:3px solid; vertical-align:middle; margin-right:8px }
+.legend .existing { border-top-style:dashed; color:#838e8d }
+.legend .a { color:var(--blue) }.legend .b { color:var(--accent) }
+.chart-frame svg { width:100%; height:auto; display:block; overflow:visible }
+.chart-frame svg text { font-family:system-ui,sans-serif; font-size:15px; fill:#425d60 }
+.axis { stroke:#9baba6; stroke-width:1 }
+.gridline { stroke:#e1e7dd; stroke-width:1 }
+.curve { fill:none; stroke-width:3.1; stroke-linejoin:round; stroke-linecap:round }
+.curve.existing { stroke:#8d9c99; stroke-width:2; stroke-dasharray:9 8 }.curve.a { stroke:var(--blue) }.curve.b { stroke:var(--accent) }
+.selected-guide { stroke:#203b40; stroke-width:1.7; stroke-dasharray:5 5 }
+.point { stroke:#fffdf6; stroke-width:3 }
+.chart-note { margin:8px 8px 0; color:#53686a; font-size:.78rem }
+.difference-head { margin:20px 8px 8px; border-top:1px solid var(--line); padding-top:14px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:5px 20px; font-size:.78rem }
+.difference-head strong { text-transform:uppercase; letter-spacing:.08em }
+.difference-head span { color:#53686a }
+#plot,#difference { cursor:crosshair }
+#difference .zero-line { stroke:#47696b; stroke-width:1.7 }
+#difference .diff-curve { fill:none; stroke:var(--green); stroke-width:3; stroke-linecap:round; stroke-linejoin:round }
+#difference .diff-dot { fill:var(--green); stroke:#fffdf6; stroke-width:3 }
+
+.interact { display:flex; align-items:center; gap:13px; background:#e3e9de; padding:14px 16px; flex-wrap:wrap }
+.interact button { background:var(--ink); color:#fff; border:0; border-radius:0; font-size:1.1rem; width:44px; height:44px; cursor:pointer }
+.interact button:disabled { opacity:.3;cursor:default }
+.interact button:focus-visible, input:focus-visible { outline:3px solid var(--accent); outline-offset:3px }
+.interact label { font-weight:700; font-size:.83rem }
+.interact input { min-width:180px; flex:1; accent-color:var(--accent) }
+.readout { background:var(--ink); color:#eef5e9; display:grid; grid-template-columns:1.1fr repeat(3,minmax(0,1fr)); gap:1px; margin-top:12px }
+.readout article { padding:17px 19px; border-right:1px solid #446063; min-width:0 }
+.readout article:last-child { border-right:0 }
+.readout .label { display:block; color:#b9cbc2; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px }
+.readout output { display:block; font-family:Georgia,serif; font-size:clamp(1.4rem,3vw,2.2rem); line-height:1.2; overflow-wrap:anywhere }
+.readout small { display:block; color:#b9cbc2; margin-top:5px; font-size:.75rem }
+#meaning { margin:14px 0 0; font-weight:650; border-left:4px solid var(--accent); padding:7px 0 7px 13px }
+.provenance { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line) }
+.provenance > div { background:#fffdf6; padding:21px; overflow-wrap:anywhere }
+.provenance strong { color:var(--accent); display:block; margin-bottom:9px }
+.provenance code { font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; word-break:break-all; color:#465c60 }
+.notes { display:grid; grid-template-columns:1fr 1fr; gap:24px }
+.notes p { margin:0; max-width:560px }
+footer { border-top:2px solid var(--ink); margin-top:44px; padding-top:18px; font-size:.76rem; color:#53686a; display:flex; justify-content:space-between;gap:20px;flex-wrap:wrap }
+@media(max-width:740px) { main{padding:0 16px 44px}header{padding-top:27px} .summary,.readout,.provenance,.notes{grid-template-columns:1fr} .readout article{border-right:0;border-bottom:1px solid #446063} .stat{padding:18px} .interact{padding:12px} h2{font-size:1.65rem} .legend{gap:8px 12px} }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="kicker">Experimental Earth / Original modeled water / Field sheet 02</div>
+<h1>Two investigations.<br>One shared ground.</h1>
+<p class="dek">A retained-time comparison of proposed surface water for two saved investigations with identical modeled weather, geometry and original site. This is a reading instrument, not a claim that one intervention is better.</p>
+<div class="head-meta"><span><strong id="count">—</strong> original samples</span><span>Model minutes <strong id="span">—</strong></span><span>Offline · No external requests</span></div>
+</header>
+<section aria-labelledby="summary-heading">
+<div class="section-head"><span>01 / Course</span><h2 id="summary-heading">A difference that changes sign</h2></div>
+<div class="summary">
+<div class="stat"><div class="label">B held more at</div><div class="hero-number" id="above">—</div><small>original retained instants, not elapsed duration</small></div>
+<div class="stat"><div class="label">B held less at</div><div class="hero-number" id="below">—</div><small>original retained instants, not elapsed duration</small></div>
+<div class="stat"><div class="label">Equal at</div><div class="hero-number" id="equal">—</div><small>original retained instants</small></div>
+</div>
+</section>
+<section aria-labelledby="chart-heading">
+<div class="section-head"><span>02 / Original time series</span><h2 id="chart-heading">Surface water across the course</h2></div>
+<div class="chart-frame">
+<div class="legend"><span><i class="existing"></i>Shared original site</span><span><i class="a"></i>Proposal A</span><span><i class="b"></i>Proposal B</span></div>
+<svg id="plot" viewBox="0 0 1000 350" role="img" aria-labelledby="chart-name chart-description">
+<title id="chart-name">Paired modeled stored-water snapshots</title>
+<desc id="chart-description">Line chart of original modeled stored-water values at retained times. Use the accessible sample slider below for exact readings.</desc>
+</svg>
+<div class="difference-head"><strong>Signed difference / B − A</strong><span id="extremes"></span></div>
+<svg id="difference" viewBox="0 0 1000 195" role="img" aria-labelledby="difference-name difference-description">
+<title id="difference-name">Difference in modeled stored-water totals at original retained samples</title>
+<desc id="difference-description">Values above zero mean proposal B stored more than A. Values below zero mean B stored less. Use the sample slider for exact numbers.</desc>
+</svg>
+<p class="chart-note">Connecting lines guide the eye between retained values; they do not measure intermediate times. Choose a position on either chart or use the keyboard-accessible sample control for exact values; pointer ties select the earlier retained sample.</p>
+</div>
+<div class="interact"><label for="sample">Inspect exact retained sample</label><button type="button" id="prev" aria-label="Previous original sample">←</button><input id="sample" type="range" min="0" max="0" step="1" value="0"><button type="button" id="next" aria-label="Next original sample">→</button><span id="position" aria-live="polite">—</span></div>
+<div class="readout" aria-live="polite">
+<article><span class="label">Original model minute</span><output id="minute">—</output><small>common retained clock</small></article>
+<article><span class="label">Existing site</span><output id="existing">—</output><small>litres of modeled surface water</small></article>
+<article><span class="label">Proposal A / B</span><output id="both">—</output><small>litres, in A → B order</small></article>
+<article><span class="label">B − A</span><output id="delta">—</output><small>signed litres; not a value judgement</small></article>
+</div>
+<p id="meaning" role="status">Choose an original sample to inspect its modeled difference.</p>
+</section>
+<section aria-labelledby="provenance-heading">
+<div class="section-head"><span>03 / Audit trail</span><h2 id="provenance-heading">Unmodified original inputs</h2></div>
+<div class="provenance"><div><strong>Investigation A</strong><div id="title-a"></div><code id="sha-a"></code></div><div><strong>Investigation B</strong><div id="title-b"></div><code id="sha-b"></code></div></div>
+</section>
+<section aria-labelledby="limits-heading">
+<div class="section-head"><span>04 / Interpretation</span><h2 id="limits-heading">What this sheet can and cannot say</h2></div>
+<div class="notes"><p><strong>Supported:</strong> whole-site modeled surface-water totals from the existing simulator, sampled at identical retained model minutes for two proposals over one unchanged baseline.</p><p><strong>Not supported:</strong> calibrated flood risk, actual measurements, continuous-time crossing dates, real-world superiority, local-cell consequences or a causal comparison of different weather or original surfaces.</p></div>
+</section>
+<footer><span>Experimental Earth · private/offline investigation report</span><span>Source verification: compare against the two original JSON files and receipt.json in this directory.</span></footer>
+</main>
+<script>
+'use strict';
+const DATA = __EARTH_DATA_JSON__;
+const rows = DATA.samples;
+const el = id => document.getElementById(id);
+const svg = el('plot');
+const NS = 'http://www.w3.org/2000/svg';
+function node(tag, attrs, parent=svg) {
+  const n = document.createElementNS(NS,tag);
+  for (const [k,v] of Object.entries(attrs)) n.setAttribute(k,String(v));
+  parent.append(n); return n;
+}
+const nums = rows.map(r => r.map(Number));
+const X0=75, X1=960, Y0=24, Y1=302;
+const xs = nums.map(r=>r[0]);
+const ys = nums.flatMap(r=>r.slice(1,4));
+const xmin=xs[0], xmax=xs[xs.length-1];
+const ymin=Math.min(0,...ys), ymax=Math.max(1,...ys);
+const dx=xmax-xmin||1, dy=ymax-ymin||1;
+const x=t=>X0+(t-xmin)/dx*(X1-X0);
+const y=v=>Y1-(v-ymin)/dy*(Y1-Y0);
+for (let j=0;j<=4;j++){
+  const v=ymin+(ymax-ymin)*j/4, yy=y(v);
+  node('line',{x1:X0,x2:X1,y1:yy,y2:yy,class:'gridline'});
+  const t=node('text',{x:67,y:yy+5,'text-anchor':'end'}); t.textContent=Number(v.toPrecision(3)).toString();
+}
+node('line',{x1:X0,y1:Y1,x2:X1,y2:Y1,class:'axis'});
+for(let j=0;j<=4;j++){
+  const t=xmin+(xmax-xmin)*j/4, xx=x(t);
+  node('line',{x1:xx,y1:Y1,x2:xx,y2:Y1+7,class:'axis'});
+  const label=node('text',{x:xx,y:Y1+27,'text-anchor':'middle'});label.textContent=Number(t.toPrecision(4)).toString();
+}
+const ylabel=node('text',{x:17,y:16});ylabel.textContent='Stored litres';
+const paths=[['existing',1],['a',2],['b',3]];
+for(const [name,col] of paths){
+  node('polyline',{class:'curve '+name,points:nums.map(r=>x(r[0])+','+y(r[col])).join(' ')});
+}
+const guide=node('line',{class:'selected-guide',x1:0,x2:0,y1:Y0,y2:Y1});
+const colors=['#8d9c99','#315e98','#b34d30'];
+const dots=[1,2,3].map((col,i)=>node('circle',{class:'point',r:7,fill:colors[i],cx:0,cy:0}));
+const diffSvg=el('difference');
+const differences=nums.map(r=>r[4]);
+const dMin=Math.min(0,...differences), dMax=Math.max(0,...differences);
+const dRange=dMax-dMin;
+const dlo=dRange===0?-1:dMin-dRange*0.07;
+const dhi=dRange===0?1:dMax+dRange*0.07;
+const DY0=20,DY1=159;
+const yd=v=>DY1-(v-dlo)/(dhi-dlo)*(DY1-DY0);
+for(const v of [dlo,0,dhi]){
+  const yy=yd(v);
+  node('line',{x1:X0,x2:X1,y1:yy,y2:yy,class:v===0?'zero-line':'gridline'},diffSvg);
+  const tick=node('text',{x:67,y:yy+5,'text-anchor':'end'},diffSvg);
+  tick.textContent=Number(v.toPrecision(4)).toString();
+}
+const dcurve=node('polyline',{class:'diff-curve',
+  points:nums.map(r=>x(r[0])+','+yd(r[4])).join(' ')},diffSvg);
+const dguide=node('line',{class:'selected-guide',x1:0,x2:0,y1:DY0,y2:DY1},diffSvg);
+const ddot=node('circle',{class:'diff-dot',r:7,cx:0,cy:0},diffSvg);
+const deltaCaption=node('text',{x:900,y:185,'text-anchor':'end'},diffSvg);
+deltaCaption.textContent='Original model minutes →';
+for(const canvas of [svg,diffSvg]){
+  canvas.addEventListener('click',ev=>{
+    const box=canvas.getBoundingClientRect();
+    const px=(ev.clientX-box.left)/box.width*1000;
+    const time=xmin+(px-X0)/(X1-X0)*dx;
+    let selected=0,best=Infinity;
+    for(let i=0;i<xs.length;i++){
+      const dist=Math.abs(xs[i]-time);
+      if(dist<best-dx*1e-12){best=dist;selected=i;}
+    }
+    show(selected);input.focus();
+  });
+}
+el('count').textContent=rows.length.toString();
+el('span').textContent=rows[0][0]+'–'+rows[rows.length-1][0];
+el('above').textContent=DATA.stats.bAboveA.toString();
+el('below').textContent=DATA.stats.bBelowA.toString();
+el('equal').textContent=DATA.stats.equal.toString();
+el('summary-heading').textContent=DATA.stats.bothSignsPresent ? 'A difference that changes sign' :
+  DATA.stats.equal===rows.length ? 'Two identical retained courses' : 'A difference of one sign at the sampled times';
+const approx=n=>Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+el('extremes').textContent='At retained samples: approx. '+approx(DATA.stats.minimumLitres)+' L at minute '+
+  DATA.stats.minimumAtMinutes.join(', ')+' → '+approx(DATA.stats.maximumLitres)+' L at minute '+
+  DATA.stats.maximumAtMinutes.join(', ');
+el('title-a').textContent=DATA.titleA || 'Untitled saved investigation';
+el('title-b').textContent=DATA.titleB || 'Untitled saved investigation';
+el('sha-a').textContent='SHA-256: '+DATA.shaA;
+el('sha-b').textContent='SHA-256: '+DATA.shaB;
+const input=el('sample');
+input.max=rows.length-1;
+function show(i){
+  i=Math.max(0,Math.min(rows.length-1,i));
+  input.value=String(i);
+  const a=rows[i], n=nums[i], xx=x(n[0]);
+  guide.setAttribute('x1',xx);guide.setAttribute('x2',xx);
+  dguide.setAttribute('x1',xx);dguide.setAttribute('x2',xx);
+  ddot.setAttribute('cx',xx);ddot.setAttribute('cy',yd(n[4]));
+  for(let j=0;j<3;j++){dots[j].setAttribute('cx',xx);dots[j].setAttribute('cy',y(n[j+1]));}
+  el('minute').textContent=a[0];
+  el('existing').textContent=a[1];
+  el('both').textContent=a[2]+' / '+a[3];
+  el('delta').textContent=a[4];
+  el('position').textContent=(i+1)+' / '+rows.length;
+  el('prev').disabled=i===0;el('next').disabled=i===rows.length-1;
+  el('meaning').textContent=n[4]>0 ? 'At this retained instant, proposal B stores more modeled water than A.' :
+    n[4]<0 ? 'At this retained instant, proposal B stores less modeled water than A.' :
+    'At this retained instant, both proposals store the same modeled water.';
+}
+input.addEventListener('input',()=>show(Number(input.value)));
+el('prev').addEventListener('click',()=>{show(Number(input.value)-1);input.focus()});
+el('next').addEventListener('click',()=>{show(Number(input.value)+1);input.focus()});
+show(0);
+</script>
+</body>
+</html>
