@@ -31,3 +31,17 @@ This is a conceptual runoff/workbench simulation, not measurement, calibrated fl
 Both inputs must be ordinary, nonempty, non-symlink files within the maintained 4 MiB project bound. The command checks file identities and contents immediately before output creation; refuses malformed/BOM input, incompatible baselines and nonfresh output directories; writes restrictive fresh files and reads each back. A write failure may leave a partial fresh directory, deliberately preserved for inspection. Its presence never signals success.
 
 Export each project separately with export-water-history.mjs when investigating a single authored proposal. This command compares two separately authored proposal scenarios without a server, network, account or additional model service.
+
+## Optional offline field sheet for two saved investigations
+
+With the same admissible, already-exported original projects, add --report:
+
+node compare-saved-water-histories.mjs ORIGINAL_A.json ORIGINAL_B.json NEW_OUTPUT_DIRECTORY --report
+
+The default three-argument command remains unchanged and produces the same original JSON files, complete CSV, and receipt as before. The optional flag adds paired-water-report.html as a fifth file and includes its byte length and SHA-256 in receipt.json. Open the HTML in a browser with no network required; scripts, layout and model data are embedded, and a restrictive content-security policy prevents external requests. Keep the HTML with the two original JSON files and receipt for reproducibility.
+
+The original modeled data are not changed or resampled. The field sheet shows the shared baseline and both proposed whole-site storage series, plus the signed B-minus-A course on a separate zero-referenced chart. Select a retained model instant with the native keyboard-operable slider, step buttons, or a deliberate pointer selection on either chart. Pointer selection is by nearest retained model time; an exact midpoint tie chooses the earlier sample. All detailed readouts and CSV rows retain the model's original shortest round-trip decimal spelling, including signed positive differences and negative zero where applicable. Chart strokes between snapshots are visual guides only: no interpolation or continuous-time sign change is inferred.
+
+The sheet distinguishes exact values from approximate summary formatting, and dynamically labels a mixed-sign, one-direction or all-equal course. Untrusted project titles are rendered as text, not markup. The standalone file deliberately does not adopt a new scientific model, calibrate against observations, or assert that a larger stored-water quantity is automatically better or worse.
+
+Validation: node --test tests/compare-saved-water-histories.test.mjs tests/paired-water-report.test.mjs. For actual Chromium receiving: set PLAYWRIGHT_MODULE to a local playwright-core entry point and CHROME_BIN to Chromium, then run node tests/browser.paired-water-report.mjs. The browser course checks original samples, keyboard and pointer selection, 1440/390 layouts, mixed and all-equal course, no offsite requests, script errors or mobile horizontal overflow. The browser fixture serves only its generated local HTML via ephemeral localhost because this host's confined Chromium cannot read arbitrary /var/lib paths through file://. That host limitation does not establish that every user's file:// opening is tested.

@@ -11,7 +11,7 @@ import {readOriginal, writeNew} from './export-water-history.mjs';
 import {exactWaterNumber} from './water-history-values.js';
 
 const MAX_CSV_BYTES = 2 * 1024 * 1024;
-const usage = 'Usage: node compare-saved-water-histories.mjs ORIGINAL_A.json ORIGINAL_B.json NEW_OUTPUT_DIRECTORY';
+const usage = 'Usage: node compare-saved-water-histories.mjs ORIGINAL_A.json ORIGINAL_B.json NEW_OUTPUT_DIRECTORY [--report]';
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const cell = value => '"' + String(value).replaceAll('"','""') + '"';
 function load(filename) {
@@ -46,7 +46,7 @@ function assertComparable(a,b,x,y) {
   }
   return {ea,pa,pb};
 }
-function outputFiles(a,b,x,y) {
+function outputFiles(a,b,x,y,reportBuilder=null) {
   const {ea,pa,pb}=assertComparable(a,b,x,y);
   const lines=[[
     'project_a_input_sha256','project_b_input_sha256','model_minute',
@@ -67,6 +67,14 @@ function outputFiles(a,b,x,y) {
   const files=[['project-a.original.json',a.bytes],['project-b.original.json',b.bytes],['paired-water-history.csv',csv]];
   const vals=changes.map(c=>c.delta);
   const min=Math.min(...vals),max=Math.max(...vals);
+  const stats={
+    bAboveA:vals.filter(v=>v>0).length,bBelowA:vals.filter(v=>v<0).length,
+    equal:vals.filter(v=>v===0).length,
+    minimumLitres:min,minimumAtMinutes:changes.filter(c=>c.delta===min).map(c=>c.minute),
+    maximumLitres:max,maximumAtMinutes:changes.filter(c=>c.delta===max).map(c=>c.minute),
+    bothSignsPresent:min<0&&max>0,
+  };
+  if(reportBuilder)files.push(['paired-water-report.html',reportBuilder(a,b,ea,pa,pb,stats)]);
   const receipt={
     format:'experimental-earth-two-project-water-comparison/v1',
     model:'base-rain',
@@ -74,29 +82,26 @@ function outputFiles(a,b,x,y) {
     inputs:[{role:'a',bytes:a.bytes.length,sha256:a.digest},{role:'b',bytes:b.bytes.length,sha256:b.digest}],
     files:files.map(([name,bytes])=>({path:name,bytes:bytes.length,sha256:sha(bytes)})),
     snapshots:ea.length,firstMinute:ea[0].minute,lastMinute:ea.at(-1).minute,
-    changesAtRetainedSamples:{
-      bAboveA:vals.filter(v=>v>0).length,bBelowA:vals.filter(v=>v<0).length,
-      equal:vals.filter(v=>v===0).length,
-      minimumLitres:min,minimumAtMinutes:changes.filter(c=>c.delta===min).map(c=>c.minute),
-      maximumLitres:max,maximumAtMinutes:changes.filter(c=>c.delta===max).map(c=>c.minute),
-      bothSignsPresent:min<0&&max>0,
-    },
+    changesAtRetainedSamples:stats,
     scope:'Compare modeled proposal stored-water histories only when original baseline geometry, surfaces and weather agree. Both complete original project inputs are preserved. Non-solver declarations are not separately analyzed.',
     limitations:'Retained modeled instants, not interpolated durations, observed rainfall or calibrated flood risk. A larger stored-water total is not necessarily a worse outcome for every purpose.',
     reopen:'Run again on the two preserved project originals with a fresh directory. No previous outputs are consumed.'
   };
+  if(reportBuilder)receipt.presentation='Optional offline HTML field sheet. Static graph lines connect retained points for orientation; exact readings are selected only at original snapshot indexes. No external assets.';
   files.push(['receipt.json',Buffer.from(JSON.stringify(receipt,null,2)+'\n','utf8')]);
   return {files,receipt};
 }
 export async function main(args) {
   if(args.length===1&&args[0]==='--help'){console.log(usage);return 0;}
   if(process.platform!=='linux')throw Error('Original-file comparison currently requires Linux.');
-  if(args.length!==3 || args.some(x=>!x||x.startsWith('--')))throw Error(usage);
-  const [ap,bp,out]=args.map(x=>path.resolve(x));
+  const renderReport=args.length===4&&args[3]==='--report';
+  if((args.length!==3&&!renderReport) || args.slice(0,3).some(x=>!x||x.startsWith('--')))throw Error(usage);
+  const [ap,bp,out]=args.slice(0,3).map(x=>path.resolve(x));
   try{fs.lstatSync(out);throw Error('Output exists; choose a fresh directory.');}
   catch(e){if(e.code!=='ENOENT')throw e;}
   const a=load(ap),b=load(bp);
-  const result=outputFiles(a,b,compare(a.project),compare(b.project));
+  const reportBuilder=renderReport?(await import('./paired-water-report.js')).pairedWaterReport:null;
+  const result=outputFiles(a,b,compare(a.project),compare(b.project),reportBuilder);
   for(const input of [a,b]){
     const now=readOriginal(input.filename,MAX_PROJECT_FILE_BYTES);
     if(now.identity!==input.identity || !now.bytes.equals(input.bytes))throw Error('Original changed before writing output.');
