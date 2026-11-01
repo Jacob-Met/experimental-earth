@@ -69,6 +69,20 @@ test('opt-in visual report is an offline source-grounded fifth artifact with bot
   assert.equal(receipt.files.length,4);
   for(const f of receipt.files)assert.equal(sha(fs.readFileSync(path.join(dir,f.path))),f.sha256);
 });
+test('A4 print layout is present without changing offline interactive behavior',()=>{
+  const {dir}=run('print-contract');
+  const html=fs.readFileSync(path.join(dir,'paired-water-report.html'),'utf8');
+  assert.match(html, /@page\s*\{size:A4 portrait/);
+  assert.match(html, /@media print\s*\{/);
+  assert.ok(html.indexOf('@media print')>html.indexOf('@media(max-width:740px)'),'print overrides narrow-screen mobile columns');
+  assert.match(html, /\.interact\{display:none!important\}/);
+  assert.match(html, /\.print-only\{display:block/);
+  assert.match(html, /footer\{display:none!important\}/);
+  assert.match(html, /The paper view retains the currently selected original sample/);
+  assert.match(html, /Exact readings for all original sample instants/);
+  assert.match(html, /print-color-adjust:exact/);
+  assert.doesNotMatch(html, /<link\s+[^>]*href=/);
+});
 test('existing default CLI artifact bytes remain unchanged with opt-in HTML mode',()=>{
   const {dir}=run('default',null);
   const {dir:withReport}=run('with-report');

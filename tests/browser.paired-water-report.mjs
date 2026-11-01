@@ -82,6 +82,20 @@ try {
   await page.screenshot({path:path.join(OUT,'mobile.png'),fullPage:true});
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
   assert.ok(overflow<=1,'Unexpected mobile horizontal overflow '+overflow);
+  await page.emulateMedia({media:'print'});
+  assert.equal(await page.locator('.interact').evaluate(n=>getComputedStyle(n).display),'none');
+  assert.notEqual(await page.locator('.print-only').evaluate(n=>getComputedStyle(n).display),'none');
+  assert.equal(await page.locator('footer').evaluate(n=>getComputedStyle(n).display),'none');
+  const printPath=path.join(OUT,'paper.pdf');
+  const printBytes=await page.pdf({path:printPath,printBackground:true,preferCSSPageSize:true});
+  assert.equal(printBytes.subarray(0,5).toString(),'%PDF-');
+  assert.ok(printBytes.length>10000);
+  const pdfInfo=spawnSync('pdfinfo',[printPath],{encoding:'utf8',timeout:15000});
+  if(!pdfInfo.error){
+    assert.equal(pdfInfo.status,0,pdfInfo.stderr);
+    assert.match(pdfInfo.stdout,/^Pages:\s*1$/m,'ordinary 49-sample A4 field sheet must fit on one page');
+  }
+  await page.emulateMedia({media:'screen'});
   await page.goto(origin+'/same',{waitUntil:'load'});
   assert.equal(await page.locator('#above').textContent(),'0');
   assert.equal(await page.locator('#below').textContent(),'0');
@@ -90,5 +104,5 @@ try {
   assert.equal(await page.locator('#delta').textContent(),'0');
   assert.deepEqual(errors,[]);
   assert.deepEqual(offsite,[]);
-  console.log(JSON.stringify({status:'passed',originalSamples:oracleA.existing.snapshots.length,desktop:'desktop.png',mobile:'mobile.png',overflow,consoleErrors:errors.length,offsiteRequests:offsite.length,keyboardAndButtons:true,originalSourceAndValueChecks:true,mobileLayout:true,allZero:true}));
+  console.log(JSON.stringify({status:'passed',originalSamples:oracleA.existing.snapshots.length,desktop:'desktop.png',mobile:'mobile.png',overflow,consoleErrors:errors.length,offsiteRequests:offsite.length,keyboardAndButtons:true,originalSourceAndValueChecks:true,mobileLayout:true,printPaper:true,allZero:true}));
 } finally {await browser.close();await new Promise(resolve=>serve.close(resolve));}
