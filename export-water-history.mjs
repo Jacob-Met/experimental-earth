@@ -12,7 +12,7 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const identity = s => ['dev','ino','size','mtimeNs','ctimeNs','mode','uid','gid'].map(k => String(s[k])).join(':');
 const usage = 'Usage: node export-water-history.mjs ORIGINAL_PROJECT.json NEW_OUTPUT_DIRECTORY';
 
-function readOriginal(filename, limit) {
+export function readOriginal(filename, limit) {
   const fd = fs.openSync(filename, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK);
   try {
     const before = fs.fstatSync(fd,{bigint:true});
@@ -29,7 +29,7 @@ function readOriginal(filename, limit) {
     return {bytes:bytes.subarray(0,count), identity:identity(after)};
   } finally { fs.closeSync(fd); }
 }
-function writeNew(filename, bytes) {
+export function writeNew(filename, bytes) {
   const fd = fs.openSync(filename,fs.constants.O_WRONLY | fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_NOFOLLOW,0o600);
   try {
     let offset = 0;
