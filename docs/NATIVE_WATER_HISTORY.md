@@ -1,6 +1,6 @@
 # Export a saved project's complete water history in Node
 
-Run from the repository with Node 22 on Linux:
+Run from the repository with Node.js 20 or newer on Linux or macOS (verified on Linux Node 22 and macOS arm64 Node 26):
 
 ```sh
 node export-water-history.mjs tests/fixtures/water-history-tradeoff.json water-history-output
