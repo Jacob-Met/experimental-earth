@@ -93,7 +93,7 @@ function outputFiles(a,b,x,y,reportBuilder=null) {
 }
 export async function main(args) {
   if(args.length===1&&args[0]==='--help'){console.log(usage);return 0;}
-  if(process.platform!=='linux')throw Error('Original-file comparison currently requires Linux.');
+  if(!['linux','darwin'].includes(process.platform))throw Error('Original-file comparison requires Linux or macOS.');
   const renderReport=args.length===4&&args[3]==='--report';
   if((args.length!==3&&!renderReport) || args.slice(0,3).some(x=>!x||x.startsWith('--')))throw Error(usage);
   const [ap,bp,out]=args.slice(0,3).map(x=>path.resolve(x));

@@ -33,7 +33,7 @@ usable and the page reports that the optional sheet could not be created.
 
 ## Run
 
-On Linux with Node.js >=20, from the repository root:
+On Linux or macOS with Node.js >=20, from the repository root (verified on Linux Node 22 and macOS arm64 Node 26):
 
     node compare-saved-water-histories.mjs /path/to/project-A.json /path/to/project-B.json /path/to/fresh-result
 

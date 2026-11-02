@@ -45,7 +45,7 @@ export function writeNew(filename, bytes) {
 
 export async function main(args) {
   if (args.length === 1 && args[0] === '--help') { console.log(usage); return 0; }
-  if (process.platform !== 'linux') throw Error('This original-file command currently requires Linux.');
+  if (!['linux','darwin'].includes(process.platform)) throw Error('This original-file command requires Linux or macOS.');
   if (args.length !== 2 || args.some(x => !x || x.startsWith('--'))) throw Error(usage);
   const inputPath = path.resolve(args[0]), output = path.resolve(args[1]);
   try { fs.lstatSync(output); throw Error('Output exists; choose a new directory.'); }
