@@ -3,6 +3,7 @@ import {readFile,writeFile,mkdir,readdir,rename} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {join} from 'node:path';
 import {randomUUID,createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
 import {setTimeout as delay} from 'node:timers/promises';
 import {withBrowserSession} from './support/browser-session.mjs';
 import {compareProposalFiles} from '../compare-rain-proposals.mjs';
@@ -69,6 +70,14 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN||'/
  await wait(`!document.querySelector('#comparison-report-download').hidden`);
  const reportPath=await download(`document.querySelector('#comparison-report-download').click()`);
  const actual=JSON.parse(await readFile(reportPath,'utf8'));
+ await wait("!document.querySelector('#paired-field-sheet-download').hidden");
+ const pairedHtmlPath=await download("document.querySelector('#paired-field-sheet-download').click()");
+ const cliPairDir=join(runDirectory,'cli-paired-html-reference');
+ const cliPair=spawnSync(process.execPath,['compare-saved-water-histories.mjs',first,second,cliPairDir,'--report'],
+   {cwd:root,encoding:'utf8',timeout:30000,maxBuffer:1000000});
+ assert.equal(cliPair.status,0,cliPair.stderr);
+ assert.deepEqual(await readFile(pairedHtmlPath),await readFile(join(cliPairDir,'paired-water-report.html')),
+   'A real browser-downloaded offline field sheet equals the CLI output for identical original saved files');
  const expected=await compareProposalFiles([first,second]);
  assert.deepEqual(actual,expected,'Browser report equals maintained CLI report from exact exported inputs');
  const sourceFiles=await Promise.all([first,second].map(async path=>{const bytes=await readFile(path);return {path,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};}));
@@ -211,6 +220,7 @@ await withBrowserSession({root,runDirectory,chromeBin:process.env.CHROME_BIN||'/
  assert.equal(await evaluate(`!document.getElementById('local-depth-timing')`),true,'Replacing files retires all timing findings and actions');
  assert.equal(await evaluate(`!document.getElementById('local-depth-time') && !document.querySelector('#local-depth-results tbody tr')`),true,'Replacing files immediately retires local depths from the old sources');
  assert.equal(await evaluate(`document.querySelector('#comparison-report-download').hidden`),true,'New selection retires the old report immediately');
+ assert.equal(await evaluate(`document.querySelector('#paired-field-sheet-download').hidden`),true,'New selection retires the offline field sheet');
  await wait(`!document.querySelector('#compare-proposals').disabled`);await evaluate(`document.querySelector('#compare-proposals').click()`);
  await wait(`/not the same|unchanged|different|mismatch|refus|unable|error/i.test(document.querySelector('#comparison-status').textContent)`);
  assert.equal(await evaluate(`document.querySelector('#comparison-report-download').hidden`),true,'Mismatched context cannot download a stale report');

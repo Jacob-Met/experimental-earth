@@ -2,6 +2,35 @@
 
 Experimental Earth models a proposed surface intervention against an existing site. When two different saved projects have the same existing site, grid and weather, this command asks how the complete modeled water history of proposal B differs from proposal A at each original retained time.
 
+## Compare and download a field sheet in the browser
+
+In Experimental Earth's workbench, export one original project JSON for each proposed
+intervention. Choose **Compare saved proposals**, select **exactly two** exported JSON
+files, and click **Compare proposals**. The existing comparison of modeled totals,
+per-cell depths, original sources and trade-offs appears as before. Once the comparison
+passes, choose **Download offline water field sheet (HTML)** for the two original
+retained-water courses and their signed B−A difference. Open the downloaded HTML
+locally: it is self-contained, interactive, keyboard accessible and print-ready
+on a single A4 sheet. This route requires no installed Node.js CLI or special
+filesystem access by the user, beyond the browser's ordinary file selection
+and download capabilities.
+
+The browser recomputes from the selected original files without changing either
+file or the active workbench. It checks the *complete unchanged source context*
+(including evidence and study declarations, not only the simulation baseline);
+only proposed changes, display titles and selection position may differ. This
+can refuse a pair that the narrower native CLI permits. The original-file SHA-256
+identities appear in the sheet. The retained numerical samples and HTML
+presentation use the same implementation as the native CLI; the browser
+report is not a new physical model.
+
+The field sheet is available for **two** files. The general proposal comparison
+still accepts 2–16 alternatives, but does not create a two-project sheet for
+larger selections. Changing or clearing the selected inputs retires the previous
+download link; complete the new comparison before downloading again. If the
+optional HTML template is unavailable, the existing comparison JSON remains
+usable and the page reports that the optional sheet could not be created.
+
 ## Run
 
 On Linux with Node.js >=20, from the repository root:
