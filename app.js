@@ -1,6 +1,7 @@
 import { createUnsavedProjectWarning } from './unsaved-project-warning.js';
 import { mountManualObservationCorrection } from './manual-observation-correction.js';
 import { openSavedProject, mountSavedProjectRecovery } from './saved-project-recovery.js';
+import { admitEditorSelection } from './editor-selection.js';
 import {mountInvestigationNavigation} from './investigation-navigation.js';
 import {arrowGridIndex} from './grid-keyboard.js';
 import { createObservationFocus } from './observation-focus.js';
@@ -63,7 +64,7 @@ const waterHistory = createWaterHistoryValues($('chart').closest('.chart-wrap'))
 const waterHistoryCsv = createWaterHistoryCsv($('water-history-values'));
 const waterTradeoffs = createWaterTradeoffs($('chart').closest('.chart-wrap'), minute => waterHistory.selectMinute(minute));
 const savedProject = openSavedProject();
-let project = savedProject.project;
+let project = admitEditorSelection(savedProject.project);
 const unsavedProjectWarning = createUnsavedProjectWarning({ target: window, getProject: () => project });
 const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
 let brush = 'inspect';
@@ -599,7 +600,7 @@ $('import').addEventListener('change',async event=>{
     const text = await file.text();
     if(serial!==projectImportSerial || revision!==projectRevision) return;
     const parsed = parsePortableProject(text);
-    project=parsed;syncForm();rerun();notice('Validated project imported.');
+    project=admitEditorSelection(parsed);syncForm();rerun();notice('Validated project imported.');
   } catch(err) {
     if(serial===projectImportSerial && revision===projectRevision) {
       // A refused file did not replace the current project. Recompute that
