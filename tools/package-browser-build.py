@@ -83,6 +83,16 @@ def served_assets(files):
                 and PurePosixPath(name).suffix.lower() in (".html", ".js", ".css")}
     selected.update(safe_path(name) for name in nested)
     selected.add("serve.py")
+    # Include the current launcher's local client without requiring it in older
+    # source snapshots whose launcher predates the optional reading feature.
+    imports_client = any(
+        (isinstance(node, ast.Import) and any(
+            alias.name == "nebius_nemotron" for alias in node.names))
+        or (isinstance(node, ast.ImportFrom) and node.module == "nebius_nemotron")
+        for node in parsed.body
+    )
+    if imports_client:
+        selected.add("nebius_nemotron.py")
     if "index.html" not in selected:
         raise ValueError("Missing browser entry point index.html")
     # Preserve source README and attribution notices without serving directories.
