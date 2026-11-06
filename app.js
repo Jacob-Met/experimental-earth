@@ -86,6 +86,7 @@ const INLINE_COMPARISON_WORK = 10_000;
 let comparisonGeneration = 0;
 let completedComparison = null;
 let comparisonState = 'initial';
+let nemotronReviewSerial = 0;
 let comparisonFocus = null;
 const observationFocus = createObservationFocus({
   list: $('observation-list'), getProject: () => project, emptyTarget: $('obs-depth'),
@@ -116,6 +117,7 @@ retryComparison.addEventListener('click', () => { try { rerun(); } catch (error)
 restoreComparison.addEventListener('click', () => {
   if (!completedComparison) return;
   ++comparisonGeneration; ++projectRevision; ++projectImportSerial;
+  clearNemotronReview();
   comparisonComputation.cancel();
   project = structuredClone(completedComparison.project);
   results = completedComparison.results;
@@ -132,6 +134,7 @@ restoreComparison.addEventListener('click', () => {
 });
 window.addEventListener('pagehide', () => {
   ++comparisonGeneration; ++projectImportSerial; comparisonComputation.cancel();
+  clearNemotronReview();
 });
 window.addEventListener('pageshow', event => {
   // A back/forward-cache return must not leave a retired calculation pending.
@@ -203,6 +206,7 @@ function setComparisonInteraction(pending) {
 }
 function setComparisonState(state, error) {
   comparisonState = state;
+  $('nemotron-review-run').disabled = state !== 'ready';
   waterHistory.setAvailable(state === 'ready');
   waterHistoryCsv.setAvailable(state === 'ready');
   waterTradeoffs.setAvailable(state === 'ready');
@@ -305,6 +309,7 @@ function rerun() {
   // Invalidate before validation so a queued older response cannot become
   // eligible after a newer request is refused.
   const generation = ++comparisonGeneration, revision = ++projectRevision;
+  clearNemotronReview();
   comparisonComputation.cancel();
   try {
     validateProject(project);
@@ -489,6 +494,8 @@ function observations() {
   observationFocus.restore(restoreFocus);
 }
 function clearNemotronReview() {
+  ++nemotronReviewSerial;
+  $('nemotron-review-run').disabled = comparisonState !== 'ready';
   const out=$('nemotron-review-output');out.hidden=true;out.replaceChildren();
   $('nemotron-review-status').textContent='';
 }
@@ -504,9 +511,12 @@ function draw() {
 }
 $('nemotron-review-run').addEventListener('click',async()=>{
   const button=$('nemotron-review-run'),status=$('nemotron-review-status'),out=$('nemotron-review-output');
+  if(comparisonState!=='ready'||button.disabled)return;
+  const generation=comparisonGeneration, serial=++nemotronReviewSerial;
   const figures=summaryFigures(results,project.weather);
   button.disabled=true;out.hidden=true;out.replaceChildren();status.textContent='Asking Nemotron on Nebius Token Factory…';
   const reply=await requestNemotronReview(figures);
+  if(generation!==comparisonGeneration||serial!==nemotronReviewSerial||comparisonState!=='ready')return;
   button.disabled=false;
   if(reply.status!=='ok'){status.textContent=reply.message;return;}
   const {check}=reply;
@@ -564,6 +574,7 @@ $('import').addEventListener('change',async event=>{
   // Selecting a new source retires computation before its asynchronous read.
   const serial=++projectImportSerial, revision=++projectRevision;
   ++comparisonGeneration; comparisonComputation.cancel();
+  clearNemotronReview();
   setComparisonState('loading'); setComparisonInteraction(true);
   try {
     checkProjectFileBytes(file.size);
