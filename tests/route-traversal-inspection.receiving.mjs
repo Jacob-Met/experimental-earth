@@ -126,6 +126,23 @@ async({send,evaluate,exceptions})=>{
   }
   outcomes.push({input:'inside-window20.5; failing18; two failures12 use original comparison',pass:true});
 
+  await evaluate(`(()=>{
+    const input=document.querySelector('#route-traversal-departure');
+    input.value='20';input.dispatchEvent(new Event('input',{bubbles:true}));
+  })()`);
+  let draft=await read();
+  assert.equal(draft.tables.length,0,'editing a departure removes evidence for the previous instant');
+  assert.match(draft.error,/Departure changed/);
+  assert.equal(draft.comparison,committed.comparison,'the committed interval comparison remains available');
+  await evaluate("inspectionFixture.panel.refresh()");
+  draft=await read();
+  assert.equal(draft.tables.length,0,'a parent refresh cannot restore the cancelled inspection');
+  assert.equal(draft.comparison,committed.comparison,'a parent refresh retains the interval comparison');
+  assert.equal(await evaluate("document.querySelector('#route-traversal-departure').value"),'20');
+  await inspect(20.5);
+  verifyRows(await read(),{existing:base,proposal:base},[0,1,2],[2,3],20.5,1,3);
+  outcomes.push({input:'edited departure clears stale arrival evidence and can be inspected again',pass:true});
+
   // Real keyboard editing and Enter submit, not synthetic submit only.
   await evaluate("document.querySelector('#route-traversal-departure').focus()");
   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'a',code:'KeyA',windowsVirtualKeyCode:65,modifiers:2});
