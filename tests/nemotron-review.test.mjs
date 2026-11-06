@@ -80,3 +80,58 @@ test('server refusals and offline failures become readable errors', async () => 
   const offline = await requestNemotronReview(figures, { fetchImpl: async () => { throw new TypeError('down'); } });
   assert.equal(offline.code, 'offline');
 });
+
+const numericFigures = (...values) => values.map(value => ({
+  label: 'Value', unit: 'L', existing: value, proposed: value,
+}));
+
+test('isolated negative claims do not verify against only their positive magnitude', () => {
+  for (const token of ['-1000', '−1000', '-.5', '−.5']) {
+    const check = checkDraft(`Water is ${token} L.`, numericFigures(1000, 0.5, 5));
+    assert.equal(check.verified, false, token);
+    assert.equal(check.checked, 1, token);
+    assert.equal(check.unmatched[0].token, token);
+  }
+});
+
+test('signed and leading-decimal values compare at their actual magnitude', () => {
+  for (const [token, value] of [['-5', -5], ['+5', 5], ['−5', -5],
+    ['.5', 0.5], ['-.5', -0.5], ['−.5', -0.5], ['+.5', 0.5], ['5.', 5]]) {
+    for (const sentence of [`Water is ${token}L.`, `Water (${token}) L.`]) {
+      const check = checkDraft(sentence, numericFigures(value));
+      assert.equal(check.verified, true, sentence);
+      assert.equal(check.checked, 1, sentence);
+    }
+  }
+  assert.equal(checkDraft('Water is .5 L.', numericFigures(5)).verified, false);
+  assert.equal(checkDraft('Water is -1,000.5 L.', numericFigures(-1000.5)).verified, true);
+});
+
+test('range separators preserve positive and negative endpoints', () => {
+  for (const text of ['1-5', '1 - 5', '1 -5', '1–5', '1—5']) {
+    const check = checkDraft(`Water spans ${text} L.`, numericFigures(1, 5));
+    assert.equal(check.verified, true, text);
+    assert.equal(check.checked, 2, text);
+  }
+  for (const text of ['-5--2', '−5–−2', '-5 - -2']) {
+    assert.equal(checkDraft(`Water spans ${text} L.`, numericFigures(-5, -2)).verified, true, text);
+    assert.equal(checkDraft(`Water spans ${text} L.`, numericFigures(5, 2)).verified, false, text);
+  }
+});
+
+test('label numbers use the same signed decimal interpretation', () => {
+  const labelled = [{ label: 'At or below −.5 mm', unit: 'cells', existing: 46, proposed: 40 }];
+  assert.equal(checkDraft('Below -.5 mm: 46 cells.', labelled).verified, true);
+  assert.equal(checkDraft('Above .5 mm: 46 cells.', labelled).verified, false);
+  const ranged = [{ label: 'Depth 1-5 mm', unit: 'cells', existing: 46, proposed: 40 }];
+  assert.equal(checkDraft('Depth 1–5 mm: 46 cells.', ranged).verified, true);
+});
+
+test('a new line preserves a negative reading after a positive reading', () => {
+  for (const newline of ['\n', '\r\n']) {
+    const check = checkDraft(`Water readings:${newline}1000${newline}-1000 L`, numericFigures(1000));
+    assert.equal(check.verified, false);
+    assert.equal(check.checked, 2);
+    assert.deepEqual(check.unmatched.map(row => row.token), ['-1000']);
+  }
+});

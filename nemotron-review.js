@@ -35,22 +35,32 @@ export function summaryFigures(results, weather) {
   return figures.filter(f => Number.isFinite(f.existing) && Number.isFinite(f.proposed));
 }
 
+// Preserve signs and leading decimals. An ASCII hyphen after a numeric
+// endpoint remains range punctuation (including "1 -5"), as before.
+function numberTokens(text) {
+  return Array.from(text.matchAll(/[+−-]?(?:\d+(?:\.\d+)?|\.\d+)/g), match => {
+    const token = match[0];
+    return token.startsWith('-') && /\d[ \t]*$/.test(text.slice(0, match.index))
+      ? token.slice(1) : token;
+  });
+}
+const tokenValue = token => Number(token.replace('−', '-'));
+
 // Every number a draft quotes must equal a figure shown to the reader, rounded
 // to the same number of decimals the draft used. Anything else is flagged.
 export function checkDraft(text, figures) {
   const clean = String(text).replace(/(\d),(\d{3})(?!\d)/g, '$1$2');
   const allowed = figures.flatMap(f => [f.existing, f.proposed]).filter(Number.isFinite);
   // Numbers written into a label (for example "10 mm" in a threshold name) are part of the shown comparison.
-  const labelNumbers = figures.flatMap(f => (f.label.match(/\d+(?:\.\d+)?/g) || []).map(Number));
+  const labelNumbers = figures.flatMap(f => numberTokens(f.label).map(tokenValue));
   const sentences = clean.split(/(?<=[.!?])\s+/).filter(Boolean);
   const unmatched = [];
   let checked = 0;
   for (const sentence of sentences) {
-    for (const match of sentence.matchAll(/\d+(?:\.\d+)?/g)) {
+    for (const token of numberTokens(sentence)) {
       checked += 1;
-      const token = match[0];
       const decimals = (token.split('.')[1] || '').length;
-      const value = Number(token);
+      const value = tokenValue(token);
       const ok = labelNumbers.includes(value) || allowed.some(v => roundTo(v, decimals) === value);
       if (!ok) unmatched.push({ token, sentence });
     }
