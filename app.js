@@ -558,7 +558,7 @@ $('map-snapshot-index').addEventListener('input',event=>showMapSnapshot(event.ta
 $('map-snapshot-prev').addEventListener('click',()=>showMapSnapshot(Number($('map-snapshot-index').value)-1));
 $('map-snapshot-next').addEventListener('click',()=>showMapSnapshot(Number($('map-snapshot-index').value)+1));
 $('copy-existing').addEventListener('click',()=>{project.proposal=structuredClone(project.existing);rerun();notice('Proposal now matches the existing site.');});
-$('reset').addEventListener('click',()=>{project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
+$('reset').addEventListener('click',()=>{if(unsavedProjectWarning.hasUnsavedChanges()&&!window.confirm('Replace the current project with the fictional example? Accepted changes not saved in this browser will be lost. Cancel to keep working or export them first.'))return;project=makeExample();syncForm();rerun();notice('Fictional example restored.');});
 $('suggest').addEventListener('click',()=>{if(comparisonState!=='ready')return;const s=chooseNextObservation(project,results);if(!s)return;if(s.cellIndex!==project.selectedIndex || s.minute!==Number($('obs-minute').value)) clearObservationDraft('The suggested measurement changed the target cell or time.');project.selectedIndex=s.cellIndex;$('obs-minute').value=s.minute;brush='inspect';for(const el of document.querySelectorAll('[data-brush]')){const active=el.dataset.brush==='inspect';el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));}rerun();$('obs-depth').focus();});
 infiltrationInquiry=mountInfiltrationInquiry({getProject:()=>project,selectCell:index=>{
   project.selectedIndex=index;brush='inspect';
@@ -584,6 +584,11 @@ $('export').addEventListener('click',()=>{
 });
 $('import').addEventListener('change',async event=>{
   const file=event.target.files?.[0];if(!file)return;
+  // Cancel only this selection before retiring any previously admitted import.
+  // The selected file has not yet been read or validated.
+  if(unsavedProjectWarning.hasUnsavedChanges()&&!window.confirm('Continue opening another project file? If it is accepted, it will replace current changes not saved in this browser. Cancel to keep working or export them first.')){
+    event.target.value='';return;
+  }
   // Selecting a new source retires computation before its asynchronous read.
   const serial=++projectImportSerial, revision=++projectRevision;
   ++comparisonGeneration; comparisonComputation.cancel();

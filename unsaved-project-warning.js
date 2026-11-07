@@ -17,6 +17,7 @@ export function createUnsavedProjectWarning({ target, getProject }) {
     target[needed ? 'addEventListener' : 'removeEventListener']('beforeunload', protect);
   }
   return {
+    hasUnsavedChanges: differs,
     refresh,
     saved() {
       // Call only after the existing save returns verified success.
