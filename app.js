@@ -1,3 +1,4 @@
+import { createUnsavedProjectWarning } from './unsaved-project-warning.js';
 import { mountManualObservationCorrection } from './manual-observation-correction.js';
 import { openSavedProject, mountSavedProjectRecovery } from './saved-project-recovery.js';
 import {mountInvestigationNavigation} from './investigation-navigation.js';
@@ -63,6 +64,7 @@ const waterHistoryCsv = createWaterHistoryCsv($('water-history-values'));
 const waterTradeoffs = createWaterTradeoffs($('chart').closest('.chart-wrap'), minute => waterHistory.selectMinute(minute));
 const savedProject = openSavedProject();
 let project = savedProject.project;
+const unsavedProjectWarning = createUnsavedProjectWarning({ target: window, getProject: () => project });
 const savedProjectRecovery = mountSavedProjectRecovery(savedProject);
 let brush = 'inspect';
 let view = 'peak';
@@ -164,6 +166,8 @@ function safeText(value) { const s = document.createElement('span'); s.textConte
 function persist() {
   const previousState = browserSaveState;
   const saved = savedProject.save(project);
+  if (saved) unsavedProjectWarning.saved();
+  else unsavedProjectWarning.refresh();
   savedProjectRecovery.refresh();
   browserSaveState = saved ? 'saved' : 'unsaved';
   const status = $('project-save-status');
@@ -319,6 +323,7 @@ function rerun() {
   comparisonComputation.cancel();
   try {
     validateProject(project);
+    unsavedProjectWarning.refresh();
     manualCorrection.refresh();
     refreshObservationImporterForProject();
     retireRetargetedObservationDraft(); infiltrationInquiry?.retire();
