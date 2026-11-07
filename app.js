@@ -1,3 +1,4 @@
+import { mountManualObservationCorrection } from './manual-observation-correction.js';
 import { openSavedProject, mountSavedProjectRecovery } from './saved-project-recovery.js';
 import {mountInvestigationNavigation} from './investigation-navigation.js';
 import {arrowGridIndex} from './grid-keyboard.js';
@@ -90,6 +91,10 @@ let nemotronReviewSerial = 0;
 let comparisonFocus = null;
 const observationFocus = createObservationFocus({
   list: $('observation-list'), getProject: () => project, emptyTarget: $('obs-depth'),
+});
+const manualCorrection = mountManualObservationCorrection({
+  list: $('observation-list'), getProject: () => project, validate: validateProject,
+  changed: rerun, available: () => comparisonState === 'ready',
 });
 let comparisonInert = [];
 const comparisonStatus = document.createElement('section');
@@ -206,6 +211,7 @@ function setComparisonInteraction(pending) {
 }
 function setComparisonState(state, error) {
   comparisonState = state;
+  manualCorrection.refresh();
   $('nemotron-review-run').disabled = state !== 'ready';
   waterHistory.setAvailable(state === 'ready');
   waterHistoryCsv.setAvailable(state === 'ready');
@@ -313,6 +319,7 @@ function rerun() {
   comparisonComputation.cancel();
   try {
     validateProject(project);
+    manualCorrection.refresh();
     refreshObservationImporterForProject();
     retireRetargetedObservationDraft(); infiltrationInquiry?.retire();
     const source = structuredClone(project);
@@ -479,6 +486,7 @@ function observations() {
       : ' The model has an exact saved snapshot at that minute.';
     $('next-reading').textContent=`Potential next check: cell ${nameCell(suggested.cellIndex)} at ${suggested.minute} min · ${numeric(suggested.differenceMm)} mm simulated disagreement.${timeSupport} Choose a safe measurement you have permission to make; this is a sensitivity cue, not a confidence score.`;
   }
+  manualCorrection.refresh();
   const list=$('observation-list');list.replaceChildren();
   if(!project.observations.length){const p=document.createElement('p');p.className='muted';p.textContent='No measurements retained yet. A field reading can challenge either simulated alternative.';list.append(p);observationFocus.restore(restoreFocus);return;}
   for(let i=project.observations.length-1;i>=0;i--){
@@ -489,7 +497,7 @@ function observations() {
     const body=document.createElement('small');body.textContent=`${o.source} · model depths at ${o.minute} min (solver brackets ${a.beforeMinute}–${a.afterMinute} min): existing ${numeric(a.depthMm)} mm (residual ${numeric(o.depthMm-a.depthMm)}), proposal ${numeric(b.depthMm)} mm (residual ${numeric(o.depthMm-b.depthMm)})`;
     info.append(main,body);
     if(o.tableSource){const origin=document.createElement('small');origin.className='table-origin';origin.textContent=`Supplied table: ${o.tableSource.fileName}, line ${o.tableSource.line} · original ${o.tableSource.depthValue} ± ${o.tableSource.uncertaintyValue} ${o.tableSource.unit}`;info.append(origin);}
-    info.append(evidenceControls(o,rerun));const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.dataset.observationRemove='';remove.addEventListener('click',()=>{markRemoval();project.observations.splice(i,1);rerun();});row.append(info,remove);list.append(row);
+    info.append(evidenceControls(o,rerun));const remove=document.createElement('button');remove.textContent='Remove';remove.type='button';remove.dataset.observationRemove='';remove.addEventListener('click',()=>{markRemoval();project.observations.splice(i,1);rerun();});row.append(info,remove);manualCorrection.mount(row,o);list.append(row);
   }
   observationFocus.restore(restoreFocus);
 }
