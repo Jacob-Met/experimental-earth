@@ -203,3 +203,9 @@
 
 .nemotron-review{margin-top:14px;border-top:1px dashed #cfe0d6;padding-top:14px}.nemotron-review-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}.nemotron-review-head .mini-note{margin:0;max-width:520px}.nemotron-review-output{margin-top:12px;font-size:13px;line-height:1.6;color:#23433b;border-left:3px solid #7fb9a6;padding:2px 0 2px 14px}.nemotron-review-output p{margin:0 0 9px}.nemotron-flag{color:#8a4b12;font-size:12px}
 a{color:#1d6b5a;text-decoration-thickness:1px;text-underline-offset:3px}a:focus-visible{outline:3px solid #f2a53f;outline-offset:2px}
+
+/* Manual correction uses a separate persistent panel; the Add form is untouched. */
+#manual-observation-correction { margin-top: 1rem; }
+#manual-observation-correction form[hidden] { display: none; }
+#manual-observation-correction fieldset { display: grid; gap: .75rem; min-width: 0; }
+#manual-observation-correction input { width: 100%; box-sizing: border-box; }
