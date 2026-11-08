@@ -110,8 +110,8 @@ export function verifyRainfallCycle({times,edges},{previous,changed},readings){
     }
     need(cmp(sum,Q.zero)<0n,'Cycle weight is not strictly negative.');
     const recordIndices=[...new Set(cycle.filter(e=>e.recordIndex!==null).map(e=>e.recordIndex))].sort((a,b)=>a-b);
-    return {edges:cycle.map(e=>({id:e.id,kind:e.kind,from:e.from,to:e.to,fromMinute:times[e.from],toMinute:times[e.to],weightMm:encode(e.weight),recordIndex:e.recordIndex,recordRef:e.recordRef})),sumMm:encode(sum),recordIndices,recordRefs:recordIndices.map(i=>'rain-gauge:'+readings[i].id)};
+    return {edges:cycle.map(e=>encodeRainfallEdge(e,times)),sumMm:encode(sum),recordIndices,recordRefs:recordIndices.map(i=>'rain-gauge:'+readings[i].id)};
 }
 
 export const encodeRainfallRecords=records=>records.map(r=>({index:r.index,ref:r.ref,reading:r.reading,lowerMm:encode(r.lower),upperMm:encode(r.upper)}));
-export const encodeRainfallEdge=(e,times)=>({id:e.id,kind:e.kind,from:e.from,to:e.to,fromMinute:times[e.from],toMinute:times[e.to],weightMm:encode(e.weight),recordIndex:e.recordIndex,recordRef:e.recordRef});
+export const encodeRainfallEdge=(e,times)=>({id:e.id,kind:e.kind,from:e.from,to:e.to,fromMinute:times[e.from],toMinute:times[e.to],weightMm:encode(e.weight),recordIndex:e.recordIndex,recordRef:e.recordRef,...(e.conditionRef===undefined?{}:{conditionRef:e.conditionRef})});

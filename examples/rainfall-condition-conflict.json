@@ -1,0 +1,13 @@
+{
+  "schema": "experimental-earth-rainfall-condition/1",
+  "eventRef": "authored full-family arithmetic event",
+  "reading": {
+    "id": "fictional-conflict-hypothesis",
+    "startMinute": 0,
+    "endMinute": 10,
+    "depth": 11,
+    "uncertainty": 0,
+    "unit": "mm",
+    "source": "Authored fictional hypothetical total; not an acquired rainfall observation"
+  }
+}

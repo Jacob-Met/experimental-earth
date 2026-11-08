@@ -1,0 +1,7 @@
+{
+  "schema": "experimental-earth-rainfall-interval-query/1",
+  "eventRef": "authored full-family arithmetic event",
+  "startMinute": 5,
+  "endMinute": 10,
+  "source": "Authored fictional late-interval question; not a measurement"
+}
