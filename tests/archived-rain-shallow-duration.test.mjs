@@ -19,16 +19,39 @@ const band=r=>({lo:max(Z,sub(number(r.valueMm),number(r.uncertaintyMm))),hi:min(
 
 
 function neighbor(x,d){const b=Buffer.alloc(8);b.writeDoubleBE(x);b.writeBigUInt64BE(b.readBigUInt64BE()+BigInt(d));return b.readDoubleBE();}
+function conditionalPieces(D){
+ const out=[],emit=(a,b,r)=>{assert.ok(cmp(a,b)<=0n);if(cmp(a,b)<0n)out.push([a,b,r]);},s=div(D,K);
+ emit(Z,s,Z);emit(s,add(s,Q(1n,5n)),R);emit(add(s,Q(1n,5n)),QUARTER,Z);
+ for(const[i,amount]of[[1,ONE],[2,Q(2n)],[3,Q(3n)]]){
+  const a=Q(BigInt(i),4n),b=Q(BigInt(i+1),4n),x=add(a,div(amount,R));emit(a,x,R);emit(x,b,Z);
+ }assert.ok(out.length<=9);return out;
+}
+function rawDuration(pieces,H){
+ let C=Z,m=Z,W=Z,last=Z,total=Z;const totals=[Z,Z,Z,Z];
+ for(const[a,b,r]of pieces){eq(a,last);const slope=sub(r,K),cuts=[a,b],before=W;
+  if(cmp(slope,Z))for(const level of[Z,H]){const t=add(a,div(sub(level,before),slope));if(cmp(t,a)>0n&&cmp(t,b)<0n)cuts.push(t);}
+  cuts.sort((x,y)=>cmp(x,y)<0n?-1:cmp(x,y)>0n?1:0);
+  for(let j=1;j<cuts.length;j++){const u=cuts[j-1],v=cuts[j],t=div(add(u,v),Q(2n));if(cmp(max(Z,add(before,mul(slope,sub(t,a)))),H)>0n)total=add(total,sub(v,u));}
+  C=add(C,mul(r,sub(b,a)));m=min(m,sub(C,mul(K,b)));W=sub(sub(C,mul(K,b)),m);eq(W,max(Z,add(before,mul(slope,sub(b,a)))));
+  for(let i=0;i<4;i++)totals[i]=add(totals[i],mul(r,max(Z,sub(min(b,Q(BigInt(i+1),4n)),max(a,Q(BigInt(i),4n))))));
+  last=b;
+ }eq(last,ONE);assert.deepEqual(totals,[Q(4n),ONE,Q(2n),Q(3n)]);return total;
+}
 function bounds(H){
  const A=[Z,Q(4n),FIVE,Q(7n),TEN];let late=Z;
  for(let i=1;i<4;i++){const a=Q(BigInt(i),4n),b=Q(BigInt(i+1),4n),x=sub(b,div(sub(A[i+1],A[i]),R)),cuts=[a,x,b];
  for(const t of[div(sub(A[i],H),K),div(add(sub(H,A[i+1]),mul(R,b)),sub(R,K))])if(cmp(t,a)>0n&&cmp(t,b)<0n)cuts.push(t);
  cuts.sort((a,b)=>cmp(a,b)<0n?-1:cmp(a,b)>0n?1:0);
  for(let j=1;j<cuts.length;j++){const u=cuts[j-1],v=cuts[j],t=div(add(u,v),Q(2n));if(cmp(sub(max(A[i],sub(A[i+1],mul(R,sub(b,t)))),mul(K,t)),H)>0n)late=add(late,sub(v,u));}}
- return[add(late,div(sub(Q(5n,2n),H),Q(14n))),sub(ONE,div(H,Q(14n)))];
+ const ds=[Z,Q(3n,10n)];
+ for(const c of[Q(2n),Q(5n,2n),Q(16n,5n),Q(17n,5n),Q(4n),Q(23n,5n)]){
+  const d=sub(H,c);if(cmp(d,Z)>0n&&cmp(d,Q(3n,10n))<0n&&!ds.some(x=>cmp(x,d)===0n))ds.push(d);
+ }assert.ok(ds.length<=8);
+ let upper=Z;for(const d of ds)upper=max(upper,rawDuration(conditionalPieces(d),H));
+ return[add(late,div(max(Z,sub(Q(5n,2n),H)),Q(14n))),upper];
 }
 function witness(w,H,target,lower){
- assert.ok(w.segments.length<=(lower?8:6));assert.equal(w.knots.length,w.segments.length+1);assert.equal(w.durationRecords.length,w.segments.length);
+ assert.ok(w.segments.length<=8);assert.equal(w.knots.length,w.segments.length+1);assert.equal(w.durationRecords.length,w.segments.length);
  let C=Z,m=Z,W=Z,last=Z,total=Z,plateau=Z;const totals=[Z,Z,Z,Z],points=[[Z,Z,Z]];
  function knot(k,t){eq(dec(k.hour),t);eq(dec(k.cumulativeRainMm),C);eq(dec(k.surfaceWaterMm),W);eq(dec(k.cumulativeInfiltrationMm),sub(C,W));}knot(w.knots[0],Z);
  w.segments.forEach((s,i)=>{const a=dec(s.startHour),b=dec(s.endHour),rate=dec(s.rateMmHr),L=sub(b,a),before=W,slope=sub(rate,K);eq(a,last);assert.ok(cmp(L,Z)>0n&&cmp(rate,Z)>=0n&&cmp(rate,R)<=0n);eq(dec(s.depthMm),mul(rate,L));let contained=false;
@@ -40,12 +63,17 @@ function witness(w,H,target,lower){
  eq(last,ONE);assert.deepEqual(totals,[Q(4n),ONE,Q(2n),Q(3n)]);eq(total,target);eq(dec(w.durationHours),target);eq(plateau,lower&&cmp(H,Q(11n,10n))<=0n?Q(1n,14n):Z);
  let peak=Z;for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){const z=sub(sub(points[j][1],points[i][1]),mul(K,sub(points[j][0],points[i][0])));assert.ok(cmp(z,points[j][2])<=0n);peak=max(peak,z);}eq(dec(w.peakSurfaceWaterMm),peak);eq(dec(w.terminalSurfaceWaterMm),W);
 }
-function run(h){const args=[original(),reading('first',4),reading('third',2),criterion(h)].map(json),v=inspect(...args),H=number(h),[L,U]=bounds(H);assert.deepEqual(v.pairedReport,parentInspect(...args));assert.deepEqual(v.work,estimate(...args));assert.equal(v.work.totalWork,51200);assert.equal(v.work.paired.totalWork,30720);assert.equal(v.work.additionalPreflightWork,4096);assert.equal(v.work.shallowDurationWork,16384);assert.equal(v.work.limits.maxShallowSegments,14);assert.equal(v.work.limits.maxShallowKnots,16);assert.equal(v.scope.fixedQuarterPointwiseLowerProved,true);eq(dec(v.thresholdMm),H);eq(dec(v.assessment.durationBounds.lowerHours),L);eq(dec(v.assessment.durationBounds.upperHours),U);witness(v.assessment.lowerWitness,H,L,true);witness(v.assessment.upperWitness,H,U,false);return v;}
+function run(h){const args=[original(),reading('first',4),reading('third',2),criterion(h)].map(json),v=inspect(...args),H=number(h),[L,U]=bounds(H);assert.deepEqual(v.pairedReport,parentInspect(...args));assert.deepEqual(v.work,estimate(...args));assert.equal(v.work.totalWork,51200);assert.equal(v.work.paired.totalWork,30720);assert.equal(v.work.additionalPreflightWork,4096);assert.equal(v.work.shallowDurationWork,16384);assert.equal(v.work.limits.maxShallowSegments,16);assert.equal(v.work.limits.maxShallowKnots,18);assert.equal(v.scope.fixedQuarterPointwiseLowerProved,true);eq(dec(v.thresholdMm),H);eq(dec(v.assessment.durationBounds.lowerHours),L);eq(dec(v.assessment.durationBounds.upperHours),U);witness(v.assessment.lowerWitness,H,L,true);witness(v.assessment.upperWitness,H,U,false);return v;}
 test('sharp half and one mm, strict equality plateau',()=>{run(.5);run(1);assert.deepEqual(bounds(Q(1n,2n)),[Q(25n,28n),Q(27n,28n)]);assert.deepEqual(bounds(ONE),[Q(6n,7n),Q(13n,14n)]);});
 test('all kink neighbors, represented1.1, subnormal, endpoint2',()=>{for(const x of[1.1,1.3,1.9])for(const h of[neighbor(x,-1),x,neighbor(x,1)])run(h);run(Number.MIN_VALUE);run(2);assert.deepEqual(bounds(Q(2n)),[Q(8n,21n),Q(6n,7n)]);const H=number(1.1),eps=sub(H,Q(11n,10n));eq(eps,Q(1n,11258999068426240n));eq(sub(sub(Q(13n,14n),div(H,Q(14n))),bounds(H)[0]),mul(Q(5n,21n),eps));for(const[h,l]of[[Q(11n,10n),Q(119n,140n)],[Q(13n,10n),Q(331n,420n)],[Q(19n,10n),Q(193n,420n)]])eq(bounds(h)[0],l);});
-test('unsupported versus empty bands',()=>{const o=json(original()),f=reading('first',4),t=reading('third',2);for(const h of[0,-0,neighbor(2,1),3.5,-1])assert.throws(()=>estimate(o,json(f),json(t),json(criterion(h))));for(const[a,b]of[[reading('first',3),t],[reading('first',4,.5),t],[f,reading('third',2,Number.MIN_VALUE)],[t,f]])assert.throws(()=>estimate(o,json(a),json(b),json(criterion(1))));});
-test('incompatible null and complete parent',()=>{for(const[f,t]of[[reading('first',6),reading('third',2)],[reading('first',3),reading('third',6)]]){const args=[original(),f,t,criterion(1)].map(json),v=inspect(...args);assert.equal(v.assessment.status,'declared-readings-incompatible');for(const k of['durationBounds','lowerWitness','upperWitness'])assert.equal(v.assessment[k],null);assert.deepEqual(v.pairedReport,parentInspect(...args));}});
-test('composition and complete reservation',()=>{const o=original(),f=reading('first',4),t=reading('third',2),c=criterion(1);const e=counted(o,f,t,c,true);assert.equal(e.refused,false);assert.deepEqual(e.events,['PE','SE','TE','SE','TE']);const v=counted(o,f,t,c);assert.equal(v.refused,false);assert.deepEqual(v.events,['PE','SE','TE','SE','TE','PI','SE','TE','SE','TE','SI','TE','TI','SI','TE','TI']);for(const b of[counted(o,f,t,c,false,true),counted(o,f,t,criterion(neighbor(2,1)))]){assert.equal(b.refused,true);assert.deepEqual(b.events,['PE','SE','TE','SE','TE']);}});
+test('intermediate exact rational kinks and represented neighbors',()=>{
+ for(const x of[2.3,2.5,2.8])for(const h of[neighbor(x,-1),x,neighbor(x,1)])run(h);
+ run(neighbor(2,1));run(3);run(3.5);
+ for(const[h,l,u]of[[Q(23n,10n),Q(13n,60n),Q(11n,14n)],[Q(5n,2n),Q(3n,28n),Q(76n,105n)],[Q(14n,5n),Q(3n,35n),Q(53n,84n)],[Q(3n),Q(1n,14n),Q(73n,140n)],[Q(7n,2n),Q(1n,28n),Q(26n,105n)]])assert.deepEqual(bounds(h),[l,u]);
+});
+test('unsupported versus empty bands',()=>{const o=json(original()),f=reading('first',4),t=reading('third',2);for(const h of[0,-0,neighbor(3.5,1),4,-1])assert.throws(()=>estimate(o,json(f),json(t),json(criterion(h))));for(const[a,b]of[[reading('first',3),t],[reading('first',4,.5),t],[f,reading('third',2,Number.MIN_VALUE)],[t,f]])assert.throws(()=>estimate(o,json(a),json(b),json(criterion(1))));});
+test('incompatible null and complete parent',()=>{for(const[f,t]of[[reading('first',6),reading('third',2)],[reading('first',3),reading('third',6)]]){const args=[original(),f,t,criterion(3)].map(json),v=inspect(...args);assert.equal(v.assessment.status,'declared-readings-incompatible');for(const k of['durationBounds','lowerWitness','upperWitness'])assert.equal(v.assessment[k],null);assert.deepEqual(v.pairedReport,parentInspect(...args));}});
+test('composition and complete reservation',()=>{const o=original(),f=reading('first',4),t=reading('third',2),c=criterion(3);const e=counted(o,f,t,c,true);assert.equal(e.refused,false);assert.deepEqual(e.events,['PE','SE','TE','SE','TE']);const v=counted(o,f,t,c);assert.equal(v.refused,false);assert.deepEqual(v.events,['PE','SE','TE','SE','TE','PI','SE','TE','SE','TE','SI','TE','TI','SI','TE','TI']);for(const b of[counted(o,f,t,c,false,true),counted(o,f,t,criterion(neighbor(3.5,1)))]){assert.equal(b.refused,true);assert.deepEqual(b.events,['PE','SE','TE','SE','TE']);}});
 
 function counted(o,f,t,c,onlyEstimate=false,shortWork=false){
  const defs=[['/rainfall-constraint-core.js','export function buildRainfallGraph(included,endpointSet){','graph'],['/rainfall-constraint-core.js','export function solveRainfallFeasibility({times,edges}){','feasibility'],['/rain-gauge-consistency.js','export function rainfallConsistency(project,gauge,offeredRates=[]){','consistency'],['/rain-gauge-evidence.js','export function validateRainGauge(project,gauge){','gauge'],['/rain-soil-evidence.js','export function compareRainSoil(project, request) {','rainSoil'],['/infiltration-study.js','export function compareInfiltration(project, study = project.infiltrationStudy) {','infiltration']];
