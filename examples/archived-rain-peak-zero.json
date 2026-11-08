@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-peak-criterion/1",
+  "id": "authored-peak-at-most-zero",
+  "metric": "peak-surface-water-mm",
+  "operator": "at-most",
+  "valueMm": 0,
+  "source": "Fictional authored zero-depth peak-water question for strict ponded-duration analysis; separate from the original terminal target."
+}
