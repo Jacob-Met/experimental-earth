@@ -1,0 +1,2933 @@
+{
+  "schema": "experimental-earth-ponded-duration-figure-certificates/1",
+  "sourceCommit": "48a75f6a46fbfa48e28caeef4c61ab26725dabdf",
+  "cases": [
+    {
+      "sourceFile": "ponded-one.stdout.json",
+      "sourceSHA256": "ba377b442d2830ab0b3d80bb9182bff3e5737507c641dd0a282d3ae34bb40aca",
+      "sourceBytes": 143043,
+      "inputs": {
+        "originalDeclaration": {
+          "sha256": "630a1884f6271b4419e42112f6d8cd2ed7e5aeec8e56de658bfb1745608a1893",
+          "bytes": 833
+        },
+        "firstArchivedReading": {
+          "sha256": "2bf6981dc73b8f7df4e03bd40e90b1759b8fad7a1fcaa0f7b79639d4b8f8589f",
+          "bytes": 263
+        },
+        "thirdArchivedReading": {
+          "sha256": "c9606f24dbee22c3d5bab8f58c19324c39aaa29115a1531a1b7d05f1b8c15479",
+          "bytes": 309
+        },
+        "peakCriterion": {
+          "sha256": "4b2d5059fc7a0104207816a643bfa82ada79c8e487318c9c27f1bd0048c116ac",
+          "bytes": 330
+        }
+      },
+      "assessment": {
+        "status": "declared-readings-compatible",
+        "compatibleQuarterBands": {
+          "first": {
+            "lowerMm": {
+              "numerator": "1",
+              "denominator": "1"
+            },
+            "upperMm": {
+              "numerator": "1",
+              "denominator": "1"
+            },
+            "empty": false
+          },
+          "third": {
+            "lowerMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "upperMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "empty": false
+          }
+        },
+        "durationBounds": {
+          "lowerHours": {
+            "numerator": "19",
+            "denominator": "28"
+          },
+          "upperHours": {
+            "numerator": "11",
+            "denominator": "12"
+          },
+          "lowerInclusive": true,
+          "upperInclusive": true
+        },
+        "lowerWitness": {
+          "ordering": "minimum-ponded-duration",
+          "quarterTotalsMm": {
+            "first": {
+              "numerator": "1",
+              "denominator": "1"
+            },
+            "third": {
+              "numerator": "2",
+              "denominator": "1"
+            }
+          },
+          "bins": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "depthMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "segments": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "9",
+                "denominator": "28"
+              },
+              "rateMmHr": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "9",
+                "denominator": "28"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "25",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "8",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "knots": [
+            {
+              "hour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "9",
+                "denominator": "28"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "7"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "10",
+                "denominator": "7"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "cumulativeRainMm": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "7",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "11",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "9",
+                "denominator": "2"
+              }
+            }
+          ],
+          "durationRecords": [
+            {
+              "segmentIndex": 0,
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "dry",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "segmentIndex": 1,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "9",
+                "denominator": "28"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "dry",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "segmentIndex": 2,
+              "startHour": {
+                "numerator": "9",
+                "denominator": "28"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "5",
+                "denominator": "28"
+              }
+            },
+            {
+              "segmentIndex": 3,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 4,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "startWaterMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "9",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            }
+          ],
+          "earlyHalfDurationHours": {
+            "numerator": "5",
+            "denominator": "28"
+          },
+          "laterHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "durationHours": {
+            "numerator": "19",
+            "denominator": "28"
+          },
+          "terminalSurfaceWaterMm": {
+            "numerator": "9",
+            "denominator": "2"
+          },
+          "peakSurfaceWaterMm": {
+            "numerator": "9",
+            "denominator": "2"
+          },
+          "attainingPeakHour": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "originalHalfHourTotalsMm": [
+            {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            {
+              "numerator": "5",
+              "denominator": "1"
+            }
+          ],
+          "withinDeclaredBands": true,
+          "rateCapVerified": true
+        },
+        "upperWitness": {
+          "ordering": "maximum-ponded-duration",
+          "quarterTotalsMm": {
+            "first": {
+              "numerator": "1",
+              "denominator": "1"
+            },
+            "third": {
+              "numerator": "2",
+              "denominator": "1"
+            }
+          },
+          "bins": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "depthMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "segments": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "20"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "20"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "rateMmHr": {
+                "numerator": "16",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "8",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "knots": [
+            {
+              "hour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "20"
+              },
+              "cumulativeRainMm": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "10"
+              },
+              "surfaceWaterMm": {
+                "numerator": "7",
+                "denominator": "10"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "cumulativeRainMm": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "7",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "11",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "9",
+                "denominator": "2"
+              }
+            }
+          ],
+          "durationRecords": [
+            {
+              "segmentIndex": 0,
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "20"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "7",
+                "denominator": "10"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "20"
+              }
+            },
+            {
+              "segmentIndex": 1,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "20"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "7",
+                "denominator": "10"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "drains-to-dry",
+              "drainHour": {
+                "numerator": "1",
+                "denominator": "6"
+              },
+              "durationHours": {
+                "numerator": "7",
+                "denominator": "60"
+              }
+            },
+            {
+              "segmentIndex": 2,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 3,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 4,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "startWaterMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "9",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            }
+          ],
+          "earlyHalfDurationHours": {
+            "numerator": "5",
+            "denominator": "12"
+          },
+          "laterHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "durationHours": {
+            "numerator": "11",
+            "denominator": "12"
+          },
+          "terminalSurfaceWaterMm": {
+            "numerator": "9",
+            "denominator": "2"
+          },
+          "peakSurfaceWaterMm": {
+            "numerator": "9",
+            "denominator": "2"
+          },
+          "attainingPeakHour": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "originalHalfHourTotalsMm": [
+            {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            {
+              "numerator": "5",
+              "denominator": "1"
+            }
+          ],
+          "withinDeclaredBands": true,
+          "rateCapVerified": true
+        }
+      }
+    },
+    {
+      "sourceFile": "ponded-two.stdout.json",
+      "sourceSHA256": "f99e115f0f682518630d796a291f7884ed863ff3bddac09a4b5a5704363c6ae8",
+      "sourceBytes": 146154,
+      "inputs": {
+        "originalDeclaration": {
+          "sha256": "630a1884f6271b4419e42112f6d8cd2ed7e5aeec8e56de658bfb1745608a1893",
+          "bytes": 833
+        },
+        "firstArchivedReading": {
+          "sha256": "6df89f1d53702570b677705d60b5b3b81c1dfe2f3b6588281147546c51df7bc0",
+          "bytes": 309
+        },
+        "thirdArchivedReading": {
+          "sha256": "c9606f24dbee22c3d5bab8f58c19324c39aaa29115a1531a1b7d05f1b8c15479",
+          "bytes": 309
+        },
+        "peakCriterion": {
+          "sha256": "4b2d5059fc7a0104207816a643bfa82ada79c8e487318c9c27f1bd0048c116ac",
+          "bytes": 330
+        }
+      },
+      "assessment": {
+        "status": "declared-readings-compatible",
+        "compatibleQuarterBands": {
+          "first": {
+            "lowerMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "upperMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "empty": false
+          },
+          "third": {
+            "lowerMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "upperMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "empty": false
+          }
+        },
+        "durationBounds": {
+          "lowerHours": {
+            "numerator": "16",
+            "denominator": "21"
+          },
+          "upperHours": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "lowerInclusive": true,
+          "upperInclusive": true
+        },
+        "lowerWitness": {
+          "ordering": "minimum-ponded-duration",
+          "quarterTotalsMm": {
+            "first": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "third": {
+              "numerator": "2",
+              "denominator": "1"
+            }
+          },
+          "bins": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "segments": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "14"
+              },
+              "rateMmHr": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "9",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "14"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "5",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "3"
+              },
+              "rateMmHr": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "3"
+              },
+              "endHour": {
+                "numerator": "5",
+                "denominator": "14"
+              },
+              "rateMmHr": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "5",
+                "denominator": "14"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "20",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "8",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "knots": [
+            {
+              "hour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "14"
+              },
+              "cumulativeRainMm": {
+                "numerator": "9",
+                "denominator": "7"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "9",
+                "denominator": "7"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "1",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "3"
+              },
+              "cumulativeRainMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "5",
+                "denominator": "14"
+              },
+              "cumulativeRainMm": {
+                "numerator": "15",
+                "denominator": "7"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "15",
+                "denominator": "7"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "cumulativeRainMm": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "7",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "9",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            }
+          ],
+          "durationRecords": [
+            {
+              "segmentIndex": 0,
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "14"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "dry",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "segmentIndex": 1,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "14"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "28"
+              }
+            },
+            {
+              "segmentIndex": 2,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "3"
+              },
+              "startWaterMm": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "12"
+              }
+            },
+            {
+              "segmentIndex": 3,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "3"
+              },
+              "endHour": {
+                "numerator": "5",
+                "denominator": "14"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "dry",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "segmentIndex": 4,
+              "startHour": {
+                "numerator": "5",
+                "denominator": "14"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "7"
+              }
+            },
+            {
+              "segmentIndex": 5,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 6,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            }
+          ],
+          "earlyHalfDurationHours": {
+            "numerator": "11",
+            "denominator": "42"
+          },
+          "laterHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "durationHours": {
+            "numerator": "16",
+            "denominator": "21"
+          },
+          "terminalSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "peakSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "attainingPeakHour": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "originalHalfHourTotalsMm": [
+            {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            {
+              "numerator": "5",
+              "denominator": "1"
+            }
+          ],
+          "withinDeclaredBands": true,
+          "rateCapVerified": true
+        },
+        "upperWitness": {
+          "ordering": "maximum-ponded-duration",
+          "quarterTotalsMm": {
+            "first": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "third": {
+              "numerator": "2",
+              "denominator": "1"
+            }
+          },
+          "bins": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "segments": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "10"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "10"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "8",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "knots": [
+            {
+              "hour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "10"
+              },
+              "cumulativeRainMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "5"
+              },
+              "surfaceWaterMm": {
+                "numerator": "7",
+                "denominator": "5"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "1",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "cumulativeRainMm": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "7",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "9",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            }
+          ],
+          "durationRecords": [
+            {
+              "segmentIndex": 0,
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "10"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "7",
+                "denominator": "5"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "10"
+              }
+            },
+            {
+              "segmentIndex": 1,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "10"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "7",
+                "denominator": "5"
+              },
+              "endWaterMm": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "3",
+                "denominator": "20"
+              }
+            },
+            {
+              "segmentIndex": 2,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "startWaterMm": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 3,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 4,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            }
+          ],
+          "earlyHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "laterHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "durationHours": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "terminalSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "peakSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "attainingPeakHour": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "originalHalfHourTotalsMm": [
+            {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            {
+              "numerator": "5",
+              "denominator": "1"
+            }
+          ],
+          "withinDeclaredBands": true,
+          "rateCapVerified": true
+        }
+      }
+    },
+    {
+      "sourceFile": "ponded-four.stdout.json",
+      "sourceSHA256": "ddcf31aa5c146648f955adcdfb55c4c5093585630d582929a788af5b2facf3fa",
+      "sourceBytes": 142956,
+      "inputs": {
+        "originalDeclaration": {
+          "sha256": "630a1884f6271b4419e42112f6d8cd2ed7e5aeec8e56de658bfb1745608a1893",
+          "bytes": 833
+        },
+        "firstArchivedReading": {
+          "sha256": "dcd5c35184ac9ca1aa67fafa6486f4bc49fada00badeef1eba308f4badf1b8dd",
+          "bytes": 264
+        },
+        "thirdArchivedReading": {
+          "sha256": "c9606f24dbee22c3d5bab8f58c19324c39aaa29115a1531a1b7d05f1b8c15479",
+          "bytes": 309
+        },
+        "peakCriterion": {
+          "sha256": "4b2d5059fc7a0104207816a643bfa82ada79c8e487318c9c27f1bd0048c116ac",
+          "bytes": 330
+        }
+      },
+      "assessment": {
+        "status": "declared-readings-compatible",
+        "compatibleQuarterBands": {
+          "first": {
+            "lowerMm": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "upperMm": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "empty": false
+          },
+          "third": {
+            "lowerMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "upperMm": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "empty": false
+          }
+        },
+        "durationBounds": {
+          "lowerHours": {
+            "numerator": "13",
+            "denominator": "14"
+          },
+          "upperHours": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "lowerInclusive": true,
+          "upperInclusive": true
+        },
+        "lowerWitness": {
+          "ordering": "minimum-ponded-duration",
+          "quarterTotalsMm": {
+            "first": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "third": {
+              "numerator": "2",
+              "denominator": "1"
+            }
+          },
+          "bins": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "segments": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "14"
+              },
+              "rateMmHr": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "14"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "25",
+                "denominator": "7"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "rateMmHr": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "8",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "knots": [
+            {
+              "hour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "14"
+              },
+              "cumulativeRainMm": {
+                "numerator": "3",
+                "denominator": "7"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "7"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "cumulativeRainMm": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "7",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "9",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            }
+          ],
+          "durationRecords": [
+            {
+              "segmentIndex": 0,
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "14"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "case": "dry",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "segmentIndex": 1,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "14"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "5",
+                "denominator": "28"
+              }
+            },
+            {
+              "segmentIndex": 2,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 3,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 4,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            }
+          ],
+          "earlyHalfDurationHours": {
+            "numerator": "3",
+            "denominator": "7"
+          },
+          "laterHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "durationHours": {
+            "numerator": "13",
+            "denominator": "14"
+          },
+          "terminalSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "peakSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "attainingPeakHour": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "originalHalfHourTotalsMm": [
+            {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            {
+              "numerator": "5",
+              "denominator": "1"
+            }
+          ],
+          "withinDeclaredBands": true,
+          "rateCapVerified": true
+        },
+        "upperWitness": {
+          "ordering": "maximum-ponded-duration",
+          "quarterTotalsMm": {
+            "first": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "third": {
+              "numerator": "2",
+              "denominator": "1"
+            }
+          },
+          "bins": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "segments": [
+            {
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "5"
+              },
+              "rateMmHr": {
+                "numerator": "20",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "5"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "rateMmHr": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "1",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "rateMmHr": {
+                "numerator": "8",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "rateMmHr": {
+                "numerator": "12",
+                "denominator": "1"
+              },
+              "depthMm": {
+                "numerator": "3",
+                "denominator": "1"
+              }
+            }
+          ],
+          "knots": [
+            {
+              "hour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "5"
+              },
+              "cumulativeRainMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "6",
+                "denominator": "5"
+              },
+              "surfaceWaterMm": {
+                "numerator": "14",
+                "denominator": "5"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "cumulativeRainMm": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "3",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "cumulativeRainMm": {
+                "numerator": "7",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "9",
+                "denominator": "2"
+              },
+              "surfaceWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              }
+            },
+            {
+              "hour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "cumulativeRainMm": {
+                "numerator": "10",
+                "denominator": "1"
+              },
+              "cumulativeInfiltrationMm": {
+                "numerator": "6",
+                "denominator": "1"
+              },
+              "surfaceWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              }
+            }
+          ],
+          "durationRecords": [
+            {
+              "segmentIndex": 0,
+              "startHour": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "5"
+              },
+              "startWaterMm": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "14",
+                "denominator": "5"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "5"
+              }
+            },
+            {
+              "segmentIndex": 1,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "5"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "14",
+                "denominator": "5"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "20"
+              }
+            },
+            {
+              "segmentIndex": 2,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 3,
+              "startHour": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "endHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "startWaterMm": {
+                "numerator": "2",
+                "denominator": "1"
+              },
+              "endWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            },
+            {
+              "segmentIndex": 4,
+              "startHour": {
+                "numerator": "3",
+                "denominator": "4"
+              },
+              "endHour": {
+                "numerator": "1",
+                "denominator": "1"
+              },
+              "startWaterMm": {
+                "numerator": "5",
+                "denominator": "2"
+              },
+              "endWaterMm": {
+                "numerator": "4",
+                "denominator": "1"
+              },
+              "case": "wet",
+              "drainHour": null,
+              "durationHours": {
+                "numerator": "1",
+                "denominator": "4"
+              }
+            }
+          ],
+          "earlyHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "laterHalfDurationHours": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "durationHours": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "terminalSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "peakSurfaceWaterMm": {
+            "numerator": "4",
+            "denominator": "1"
+          },
+          "attainingPeakHour": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "originalHalfHourTotalsMm": [
+            {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            {
+              "numerator": "5",
+              "denominator": "1"
+            }
+          ],
+          "withinDeclaredBands": true,
+          "rateCapVerified": true
+        }
+      }
+    }
+  ]
+}
