@@ -88,6 +88,10 @@ Combined pair work must fit the existing 100,000 limit; combined report work mus
 
 This interface does not change the physical solver, original inference, fitting/search, outlet collection, controlled soil-test protocols, placement or workbench UI.
 
+## Conditionally omit a second reading
+
+The [conditional acquisition guide](MECHANISM_CONDITIONAL_ACQUISITION.md) adds an explicit first/second order and response allowance to an offered collection. It reports first-value regions where target agreement permits stopping and regions that still need the second reading, while preserving outside-family outcomes. This requires timely receipt and the declared error bounds; it does not infer expected cost or perform an acquisition.
+
 ## After obtaining the selected readings
 
 The [selected acquisition receiver](MECHANISM_ACQUISITION_RECEIVE.md) accepts actual prospective readings with their own values, sources and uncertainty. It binds them to the selected original inputs, writes a new reopenable investigation with challenge readings appended, and distinguishes the original calibration-family outcome from the explanations left uncontradicted by the received values.
