@@ -1,0 +1,15 @@
+{
+  "schema": "experimental-earth-mechanism-acquisition-sequences/1",
+  "eventRef": "authored full-family arithmetic event",
+  "sequences": [
+    {
+      "id": "gauge-then-optional-depth",
+      "collectionId": "rain-then-depth",
+      "firstOptionId": "rain35to55",
+      "secondOptionId": "depth60",
+      "minimumDecisionMinutes": 5,
+      "responseBasis": "Fictional five-minute interpretation/decision allowance after actual gauge receipt55, ready60; any later receipt misses the deadline.",
+      "conditionalAvailabilityBasis": "Fictional depth60 can be chosen at60 and is available60 including promised processing, without earlier setup; no slack, access or instrument readiness verified."
+    }
+  ]
+}
