@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-peak-criterion/1",
+  "id": "authored-peak-at-most-four-half",
+  "metric": "peak-surface-water-mm",
+  "operator": "at-most",
+  "valueMm": 4.5,
+  "source": "Fictional authored peak-water question; its declared depth is also explicitly reused as the exposure threshold."
+}
