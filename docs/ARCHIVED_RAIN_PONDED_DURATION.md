@@ -12,17 +12,45 @@ From the repository root:
 node inspect-archived-rain-ponded-duration.mjs examples/authored-rain-timing.json examples/archived-rain-timing-first-four.json examples/archived-rain-timing-third-exact.json examples/archived-rain-peak-zero.json
 ```
 
-Replace the first-quarter file with `examples/archived-rain-timing-first-one.json` or `examples/archived-rain-timing-first-exact.json` for q=1 or q=2. The third-quarter example fixes r=2. The expected exact bounds are:
-
-| First-quarter total | Ponded duration, hours |
-|---|---|
-| 4 mm | [13/14, 1] |
-| 1 mm | [19/28, 11/12] |
-| 2 mm | [16/21, 1] |
+Replace the first-quarter file with `examples/archived-rain-timing-first-one.json` or `examples/archived-rain-timing-first-exact.json` for q=1 or q=2. The third-quarter example fixes r=2. The walkthrough below compares the exact duration ranges and the histories that attain them.
 
 These exact controls were independently verified in the three actual CLI runs recorded below. The four files retain the existing paired-peak schemas. Original declaration intake is at most 16 KiB, each other input at most 4 KiB. The CLI requires regular non-symlink UTF-8 files without a BOM, retains SHA256 and byte identities, and rechecks originals before publishing complete JSON. Duplicate reading labels are allowed; explicit first/third argument roles determine interpretation. The criterion must have represented numeric value zero, including numeric -0 under existing admission semantics. A nonzero peak criterion is refused before the paired inspector, even though the inherited peak API itself supports other values.
 
 The synchronous APIs are `estimateArchivedRainPondedDurationWork(originalText, firstText, thirdText, criterionText)` and `inspectArchivedRainPondedDuration(...)`. The estimator performs admission and returns the complete reservation without constructing histories. The inspector calls one paired estimator before one fresh paired inspector. Existing exposure and positive-threshold duration APIs are not called or changed.
+
+## Same rain totals, different time with standing water
+
+The figure compares two possible rain histories in each column: one with the shortest total time with standing water, and one with the longest. Within a column, both histories have exactly the same rainfall totals in all four quarters: `(q, 5 − q, 2, 3)` mm. Only the timing within those quarters changes. All three columns use the same dry initial state, infiltration conductivity of 6 mm/hour and rain-rate cap of 20 mm/hour.
+
+![Three columns compare first-quarter rain totals of 1, 2 and 4 mm. Each column shows the shortest- and longest-duration histories as rainfall-rate steps, surface-water traces and bars marking strictly positive water over 0–60 minutes. Their exact duration ranges are 285/7–55 minutes, 320/7–60 minutes and 390/7–60 minutes respectively. In the 1 mm longest-duration history, the first rain pulse ends at 3 minutes, water drains to zero at 10 minutes, and the surface stays dry until 15 minutes. In the 2 mm shortest-duration history, rain at 6 mm/hour from minute 20 to minute 150/7 leaves water at zero.](assets/archived-rain-ponded-duration.svg)
+
+| First-quarter total | Exact duration range, hours | Exact duration range, minutes |
+|---|---|---|
+| 1 mm | [19/28, 11/12] | [285/7, 55] |
+| 2 mm | [16/21, 1] | [320/7, 60] |
+| 4 mm | [13/14, 1] | [390/7, 60] |
+
+Two details explain why the water traces and duration bars matter. In the **1 mm longest-duration history**, the first rain pulse ends at minute 3. Its stored water drains by minute 10, although that zero-rain segment ends at minute 15. Joining only the segment's stored water endpoints would incorrectly draw standing water throughout the five-minute dry tail.
+
+In the **2 mm shortest-duration history**, the surface reaches zero water at minute 20. Rain then falls at exactly 6 mm/hour until minute 150/7 (about 21.43), matching infiltration and producing no standing water. This whole interval contributes zero duration. By contrast, touching zero at a single instant does not subtract any elapsed time from the duration bars.
+
+These are exact histories attaining the duration bounds in the stated hypothetical family. They are not pointwise upper and lower envelopes of water depth, and the space between the two traces is not an uncertainty band. The rainfall declarations and assumed soil properties do not establish field conditions.
+
+### Reproducing the figure
+
+The [exact certificates](assets/archived-rain-ponded-duration-certificates.json) retain all three complete duration assessments, including six endpoint histories, plus the three full report hashes and the original input identities. They were extracted from the independently verified outputs of source commit `48a75f6a46fbfa48e28caeef4c61ab26725dabdf`. The extraction matched every retained assessment and input field exactly. Drawing this figure does not run the scientific model or recompute the feasible-family bounds.
+
+The [plotting script](../tools/plot-archived-rain-ponded-duration.py) checks the certificate geometry with exact fractions before converting coordinates for display. The inspected environment used Python 3.12, Matplotlib 3.10.8, NumPy 2.3.5 and Pillow 13.0.0, with DejaVu Sans. From the repository root:
+
+```sh
+python3 tools/plot-archived-rain-ponded-duration.py render \
+  --certificates docs/assets/archived-rain-ponded-duration-certificates.json \
+  --projection-sha256 143c24341bb4f12380a2a9b4559adad746e1364323470ffda901243e26835f9e \
+  --svg ponded-duration-preview.svg \
+  --png ponded-duration-preview.png
+```
+
+Choose unused output paths; the script refuses to overwrite files. `--png` is optional. The SVG retains searchable text and an accessible title and description. The final SVG and 2800 × 1800 PNG were rendered and visually inspected; the callout labels leave the water traces visible. Rendering can vary with fonts and library versions, while the retained values and interval endpoints remain exact.
 
 ## Report and histories
 
