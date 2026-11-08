@@ -1,0 +1,10 @@
+{
+  "schema": "experimental-earth-rainfall-readout-query/1",
+  "eventRef": "authored full-family arithmetic event",
+  "startMinute": 0,
+  "splitMinute": 5,
+  "endMinute": 10,
+  "source": "Authored fictional adjacent-interval question; not measured rainfall",
+  "uncertaintyMm": 0,
+  "thresholdMm": 4
+}
