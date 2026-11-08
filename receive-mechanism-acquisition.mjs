@@ -7,7 +7,7 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {receiveMechanismAcquisition} from './mechanism-acquisition-receive.js';
 
-const USAGE = 'Usage: node receive-mechanism-acquisition.mjs original-proposal.json acquisition-menu.json received-readings.json output-original.json [acquisition-collections.json]';
+const USAGE = 'Usage: node receive-mechanism-acquisition.mjs original-proposal.json acquisition-menu.json received-readings.json output-original.json [acquisition-collections.json [conditional-sequences.json]]';
 const identity = stat => ['dev', 'ino', 'size', 'mtimeNs', 'ctimeNs', 'mode', 'uid', 'gid'].map(key => String(stat[key])).join(':');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -46,12 +46,13 @@ export async function main(args) {
     process.stdout.write(USAGE + '\n');
     return 0;
   }
-  if (![4, 5].includes(args.length) || args.some(arg => !arg || arg.startsWith('--'))) throw Error(USAGE);
+  if (![4, 5, 6].includes(args.length) || args.some(arg => !arg || arg.startsWith('--'))) throw Error(USAGE);
   if (!['linux', 'darwin'].includes(process.platform)) throw Error('Original-file admission currently supports Linux and macOS');
   const original = await readOriginal(args[0], 4 * 1024 * 1024, 'Original proposal');
   const menu = await readOriginal(args[1], 128 * 1024, 'Acquisition menu');
   const receipt = await readOriginal(args[2], 64 * 1024, 'Received readings');
-  const collections = args.length === 5 ? await readOriginal(args[4], 128 * 1024, 'Acquisition collections') : null;
+  const collections = args.length >= 5 ? await readOriginal(args[4], 128 * 1024, 'Acquisition collections') : null;
+  const sequences = args.length === 6 ? await readOriginal(args[5], 128 * 1024, 'Conditional sequences') : null;
   const outputPath = resolve(args[3]);
   // Fail existing destinations before inference; exclusive creation below also
   // protects against an entry appearing after this check, including symlinks.
@@ -63,6 +64,7 @@ export async function main(args) {
   }
   const originals = [[original, 4 * 1024 * 1024, 'Original proposal'], [menu, 128 * 1024, 'Acquisition menu'], [receipt, 64 * 1024, 'Received readings']];
   if (collections) originals.push([collections, 128 * 1024, 'Acquisition collections']);
+  if (sequences) originals.push([sequences, 128 * 1024, 'Conditional sequences']);
   const verifyOriginals = async () => {
     for (const [input, limit, label] of originals) {
       const after = await readOriginal(input.path, limit, label);
@@ -70,7 +72,14 @@ export async function main(args) {
     }
   };
   // Exactly one authoritative receiver call. No cached inference or export rerun.
-  const {receivedOriginalText, report} = receiveMechanismAcquisition(original.text, menu.text, JSON.parse(receipt.text), collections ? collections.text : null);
+  let received;
+  if (sequences) {
+    const {receiveMechanismConditionalAcquisition} = await import('./mechanism-acquisition-conditional-receive.js');
+    received = receiveMechanismConditionalAcquisition(original.text, menu.text, JSON.parse(receipt.text), collections.text, sequences.text);
+  } else {
+    received = receiveMechanismAcquisition(original.text, menu.text, JSON.parse(receipt.text), collections ? collections.text : null);
+  }
+  const {receivedOriginalText, report} = received;
   if (typeof receivedOriginalText !== 'string') throw Error('Receiver did not return original text');
   const outputBytes = Buffer.from(receivedOriginalText, 'utf8');
   if (!outputBytes.length || outputBytes.length > 4 * 1024 * 1024 || new TextDecoder('utf-8', {fatal: true, ignoreBOM: true}).decode(outputBytes) !== receivedOriginalText || receivedOriginalText.charCodeAt(0) === 0xfeff) throw Error('Received original requires exact UTF-8 without a BOM, at most 4MiB');
@@ -82,6 +91,7 @@ export async function main(args) {
       acquisitionMenu: fileIdentity(menu),
       receivedReadings: fileIdentity(receipt),
       ...(collections ? {acquisitionCollections: fileIdentity(collections)} : {}),
+      ...(sequences ? {conditionalSequences: fileIdentity(sequences)} : {}),
     },
     outputOriginal: {sha256: digest(outputBytes), bytes: outputBytes.length},
     report,

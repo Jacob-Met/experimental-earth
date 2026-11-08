@@ -89,11 +89,17 @@ function admitSequences(menu,collections,declaration){
   return sequences;
 }
 
-/** Plan declared ordered collections from complete originals, with one inference. */
-export function planMechanismConditionalAcquisition(originalText,menu,collections,declaration){
+/** Admit all original sequence declarations and reserve work without inference. */
+export function prepareMechanismConditionalAcquisition(originalText,menu,collections,declaration){
   const collectionWork=estimateMechanismAcquisitionCollectionsWork(originalText,menu,collections);
   const offered=admitSequences(menu,collections,declaration);
   const work=admitGeometryWork(geometryReservation(collectionWork.singleReadout.offeredHypotheses,offered.length),collectionWork);
+  return {sequences:offered,work};
+}
+
+/** Plan declared ordered collections from complete originals, with one inference. */
+export function planMechanismConditionalAcquisition(originalText,menu,collections,declaration){
+  const {sequences:offered,work}=prepareMechanismConditionalAcquisition(originalText,menu,collections,declaration);
   // Full original and all offered policy work is reserved before this sole
   // authoritative planner call. No caller-supplied prediction report is intake.
   const collectionReport=planMechanismAcquisitionCollections(originalText,menu,collections);
