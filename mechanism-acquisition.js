@@ -114,13 +114,21 @@ function readoutBand(predictedMm,uncertaintyMm,kind){
   return {predictedMm,uncertaintyMm,numericalGuardMm,lowerMm,upperMm};
 }
 
-/** Recompute the original investigation once; never accept cached caller results. */
-export function planMechanismAcquisition(originalText,menu){
+function prepareAcquisition(originalText,menu){
   if(typeof originalText!=='string'||new TextEncoder().encode(originalText).length>4*1024*1024)throw Error('Open at most4MiB of original mechanism/proposal inputs.');
   const raw=JSON.parse(originalText);
   if(!exact(raw,['schema','source','fronts','goal'])||raw.schema!==MECHANISM_PROPOSAL_SCHEMA||!exact(raw.source,['project','request','gauge','durations','capacities','layers']))throw Error('Open original mechanism/proposal inputs, not derived results.');
   validateProject(raw.source.project);validateStudy(raw.source.request);validateRainGauge(raw.source.project,raw.source.gauge);
   const admitted=admitMenu(raw.source,menu),work=reserveWork(raw,admitted);
+  return {admitted,work};
+}
+/** Validate and reserve the complete single-readout work without running inference. */
+export function estimateMechanismAcquisitionWork(originalText,menu){
+  return prepareAcquisition(originalText,menu).work;
+}
+/** Recompute the original investigation once; never accept cached caller results. */
+export function planMechanismAcquisition(originalText,menu){
+  const {admitted,work}=prepareAcquisition(originalText,menu);
   // The maintained importer remains the sole inference/target authority.
   const imported=importMechanismProposal(originalText),{source}=imported,proposal=imported.result;
   const crossTargetPairs=decisionPairs(proposal.rows.map(row=>row.meets)),options=[],runs=new Map();

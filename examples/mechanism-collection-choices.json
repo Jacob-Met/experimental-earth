@@ -1,0 +1,14 @@
+{
+  "schema": "experimental-earth-mechanism-acquisition-collection-menu/1",
+  "eventRef": "authored full-family arithmetic event",
+  "collections": [
+    {
+      "id": "rain-then-depth",
+      "optionIds": [
+        "rain10to30",
+        "depth60"
+      ],
+      "jointAvailabilityBasis": "Authored feasible sequence: the prepared gauge readout is available at minute30, and the same investigator can obtain the site-depth reading by minute60; neither measurement prevents the other. This is a declared scenario, not an actual acquisition."
+    }
+  ]
+}
