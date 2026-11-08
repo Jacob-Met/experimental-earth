@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-timing-reading/1",
+  "id": "authored-first-one",
+  "quarter": "first",
+  "valueMm": 1,
+  "uncertaintyMm": 0,
+  "source": "Fictional authored archived quarter declaration; not an acquired or authenticated record."
+}
