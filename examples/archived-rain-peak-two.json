@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-peak-criterion/1",
+  "id": "authored-peak-at-most-two",
+  "metric": "peak-surface-water-mm",
+  "operator": "at-most",
+  "valueMm": 2,
+  "source": "Fictional authored two-mm peak criterion reused as a strict-duration threshold; no physical observation."
+}
