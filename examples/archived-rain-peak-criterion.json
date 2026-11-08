@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-peak-criterion/1",
+  "id": "authored-peak-at-most-five",
+  "metric": "peak-surface-water-mm",
+  "operator": "at-most",
+  "valueMm": 5,
+  "source": "Fictional authored peak-water question, separate from the original terminal target."
+}
