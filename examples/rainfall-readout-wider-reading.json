@@ -1,0 +1,10 @@
+{
+  "schema": "experimental-earth-rainfall-readout-reading/1",
+  "id": "authored-wider-early-reading",
+  "eventRef": "authored full-family arithmetic event",
+  "startMinute": 0,
+  "endMinute": 5,
+  "valueMm": 6.5,
+  "uncertaintyMm": 1.5,
+  "source": "Authored fictional wider precision declaration; not an acquired observation or verified instrument precision."
+}
