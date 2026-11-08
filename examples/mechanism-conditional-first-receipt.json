@@ -1,0 +1,35 @@
+{
+  "schema": "experimental-earth-mechanism-conditional-acquisition-receipt/1",
+  "conditionalSequencesSha256": "122f1422a72757b957686e17d68f28f60d78eaccfb095a044a21ccb356fd962e",
+  "sequenceId": "gauge-then-optional-depth",
+  "firstReceipt": {
+    "schema": "experimental-earth-mechanism-acquisition-receipt/1",
+    "inputs": {
+      "originalProposalSha256": "0726ec5eb623ba8de996404ebc70352d4b053c8369a24ea2f4d781e9923c9ecf",
+      "acquisitionMenuSha256": "9a96ae5f8199b985bbedd015d73fa67b61e1b1b53b2dc0a52f16f91ce404982a",
+      "acquisitionCollectionsSha256": "9fb641968f35f061c45ccd8e1ec1a354fbd1ebf12ec278aeca004b9ee77b353f"
+    },
+    "eventRef": "authored full-family arithmetic event",
+    "choice": {
+      "kind": "single",
+      "id": "rain10to30"
+    },
+    "receivedMinute": 30,
+    "receiptBasis": "Authored same fictional site/event/clock control: gauge10\u201330 is declared received at minute30 with actual13mm total and4mm uncertainty. This is not verified access, acquisition, instrument precision or provenance.",
+    "readings": [
+      {
+        "optionId": "rain10to30",
+        "reading": {
+          "id": "authored-conditional-first-wide",
+          "startMinute": 10,
+          "endMinute": 30,
+          "depth": 13,
+          "uncertainty": 4,
+          "unit": "mm",
+          "source": "Authored first-gauge control with actual wider uncertainty; not physical acquired data",
+          "use": "challenge"
+        }
+      }
+    ]
+  }
+}

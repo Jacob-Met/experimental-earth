@@ -87,3 +87,5 @@ Use the [selected acquisition receiver](MECHANISM_ACQUISITION_RECEIVE.md) to ret
 The preflight combines the existing collection reservation with every offered sequence's complete endpoint sorting, membership visits, opposite-pair checks and output items, including sequences later excluded by timing. It reserves from the full offered family before the sole authoritative planner inference. Combined pair work remains limited to100,000 and output work to150,000 items; existing cell-step limits remain unchanged. The pure band classifier applies a corresponding single-geometry bound without model execution.
 
 A request that exceeds a bound is refused completely. No processed prefix is presented as an exhaustive policy. These conservative work units are not hard CPU, memory or serialized-byte guarantees. This addition changes no original inference/search, physical solver, workbench UI or measurement hardware.
+
+For an actual first reading, use [conditional acquisition receiving](MECHANISM_CONDITIONAL_RECEIVE.md) to assess actual uncertainty and response timing before treating the forecast as a stopping or continuation decision.

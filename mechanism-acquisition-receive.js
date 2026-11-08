@@ -108,8 +108,7 @@ function calibrationView(row){
   return JSON.stringify(copy);
 }
 
-/** Receive actual declared challenges; preserve originals and frozen calibration. */
-export function receiveMechanismAcquisition(originalText,menuText,receipt,collectionText=null){
+function prepareReceipt(originalText,menuText,receipt,collectionText){
   const raw=originalJSON(originalText,ORIGINAL_LIMIT,'Original proposal');
   const menu=originalJSON(menuText,MENU_LIMIT,'Acquisition menu');
   const collections=collectionText===null?null:originalJSON(collectionText,MENU_LIMIT,'Acquisition collections');
@@ -120,6 +119,17 @@ export function receiveMechanismAcquisition(originalText,menuText,receipt,collec
   const receivedOriginalText=JSON.stringify(received,null,2)+'\n';
   if(Buffer.byteLength(receivedOriginalText,'utf8')>ORIGINAL_LIMIT)throw Error('The complete received original investigation exceeds4MiB.');
   const work=reserveReceipt(forecastWork,singleWork,received,selected.length);
+  return {menu,collections,selected,readings,selectedChoice,receivedOriginalText,receivedRecords,precision,work};
+}
+
+/** Reserve the complete original receipt course without starting inference. */
+export function estimateMechanismAcquisitionReceiptWork(originalText,menuText,receipt,collectionText=null){
+  return prepareReceipt(originalText,menuText,receipt,collectionText).work;
+}
+
+/** Receive actual declared challenges; preserve originals and frozen calibration. */
+export function receiveMechanismAcquisition(originalText,menuText,receipt,collectionText=null){
+  const {menu,collections,selected,readings,selectedChoice,receivedOriginalText,receivedRecords,precision,work}=prepareReceipt(originalText,menuText,receipt,collectionText);
   // Both full courses are reserved before this first inference. No cached
   // caller result, inferred observed value or export helper is used.
   const forecast=collections===null?planMechanismAcquisition(originalText,menu):planMechanismAcquisitionCollections(originalText,menu,collections);
