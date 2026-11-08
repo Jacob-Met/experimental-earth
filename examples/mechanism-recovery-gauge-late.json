@@ -1,0 +1,35 @@
+{
+  "schema": "experimental-earth-mechanism-conditional-acquisition-receipt/1",
+  "conditionalSequencesSha256": "315de9ed9b5ced6dc9065ef5cbfcf5619760288f5dc28424b5b73a424619e665",
+  "sequenceId": "gauge-then-optional-depth",
+  "firstReceipt": {
+    "schema": "experimental-earth-mechanism-acquisition-receipt/1",
+    "inputs": {
+      "originalProposalSha256": "ec34f3eb51f7c3676297506ee393155d2567a3ee31d6b97361f4482db3afd364",
+      "acquisitionMenuSha256": "5f447bf813646036a1c31f62ae7717ae639d8bd782844703c2c6cdc78cb4ac92",
+      "acquisitionCollectionsSha256": "6909a7964d0e2b3c71ca20e804ccf333dff07e683d56c9eafdecab3469e9161c"
+    },
+    "eventRef": "authored full-family arithmetic event",
+    "choice": {
+      "kind": "single",
+      "id": "rain35to55"
+    },
+    "receivedMinute": 56,
+    "receiptBasis": "Authored fictional event-clock continuation: future gauge received at minute56; no physical acquisition or verified clock claim.",
+    "readings": [
+      {
+        "optionId": "rain35to55",
+        "reading": {
+          "id": "authored-future-late-low",
+          "startMinute": 35,
+          "endMinute": 55,
+          "depth": 10,
+          "uncertainty": 1,
+          "unit": "mm",
+          "source": "Frozen authored future-gauge control; no physical measurement",
+          "use": "challenge"
+        }
+      }
+    ]
+  }
+}

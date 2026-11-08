@@ -94,3 +94,5 @@ Complete aggregate work is checked before the existing receiver is called once. 
 Aggregate policy work is capped at100,000, report work at150,000 items and cell-step work at3,000,000. All offered sequence geometry is reserved even though only the selected policy is emitted. These conservative units are not hard runtime, memory or serialized-byte guarantees; oversized requests are refused completely rather than partially evaluated.
 
 The saved original can be reopened through the maintained importer. It contains the first reading as challenge evidence with its actual precision and source; the original family and target are preserved. Any later receipt or replanning must bind the new original's exact identity and retain already consumed coordinates. This interface does not automatically acquire the second reading, create a new planning session or override the receiver's complete-selection requirements.
+
+For a complete fictional continuation from a wider first reading through future replanning, separate high/late alternatives and a low-branch depth receipt, see the [acquisition recovery walkthrough](MECHANISM_ACQUISITION_RECOVERY.md).

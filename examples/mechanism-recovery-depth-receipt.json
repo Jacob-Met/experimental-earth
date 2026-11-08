@@ -1,0 +1,29 @@
+{
+  "schema": "experimental-earth-mechanism-acquisition-receipt/1",
+  "inputs": {
+    "originalProposalSha256": "023a80ae5769086d0387418e82ea06c679dc8dd9fc5d2aadbf9f986869298072",
+    "acquisitionMenuSha256": "275750210726b1aa2a3fe81f6cfbe90885491b3bbe443aa264f7ef9253b18ced",
+    "acquisitionCollectionsSha256": null
+  },
+  "eventRef": "authored full-family arithmetic event",
+  "choice": {
+    "kind": "single",
+    "id": "depth60"
+  },
+  "receivedMinute": 60,
+  "receiptBasis": "Authored fictional depth available and received60, including declared processing; no additional response delay or physical clock claim. Original identity will bind only the actual returned LOW original.",
+  "readings": [
+    {
+      "optionId": "depth60",
+      "reading": {
+        "scenario": "existing",
+        "use": "challenge",
+        "cellIndex": 0,
+        "minute": 60,
+        "depthMm": 10,
+        "uncertaintyMm": 1,
+        "source": "Frozen authored depth continuation; no physical measurement"
+      }
+    }
+  ]
+}
