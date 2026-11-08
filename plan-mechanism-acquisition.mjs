@@ -7,7 +7,7 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {planMechanismAcquisition} from './mechanism-acquisition.js';
 
-const USAGE = 'Usage: node plan-mechanism-acquisition.mjs original-proposal.json acquisition-menu.json [acquisition-collections.json]';
+const USAGE = 'Usage: node plan-mechanism-acquisition.mjs original-proposal.json acquisition-menu.json [acquisition-collections.json [conditional-sequences.json]]';
 const identity = stat => ['dev', 'ino', 'size', 'mtimeNs', 'ctimeNs', 'mode', 'uid', 'gid'].map(key => String(stat[key])).join(':');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -46,16 +46,21 @@ export async function main(args) {
     process.stdout.write(USAGE + '\n');
     return 0;
   }
-  if (![2, 3].includes(args.length) || args.some(arg => !arg || arg.startsWith('--'))) throw Error(USAGE);
+  if (![2, 3, 4].includes(args.length) || args.some(arg => !arg || arg.startsWith('--'))) throw Error(USAGE);
   if (!['linux', 'darwin'].includes(process.platform)) throw Error('Original-file admission currently supports Linux and macOS');
   const original = await readOriginal(args[0], 4 * 1024 * 1024, 'Original proposal');
   const menu = await readOriginal(args[1], 128 * 1024, 'Acquisition menu');
   const menuObject = JSON.parse(menu.text);
-  const collections = args.length === 3 ? await readOriginal(args[2], 128 * 1024, 'Acquisition collections') : null;
+  const collections = args.length >= 3 ? await readOriginal(args[2], 128 * 1024, 'Acquisition collections') : null;
   const collectionMenuObject = collections ? JSON.parse(collections.text) : null;
+  const sequences = args.length === 4 ? await readOriginal(args[3], 128 * 1024, 'Conditional sequences') : null;
+  const sequenceMenuObject = sequences ? JSON.parse(sequences.text) : null;
   // Exactly one authoritative planner call; no exporter or cached result intake.
   let report;
-  if (collections) {
+  if (sequences) {
+    const {planMechanismConditionalAcquisition} = await import('./mechanism-acquisition-conditional.js');
+    report = planMechanismConditionalAcquisition(original.text, menuObject, collectionMenuObject, sequenceMenuObject);
+  } else if (collections) {
     const {planMechanismAcquisitionCollections} = await import('./mechanism-acquisition-collections.js');
     report = planMechanismAcquisitionCollections(original.text, menuObject, collectionMenuObject);
   } else {
@@ -63,6 +68,7 @@ export async function main(args) {
   }
   const originals = [[original, 4 * 1024 * 1024, 'Original proposal'], [menu, 128 * 1024, 'Acquisition menu']];
   if (collections) originals.push([collections, 128 * 1024, 'Acquisition collections']);
+  if (sequences) originals.push([sequences, 128 * 1024, 'Conditional sequences']);
   for (const [input, limit, label] of originals) {
     const after = await readOriginal(input.path, limit, label);
     if (after.identity !== input.identity || !after.bytes.equals(input.bytes)) throw Error(`${label} changed before result publication`);
@@ -73,6 +79,7 @@ export async function main(args) {
       originalProposal: {sha256: original.sha256, bytes: original.bytes.length},
       acquisitionMenu: {sha256: menu.sha256, bytes: menu.bytes.length},
       ...(collections ? {acquisitionCollections: {sha256: collections.sha256, bytes: collections.bytes.length}} : {}),
+      ...(sequences ? {conditionalSequences: {sha256: sequences.sha256, bytes: sequences.bytes.length}} : {}),
     },
     report,
   };

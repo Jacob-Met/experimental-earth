@@ -1,0 +1,15 @@
+{
+  "schema": "experimental-earth-mechanism-acquisition-sequences/1",
+  "eventRef": "authored full-family arithmetic event",
+  "sequences": [
+    {
+      "id": "gauge-then-optional-depth",
+      "collectionId": "rain-then-depth",
+      "firstOptionId": "rain10to30",
+      "secondOptionId": "depth60",
+      "minimumDecisionMinutes": 5,
+      "responseBasis": "Authored five-minute allowance after the gauge is available at minute30 to read its value, check declared bounds and association, and decide whether the remaining target labels require depth. No actual response speed is established.",
+      "conditionalAvailabilityBasis": "In this fictional site, an investigator can decide by minute35 whether to obtain the existing cell0 depth at minute60; the gauge does not prevent that reading, and the depth setup does not have to begin before the decision. Access, staffing and punctuality are declarations, not verified arrangements."
+    }
+  ]
+}
