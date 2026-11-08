@@ -87,3 +87,7 @@ Before invoking the sole original inference, the implementation reserves the sin
 Combined pair work must fit the existing 100,000 limit; combined report work must fit 150,000 items. The existing three-million-cell-step limit and other single-readout bounds remain. These are conservative work-item limits, not measured peak memory or serialized-byte guarantees. A request exceeding a bound is refused as a whole before model execution; no processed prefix is presented as a complete selection.
 
 This interface does not change the physical solver, original inference, fitting/search, outlet collection, controlled soil-test protocols, placement or workbench UI.
+
+## After obtaining the selected readings
+
+The [selected acquisition receiver](MECHANISM_ACQUISITION_RECEIVE.md) accepts actual prospective readings with their own values, sources and uncertainty. It binds them to the selected original inputs, writes a new reopenable investigation with challenge readings appended, and distinguishes the original calibration-family outcome from the explanations left uncontradicted by the received values.

@@ -1,0 +1,42 @@
+{
+  "schema": "experimental-earth-mechanism-acquisition-receipt/1",
+  "inputs": {
+    "originalProposalSha256": "0726ec5eb623ba8de996404ebc70352d4b053c8369a24ea2f4d781e9923c9ecf",
+    "acquisitionMenuSha256": "9a96ae5f8199b985bbedd015d73fa67b61e1b1b53b2dc0a52f16f91ce404982a",
+    "acquisitionCollectionsSha256": "9fb641968f35f061c45ccd8e1ec1a354fbd1ebf12ec278aeca004b9ee77b353f"
+  },
+  "eventRef": "authored full-family arithmetic event",
+  "choice": {
+    "kind": "collection",
+    "id": "rain-then-depth"
+  },
+  "receivedMinute": 60,
+  "receiptBasis": "Authored control on the original fictional four-cell site and same modeled event clock: selected gauge10\u201330 and existing cell0 depth60 are declared available at minute60. This records no physical acquisition or verified location, access, instrument precision or provenance.",
+  "readings": [
+    {
+      "optionId": "rain10to30",
+      "reading": {
+        "id": "authored-received-miss",
+        "startMinute": 10,
+        "endMinute": 30,
+        "depth": 13.333333333333334,
+        "uncertainty": 1,
+        "unit": "mm",
+        "source": "Authored selected-gauge miss control; fictional, not a field measurement",
+        "use": "challenge"
+      }
+    },
+    {
+      "optionId": "depth60",
+      "reading": {
+        "scenario": "existing",
+        "use": "challenge",
+        "cellIndex": 0,
+        "minute": 60,
+        "depthMm": 10,
+        "uncertaintyMm": 1,
+        "source": "Authored selected-depth miss control; fictional, not a field measurement"
+      }
+    }
+  ]
+}

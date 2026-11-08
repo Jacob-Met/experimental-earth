@@ -32,11 +32,18 @@ function reserveCollections(singleReadout,optionCount,collectionCount){
   return {singleReadout,reservedCollections:collectionCount,reservedCollectionMemberLookups,reservedCollectionPairWork,reservedCollectionOutputItems,combinedPairWork,combinedOutputItems,limits:{pairWork:ACQUISITION_LIMITS.pairChecks,outputItems:ACQUISITION_LIMITS.outputItems}};
 }
 
-/** Evaluate only declared jointly obtainable pairs; recompute original inputs once. */
-export function planMechanismAcquisitionCollections(originalText,menu,declaration){
-  // This first call validates and reserves only. It invokes no inference.
+function prepareCollections(originalText,menu,declaration){
   const singleReservation=estimateMechanismAcquisitionWork(originalText,menu);
   const offers=admitCollections(menu,declaration),work=reserveCollections(singleReservation,menu.options.length,offers.length);
+  return {offers,work};
+}
+/** Validate and reserve the complete collection work without running inference. */
+export function estimateMechanismAcquisitionCollectionsWork(originalText,menu,declaration){
+  return prepareCollections(originalText,menu,declaration).work;
+}
+/** Evaluate only declared jointly obtainable pairs; recompute original inputs once. */
+export function planMechanismAcquisitionCollections(originalText,menu,declaration){
+  const {offers,work}=prepareCollections(originalText,menu,declaration);
   // No caller-supplied cached result is accepted. Preserve this report intact.
   const singleReadoutReport=planMechanismAcquisition(originalText,menu);
   const members=new Map(singleReadoutReport.options.map(option=>[option.offer.id,option]));
