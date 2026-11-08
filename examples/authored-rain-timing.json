@@ -1,0 +1,47 @@
+{
+  "schema": "experimental-earth-authored-rain-timing/1",
+  "source": "Fictional authored analytical schedules, not acquired rainfall or a calibrated site.",
+  "model": {
+    "conductivityMmHr": 6,
+    "capillaryDriveMm": 0,
+    "initialCumulativeMm": 0,
+    "initialSurfaceWaterMm": 0,
+    "durationHours": 1,
+    "segmentHours": 0.25,
+    "declaredRateCapMmHr": 20
+  },
+  "target": {
+    "metric": "terminal-surface-water-mm",
+    "operator": "at-most",
+    "valueMm": 5
+  },
+  "schedules": [
+    {
+      "id": "uniform",
+      "ratesMmHr": [
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "id": "earliest",
+      "ratesMmHr": [
+        20,
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "id": "latest",
+      "ratesMmHr": [
+        0,
+        20,
+        0,
+        20
+      ]
+    }
+  ]
+}
