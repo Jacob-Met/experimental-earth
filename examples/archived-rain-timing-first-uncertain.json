@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-timing-reading/1",
+  "id": "authored-first-quarter-uncertain",
+  "quarter": "first",
+  "valueMm": 2,
+  "uncertaintyMm": 0.5,
+  "source": "Fictional authored archived-reading declaration for the supplied hypothetical model; not an acquired or authenticated record."
+}
