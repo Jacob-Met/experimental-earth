@@ -1,0 +1,8 @@
+{
+  "schema": "experimental-earth-archived-rain-timing-reading/1",
+  "id": "authored-third-quarter-heavy",
+  "quarter": "third",
+  "valueMm": 5,
+  "uncertaintyMm": 0,
+  "source": "Fictional authored archived third-quarter declaration; not an acquired or authenticated record."
+}
