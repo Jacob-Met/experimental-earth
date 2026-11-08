@@ -12,4 +12,6 @@ This recomputes the base rain model only. Original readings, optional investigat
 
 The input must be a regular file, not a symlink or device; the reader rejects invalid UTF-8, oversize content and ordinary concurrent filesystem identity/timestamp changes. This is not a hardened forensic protocol against an adversary with privileged filesystem control. Preserve the original file beside captured stdout and verify the source hash when sharing.
 
+All parsed numeric values must be finite, including optional fields and proposal-only data. Both this inspector and `compare-rain-proposals.mjs` refuse numeric overflow such as `1e400`, which would otherwise serialize as `null`. Ordinary JavaScript number parsing, rounding and underflow remain unchanged; canonical comparison is not exact decimal or JSON-text identity. The original-byte SHA-256 records that separate identity.
+
 The separately owned human-readable standalone comparison is tracked at Experimental Earth #400. This headless receipt does not replace the browser or that report.

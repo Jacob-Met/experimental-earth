@@ -9,6 +9,18 @@ export {computeReceipt} from './rain-comparison-receipt.js';
 import {MAX_PROJECT_FILE_BYTES,checkProjectFileBytes,parsePortableProject} from './project-portability.js';
 
 const same=(a,b)=>a.dev===b.dev&&a.ino===b.ino&&a.size===b.size&&a.mtimeNs===b.mtimeNs&&a.ctimeNs===b.ctimeNs;
+function checkFiniteNumbers(project){
+  // Check all original fields: JSON overflow must not later serialize as null.
+  // An explicit stack also admits deeply nested finite extension data.
+  const pending=[project];
+  while(pending.length){
+    const value=pending.pop();
+    if(typeof value==='number'&&!Number.isFinite(value))throw Error('Original project contains a non-finite parsed number');
+    if(value!==null&&typeof value==='object'){
+      for(const child of Object.values(value))pending.push(child);
+    }
+  }
+}
 export async function readOriginalProject(path){
   const filename=resolve(path), before=await lstat(filename,{bigint:true});
   if(!before.isFile())throw Error('Original project must be a regular file, not a symlink or device');
@@ -32,7 +44,9 @@ export async function readOriginalProject(path){
   }finally{await handle.close();}
   if(!same(before,await lstat(filename,{bigint:true})))throw Error('Original project changed during reading');
   const text=new TextDecoder('utf-8',{fatal:true}).decode(bytes);
-  return {project:parsePortableProject(text),sourceSHA256:createHash('sha256').update(bytes).digest('hex'),sourceBytes:bytes.length};
+  const project=parsePortableProject(text);
+  checkFiniteNumbers(project);
+  return {project,sourceSHA256:createHash('sha256').update(bytes).digest('hex'),sourceBytes:bytes.length};
 }
 async function main(args){
   if(args.length!==1||args[0]==='--help'||args[0]==='-h'){
