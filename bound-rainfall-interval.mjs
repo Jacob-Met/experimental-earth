@@ -5,11 +5,12 @@ import {constants} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {boundRainfallInterval} from './rainfall-interval.js';
+import {boundRainfallInterval, conditionRainfallInterval} from './rainfall-interval.js';
 
-const USAGE = 'Usage: node bound-rainfall-interval.mjs original-proposal.json interval-query.json';
+const USAGE = 'Usage: node bound-rainfall-interval.mjs original-proposal.json interval-query.json [hypothetical-reading.json]';
 const ORIGINAL_LIMIT = 4 * 1024 * 1024;
 const QUERY_LIMIT = 4096;
+const CONDITION_LIMIT = 4096;
 const identity = stat => ['dev', 'ino', 'size', 'mtimeNs', 'ctimeNs', 'mode', 'uid', 'gid'].map(key => String(stat[key])).join(':');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -48,26 +49,33 @@ export async function main(args) {
     process.stdout.write(USAGE + '\n');
     return 0;
   }
-  if (args.length !== 2 || args.some(arg => !arg || arg.startsWith('--'))) throw Error(USAGE);
+  if ((args.length !== 2 && args.length !== 3) || args.some(arg => !arg || arg.startsWith('--'))) throw Error(USAGE);
   if (!['linux', 'darwin'].includes(process.platform)) throw Error('Original-file admission currently supports Linux and macOS');
-  const [original, query] = await Promise.all([
+  const [original, query, condition] = await Promise.all([
     readInput(args[0], 'Original proposal', ORIGINAL_LIMIT),
     readInput(args[1], 'Interval query', QUERY_LIMIT),
+    ...(args.length === 3 ? [readInput(args[2], 'Hypothetical reading', CONDITION_LIMIT)] : []),
   ]);
-  // One fresh calibration-only analysis of the original declaration and query.
-  const report = boundRainfallInterval(original.text, query.text);
-  const [originalAfter, queryAfter] = await Promise.all([
+  // One selected original-input analysis; the optional condition remains hypothetical.
+  const report = condition
+    ? conditionRainfallInterval(original.text, query.text, condition.text)
+    : boundRainfallInterval(original.text, query.text);
+  const [originalAfter, queryAfter, conditionAfter] = await Promise.all([
     readInput(original.path, 'Original proposal', ORIGINAL_LIMIT),
     readInput(query.path, 'Interval query', QUERY_LIMIT),
+    ...(condition ? [readInput(condition.path, 'Hypothetical reading', CONDITION_LIMIT)] : []),
   ]);
-  for (const [before, after, label] of [[original, originalAfter, 'Original proposal'], [query, queryAfter, 'Interval query']]) {
+  const inputs = [[original, originalAfter, 'Original proposal'], [query, queryAfter, 'Interval query']];
+  if (condition) inputs.push([condition, conditionAfter, 'Hypothetical reading']);
+  for (const [before, after, label] of inputs) {
     if (after.identity !== before.identity || !after.bytes.equals(before.bytes)) throw Error(label + ' changed before result publication');
   }
   const output = {
-    schema: 'experimental-earth-rainfall-interval-cli/1',
+    schema: condition ? 'experimental-earth-conditional-rainfall-interval-cli/1' : 'experimental-earth-rainfall-interval-cli/1',
     inputs: {
       originalProposal: {sha256: original.sha256, bytes: original.bytes.length},
       intervalQuery: {sha256: query.sha256, bytes: query.bytes.length},
+      ...(condition ? {condition: {sha256: condition.sha256, bytes: condition.bytes.length}} : {}),
     },
     report,
   };

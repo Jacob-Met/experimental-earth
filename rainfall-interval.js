@@ -1,7 +1,8 @@
+import {DEPTH_UNITS} from './observation-units.js';
 import {validateRainGauge} from './rain-gauge-evidence.js';
 import {rainfallHistoryConsistency} from './rain-gauge-history.js';
 import {MECHANISM_PROPOSAL_SCHEMA} from './rain-mechanism-proposal.js';
-import {Q,need,add,sub,cmp,from,encode,buildRainfallGraph,solveRainfallFeasibility,verifyRainfallHistory,verifyRainfallCycle,encodeRainfallRecords,encodeRainfallEdge} from './rainfall-constraint-core.js';
+import {Q,need,add,sub,mul,cmp,from,encode,buildRainfallGraph,solveRainfallFeasibility,verifyRainfallHistory,verifyRainfallCycle,encodeRainfallRecords,encodeRainfallEdge} from './rainfall-constraint-core.js';
 
 const LIMITS=Object.freeze({originalBytes:4194304,queryBytes:4096,totalWork:250000,persistentBits:8192,intermediateBits:16384});
 const exact=(o,keys)=>o!==null&&typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).length===keys.length&&keys.every(k=>Object.hasOwn(o,k));
@@ -76,7 +77,7 @@ function attaining(graph,potential,source,distances,a,b,total){
   need(cmp(sub(verified.cumulative[b],verified.cumulative[a]),total)===0n,'Attaining history does not attain the requested bound.');
   return verified;
 }
-function directionCertificate(graph,distances,a,b){
+function directionCertificate(graph,distances,a,b,condition=null){
   const reachableVertices=[],potential=graph.times.map((_,i)=>{if(distances[i]!==null){reachableVertices.push(i);return Q.zero;}return from(1);});
   const zeroGraph={...graph,edges:graph.edges.map(e=>({...e,weight:Q.zero})),records:graph.records.map(r=>({...r,lower:Q.zero,upper:Q.zero}))};
   const verified=verifyRainfallHistory(zeroGraph,potential);
@@ -87,7 +88,9 @@ function directionCertificate(graph,distances,a,b){
   });
   const queryIncrement=sub(verified.cumulative[b],verified.cumulative[a]);
   need(cmp(queryIncrement,from(1))===0n,'Unbounded direction must add one query millimetre.');
-  return {history:verified.history,calibrationIncrements,queryIncrementMm:encode(queryIncrement),reachableVertices};
+  let extra={};
+  if(condition){const increment=sub(verified.cumulative[graph.at.get(condition.reading.endMinute)],verified.cumulative[graph.at.get(condition.reading.startMinute)]);need(cmp(increment,Q.zero)===0n,'Direction changes the hypothetical condition.');extra={conditionIncrement:{conditionRef:condition.conditionRef,incrementMm:encode(increment)}};}
+  return {history:verified.history,calibrationIncrements,queryIncrementMm:encode(queryIncrement),reachableVertices,...extra};
 }
 export function boundRainfallInterval(originalText,queryText){
   const p=prepare(originalText,queryText),graph=buildRainfallGraph(p.included,p.times),{times,edges,records,at}=graph;
@@ -99,29 +102,88 @@ export function boundRainfallInterval(originalText,queryText){
   let status='interval-totals-inconsistent',negativeCycle=null,bounds=null,lowerRelaxations=0,upperRelaxations=0;
   if(inconsistent)negativeCycle=verifyRainfallCycle(graph,feasibility,p.gauge.readings);
   else{
-    const a=at.get(p.query.startMinute),b=at.get(p.query.endMinute);
-    const lowerPaths=shortest(graph,b),upperPaths=shortest(graph,a);
-    lowerRelaxations=lowerPaths.relaxations;upperRelaxations=upperPaths.relaxations;
-    need(lowerRelaxations+upperRelaxations<=p.work.reservedShortestPathRelaxations,'Shortest-path relaxation reservation exceeded.');
-    need(lowerPaths.distance[a]!==null,'Monotonic lower path is absent.');
-    const lowerTotal=sub(Q.zero,lowerPaths.distance[a]);
-    need(cmp(lowerTotal,Q.zero)>=0n,'Lower interval bound is negative.');
-    const low=attaining(graph,feasibility.distance,b,lowerPaths.distance,a,b,lowerTotal);
-    const lower={status:'attained',totalMm:encode(lowerTotal),path:pathCertificate(graph,b,a,lowerPaths.distance),history:low.history,intervalChecks:low.intervalChecks};
-    let upper;
-    if(upperPaths.distance[b]===null){
-      status='upper-unbounded';
-      upper={status:'unbounded',base:{history:low.history,intervalChecks:low.intervalChecks,queryTotalMm:encode(lowerTotal)},direction:directionCertificate(graph,upperPaths.distance,a,b)};
-    }else{
-      status='bounded-interval';const upperTotal=upperPaths.distance[b];
-      need(cmp(upperTotal,lowerTotal)>=0n,'Interval bounds are reversed.');
-      const high=attaining(graph,feasibility.distance,a,upperPaths.distance,a,b,upperTotal);
-      upper={status:'attained',totalMm:encode(upperTotal),path:pathCertificate(graph,a,b,upperPaths.distance),history:high.history,intervalChecks:high.intervalChecks};
-    }
-    bounds={lower,upper};
+    ({status,bounds,lowerRelaxations,upperRelaxations}=projectInterval(graph,feasibility,p.query,p.work));
   }
   return {schema:'experimental-earth-rainfall-interval/1',originalProposal:p.originalProposal,query:p.query,
     scope:{interpreted:['source.project','source.gauge','query'],includedRoles:['calibration'],excluded:p.excluded,numericContract:'exact-represented-nominal-bands',physicalInference:false},work:p.work,calibration,
     assessment:{status,records:encodeRainfallRecords(records),vertices:times.length,edgeCount:edges.length,relaxations:{feasibility:feasibility.relaxations,lower:lowerRelaxations,upper:upperRelaxations},negativeCycle,bounds},
     meaning:'Exact calibration-only projection onto one declared interval under nonnegative rainfall histories. Challenge and unassigned readings remain held aside and do not constrain bounds. Original event, site and time declarations are unverified. Nominal bands use exact represented values, not decimal-intent values or model epsilon allowances. Attaining histories and recession directions are mathematical certificates, not inferred or unique physical forcing; no intensity bound or storm cutoff is imposed. No rejected finite-family survivor is restored and no soil, depth or proposal conclusion follows. Other original context is retained without qualification. Abstract work reservations exclude parsing, general validation, serialization and bit-operation costs; they are not CPU, heap or wall-time guarantees.'};
+}
+
+function projectInterval(graph,feasibility,query,work,condition=null){
+  const {at}=graph;let status,bounds,lowerRelaxations=0,upperRelaxations=0;
+    const a=at.get(query.startMinute),b=at.get(query.endMinute);
+    const lowerPaths=shortest(graph,b),upperPaths=shortest(graph,a);
+    lowerRelaxations=lowerPaths.relaxations;upperRelaxations=upperPaths.relaxations;
+    need(lowerRelaxations+upperRelaxations<=work.reservedShortestPathRelaxations,'Shortest-path relaxation reservation exceeded.');
+    need(lowerPaths.distance[a]!==null,'Monotonic lower path is absent.');
+    const lowerTotal=sub(Q.zero,lowerPaths.distance[a]);
+    need(cmp(lowerTotal,Q.zero)>=0n,'Lower interval bound is negative.');
+    const low=attaining(graph,feasibility.distance,b,lowerPaths.distance,a,b,lowerTotal);
+    const lower={status:'attained',totalMm:encode(lowerTotal),path:pathCertificate(graph,b,a,lowerPaths.distance),history:low.history,intervalChecks:low.intervalChecks,...(condition?{conditionCheck:checkCondition(graph,low.cumulative,condition)}:{})};
+    let upper;
+    if(upperPaths.distance[b]===null){
+      status='upper-unbounded';
+      upper={status:'unbounded',base:{history:low.history,intervalChecks:low.intervalChecks,queryTotalMm:encode(lowerTotal),...(condition?{conditionCheck:lower.conditionCheck}:{})},direction:directionCertificate(graph,upperPaths.distance,a,b,condition)};
+    }else{
+      status='bounded-interval';const upperTotal=upperPaths.distance[b];
+      need(cmp(upperTotal,lowerTotal)>=0n,'Interval bounds are reversed.');
+      const high=attaining(graph,feasibility.distance,a,upperPaths.distance,a,b,upperTotal);
+      upper={status:'attained',totalMm:encode(upperTotal),path:pathCertificate(graph,a,b,upperPaths.distance),history:high.history,intervalChecks:high.intervalChecks,...(condition?{conditionCheck:checkCondition(graph,high.cumulative,condition)}:{})};
+    }
+    bounds={lower,upper};
+    return {status,bounds,lowerRelaxations,upperRelaxations};
+}
+
+function prepareConditional(originalText,queryText,conditionText){
+  const p=prepare(originalText,queryText),condition=parse(conditionText,4096,'Hypothetical reading');
+  const text=x=>typeof x==='string'&&x.trim().length>0&&x.length<=600;
+  need(exact(condition,['schema','eventRef','reading'])&&condition.schema==='experimental-earth-rainfall-condition/1','Supply a separate hypothetical rainfall condition.');
+  const r=condition.reading;
+  need(text(condition.eventRef)&&condition.eventRef===p.gauge.eventRef&&exact(r,['id','startMinute','endMinute','depth','uncertainty','unit','source'])&&text(r.id)&&text(r.source),'Hypothetical reading requires exact original event association and declared identity/source, without a role.');
+  need(Number.isFinite(r.startMinute)&&Number.isFinite(r.endMinute)&&r.startMinute>=0&&r.endMinute>r.startMinute&&r.endMinute<=p.project.weather.durationMinutes,'Hypothetical interval must be positive and within the original event.');
+  need(Object.hasOwn(DEPTH_UNITS,r.unit)&&[r.depth,r.uncertainty].every(v=>Number.isFinite(v)&&v>=0&&v*DEPTH_UNITS[r.unit]<=10000),'Hypothetical depth and uncertainty require admitted units and nonnegative values within 10000 mm.');
+  p.times.add(r.startMinute);p.times.add(r.endMinute);
+  const C=p.work.calibrationRecordCount,V=p.times.size,E=V-1+2*C+2,Vc=p.work.calibrationVertices;
+  const reservedFeasibilityRelaxations=V*E,reservedShortestPathRelaxations=2*(V-1)*E,sortingWork=Vc*Vc+V*V+(C+1)*(C+1),certificateWork=32*E+32*V+16*(C+1)+64;
+  const totalWork=p.work.reservedCalibrationRelaxations+reservedFeasibilityRelaxations+reservedShortestPathRelaxations+p.work.mappingWork+sortingWork+certificateWork;
+  const work={...p.work,conditionRecordCount:1,queryVertices:V,queryEdges:E,reservedFeasibilityRelaxations,reservedShortestPathRelaxations,sortingWork,certificateWork,totalWork,limits:{...LIMITS,conditionBytes:4096}};
+  need(Object.entries(work).filter(([k])=>k!=='limits').every(([,v])=>Number.isSafeInteger(v)&&v>=0)&&totalWork<=LIMITS.totalWork,'Conditional rainfall interval work budget exceeded.');
+  return {...p,condition,work};
+}
+export function estimateConditionalRainfallIntervalWork(originalText,queryText,conditionText){return prepareConditional(originalText,queryText,conditionText).work;}
+function checkCondition(graph,cumulative,condition){
+  const total=sub(cumulative[graph.at.get(condition.reading.endMinute)],cumulative[graph.at.get(condition.reading.startMinute)]);
+  need(cmp(total,condition.lower)>=0n&&cmp(total,condition.upper)<=0n,'History violates the hypothetical nominal band.');
+  return {conditionRef:condition.conditionRef,totalMm:encode(total),withinHypotheticalBand:true};
+}
+export function conditionRainfallInterval(originalText,queryText,conditionText){
+  const p=prepareConditional(originalText,queryText,conditionText),graph=buildRainfallGraph(p.included,p.times),r=p.condition.reading;
+  const unit=from(DEPTH_UNITS[r.unit]),depth=mul(from(r.depth),unit),uncertainty=mul(from(r.uncertainty),unit),rawLower=sub(depth,uncertainty);
+  const condition={conditionRef:'rainfall-condition:'+r.id,reading:r,lower:cmp(rawLower,Q.zero)>0n?rawLower:Q.zero,upper:add(depth,uncertainty)};
+  need(graph.times.length===p.work.queryVertices&&graph.edges.length+2===p.work.queryEdges,'Prepared conditional graph differs from reservation.');
+  const calibration=rainfallHistoryConsistency(p.project,p.gauge),originalInconsistent=calibration.status==='interval-totals-inconsistent';
+  if(!originalInconsistent){
+    const a=graph.at.get(r.startMinute),b=graph.at.get(r.endMinute);
+    graph.edges.push({id:'condition-upper:'+r.id,kind:'condition-upper',from:a,to:b,weight:condition.upper,recordIndex:null,recordRef:null,conditionRef:condition.conditionRef});
+    graph.edges.push({id:'condition-lower:'+r.id,kind:'condition-lower',from:b,to:a,weight:sub(Q.zero,condition.lower),recordIndex:null,recordRef:null,conditionRef:condition.conditionRef});
+  }
+  const feasibility=solveRainfallFeasibility(graph);
+  need(feasibility.relaxations<=p.work.reservedFeasibilityRelaxations,'Conditional feasibility relaxation reservation exceeded.');
+  let status,negativeCycle=null,bounds=null,lowerRelaxations=0,upperRelaxations=0;
+  if(feasibility.changed>=0){
+    const cycle=verifyRainfallCycle(graph,feasibility,p.gauge.readings),conditionRefs=[...new Set(cycle.edges.filter(e=>e.conditionRef!==undefined).map(e=>e.conditionRef))];
+    need(originalInconsistent?conditionRefs.length===0:conditionRefs.length===1&&conditionRefs[0]===condition.conditionRef,'Contradiction certificate has incorrect condition provenance.');
+    negativeCycle={...cycle,conditionRefs};
+    status=originalInconsistent?'original-calibration-inconsistent':'condition-inconsistent';
+  }else{
+    need(!originalInconsistent,'Original-only graph disagrees with calibration contradiction.');
+    const projected=projectInterval(graph,feasibility,p.query,p.work,condition);
+    ({bounds,lowerRelaxations,upperRelaxations}=projected);
+    status=projected.status==='bounded-interval'?'conditionally-bounded-interval':'conditionally-upper-unbounded';
+  }
+  return {schema:'experimental-earth-conditional-rainfall-interval/1',originalProposal:p.originalProposal,query:p.query,condition:p.condition,
+    scope:{interpreted:['source.project','source.gauge','query','condition'],includedRoles:['calibration'],excluded:p.excluded,conditionRole:'counterfactual',numericContract:'exact-represented-nominal-bands',physicalInference:false},work:p.work,calibration,
+    assessment:{status,records:encodeRainfallRecords(graph.records),conditionRecord:{conditionRef:condition.conditionRef,reading:r,lowerMm:encode(condition.lower),upperMm:encode(condition.upper)},conditionApplied:!originalInconsistent,vertices:graph.times.length,edgeCount:graph.edges.length,relaxations:{feasibility:feasibility.relaxations,lower:lowerRelaxations,upper:upperRelaxations},negativeCycle,bounds},
+    meaning:'Counterfactual conditional possibilities under unchanged original calibration and one separately declared hypothetical reading. The condition is not observed rain, a promoted measurement role or a posterior probability. Original calibration remains separately reported; an incompatible hypothesis is not an original calibration contradiction or sensor diagnosis. Challenge and unassigned readings remain excluded. Nominal bands use exact represented values, not decimal-intent values or model tolerances. Event/site/time declarations are unverified. Histories, paths and directions are mathematical certificates, not inferred physical forcing or restored finite-family survivors; no soil, depth or proposal conclusion follows. Other original context remains unqualified. Abstract work excludes parsing, general validation, serialization and bit-operation costs and is not a CPU, heap or wall-time guarantee.'};
 }
