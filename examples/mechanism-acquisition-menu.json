@@ -1,0 +1,96 @@
+{
+  "schema": "experimental-earth-mechanism-acquisition-menu/1",
+  "eventRef": "authored full-family arithmetic event",
+  "planningMinute": 60,
+  "decisionMinute": 90,
+  "options": [
+    {
+      "mode": "prospective",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetically accessible at the declared modeled minute; no installation or access has been performed",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "id": "depth-75",
+      "kind": "depth",
+      "cellIndex": 1,
+      "minute": 75,
+      "availableMinute": 75
+    },
+    {
+      "mode": "prospective",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetically accessible at the declared modeled minute; no installation or access has been performed",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "id": "depth-90",
+      "kind": "depth",
+      "cellIndex": 1,
+      "minute": 90,
+      "availableMinute": 90
+    },
+    {
+      "mode": "prospective",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetically accessible at the declared modeled minute; no installation or access has been performed",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "id": "future-rain",
+      "kind": "rain-gauge",
+      "startMinute": 60,
+      "endMinute": 90,
+      "availableMinute": 90
+    },
+    {
+      "mode": "prospective",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetically accessible at the declared modeled minute; no installation or access has been performed",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "id": "cannot-install-in-past",
+      "kind": "rain-gauge",
+      "startMinute": 0,
+      "endMinute": 60,
+      "availableMinute": 60
+    },
+    {
+      "mode": "existing-record",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetically accessible at the declared modeled minute; no installation or access has been performed",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "kind": "rain-gauge",
+      "startMinute": 0,
+      "endMinute": 60,
+      "availableMinute": 60,
+      "distinctRecordBasis": "Deliberate negative control: this reference identifies the original consumed gauge reading",
+      "id": "consumed-original",
+      "recordRef": "rain-gauge:wide-total"
+    },
+    {
+      "mode": "existing-record",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetical separate unread logger record is declared to exist by minute60; the displayed scenario does not establish an actual logger",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "kind": "rain-gauge",
+      "startMinute": 0,
+      "endMinute": 60,
+      "availableMinute": 60,
+      "distinctRecordBasis": "Authored distinct underlying logger measurement, not a rename, copy, export or value already used to choose the original family or uncertainty",
+      "id": "separate-existing-logger",
+      "recordRef": "external:authored-second-logger-total"
+    },
+    {
+      "mode": "prospective",
+      "uncertaintyMm": 2,
+      "source": "Authored measurement-menu control; no acquired observation",
+      "availabilityBasis": "Hypothetically accessible at the declared modeled minute; no installation or access has been performed",
+      "associationBasis": "Authored same event, four-cell site and original minute clock",
+      "id": "too-late",
+      "kind": "depth",
+      "cellIndex": 1,
+      "minute": 90,
+      "availableMinute": 95
+    }
+  ]
+}
