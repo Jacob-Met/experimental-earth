@@ -4,7 +4,7 @@
 
 For investigators, educators and community members comparing proposed changes to a place and deciding what to measure next. The maintained workbench keeps original site declarations, finite alternative explanations and proposed measurements connected. It is a conceptual local modeling tool, not an engineering approval or a validated environmental forecast.
 
-Independent audience judgment of the outcome-criterion increment is pending. Producer verification covers the authored analytic control and actual browser input, search, comparison and original-investigation download/reopen. It does not establish real-site efficacy or adoption.
+Independent Sable ACCEPT on candidate 7c201360 (task earth-outcome-criteria-judge-sable61b7, verdict 6764): an unfamiliar 3×2 site with rates 8/14/19 produced reductions of 864/540/270 liters; a required 600-liter reduction selected only the first. Both inclusive comparator boundaries passed at 540 liters. Actual downloaded original source remained unchanged, reopening retained its 600-liter criterion under different live controls, and legacy reopening retained its default rule. Desktop and 390px phone pixels were inspected without horizontal overflow. The reviewer also personally inspected the official EPA SWMM workspace screenshot. This is narrow workflow acceptance, not whole-product or physical-model approval. Producer verification covers the authored analytic control and actual browser input, search, comparison and original-investigation download/reopen. It does not establish real-site efficacy or adoption.
 
 ## What good looks like
 
