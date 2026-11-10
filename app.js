@@ -367,7 +367,7 @@ function applyBrush(target, index) {
   if (brush !== 'inspect') {
     const cell = project[target][index];
     if (['sealed','turf','garden'].includes(brush)) cell.surface = brush;
-    else if (brush==='raise'||brush==='lower') { delete cell.terrainSource; delete cell.rasterSource; cell.elevationM = Number(Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))).toFixed(3)); }
+    else if (brush==='raise'||brush==='lower') { delete cell.terrainSource; delete cell.rasterSource; cell.elevationM = Math.max(-10, Math.min(10, cell.elevationM + (brush==='raise'?0.025:-0.025))); }
     cell.provenance = 'manually edited hypothetical assumption';
   }
   rerun();
