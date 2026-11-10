@@ -86,6 +86,8 @@ class Element {
   replaceChildren(...children){this.children=children;}
   addEventListener(name,fn){this.events.set(name,fn);}
   emit(name){this.events.get(name)?.();}
+  focus(){this.ownerDocument.activeElement=this;}
+  scrollIntoView(){}
 }
 function view(){
   const document={createElement:()=>new Element(document)},host=new Element(document);

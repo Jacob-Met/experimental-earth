@@ -65,7 +65,7 @@ export function mountInvestigationNavigation() {
     const sectionSelector = 'section.panel, [data-investigation]';
     const sections = [...workspace.querySelectorAll(sectionSelector)].flatMap(panel => {
       if (panel.closest('[hidden], [aria-hidden="true"]')) return [];
-      const heading = panel.querySelector('h2, h3');
+      const heading = panel.querySelector('h2, h3, h4');
       if (!heading || heading.closest(sectionSelector) !== panel) return [];
       const title = compact(heading.textContent);
       if (!title) return [];

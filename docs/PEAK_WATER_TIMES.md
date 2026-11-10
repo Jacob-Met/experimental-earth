@@ -4,7 +4,15 @@ The **Peak standing water** card compares each scenario's largest retained whole
 
 Below the ordinary water-history readout, **When did standing water peak?** shows the exact peak value and the number of retained times attaining it for Existing and Proposed separately. Choose a time in either scenario's selector, then use **Read paired values**. The existing readout shows both original scenario totals, and proposed minus existing, at that same retained time.
 
-Every exact tie is available. A dry or zero-water course can have a peak of zero at every retained time; the interface does not invent a unique peak. Fractional endpoint minutes remain available without time rounding. Keyboard users can use the native time selector and activate the adjacent button with Enter.
+Every exact tie is available. A dry or zero-water course can have a peak of zero at every retained time; the interface does not invent a unique peak. Fractional endpoint minutes remain available without time rounding. Keyboard users can use the native time selector and activate the adjacent button with Enter. The action returns focus to the paired readout’s existing time control so the requested values are visible, including on a narrow screen.
+
+## Try the ordinary workbench
+
+Import `examples/peak-water-short-shower.json`, then search **standing water peak** in the existing investigation navigation. This authored flat four-cell control uses a 30 mm/h shower lasting 2.5 minutes, retained 2-minute steps and a 5.5-minute endpoint. It is not a field observation.
+
+Existing sealed surfaces reach 18.933333333333334 L at minute 4; proposed turf reaches 11.2 L at minute 2. Reading the existing peak compares 18.933333333333334 L with 10.399999999999999 L at minute 4. Reading the proposed peak compares 15.466666666666667 L with 11.2 L at minute 2. Separate maxima are not simultaneous values.
+
+Change rain to zero and compare again: every retained time ties at zero. The 5.5-minute endpoint remains selectable. Importing another site replaces these ties with that source's own retained course. Export still contains only original project inputs.
 
 ## Separate maxima and simultaneous values
 

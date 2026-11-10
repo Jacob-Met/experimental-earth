@@ -70,7 +70,7 @@ export function createWaterHistoryValues(chartWrap) {
         <tr><th scope="row">Change<br>(proposed − existing)</th><td id="water-history-change"></td></tr>
       </tbody>
     </table>
-    <section id="water-history-peaks" aria-labelledby="water-history-peaks-title">
+    <section id="water-history-peaks" data-investigation aria-labelledby="water-history-peaks-title">
       <h4 id="water-history-peaks-title">When did standing water peak?</h4>
       <p>Each scenario has its own maximum across retained snapshots. Read paired values at either peak time to compare both scenarios at the same time. These are not continuous-time peaks.</p>
       <div class="water-peak-grid">
@@ -135,7 +135,14 @@ export function createWaterHistoryValues(chartWrap) {
   slider.addEventListener('input', () => select(Number(slider.value)));
   previous.addEventListener('click', () => select(selected - 1));
   next.addEventListener('click', () => select(selected + 1));
-  for (const peak of peakControls) peak.read.addEventListener('click', () => select(Number(peak.time.value)));
+  for (const peak of peakControls) peak.read.addEventListener('click', () => {
+    select(Number(peak.time.value));
+    // Return the reader to the paired values and their existing time control.
+    if (available && course.length) {
+      slider.focus({ preventScroll: true });
+      caption.scrollIntoView({ block: 'center', behavior: 'instant' });
+    }
+  });
   draw();
   return {
     selectMinute(value) {
