@@ -209,3 +209,7 @@ a{color:#1d6b5a;text-decoration-thickness:1px;text-underline-offset:3px}a:focus-
 #manual-observation-correction form[hidden] { display: none; }
 #manual-observation-correction fieldset { display: grid; gap: .75rem; min-width: 0; }
 #manual-observation-correction input { width: 100%; box-sizing: border-box; }
+
+#decision-predictions .decision-prediction-table{font-size:.85rem;font-variant-numeric:tabular-nums}
+#decision-question-panel .decision-method{margin:1rem 0}
+#decision-question-panel .decision-method summary{cursor:pointer;font-weight:600}

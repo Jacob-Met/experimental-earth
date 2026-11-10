@@ -62,14 +62,15 @@ export function mountInvestigationNavigation() {
   }
 
   function collect() {
-    const sections = [...workspace.querySelectorAll('section.panel')].flatMap(panel => {
+    const sectionSelector = 'section.panel, [data-investigation]';
+    const sections = [...workspace.querySelectorAll(sectionSelector)].flatMap(panel => {
       if (panel.closest('[hidden], [aria-hidden="true"]')) return [];
       const heading = panel.querySelector('h2, h3');
-      if (!heading || heading.closest('section.panel') !== panel) return [];
+      if (!heading || heading.closest(sectionSelector) !== panel) return [];
       const title = compact(heading.textContent);
       if (!title) return [];
-      const paragraph = [...panel.querySelectorAll('p')].find(p => p.closest('section.panel') === panel);
-      const eyebrow = [...panel.querySelectorAll('.eyebrow')].find(p => p.closest('section.panel') === panel);
+      const paragraph = [...panel.querySelectorAll('p')].find(p => p.closest(sectionSelector) === panel);
+      const eyebrow = [...panel.querySelectorAll('.eyebrow')].find(p => p.closest(sectionSelector) === panel);
       let anchor = panel.id && document.getElementById(panel.id) === panel ? panel : heading;
       if (!anchor.id || document.getElementById(anchor.id) !== anchor) {
         const slug = searchable(title).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'question';

@@ -102,3 +102,20 @@ The planners compare declared finite alternatives and their modeled measurement 
 An investigation without a criterion keeps `experimental-earth-decision-depth-pair/1`. An explicit criterion exports `experimental-earth-decision-depth-pair/2`, preserving that declaration with the original project and planning options. Reopening v2 requires a valid criterion and recomputes the report. Reopening v1 with a criterion refuses rather than silently changing the meaning of a legacy investigation. Stored report claims are not substitutes for recomputation.
 
 The guide describes source contracts and a declared illustrative model case. Test receipts, runtime qualification and actual browser receiving are separate evidence; none establishes field validity.
+
+## Use the browser workbench
+
+1. Start the ordinary app with `python3 serve.py` and open its printed loopback URL.
+2. Use **Import project** to open `examples/decision-criterion-courtyard.json`. This replaces the current workspace only through the existing import action; export work you want to retain first. Every value in this example is authored, not measured.
+3. Search **Find an investigation** for **proposal decision** and open the matching question.
+4. Choose **Final stored water**, then **Proposal minus existing is at most**, enter **-128**, and set the prospective depth tolerance to **2 mm**.
+5. Choose **Find a decision-focused reading**. The example produces A1 at 60 minutes. Read each candidate's predicted depth, signed change and target result together.
+6. Compare measurement options or one/two readings below. Download the original investigation from the paired-reading panel. Reopening it recomputes its own source and criterion even when current controls differ; it does not replace the working site or turn predictions into observations.
+
+The outcome controls and source remain the existing ones. Preparation leaves actual depth/source fields empty for a person to enter an observation. Change the outcome to start a different decision; the rule deliberately returns to the default opposite-direction comparison.
+
+### Current receiving
+
+The maintained Chromium sandbox admission passed on Linux x86_64, Chrome 156.0.8078.47, through the authorized fleet route. An actual Playwright user course imported the original JSON through the file input, found the nested question through normal navigation, operated all three panels, physically downloaded a version-2 investigation, and reopened it under a different current boundary. Desktop and 390px layouts were inspected. This is computational/UI receiving only.
+
+The earlier PR589 attempt left a browser tab at about:blank after a navigation timeout and reported a URL-policy refusal. That historical attempt is preserved; this new run neither accesses that tab nor claims to resolve its old receipt. No browser sandbox guard was weakened.
