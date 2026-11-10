@@ -1,0 +1,62 @@
+{
+  "schema": "experimental-earth-site/1",
+  "title": "Authored short shower — sealed and turf",
+  "width": 2,
+  "height": 2,
+  "weather": {
+    "rainMmHr": 30,
+    "stormMinutes": 2.5,
+    "durationMinutes": 5.5,
+    "stepMinutes": 2,
+    "cellSizeM": 2,
+    "mobilityPerHour": 0,
+    "boundaryExitPerHour": 0
+  },
+  "existing": [
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat finite-step control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat finite-step control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat finite-step control"
+    },
+    {
+      "elevationM": 0,
+      "surface": "sealed",
+      "provenance": "Authored flat finite-step control"
+    }
+  ],
+  "proposal": [
+    {
+      "elevationM": 0,
+      "surface": "turf",
+      "provenance": "Authored turf alternative"
+    },
+    {
+      "elevationM": 0,
+      "surface": "turf",
+      "provenance": "Authored turf alternative"
+    },
+    {
+      "elevationM": 0,
+      "surface": "turf",
+      "provenance": "Authored turf alternative"
+    },
+    {
+      "elevationM": 0,
+      "surface": "turf",
+      "provenance": "Authored turf alternative"
+    }
+  ],
+  "observations": [],
+  "selectedIndex": 0,
+  "source": "Illustrative geometry and rates; no site measurements"
+}
