@@ -383,13 +383,13 @@ function gridInto(target, result, snapshotIndex) {
     const waterAlpha = view==='surface' ? 0 : Math.min(0.66,mm/50*0.65);
     const btn=document.createElement('button'); btn.type='button';btn.className=`cell ${index===project.selectedIndex?'selected':''}`;
     const depthContext = view === 'snapshot' ? `depth at ${result.snapshots[snapshotIndex].minute} minutes after event start` : `${view} depth`;
-    btn.setAttribute('aria-label',`${target} cell ${nameCell(index)}, ${SURFACES[cell.surface].label}, elevation ${numeric(cell.elevationM)} meters, modeled ${numeric(mm)} millimeters ${depthContext}`);
+    btn.setAttribute('aria-label',`${target} cell ${nameCell(index)}, ${SURFACES[cell.surface].label}, elevation ${readingNumber(cell.elevationM)} meters, modeled ${numeric(mm)} millimeters ${depthContext}`);
     btn.style.background=SURFACES[cell.surface].color;
     btn.style.setProperty('--water-alpha',String(waterAlpha));
     btn.dataset.cellIndex=String(index);
     btn.dataset.grid=target;
     if (view !== 'surface') btn.dataset.depthMm = String(mm);
-    const depthLabel=view==='surface' ? `${Math.round(cell.elevationM*100)} cm` : `${numeric(mm)} mm`;
+    const depthLabel=view==='surface' ? `${readingNumber(cell.elevationM*100)} cm` : `${numeric(mm)} mm`;
     btn.innerHTML=`<i class="water"></i><b>${nameCell(index)}</b><span>${depthLabel}</span>`;
     for (const side of ['east', 'south']) if (cell.internalBarriers?.[side]?.closed || typeof cell.internalBarriers?.[side]?.crestElevationM === 'number') {
       const line = document.createElement('i'); line.className = 'internal-barrier internal-barrier-' + side + (typeof cell.internalBarriers?.[side]?.crestElevationM === 'number' ? ' internal-crest' : '');
@@ -475,7 +475,7 @@ function observations() {
   const restoreFocus = observationFocus.capture();
   const n=project.selectedIndex; const base=project.existing[n]; const plan=project.proposal[n];
   $('obs-cell').value=nameCell(n);
-  $('selection').innerHTML=`<div><strong>Selected ${nameCell(n)}</strong> · existing: ${SURFACES[base.surface].label}, ${numeric(base.elevationM)} m</div><div>proposed: ${SURFACES[plan.surface].label}, ${numeric(plan.elevationM)} m</div>`;
+  $('selection').innerHTML=`<div><strong>Selected ${nameCell(n)}</strong> · existing: ${SURFACES[base.surface].label}, ${readingNumber(base.elevationM)} m</div><div>proposed: ${SURFACES[plan.surface].label}, ${readingNumber(plan.elevationM)} m</div>`;
   $('terrain-origin').textContent = ['existing', 'proposal'].map(target => {
     const origin = project[target][n].terrainSource;
     const raster = project[target][n].rasterSource;
